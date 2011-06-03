@@ -5,9 +5,15 @@ require(RJSONIO)
 require(ggplot2)
 
 ########## Preparation
-plosapikey <- 'WQcDSXml2VSWx3P' # your api key (request yours here: )
+
+## Typically, a single key is associated with a single software app, which may have many users. 
+## We can make it so the key doesn't have to be entered each time, see the R Mendeley package
+plosapikey <- 'WQcDSXml2VSWx3P' # your api key (request yours here: http://api.plos.org/registration/)
+
+
+
 plosapiurl <- 'http://api.plos.org/search?' # root URL for all PLoS journals
-plosfields <- read.csv('plosfields.csv') # read in data frame describing search fields
+plosfields <- data(plosfields) # read in data frame describing search fields, read in as package data
 # data(plosfields) # for when loading as package
 
 journalUrls <- c( # journal specific URL's for later use in code
@@ -21,7 +27,7 @@ journalUrls <- c( # journal specific URL's for later use in code
 )
 
 ########## Functions
-# plosfields$field # Look at possible search fields for plos jouranls
+# plosfields$field # Look at possible search fields for plos journals
 
 formatarticleurl <- function(doi, journal) {
 # Function to format URL for a specific article in a specific journal

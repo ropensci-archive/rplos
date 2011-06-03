@@ -1,0 +1,6 @@
+import(RCurl)
+import(stringr)
+import(RJSONIO)
+import(ggplot2)
+
+export(formatarticleurl, searchplos)
