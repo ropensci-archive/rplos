@@ -2,7 +2,7 @@ Package: plos
 Description: A programmatic interface to the
  Web Service methods provided by the Public Library
  of Science journals.  
-Title: Interface to Mendeley API methods
+Title: Interface to PLoS Journals API methods
 Version: 0.0-1
 License: BSD
 Author: Scott Chamberlain, Carl Boettiger 
