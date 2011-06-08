@@ -29,7 +29,7 @@ function(terms, fields = NA, limit = NA,
     curl = curl)
   jsonout <- fromJSON(I(tt))
   tempresults <- jsonout$response$docs
-  numres <- length(tempresults) # number of search results
+  numres <- length(tempresults) # number of search results 
   names(numres) <- 'Number of search results'
   dfresults <- data.frame( do.call(rbind, tempresults) )
   return(list(numres, dfresults))
