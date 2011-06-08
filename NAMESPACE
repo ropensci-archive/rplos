@@ -3,4 +3,4 @@ import(stringr)
 import(RJSONIO)
 import(ggplot2)
 
-export(formatarticleurl, searchplos, plosauthor, plosword)
+export(formatarticleurl, searchplos, plosauthor, plosword, plosabstract, plossubject, plostitle)
