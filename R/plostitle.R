@@ -1,25 +1,25 @@
-# Function to search PLoS Journals, by author
+# Function to search PLoS Journals, by title
 
-plosauthor <- 
+plostitle <- 
 # Args:
-#   author(s): authors to search for (character)
+#   title: search terms for article titles (character)
 #   fields: fields to return from search (character) [e.g., 'id,title'], 
 #     any combination of search fields [see plosfields$field] 
 #   limit: number of results to return (integer)
 #   results: print results or not (TRUE or FALSE)
 # Examples:
-#   plosauthor('johnson', 'title,author', 9999999, 'FALSE')
-#   plosauthor('johnson',  limit = 5, results = 'TRUE')
+#   plostitle('drosophila', 'title', 9999999, 'FALSE')
+#   plostitle('drosophila',  limit = 5, results = 'TRUE')
 
-function(author, fields = NA, limit = NA, results = FALSE,
+function(title, fields = NA, limit = NA, results = FALSE, 
   url = 'http://api.plos.org/search',
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., 
   curl = getCurlHandle() ) 
 {
   args <- list(apikey = key)
-  if(!is.na(author))
-    args$q <- paste('author:', author, sep="")
+  if(!is.na(title))
+    args$q <- paste('title:', title, sep="")
   if(!is.na(fields))
     args$fl <- fields
   if(!is.na(limit))
