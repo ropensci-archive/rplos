@@ -7,4 +7,4 @@ Version: 0.0-1
 License: BSD
 Author: Scott Chamberlain, Carl Boettiger 
 Maintainer: Scott Chamberlain <myrmecocystus@gmail.com> 
-Imports: RJSONIO, RCurl (>= 1.6), stringr, ggplot2 
+Imports: RJSONIO, RCurl (>= 1.6), stringr, ggplot2, data.table 
