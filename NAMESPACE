@@ -2,5 +2,6 @@ import(RCurl)
 import(stringr)
 import(RJSONIO)
 import(ggplot2)
+import(data.table)
 
 export(formatarticleurl, searchplos, plosauthor, plosword, plosabstract, plossubject, plostitle, crossref, plot_throughtime)

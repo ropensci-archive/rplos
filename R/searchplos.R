@@ -7,7 +7,7 @@ searchplos <-
 #     any combination of search fields [see plosfields$field] 
 #   limit: number of results to return (integer)
 # Examples:
-#   searchplos('drosophila', 'title', 5)
+#   searchplos('drosophila', 'publication_date', 100)
 
 function(terms, fields = NA, limit = NA, 
   url = 'http://api.plos.org/search',

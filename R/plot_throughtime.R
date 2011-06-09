@@ -3,52 +3,41 @@
 plot_throughtime <- 
 # Args:
 #   terms: search terms (character)
-#   vis: visualize results in bar plot or not (TRUE or FALSE) 
+#   limit: number of results to return (integer)
 # Examples:
-#   plot_throughtime('Helianthus')
+#   plot_throughtime('phylogeny', 300)
 
-function(terms,
-  url = 'http://api.plos.org/search',
+function(terms, limit = NA, 
+  url = "http://api.plos.org/search",
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., 
   curl = getCurlHandle() ) 
 {
-  if (length(terms) == 1) {
   args <- list(apikey = key)
   if(!is.na(terms))
     args$q <- terms
-  args$fl <- "id" # just ID field to speed up return of search results
+  if(!is.na(limit))
+    args$rows <- limit
+  args$fl <- "publication_date"
   args$wt <- "json"
   tt <- getForm(url, 
     .params = args,
     ...,
     curl = curl)
-  numres <- fromJSON(I(tt))$response$numFound
-  names(numres) <- 'Number of articles with search term'
-  return(numres)
-  }  
-  else {
-    search_ <- function(x) {
-        args <- list(apikey = key)
-        if(!is.na(x))
-        args$q <- x
-        args$fl <- "id" # just ID field to speed up return of search results
-        args$wt <- "json"
-        tt <- getForm(url, 
-          .params = args,
-          ...,
-          curl = curl)
-        numres <- fromJSON(I(tt))$response$numFound
-        return(numres)
-    }
-    temp <- ldply(terms, search_)
-    names(temp) <- "No_Articles"
-    temp$Term <- terms
-    temp$Term <- as.character(temp$Term)
-      if (vis == "TRUE") {
-        if(!require(ggplot2)) stop("must first install 'ggplot2' package.")
-        p <- ggplot(temp, aes(x=Term, y=No_Articles)) + geom_bar()
-      }
-    return(list(table = temp, plot = p))
-  }
+  jsonout <- fromJSON(I(tt))
+  tempresults <- jsonout$response$docs
+  ttt <- data.frame( do.call(rbind, tempresults) )
+  tt_ <- as.data.frame(t(apply(ttt, 1, function(x) str_split(x[[1]], 
+    pattern = "-")[[1]][1:2])))
+  names(tt_) <- c("year", "month")
+  tt_dt <- data.table(tt_)
+  tsum <- as.data.frame(tt_dt[, length(year), by=list(year, month)])
+  tsum$dateplot <- as.Date(paste(tsum$month, "1", 
+    str_sub(tsum$year, 3, 4), sep="/"), "%m/%d/%y")
+  p <- ggplot(tsum, aes(x = dateplot, y = V1)) + 
+    geom_line(colour = "red") +
+    theme_bw() +
+    labs(x = "", y = "Number of articles matching search term(s)\n") +
+    opts(title = paste("PLoS search of", terms, "using the rplos package"))
+  return(p)
 }
