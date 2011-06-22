@@ -1,3 +1,7 @@
+NOTE THAT YOU CAN NOT USE THIS AS A PACKAGE VIA LIBRARY() OR REQUIRE() AS OF YET, BUT WE ARE WORKING ON GETTING THERE. 
+
+
+
 This set of functions/package will access full text articles from the Public Library of Science journals using their API. 
 
 Get your PLoS API here: 
@@ -6,3 +10,4 @@ http://api.plos.org/
 Put your API in your .Rprofile file using e.g., 
 options(PlosApiKey = "YOURPLOSAPIKEY"), 
 and the functions within this package will be able to use your API key without you having to enter it every time you run a search. 
+
