@@ -8,6 +8,7 @@ plossubject <-
 #   limit: number of results to return (integer)
 #   results: print results or not (TRUE or FALSE)
 # Examples:
+#   plossubject('ecology', 'subject', 999, 'FALSE')
 #   plossubject('ecology', 'subject', 9, 'FALSE')
 #   plossubject('ecology',  limit = 5, results = 'TRUE')
 #   plossubject('ecology',  'subject', limit = 99, results = 'TRUE')
