@@ -4,11 +4,13 @@ plot_throughtime <-
 # Args:
 #   terms: search terms (character)
 #   limit: number of results to return (integer)
+#   gvis: use google visualization via the googleVis package (TRUE or FALSE)
 # Examples:
-#   plot_throughtime('phylogeny', 300)
-#   plot_throughtime(list('drosophila','monkey'), 500)
+#   plot_throughtime('phylogeny', 300, gvis=FALSE)
+#   plot_throughtime(list('drosophila','monkey'), 100)
+#   plot_throughtime(list('drosophila','flower'), 100, TRUE)
 
-function(terms, limit = NA, 
+function(terms, limit = NA, gvis = FALSE,
   url = "http://api.plos.org/search",
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., 
@@ -36,6 +38,7 @@ function(terms, limit = NA,
   tsum <- as.data.frame(tt_dt[, length(year), by=list(year, month)])
   tsum$dateplot <- as.Date(paste(tsum$month, "1", 
     str_sub(tsum$year, 3, 4), sep="/"), "%m/%d/%y")
+  tsum$V1 <- as.numeric(tsum$V1)
   p <- ggplot(tsum, aes(x = dateplot, y = V1)) + 
     geom_line(colour = "red") +
     theme_bw() +
@@ -72,12 +75,19 @@ function(terms, limit = NA,
   temp2$dateplot <- as.Date(paste(temp2$month, "1", 
     str_sub(temp2$year, 3, 4), sep="/"), "%m/%d/%y")
   temp2m <- melt(temp2[, -c(1:2)], id = 3)
-  pp <- ggplot(temp2m, aes(x = dateplot, y = value, group = variable, colour = variable)) + 
-    geom_line() +
-    theme_bw() +
-    labs(x = "", y = "Number of articles matching search term(s)\n") +
-    opts(title = paste("PLoS search of", paste(as.character(terms), collapse=","), "using the rplos package"),
-      legend.position = c(0.35, 0.8))
-  return(pp)
+  temp2m$value <- as.numeric(temp2m$value)
+    if(gvis == "FALSE") {
+      pp <- ggplot(temp2m, aes(x = dateplot, y = value, group = variable, colour = variable)) + 
+        geom_line() +
+        theme_bw() +
+        labs(x = "", y = "Number of articles matching search term(s)\n") +
+        opts(title = paste("PLoS search of", paste(as.character(terms), collapse=","), "using the rplos package"),
+          legend.position = c(0.35, 0.8)) 
+      return(pp)
+      }
+    else {
+      gvisplot <- gvisMotionChart(temp2m, idvar="variable", timevar="dateplot")
+      plot(gvisplot)  
+    }
   }
 }

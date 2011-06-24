@@ -3,6 +3,6 @@ import(stringr)
 import(RJSONIO)
 import(ggplot2)
 import(data.table)
-import(ggplot2)
+import(googleVis)
 
-export(formatarticleurl, searchplos, plosauthor, plosword, plosabstract, plossubject, plostitle, crossref, plot_throughtime)
+export(formatarticleurl, searchplos, plosauthor, plosword, plosabstract, plossubject, plostitle, crossref, plot_throughtime, articlelength)
