@@ -1,15 +1,13 @@
-# Base function to search PLoS Journals
+# Function to search PLoS Journals figure and table captions
 
-searchplos <- 
+plosfigtabcaps <- 
 # Args:
 #   terms: search terms (character)
 #   fields: fields to return from search (character) [e.g., 'id,title'], 
 #     any combination of search fields [see plosfields$field] 
 #   limit: number of results to return (integer)
 # Examples:
-#   searchplos('ecology', 'id', 2)
-#   searchplos('ecology', 'id', 1001)
-#   searchplos('ecology', 'id,title', 2)
+#   plosfigtabcaps('ecology', 'id', 2)
 
 function(terms, fields = NA, limit = NA, 
   url = 'http://api.plos.org/search',
@@ -28,7 +26,7 @@ function(terms, fields = NA, limit = NA,
   argsgetnum$rows <- 0
   getnum <- getForm(url, 
     .params = argsgetnum,
-    ...,
+#     ...,
     curl = curl)
   getnumrecords <- fromJSON(I(getnum))$response$numFound
   
@@ -37,7 +35,7 @@ function(terms, fields = NA, limit = NA,
       args$rows <- limit
     tt <- getForm(url, 
       .params = args,
-      ...,
+#     ...,
       curl = curl)
     jsonout <- fromJSON(I(tt))
     tempresults <- jsonout$response$docs
@@ -55,7 +53,7 @@ function(terms, fields = NA, limit = NA,
         args$start <- i
         tt <- getForm(url, 
           .params = args,
-          ...,
+#         ...,
           curl = curl)
         jsonout <- fromJSON(I(tt))
         tempresults <- jsonout$response$docs  
