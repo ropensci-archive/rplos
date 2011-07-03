@@ -62,6 +62,7 @@ function(terms, fields = NA, limit = NA,
         dfresults_[[i]] <- data.frame( do.call(rbind, tempresults) )
       }
       dfresults__ <- do.call(rbind, dfresults_)
+      names(getnumrecords) <- 'Number of search results'
       return(list(getnumrecords, dfresults__))
     }
 }

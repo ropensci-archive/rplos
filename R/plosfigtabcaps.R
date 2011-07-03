@@ -6,10 +6,14 @@ plosfigtabcaps <-
 #   fields: fields to return from search (character) [e.g., 'id,title'], 
 #     any combination of search fields [see plosfields$field] 
 #   limit: number of results to return (integer)
+#   numrecords: print number of results only 'TRUE' or 'FALSE' (character)
 # Examples:
-#   plosfigtabcaps('ecology', 'id', 2)
+#   plosfigtabcaps('ecology', 'id', 500)
+#   plosfigtabcaps('ecology', 'figure_table_caption', 10)
+#   plosfigtabcaps('is', 'id', 2000)
+#   plosfigtabcaps('ecology', 'id', 10, numrecords = 'FALSE')
 
-function(terms, fields = NA, limit = NA, 
+function(terms, fields = NA, limit = NA, numrecords = FALSE,
   url = 'http://api.plos.org/search',
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., 
@@ -17,7 +21,7 @@ function(terms, fields = NA, limit = NA,
 {
   args <- list(apikey = key)
   if(!is.na(terms))
-    args$q <- terms
+    args$q <- paste('figure_table_caption:', terms, sep="")
   if(!is.na(fields))
     args$fl <- fields
   args$wt <- "json"
@@ -26,16 +30,18 @@ function(terms, fields = NA, limit = NA,
   argsgetnum$rows <- 0
   getnum <- getForm(url, 
     .params = argsgetnum,
-#     ...,
+    ...,
     curl = curl)
   getnumrecords <- fromJSON(I(getnum))$response$numFound
-  
+
+  if(numrecords == 'TRUE') {getnumrecords} else
+  {
   if(min(getnumrecords, limit) < 1000) {
     if(!is.na(limit))
       args$rows <- limit
     tt <- getForm(url, 
       .params = args,
-#     ...,
+      ...,
       curl = curl)
     jsonout <- fromJSON(I(tt))
     tempresults <- jsonout$response$docs
@@ -53,13 +59,15 @@ function(terms, fields = NA, limit = NA,
         args$start <- i
         tt <- getForm(url, 
           .params = args,
-#         ...,
+          ...,
           curl = curl)
         jsonout <- fromJSON(I(tt))
         tempresults <- jsonout$response$docs  
         dfresults_[[i]] <- data.frame( do.call(rbind, tempresults) )
       }
       dfresults__ <- do.call(rbind, dfresults_)
+      names(getnumrecords) <- 'Number of search results'
       return(list(getnumrecords, dfresults__))
     }
+  }
 }
