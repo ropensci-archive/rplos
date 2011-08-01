@@ -2,6 +2,10 @@
 
 plosallviews <- 
 # Function htmlviews to summarise all pdf, html, and xml views
+# Args:
+#   doi: digital object identifier for an article in PLoS Journals  (string)
+#   source_: counter [PLoS' own stats], pmc [PubMed], scopus, or crossref (factor)
+#   downform: download format (xml or csv)
 # Examples: 
 #   plosallviews('10.1371/journal.pbio.0000012', 'counter', 'json')  
 
