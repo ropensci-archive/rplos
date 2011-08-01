@@ -3,6 +3,7 @@
 plosallviewsdf <- 
 # Examples
 #   plosallviewsdf(out)
+# Input: the JSON output from the plosallviews function
 # Output: data frame
   
 function(data) {
@@ -15,5 +16,5 @@ function(data) {
   class(dat$html_views) <- "numeric"
   class(dat$month) <- "numeric"
   class(dat$year) <- "numeric"
-  return(dat)
+return(dat)
 }
