@@ -1,10 +1,18 @@
 # plosallviewsdf.R
 
+##### NEEDS OVERALL!!!!!!!!!!!!!!!!!!!
+
 plosallviewsdf <- 
-# Examples
-#   plosallviewsdf(out)
-# Input: the JSON output from the plosallviews function
+# Args:
+#   data: json object or xml object (data object) 
+#   type: input type, json or xml (character)
+# Input: JSON or XML output from the plosallviews function
 # Output: data frame
+# Examples
+#   out <- plosallviews('10.1371/journal.pbio.0000012', 'citeulike', T, T, 'json')
+#   plosallviewsdf(out, 'json')
+#   
+#   plosallviewsdf(out, 'xml')
   
 function(data) {
   
