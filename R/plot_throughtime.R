@@ -17,7 +17,7 @@ function(terms, limit = NA, gvis = FALSE,
   curl = getCurlHandle() ) 
 {
   if (length(terms) == 1) {
-  args <- list(apikey = key)
+  args <- list(api_key = key)
   if(!is.na(terms))
     args$q <- terms
   if(!is.na(limit))
@@ -34,8 +34,7 @@ function(terms, limit = NA, gvis = FALSE,
   tt_ <- as.data.frame(t(apply(ttt, 1, function(x) str_split(x[[1]], 
     pattern = "-")[[1]][1:2])))
   names(tt_) <- c("year", "month")
-  tt_dt <- data.table(tt_)
-  tsum <- as.data.frame(tt_dt[, length(year), by=list(year, month)])
+  tsum <- ddply(tt_, .(year, month), summarise, V1 = length(month))  
   tsum$dateplot <- as.Date(paste(tsum$month, "1", 
     str_sub(tsum$year, 3, 4), sep="/"), "%m/%d/%y")
   tsum$V1 <- as.numeric(tsum$V1)
@@ -43,12 +42,12 @@ function(terms, limit = NA, gvis = FALSE,
     geom_line(colour = "red") +
     theme_bw() +
     labs(x = "", y = "Number of articles matching search term(s)\n") +
-    opts(title = paste("PLoS search of", terms, "using the rplos package"))
+    opts(title = paste("PLoS search of ", terms, " using the rplos package"))
   return(p)
   }
   else {
   search_ <- function(x) {
-      args <- list(apikey = key)
+      args <- list(api_key = key)
       if(!is.na(x))
         args$q <- x
       if(!is.na(limit))
@@ -57,7 +56,7 @@ function(terms, limit = NA, gvis = FALSE,
       args$wt <- "json"
       tt <- getForm(url, 
         .params = args,
-        ...,
+#         ...,
         curl = curl)
       jsonout <- fromJSON(I(tt))
       tempresults <- jsonout$response$docs
@@ -65,8 +64,7 @@ function(terms, limit = NA, gvis = FALSE,
       tt_ <- as.data.frame(t(apply(ttt, 1, function(x) str_split(x[[1]], 
         pattern = "-")[[1]][1:2])))
       names(tt_) <- c("year", "month")
-      tt_dt <- data.table(tt_)
-      tsum <- as.data.frame(tt_dt[, length(year), by=list(year, month)])
+      tsum <- ddply(tt_, .(year, month), summarise, V1 = length(month))
     return(tsum)
     }
   temp <- llply(terms, search_)
