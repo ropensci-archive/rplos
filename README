@@ -11,3 +11,4 @@ Put your API in your .Rprofile file using e.g.,
 options(PlosApiKey = "YOURPLOSAPIKEY"), 
 and the functions within this package will be able to use your API key without you having to enter it every time you run a search. 
 
+rplos tutorial at rOpenSci website here: http://ropensci.org/tutorials/rplos-tutorial/
