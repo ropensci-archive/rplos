@@ -12,7 +12,8 @@ Imports:
     RCurl (>= 1.6),
     stringr,
     ggplot2,
-    data.table
+    data.table,
+    XML
 Collate:
     'almplosallviews.R'
     'almplosallviewsdf.R'
@@ -27,7 +28,6 @@ Collate:
     'browsepaper.R'
     'crossref.R'
     'formatarticleurl.R'
-    'otherstuff.R'
     'plosabstract.R'
     'plosauthor.R'
     'plosfigtabcaps.R'
