@@ -1,17 +1,22 @@
-# crossref.R 
-# Author: Carl Boettiger <cboettig@gmail.com>
-# 
-
-require(XML)
-require(RCurl)
-
+#' crossref.R   lookup article info via CrossRef with DOI
+#' @param doi digital object identifier for an article in PLoS Journals
+#' @param url the PLoS API url for the function (should be left to default)
+#' @param key your PLoS API key, either enter, or loads from .Rprofile
+#' @param ... optional additional curl options (debugging tools mostly)
+#' @param curl If using in a loop, call getCurlHandle() first and pass 
+#'  the returned value in here (avoids unnecessary footprint)
+#' @return metadata from DOI
+#' @examples \dontrun{
+#'  crossref("10.3998/3336451.0009.101")
+#' }
+#' @export
 crossref <- 
-# Returns metadata from DOI
-# Examples:
-#   crossref("10.3998/3336451.0009.101")
-function(doi, url = "http://www.crossref.org/openurl/", 
-          key = getOption("CrossRefKey", stop("need an API key for Mendeley")), ...,
-           curl = getCurlHandle())
+
+function(doi, 
+  url = "http://www.crossref.org/openurl/", 
+  key = getOption("CrossRefKey", stop("need an API key for Mendeley")), 
+  ...,
+  curl = getCurlHandle())
 {
   ## Assemble a url query such as:
   #http://www.crossref.org/openurl/?id=doi:10.3998/3336451.0009.101&noredirect=true&pid=API_KEY&format=unixref
@@ -25,5 +30,3 @@ function(doi, url = "http://www.crossref.org/openurl/",
   nodeset = getNodeSet(ans, "//journal_article")
   lapply(nodeset, xmlToList)
 }
-
-

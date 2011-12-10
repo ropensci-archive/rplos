@@ -1,8 +1,1 @@
-import(RCurl)
-import(stringr)
-import(RJSONIO)
-import(ggplot2)
-import(data.table)
-import(googleVis)
-
-export(formatarticleurl, searchplos, plosauthor, plosword, plosabstract, plossubject, plostitle, crossref, plot_throughtime, articlelength)
+export(almplosallviews)

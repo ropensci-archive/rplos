@@ -1,11 +1,16 @@
-# almpub.R
-
+#' almpub.R   Alt-metrics date updated
+#' @param doi digital object identifier for an article in PLoS Journals
+#' @param key your PLoS API key, either enter, or loads from .Rprofile
+#' @param url the PLoS API url for the function (should be left to default)
+#' @param ... optional additional curl options (debugging tools mostly)
+#' @param curl If using in a loop, call getCurlHandle() first and pass 
+#'  the returned value in here (avoids unnecessary footprint)
+#' @return date when article data was last updated
+#' @examples \dontrun{
+#'    almpub('10.1371/journal.pbio.0000012')
+#' }
+#' @export
 almpub <- 
-# Function retrieves date when article data was last updated
-# Args:
-#   doi: digital object identifier for an article in PLoS Journals  (string)
-# Examples: 
-#   almpub('10.1371/journal.pbio.0000012')
 
 function(doi,
   url = 'http://alm.plos.org/articles',
@@ -15,7 +20,5 @@ function(doi,
     
   url2 <- paste(url, "/", doi, '.json?api_key=', key, sep='')
   tt <- getURLContent(url2)
-  outprod <- fromJSON(I(tt))$article$published
-
-  return(outprod)
+  fromJSON(I(tt))$article$published
 }
