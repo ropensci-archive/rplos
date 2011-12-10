@@ -5,6 +5,7 @@ Description: A programmatic interface to the
 Title: Interface to PLoS Journals API methods
 Version: 0.0-1
 License: BSD
+<<<<<<< HEAD
 Author: Scott Chamberlain, Carl Boettiger
 Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>
 Imports:
@@ -37,3 +38,8 @@ Collate:
     'plosword.R'
     'plot_throughtime.R'
     'searchplos.R'
+=======
+Author: Scott Chamberlain, Carl Boettiger 
+Maintainer: Scott Chamberlain <myrmecocystus@gmail.com> 
+Imports: RJSONIO, RCurl (>= 1.6), stringr, ggplot2, data.table, XML
+>>>>>>> e145ba805d9585f0deaa287ac0c8eba99c046bb6
