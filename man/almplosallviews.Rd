@@ -1,6 +1,6 @@
 \name{almplosallviews}
 \alias{almplosallviews}
-\title{almplosallviews.R   Alt-metrics_allviews}
+\title{Get PLoS altmetrics as xml, json, or csv.}
 \usage{
   almplosallviews(doi, source_ = NA, citations = FALSE,
     history = FALSE, downform = NA,
@@ -39,16 +39,16 @@
   unnecessary footprint)}
 }
 \value{
-  altmetrics as xml, json, or csv
+  PLoS altmetrics as xml, json, or csv.
 }
 \description{
-  almplosallviews.R Alt-metrics_allviews
+  Get PLoS altmetrics as xml, json, or csv.
 }
 \examples{
 \dontrun{
- plosallviews('10.1371/journal.pbio.0000012', 'counter', T, T, 'xml')
-  plosallviews('10.1371/journal.pbio.0000012', 'citeulike', T, T, 'json')
-  plosallviews('10.1371/journal.pone.0005723', 'counter', T, T, 'csv')
+ almplosallviews('10.1371/journal.pbio.0000012', 'counter', T, T, 'xml')
+ almplosallviews('10.1371/journal.pbio.0000012', 'citeulike', T, T, 'json')
+ almplosallviews('10.1371/journal.pone.0005723', 'counter', T, T, 'csv')
 }
 }
 

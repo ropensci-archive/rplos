@@ -1,6 +1,6 @@
 \name{almpubmedcentid}
 \alias{almpubmedcentid}
-\title{almpubmedcentid.R   Alt-metrics PubMed Central article ID}
+\title{Get PubMed Central article ID by inputting the doi for the article.}
 \usage{
   almpubmedcentid(doi,
     url = "http://alm.plos.org/articles",
@@ -25,10 +25,11 @@
   unnecessary footprint)}
 }
 \value{
-  retrieves the PubMed Central article ID
+  The PubMed Central article ID.
 }
 \description{
-  almpubmedcentid.R Alt-metrics PubMed Central article ID
+  Get PubMed Central article ID by inputting the doi for
+  the article.
 }
 \examples{
 \dontrun{

@@ -1,6 +1,6 @@
 \name{almtitle}
 \alias{almtitle}
-\title{almtitle.R   Alt-metrics title of article}
+\title{Get title of article by inputting the doi for the article.}
 \usage{
   almtitle(doi, url = "http://alm.plos.org/articles",
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
@@ -24,10 +24,11 @@
   unnecessary footprint)}
 }
 \value{
-  title of article
+  Title of article, in xml format.
 }
 \description{
-  almtitle.R Alt-metrics title of article
+  Get title of article by inputting the doi for the
+  article.
 }
 \examples{
 \dontrun{

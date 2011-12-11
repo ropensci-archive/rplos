@@ -1,6 +1,6 @@
 \name{almpubmedid}
 \alias{almpubmedid}
-\title{almpubmedid.R   Alt-metrics PubMed article ID}
+\title{Get PubMed article ID by inputting the doi for the article.}
 \usage{
   almpubmedid(doi, url = "http://alm.plos.org/articles",
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
@@ -24,10 +24,11 @@
   unnecessary footprint)}
 }
 \value{
-  retrieves the PubMed article ID
+  The PubMed article ID.
 }
 \description{
-  almpubmedid.R Alt-metrics PubMed article ID
+  Get PubMed article ID by inputting the doi for the
+  article.
 }
 \examples{
 \dontrun{

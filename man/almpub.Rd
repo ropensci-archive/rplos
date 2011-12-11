@@ -1,6 +1,6 @@
 \name{almpub}
 \alias{almpub}
-\title{almpub.R   Alt-metrics date updated}
+\title{Get the date when article was last updated by inputting the doi for the article.}
 \usage{
   almpub(doi, url = "http://alm.plos.org/articles",
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
@@ -24,10 +24,11 @@
   unnecessary footprint)}
 }
 \value{
-  date when article data was last updated
+  Date when article data was last updated.
 }
 \description{
-  almpub.R Alt-metrics date updated
+  Get the date when article was last updated by inputting
+  the doi for the article.
 }
 \examples{
 \dontrun{

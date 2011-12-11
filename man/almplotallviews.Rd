@@ -1,6 +1,6 @@
 \name{almplotallviews}
 \alias{almplotallviews}
-\title{almplotallviews.R   Alt-metrics_plot_allviews}
+\title{Feed output of almplosallviews to this function to plot results.}
 \usage{
   almplotallviews(data, type = NA)
 }
@@ -12,17 +12,18 @@
   (character)}
 }
 \value{
-  ggplot line plot
+  A ggplot2 line plot.
 }
 \description{
-  almplotallviews.R Alt-metrics_plot_allviews
+  Feed output of almplosallviews to this function to plot
+  results.
 }
 \examples{
 \dontrun{
-   out <- plosallviews('10.1371/journal.pbio.0000012', 'counter', 'json')
-   plotallviews(out, 'all')
-   plotallviews(out, 'pdf')
-   plotallviews(out, 'html,pdf')
+   out <- almplosallviews('10.1371/journal.pbio.0000012', 'counter', 'json')
+   almplotallviews(out, 'all')
+   almplotallviews(out, 'pdf')
+   almplotallviews(out, 'html,pdf')
 }
 }
 

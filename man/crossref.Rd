@@ -1,6 +1,6 @@
 \name{crossref}
 \alias{crossref}
-\title{crossref.R   lookup article info via CrossRef with DOI}
+\title{Lookup article info via CrossRef with DOI.}
 \usage{
   crossref(doi, url = "http://www.crossref.org/openurl/",
     key = getOption("CrossRefKey", stop("need an API key for Mendeley")),
@@ -24,10 +24,10 @@
   unnecessary footprint)}
 }
 \value{
-  metadata from DOI
+  Metadata from DOI.
 }
 \description{
-  crossref.R lookup article info via CrossRef with DOI
+  Lookup article info via CrossRef with DOI.
 }
 \examples{
 \dontrun{

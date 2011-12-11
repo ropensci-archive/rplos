@@ -1,6 +1,6 @@
 \name{formatarticleurl}
 \alias{formatarticleurl}
-\title{formatarticleurl.R   format a URL for a specific article in a specific journal}
+\title{Format a URL for a specific article in a specific PLoS journal.}
 \usage{
   formatarticleurl(doi, journal)
 }
@@ -11,11 +11,11 @@
   \item{journal}{quoted journal name (character)}
 }
 \value{
-  get url for the article to use in your browser, etc
+  Get url for the article to use in your browser, etc.
 }
 \description{
-  formatarticleurl.R format a URL for a specific article in
-  a specific journal
+  Format a URL for a specific article in a specific PLoS
+  journal.
 }
 \examples{
 \dontrun{

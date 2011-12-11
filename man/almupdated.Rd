@@ -1,6 +1,6 @@
 \name{almupdated}
 \alias{almupdated}
-\title{almupdated.R   Alt-metrics date when article data was last updated}
+\title{Date when alt-metrics for the article (by DOI) data was last updated.}
 \usage{
   almupdated(doi, url = "http://alm.plos.org/articles",
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
@@ -24,11 +24,11 @@
   unnecessary footprint)}
 }
 \value{
-  date when article data was last updated
+  Date when article data was last updated.
 }
 \description{
-  almupdated.R Alt-metrics date when article data was last
-  updated
+  Date when alt-metrics for the article (by DOI) data was
+  last updated.
 }
 \examples{
 \dontrun{

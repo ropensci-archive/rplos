@@ -1,6 +1,6 @@
 \name{articlelength}
 \alias{articlelength}
-\title{articlelength.R   Get article length}
+\title{Get article length of single paper by DOI, or of many papers as histogram.}
 \usage{
   articlelength(id = NA, fields = NA, limit = NA,
     searchin = NA, url = "http://api.plos.org/search",
@@ -33,10 +33,12 @@
   unnecessary footprint)}
 }
 \value{
-  length of articles (no. words)
+  Length of articles (no. words) as text (single paper) or
+  histogram (>1 paper).
 }
 \description{
-  articlelength.R Get article length
+  Get article length of single paper by DOI, or of many
+  papers as histogram.
 }
 \examples{
 \dontrun{
