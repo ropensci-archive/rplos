@@ -40,11 +40,9 @@
   Search PLoS Journals figure and table captions.
 }
 \examples{
-\dontrun{
-  plosfigtabcaps('ecology', 'id', 500)
-  plosfigtabcaps('ecology', 'figure_table_caption', 10)
-  plosfigtabcaps('is', 'id', 2000)
-  plosfigtabcaps('ecology', 'id', 10, numrecords = 'FALSE')
-}
+plosfigtabcaps('ecology', 'id', 500)
+plosfigtabcaps('ecology', 'figure_table_caption', 10)
+plosfigtabcaps('is', 'id', 2000)
+plosfigtabcaps('ecology', 'id', 10, numrecords = 'FALSE')
 }
 

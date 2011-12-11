@@ -31,8 +31,6 @@
   article.
 }
 \examples{
-\dontrun{
-   almpubmedid('10.1371/journal.pbio.0000012')
-}
+almpubmedid('10.1371/journal.pbio.0000012')
 }
 

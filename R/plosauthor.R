@@ -11,11 +11,10 @@
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return Number of search results (results = FALSE), or number of search 
 #'    results plus the results themselves (results = TRUE).
-#' @examples \dontrun{
-#'    plosauthor('johnson', 'title,author', 9999999, 'FALSE')
-#'    plosauthor('johnson',  limit = 5, results = 'TRUE')
-#' }
 #' @export
+#' @examples
+#' plosauthor('johnson', 'title,author', 9999999, 'FALSE')
+#' plosauthor('johnson',  limit = 5, results = 'TRUE')
 plosauthor <- 
 
 function(terms, fields = NA, limit = NA, results = FALSE,

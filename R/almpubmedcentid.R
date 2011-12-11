@@ -6,11 +6,9 @@
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return The PubMed Central article ID.
-#' @examples \dontrun{
-#'    almpubmedcentid('10.1371/journal.pbio.0000012')
-#' }
 #' @export
-
+#' @examples
+#' almpubmedcentid('10.1371/journal.pbio.0000012')
 almpubmedcentid <- 
 
 function(doi,

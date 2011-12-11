@@ -6,10 +6,9 @@
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return Date when article data was last updated.
-#' @examples \dontrun{
-#'    almupdated('10.1371/journal.pbio.0000012')
-#' }
 #' @export
+#' @examples
+#' almupdated('10.1371/journal.pbio.0000012')
 almupdated <- 
 
 function(doi,

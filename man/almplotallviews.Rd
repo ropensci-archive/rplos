@@ -19,11 +19,9 @@
   results.
 }
 \examples{
-\dontrun{
-   out <- almplosallviews('10.1371/journal.pbio.0000012', 'counter', 'json')
-   almplotallviews(out, 'all')
-   almplotallviews(out, 'pdf')
-   almplotallviews(out, 'html,pdf')
-}
+out <- almplosallviews('10.1371/journal.pbio.0000012', 'counter', 'json')
+almplotallviews(out, 'all')
+almplotallviews(out, 'pdf')
+almplotallviews(out, 'html,pdf')
 }
 

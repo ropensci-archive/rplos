@@ -30,8 +30,6 @@
   Lookup article info via CrossRef with DOI.
 }
 \examples{
-\dontrun{
- crossref("10.3998/3336451.0009.101")
-}
+crossref("10.3998/3336451.0009.101")
 }
 

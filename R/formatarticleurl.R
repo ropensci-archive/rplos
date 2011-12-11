@@ -2,10 +2,9 @@
 #' @param doi digital object identifier for an article in PLoS Journals
 #' @param journal quoted journal name (character)
 #' @return Get url for the article to use in your browser, etc.
-#' @examples \dontrun{
-#'  formatarticleurl("10.1371/journal.pone.0004045", 'PLoSONE')
-#' }
 #' @export
+#' @examples
+#' formatarticleurl("10.1371/journal.pone.0004045", 'PLoSONE')
 formatarticleurl <- 
 
 function(doi, journal) 

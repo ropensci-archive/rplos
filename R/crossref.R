@@ -6,10 +6,9 @@
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return Metadata from DOI.
-#' @examples \dontrun{
-#'  crossref("10.3998/3336451.0009.101")
-#' }
 #' @export
+#' @examples
+#' crossref("10.3998/3336451.0009.101")
 crossref <- 
 
 function(doi, 

@@ -38,10 +38,8 @@
   Journals.
 }
 \examples{
-\dontrun{
-  plot_throughtime('phylogeny', 300, gvis=FALSE)
-  plot_throughtime(list('drosophila','monkey'), 100)
-  plot_throughtime(list('drosophila','flower'), 100, TRUE)
-}
+plot_throughtime('phylogeny', 300, gvis=FALSE)
+plot_throughtime(list('drosophila','monkey'), 100)
+plot_throughtime(list('drosophila','flower'), 100, TRUE)
 }
 

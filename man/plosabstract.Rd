@@ -41,9 +41,7 @@
   Search PLoS Journals abstracts.
 }
 \examples{
-\dontrun{
-  plosabstract('drosophila', 'abstract', 9, 'FALSE')
-  plosabstract('drosophila',  limit = 5, results = 'TRUE')
-}
+plosabstract('drosophila', 'abstract', 9, 'FALSE')
+plosabstract('drosophila',  limit = 5, results = 'TRUE')
 }
 

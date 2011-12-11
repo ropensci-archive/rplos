@@ -10,12 +10,11 @@
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return Number of search results (vis = FALSE), or number of search in a table
 #'    and a histogram of results (vis = TRUE).
-#' @examples \dontrun{
-#'   searchplos('ecology', 'id', 2)
-#'   searchplos('ecology', 'id', 1001)
-#'   searchplos('ecology', 'id,title', 2)
-#' }
 #' @export
+#' @examples
+#' searchplos('ecology', 'id', 2)
+#' searchplos('ecology', 'id', 1001)
+#' searchplos('ecology', 'id,title', 2)
 searchplos <- 
 
 function(terms, fields = NA, limit = NA, 

@@ -40,9 +40,7 @@
   Search PLoS Journals authors.
 }
 \examples{
-\dontrun{
-   plosauthor('johnson', 'title,author', 9999999, 'FALSE')
-   plosauthor('johnson',  limit = 5, results = 'TRUE')
-}
+plosauthor('johnson', 'title,author', 9999999, 'FALSE')
+plosauthor('johnson',  limit = 5, results = 'TRUE')
 }
 
