@@ -1,25 +1,32 @@
-# Function to search PLoS Journals, by abstract
-
+#' Search PLoS Journals abstracts.
+#' @param terms search terms for article abstract (character)
+#' @param fields fields to return from search (character) [e.g., 'id,title'], 
+#'    any combination of search fields [see plosfields$field]
+#' @param limit number of results to return (integer)
+#' @param results print results or not (TRUE or FALSE)
+#' @param url the PLoS API url for the function (should be left to default)
+#' @param key your PLoS API key, either enter, or loads from .Rprofile
+#' @param ... optional additional curl options (debugging tools mostly)
+#' @param curl If using in a loop, call getCurlHandle() first and pass 
+#'  the returned value in here (avoids unnecessary footprint)
+#' @return Number of search results (results = FALSE), or number of search 
+#'    results plus the results themselves (results = TRUE).
+#' @examples \dontrun{
+#'   plosabstract('drosophila', 'abstract', 9, 'FALSE')
+#'   plosabstract('drosophila',  limit = 5, results = 'TRUE')
+#' }
+#' @export
 plosabstract <- 
-# Args:
-#   abstract: search terms for article abstract (character)
-#   fields: fields to return from search (character) [e.g., 'id,title'], 
-#     any combination of search fields [see plosfields$field] 
-#   limit: number of results to return (integer)
-#   results: print results or not (TRUE or FALSE)
-# Examples:
-#   plosabstract('drosophila', 'abstract', 9, 'FALSE')
-#   plosabstract('drosophila',  limit = 5, results = 'TRUE')
 
-function(abstract, fields = NA, limit = NA, results = FALSE, 
+function(terms, fields = NA, limit = NA, results = FALSE, 
   url = 'http://api.plos.org/search',
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., 
   curl = getCurlHandle() ) 
 {
   args <- list(apikey = key)
-  if(!is.na(abstract))
-    args$q <- paste('abstract:', abstract, sep="")
+  if(!is.na(terms))
+    args$q <- paste('abstract:', terms, sep="")
   if(!is.na(fields))
     args$fl <- fields
   if(!is.na(limit))

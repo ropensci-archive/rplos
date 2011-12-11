@@ -1,17 +1,23 @@
-# Function to search PLoS Journals figure and table captions
-
+#' Search PLoS Journals figure and table captions.
+#' @param terms search terms
+#' @param fields fields to return from search (character) [e.g., 'id,title'], 
+#'    any combination of search fields [see plosfields$field]
+#' @param limit number of results to return (integer)
+#' @param numrecords: print number of results only 'TRUE' or 'FALSE' (character)
+#' @param url the PLoS API url for the function (should be left to default)
+#' @param key your PLoS API key, either enter, or loads from .Rprofile
+#' @param ... optional additional curl options (debugging tools mostly)
+#' @param curl If using in a loop, call getCurlHandle() first and pass 
+#'  the returned value in here (avoids unnecessary footprint)
+#' @return Number of search results, and fields that you specify to return.
+#' @examples \dontrun{
+#'   plosfigtabcaps('ecology', 'id', 500)
+#'   plosfigtabcaps('ecology', 'figure_table_caption', 10)
+#'   plosfigtabcaps('is', 'id', 2000)
+#'   plosfigtabcaps('ecology', 'id', 10, numrecords = 'FALSE')
+#' }
+#' @export
 plosfigtabcaps <- 
-# Args:
-#   terms: search terms (character)
-#   fields: fields to return from search (character) [e.g., 'id,title'], 
-#     any combination of search fields [see plosfields$field] 
-#   limit: number of results to return (integer)
-#   numrecords: print number of results only 'TRUE' or 'FALSE' (character)
-# Examples:
-#   plosfigtabcaps('ecology', 'id', 500)
-#   plosfigtabcaps('ecology', 'figure_table_caption', 10)
-#   plosfigtabcaps('is', 'id', 2000)
-#   plosfigtabcaps('ecology', 'id', 10, numrecords = 'FALSE')
 
 function(terms, fields = NA, limit = NA, numrecords = FALSE,
   url = 'http://api.plos.org/search',

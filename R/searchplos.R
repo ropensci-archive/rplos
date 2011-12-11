@@ -1,15 +1,22 @@
-# Base function to search PLoS Journals
-
+#' Base function to search PLoS Journals
+#' @param terms search terms (character)
+#' @param fields fields to return from search (character) [e.g., 'id,title'], 
+#'     any combination of search fields [see plosfields$field]
+#' @param limit number of results to return (integer)
+#' @param url the PLoS API url for the function (should be left to default)
+#' @param key your PLoS API key, either enter, or loads from .Rprofile
+#' @param ... optional additional curl options (debugging tools mostly)
+#' @param curl If using in a loop, call getCurlHandle() first and pass 
+#'  the returned value in here (avoids unnecessary footprint)
+#' @return Number of search results (vis = FALSE), or number of search in a table
+#'    and a histogram of results (vis = TRUE).
+#' @examples \dontrun{
+#'   searchplos('ecology', 'id', 2)
+#'   searchplos('ecology', 'id', 1001)
+#'   searchplos('ecology', 'id,title', 2)
+#' }
+#' @export
 searchplos <- 
-# Args:
-#   terms: search terms (character)
-#   fields: fields to return from search (character) [e.g., 'id,title'], 
-#     any combination of search fields [see plosfields$field] 
-#   limit: number of results to return (integer)
-# Examples:
-#   searchplos('ecology', 'id', 2)
-#   searchplos('ecology', 'id', 1001)
-#   searchplos('ecology', 'id,title', 2)
 
 function(terms, fields = NA, limit = NA, 
   url = 'http://api.plos.org/search',
