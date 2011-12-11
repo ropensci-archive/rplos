@@ -1,4 +1,4 @@
-#' articlelength.R   Get article length
+#' Get article length of single paper by DOI, or of many papers as histogram.
 #' @param id article identifier DOI = id, or subject area, e.g.: 'ecology'
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
 #'     any combination of search fields [see plosfields$field]
@@ -9,7 +9,8 @@
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
 #'  the returned value in here (avoids unnecessary footprint)
-#' @return length of articles (no. words)
+#' @return Length of articles (no. words) as text (single paper) or histogram 
+#'  (>1 paper).
 #' @examples \dontrun{
 #'  articlelength("10.1371/journal.pone.0004045", "body")
 #'  articlelength("10.1371/journal.pone.0004045", "everything")

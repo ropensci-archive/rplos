@@ -1,13 +1,13 @@
-#' almplotallviews.R   Alt-metrics_plot_allviews
+#' Feed output of almplosallviews to this function to plot results.
 #' @param data JSON output downloaded from PLoS (character)
 #' @param type plot views for html, pdf, xml, any combination of two 
 #'     (e.g., 'html,pdf'), or all (character)
-#' @return ggplot line plot
+#' @return A ggplot2 line plot.
 #' @examples \dontrun{
-#'    out <- plosallviews('10.1371/journal.pbio.0000012', 'counter', 'json') 
-#'    plotallviews(out, 'all')
-#'    plotallviews(out, 'pdf')
-#'    plotallviews(out, 'html,pdf')
+#'    out <- almplosallviews('10.1371/journal.pbio.0000012', 'counter', 'json') 
+#'    almplotallviews(out, 'all')
+#'    almplotallviews(out, 'pdf')
+#'    almplotallviews(out, 'html,pdf')
 #' }
 #' @export
 almplotallviews <- 

@@ -1,11 +1,11 @@
-#' almupdated.R   Alt-metrics date when article data was last updated
+#' Date when alt-metrics for the article (by DOI) data was last updated.
 #' @param doi digital object identifier for an article in PLoS Journals
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param url the PLoS API url for the function (should be left to default)
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
 #'  the returned value in here (avoids unnecessary footprint)
-#' @return date when article data was last updated
+#' @return Date when article data was last updated.
 #' @examples \dontrun{
 #'    almupdated('10.1371/journal.pbio.0000012')
 #' }

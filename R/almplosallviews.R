@@ -1,4 +1,4 @@
-#' almplosallviews.R   Alt-metrics_allviews
+#' Get PLoS altmetrics as xml, json, or csv.
 #' @param doi digital object identifier for an article in PLoS Journals
 #' @param source_ source, one of counter, mpc, pubmed, crossref, scopus, wos, 
 #'    citeulike, nature, researchblogging, connotea, bloglines, postgenomic
@@ -12,11 +12,11 @@
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
 #'  the returned value in here (avoids unnecessary footprint)
-#' @return altmetrics as xml, json, or csv
+#' @return PLoS altmetrics as xml, json, or csv.
 #' @examples \dontrun{
-#'  plosallviews('10.1371/journal.pbio.0000012', 'counter', T, T, 'xml')
-#'   plosallviews('10.1371/journal.pbio.0000012', 'citeulike', T, T, 'json')
-#'   plosallviews('10.1371/journal.pone.0005723', 'counter', T, T, 'csv')
+#'  almplosallviews('10.1371/journal.pbio.0000012', 'counter', T, T, 'xml')
+#'  almplosallviews('10.1371/journal.pbio.0000012', 'citeulike', T, T, 'json')
+#'  almplosallviews('10.1371/journal.pone.0005723', 'counter', T, T, 'csv')
 #' }
 #' @export
 almplosallviews <- 

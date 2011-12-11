@@ -1,11 +1,11 @@
-#' almpubmedcentid.R   Alt-metrics PubMed Central article ID
+#' Get PubMed Central article ID by inputting the doi for the article.
 #' @param doi digital object identifier for an article in PLoS Journals
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param url the PLoS API url for the function (should be left to default)
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
 #'  the returned value in here (avoids unnecessary footprint)
-#' @return retrieves the PubMed Central article ID
+#' @return The PubMed Central article ID.
 #' @examples \dontrun{
 #'    almpubmedcentid('10.1371/journal.pbio.0000012')
 #' }

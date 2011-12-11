@@ -1,11 +1,11 @@
-#' crossref.R   lookup article info via CrossRef with DOI
+#' Lookup article info via CrossRef with DOI.
 #' @param doi digital object identifier for an article in PLoS Journals
 #' @param url the PLoS API url for the function (should be left to default)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
 #'  the returned value in here (avoids unnecessary footprint)
-#' @return metadata from DOI
+#' @return Metadata from DOI.
 #' @examples \dontrun{
 #'  crossref("10.3998/3336451.0009.101")
 #' }
