@@ -13,12 +13,11 @@
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return PLoS altmetrics as xml, json, or csv.
-#' @examples \dontrun{
-#'  almplosallviews('10.1371/journal.pbio.0000012', 'counter', T, T, 'xml')
-#'  almplosallviews('10.1371/journal.pbio.0000012', 'citeulike', T, T, 'json')
-#'  almplosallviews('10.1371/journal.pone.0005723', 'counter', T, T, 'csv')
-#' }
 #' @export
+#' @examples
+#' almplosallviews('10.1371/journal.pbio.0000012', 'counter', T, T, 'xml')
+#' almplosallviews('10.1371/journal.pbio.0000012', 'citeulike', T, T, 'json')
+#' almplosallviews('10.1371/journal.pone.0005723', 'counter', T, T, 'csv')
 almplosallviews <- 
 
 function(doi, source_ = NA, citations = FALSE, history = FALSE, downform = NA,
