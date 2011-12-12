@@ -31,6 +31,7 @@
   last updated.
 }
 \examples{
+\dontrun{
 almupdated('10.1371/journal.pbio.0000012')
 }
 

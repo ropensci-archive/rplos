@@ -1,4 +1,5 @@
 #' Search results on a keyword over all fields in PLoS Journals.
+#' @import RJSONIO RCurl plyr ggplot2
 #' @param terms search terms (character)
 #' @param vis visualize results in bar plot or not (TRUE or FALSE)
 #' @param url the PLoS API url for the function (should be left to default)

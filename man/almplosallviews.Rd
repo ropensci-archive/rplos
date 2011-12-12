@@ -45,7 +45,9 @@
   Get PLoS altmetrics as xml, json, or csv.
 }
 \examples{
+\dontrun{
 almplosallviews('10.1371/journal.pbio.0000012', 'counter', T, T, 'xml')
 almplosallviews('10.1371/journal.pbio.0000012', 'citeulike', T, T, 'json')
+}
 }
 

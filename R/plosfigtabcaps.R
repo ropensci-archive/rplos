@@ -1,4 +1,5 @@
 #' Search PLoS Journals figure and table captions.
+#' @import RJSONIO RCurl
 #' @param terms search terms
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
 #'    any combination of search fields [see plosfields$field]

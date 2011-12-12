@@ -38,8 +38,10 @@
   Base function to search PLoS Journals
 }
 \examples{
+\dontrun{
 searchplos('ecology', 'id', 2)
 searchplos('ecology', 'id', 1001)
 searchplos('ecology', 'id,title', 2)
+}
 }
 

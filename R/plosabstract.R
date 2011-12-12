@@ -1,4 +1,5 @@
 #' Search PLoS Journals abstracts.
+#' @import RJSONIO RCurl
 #' @param terms search terms for article abstract (character)
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
 #'    any combination of search fields [see plosfields$field]

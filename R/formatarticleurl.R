@@ -1,4 +1,5 @@
 #' Format a URL for a specific article in a specific PLoS journal. 
+#' @import stringr
 #' @param doi digital object identifier for an article in PLoS Journals
 #' @param journal quoted journal name (character)
 #' @return Get url for the article to use in your browser, etc.

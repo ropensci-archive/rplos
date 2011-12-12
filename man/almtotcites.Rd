@@ -31,6 +31,7 @@
   Alt-metrics total citation points from all sources
 }
 \examples{
+\dontrun{
 almtotcites('10.1371/journal.pbio.0000012')
 }
 

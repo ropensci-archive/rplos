@@ -1,4 +1,5 @@
 #' Get article length of single paper by DOI, or of many papers as histogram.
+#' @import RJSONIO RCurl ggplot2
 #' @param id article identifier DOI = id, or subject area, e.g.: 'ecology'
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
 #'     any combination of search fields [see plosfields$field]
