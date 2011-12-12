@@ -24,4 +24,4 @@ import(RJSONIO)
 import(ggplot2)
 import(data.table)
 import(googleVis)
-import(XML
+import(XML)
