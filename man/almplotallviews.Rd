@@ -19,7 +19,7 @@
   results.
 }
 \examples{
-out <- almplosallviews('10.1371/journal.pbio.0000012', 'counter', 'json')
+out <- almplosallviews('10.1371/journal.pbio.0000012', 'counter', T, T, 'json')
 almplotallviews(out, 'all')
 almplotallviews(out, 'pdf')
 almplotallviews(out, 'html,pdf')
