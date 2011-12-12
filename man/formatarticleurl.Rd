@@ -17,6 +17,13 @@
   Format a URL for a specific article in a specific PLoS
   journal.
 }
+\details{
+  Choose the journal abbreviation, and the appropriate base
+  URL will be inclued in the built URL.  Options are:
+  PLoSBiology, PLoSGenetics, PLoSComputationalBiology,
+  PLoSMedicine, PLoSONE, PLoSNeglectedTropicalDiseases, or
+  PLoSPathogens.
+}
 \examples{
 formatarticleurl("10.1371/journal.pone.0004045", 'PLoSONE')
 }
