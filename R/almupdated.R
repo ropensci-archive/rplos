@@ -7,7 +7,7 @@
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return Date when article data was last updated.
 #' @export
-#' @examples
+#' @examples \dontrun{
 #' almupdated('10.1371/journal.pbio.0000012')
 almupdated <- 
 

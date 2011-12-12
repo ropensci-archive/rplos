@@ -7,8 +7,9 @@
 #'    PLoSBiology, PLoSGenetics, PLoSComputationalBiology, PLoSMedicine,
 #'	  PLoSONE, PLoSNeglectedTropicalDiseases, or PLoSPathogens.
 #' @export
-#' @examples
+#' @examples \dontrun{
 #' formatarticleurl("10.1371/journal.pone.0004045", 'PLoSONE')
+#' }
 formatarticleurl <- 
 
 function(doi, journal) {  

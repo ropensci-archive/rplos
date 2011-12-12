@@ -7,8 +7,9 @@
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return Metadata from DOI.
 #' @export
-#' @examples
+#' @examples \dontrun{
 #' crossref("10.3998/3336451.0009.101")
+#' }
 crossref <- 
 
 function(doi, 

@@ -12,9 +12,10 @@
 #' @return Number of search results (results = FALSE), or number of search 
 #'    results plus the results themselves (results = TRUE).
 #' @export
-#' @examples
+#' @examples \dontrun{
 #' plosabstract('drosophila', 'abstract', 9, 'FALSE')
 #' plosabstract('drosophila',  limit = 5, results = 'TRUE')
+#' }
 plosabstract <- 
 
 function(terms, fields = NA, limit = NA, results = FALSE, 

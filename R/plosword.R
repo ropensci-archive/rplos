@@ -9,12 +9,13 @@
 #' @return Number of search results (vis = FALSE), or number of search in a table
 #'    and a histogram of results (vis = TRUE).
 #' @export
-#' @examples
+#' @examples \dontrun{
 #' plosword('Helianthus')
 #' plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')
 #' out <- plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')
 #' out[[1]] # results in a data frame 
 #' out[[2]] # results in a bar plot
+#' }
 plosword <- 
 
 function(terms, vis = FALSE,

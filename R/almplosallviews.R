@@ -14,9 +14,10 @@
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return PLoS altmetrics as xml, json, or csv.
 #' @export
-#' @examples
+#' @examples \dontrun{
 #' almplosallviews('10.1371/journal.pbio.0000012', 'counter', T, T, 'xml')
 #' almplosallviews('10.1371/journal.pbio.0000012', 'citeulike', T, T, 'json')
+#' }
 almplosallviews <- 
 
 function(doi, source_ = NA, citations = FALSE, history = FALSE, downform = NA,

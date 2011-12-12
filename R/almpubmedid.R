@@ -7,8 +7,9 @@
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return The PubMed article ID.
 #' @export
-#' @examples
+#' @examples \dontrun{
 #' almpubmedid('10.1371/journal.pbio.0000012')
+#' }
 almpubmedid <- 
 
 function(doi,

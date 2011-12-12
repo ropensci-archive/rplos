@@ -10,10 +10,11 @@
 #' @return Number of search results (vis = FALSE), or number of search in a table
 #'    and a histogram of results (vis = TRUE).
 #' @export
-#' @examples
+#' @examples \dontrun{
 #' plot_throughtime('phylogeny', 300, gvis=FALSE)
 #' plot_throughtime(list('drosophila','monkey'), 100)
 #' plot_throughtime(list('drosophila','flower'), 100, TRUE)
+#' }
 plot_throughtime <- 
 
 function(terms, limit = NA, gvis = FALSE,

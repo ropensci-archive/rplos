@@ -7,7 +7,7 @@
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return total no. data points recorded for this article from all sources
 #' @export
-#' @examples
+#' @examples \dontrun{
 #' almtotcites('10.1371/journal.pbio.0000012')
 almtotcites <- 
 

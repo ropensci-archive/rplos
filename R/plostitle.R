@@ -12,9 +12,10 @@
 #' @return Number of search results (results = FALSE), or number of search 
 #'    results plus the results themselves (results = TRUE).
 #' @export
-#' @examples
+#' @examples \dontrun{
 #' plostitle('drosophila', 'title', 99, 'FALSE')
 #' plostitle('drosophila',  limit = 5, results = 'TRUE')
+#' }
 plostitle <- 
 
 function(terms, fields = NA, limit = NA, results = FALSE, 

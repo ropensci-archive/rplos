@@ -12,12 +12,13 @@
 #' @return Length of articles (no. words) as text (single paper) or histogram 
 #'  (>1 paper).
 #' @export
-#' @examples
+#' @examples \dontrun{
 #' articlelength("10.1371/journal.pone.0004045", "body")
 #' articlelength("10.1371/journal.pone.0004045", "everything")
 #' articlelength("10.1371/journal.pone.0004045", "title")
 #' articlelength("ecology", "materials_and_methods", 500, "subject")
 #' articlelength("ecology", "results_and_discussion", 500, "subject")
+#' }
 articlelength <- 
 
 function(id = NA, fields = NA, limit = NA, searchin = NA,

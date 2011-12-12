@@ -11,11 +11,12 @@
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return Number of search results, and fields that you specify to return.
 #' @export
-#' @examples
+#' @examples \dontrun{
 #' plosfigtabcaps('ecology', 'id', 500)
 #' plosfigtabcaps('ecology', 'figure_table_caption', 10)
 #' plosfigtabcaps('is', 'id', 2000)
 #' plosfigtabcaps('ecology', 'id', 10, numrecords = 'FALSE')
+#' }
 plosfigtabcaps <- 
 
 function(terms, fields = NA, limit = NA, numrecords = FALSE,

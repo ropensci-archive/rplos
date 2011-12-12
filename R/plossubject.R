@@ -12,11 +12,12 @@
 #' @return Number of search results (results = FALSE), or number of search 
 #'    results plus the results themselves (results = TRUE).
 #' @export
-#' @examples
+#' @examples \dontrun{
 #' plossubject('ecology', 'subject', 999, 'FALSE')
 #' plossubject('ecology', 'subject', 9, 'FALSE')
 #' plossubject('ecology',  limit = 5, results = 'TRUE')
 #' plossubject('ecology',  'subject', limit = 99, results = 'TRUE')
+#' }
 plossubject <- 
 
 function(terms, fields = NA, limit = NA, results = FALSE, 

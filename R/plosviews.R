@@ -12,13 +12,14 @@
 #' @return Number of search results (results = FALSE), or number of search 
 #'    results plus the results themselves (results = TRUE).
 #' @export
-#' @examples
+#' @examples \dontrun{
 #' plosviews('10.1371/journal.pone.0002154', 'id', 'alltime')
 #' plosviews('10.1371/journal.pone.0002154', 'id', 'last30')
 #' plosviews('10.1371/journal.pone.0002154', 'id', 'alltime,last30')
 #' plosviews('ecology', 'subject', 'alltime', 99)
 #' plosviews('evolution', views = 'alltime', limit = 99)
 #' plosviews('bird', views = 'alltime', limit = 99)
+#' }
 plosviews <- 
 
 function(search, byfield = NA, views = 'alltime', limit = NA,
