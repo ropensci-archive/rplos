@@ -25,6 +25,8 @@
   PLoSPathogens.
 }
 \examples{
+\dontrun{
 formatarticleurl("10.1371/journal.pone.0004045", 'PLoSONE')
+}
 }
 

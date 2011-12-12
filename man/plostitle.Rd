@@ -40,7 +40,9 @@
   Search PLoS Journals titles.
 }
 \examples{
+\dontrun{
 plostitle('drosophila', 'title', 99, 'FALSE')
 plostitle('drosophila',  limit = 5, results = 'TRUE')
+}
 }
 

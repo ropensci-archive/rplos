@@ -41,9 +41,11 @@
   Search PLoS Journals subjects.
 }
 \examples{
+\dontrun{
 plossubject('ecology', 'subject', 999, 'FALSE')
 plossubject('ecology', 'subject', 9, 'FALSE')
 plossubject('ecology',  limit = 5, results = 'TRUE')
 plossubject('ecology',  'subject', limit = 99, results = 'TRUE')
+}
 }
 

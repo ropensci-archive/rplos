@@ -41,10 +41,12 @@
   papers as histogram.
 }
 \examples{
+\dontrun{
 articlelength("10.1371/journal.pone.0004045", "body")
 articlelength("10.1371/journal.pone.0004045", "everything")
 articlelength("10.1371/journal.pone.0004045", "title")
 articlelength("ecology", "materials_and_methods", 500, "subject")
 articlelength("ecology", "results_and_discussion", 500, "subject")
+}
 }
 
