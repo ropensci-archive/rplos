@@ -1,4 +1,5 @@
 #' Plot results through time for serach results from PLoS Journals.
+#' @import RJSONIO RCurl plyr stringr ggplot2 reshape2 googleVis
 #' @param terms search terms (character)
 #' @param limit number of results to return (integer)
 #' @param gvis use google visualization via the googleVis package (logical)

@@ -1,9 +1,10 @@
 #' Search PLoS Journals figure and table captions.
+#' @import RJSONIO RCurl
 #' @param terms search terms
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
 #'    any combination of search fields [see plosfields$field]
 #' @param limit number of results to return (integer)
-#' @param numrecords: print number of results only 'TRUE' or 'FALSE' (character)
+#' @param numrecords: print number of results only (logical)
 #' @param url the PLoS API url for the function (should be left to default)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param ... optional additional curl options (debugging tools mostly)

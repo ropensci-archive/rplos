@@ -16,8 +16,8 @@
 
   \item{limit}{number of results to return (integer)}
 
-  \item{numrecords:}{print number of results only 'TRUE' or
-  'FALSE' (character)}
+  \item{numrecords:}{print number of results only
+  (logical)}
 
   \item{url}{the PLoS API url for the function (should be
   left to default)}

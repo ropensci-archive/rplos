@@ -1,4 +1,5 @@
 #' Feed output of almplosallviews to this function to plot results.
+#' @import RJSONIO XML RCurl plyr reshape2 ggplot2
 #' @param data JSON output downloaded from PLoS (character)
 #' @param type plot views for html, pdf, xml, any combination of two 
 #'     (e.g., 'html,pdf'), or all (character)

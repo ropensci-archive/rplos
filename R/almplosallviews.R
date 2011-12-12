@@ -1,4 +1,5 @@
 #' Get PLoS altmetrics as xml, json, or csv.
+#' @import RJSONIO XML RCurl 
 #' @param doi digital object identifier for an article in PLoS Journals
 #' @param source_ source, one of counter, mpc, pubmed, crossref, scopus, wos, 
 #'    citeulike, nature, researchblogging, connotea, bloglines, postgenomic

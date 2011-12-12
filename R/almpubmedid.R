@@ -1,4 +1,5 @@
 #' Get PubMed article ID by inputting the doi for the article.
+#' @import RJSONIO RCurl
 #' @param doi digital object identifier for an article in PLoS Journals
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param url the PLoS API url for the function (should be left to default)
