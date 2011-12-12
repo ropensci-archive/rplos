@@ -4,7 +4,6 @@
 #' @param byfield field to search by, e.g., subject, author, etc. (character)
 #' @param views views all time (alltime) or views last 30 days (last30) (character)
 #' @param limit number of results to return (integer)
-#' @param results print results or not (TRUE or FALSE)
 #' @param url the PLoS API url for the function (should be left to default)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param ... optional additional curl options (debugging tools mostly)
