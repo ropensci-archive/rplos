@@ -9,6 +9,8 @@ License: BSD
 Author: Scott Chamberlain, Carl Boettiger
 Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>
 URL: http://ropensci.org/
+Depends:
+    ggplot2
 Imports:
     RCurl,
     RJSONIO,
