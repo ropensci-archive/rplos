@@ -5,6 +5,5 @@
 \description{
   PLoS API fields to use for searching/retreiving data.
 }
-\keyword{dataset}
 \keyword{datasets}
 
