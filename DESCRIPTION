@@ -20,7 +20,6 @@ Imports:
     stringr
 Collate:
     'almplosallviews.R'
-    'almplosallviewsdf.R'
     'almplotallviews.R'
     'almpub.R'
     'almpubmedcentid.R'
@@ -29,7 +28,6 @@ Collate:
     'almtotcites.R'
     'almupdated.R'
     'articlelength.R'
-    'browsepaper.R'
     'crossref.R'
     'formatarticleurl.R'
     'plosabstract.R'
@@ -41,3 +39,5 @@ Collate:
     'plosword.R'
     'plot_throughtime.R'
     'searchplos.R'
+    'help.R'
+    'plosfields.R'
