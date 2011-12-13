@@ -13,8 +13,8 @@ Imports:
     RCurl,
     RJSONIO,
     XML,
-    ggplot2,
     googleVis,
+    ggplot2,
     plyr,
     reshape2,
     stringr
