@@ -19,7 +19,7 @@
 #' }
 searchplos <- 
 
-function(terms, fields = NA, limit = NA, 
+function(terms, fields = NA, limit = 1000, 
   url = 'http://api.plos.org/search',
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., 
