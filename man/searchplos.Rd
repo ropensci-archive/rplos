@@ -2,7 +2,7 @@
 \alias{searchplos}
 \title{Base function to search PLoS Journals}
 \usage{
-  searchplos(terms, fields = NA, limit = NA,
+  searchplos(terms, fields = NA, limit = 1000,
     url = "http://api.plos.org/search",
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
     ..., curl = getCurlHandle())
