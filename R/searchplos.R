@@ -3,6 +3,9 @@
 #' @param terms search terms (character)
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
 #'     any combination of search fields [see plosfields$field]
+#' @param toquery list specific fields to query (if NA, all queried)
+#' @param start record to start at (used in combination with limit when 
+#' you need to cycle through more results than the max allowed=1000)
 #' @param limit number of results to return (integer)
 #' @param url the PLoS API url for the function (should be left to default)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
@@ -13,27 +16,35 @@
 #'    and a histogram of results (vis = TRUE).
 #' @export
 #' @examples \dontrun{
-#' searchplos('ecology', 'id', 2)
-#' searchplos('ecology', 'id', 1001)
-#' searchplos('ecology', 'id,title', 2)
+#' searchplos('ecology', 'id', limit = 2)
+#' searchplos('ecology', 'id', limit = 100)
+#' searchplos('ecology', 'id,title', limit = 2)
+#' searchplos(terms=':', fields='id', toquery='doc_type:full', start=0, limit=250)
 #' }
 searchplos <- 
 
-function(terms, fields = NA, limit = 1000, 
+function(terms = NULL, fields = NULL, toquery = NULL, start = 0, limit = 1000, 
   url = 'http://api.plos.org/search',
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., 
   curl = getCurlHandle() ) 
 {
-  args <- list(apikey = key)
-  if(!is.na(terms))
+  args <- list(api_key = key)
+  if(!is.null(terms))
     args$q <- terms
-  if(!is.na(fields))
+  if(!is.null(fields))
     args$fl <- fields
+  if(!is.null(toquery))
+    args$fq <- toquery
+  if(!is.null(start))
+    args$start <- start
+  if(!is.null(limit))
+    args$rows <- limit
   args$wt <- "json"
   
   argsgetnum <- args
-  argsgetnum$rows <- 0
+#   message(paste(url, "q=", terms, , ,  sep = ''))
+#   argsgetnum$rows <- 0
   getnum <- getForm(url, 
     .params = argsgetnum,
     ...,
@@ -74,3 +85,4 @@ function(terms, fields = NA, limit = 1000,
       return(list(getnumrecords, dfresults__))
     }
 }
+# http://api.plos.org/search/?q=*:*&fl=id&fq=doc_type:full&rows=250&start=0&api_key=WQcDSXml2VSWx3P

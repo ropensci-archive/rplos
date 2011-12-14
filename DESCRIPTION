@@ -10,7 +10,14 @@ Author: Scott Chamberlain, Carl Boettiger
 Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>
 URL: http://ropensci.org/
 Depends:
-    ggplot2
+    ggplot2,
+    RCurl,
+    RJSONIO, 
+    XML,
+    plyr,
+    stringr,
+    reshape2,
+    googleVis
 Imports:
     RCurl,
     RJSONIO,
