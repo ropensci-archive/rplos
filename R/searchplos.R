@@ -19,26 +19,26 @@
 #' searchplos('ecology', 'id', limit = 2)
 #' searchplos('ecology', 'id', limit = 100)
 #' searchplos('ecology', 'id,title', limit = 2)
-#' searchplos(terms=':', fields='id', toquery='doc_type:full', start=0, limit=250)
+#' searchplos(terms="*:*", fields='id', toquery='doc_type:full', start=0, limit=250)
 #' }
 searchplos <- 
 
-function(terms = NULL, fields = NULL, toquery = NULL, start = 0, limit = 1000, 
+function(terms = NA, fields = NA, toquery = NA, start = 0, limit = 1000, 
   url = 'http://api.plos.org/search',
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., 
   curl = getCurlHandle() ) 
 {
   args <- list(api_key = key)
-  if(!is.null(terms))
+  if(!is.na(terms))
     args$q <- terms
-  if(!is.null(fields))
+  if(!is.na(fields))
     args$fl <- fields
-  if(!is.null(toquery))
+  if(!is.na(toquery))
     args$fq <- toquery
-  if(!is.null(start))
+  if(!is.na(start))
     args$start <- start
-  if(!is.null(limit))
+  if(!is.na(limit))
     args$rows <- limit
   args$wt <- "json"
   
