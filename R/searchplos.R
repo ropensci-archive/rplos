@@ -20,6 +20,10 @@
 #' searchplos('ecology', 'id', limit = 100)
 #' searchplos('ecology', 'id,title', limit = 2)
 #' searchplos(terms="*:*", fields='id', toquery='doc_type:full', start=0, limit=250)
+#' searchplos(terms="*:*", fields='id', toquery='cross_published_journal_key:PLoSONE', start=0, limit=250)
+#' searchplos(terms="*:*", fields='id', 
+#'    toquery=list('cross_published_journal_key:PLoSONE', 'doc_type:full'), 
+#'    start=0, limit=250)
 #' }
 searchplos <- 
 
@@ -29,13 +33,16 @@ function(terms = NA, fields = NA, toquery = NA, start = 0, limit = 1000,
   ..., 
   curl = getCurlHandle() ) 
 {
-  args <- list(api_key = key)
+  args <- list()
+  if(!is.na(toquery[[1]])) {
+    if(length(toquery)==1) {args$fq <- toquery} else
+        {args <- list(fq=toquery[[1]], fq=toquery[[2]])} } else
+          NULL
+  args$api_key <- key
   if(!is.na(terms))
     args$q <- terms
   if(!is.na(fields))
     args$fl <- fields
-  if(!is.na(toquery))
-    args$fq <- toquery
   if(!is.na(start))
     args$start <- start
   if(!is.na(limit))
@@ -62,7 +69,9 @@ function(terms = NA, fields = NA, toquery = NA, start = 0, limit = 1000,
     tempresults <- jsonout$response$docs
     numres <- length(tempresults) # number of search results 
     names(numres) <- 'Number of search results'
-    dfresults <- data.frame( do.call(rbind, tempresults) )
+#     dfresults <- data.frame( do.call(rbind, tempresults) )
+    dfresults <- do.call(c, tempresults)
+    names(dfresults) <- NULL
     return(list(numres, dfresults))  
   } else
     { 
@@ -86,3 +95,7 @@ function(terms = NA, fields = NA, toquery = NA, start = 0, limit = 1000,
     }
 }
 # http://api.plos.org/search/?q=*:*&fl=id&fq=doc_type:full&rows=250&start=0&api_key=WQcDSXml2VSWx3P
+
+# searchplos(terms="*:*", fields='id', 
+#     toquery=list('cross_published_journal_key:PLoSONE', 'doc_type:full'), 
+#     start=28400, limit=250)[[2]]
