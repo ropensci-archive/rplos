@@ -5,7 +5,7 @@ You can get this package at CRAN here: http://cran.r-project.org/web/packages/rp
 Another option to install is install_github within Hadley's devtools package.
 
 ```R
-install.packages(devtools)
+install.packages("devtools")
 require(devtools)
 install_github("rplos", "rOpenSci")
 require(rplos)
