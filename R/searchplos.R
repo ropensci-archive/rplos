@@ -2,7 +2,8 @@
 #' @import RJSONIO RCurl
 #' @param terms search terms (character)
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
-#'     any combination of search fields [see plosfields$field]
+#'    any combination of search fields [type 'data(plosfields)', then 
+#'    'plosfields']
 #' @param toquery list specific fields to query (if NA, all queried)
 #' @param start record to start at (used in combination with limit when 
 #' you need to cycle through more results than the max allowed=1000)
