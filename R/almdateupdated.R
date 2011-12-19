@@ -1,6 +1,7 @@
-#' Get the date when article was last updated by inputting the doi for the article.
+#' Get the date when article was last updated.
 #' @import RJSONIO RCurl
-#' @param doi digital object identifier for an article in PLoS Journals
+#' @param doi Digital object identifier for an article in PLoS Journals.
+#' @param get Get year, month, or day; if unspecified, whole date returned.
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param url the PLoS API url for the function (should be left to default)
 #' @param ... optional additional curl options (debugging tools mostly)
@@ -9,11 +10,12 @@
 #' @return Date when article data was last updated.
 #' @export
 #' @examples \dontrun{
-#' almpub('10.1371/journal.pbio.0000012')
+#' almdateupdated('10.1371/journal.pone.0026871')
+#' almdateupdated('10.1371/journal.pone.0026871', 'year')
 #' }
-almpub <- 
+almdateupdated <- 
 
-function(doi,
+function(doi, get = NA,
   url = 'http://alm.plos.org/articles',
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., 
@@ -21,5 +23,10 @@ function(doi,
     
   url2 <- paste(url, "/", doi, '.json?api_key=', key, sep='')
   tt <- getURLContent(url2)
-  fromJSON(I(tt))$article$published
+  date <- fromJSON(I(tt))$article$updated_at
+  date_vector <- str_split(str_split(aa, "T")[[1]][1], "-")[[1]]
+  if(is.na(get) == TRUE) {str_split(aa, "T")[[1]][1]} else
+    if(get == 'year') {as.numeric(date_vector[1])} else
+      if(get == 'month') {as.numeric(date_vector[2])} else
+        if(get == 'day') {as.numeric(date_vector[3])}
 }

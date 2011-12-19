@@ -18,6 +18,7 @@
 #' @export
 #' @examples \dontrun{
 #' searchplos('ecology', 'id', limit = 2)
+#' searchplos('ecology', 'id,publication_date', limit = 2)
 #' searchplos('ecology', 'id', limit = 100)
 #' searchplos('ecology', 'id,title', limit = 2)
 #' searchplos(terms="*:*", fields='id', toquery='doc_type:full', start=0, limit=250)

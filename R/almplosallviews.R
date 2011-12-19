@@ -8,6 +8,9 @@
 #' @param history include a historical record of citation counts per month 
 #'    (cumulative), grouped by source (logical)
 #' @param downform download format (json, xml or csv)
+#' @param sleep Time (in seconds) before function sends API call - defaults to
+#'    zero.  Set to higher number if you are using this function in a loop with 
+#'    many API calls. 
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param url the PLoS API url for the function (should be left to default)
 #' @param ... optional additional curl options (debugging tools mostly)
@@ -22,11 +25,12 @@
 almplosallviews <- 
 
 function(doi, source_ = NA, citations = FALSE, history = FALSE, downform = NA,
-  url = 'http://alm.plos.org/articles',
+  sleep = 0, url = 'http://alm.plos.org/articles',
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., 
   curl = getCurlHandle() ) {
 
+  Sys.sleep(sleep)
   if(! downform == 'csv') {  
     url2 <- paste(url, "/", doi, '.', downform, sep='')
     args <- list(api_key = key)
