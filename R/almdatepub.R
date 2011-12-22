@@ -2,6 +2,9 @@
 #' @import RJSONIO RCurl
 #' @param doi Digital object identifier for an article in PLoS Journals
 #' @param get Get year, month, or day; if unspecified, whole date returned.
+#' @param sleep Time (in seconds) before function sends API call - defaults to
+#'    zero.  Set to higher number if you are using this function in a loop with 
+#'    many API calls.
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param url the PLoS API url for the function (should be left to default)
 #' @param ... optional additional curl options (debugging tools mostly)
@@ -15,17 +18,18 @@
 #' }
 almdatepub <- 
 
-function(doi, get = NA,
+function(doi, get = NA, sleep = 0,
   url = 'http://alm.plos.org/articles',
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., 
   curl = getCurlHandle() ) {
     
+  Sys.sleep(sleep)
   url2 <- paste(url, "/", doi, '.json?api_key=', key, sep='')
   tt <- getURLContent(url2)
   date <- fromJSON(I(tt))$article$published
-  date_vector <- str_split(str_split(aa, "T")[[1]][1], "-")[[1]]
-  if(is.na(get) == TRUE) {str_split(aa, "T")[[1]][1]} else
+  date_vector <- str_split(str_split(date, "T")[[1]][1], "-")[[1]]
+  if(is.na(get) == TRUE) {str_split(date, "T")[[1]][1]} else
     if(get == 'year') {as.numeric(date_vector[1])} else
       if(get == 'month') {as.numeric(date_vector[2])} else
         if(get == 'day') {as.numeric(date_vector[3])}
