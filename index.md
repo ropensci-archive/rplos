@@ -36,11 +36,7 @@ Visit out website at [rOpenSci](http://ropensci.org/)
 
 ## Learning more
 
-The best place to start is the article published in JSS: [The Split-Apply-Combine Strategy for Data Analysis](http://www.jstatsoft.org/v40/i01).
-
-You might also find [the notes](09-user/) from a tutorial I offered at User! 2009 useful.
-
-You are welcome to ask rplos questions on R-help, but if you'd like to participate in a more focussed mailing list, please sign up for the manipulatr mailing list:
+XXX
 
 {% endcapture %}
 
