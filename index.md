@@ -1,48 +1,105 @@
----
-layout: base
-title: rplos
-subtitle: Wrapper for the PLoS Journals API
----
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
 
-{% capture left %}
+  <title>ropensci/rplos @ GitHub</title>
 
-rplos is a set of functions for searching and fetching data from all of the Public Library of Science (PLoS) journals.  You can:
+  <style type="text/css">
+    body {
+      margin-top: 1.0em;
+      background-color: #98c6ef;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    #container {
+      margin: 0 auto;
+      width: 700px;
+    }
+    h1 { font-size: 3.8em; color: #673910; margin-bottom: 3px; }
+    h1 .small { font-size: 0.4em; }
+    h1 a { text-decoration: none }
+    h2 { font-size: 1.5em; color: #673910; }
+    h3 { text-align: center; color: #673910; }
+    a { color: #673910; }
+    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+    .download { float: right; }
+    pre { background: #000; color: #fff; padding: 15px;}
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .footer { text-align:center; padding-top:30px; font-style: italic; }
+  </style>
+</head>
 
-* Search and pull down full text of PLoS papers
-* XXX
-* XXXX
+<body>
+  <a href="https://github.com/ropensci/rplos"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
-XXXX
+  <div id="container">
 
-* totally consistent names, arguments and outputs
-* convenient parallelisation through the foreach package
-* input from and output to data.frames, matrices and lists
-* progress bars to keep track of long running operations
-* built-in error recovery, and informative error messages
-* labels that are maintained across all transformations
+    <div class="download">
+      <a href="https://github.com/ropensci/rplos/zipball/master">
+        <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
+      <a href="https://github.com/ropensci/rplos/tarball/master">
+        <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
+    </div>
 
-Considerable effort has been put into making plyr fast and memory efficient, and in many cases plyr is as fast as, or faster than, the built-in functions.
+    <h1><a href="https://github.com/ropensci/rplos">rplos</a>
+      <span class="small">by <a href="https://github.com/ropensci">ropensci</a></span></h1>
 
-If you are interested in the watching the development of rplos, please see the [development site](https://github.com/ropensci/rplos) on [github](http://github.com). If you've discovered any bugs in the rplos package, you have bug reports or feature requests, or want to collaborate, please email us: [ropensci@gmail.com](mailto:ropensci@gmail.com).
+    <div class="description">
+      Wrapper for the PLoS Journals API
+    </div>
+    
+      <h2>Install</h2>
+      <p>install.packages("rplos")
 
-{% endcapture %}
+OR
 
 
-{% capture right %}
 
-## More
+install.packages("devtools")
 
-Visit out website at [rOpenSci](http://ropensci.org/)
+require(devtools)
 
-## Learning more
+install_github("rplos", "ropensci")
 
-XXX
+require(rplos)</p>
+    
 
-{% endcapture %}
+    
+      <h2>License</h2>
+      <p>BSD</p>
+    
 
-<div class="ten columns">
-  {{ left | markdownify }}
-</div>
-<div class="five columns offset-by-one">
-  {{ right | markdownify  }}
-</div>
+    
+      <h2>Authors</h2>
+      <p>Scott Chamberlain (myrmecocystus@gmail.com)
+<br/>Carl Boettiger (cboettig@gmail.com)</p>
+    
+
+    
+      <h2>Contact</h2>
+      <p>ropensci@gmail.com
+<br/>      </p>
+
+		<h2>Further Info:</h2>
+		<p>If you are interested in the watching the development of rplos, please see <a href="https://github.com/ropensci/rplos">the development site</a>] on <a href="http://github.com">GitHub</a>. If you've discovered any bugs in the rplos package, you have bug reports or feature requests, or want to collaborate, please email us at <a href="ropensci@gmail.com">http://ropensci.org/</a>. 
+
+    <h2>Download</h2>
+    <p>
+      You can download this project in either
+      <a href="https://github.com/ropensci/rplos/zipball/master">zip</a> or
+      <a href="https://github.com/ropensci/rplos/tarball/master">tar formats.
+    </p>
+    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
+      by running:
+      <pre>$ git clone git://github.com/ropensci/rplos</pre>
+    </p>
+
+    <div class="footer">
+      get the source code on GitHub : <a href="https://github.com/ropensci/rplos">ropensci/rplos</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
