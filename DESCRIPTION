@@ -8,7 +8,7 @@ Title: Interface to PLoS Journals API methods
 License: BSD
 Author: Scott Chamberlain, Carl Boettiger
 Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>
-URL: http://ropensci.org/
+URL: https://github.com/ropensci/rplos
 Depends:
     ggplot2,
     RCurl,
