@@ -20,7 +20,9 @@
 #' @export
 #' @examples \dontrun{
 #' almplosallviews('10.1371/journal.pbio.0000012', 'counter', T, T, 'xml')
+#' almplosallviews('10.1371/journal.pbio.0000012', 'crossref', F, F, 'json')
 #' almplosallviews('10.1371/journal.pbio.0000012', 'citeulike', F, F, 'json')
+#' almplosallviews("10.1371/journal.pone.002699", 'citeulike', F, F, 'json')
 #' }
 almplosallviews <- 
 
@@ -40,10 +42,10 @@ function(doi, source_ = NA, citations = FALSE, history = FALSE, downform = NA,
       args$citations <- 1
     if(!history == FALSE)
       args$history <- 1
-    tt <- getForm(url2, 
-      .params = args, 
-      ..., 
-      curl = curl)
+    if(class(try(getForm(url2, .params = args, ..., curl = curl), 
+          silent = T ) ) %in% 'try-error') 
+      { tt <- NA } else
+        { tt <-  getForm(url2, .params = args, ..., curl = curl) }    
     if(downform == 'json') {outprod <- fromJSON(I(tt))} else
       if(downform == 'xml') {outprod <- xmlTreeParse(I(tt))}
   } else
