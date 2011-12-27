@@ -51,7 +51,9 @@
 \examples{
 \dontrun{
 almplosallviews('10.1371/journal.pbio.0000012', 'counter', T, T, 'xml')
+almplosallviews('10.1371/journal.pbio.0000012', 'crossref', F, F, 'json')
 almplosallviews('10.1371/journal.pbio.0000012', 'citeulike', F, F, 'json')
+almplosallviews("10.1371/journal.pone.002699", 'citeulike', F, F, 'json')
 }
 }
 
