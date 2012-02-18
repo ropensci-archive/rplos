@@ -1,18 +1,24 @@
-rplos 0.1
+rplos 0.0-5
 ------------
+
+IMPROVEMENTS AND BUG FIXES
 
 * `almpub` changed to `almdatepub`
 
 * changed help file `rplos` to `help` - use help('rplos') in R
 
-* added function `journalnamekey` to get short keys for journals to use in searching for specific journals
-
 * changed URL from http://ropensci.org/ to https://github.com/ropensci/rplos
 
+* added sleep argument to `plosallviews` function to allow pauses between API calls when running `plosallviews` in a loop - this is an attempt to limit hitting the PLoS API too hard
 
-* `` changed to ``
+* various other fixed to functions
 
-* `` changed to ``
+* more examples added to some functions
+
+NEW FUNCTIONS
+
+* added function `journalnamekey` to get short keys for journals to use in searching for specific journals
+
 
 rplos 0.0-1
 ===============
