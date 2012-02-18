@@ -8,11 +8,11 @@ Title: Interface to PLoS Journals API methods
 License: BSD
 Author: Scott Chamberlain, Carl Boettiger
 Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>
-URL: http://ropensci.org/
+URL: https://github.com/ropensci/rplos
 Depends:
     ggplot2,
     RCurl,
-    RJSONIO, 
+    RJSONIO,
     XML,
     plyr,
     stringr,
@@ -30,7 +30,6 @@ Imports:
 Collate:
     'almplosallviews.R'
     'almplotallviews.R'
-    'almpub.R'
     'almpubmedcentid.R'
     'almpubmedid.R'
     'almtitle.R'
@@ -50,3 +49,6 @@ Collate:
     'searchplos.R'
     'help.R'
     'plosfields.R'
+    'almdatepub.R'
+    'almdateupdated.R'
+    'journalnamekey.R'

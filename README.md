@@ -20,3 +20,5 @@ options(PlosApiKey = "YOURPLOSAPIKEY"),
 and the functions within this package will be able to use your API key without you having to enter it every time you run a search. 
 
 rplos tutorial at rOpenSci website here: http://ropensci.org/tutorials/rplos-tutorial/
+
+Visit our GitHub hosted website here: http://ropensci.github.com/rplos/

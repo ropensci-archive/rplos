@@ -42,7 +42,7 @@
 }
 \examples{
 \dontrun{
-plosabstract('drosophila', 'abstract', 9, 'FALSE')
+plosabstract('drosophila', 'abstract', 2, 'FALSE')
 plosabstract('drosophila',  limit = 5, results = 'TRUE')
 }
 }
