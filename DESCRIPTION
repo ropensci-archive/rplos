@@ -1,6 +1,6 @@
 Package: rplos
-Version: 0.0-1
-Date: 2011-12-13
+Version: 0.1
+Date: 2012-02-18
 Description: A programmatic interface to the
     Web Service methods provided by the Public Library
     of Science journals.
@@ -9,7 +9,7 @@ License: BSD
 Author: Scott Chamberlain, Carl Boettiger
 Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>
 URL: https://github.com/ropensci/rplos
-Depends:
+Imports:
     ggplot2,
     RCurl,
     RJSONIO,
@@ -18,15 +18,6 @@ Depends:
     stringr,
     reshape2,
     googleVis
-Imports:
-    RCurl,
-    RJSONIO,
-    XML,
-    googleVis,
-    ggplot2,
-    plyr,
-    reshape2,
-    stringr
 Collate:
     'almplosallviews.R'
     'almplotallviews.R'

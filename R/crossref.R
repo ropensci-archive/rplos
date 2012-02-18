@@ -1,6 +1,7 @@
 #' Lookup article info via CrossRef with DOI.
 #' @import RCurl XML
 #' @param doi digital object identifier for an article in PLoS Journals
+#' @param title return the title of the paper or not (defaults to FALSE)
 #' @param url the PLoS API url for the function (should be left to default)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param ... optional additional curl options (debugging tools mostly)

@@ -1,4 +1,20 @@
-roplos 0.0-1
+rplos 0.1
+------------
+
+* `almpub` changed to `almdatepub`
+
+* changed help file `rplos` to `help` - use help('rplos') in R
+
+* added function `journalnamekey` to get short keys for journals to use in searching for specific journals
+
+* changed URL from http://ropensci.org/ to https://github.com/ropensci/rplos
+
+
+* `` changed to ``
+
+* `` changed to ``
+
+rplos 0.0-1
 ===============
 
 NEW FEATURES 

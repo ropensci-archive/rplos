@@ -11,6 +11,9 @@
   \item{doi}{digital object identifier for an article in
   PLoS Journals}
 
+  \item{title}{return the title of the paper or not
+  (defaults to FALSE)}
+
   \item{url}{the PLoS API url for the function (should be
   left to default)}
 
