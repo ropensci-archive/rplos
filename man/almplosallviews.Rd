@@ -53,6 +53,10 @@
 almplosallviews('10.1371/journal.pbio.0000012', 'counter', T, T, 'xml')
 almplosallviews('10.1371/journal.pbio.0000012', 'crossref', F, F, 'json')
 almplosallviews('10.1371/journal.pbio.0000012', 'citeulike', F, F, 'json')
+almplosallviews('10.1371/journal.pone.0002554', 'facebook', T, T, 'json')
+almplosallviews('10.1371/journal.pone.0002554', 'mendeley', F, T, 'json')
+
+# DOI that does not work, gives NA so that looping isn't interrupted
 almplosallviews("10.1371/journal.pone.002699", 'citeulike', F, F, 'json')
 }
 }
