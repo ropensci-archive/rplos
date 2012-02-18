@@ -2,7 +2,8 @@
 \alias{crossref}
 \title{Lookup article info via CrossRef with DOI.}
 \usage{
-  crossref(doi, url = "http://www.crossref.org/openurl/",
+  crossref(doi, title = FALSE,
+    url = "http://www.crossref.org/openurl/",
     key = getOption("CrossRefKey", stop("need an API key for Mendeley")),
     ..., curl = getCurlHandle())
 }
@@ -32,6 +33,7 @@
 \examples{
 \dontrun{
 crossref("10.3998/3336451.0009.101")
+crossref("10.3998/3336451.0009.101", TRUE)
 }
 }
 
