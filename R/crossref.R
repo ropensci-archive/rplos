@@ -47,7 +47,7 @@ formatcrossref <- function(a){
         author = check_missing(authors),
         journal = check_missing(xpathSApply(a, "//full_title", xmlValue)),
         year = check_missing(xpathSApply(a, 
-          "//journal_article/publication_date/year", xmlValue)),
+          "//journal_article/publication_date/year", xmlValue)[[1]]),
         month =xpathSApply(a, 
           "//journal_article/publication_date/month", xmlValue),
         volume = xpathSApply(a, "//journal_volume/volume", xmlValue),
