@@ -3,7 +3,7 @@
 \title{Get PLoS altmetrics as xml, json, or csv.}
 \usage{
   almplosallviews(doi, source_ = NA, citations = FALSE,
-    history = FALSE, downform = NA,
+    history = FALSE, downform = NA, sleep = 0,
     url = "http://alm.plos.org/articles",
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
     ..., curl = getCurlHandle())
@@ -24,6 +24,10 @@
   (logical)}
 
   \item{downform}{download format (json, xml or csv)}
+
+  \item{sleep}{Time (in seconds) before function sends API
+  call - defaults to zero.  Set to higher number if you are
+  using this function in a loop with many API calls.}
 
   \item{key}{your PLoS API key, either enter, or loads from
   .Rprofile}
@@ -47,7 +51,7 @@
 \examples{
 \dontrun{
 almplosallviews('10.1371/journal.pbio.0000012', 'counter', T, T, 'xml')
-almplosallviews('10.1371/journal.pbio.0000012', 'citeulike', T, T, 'json')
+almplosallviews('10.1371/journal.pbio.0000012', 'citeulike', F, F, 'json')
 }
 }
 

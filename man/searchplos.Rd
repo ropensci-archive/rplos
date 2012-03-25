@@ -2,7 +2,8 @@
 \alias{searchplos}
 \title{Base function to search PLoS Journals}
 \usage{
-  searchplos(terms, fields = NA, limit = 1000,
+  searchplos(terms = NA, fields = NA, toquery = NA,
+    start = 0, limit = 1000,
     url = "http://api.plos.org/search",
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
     ..., curl = getCurlHandle())
@@ -11,8 +12,15 @@
   \item{terms}{search terms (character)}
 
   \item{fields}{fields to return from search (character)
-  [e.g., 'id,title'], any combination of search fields [see
-  plosfields$field]}
+  [e.g., 'id,title'], any combination of search fields
+  [type 'data(plosfields)', then 'plosfields']}
+
+  \item{toquery}{list specific fields to query (if NA, all
+  queried)}
+
+  \item{start}{record to start at (used in combination with
+  limit when you need to cycle through more results than
+  the max allowed=1000)}
 
   \item{limit}{number of results to return (integer)}
 
@@ -39,9 +47,15 @@
 }
 \examples{
 \dontrun{
-searchplos('ecology', 'id', 2)
-searchplos('ecology', 'id', 1001)
-searchplos('ecology', 'id,title', 2)
+searchplos('ecology', 'id', limit = 2)
+searchplos('ecology', 'id,publication_date', limit = 2)
+searchplos('ecology', 'id', limit = 100)
+searchplos('ecology', 'id,title', limit = 2)
+searchplos(terms="*:*", fields='id', toquery='doc_type:full', start=0, limit=250)
+searchplos(terms="*:*", fields='id', toquery='cross_published_journal_key:PLoSONE', start=0, limit=250)
+searchplos(terms="*:*", fields='id',
+   toquery=list('cross_published_journal_key:PLoSONE', 'doc_type:full'),
+   start=0, limit=250)
 }
 }
 
