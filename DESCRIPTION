@@ -12,7 +12,7 @@ URL: http://ropensci.org/
 Depends:
     ggplot2,
     RCurl,
-    RJSONIO, 
+    RJSONIO,
     XML,
     plyr,
     stringr,
@@ -28,9 +28,10 @@ Imports:
     reshape2,
     stringr
 Collate:
+    'almdatepub.R'
+    'almdateupdated.R'
     'almplosallviews.R'
     'almplotallviews.R'
-    'almpub.R'
     'almpubmedcentid.R'
     'almpubmedid.R'
     'almtitle.R'
@@ -39,8 +40,10 @@ Collate:
     'articlelength.R'
     'crossref.R'
     'formatarticleurl.R'
+    'help.R'
     'plosabstract.R'
     'plosauthor.R'
+    'plosfields.R'
     'plosfigtabcaps.R'
     'plossubject.R'
     'plostitle.R'
@@ -48,5 +51,3 @@ Collate:
     'plosword.R'
     'plot_throughtime.R'
     'searchplos.R'
-    'help.R'
-    'plosfields.R'

@@ -24,7 +24,7 @@
   unnecessary footprint)}
 }
 \value{
-  Metadata from DOI.
+  Metadata from DOI in R's bibentry format.
 }
 \description{
   Lookup article info via CrossRef with DOI.
@@ -32,6 +32,8 @@
 \examples{
 \dontrun{
 crossref("10.3998/3336451.0009.101")
+print(crossref("10.3998/3336451.0009.101"), style="Bibtex")
+print(crossref("10.3998/3336451.0009.101"), style="text")
 }
 }
 
