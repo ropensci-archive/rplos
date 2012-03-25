@@ -15,14 +15,9 @@
 #' print(crossref("10.3998/3336451.0009.101"), style="text")
 #' }
 crossref <- 
-function(doi, 
-#' crossref("10.3998/3336451.0009.101", TRUE)
-#' }
-crossref <- 
-
 function(doi, title = FALSE,
   url = "http://www.crossref.org/openurl/", 
-  key = getOption("CrossRefKey", stop("need an API key for Mendeley")), 
+  key = "cboettig@gmail.com", 
   ...,
   curl = getCurlHandle())
 {

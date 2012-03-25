@@ -1,5 +1,5 @@
 Package: rplos
-Version: 0.0-5
+Version: 0.0-6
 Date: 2012-02-18
 Description: A programmatic interface to the
     Web Service methods provided by the Public Library
@@ -20,4 +20,28 @@ Imports:
     stringr,
     reshape2,
     googleVis
-
+Collate:
+    'almdatepub.R'
+    'almdateupdated.R'
+    'almplosallviews.R'
+    'almplotallviews.R'
+    'almpubmedcentid.R'
+    'almpubmedid.R'
+    'almtitle.R'
+    'almtotcites.R'
+    'almupdated.R'
+    'articlelength.R'
+    'crossref.R'
+    'formatarticleurl.R'
+    'help.R'
+    'journalnamekey.R'
+    'plosabstract.R'
+    'plosauthor.R'
+    'plosfields.R'
+    'plosfigtabcaps.R'
+    'plossubject.R'
+    'plostitle.R'
+    'plosviews.R'
+    'plosword.R'
+    'plot_throughtime.R'
+    'searchplos.R'

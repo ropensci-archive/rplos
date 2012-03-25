@@ -1,3 +1,10 @@
+rplos 0.0-6
+------------
+
+IMPROVEMENTS AND BUG FIXES
+
+* crossref function returns R's native bibtype format.  See examples in crossref function documentation
+
 rplos 0.0-5
 ------------
 
