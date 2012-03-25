@@ -1,6 +1,7 @@
 #' Lookup article info via CrossRef with DOI.
 #' @import RCurl XML
 #' @param doi digital object identifier for an article in PLoS Journals
+#' @param title return the title of the paper or not (defaults to FALSE)
 #' @param url the PLoS API url for the function (should be left to default)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param ... optional additional curl options (debugging tools mostly)
@@ -15,6 +16,11 @@
 #' }
 crossref <- 
 function(doi, 
+#' crossref("10.3998/3336451.0009.101", TRUE)
+#' }
+crossref <- 
+
+function(doi, title = FALSE,
   url = "http://www.crossref.org/openurl/", 
   key = getOption("CrossRefKey", stop("need an API key for Mendeley")), 
   ...,
@@ -29,8 +35,6 @@ function(doi,
   tt = getForm(url, .params = args, .opts = list(...), curl = curl)
   ans = xmlParse(tt)
   formatcrossref(ans)
-#  nodeset = getNodeSet(ans, "//journal_article")
-#  lapply(nodeset, xmlToList)
 }
 
 

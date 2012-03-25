@@ -2,13 +2,17 @@
 \alias{crossref}
 \title{Lookup article info via CrossRef with DOI.}
 \usage{
-  crossref(doi, url = "http://www.crossref.org/openurl/",
+  crossref(doi, title = FALSE,
+    url = "http://www.crossref.org/openurl/",
     key = getOption("CrossRefKey", stop("need an API key for Mendeley")),
     ..., curl = getCurlHandle())
 }
 \arguments{
   \item{doi}{digital object identifier for an article in
   PLoS Journals}
+
+  \item{title}{return the title of the paper or not
+  (defaults to FALSE)}
 
   \item{url}{the PLoS API url for the function (should be
   left to default)}
@@ -32,8 +36,12 @@
 \examples{
 \dontrun{
 crossref("10.3998/3336451.0009.101")
+<<<<<<< HEAD
 print(crossref("10.3998/3336451.0009.101"), style="Bibtex")
 print(crossref("10.3998/3336451.0009.101"), style="text")
+=======
+crossref("10.3998/3336451.0009.101", TRUE)
+>>>>>>> 7c05a50fe21e06e27a4814b88a544d76ee98ad81
 }
 }
 

@@ -41,6 +41,12 @@
 \dontrun{
 almdatepub('10.1371/journal.pone.0026871')
 almdatepub('10.1371/journal.pone.0026871', 'year')
+<<<<<<< HEAD
+=======
+
+# DOI that does not work, gives NA so that looping isn't interrupted
+almdatepub(doi="10.1371/journal.pone.002699", get='year')
+>>>>>>> 7c05a50fe21e06e27a4814b88a544d76ee98ad81
 }
 }
 

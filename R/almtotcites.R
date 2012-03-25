@@ -22,5 +22,7 @@ function(doi,
   url2 <- paste(url, "/", doi, '.json?api_key=', key, sep='')
   message(url2)
   tt <- getURLContent(url2)
-  fromJSON(I(tt))$article$citations_count
+  out <- fromJSON(I(tt))
+  out
+#   out$article$citations_count
 }

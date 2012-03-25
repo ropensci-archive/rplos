@@ -7,9 +7,9 @@
 #' @param url the PLoS API url for the function (should be left to default)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param ... optional additional curl options (debugging tools mostly)
-#' @param curl If using in a loop, call getCurlHandle() first and pass 
+#' @param curl If using in a loop, call getCurlHandle() first and pass
 #'  the returned value in here (avoids unnecessary footprint)
-#' @return Number of search results (results = FALSE), or number of search 
+#' @return Number of search results (results = FALSE), or number of search
 #'    results plus the results themselves (results = TRUE).
 #' @export
 #' @examples \dontrun{
@@ -20,17 +20,17 @@
 #' plosviews('evolution', views = 'alltime', limit = 99)
 #' plosviews('bird', views = 'alltime', limit = 99)
 #' }
-plosviews <- 
+plosviews <-
 
 function(search, byfield = NA, views = 'alltime', limit = NA,
   url = 'http://api.plos.org/search',
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-  ..., 
-  curl = getCurlHandle() ) 
+  ...,
+  curl = getCurlHandle() )
 {
   args <- list(apikey = key)
   if(is.na(byfield)) {byfield_ <- NULL} else
-    {byfield_ <- paste(byfield, ":", sep="")}    
+    {byfield_ <- paste(byfield, ":", sep="")}
   if(!is.na(search))
     args$q <- paste(byfield_, search, sep="")
   if(!is.na(views))
@@ -39,8 +39,8 @@ function(search, byfield = NA, views = 'alltime', limit = NA,
         {args$fl <- 'id,counter_total_all,counter_total_month'}
   if(!is.na(limit))
     args$rows <- limit
-  args$wt <- "json"       
-  tt <- getForm(url, 
+  args$wt <- "json"
+  tt <- getForm(url,
     .params = args,
     ...,
     curl = curl)
