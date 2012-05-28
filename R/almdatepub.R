@@ -12,13 +12,12 @@
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return Date when article was published.
 #' @export
-#' @examples \dontrun{
+#' @examples 
 #' almdatepub('10.1371/journal.pone.0026871')
 #' almdatepub('10.1371/journal.pone.0026871', 'year')
 #'
 #' # DOI that does not work, gives NA so that looping isn't interrupted
-#' almdatepub(doi="10.1371/journal.pone.002699", get='year')
-#' }
+#' # almdatepub(doi="10.1371/journal.pone.002699", get='year')
 almdatepub <-
 
 function(doi, get = NA, sleep = 0,
