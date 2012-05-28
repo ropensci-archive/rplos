@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Format a URL for a specific article in a specific PLoS journal.. rplos </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {padding-top: 60px;}
+      h2 {padding-top: 20px}
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/highlight.css" rel="stylesheet">
+    <link href="css/staticdocs.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class = "container">
+          <a class="brand">rplos </a>
+          <div class="nav">
+            <ul class="nav">
+              <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h1>Format a URL for a specific article in a specific PLoS journal.</h1>
+
+      <div class="row">
+        <div class="span8">
+          <h2>Usage</h2>
+          <pre><span class="functioncall"><a href='formatarticleurl.html'>formatarticleurl</a></span><span class="keyword">(</span><span class="symbol">doi</span><span class="keyword">,</span> <span class="symbol">journal</span><span class="keyword">)</span></pre>
+          
+          <h2>Arguments</h2>
+          <dl>
+            <dt>doi</dt>
+            <dd>digital object identifier for an article in
+  PLoS Journals</dd>
+            <dt>journal</dt>
+            <dd>quoted journal name (character)</dd>
+          </dl>
+          
+          <div class="Value">
+            <h2>Value</h2>
+            
+            <p>Get url for the article to use in your browser, etc.</p>
+        
+          </div>
+
+          <div class="Description">
+            <h2>Description</h2>
+            
+            <p>Format a URL for a specific article in a specific PLoS
+  journal.</p>
+        
+          </div>
+
+          <div class="Details">
+            <h2>Details</h2>
+            
+            <p>Choose the journal abbreviation, and the appropriate base
+  URL will be inclued in the built URL.  Options are:
+  PLoSBiology, PLoSGenetics, PLoSComputationalBiology,
+  PLoSMedicine, PLoSONE, PLoSNeglectedTropicalDiseases, or
+  PLoSPathogens.</p>
+        
+          </div>
+      
+          <h2 id="examples">Examples</h2>
+          <pre class="examples"><div class='input'>## <strong>Not run</strong>: # formatarticleurl("10.1371/journal.pone.0004045", 'PLoSONE')# ## <strong>End(Not run)</strong></div></pre>
+        </div>
+        <div class="span4">
+          <!-- <ul>
+            <li>formatarticleurl</li>
+          </ul>
+          <ul>
+            
+          </ul> -->
+            
+                    
+        </div>
+      </div>
+      <footer class="footer">
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div> <!-- /container -->
+  </body>
+</html>
