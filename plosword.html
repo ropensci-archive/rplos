@@ -87,7 +87,35 @@
           </div>
       
           <h2 id="examples">Examples</h2>
-          <pre class="examples"><div class='input'>## <strong>Not run</strong>: # plosword('Helianthus')# plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')# out <- plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')# out[[1]] # results in a data frame# out[[2]] # results in a bar plot# ## <strong>End(Not run)</strong></div></pre>
+          <pre class="examples"><div class='input'><span class="functioncall"><a href='plosword.html'>plosword</a></span><span class="keyword">(</span><span class="string">'Helianthus'</span><span class="keyword">)</span></div>
+<div class='output'>Number of articles with search term 
+                                 78 
+</div>
+<div class='input'><span class="functioncall"><a href='plosword.html'>plosword</a></span><span class="keyword">(</span><span class="functioncall"><a href='NA'>list</a></span><span class="keyword">(</span><span class="string">'monkey'</span><span class="keyword">,</span><span class="string">'Helianthus'</span><span class="keyword">,</span><span class="string">'sunflower'</span><span class="keyword">,</span><span class="string">'protein'</span><span class="keyword">,</span><span class="string">'whale'</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">vis</span> <span class="argument">=</span> <span class="string">'TRUE'</span><span class="keyword">)</span></div>
+<div class='output'>$table
+  No_Articles       Term
+1        3678     monkey
+2          78 Helianthus
+3         217  sunflower
+4       36474    protein
+5         386      whale
+
+$plot
+</div>
+<div class='output'>
+</div>
+<p><img src='plosword-6.png' alt='' width='400' height='400' /></p>
+<div class='input'><span class="symbol">out</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='plosword.html'>plosword</a></span><span class="keyword">(</span><span class="functioncall"><a href='NA'>list</a></span><span class="keyword">(</span><span class="string">'monkey'</span><span class="keyword">,</span><span class="string">'Helianthus'</span><span class="keyword">,</span><span class="string">'sunflower'</span><span class="keyword">,</span><span class="string">'protein'</span><span class="keyword">,</span><span class="string">'whale'</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">vis</span> <span class="argument">=</span> <span class="string">'TRUE'</span><span class="keyword">)</span>
+<span class="symbol">out</span><span class="keyword">[[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">]</span> <span class="comment"># results in a data frame</span></div>
+<div class='output'>  No_Articles       Term
+1        3678     monkey
+2          78 Helianthus
+3         217  sunflower
+4       36474    protein
+5         386      whale
+</div>
+<div class='input'><span class="symbol">out</span><span class="keyword">[[</span><span class="number">2</span><span class="keyword">]</span><span class="keyword">]</span> <span class="comment"># results in a bar plot</span></div>
+<p><img src='plosword-10.png' alt='' width='400' height='400' /></p></pre>
         </div>
         <div class="span4">
           <!-- <ul>

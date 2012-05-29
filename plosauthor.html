@@ -92,7 +92,36 @@
           </div>
       
           <h2 id="examples">Examples</h2>
-          <pre class="examples"><div class='input'>## <strong>Not run</strong>: # plosauthor('johnson', 'title,author', 9999999, 'FALSE')# plosauthor('johnson',  limit = 5, results = 'TRUE')# ## <strong>End(Not run)</strong></div></pre>
+          <pre class="examples"><div class='input'><span class="functioncall"><a href='plosauthor.html'>plosauthor</a></span><span class="keyword">(</span><span class="string">'johnson'</span><span class="keyword">,</span> <span class="string">'title,author'</span><span class="keyword">,</span> <span class="number">9999999</span><span class="keyword">,</span> <span class="string">'FALSE'</span><span class="keyword">)</span></div>
+<div class='output'>Number of search results 
+                     438 
+</div>
+<div class='input'><span class="functioncall"><a href='plosauthor.html'>plosauthor</a></span><span class="keyword">(</span><span class="string">'johnson'</span><span class="keyword">,</span>  <span class="argument">limit</span> <span class="argument">=</span> <span class="number">5</span><span class="keyword">,</span> <span class="argument">results</span> <span class="argument">=</span> <span class="string">'TRUE'</span><span class="keyword">)</span></div>
+<div class='output'>[[1]]
+Number of search results 
+                       5 
+
+[[2]]
+                            id       journal     eissn     publication_date     article_type
+1 10.1371/journal.pbio.0060148  PLoS Biology 1545-7885 2008-06-10T00:00:00Z   Community Page
+2 10.1371/journal.pgen.1001210 PLoS Genetics 1553-7404 2010-11-18T00:00:00Z      Perspective
+3 10.1371/journal.pone.0007100      PLoS ONE 1932-6203 2009-09-18T00:00:00Z Research Article
+4 10.1371/journal.pone.0015109      PLoS ONE 1932-6203 2010-11-30T00:00:00Z Research Article
+5 10.1371/journal.pone.0027533      PLoS ONE 1932-6203 2011-11-30T00:00:00Z Research Article
+                                                                                                                  title_display
+1                                               Gene Banks Pay Big Dividends to Agriculture, the Environment, and Human Welfare
+2                                                                                                      Endless Forms Most Viral
+3                           Novel Mitochondrial Substrates of Omi Indicate a New Regulatory Role in Neurodegenerative Disorders
+4 Short-Term Hurricane Impacts on a Neotropical Community of Marked Birds and Implications for Early-Stage Community Resilience
+5                                 Technology-Based Self-Care Methods of Improving Antiretroviral Adherence: A Systematic Review
+                        author_display    score
+1                         R. C Johnson 3.949198
+2                    Welkin E. Johnson 3.949198
+3 Felicity Johnson, Michael G. Kaplitt 3.455548
+4      Andrew B. Johnson, Kevin Winker 3.455548
+5     Parya Saberi, Mallory O. Johnson 3.455548
+
+</div></pre>
         </div>
         <div class="span4">
           <!-- <ul>

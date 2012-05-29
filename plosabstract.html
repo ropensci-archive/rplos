@@ -93,7 +93,44 @@
           </div>
       
           <h2 id="examples">Examples</h2>
-          <pre class="examples"><div class='input'>## <strong>Not run</strong>: # plosabstract('drosophila', 'abstract', 2, 'FALSE')# plosabstract('drosophila',  limit = 5, results = 'TRUE')# ## <strong>End(Not run)</strong></div></pre>
+          <pre class="examples"><div class='input'><span class="functioncall"><a href='plosabstract.html'>plosabstract</a></span><span class="keyword">(</span><span class="string">'drosophila'</span><span class="keyword">,</span> <span class="string">'abstract'</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">,</span> <span class="string">'FALSE'</span><span class="keyword">)</span></div>
+<div class='output'>Number of search results 
+                       2 
+</div>
+<div class='input'><span class="functioncall"><a href='plosabstract.html'>plosabstract</a></span><span class="keyword">(</span><span class="string">'drosophila'</span><span class="keyword">,</span>  <span class="argument">limit</span> <span class="argument">=</span> <span class="number">5</span><span class="keyword">,</span> <span class="argument">results</span> <span class="argument">=</span> <span class="string">'TRUE'</span><span class="keyword">)</span></div>
+<strong class='warning'>Warning message:
+number of columns of result is not a multiple of vector length (arg 2)</strong>
+<div class='output'>[[1]]
+Number of search results 
+                       5 
+
+[[2]]
+                            id        journal     eissn     publication_date
+1 10.1371/journal.pbio.0040198   PLoS Biology 1545-7885 2006-06-13T00:00:00Z
+2   10.1371/image.pbio.v06.i05   PLoS Biology 1545-7885 2008-05-27T00:00:00Z
+3 10.1371/journal.pbio.0030246   PLoS Biology 1545-7885 2005-07-12T00:00:00Z
+4   10.1371/image.ppat.v03.i12 PLoS Pathogens 1553-7374 2007-12-28T00:00:00Z
+5   10.1371/image.ppat.v04.i05 PLoS Pathogens 1553-7374 2008-05-30T00:00:00Z
+                             article_type                                                title_display
+1        Book Review/Science in the Media                                                  All for All
+2                             Issue Image         <i>PLoS Biology</i> Issue Image | Vol. 6(5) May 2008
+3 Correspondence and Other Communications           School Students as <i>Drosophila</i> Experimenters
+4                             Issue Image <i>PLoS Pathogens</i> Issue Image | Vol. 3(12) December 2007
+5                             Issue Image       <i>PLoS Pathogens</i> Issue Image | Vol. 4(5) May 2008
+                                                                                                               author_display
+1                                                                                                                John Sulston
+2                                                                                                                    1.679694
+3 Faiza Siyad, Jodianne Griffiths, Faira Janjua, Elizabeth Jackson, Ian Rodrigues, Fiona Kerr, Daniel Mackay, Simon Lovestone
+4                                                                                                                    1.484654
+5                                                                                                                    1.484654
+                       score
+1                   2.099617
+2 10.1371/image.pbio.v06.i05
+3                   1.679694
+4 10.1371/image.ppat.v03.i12
+5 10.1371/image.ppat.v04.i05
+
+</div></pre>
         </div>
         <div class="span4">
           <!-- <ul>

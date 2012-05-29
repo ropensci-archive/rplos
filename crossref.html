@@ -85,7 +85,28 @@
           </div>
       
           <h2 id="examples">Examples</h2>
-          <pre class="examples"><div class='input'>## <strong>Not run</strong>: # crossref("10.3998/3336451.0009.101")# print(crossref("10.3998/3336451.0009.101"), style="Bibtex")# print(crossref("10.3998/3336451.0009.101"), style="text")# ## <strong>End(Not run)</strong></div></pre>
+          <pre class="examples"><div class='input'><span class="functioncall"><a href='crossref.html'>crossref</a></span><span class="keyword">(</span><span class="string">"10.3998/3336451.0009.101"</span><span class="keyword">)</span></div>
+<strong class='warning'>Warning message:
+Not all arguments are of the same length, the following need to be recycled: issn</strong>
+<div class='input'><span class="functioncall"><a href='NA'>print</a></span><span class="keyword">(</span><span class="functioncall"><a href='crossref.html'>crossref</a></span><span class="keyword">(</span><span class="string">"10.3998/3336451.0009.101"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">style</span><span class="argument">=</span><span class="string">"Bibtex"</span><span class="keyword">)</span></div>
+<strong class='warning'>Warning message:
+Not all arguments are of the same length, the following need to be recycled: issn</strong>
+<div class='output'>@Article{,
+  title = {In Google We Trust?},
+  author = {Geoffrey Bilder},
+  journal = {Journal of Electronic Publishing},
+  year = {2006},
+  month = {01},
+  volume = {9},
+  doi = {10.3998/3336451.0009.101},
+}
+</div>
+<div class='input'><span class="functioncall"><a href='NA'>print</a></span><span class="keyword">(</span><span class="functioncall"><a href='crossref.html'>crossref</a></span><span class="keyword">(</span><span class="string">"10.3998/3336451.0009.101"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">style</span><span class="argument">=</span><span class="string">"text"</span><span class="keyword">)</span></div>
+<strong class='warning'>Warning message:
+Not all arguments are of the same length, the following need to be recycled: issn</strong>
+<div class='output'>Bilder G (2006). “In Google We Trust?” _Journal of Electronic Publishing_, *9*. <URL:
+http://dx.doi.org/10.3998/3336451.0009.101>.
+</div></pre>
         </div>
         <div class="span4">
           <!-- <ul>

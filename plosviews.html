@@ -92,7 +92,241 @@
           </div>
       
           <h2 id="examples">Examples</h2>
-          <pre class="examples"><div class='input'>## <strong>Not run</strong>: # plosviews('10.1371/journal.pone.0002154', 'id', 'alltime')# plosviews('10.1371/journal.pone.0002154', 'id', 'last30')# plosviews('10.1371/journal.pone.0002154', 'id', 'alltime,last30')# plosviews('ecology', 'subject', 'alltime', 99)# plosviews('evolution', views = 'alltime', limit = 99)# plosviews('bird', views = 'alltime', limit = 99)# ## <strong>End(Not run)</strong></div></pre>
+          <pre class="examples"><div class='input'><span class="functioncall"><a href='plosviews.html'>plosviews</a></span><span class="keyword">(</span><span class="string">'10.1371/journal.pone.0002154'</span><span class="keyword">,</span> <span class="string">'id'</span><span class="keyword">,</span> <span class="string">'alltime'</span><span class="keyword">)</span></div>
+<div class='output'>                       newcol_ counter_total_all
+1 10.1371/journal.pone.0002154              3828
+</div>
+<div class='input'><span class="functioncall"><a href='plosviews.html'>plosviews</a></span><span class="keyword">(</span><span class="string">'10.1371/journal.pone.0002154'</span><span class="keyword">,</span> <span class="string">'id'</span><span class="keyword">,</span> <span class="string">'last30'</span><span class="keyword">)</span></div>
+<div class='output'>                       newcol_ counter_total_month
+1 10.1371/journal.pone.0002154                  45
+</div>
+<div class='input'><span class="functioncall"><a href='plosviews.html'>plosviews</a></span><span class="keyword">(</span><span class="string">'10.1371/journal.pone.0002154'</span><span class="keyword">,</span> <span class="string">'id'</span><span class="keyword">,</span> <span class="string">'alltime,last30'</span><span class="keyword">)</span></div>
+<div class='output'>                       newcol_ counter_total_all counter_total_month
+1 10.1371/journal.pone.0002154              3828                  45
+</div>
+<div class='input'><span class="functioncall"><a href='plosviews.html'>plosviews</a></span><span class="keyword">(</span><span class="string">'ecology'</span><span class="keyword">,</span> <span class="string">'subject'</span><span class="keyword">,</span> <span class="string">'alltime'</span><span class="keyword">,</span> <span class="number">99</span><span class="keyword">)</span></div>
+<div class='output'>                        newcol_ counter_total_all
+9  10.1371/journal.pbio.0040237              1696
+14 10.1371/journal.pbio.0040336              2439
+1  10.1371/journal.pbio.0000073              2494
+4  10.1371/journal.pbio.0030329              3457
+7  10.1371/journal.pbio.0040173              3480
+5  10.1371/journal.pbio.0030394              5454
+2  10.1371/journal.pbio.0020054              5798
+12 10.1371/journal.pbio.0040279              6017
+3  10.1371/journal.pbio.0030319              8101
+11 10.1371/journal.pbio.0040278              8994
+8  10.1371/journal.pbio.0040208              9798
+15 10.1371/journal.pbio.0040344             10250
+13 10.1371/journal.pbio.0040324             17696
+16 10.1371/journal.pbio.0040360             20138
+6  10.1371/journal.pbio.0040140             27934
+10 10.1371/journal.pbio.0040277             28835
+</div>
+<div class='input'><span class="functioncall"><a href='plosviews.html'>plosviews</a></span><span class="keyword">(</span><span class="string">'evolution'</span><span class="keyword">,</span> <span class="argument">views</span> <span class="argument">=</span> <span class="string">'alltime'</span><span class="keyword">,</span> <span class="argument">limit</span> <span class="argument">=</span> <span class="number">99</span><span class="keyword">)</span></div>
+<div class='output'>                        newcol_ counter_total_all
+1    10.1371/image.pbio.v04.i08                 0
+2    10.1371/image.pbio.v06.i03                 0
+3    10.1371/image.pbio.v06.i04                 0
+4    10.1371/image.pcbi.v04.i09                 0
+5    10.1371/image.pgen.v02.i10                 0
+6    10.1371/image.pgen.v04.i10                 0
+7    10.1371/image.pgen.v05.i01                 0
+8    10.1371/image.pgen.v06.i02                 0
+9    10.1371/image.pgen.v06.i11                 0
+10   10.1371/image.pgen.v07.i12                 0
+89 10.1371/journal.pone.0034070               269
+93 10.1371/journal.pone.0037544               299
+92 10.1371/journal.pone.0034689               342
+95 10.1371/journal.ppat.0030121               418
+94 10.1371/journal.ppat.0020138               466
+88 10.1371/journal.pone.0031236               517
+81 10.1371/journal.pone.0018951               532
+54 10.1371/journal.pcbi.0020028               581
+90 10.1371/journal.pone.0034564               619
+86 10.1371/journal.pone.0026645               696
+30 10.1371/journal.pbio.0040320               798
+36 10.1371/journal.pbio.0040419               818
+83 10.1371/journal.pone.0022642               823
+91 10.1371/journal.pone.0034654               823
+85 10.1371/journal.pone.0026269               833
+40 10.1371/journal.pbio.0050176               852
+98 10.1371/journal.ppat.1002685               970
+82 10.1371/journal.pone.0021206               971
+79 10.1371/journal.pone.0014184              1013
+87 10.1371/journal.pone.0027523              1046
+99 10.1371/journal.ppat.1002720              1057
+34 10.1371/journal.pbio.0040384              1092
+74 10.1371/journal.pone.0004035              1201
+62 10.1371/journal.pctr.0020003              1230
+78 10.1371/journal.pone.0011476              1289
+28 10.1371/journal.pbio.0040263              1290
+26 10.1371/journal.pbio.0030389              1298
+84 10.1371/journal.pone.0026100              1328
+97 10.1371/journal.ppat.1002608              1451
+35 10.1371/journal.pbio.0040405              1466
+77 10.1371/journal.pone.0009517              1490
+80 10.1371/journal.pone.0018288              1575
+75 10.1371/journal.pone.0004115              1613
+41 10.1371/journal.pbio.0050180              1725
+61 10.1371/journal.pcbi.1002275              1799
+72 10.1371/journal.pone.0000442              1855
+65 10.1371/journal.pgen.1000388              1957
+73 10.1371/journal.pone.0002295              1979
+67 10.1371/journal.pgen.1001164              2008
+15 10.1371/journal.pbio.0020154              2032
+56 10.1371/journal.pcbi.1000355              2153
+76 10.1371/journal.pone.0004737              2207
+29 10.1371/journal.pbio.0040285              2265
+57 10.1371/journal.pcbi.1000510              2288
+17 10.1371/journal.pbio.0020292              2433
+32 10.1371/journal.pbio.0040334              2437
+52 10.1371/journal.pbio.1000411              2576
+14 10.1371/journal.pbio.0020084              2608
+53 10.1371/journal.pbio.1001332              2650
+16 10.1371/journal.pbio.0020251              2663
+19 10.1371/journal.pbio.0020441              2697
+49 10.1371/journal.pbio.1000259              3006
+59 10.1371/journal.pcbi.1000907              3075
+68 10.1371/journal.pgen.1001321              3139
+44 10.1371/journal.pbio.0060132              3149
+58 10.1371/journal.pcbi.1000873              3371
+13 10.1371/journal.pbio.0020071              3702
+96 10.1371/journal.ppat.1001006              3778
+66 10.1371/journal.pgen.1000402              3807
+69 10.1371/journal.pgen.1002432              3828
+71 10.1371/journal.pone.0000434              3874
+63 10.1371/journal.pgen.0030148              3954
+50 10.1371/journal.pbio.1000279              4057
+64 10.1371/journal.pgen.0030187              4770
+47 10.1371/journal.pbio.1000077              4830
+33 10.1371/journal.pbio.0040373              5184
+55 10.1371/journal.pcbi.0020140              5615
+37 10.1371/journal.pbio.0050026              5650
+12 10.1371/journal.pbio.0020055              5718
+24 10.1371/journal.pbio.0030340              5869
+48 10.1371/journal.pbio.1000082              6135
+60 10.1371/journal.pcbi.1002173              7804
+22 10.1371/journal.pbio.0030203              8408
+45 10.1371/journal.pbio.1000007              8754
+18 10.1371/journal.pbio.0020346              9687
+46 10.1371/journal.pbio.1000037             12552
+39 10.1371/journal.pbio.0050112             12638
+51 10.1371/journal.pbio.1000357             13838
+21 10.1371/journal.pbio.0030194             14932
+31 10.1371/journal.pbio.0040321             14963
+11 10.1371/journal.pbio.0000018             16296
+25 10.1371/journal.pbio.0030364             16436
+70 10.1371/journal.pone.0000062             16594
+42 10.1371/journal.pbio.0060085             17823
+27 10.1371/journal.pbio.0040167             30639
+23 10.1371/journal.pbio.0030245             30986
+20 10.1371/journal.pbio.0030050             33823
+38 10.1371/journal.pbio.0050030             40619
+43 10.1371/journal.pbio.0060124             46765
+</div>
+<div class='input'><span class="functioncall"><a href='plosviews.html'>plosviews</a></span><span class="keyword">(</span><span class="string">'bird'</span><span class="keyword">,</span> <span class="argument">views</span> <span class="argument">=</span> <span class="string">'alltime'</span><span class="keyword">,</span> <span class="argument">limit</span> <span class="argument">=</span> <span class="number">99</span><span class="keyword">)</span></div>
+<div class='output'>                        newcol_ counter_total_all
+1    10.1371/image.pbio.v06.i08                 0
+84 10.1371/journal.pone.0032806               255
+95 10.1371/journal.pone.0036358               331
+83 10.1371/journal.pone.0032733               415
+96 10.1371/journal.pone.0037335               429
+89 10.1371/journal.pone.0034127               470
+82 10.1371/journal.pone.0031520               484
+94 10.1371/journal.pone.0035272               492
+90 10.1371/journal.pone.0034271               512
+59 10.1371/journal.pone.0021596               534
+57 10.1371/journal.pone.0020407               546
+80 10.1371/journal.pone.0030407               559
+61 10.1371/journal.pone.0022724               573
+47 10.1371/journal.pone.0014347               580
+65 10.1371/journal.pone.0024942               583
+91 10.1371/journal.pone.0034527               741
+79 10.1371/journal.pone.0030202               744
+51 10.1371/journal.pone.0016176               765
+74 10.1371/journal.pone.0029097               772
+67 10.1371/journal.pone.0025272               789
+54 10.1371/journal.pone.0017903               791
+87 10.1371/journal.pone.0033092               815
+62 10.1371/journal.pone.0023198               820
+70 10.1371/journal.pone.0027375               833
+77 10.1371/journal.pone.0029834               836
+53 10.1371/journal.pone.0017466               863
+76 10.1371/journal.pone.0029826               863
+55 10.1371/journal.pone.0019074               871
+81 10.1371/journal.pone.0031271               890
+48 10.1371/journal.pone.0014636               893
+78 10.1371/journal.pone.0029960               897
+49 10.1371/journal.pone.0015490               908
+75 10.1371/journal.pone.0029549               927
+52 10.1371/journal.pone.0016941               973
+50 10.1371/journal.pone.0015508               995
+85 10.1371/journal.pone.0032873              1000
+86 10.1371/journal.pone.0032904              1050
+71 10.1371/journal.pone.0027576              1071
+58 10.1371/journal.pone.0020570              1100
+7  10.1371/journal.pbio.0040130              1103
+64 10.1371/journal.pone.0023974              1117
+37 10.1371/journal.pone.0008000              1159
+44 10.1371/journal.pone.0011923              1187
+68 10.1371/journal.pone.0026118              1296
+29 10.1371/journal.pone.0005667              1399
+30 10.1371/journal.pone.0005974              1399
+92 10.1371/journal.pone.0034886              1402
+31 10.1371/journal.pone.0006639              1427
+32 10.1371/journal.pone.0006926              1451
+40 10.1371/journal.pone.0009082              1455
+73 10.1371/journal.pone.0028672              1464
+24 10.1371/journal.pone.0003956              1490
+88 10.1371/journal.pone.0033753              1534
+46 10.1371/journal.pone.0013956              1555
+43 10.1371/journal.pone.0010997              1588
+72 10.1371/journal.pone.0027814              1732
+39 10.1371/journal.pone.0008572              1882
+34 10.1371/journal.pone.0007301              1921
+38 10.1371/journal.pone.0008548              1958
+26 10.1371/journal.pone.0004148              1984
+66 10.1371/journal.pone.0025002              2061
+13 10.1371/journal.pbio.1000398              2071
+33 10.1371/journal.pone.0007289              2132
+4  10.1371/journal.pbio.0020413              2139
+69 10.1371/journal.pone.0026786              2145
+93 10.1371/journal.pone.0035223              2174
+41 10.1371/journal.pone.0009566              2276
+2  10.1371/journal.pbio.0020221              2318
+60 10.1371/journal.pone.0022292              2340
+42 10.1371/journal.pone.0010798              2418
+9  10.1371/journal.pbio.0040270              2555
+22 10.1371/journal.pone.0002832              2715
+63 10.1371/journal.pone.0023775              2747
+25 10.1371/journal.pone.0003995              2860
+23 10.1371/journal.pone.0003047              2914
+15 10.1371/journal.pgen.1000667              3529
+21 10.1371/journal.pone.0002154              3828
+56 10.1371/journal.pone.0019602              3999
+17 10.1371/journal.pone.0000198              4655
+45 10.1371/journal.pone.0012215              4663
+99 10.1371/journal.ppat.1000281              4760
+27 10.1371/journal.pone.0004550              4892
+18 10.1371/journal.pone.0000261              4988
+16 10.1371/journal.pone.0000184              5742
+20 10.1371/journal.pone.0001580              5961
+98 10.1371/journal.ppat.1000127              6072
+6  10.1371/journal.pbio.0040110              6114
+8  10.1371/journal.pbio.0040251              6688
+12 10.1371/journal.pbio.1000362              7965
+36 10.1371/journal.pone.0007390              8689
+3  10.1371/journal.pbio.0020350              8797
+97 10.1371/journal.ppat.0030061              8848
+14 10.1371/journal.pbio.1001220              9138
+5  10.1371/journal.pbio.0040066              9581
+28 10.1371/journal.pone.0004678             10214
+10 10.1371/journal.pbio.0050197             11976
+19 10.1371/journal.pone.0001545             13828
+35 10.1371/journal.pone.0007322             19269
+11 10.1371/journal.pbio.0060202             45832
+</div></pre>
         </div>
         <div class="span4">
           <!-- <ul>

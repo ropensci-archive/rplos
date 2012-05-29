@@ -93,7 +93,21 @@
           </div>
       
           <h2 id="examples">Examples</h2>
-          <pre class="examples"><div class='input'>## <strong>Not run</strong>: # articlelength("10.1371/journal.pone.0004045", "body")# articlelength("10.1371/journal.pone.0004045", "everything")# articlelength("10.1371/journal.pone.0004045", "title")# articlelength("ecology", "materials_and_methods", 500, "subject")# articlelength("ecology", "results_and_discussion", 500, "subject")# ## <strong>End(Not run)</strong></div></pre>
+          <pre class="examples"><div class='input'><span class="functioncall"><a href='articlelength.html'>articlelength</a></span><span class="keyword">(</span><span class="string">"10.1371/journal.pone.0004045"</span><span class="keyword">,</span> <span class="string">"body"</span><span class="keyword">)</span></div>
+<div class='output'>[1] 4365
+</div>
+<div class='input'><span class="functioncall"><a href='articlelength.html'>articlelength</a></span><span class="keyword">(</span><span class="string">"10.1371/journal.pone.0004045"</span><span class="keyword">,</span> <span class="string">"everything"</span><span class="keyword">)</span></div>
+<div class='output'>[1] 6252
+</div>
+<div class='input'><span class="functioncall"><a href='articlelength.html'>articlelength</a></span><span class="keyword">(</span><span class="string">"10.1371/journal.pone.0004045"</span><span class="keyword">,</span> <span class="string">"title"</span><span class="keyword">)</span></div>
+<div class='output'>[1] 9
+</div>
+<div class='input'><span class="functioncall"><a href='articlelength.html'>articlelength</a></span><span class="keyword">(</span><span class="string">"ecology"</span><span class="keyword">,</span> <span class="string">"materials_and_methods"</span><span class="keyword">,</span> <span class="number">500</span><span class="keyword">,</span> <span class="string">"subject"</span><span class="keyword">)</span></div>
+<strong class='message'>stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.</strong>
+<p><img src='articlelength-9.png' alt='' width='400' height='400' /></p>
+<div class='input'><span class="functioncall"><a href='articlelength.html'>articlelength</a></span><span class="keyword">(</span><span class="string">"ecology"</span><span class="keyword">,</span> <span class="string">"results_and_discussion"</span><span class="keyword">,</span> <span class="number">500</span><span class="keyword">,</span> <span class="string">"subject"</span><span class="keyword">)</span></div>
+<strong class='message'>stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.</strong>
+<p><img src='articlelength-12.png' alt='' width='400' height='400' /></p></pre>
         </div>
         <div class="span4">
           <!-- <ul>
