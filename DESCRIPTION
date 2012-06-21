@@ -9,6 +9,7 @@ License: BSD
 Author: Scott Chamberlain, Carl Boettiger
 Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>
 URL: https://github.com/ropensci/rplos
+BugReports: http://www.github.com/ropensci/rplos/issues
 Depends:
     ggplot2
 Imports:
@@ -45,3 +46,4 @@ Collate:
     'plosword.R'
     'plot_throughtime.R'
     'searchplos.R'
+    'crossref_r.R'
