@@ -47,6 +47,3 @@ Collate:
     'plot_throughtime.R'
     'searchplos.R'
     'crossref_r.R'
-    'searchplos_new.R'
-    'searchplos_parallel.R'
-    'searchplos_touse.R'
