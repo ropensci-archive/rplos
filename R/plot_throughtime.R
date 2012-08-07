@@ -64,7 +64,7 @@ function(terms, limit = NA, gvis = FALSE,
       args$wt <- "json"
       tt <- getForm(url, 
         .params = args,
-#         ...,
+        ...,
         curl = curl)
       jsonout <- fromJSON(I(tt))
       tempresults <- jsonout$response$docs
