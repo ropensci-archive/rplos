@@ -1,9 +1,18 @@
+rplos 0.0-7
+------------
+
+IMPROVEMENTS AND BUG FIXES
+
+* ALM functions (any functions starting with alm) received updated arguments/parameters according to the ALM API version 2.0 changes. 
+
+
 rplos 0.0-6
 ------------
 
 IMPROVEMENTS AND BUG FIXES
 
 * crossref function returns R's native bibtype format.  See examples in crossref function documentation
+
 
 rplos 0.0-5
 ------------
@@ -25,6 +34,7 @@ IMPROVEMENTS AND BUG FIXES
 NEW FUNCTIONS
 
 * added function `journalnamekey` to get short keys for journals to use in searching for specific journals
+
 
 
 rplos 0.0-1
