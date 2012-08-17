@@ -2,7 +2,7 @@
 \alias{plosabstract}
 \title{Search PLoS Journals abstracts.}
 \usage{
-  plosabstract(terms, fields = NA, limit = NA,
+  plosabstract(terms = NULL, fields = NULL, limit = NULL,
     results = FALSE, url = "http://api.plos.org/search",
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
     ..., curl = getCurlHandle())
@@ -42,7 +42,7 @@
 }
 \examples{
 \dontrun{
-plosabstract('drosophila', 'abstract', 2, 'FALSE')
+plosabstract(terms = 'drosophila', 'abstract', 2, 'FALSE')
 plosabstract('drosophila',  limit = 5, results = 'TRUE')
 }
 }

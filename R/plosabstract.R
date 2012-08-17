@@ -1,5 +1,6 @@
 #' Search PLoS Journals abstracts.
-#' @import RJSONIO RCurl
+#' 
+#' @import httr plyr
 #' @param terms search terms for article abstract (character)
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
 #'    any combination of search fields [see plosfields$field]
@@ -12,36 +13,29 @@
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return Number of search results (results = FALSE), or number of search 
 #'    results plus the results themselves (results = TRUE).
-#' @export
 #' @examples \dontrun{
-#' plosabstract('drosophila', 'abstract', 2, 'FALSE')
+#' plosabstract(terms = 'drosophila', 'abstract', 2, 'FALSE')
 #' plosabstract('drosophila',  limit = 5, results = 'TRUE')
 #' }
-plosabstract <- 
-
-function(terms, fields = NA, limit = NA, results = FALSE, 
+#' @export
+plosabstract <- function(terms = NULL, fields = NULL, limit = NULL, results = FALSE, 
   url = 'http://api.plos.org/search',
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-  ..., 
-  curl = getCurlHandle() ) 
+  ..., curl = getCurlHandle() ) 
 {
-  args <- list(apikey = key)
-  if(!is.na(terms))
-    args$q <- paste('abstract:', terms, sep="")
-  if(!is.na(fields))
-    args$fl <- fields
-  if(!is.na(limit))
-    args$rows <- limit
-  args$wt <- "json"
-  tt <- getForm(url, 
-    .params = args,
-    ...,
-    curl = curl)
-  jsonout <- fromJSON(I(tt))
-  tempresults <- jsonout$response$docs
-  numres <- length(tempresults) # number of search results
-  names(numres) <- 'Number of search results'
-  dfresults <- data.frame( do.call(rbind, tempresults) )
-  if (results == "TRUE") { return(list(numres, dfresults)) }
-    else { return(numres) }
+	args <- compact(list(q = paste('abstract:', terms, sep=""), fl = fields, rows = limit,
+											 wt = "json", apikey = key))
+	out <- content(GET(url, query = args))
+	tt <- fromJSON(out)$response$docs
+	names_ <- names(tt[[which.max(laply(tt, length))]])
+	addmissing <- function(x){
+		if(identical(names_[!names_ %in% names(x)], character(0))){x} else
+			{
+				xx <- rep("na", length(names_[!names_ %in% names(x)]))
+				names(xx) <- names_[!names_ %in% names(x)]
+				c(x, xx)
+			}
+	}
+	tt_ <- llply(tt, addmissing)
+	dfresults <- data.frame(do.call(rbind, tt_))
 }

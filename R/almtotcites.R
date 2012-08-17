@@ -1,4 +1,5 @@
-#' Alt-metrics total citation points from all sources
+#' Alt-metrics total citations from all sources.
+#' 
 #' @import RJSONIO RCurl
 #' @param doi digital object identifier for an article in PLoS Journals
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
@@ -7,22 +8,17 @@
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return total no. data points recorded for this article from all sources
-#' @export
 #' @examples \dontrun{
 #' almtotcites('10.1371/journal.pbio.0000012')
 #' }
-almtotcites <- 
-
-function(doi,
-  url = 'http://alm.plos.org/articles',
+#' @export
+almtotcites <- function(doi, url = 'http://alm.plos.org/articles',
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-  ..., 
-  curl = getCurlHandle() ) {
-    
+  ..., curl = getCurlHandle() ) 
+{    
   url2 <- paste(url, "/", doi, '.json?api_key=', key, sep='')
   message(url2)
   tt <- getURLContent(url2)
   out <- fromJSON(I(tt))
-  out
-#   out$article$citations_count
+  out$article$events_count
 }

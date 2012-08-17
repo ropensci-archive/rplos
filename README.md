@@ -2,7 +2,7 @@
 
 You can get this package at CRAN [here](http://cran.r-project.org/web/packages/rplos/). 
 
-Another option to install is install_github within Hadley's devtools package.
+Another option to install is install_github within Hadley Wickham's devtools package.
 
 ```R
 install.packages("devtools")

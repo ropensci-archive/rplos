@@ -1,4 +1,5 @@
 #' Search PLoS Journals titles.
+#' 
 #' @import RJSONIO RCurl
 #' @param terms search terms for article titles (character)
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
@@ -12,18 +13,15 @@
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return Number of search results (results = FALSE), or number of search 
 #'    results plus the results themselves (results = TRUE).
-#' @export
 #' @examples \dontrun{
 #' plostitle('drosophila', 'title', 99, 'FALSE')
 #' plostitle('drosophila',  limit = 5, results = 'TRUE')
 #' }
-plostitle <- 
-
-function(terms, fields = NA, limit = NA, results = FALSE, 
+#' @export
+plostitle <- function(terms, fields = NA, limit = NA, results = FALSE, 
   url = 'http://api.plos.org/search',
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-  ..., 
-  curl = getCurlHandle() ) 
+  ..., curl = getCurlHandle() ) 
 {
   args <- list(apikey = key)
   if(!is.na(terms))
