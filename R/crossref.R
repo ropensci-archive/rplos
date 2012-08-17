@@ -1,4 +1,5 @@
 #' Lookup article info via CrossRef with DOI.
+#' 
 #' @import RCurl XML
 #' @param doi digital object identifier for an article in PLoS Journals
 #' @param title return the title of the paper or not (defaults to FALSE)
@@ -8,18 +9,14 @@
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return Metadata from DOI in R's bibentry format.
-#' @export
 #' @examples \dontrun{
-#' crossref("10.3998/3336451.0009.101")
+#' crossref(doi="10.1371/journal.pone.0042793")
 #' print(crossref("10.3998/3336451.0009.101"), style="Bibtex")
 #' print(crossref("10.3998/3336451.0009.101"), style="text")
 #' }
-crossref <- 
-function(doi, title = FALSE,
-  url = "http://www.crossref.org/openurl/", 
-  key = "cboettig@gmail.com", 
-  ...,
-  curl = getCurlHandle())
+#' @export
+crossref <- function(doi, title = FALSE, url = "http://www.crossref.org/openurl/", 
+	key = "cboettig@gmail.com", ..., curl = getCurlHandle())
 {
   ## Assemble a url query such as:
   #http://www.crossref.org/openurl/?id=doi:10.3998/3336451.0009.101&noredirect=true&pid=API_KEY&format=unixref
@@ -27,7 +24,9 @@ function(doi, title = FALSE,
   args$pid = as.character(key)
   args$noredirect=as.logical(TRUE)
   args$format=as.character("unixref")
-  tt = getForm(url, .params = args, .opts = list(...), curl = curl)
+  tt = getForm(url, .params = args, 
+#   						 .opts = list(...), 
+  						 curl = curl)
   ans = xmlParse(tt)
   formatcrossref(ans)
 }
@@ -51,10 +50,11 @@ formatcrossref <- function(a){
         month =xpathSApply(a, 
           "//journal_article/publication_date/month", xmlValue),
         volume = xpathSApply(a, "//journal_volume/volume", xmlValue),
-        doi = xpathSApply(a, "//journal_article/doi_data/doi", xmlValue),
-        issn = xpathSApply(a, "//issn[@media_type='print']", xmlValue),
+        doi = xpathSApply(a, "//journal_article/doi_data/doi", xmlValue)
+#         issn = xpathSApply(a, "//issn[@media_type='print']", xmlValue)
 #        url = xpathSApply(a, "//journal_article/doi_data/resource", xmlValue)
         )
+ rref
 }
 
 # Title, author, journal, & year cannot be missing, so return "NA" if they are
@@ -66,5 +66,3 @@ check_missing <- function(x){
   out <- x
   out
 }
-
-

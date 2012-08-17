@@ -2,8 +2,8 @@
 \alias{almplosallviews}
 \title{Get PLoS altmetrics as xml, json, or csv.}
 \usage{
-  almplosallviews(doi, source_ = NA, citations = FALSE,
-    history = FALSE, downform = NA, sleep = 0,
+  almplosallviews(doi, source_ = NULL, events = NULL,
+    history = NULL, downform = NA, sleep = 0,
     url = "http://alm.plos.org/articles",
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
     ..., curl = getCurlHandle())
@@ -16,7 +16,7 @@
   crossref, scopus, wos, citeulike, nature,
   researchblogging, connotea, bloglines, postgenomic}
 
-  \item{citations}{include the individual citing document
+  \item{events}{include the individual citing document
   URIs, grouped by source (logical)}
 
   \item{history}{include a historical record of citation
@@ -50,11 +50,11 @@
 }
 \examples{
 \dontrun{
-almplosallviews('10.1371/journal.pbio.0000012', 'counter', T, T, 'xml')
-almplosallviews('10.1371/journal.pbio.0000012', 'crossref', F, F, 'json')
-almplosallviews('10.1371/journal.pbio.0000012', 'citeulike', F, F, 'json')
-almplosallviews('10.1371/journal.pone.0002554', 'facebook', T, T, 'json')
-almplosallviews('10.1371/journal.pone.0002554', 'mendeley', F, T, 'json')
+almplosallviews('10.1371/journal.pbio.0000012', 'counter', 1, 1, 'xml')
+almplosallviews('10.1371/journal.pbio.0000012', 'crossref', 1, 0, 'json')
+almplosallviews('10.1371/journal.pbio.0000012', 'citeulike', 0, 0, 'json')
+almplosallviews('10.1371/journal.pone.0002554', 'facebook', 1, 1, 'json')
+almplosallviews('10.1371/journal.pone.0002554', 'mendeley', 0, 1, 'json')
 
 # DOI that does not work, gives NA so that looping isn't interrupted
 almplosallviews("10.1371/journal.pone.002699", 'citeulike', F, F, 'json')

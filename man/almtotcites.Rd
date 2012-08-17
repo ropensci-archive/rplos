@@ -1,6 +1,6 @@
 \name{almtotcites}
 \alias{almtotcites}
-\title{Alt-metrics total citation points from all sources}
+\title{Alt-metrics total citations from all sources.}
 \usage{
   almtotcites(doi, url = "http://alm.plos.org/articles",
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
@@ -28,7 +28,7 @@
   sources
 }
 \description{
-  Alt-metrics total citation points from all sources
+  Alt-metrics total citations from all sources.
 }
 \examples{
 \dontrun{

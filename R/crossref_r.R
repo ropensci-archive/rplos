@@ -3,7 +3,7 @@
 #' From CrossRef website: "It [this API] might be useful to anybody doing research 
 #'    on scholarly publications."
 #' 
-#' @import RJSONIO
+#' @import RJSONIO httr plyr
 #' @param count The number of returned random DOIs. Maximum is 1000, default 20. 
 #'    Note that a request for 1000 random DOIs will take a few seconds to 
 #'    complete, whereas a request for 20 will take ~1 second.
@@ -33,22 +33,9 @@
 #' crossref_r()
 #' crossref_r(type = 'journal_article')
 #' }
-crossref_r <- function(count = NA, to = NA, from = NA, type = NA, 
-      url = "http://random.labs.crossref.org/dois", 
-      ..., curl = getCurlHandle())
+crossref_r <- function(count = NULL, to = NULL, from = NULL, type = NULL, 
+      url = "http://random.labs.crossref.org/dois")
 {
-  args <- list()
-  if(!is.na(count))
-    args$count <- count
-  if(!is.na(to))
-    args$to <- to
-  if(!is.na(from))
-    args$from <- from
-  if(!is.na(type))
-    args$type <- type
-  tt <- getForm(uri = url, 
-      .params = args,
-      ..., 
-      curl = curl)
-  fromJSON(tt)
+	args <- compact(list(count = count, to = to, from = from, type = type))
+	content(GET(url, query = args))
 }

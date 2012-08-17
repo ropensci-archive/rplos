@@ -6,7 +6,7 @@
 #'     (e.g., 'html,pdf'), or all (character)
 #' @return A ggplot2 line plot.
 #' @examples \dontrun{
-#' out <- almplosallviews('10.1371/journal.pbio.0000012', 'counter', T, T, 'json') 
+#' out <- almplosallviews('10.1371/journal.pbio.0000012', 'crossref', 1, 0, 'json')
 #' almplotallviews(out, 'all')
 #' almplotallviews(out, 'pdf')
 #' almplotallviews(out, 'html,pdf')

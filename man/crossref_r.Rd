@@ -2,9 +2,9 @@
 \alias{crossref_r}
 \title{Get 10 random DOI's through CrossRef.}
 \usage{
-  crossref_r(count = NA, to = NA, from = NA, type = NA,
-    url = "http://random.labs.crossref.org/dois", ...,
-    curl = getCurlHandle())
+  crossref_r(count = NULL, to = NULL, from = NULL,
+    type = NULL,
+    url = "http://random.labs.crossref.org/dois")
 }
 \arguments{
   \item{count}{The number of returned random DOIs. Maximum

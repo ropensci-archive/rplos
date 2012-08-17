@@ -1,4 +1,5 @@
 #' Format a URL for a specific article in a specific PLoS journal. 
+#' 
 #' @import stringr
 #' @param doi digital object identifier for an article in PLoS Journals
 #' @param journal quoted journal name (character)
@@ -11,9 +12,8 @@
 #' @examples \dontrun{
 #' formatarticleurl("10.1371/journal.pone.0004045", 'PLoSONE')
 #' }
-formatarticleurl <- 
-
-function(doi, journal) {  
+formatarticleurl <- function(doi, journal) 
+{
   journalUrls <- c(  # string with all journal base url's
     PLoSBiology = 'http://www.plosbiology.org',
     PLoSGenetics = 'http://www.plosgenetics.org', 
