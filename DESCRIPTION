@@ -1,13 +1,17 @@
 Package: rplos
-Version: 0.0-6
-Date: 2012-02-18
+Version: 0.0-7
+Date: 2012-08-07
 Description: A programmatic interface to the
     Web Service methods provided by the Public Library
     of Science journals.
 Title: Interface to PLoS Journals API methods
 License: BSD
-Author: Scott Chamberlain, Carl Boettiger
-Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>
+Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
+    email = "myrmecocystus@gmail.com"),
+    person("Carl", "Boettiger", role = "aut",
+    email = "cboettig@gmail.com"),
+    person("Karthik", "Ram", role = "aut",
+    email = "karthik.ram@gmail.com"))
 URL: https://github.com/ropensci/rplos
 BugReports: http://www.github.com/ropensci/rplos/issues
 Depends:

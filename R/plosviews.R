@@ -1,4 +1,5 @@
 #' Search PLoS Journals by article views.
+#' 
 #' @import RJSONIO RCurl stringr
 #' @param search search terms (character)
 #' @param byfield field to search by, e.g., subject, author, etc. (character)
@@ -11,7 +12,6 @@
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return Number of search results (results = FALSE), or number of search
 #'    results plus the results themselves (results = TRUE).
-#' @export
 #' @examples \dontrun{
 #' plosviews('10.1371/journal.pone.0002154', 'id', 'alltime')
 #' plosviews('10.1371/journal.pone.0002154', 'id', 'last30')
@@ -20,13 +20,11 @@
 #' plosviews('evolution', views = 'alltime', limit = 99)
 #' plosviews('bird', views = 'alltime', limit = 99)
 #' }
-plosviews <-
-
-function(search, byfield = NA, views = 'alltime', limit = NA,
+#' @export
+plosviews <- function(search, byfield = NA, views = 'alltime', limit = NA,
   url = 'http://api.plos.org/search',
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-  ...,
-  curl = getCurlHandle() )
+  ..., curl = getCurlHandle() )
 {
   args <- list(apikey = key)
   if(is.na(byfield)) {byfield_ <- NULL} else
@@ -50,6 +48,5 @@ function(search, byfield = NA, views = 'alltime', limit = NA,
   newcol <- do.call(rbind, lapply(str_split(df$id, "/"), function(x) x[length(x) < 3]))
   newcol_ <- paste(newcol[,1], newcol[,2], sep="/")
   newdf <- merge(data.frame(newcol_), df, by.x="newcol_", by.y="id")
-  newdf_ <- newdf[order(newdf[,2]), ]
-  return(newdf_)
+  newdf[order(newdf[,2]), ]
 }

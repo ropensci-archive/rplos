@@ -28,6 +28,6 @@
   Tutorials
 
   See the rOpenSci website for a tutorial:
-  http://ropensci.org/tutorials/rplos-tutorial/
+  http://ropensci.org/tutorials/rplos_tutorial.html
 }
 

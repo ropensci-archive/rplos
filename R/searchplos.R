@@ -1,4 +1,5 @@
 #' Base function to search PLoS Journals
+#' 
 #' @import RJSONIO RCurl
 #' @param terms search terms (character)
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
@@ -90,6 +91,7 @@ searchplos <- function(terms = NA, fields = NA, toquery = NA, start = 0, limit =
     		{lastnum <- lastnum}
     	getrows <- c(rep(500, length(getvecs)-1), lastnum)
       out <- list()
+    	message("Looping - printing iterations...")
     	for(i in 1:length(getvecs)) {
     		cat(i,"\n")
     		args$start <- getvecs[i]

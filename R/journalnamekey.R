@@ -1,13 +1,12 @@
 #' Get short keys for journals to use in searching specific journals.
+#' 
 #' @import XML
 #' @return List of journals and their keys.
 #' @export
 #' @examples \dontrun{
 #' journalnamekey()
 #' }
-journalnamekey <- 
-
-function()
+journalnamekey <- function()
 {
   names <- xmlToList(
     getURL(

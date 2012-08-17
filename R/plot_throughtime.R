@@ -1,4 +1,5 @@
 #' Plot results through time for serach results from PLoS Journals.
+#' 
 #' @import RJSONIO RCurl plyr stringr ggplot2 reshape2 googleVis
 #' @param terms search terms (character)
 #' @param limit number of results to return (integer)
@@ -10,19 +11,16 @@
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return Number of search results (vis = FALSE), or number of search in a table
 #'    and a histogram of results (vis = TRUE).
-#' @export
 #' @examples \dontrun{
-#' plot_throughtime('phylogeny', 300, gvis=FALSE)
+#' plot_throughtime('phylogeny', 300)
 #' plot_throughtime(list('drosophila','monkey'), 100)
 #' plot_throughtime(list('drosophila','flower'), 100, TRUE)
 #' }
-plot_throughtime <- 
-
-function(terms, limit = NA, gvis = FALSE,
+#' @export
+plot_throughtime <- function(terms, limit = NA, gvis = FALSE,
   url = "http://api.plos.org/search",
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-  ..., 
-  curl = getCurlHandle() ) 
+  ..., curl = getCurlHandle() ) 
 {
   if (length(terms) == 1) {
   args <- list(api_key = key)

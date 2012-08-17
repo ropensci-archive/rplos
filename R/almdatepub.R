@@ -1,4 +1,5 @@
 #' Get the date when the article was published.
+#' 
 #' @import RJSONIO RCurl
 #' @param doi Digital object identifier for an article in PLoS Journals
 #' @param get Get year, month, or day; if unspecified, whole date returned.
@@ -11,21 +12,18 @@
 #' @param curl If using in a loop, call getCurlHandle() first and pass
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return Date when article was published.
-#' @export
-#' @examples 
+#' @examples \dontrun{
 #' almdatepub('10.1371/journal.pone.0026871')
 #' almdatepub('10.1371/journal.pone.0026871', 'year')
 #'
 #' # DOI that does not work, gives NA so that looping isn't interrupted
-#' # almdatepub(doi="10.1371/journal.pone.002699", get='year')
-almdatepub <-
-
-function(doi, get = NA, sleep = 0,
-  url = 'http://alm.plos.org/articles',
+#' almdatepub(doi="10.1371/journal.pone.002699", get='year')
+#' }
+#' @export
+almdatepub <- function(doi, get = NA, sleep = 0, url = 'http://alm.plos.org/articles',
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-  ...,
-  curl = getCurlHandle() ) {
-
+  ..., curl = getCurlHandle() )
+{
   Sys.sleep(sleep)
   url2 <- paste(url, "/", doi, '.json?api_key=', key, sep='')
 #   tt <- getURLContent(url2)

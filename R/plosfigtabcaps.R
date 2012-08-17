@@ -1,4 +1,5 @@
 #' Search PLoS Journals figure and table captions.
+#' 
 #' @import RJSONIO RCurl
 #' @param terms search terms
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
@@ -11,20 +12,17 @@
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return Number of search results, and fields that you specify to return.
-#' @export
 #' @examples \dontrun{
 #' plosfigtabcaps('ecology', 'id', 500)
 #' plosfigtabcaps('ecology', 'figure_table_caption', 10)
 #' plosfigtabcaps('is', 'id', 2000)
 #' plosfigtabcaps('ecology', 'id', 10, numrecords = 'FALSE')
 #' }
-plosfigtabcaps <- 
-
-function(terms, fields = NA, limit = NA, numrecords = FALSE,
+#' @export
+plosfigtabcaps <- function(terms, fields = NA, limit = NA, numrecords = FALSE,
   url = 'http://api.plos.org/search',
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-  ..., 
-  curl = getCurlHandle() ) 
+  ..., curl = getCurlHandle() ) 
 {
   args <- list(apikey = key)
   if(!is.na(terms))

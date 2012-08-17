@@ -32,7 +32,7 @@
 }
 \examples{
 \dontrun{
-almupdated('10.1371/journal.pbio.0000012')
+almupdated(doi='10.1371/journal.pbio.0000012')
 }
 }
 
