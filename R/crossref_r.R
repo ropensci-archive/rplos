@@ -1,4 +1,4 @@
-#' Get 10 random DOI's through CrossRef.
+#' Get random DOI's through CrossRef.
 #' 
 #' From CrossRef website: "It [this API] might be useful to anybody doing research 
 #'    on scholarly publications."
@@ -34,7 +34,7 @@
 #' crossref_r(type = 'journal_article')
 #' }
 crossref_r <- function(count = NULL, to = NULL, from = NULL, type = NULL, 
-      url = "http://random.labs.crossref.org/dois")
+  url = "http://random.labs.crossref.org/dois")
 {
 	args <- compact(list(count = count, to = to, from = from, type = type))
 	content(GET(url, query = args))
