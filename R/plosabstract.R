@@ -37,5 +37,5 @@ plosabstract <- function(terms = NULL, fields = NULL, limit = NULL, results = FA
 			}
 	}
 	tt_ <- llply(tt, addmissing)
-	dfresults <- data.frame(do.call(rbind, tt_))
+	data.frame(do.call(rbind, tt_))
 }
