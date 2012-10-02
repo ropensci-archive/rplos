@@ -1,6 +1,6 @@
 \name{crossref_r}
 \alias{crossref_r}
-\title{Get 10 random DOI's through CrossRef.}
+\title{Get random DOI's through CrossRef.}
 \usage{
   crossref_r(count = NULL, to = NULL, from = NULL,
     type = NULL,

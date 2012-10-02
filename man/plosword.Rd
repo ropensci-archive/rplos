@@ -39,7 +39,7 @@
 \dontrun{
 plosword('Helianthus')
 plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')
-out <- plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')
+out <- plosword(list('monkey','replication','design','sunflower','whale'), vis = 'TRUE')
 out[[1]] # results in a data frame
 out[[2]] # results in a bar plot
 }

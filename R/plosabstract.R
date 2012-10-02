@@ -8,34 +8,30 @@
 #' @param results print results or not (TRUE or FALSE)
 #' @param url the PLoS API url for the function (should be left to default)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
-#' @param ... optional additional curl options (debugging tools mostly)
-#' @param curl If using in a loop, call getCurlHandle() first and pass 
-#'  the returned value in here (avoids unnecessary footprint)
-#' @return Number of search results (results = FALSE), or number of search 
-#'    results plus the results themselves (results = TRUE).
+#' @return Abstract content in a list, named by their DOIs to facilitate further
+#' 		research on each paper.
 #' @examples \dontrun{
-#' plosabstract(terms = 'drosophila', 'abstract', 2, 'FALSE')
-#' plosabstract('drosophila',  limit = 5, results = 'TRUE')
+#' plosabstract(terms = 'drosophila', fields='abstract', limit=10)
+#' plosabstract(terms = 'drosophila', fields='materials_and_methods', limit = 5)
 #' }
 #' @export
-plosabstract <- function(terms = NULL, fields = NULL, limit = NULL, results = FALSE, 
+plosabstract <- function(terms = NULL, fields = NULL, limit = NULL, 
   url = 'http://api.plos.org/search',
-  key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-  ..., curl = getCurlHandle() ) 
+  key = getOption("PlosApiKey", stop("need an API key for PLoS Journals"))) 
 {
 	args <- compact(list(q = paste('abstract:', terms, sep=""), fl = fields, rows = limit,
 											 wt = "json", apikey = key))
 	out <- content(GET(url, query = args))
-	tt <- fromJSON(out)$response$docs
-	names_ <- names(tt[[which.max(laply(tt, length))]])
-	addmissing <- function(x){
-		if(identical(names_[!names_ %in% names(x)], character(0))){x} else
-			{
-				xx <- rep("na", length(names_[!names_ %in% names(x)]))
-				names(xx) <- names_[!names_ %in% names(x)]
-				c(x, xx)
-			}
-	}
-	tt_ <- llply(tt, addmissing)
-	data.frame(do.call(rbind, tt_))
+	abstracts <- out[[2]]$docs
+	names(abstracts) <- names(out[[4]])
+	sapply(abstracts, function(x) str_trim(gsub("\n|\t|\\s{9}", "", x), "both"))
+# 	names_ <- names(out[[which.max(laply(out, length))]])
+# 	addmissing <- function(x){
+# 		if(identical(names_[!names_ %in% names(x)], character(0))){x} else
+# 			{
+# 				xx <- rep("na", length(names_[!names_ %in% names(x)]))
+# 				names(xx) <- names_[!names_ %in% names(x)]
+# 				c(x, xx)
+# 			}
+# 	}
 }

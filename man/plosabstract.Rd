@@ -3,9 +3,8 @@
 \title{Search PLoS Journals abstracts.}
 \usage{
   plosabstract(terms = NULL, fields = NULL, limit = NULL,
-    results = FALSE, url = "http://api.plos.org/search",
-    key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-    ..., curl = getCurlHandle())
+    url = "http://api.plos.org/search",
+    key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")))
 }
 \arguments{
   \item{terms}{search terms for article abstract
@@ -24,26 +23,18 @@
 
   \item{key}{your PLoS API key, either enter, or loads from
   .Rprofile}
-
-  \item{...}{optional additional curl options (debugging
-  tools mostly)}
-
-  \item{curl}{If using in a loop, call getCurlHandle()
-  first and pass the returned value in here (avoids
-  unnecessary footprint)}
 }
 \value{
-  Number of search results (results = FALSE), or number of
-  search results plus the results themselves (results =
-  TRUE).
+  Abstract content in a list, named by their DOIs to
+  facilitate further research on each paper.
 }
 \description{
   Search PLoS Journals abstracts.
 }
 \examples{
 \dontrun{
-plosabstract(terms = 'drosophila', 'abstract', 2, 'FALSE')
-plosabstract('drosophila',  limit = 5, results = 'TRUE')
+plosabstract(terms = 'drosophila', fields='abstract', limit=10)
+plosabstract(terms = 'drosophila', fields='materials_and_methods', limit = 5)
 }
 }
 

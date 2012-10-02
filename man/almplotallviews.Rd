@@ -23,7 +23,7 @@
 out <- almplosallviews('10.1371/journal.pbio.0000012', 'crossref', 1, 0, 'json')
 almplotallviews(out, 'all')
 almplotallviews(out, 'pdf')
-almplotallviews(out, 'html,pdf')
+almplotallviews(out, c('html,pdf'))
 }
 }
 
