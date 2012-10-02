@@ -25,8 +25,8 @@
   .Rprofile}
 }
 \value{
-  Abstract content in a list, named by their DOIs to
-  facilitate further research on each paper.
+  Abstract content, in addition to any other fields
+  requested in a data.frame.
 }
 \description{
   Search PLoS Journals abstracts.
@@ -34,7 +34,7 @@
 \examples{
 \dontrun{
 plosabstract(terms = 'drosophila', fields='abstract', limit=10)
-plosabstract(terms = 'drosophila', fields='materials_and_methods', limit = 5)
+plosabstract(terms = 'drosophila', fields='author', limit = 5)
 }
 }
 

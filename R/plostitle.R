@@ -7,8 +7,7 @@
 #' @param limit number of results to return (integer)
 #' @param url the PLoS API url for the function (should be left to default)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
-#' @return Number of search results (results = FALSE), or number of search 
-#'    results plus the results themselves (results = TRUE).
+#' @return Titles, in addition to any other fields requested in a data.frame.
 #' @examples \dontrun{
 #' plostitle(terms='drosophila', fields='title', limit=99)
 #' plostitle(terms='drosophila',  limit = 5)

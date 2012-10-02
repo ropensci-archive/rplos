@@ -24,9 +24,8 @@
   .Rprofile}
 }
 \value{
-  Number of search results (results = FALSE), or number of
-  search results plus the results themselves (results =
-  TRUE).
+  Author names, in addition to any other fields requested
+  in a data.frame.
 }
 \description{
   Search PLoS Journals authors.

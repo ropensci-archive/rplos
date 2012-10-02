@@ -1,0 +1,19 @@
+\name{addmissing}
+\alias{addmissing}
+\title{Adds elements in a list that are missing because they were not returned
+in the PLoS API call.}
+\usage{
+  addmissing(x)
+}
+\arguments{
+  \item{x}{A list with PLoS API returned nested elements}
+}
+\value{
+  A list with the missing element added with an "na", if it
+  is missing.
+}
+\description{
+  Adds elements in a list that are missing because they
+  were not returned in the PLoS API call.
+}
+

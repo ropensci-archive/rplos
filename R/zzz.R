@@ -16,3 +16,24 @@ concat_todf <- function(x){
 		} else
 	data.frame(x)
 }
+
+#' Adds elements in a list that are missing because they were not returned 
+#' in the PLoS API call.
+#' 
+#' @param x A list with PLoS API returned nested elements
+#' @return A list with the missing element added with an 
+#' 		"na", if it is missing.
+#' @export
+addmissing <- function(x){
+	names_ <- names(x[[which.max(laply(x, length))]])
+	
+	bbb <- function(x){
+		if(identical(names_[!names_ %in% names(x)], character(0))){x} else
+		{
+			xx <- rep("na", length(names_[!names_ %in% names(x)]))
+			names(xx) <- names_[!names_ %in% names(x)]
+			c(x, xx)
+		}
+	}
+	lapply(x, bbb)
+}

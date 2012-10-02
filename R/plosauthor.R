@@ -8,8 +8,7 @@
 #' @param results print results or not (TRUE or FALSE)
 #' @param url the PLoS API url for the function (should be left to default)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
-#' @return Number of search results (results = FALSE), or number of search 
-#'    results plus the results themselves (results = TRUE).
+#' @return Author names, in addition to any other fields requested in a data.frame.
 #' @export
 #' @examples \dontrun{
 #' plosauthor(terms = 'johnson', fields = 'title,author', limit = 100)
