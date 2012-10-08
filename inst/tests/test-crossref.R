@@ -1,4 +1,4 @@
-# tests for crossref_r and crosref fxn in rplos
+# tests for crossref_r and crossref fxn in rplos
 context("crossref")
 
 test_that("crossref returns the correct value", {
