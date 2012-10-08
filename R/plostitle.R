@@ -10,6 +10,7 @@
 #' @return Titles, in addition to any other fields requested in a data.frame.
 #' @examples \dontrun{
 #' plostitle(terms='drosophila', fields='title', limit=99)
+#' plostitle(terms='drosophila', fields='title,journal', limit=10)
 #' plostitle(terms='drosophila',  limit = 5)
 #' }
 #' @export
@@ -21,6 +22,5 @@ plostitle <- function(terms, fields = NULL, limit = NULL,
 											 rows = limit, wt = "json", apikey = key))
 	out <- content(GET(url, query = args))
 	out2 <- out$response$docs
-	out3 <- lapply(out2, concat_todf)
-	do.call(rbind, out3)
+	data.frame(do.call(rbind, out2))
 }
