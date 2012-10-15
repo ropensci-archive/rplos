@@ -31,6 +31,7 @@
 \examples{
 \dontrun{
 plostitle(terms='drosophila', fields='title', limit=99)
+plostitle(terms='drosophila', fields='title,journal', limit=10)
 plostitle(terms='drosophila',  limit = 5)
 }
 }

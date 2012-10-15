@@ -17,9 +17,6 @@
 #'    journal_issue, journal, book, book_series, book_set, dissertation, 
 #'    content_item, series, or standard.
 #' @param url The Crossref API url for the function (should be left to default)
-#' @param ... optional additional curl options (debugging tools mostly)
-#' @param curl If using in a loop, call getCurlHandle() first and pass 
-#'    the returned value in here (avoids unnecessary footprint)
 #' @return Ten DOI's in R's bibentry format.
 #' @details From the Crossref documentation: A random distribution of values, 
 #'    0 to 1, has been assigned to our DOI records. We use this as an index to 

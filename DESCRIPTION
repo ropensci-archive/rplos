@@ -24,7 +24,8 @@ Imports:
     plyr,
     stringr,
     reshape2,
-    googleVis
+    googleVis,
+    httr
 Collate:
     'almdatepub.R'
     'almdateupdated.R'

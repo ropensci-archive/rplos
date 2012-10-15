@@ -1,22 +1,23 @@
 #' Feed output of almplosallviews to this function to plot results.
 #' 
 #' @import RJSONIO XML RCurl plyr reshape2 ggplot2
-#' @param data JSON output downloaded from PLoS (character)
+#' @param dat JSON output downloaded from PLoS (character)
 #' @param type plot views for html, pdf, xml, any combination of two 
 #'     (e.g., 'html,pdf'), or all (character)
 #' @return A ggplot2 line plot.
 #' @examples \dontrun{
 #' out <- almplosallviews('10.1371/journal.pbio.0000012', 'crossref', 1, 0, 'json')
-#' almplotallviews(out, 'all')
+#' almplotallviews(dat=out, type='all')
 #' almplotallviews(out, 'pdf')
 #' almplotallviews(out, c('html,pdf'))
 #' }
 #' @export
-almplotallviews <- function(data, type = NA) 
+almplotallviews <- function(dat, type = NA) 
 {  
 	datdat <- 
-		data$article[data$article %in% c("pub_med","pub_med_central","events_count")]
-  datdat <- data$article$source[[1]]$events[[1]]$events$views
+		dat$article[c("pub_med","pub_med_central","events_count")]
+  datdat <- 
+		dat$article$source[[1]]$events[[1]]$events$views
   
   dat <- as.data.frame(t(do.call(cbind, laply(datdat, cbind))))
   class(dat$pdf_views) <- "numeric"

@@ -19,7 +19,7 @@
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return PLoS altmetrics as xml, json, or csv.
 #' @examples \dontrun{
-#' almplosallviews('10.1371/journal.pbio.0000012', 'counter', 1, 1, 'xml')
+#' almplosallviews(doi='10.1371/journal.pbio.0000012', source_='counter', 1, 0, 'xml')
 #' almplosallviews('10.1371/journal.pbio.0000012', 'crossref', 1, 0, 'json')
 #' almplosallviews('10.1371/journal.pbio.0000012', 'citeulike', 0, 0, 'json')
 #' almplosallviews('10.1371/journal.pone.0002554', 'facebook', 1, 1, 'json')
@@ -47,10 +47,10 @@ almplosallviews <- function(doi, source_ = NULL, events = NULL, history = NULL,
 #       args$history <- 1
     args <- compact(list(api_key = key, source = source_, events = events, 
     										 history = history))
-    if(class(try(getForm(url2, .params = args, ..., curl = curl),
+    if(class(try(getForm(url2, .params = args, curl = curl),
           silent = T ) ) %in% 'try-error')
       { outprod <- NA } else
-        { tt <-  getForm(url2, .params = args, ..., curl = curl)
+        { tt <-  getForm(url2, .params = args, curl = curl)
             if(downform == 'json') {outprod <- fromJSON(I(tt))} else
               if(downform == 'xml') {outprod <- xmlTreeParse(I(tt))}
         }

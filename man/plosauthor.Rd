@@ -15,8 +15,6 @@
 
   \item{limit}{number of results to return (integer)}
 
-  \item{results}{print results or not (TRUE or FALSE)}
-
   \item{url}{the PLoS API url for the function (should be
   left to default)}
 

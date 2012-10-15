@@ -5,7 +5,6 @@
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
 #'    any combination of search fields [see plosfields$field]
 #' @param limit number of results to return (integer)
-#' @param results print results or not (TRUE or FALSE)
 #' @param url the PLoS API url for the function (should be left to default)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @return Abstract content, in addition to any other fields requested in a data.frame.
