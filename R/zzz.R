@@ -37,3 +37,28 @@ addmissing <- function(x){
 	}
 	lapply(x, bbb)
 }
+
+#' Function to get an API key. 
+#' 
+#' Checks first to get key from your .Rprofile file for an API key with the name
+#' 		'PlosApiKey'. If it is not found, the default guest key is used. 
+#' 
+#' @param x An API key, defaults to NULL.
+#' @examples \dontrun{
+#' getkey()
+#' } 
+#' @export
+getkey <- function(x = NULL) {	
+	if(is.null(x)){
+		key <- getOption("PlosApiKey")
+		
+		if(is.null(key)){
+			key <- "MUvThuaeRNV2cNs"
+			message("Using default key: Please get your own API key at http://api.plos.org/")
+		} else 
+			if(class(key)=="character"){key <- key} else 
+				{ stop("check your key input - it should be a character string") }
+	} else 
+		{ key <- x }
+	key
+}

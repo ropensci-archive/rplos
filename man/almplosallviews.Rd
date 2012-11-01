@@ -2,28 +2,22 @@
 \alias{almplosallviews}
 \title{Get PLoS altmetrics as xml, json, or csv.}
 \usage{
-  almplosallviews(doi, source_ = NULL, events = NULL,
-    history = NULL, downform = NA, sleep = 0,
-    url = "http://alm.plos.org/articles",
-    key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-    ..., curl = getCurlHandle())
+  almplosallviews(doi, info = "detail", months = NULL,
+    days = NULL, sleep = 0,
+    url = "http://alm.plos.org/api/v3/articles",
+    key = NULL, ..., curl = getCurlHandle())
 }
 \arguments{
   \item{doi}{digital object identifier for an article in
   PLoS Journals}
 
-  \item{source_}{source, one of counter, mpc, pubmed,
-  crossref, scopus, wos, citeulike, nature,
-  researchblogging, connotea, bloglines, postgenomic}
+  \item{info}{One of summary or detail (character)}
 
-  \item{events}{include the individual citing document
-  URIs, grouped by source (logical)}
+  \item{months}{Number of months since publication to
+  request historical data for.}
 
-  \item{history}{include a historical record of citation
-  counts per month (cumulative), grouped by source
-  (logical)}
-
-  \item{downform}{download format (json, xml or csv)}
+  \item{days}{Number of days since publication to request
+  historical data for.}
 
   \item{sleep}{Time (in seconds) before function sends API
   call - defaults to zero.  Set to higher number if you are
@@ -43,21 +37,39 @@
   unnecessary footprint)}
 }
 \value{
-  PLoS altmetrics as xml, json, or csv.
+  PLoS altmetrics as raw json or as list object.
 }
 \description{
-  Get PLoS altmetrics as xml, json, or csv.
+  See details for more information.
+}
+\details{
+  By default, this function now returns json. Other data
+  return formats have been removed for simplicity. Get in
+  touch if you want them added back. Queries for up to 100
+  articles at a time are supported.
 }
 \examples{
 \dontrun{
-almplosallviews('10.1371/journal.pbio.0000012', 'counter', 1, 1, 'xml')
-almplosallviews('10.1371/journal.pbio.0000012', 'crossref', 1, 0, 'json')
-almplosallviews('10.1371/journal.pbio.0000012', 'citeulike', 0, 0, 'json')
-almplosallviews('10.1371/journal.pone.0002554', 'facebook', 1, 1, 'json')
-almplosallviews('10.1371/journal.pone.0002554', 'mendeley', 0, 1, 'json')
+# A single DOI
+out <- almplosallviews(doi='10.1371/journal.pone.0039395', info='detail')
+out[["metrics"]] # get metrics data.frame
 
 # DOI that does not work, gives NA so that looping isn't interrupted
 almplosallviews("10.1371/journal.pone.002699", 'citeulike', F, F, 'json')
+
+# Provide more than one DOI
+dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117',
+		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
+almplosallviews(doi=dois, info="detail")
+
+Getting just summary data
+almplosallviews(doi='10.1371/journal.pone.0039395', info='summary')
+dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117',
+		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
+almplosallviews(doi=dois, info="summary")
+
+# Using month and day arguments
+out <- almplosallviews(doi='10.1371/journal.pone.0040117', days=30)
 }
 }
 

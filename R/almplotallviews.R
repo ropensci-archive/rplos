@@ -1,46 +1,61 @@
 #' Feed output of almplosallviews to this function to plot results.
 #' 
-#' @import RJSONIO XML RCurl plyr reshape2 ggplot2
-#' @param dat JSON output downloaded from PLoS (character)
+#' @import RJSONIO XML RCurl plyr reshape2 ggplot2 grid
+#' @param dat Output from \code{almplosallviews} (character)
 #' @param type plot views for html, pdf, xml, any combination of two 
 #'     (e.g., 'html,pdf'), or all (character)
-#' @return A ggplot2 line plot.
+#' @return A ggplot2 bar plot for `totalmetrics` or line plot for `history`.
 #' @examples \dontrun{
-#' out <- almplosallviews('10.1371/journal.pbio.0000012', 'crossref', 1, 0, 'json')
-#' almplotallviews(dat=out, type='all')
-#' almplotallviews(out, 'pdf')
-#' almplotallviews(out, c('html,pdf'))
+#' out <- almplosallviews(doi='10.1371/journal.pone.0001543', info='detail')
+#' almplotallviews(out, type='totalmetrics') # just totalmetrics data
+#' almplotallviews(dat=out, type='history') # just historical data
+#' almplotallviews(dat=out) # leaving type as NULL prints both plots
 #' }
 #' @export
-almplotallviews <- function(dat, type = NA) 
+almplotallviews <- function(dat, type = NULL, removezero = TRUE)
 {  
-	datdat <- 
-		dat$article[c("pub_med","pub_med_central","events_count")]
-  datdat <- 
-		dat$article$source[[1]]$events[[1]]$events$views
-  
-  dat <- as.data.frame(t(do.call(cbind, laply(datdat, cbind))))
-  class(dat$pdf_views) <- "numeric"
-  class(dat$xml_views) <- "numeric"
-  class(dat$html_views) <- "numeric"
-  class(dat$month) <- "numeric"
-  class(dat$year) <- "numeric"
-
-  dat_m <- melt(dat, id.var = c("month","year"))
-  dat_m$date <- as.Date(paste(dat_m$month, 1, dat_m$year, sep='/'), "%m/%d/%Y")
-        
-  if(type == 'html') {toplot <- 'html_views'} else
-    if(type == 'pdf') {toplot <- 'pdf_views'} else
-      if(type == 'xml') {toplot <- 'xml_views'} else
-        if(type == 'html,pdf') {toplot <- c("html_views", "pdf_views")} else
-          if(type == 'html,xml') {toplot <- c("html_views", "xml_views")} else
-            if(type == 'pdf,xml') {toplot <- c("pdf_views", "xml_views")} else
-              if(type == 'all') {toplot <- c("html_views", "pdf_views", "xml_views")}
-  
-  p <- ggplot(droplevels(dat_m[dat_m$variable %in% toplot, ]), 
-    aes(x = date, y = value, group = variable, colour = variable)) +
-    geom_line() +
-    labs(y = 'Views', x = 'Date')
-
-return(p)
+  if(is.null(type)) {
+  	dat_m <- melt(dat$metrics, id.vars="sources")
+  	dat_m <- na.omit(dat_m)
+  	p <- ggplot(dat_m, aes(x = sources, y = value, fill = variable)) +
+  		geom_bar(position="dodge") +
+  		theme_bw(base_size=18) +
+  		coord_flip() +
+  		scale_fill_discrete("Metric") +
+  		labs(y = 'Count')
+  	if(removezero) {
+  		datt <- dat$history
+  		temp <- split(datt, datt$.id)
+  		dat2 <- ldply(compact(lapply(temp, function(x) if(sum(x$totals)==0){NULL} else {x})))
+  	} else {dat2 <- dat$history}
+  	q <- ggplot(dat2, aes(dates, totals, group=.id, colour=.id)) +
+  		geom_line() + 
+  		theme_bw(base_size=18)	
+  	grid.newpage()
+  	pushViewport(viewport(layout = grid.layout(2, 1)))
+  	vplayout <- function(x, y) viewport(layout.pos.row = x, layout.pos.col = y)
+  	print(p, vp = vplayout(1, 1))
+  	print(q, vp = vplayout(2, 1))
+  } else
+    if(type == 'totalmetrics') {
+    	dat_m <- melt(dat$metrics, id.vars="sources")
+    	dat_m <- na.omit(dat_m)
+    	ggplot(dat_m, aes(x = sources, y = value, fill = variable)) +
+    		geom_bar(position="dodge") +
+    		theme_bw(base_size=18) +
+    		coord_flip() +
+    		scale_fill_discrete("Metric") +
+    		labs(y = 'Count')
+    	} else
+      if(type == 'history') {
+      	if(removezero) {
+      		datt <- dat$history
+      		temp <- split(datt, datt$.id)
+      		dat2 <- ldply(compact(lapply(temp, function(x) if(sum(x$totals)==0){NULL} else {x})))
+      	} else {dat2 <- dat$history}
+      	ggplot(dat2, aes(dates, totals, group=.id, colour=.id)) +
+      		geom_line() + 
+      		theme_bw(base_size=18)
+      	} else
+        stop("'type' must be one of 'totalmetrics' or 'history'")
 }
