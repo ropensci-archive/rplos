@@ -1,6 +1,6 @@
 #' Feed output of almplosallviews to this function to plot results.
 #' 
-#' @import RJSONIO XML RCurl plyr reshape2 ggplot2 grid
+#' @import RJSONIO XML RCurl plyr reshape2 ggplot2 grid gridExtra
 #' @param dat Output from \code{almplosallviews} (character)
 #' @param type plot views for html, pdf, xml, any combination of two 
 #'     (e.g., 'html,pdf'), or all (character)
@@ -15,9 +15,9 @@
 almplotallviews <- function(dat, type = NULL, removezero = TRUE)
 {  
   if(is.null(type)) {
-  	dat_m <- melt(dat$metrics, id.vars="sources")
+  	dat_m <- melt(dat$metrics, id.vars=".id")
   	dat_m <- na.omit(dat_m)
-  	p <- ggplot(dat_m, aes(x = sources, y = value, fill = variable)) +
+  	p <- ggplot(dat_m, aes(x = .id, y = value, fill = variable)) +
   		geom_bar(position="dodge") +
   		theme_bw(base_size=18) +
   		coord_flip() +
@@ -38,9 +38,9 @@ almplotallviews <- function(dat, type = NULL, removezero = TRUE)
   	print(q, vp = vplayout(2, 1))
   } else
     if(type == 'totalmetrics') {
-    	dat_m <- melt(dat$metrics, id.vars="sources")
+    	dat_m <- melt(dat$metrics, id.vars=".id")
     	dat_m <- na.omit(dat_m)
-    	ggplot(dat_m, aes(x = sources, y = value, fill = variable)) +
+    	ggplot(dat_m, aes(x = .id, y = value, fill = variable)) +
     		geom_bar(position="dodge") +
     		theme_bw(base_size=18) +
     		coord_flip() +
