@@ -1,6 +1,6 @@
 Package: rplos
 Version: 0.0-7
-Date: 2012-08-07
+Date: 2012-11-05
 Description: A programmatic interface to the
     Web Service methods provided by the Public Library
     of Science journals.
@@ -25,7 +25,11 @@ Imports:
     stringr,
     reshape2,
     googleVis,
-    httr
+    httr,
+    grid,
+    gridExtra
+Suggests:
+    testthat
 Collate:
     'almdatepub.R'
     'almdateupdated.R'

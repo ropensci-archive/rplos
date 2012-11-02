@@ -9,6 +9,9 @@
   (character)}
 
   \item{type}{One of totalmetrics or history}
+
+  \item{removezero}{Remove data sources with all zeros
+  prior to plotting.}
 }
 \value{
   A ggplot2 bar plot for `totalmetrics` or line plot for

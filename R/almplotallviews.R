@@ -3,6 +3,7 @@
 #' @import RJSONIO XML RCurl plyr reshape2 ggplot2 grid gridExtra
 #' @param dat Output from \code{almplosallviews} (character)
 #' @param type One of totalmetrics or history
+#' @param removezero Remove data sources with all zeros prior to plotting.
 #' @return A ggplot2 bar plot for `totalmetrics` or line plot for `history`.
 #' @examples \dontrun{
 #' out <- almplosallviews(doi='10.1371/journal.pone.0001543', info='detail')

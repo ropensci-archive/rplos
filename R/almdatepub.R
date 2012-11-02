@@ -12,14 +12,15 @@
 #' @examples \dontrun{
 #' almdatepub(doi='10.1371/journal.pone.0026871')
 #' almdatepub('10.1371/journal.pone.0026871', 'year')
-#'
-#' # DOI that does not work, gives NA so that looping isn't interrupted
-#' almdatepub(doi="10.1371/journal.pone.002699", get='year')
 #' 
 #' # Provide more than one DOI
 #' dois <- c('10.1371/journal.pone.0026871','10.1371/journal.pone.0048868',
 #' 		'10.1371/journal.pone.0048705','10.1371/journal.pone.0048731')
 #' almdatepub(doi=dois, get="month")
+#' }
+#' @examples \donttest{
+#' #' # DOI that does not work, gives NA so that looping isn't interrupted
+#' almdatepub(doi="10.1371/journal.pone.002699", get='year')
 #' }
 #' @export
 almdatepub <- function(doi, get = NA, sleep = 0, 
@@ -47,7 +48,8 @@ almdatepub <- function(doi, get = NA, sleep = 0,
 	  } else
 	  	if(length(doi)>1){
 	  		doi2 <- paste(sapply(doi, function(x) gsub("/", "%2F", x)), collapse=",")
-	  		out <- fromJSON(paste(url, "?ids=", doi2, sep=""))
+	  		url2 <- paste(url, "?ids=", doi2, sep="")
+	  		out <- fromJSON(url2)
 	  		sapply(out, getdate)
 	  	}
 }
