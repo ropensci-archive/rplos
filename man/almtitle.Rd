@@ -2,9 +2,9 @@
 \alias{almtitle}
 \title{Get title of article by inputting the doi for the article.}
 \usage{
-  almtitle(doi, url = "http://alm.plos.org/articles",
-    key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-    ..., curl = getCurlHandle())
+  almtitle(doi,
+    url = "http://alm.plos.org/api/v3/articles",
+    key = NULL, curl = getCurlHandle())
 }
 \arguments{
   \item{doi}{digital object identifier for an article in
@@ -15,9 +15,6 @@
 
   \item{url}{the PLoS API url for the function (should be
   left to default)}
-
-  \item{...}{optional additional curl options (debugging
-  tools mostly)}
 
   \item{curl}{If using in a loop, call getCurlHandle()
   first and pass the returned value in here (avoids

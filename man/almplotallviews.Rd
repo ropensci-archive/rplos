@@ -8,9 +8,7 @@
   \item{dat}{Output from \code{almplosallviews}
   (character)}
 
-  \item{type}{plot views for html, pdf, xml, any
-  combination of two (e.g., 'html,pdf'), or all
-  (character)}
+  \item{type}{One of totalmetrics or history}
 }
 \value{
   A ggplot2 bar plot for `totalmetrics` or line plot for
