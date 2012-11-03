@@ -23,7 +23,7 @@
 #' searchplos('ecology', 'id,publication_date', limit = 2)
 #' searchplos('ecology', 'id,title', limit = 2)
 #' searchplos(terms="*:*", fields='id', toquery='doc_type:full', start=0, limit=250)
-#' searchplos(terms="*:*", fields='id', toquery='cross_published_journal_key:PLoSONE', start=0, limit=250)
+#' searchplos(terms="*:*", fields='id', toquery=list('cross_published_journal_key:PLoSONE',year=2010), start=0, limit=750)
 #' searchplos(terms="*:*", fields='id', 
 #'    toquery=list('cross_published_journal_key:PLoSONE', 'doc_type:full'), 
 #'    start=0, limit=250)

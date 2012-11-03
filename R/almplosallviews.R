@@ -35,8 +35,8 @@
 #' Getting just summary data
 #' almplosallviews(doi='10.1371/journal.pone.0039395', info='summary')
 #' dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117',
-#' 		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
-#' almplosallviews(doi=dois, info="summary")
+#'		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
+#' almplosallviews(doi=dois, info="detail")
 #' 
 #' # Using month and day arguments
 #' out <- almplosallviews(doi='10.1371/journal.pone.0040117', days=30)
