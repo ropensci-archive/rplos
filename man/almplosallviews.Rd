@@ -3,9 +3,9 @@
 \title{Get PLoS altmetrics as xml, json, or csv.}
 \usage{
   almplosallviews(doi, info = "detail", months = NULL,
-    days = NULL, sleep = 0,
+    days = NULL,
     url = "http://alm.plos.org/api/v3/articles",
-    key = NULL, ..., curl = getCurlHandle())
+    key = NULL, curl = getCurlHandle())
 }
 \arguments{
   \item{doi}{digital object identifier for an article in
@@ -51,22 +51,20 @@
 \examples{
 \dontrun{
 # A single DOI
-out <- almplosallviews(doi='10.1371/journal.pone.0039395', info='detail')
-out[["metrics"]] # get metrics data.frame
-
-# DOI that does not work, gives NA so that looping isn't interrupted
-almplosallviews("10.1371/journal.pone.002699", 'citeulike', F, F, 'json')
+out <- almplosallviews(doi='10.1371/journal.pone.0029797', info='detail')
+out[["metrics"]] # get metrics summary data.frame
 
 # Provide more than one DOI
 dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117',
 		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
-almplosallviews(doi=dois, info="detail")
+out <- almplosallviews(doi=dois, info="detail")
+out[[1]][["metrics"]]
 
-Getting just summary data
+# Getting just summary data
 almplosallviews(doi='10.1371/journal.pone.0039395', info='summary')
-dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117',
+dois <- c('10.1371/journal.pone.0040117',
 		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
-almplosallviews(doi=dois, info="summary")
+almplosallviews(doi=dois, info="detail")
 
 # Using month and day arguments
 out <- almplosallviews(doi='10.1371/journal.pone.0040117', days=30)

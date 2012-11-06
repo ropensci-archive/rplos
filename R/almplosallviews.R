@@ -21,21 +21,19 @@
 #' @return PLoS altmetrics as raw json or as list object.
 #' @examples \dontrun{
 #' # A single DOI
-#' out <- almplosallviews(doi='10.1371/journal.pone.0039395', info='detail')
-#' out[["metrics"]] # get metrics data.frame
+#' out <- almplosallviews(doi='10.1371/journal.pone.0029797', info='detail')
+#' out[["metrics"]] # get metrics summary data.frame
 #'
-#' # DOI that does not work, gives NA so that looping isn't interrupted
-#' almplosallviews("10.1371/journal.pone.002699", 'citeulike', F, F, 'json')
-#' 
 #' # Provide more than one DOI
 #' dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117',
 #' 		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
-#' almplosallviews(doi=dois, info="detail")
+#' out <- almplosallviews(doi=dois, info="detail")
+#' out[[1]][["metrics"]]
 #' 
-#' Getting just summary data
+#' # Getting just summary data
 #' almplosallviews(doi='10.1371/journal.pone.0039395', info='summary')
-#' dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117',
-#'		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
+#' dois <- c('10.1371/journal.pone.0040117',
+#' 		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
 #' almplosallviews(doi=dois, info="detail")
 #' 
 #' # Using month and day arguments
@@ -43,46 +41,53 @@
 #' }
 #' @export
 almplosallviews <- function(doi, info = "detail", months = NULL, days = NULL, 
-	sleep = 0, url = 'http://alm.plos.org/api/v3/articles',
-	key = NULL, ..., curl = getCurlHandle() )
+	url = 'http://alm.plos.org/api/v3/articles', key = NULL, curl = getCurlHandle())
 {
-  Sys.sleep(sleep)
-  key <- getkey(key)
-  args <- compact(list(api_key = key, info = info, months = months, days = days))
-  if(length(doi)==0){stop("Please provide a DOI")} else
-  	if(length(doi)==1){
-  		doi <- paste("doi/", doi, sep="")
-  		doi2 <- gsub("/", "%2F", doi)
-  		url2 <- paste(url, "/info%3A", doi2, sep='')
-  		out <- getForm(url2, .params = args, curl = curl)
-  		tt <- fromJSON(out)
-  		if(info=="summary"){ttt<-tt} else{ttt <- tt[[1]]$sources}
-  	} else
-  		if(length(doi)>1){
-  			doi2 <- paste(sapply(doi, function(x) gsub("/", "%2F", x)), collapse=",")
-  			args2 <- c(args, ids = doi2)
-  			out <- getForm(url, .params = args2, curl = curl)
-  			tt <- fromJSON(out)
-  			if(info=="summary"){ttt<-tt} else{ttt <- tt[[1]]$article$sources}
-  		}
-  	if(info=="summary"){ttt} else
-  	{
-  		servs <- sapply(ttt, function(x) x$source$name)
-  		metrics <- lapply(ttt, function(x) x$source$metrics[!sapply(x$source$metrics, is.null)])
-  		names(metrics) <- servs
-  		metricsdf <- ldply(metrics, function(x) as.data.frame(x))
-  		
-  		hist <- lapply(ttt, function(x) x$source$histories)
-  		gethist <- function(y) {
-  			dates <- sapply(y, function(x) str_split(x[[1]], "T")[[1]][[1]])
-  			totals <- sapply(y, function(x) x[[2]])
-  			data.frame(dates=dates, totals=totals)	
-  		}
-  		histdfs <- lapply(hist, gethist)
-  		names(histdfs) <- servs
-  		historydf <- ldply(histdfs)
-  		historydf$dates <- as.Date(historydf$dates)
-  		
-  		list(metrics = metricsdf, history = historydf)
-  	}
+	key <- getkey(key)
+	doit <- function() {
+		args <- compact(list(api_key = key, info = info, months = months, days = days))
+		if(length(doi)==0){stop("Please provide a DOI")} else
+			if(length(doi)==1){
+				doi <- paste("doi/", doi, sep="")
+				doi2 <- gsub("/", "%2F", doi)
+				url2 <- paste(url, "/info%3A", doi2, sep='')
+				out <- getForm(url2, .params = args, curl = curl)
+				tt <- fromJSON(out)
+				if(info=="summary"){ttt<-tt} else{ttt <- tt[[1]]$sources}
+			} else
+				if(length(doi)>1){
+					doi2 <- paste(sapply(doi, function(x) gsub("/", "%2F", x)), collapse=",")
+					args2 <- c(args, ids = doi2)
+					out <- getForm(url, .params = args2, curl = curl)
+					tt <- fromJSON(out)
+					if(info=="summary"){ttt<-tt} else { 
+						ttt <- lapply(tt, function(x) x$article$sources) 
+					}
+				}
+		if(info=="summary"){ttt} else
+		{
+			getdata <- function(data_) {
+				servs <- sapply(data_, function(x) x$source$name)
+				metrics <- lapply(data_, function(x) x$source$metrics[!sapply(x$source$metrics, is.null)])
+				names(metrics) <- servs
+				metricsdf <- ldply(metrics, function(x) as.data.frame(x))
+				
+				hist <- lapply(data_, function(x) x$source$histories)
+				gethist <- function(y) {
+					dates <- sapply(y, function(x) str_split(x[[1]], "T")[[1]][[1]])
+					totals <- sapply(y, function(x) x[[2]])
+					data.frame(dates=dates, totals=totals)	
+				}
+				histdfs <- lapply(hist, gethist)
+				names(histdfs) <- servs
+				historydf <- ldply(histdfs)
+# 				historydf$dates <- as.Date(historydf$dates)
+				
+				list(metrics = metricsdf, history = historydf)
+			}
+			if(length(doi)>1){ lapply(ttt, getdata) } else { getdata(ttt) }
+		}
+	}
+	safe_doit <- plyr::failwith(NULL,doit)
+	safe_doit()
 }
