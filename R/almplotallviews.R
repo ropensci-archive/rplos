@@ -25,6 +25,7 @@ almplotallviews <- function(dat, type = NULL, removezero = TRUE)
   		labs(y = 'Count')
   	if(removezero) {
   		datt <- dat$history
+  		datt$dates <- as.Date(datt$dates)
   		temp <- split(datt, datt$.id)
   		dat2 <- ldply(compact(lapply(temp, function(x) if(sum(x$totals)==0){NULL} else {x})))
   	} else {dat2 <- dat$history}
@@ -50,6 +51,7 @@ almplotallviews <- function(dat, type = NULL, removezero = TRUE)
       if(type == 'history') {
       	if(removezero) {
       		datt <- dat$history
+      		datt$dates <- as.Date(datt$dates)
       		temp <- split(datt, datt$.id)
       		dat2 <- ldply(compact(lapply(temp, function(x) if(sum(x$totals)==0){NULL} else {x})))
       	} else {dat2 <- dat$history}

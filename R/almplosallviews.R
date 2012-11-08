@@ -33,7 +33,7 @@
 #' # Getting just summary data
 #' almplosallviews(doi='10.1371/journal.pone.0039395', info='summary')
 #' dois <- c('10.1371/journal.pone.0040117',
-#' 		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
+#' 			'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
 #' almplosallviews(doi=dois, info="detail")
 #' 
 #' # Using month and day arguments
@@ -56,12 +56,28 @@ almplosallviews <- function(doi, info = "detail", months = NULL, days = NULL,
 				if(info=="summary"){ttt<-tt} else{ttt <- tt[[1]]$sources}
 			} else
 				if(length(doi)>1){
-					doi2 <- paste(sapply(doi, function(x) gsub("/", "%2F", x)), collapse=",")
-					args2 <- c(args, ids = doi2)
-					out <- getForm(url, .params = args2, curl = curl)
-					tt <- fromJSON(out)
-					if(info=="summary"){ttt<-tt} else { 
-						ttt <- lapply(tt, function(x) x$article$sources) 
+					if(length(doi)>100){
+						slice <- function(x, n) split(x, as.integer((seq_along(x) - 1) / n))
+						doissplit <- slice(doi, 100)
+						repeatit <- function(y) {
+							doi2 <- paste(sapply(y, function(x) gsub("/", "%2F", x)), collapse=",")
+							args2 <- c(args, ids = doi2)
+							out <- getForm(url, .params = args2, curl = curl)
+							tt <- fromJSON(out)
+							if(info=="summary"){tt} else { 
+								lapply(tt, function(x) x$article$sources) 
+							}
+						}
+						temp <- lapply(doissplit, repeatit)
+						ttt <- unlist(temp, recursive=T, use.names=F)
+					} else {
+						doi2 <- paste(sapply(doi, function(x) gsub("/", "%2F", x)), collapse=",")
+						args2 <- c(args, ids = doi2)
+						out <- getForm(url, .params = args2, curl = curl)
+						tt <- fromJSON(out)
+						if(info=="summary"){ttt<-tt} else { 
+							ttt <- lapply(tt, function(x) x$article$sources) 
+						}
 					}
 				}
 		if(info=="summary"){ttt} else
