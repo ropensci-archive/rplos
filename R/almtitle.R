@@ -9,7 +9,6 @@
 #' @return Title of article, in xml format.
 #' @examples \dontrun{
 #' almtitle(doi='10.1371/journal.pbio.0000012')
-#' almtitle(doi='10.1371/journal.pbio.1001357')
 #' }
 #' @export
 almtitle <- function(doi, url = 'http://alm.plos.org/api/v3/articles',
