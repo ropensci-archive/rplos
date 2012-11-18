@@ -1,4 +1,4 @@
-#' Get PLoS altmetrics as xml, json, or csv.
+#' Retrieve PLoS altmetrics.
 #' 
 #' See details for more information.
 #' 

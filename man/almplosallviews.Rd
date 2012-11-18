@@ -1,6 +1,6 @@
 \name{almplosallviews}
 \alias{almplosallviews}
-\title{Get PLoS altmetrics as xml, json, or csv.}
+\title{Retrieve PLoS altmetrics.}
 \usage{
   almplosallviews(doi = NULL, pmid = NULL, pmcid = NULL,
     mdid = NULL, info = "detail", months = NULL,
