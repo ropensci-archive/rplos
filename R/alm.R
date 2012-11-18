@@ -7,7 +7,8 @@
 #' @param pmid PubMed object identifier (numeric)
 #' @param pmcid PubMed Central object identifier (numeric)
 #' @param mdid Mendeley object identifier (character)
-#' @param info One of summary, montly, or history (character)
+#' @param info One of summary, totals, history, or allmets (totals + history
+#' 		in a list) (character)
 #' @param months Number of months since publication to request historical data for.
 #' 		See details for a note. (numeric)
 #' @param days Number of days since publication to request historical data for. 
@@ -29,47 +30,55 @@
 #' 		and months is ignored. 		
 #' @return PLoS altmetrics as data.frame's.
 #' @examples \dontrun{
+#' # The default call with either doi, pmid, pmcid, or mdid is info='totals'
+#' alm(doi="10.1371/journal.pone.0029797")
+#' 
 #' # A single DOI
-#' out <- alm(doi='10.1371/journal.pone.0029797', info='detail')
-#' out[["metrics"]] # get metrics summary data.frame
-#' out[["history"]] # get metrics summary data.frame
+#' out <- alm(doi='10.1371/journal.pone.0029797', info='allmets')
+#' out[["totals"]] # get totals summary data.frame
+#' out[["history"]] # get history summary data.frame
 #' 
 #' # A single PubMed ID (pmid)
-#' alm(pmid=22590526, info='detail')
+#' alm(pmid=22590526, info='totals')
 #' 
 #' # A single PubMed Central ID (pmcid)
 #' alm(pmcid=212692, info='summary')
 #' 
 #' # A single Mendeley UUID (mdid)
-#' alm(mdid="35791700-6d00-11df-a2b2-0026b95e3eb7", info='summary')
+#' alm(mdid="35791700-6d00-11df-a2b2-0026b95e3eb7", info='totals')
 #'
 #' # Provide more than one DOI
 #' dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117',
 #' 		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
-#' out <- alm(doi=dois, info="detail")
-#' out[[1]][["metrics"]] # get data for the first DOI, and just the monthly avg. metrics
+#' out <- alm(doi=dois, info="allmets")
+#' out[[1]][["totals"]] # get data for the first DOI, and just the totals
 #' 
 #' # Provide more than one pmid
 #' pmids <- c(19300479, 19390606, 19343216)
-#' out <- alm(pmid=pmids, info="detail")
-#' out[[3]][["metrics"]] # get data for the third pmid, and just the monthly avg. metrics
+#' out <- alm(pmid=pmids, info="allmets")
+#' out[[3]][["totals"]] # get data for the third pmid, and just the totals
 #' 
 #' # Getting just summary data
 #' alm(doi='10.1371/journal.pone.0039395', info='summary')
 #' 
 #' # Using month and day arguments
-#' out <- alm(doi='10.1371/journal.pone.0040117', days=30)
+#' alm(doi='10.1371/journal.pone.0040117', days=30)
 #' }
 #' @export
 alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL, 
-	info = "detail", months = NULL, days = NULL, key = NULL, 
+	info = "totals", months = NULL, days = NULL, key = NULL, 
 	url = 'http://alm.plos.org/api/v3/articles', curl = getCurlHandle())
 {
+	if(!info %in% c("summary","totals","history","allmets")) {
+		stop("info must be one of summary, totals, history, or allmets")
+	}
 	id <- compact(list(doi=doi, pmid=pmid, pmcid=pmcid, mendeley=mdid))
 	if(length(id)>1){ stop("Only supply one of: doi, pmid, pmcid, mdid") } else { NULL }
 	key <- getkey(key)
 	doit <- function() {
-		args <- compact(list(api_key = key, info = info, months = months, 
+		if(info=="totals"|info=="history"|info=="allmets"){info2 <- "detail"} else
+			{info2 <- info}
+		args <- compact(list(api_key = key, info = info2, months = months, 
 												 days = days, type = names(id)))
 		if(length(id[[1]])==0){stop("Please provide a DOI")} else
 			if(length(id[[1]])==1){
@@ -116,11 +125,11 @@ alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 				}
 		if(info=="summary"){ttt} else
 		{
-			getdata <- function(data_) {
+			getdata <- function(data_, y) {
 				servs <- sapply(data_, function(x) x$source$name)
-				metrics <- lapply(data_, function(x) x$source$metrics[!sapply(x$source$metrics, is.null)])
-				names(metrics) <- servs
-				metricsdf <- ldply(metrics, function(x) as.data.frame(x))
+				totals <- lapply(data_, function(x) x$source$metrics[!sapply(x$source$metrics, is.null)])
+				names(totals) <- servs
+				totalsdf <- ldply(totals, function(x) as.data.frame(x))
 				
 				hist <- lapply(data_, function(x) x$source$histories)
 				gethist <- function(y) {
@@ -131,11 +140,13 @@ alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 				histdfs <- lapply(hist, gethist)
 				names(histdfs) <- servs
 				historydf <- ldply(histdfs)
-# 				historydf$dates <- as.Date(historydf$dates)
 				
-				list(metrics = metricsdf, history = historydf)
+				if(y == "totals"){ totalsdf } else
+					if(y == "history"){ historydf } else
+						if(y == "allmets"){ list(totals = totalsdf, history = historydf) } else 
+							stop("info must be one of totals, history, or allmets")				
 			}
-			if(length(id[[1]])>1){ lapply(ttt, getdata) } else { getdata(ttt) }
+			if(length(id[[1]])>1){ lapply(ttt, getdata, y=info) } else { getdata(ttt, y=info) }
 		}
 	}
 	safe_doit <- plyr::failwith(NULL,doit)

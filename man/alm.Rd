@@ -3,7 +3,7 @@
 \title{Retrieve PLoS altmetrics.}
 \usage{
   alm(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
-    info = "detail", months = NULL, days = NULL,
+    info = "totals", months = NULL, days = NULL,
     key = NULL,
     url = "http://alm.plos.org/api/v3/articles",
     curl = getCurlHandle())
@@ -18,8 +18,8 @@
 
   \item{mdid}{Mendeley object identifier (character)}
 
-  \item{info}{One of summary, montly, or history
-  (character)}
+  \item{info}{One of summary, totals, history, or allmets
+  (totals + history in a list) (character)}
 
   \item{months}{Number of months since publication to
   request historical data for.  See details for a note.
@@ -63,36 +63,39 @@
 }
 \examples{
 \dontrun{
+# The default call with either doi, pmid, pmcid, or mdid is info='totals'
+alm(doi="10.1371/journal.pone.0029797")
+
 # A single DOI
-out <- alm(doi='10.1371/journal.pone.0029797', info='detail')
-out[["metrics"]] # get metrics summary data.frame
-out[["history"]] # get metrics summary data.frame
+out <- alm(doi='10.1371/journal.pone.0029797', info='allmets')
+out[["totals"]] # get totals summary data.frame
+out[["history"]] # get history summary data.frame
 
 # A single PubMed ID (pmid)
-alm(pmid=22590526, info='detail')
+alm(pmid=22590526, info='totals')
 
 # A single PubMed Central ID (pmcid)
 alm(pmcid=212692, info='summary')
 
 # A single Mendeley UUID (mdid)
-alm(mdid="35791700-6d00-11df-a2b2-0026b95e3eb7", info='summary')
+alm(mdid="35791700-6d00-11df-a2b2-0026b95e3eb7", info='totals')
 
 # Provide more than one DOI
 dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117',
 		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
-out <- alm(doi=dois, info="detail")
-out[[1]][["metrics"]] # get data for the first DOI, and just the monthly avg. metrics
+out <- alm(doi=dois, info="allmets")
+out[[1]][["totals"]] # get data for the first DOI, and just the totals
 
 # Provide more than one pmid
 pmids <- c(19300479, 19390606, 19343216)
-out <- alm(pmid=pmids, info="detail")
-out[[3]][["metrics"]] # get data for the third pmid, and just the monthly avg. metrics
+out <- alm(pmid=pmids, info="allmets")
+out[[3]][["totals"]] # get data for the third pmid, and just the totals
 
 # Getting just summary data
 alm(doi='10.1371/journal.pone.0039395', info='summary')
 
 # Using month and day arguments
-out <- alm(doi='10.1371/journal.pone.0040117', days=30)
+alm(doi='10.1371/journal.pone.0040117', days=30)
 }
 }
 
