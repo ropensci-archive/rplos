@@ -9,16 +9,22 @@
     key = NULL, curl = getCurlHandle())
 }
 \arguments{
-  \item{doi}{digital object identifier for an article in
+  \item{doi}{Digital object identifier for an article in
   PLoS Journals}
+
+  \item{pmid}{PubMed object identifier}
+
+  \item{pmcid}{PubMed Central object identifier}
+
+  \item{mdid}{Mendeley object identifier}
 
   \item{info}{One of summary or detail (character)}
 
   \item{months}{Number of months since publication to
-  request historical data for.}
+  request historical data for.  See details for a note.}
 
   \item{days}{Number of days since publication to request
-  historical data for.}
+  historical data for.  See details for a note.}
 
   \item{sleep}{Time (in seconds) before function sends API
   call - defaults to zero.  Set to higher number if you are
@@ -44,10 +50,18 @@
   See details for more information.
 }
 \details{
+  You can only supply one of the parmeters doi, pmid,
+  pmcid, and mdid.
+
   By default, this function now returns json. Other data
   return formats have been removed for simplicity. Get in
-  touch if you want them added back. Queries for up to 100
-  articles at a time are supported.
+  touch if you want them added back.
+
+  Queries for up to 100 articles at a time will be
+  supported soon.
+
+  If you supply both the days and months parameters, days
+  takes precedence, and months is ignored.
 }
 \examples{
 \dontrun{

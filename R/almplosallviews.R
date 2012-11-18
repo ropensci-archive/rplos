@@ -3,10 +3,15 @@
 #' See details for more information.
 #' 
 #' @import RJSONIO RCurl plyr
-#' @param doi digital object identifier for an article in PLoS Journals
+#' @param doi Digital object identifier for an article in PLoS Journals
+#' @param pmid PubMed object identifier
+#' @param pmcid PubMed Central object identifier
+#' @param mdid Mendeley object identifier
 #' @param info One of summary or detail (character)
 #' @param months Number of months since publication to request historical data for.
-#' @param days Number of days since publication to request historical data for.
+#' 		See details for a note.
+#' @param days Number of days since publication to request historical data for. 
+#' 		See details for a note.
 #' @param sleep Time (in seconds) before function sends API call - defaults to
 #'    zero.  Set to higher number if you are using this function in a loop with
 #'    many API calls.
@@ -15,9 +20,16 @@
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass
 #'  the returned value in here (avoids unnecessary footprint)
-#' @details By default, this function now returns json. Other data return 
+#' @details You can only supply one of the parmeters doi, pmid, pmcid, and mdid.
+#' 	
+#' 		By default, this function now returns json. Other data return 
 #' 		formats have been removed for simplicity. Get in touch if you want them 
-#' 		added back. Queries for up to 100 articles at a time are supported.
+#' 		added back. 
+#' 		
+#' 		Queries for up to 100 articles at a time will be supported soon. 
+#' 		
+#' 		If you supply both the days and months parameters, days takes precedence,
+#' 		and months is ignored. 		
 #' @return PLoS altmetrics as raw json or as list object.
 #' @examples \dontrun{
 #' # A single DOI
