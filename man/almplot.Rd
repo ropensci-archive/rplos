@@ -1,8 +1,8 @@
-\name{almplotallviews}
-\alias{almplotallviews}
+\name{almplot}
+\alias{almplot}
 \title{Feed output of almplosallviews to this function to plot results.}
 \usage{
-  almplotallviews(dat, type = NULL, removezero = TRUE)
+  almplot(dat, type = NULL, removezero = TRUE)
 }
 \arguments{
   \item{dat}{Output from \code{almplosallviews}
@@ -23,10 +23,10 @@
 }
 \examples{
 \dontrun{
-out <- almplosallviews(doi='10.1371/journal.pone.0001543', info='detail')
-almplotallviews(out, type='totalmetrics') # just totalmetrics data
-almplotallviews(dat=out, type='history') # just historical data
-almplotallviews(dat=out) # leaving type as NULL prints both plots
+out <- almplot(doi='10.1371/journal.pone.0001543', info='detail')
+almplot(out, type='totalmetrics') # just totalmetrics data
+almplot(dat=out, type='history') # just historical data
+almplot(dat=out) # leaving type as NULL prints both plots
 }
 }
 

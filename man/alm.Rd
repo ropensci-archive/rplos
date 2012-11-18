@@ -1,37 +1,35 @@
-\name{almplosallviews}
-\alias{almplosallviews}
+\name{alm}
+\alias{alm}
 \title{Retrieve PLoS altmetrics.}
 \usage{
-  almplosallviews(doi = NULL, pmid = NULL, pmcid = NULL,
-    mdid = NULL, info = "detail", months = NULL,
-    days = NULL,
+  alm(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
+    info = "detail", months = NULL, days = NULL,
+    key = NULL,
     url = "http://alm.plos.org/api/v3/articles",
-    key = NULL, curl = getCurlHandle())
+    curl = getCurlHandle())
 }
 \arguments{
   \item{doi}{Digital object identifier for an article in
-  PLoS Journals}
+  PLoS Journals (character)}
 
-  \item{pmid}{PubMed object identifier}
+  \item{pmid}{PubMed object identifier (numeric)}
 
-  \item{pmcid}{PubMed Central object identifier}
+  \item{pmcid}{PubMed Central object identifier (numeric)}
 
-  \item{mdid}{Mendeley object identifier}
+  \item{mdid}{Mendeley object identifier (character)}
 
-  \item{info}{One of summary or detail (character)}
+  \item{info}{One of summary, montly, or history
+  (character)}
 
   \item{months}{Number of months since publication to
-  request historical data for.  See details for a note.}
+  request historical data for.  See details for a note.
+  (numeric)}
 
   \item{days}{Number of days since publication to request
-  historical data for.  See details for a note.}
-
-  \item{sleep}{Time (in seconds) before function sends API
-  call - defaults to zero.  Set to higher number if you are
-  using this function in a loop with many API calls.}
+  historical data for.  See details for a note. (numeric)}
 
   \item{key}{your PLoS API key, either enter, or loads from
-  .Rprofile}
+  .Rprofile (character)}
 
   \item{url}{the PLoS API url for the function (should be
   left to default)}
@@ -44,7 +42,7 @@
   unnecessary footprint)}
 }
 \value{
-  PLoS altmetrics as raw json or as list object.
+  PLoS altmetrics as data.frame's.
 }
 \description{
   See details for more information.
@@ -66,35 +64,35 @@
 \examples{
 \dontrun{
 # A single DOI
-out <- almplosallviews(doi='10.1371/journal.pone.0029797', info='detail')
+out <- alm(doi='10.1371/journal.pone.0029797', info='detail')
 out[["metrics"]] # get metrics summary data.frame
 out[["history"]] # get metrics summary data.frame
 
 # A single PubMed ID (pmid)
-almplosallviews(pmid=22590526, info='detail')
+alm(pmid=22590526, info='detail')
 
 # A single PubMed Central ID (pmcid)
-almplosallviews(pmcid=212692, info='summary')
+alm(pmcid=212692, info='summary')
 
 # A single Mendeley UUID (mdid)
-almplosallviews(mdid="35791700-6d00-11df-a2b2-0026b95e3eb7", info='summary')
+alm(mdid="35791700-6d00-11df-a2b2-0026b95e3eb7", info='summary')
 
 # Provide more than one DOI
 dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117',
 		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
-out <- almplosallviews(doi=dois, info="detail")
+out <- alm(doi=dois, info="detail")
 out[[1]][["metrics"]] # get data for the first DOI, and just the monthly avg. metrics
 
 # Provide more than one pmid
 pmids <- c(19300479, 19390606, 19343216)
-out <- almplosallviews(pmid=pmids, info="detail")
+out <- alm(pmid=pmids, info="detail")
 out[[3]][["metrics"]] # get data for the third pmid, and just the monthly avg. metrics
 
 # Getting just summary data
-almplosallviews(doi='10.1371/journal.pone.0039395', info='summary')
+alm(doi='10.1371/journal.pone.0039395', info='summary')
 
 # Using month and day arguments
-out <- almplosallviews(doi='10.1371/journal.pone.0040117', days=30)
+out <- alm(doi='10.1371/journal.pone.0040117', days=30)
 }
 }
 

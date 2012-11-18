@@ -33,8 +33,6 @@ Suggests:
 Collate:
     'almdatepub.R'
     'almdateupdated.R'
-    'almplosallviews.R'
-    'almplotallviews.R'
     'almpubmedcentid.R'
     'almpubmedid.R'
     'almtitle.R'
@@ -57,3 +55,5 @@ Collate:
     'searchplos.R'
     'crossref_r.R'
     'zzz.R'
+    'alm.R'
+    'almplot.R'

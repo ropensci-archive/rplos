@@ -6,13 +6,13 @@
 #' @param removezero Remove data sources with all zeros prior to plotting.
 #' @return A ggplot2 bar plot for `totalmetrics` or line plot for `history`.
 #' @examples \dontrun{
-#' out <- almplosallviews(doi='10.1371/journal.pone.0001543', info='detail')
-#' almplotallviews(out, type='totalmetrics') # just totalmetrics data
-#' almplotallviews(dat=out, type='history') # just historical data
-#' almplotallviews(dat=out) # leaving type as NULL prints both plots
+#' out <- almplot(doi='10.1371/journal.pone.0001543', info='detail')
+#' almplot(out, type='totalmetrics') # just totalmetrics data
+#' almplot(dat=out, type='history') # just historical data
+#' almplot(dat=out) # leaving type as NULL prints both plots
 #' }
 #' @export
-almplotallviews <- function(dat, type = NULL, removezero = TRUE)
+almplot <- function(dat, type = NULL, removezero = TRUE)
 {  
   if(is.null(type)) {
   	dat_m <- melt(dat$metrics, id.vars=".id")

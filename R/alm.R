@@ -3,19 +3,16 @@
 #' See details for more information.
 #' 
 #' @import RJSONIO RCurl plyr
-#' @param doi Digital object identifier for an article in PLoS Journals
-#' @param pmid PubMed object identifier
-#' @param pmcid PubMed Central object identifier
-#' @param mdid Mendeley object identifier
-#' @param info One of summary or detail (character)
+#' @param doi Digital object identifier for an article in PLoS Journals (character)
+#' @param pmid PubMed object identifier (numeric)
+#' @param pmcid PubMed Central object identifier (numeric)
+#' @param mdid Mendeley object identifier (character)
+#' @param info One of summary, montly, or history (character)
 #' @param months Number of months since publication to request historical data for.
-#' 		See details for a note.
+#' 		See details for a note. (numeric)
 #' @param days Number of days since publication to request historical data for. 
-#' 		See details for a note.
-#' @param sleep Time (in seconds) before function sends API call - defaults to
-#'    zero.  Set to higher number if you are using this function in a loop with
-#'    many API calls.
-#' @param key your PLoS API key, either enter, or loads from .Rprofile
+#' 		See details for a note. (numeric)
+#' @param key your PLoS API key, either enter, or loads from .Rprofile (character)
 #' @param url the PLoS API url for the function (should be left to default)
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass
@@ -30,43 +27,43 @@
 #' 		
 #' 		If you supply both the days and months parameters, days takes precedence,
 #' 		and months is ignored. 		
-#' @return PLoS altmetrics as raw json or as list object.
+#' @return PLoS altmetrics as data.frame's.
 #' @examples \dontrun{
 #' # A single DOI
-#' out <- almplosallviews(doi='10.1371/journal.pone.0029797', info='detail')
+#' out <- alm(doi='10.1371/journal.pone.0029797', info='detail')
 #' out[["metrics"]] # get metrics summary data.frame
 #' out[["history"]] # get metrics summary data.frame
 #' 
 #' # A single PubMed ID (pmid)
-#' almplosallviews(pmid=22590526, info='detail')
+#' alm(pmid=22590526, info='detail')
 #' 
 #' # A single PubMed Central ID (pmcid)
-#' almplosallviews(pmcid=212692, info='summary')
+#' alm(pmcid=212692, info='summary')
 #' 
 #' # A single Mendeley UUID (mdid)
-#' almplosallviews(mdid="35791700-6d00-11df-a2b2-0026b95e3eb7", info='summary')
+#' alm(mdid="35791700-6d00-11df-a2b2-0026b95e3eb7", info='summary')
 #'
 #' # Provide more than one DOI
 #' dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117',
 #' 		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
-#' out <- almplosallviews(doi=dois, info="detail")
+#' out <- alm(doi=dois, info="detail")
 #' out[[1]][["metrics"]] # get data for the first DOI, and just the monthly avg. metrics
 #' 
 #' # Provide more than one pmid
 #' pmids <- c(19300479, 19390606, 19343216)
-#' out <- almplosallviews(pmid=pmids, info="detail")
+#' out <- alm(pmid=pmids, info="detail")
 #' out[[3]][["metrics"]] # get data for the third pmid, and just the monthly avg. metrics
 #' 
 #' # Getting just summary data
-#' almplosallviews(doi='10.1371/journal.pone.0039395', info='summary')
+#' alm(doi='10.1371/journal.pone.0039395', info='summary')
 #' 
 #' # Using month and day arguments
-#' out <- almplosallviews(doi='10.1371/journal.pone.0040117', days=30)
+#' out <- alm(doi='10.1371/journal.pone.0040117', days=30)
 #' }
 #' @export
-almplosallviews <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL, 
-	info = "detail", months = NULL, days = NULL, 
-	url = 'http://alm.plos.org/api/v3/articles', key = NULL, curl = getCurlHandle())
+alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL, 
+	info = "detail", months = NULL, days = NULL, key = NULL, 
+	url = 'http://alm.plos.org/api/v3/articles', curl = getCurlHandle())
 {
 	id <- compact(list(doi=doi, pmid=pmid, pmcid=pmcid, mendeley=mdid))
 	if(length(id)>1){ stop("Only supply one of: doi, pmid, pmcid, mdid") } else { NULL }
