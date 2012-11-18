@@ -2,7 +2,8 @@
 \alias{almplosallviews}
 \title{Get PLoS altmetrics as xml, json, or csv.}
 \usage{
-  almplosallviews(doi, info = "detail", months = NULL,
+  almplosallviews(doi = NULL, pmid = NULL, pmcid = NULL,
+    mdid = NULL, info = "detail", months = NULL,
     days = NULL,
     url = "http://alm.plos.org/api/v3/articles",
     key = NULL, curl = getCurlHandle())
@@ -53,18 +54,30 @@
 # A single DOI
 out <- almplosallviews(doi='10.1371/journal.pone.0029797', info='detail')
 out[["metrics"]] # get metrics summary data.frame
+out[["history"]] # get metrics summary data.frame
+
+# A single PubMed ID (pmid)
+almplosallviews(pmid=22590526, info='detail')
+
+# A single PubMed Central ID (pmcid)
+almplosallviews(pmcid=212692, info='summary')
+
+# A single Mendeley UUID (mdid)
+almplosallviews(mdid="35791700-6d00-11df-a2b2-0026b95e3eb7", info='summary')
 
 # Provide more than one DOI
 dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117',
 		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
 out <- almplosallviews(doi=dois, info="detail")
-out[[1]][["metrics"]]
+out[[1]][["metrics"]] # get data for the first DOI, and just the monthly avg. metrics
+
+# Provide more than one pmid
+pmids <- c(19300479, 19390606, 19343216)
+out <- almplosallviews(pmid=pmids, info="detail")
+out[[3]][["metrics"]] # get data for the third pmid, and just the monthly avg. metrics
 
 # Getting just summary data
 almplosallviews(doi='10.1371/journal.pone.0039395', info='summary')
-dois <- c('10.1371/journal.pone.0040117',
-			'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
-almplosallviews(doi=dois, info="detail")
 
 # Using month and day arguments
 out <- almplosallviews(doi='10.1371/journal.pone.0040117', days=30)

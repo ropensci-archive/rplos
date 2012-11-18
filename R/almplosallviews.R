@@ -23,56 +23,81 @@
 #' # A single DOI
 #' out <- almplosallviews(doi='10.1371/journal.pone.0029797', info='detail')
 #' out[["metrics"]] # get metrics summary data.frame
+#' out[["history"]] # get metrics summary data.frame
+#' 
+#' # A single PubMed ID (pmid)
+#' almplosallviews(pmid=22590526, info='detail')
+#' 
+#' # A single PubMed Central ID (pmcid)
+#' almplosallviews(pmcid=212692, info='summary')
+#' 
+#' # A single Mendeley UUID (mdid)
+#' almplosallviews(mdid="35791700-6d00-11df-a2b2-0026b95e3eb7", info='summary')
 #'
 #' # Provide more than one DOI
 #' dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117',
 #' 		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
 #' out <- almplosallviews(doi=dois, info="detail")
-#' out[[1]][["metrics"]]
+#' out[[1]][["metrics"]] # get data for the first DOI, and just the monthly avg. metrics
+#' 
+#' # Provide more than one pmid
+#' pmids <- c(19300479, 19390606, 19343216)
+#' out <- almplosallviews(pmid=pmids, info="detail")
+#' out[[3]][["metrics"]] # get data for the third pmid, and just the monthly avg. metrics
 #' 
 #' # Getting just summary data
 #' almplosallviews(doi='10.1371/journal.pone.0039395', info='summary')
-#' dois <- c('10.1371/journal.pone.0040117',
-#' 			'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
-#' almplosallviews(doi=dois, info="detail")
 #' 
 #' # Using month and day arguments
 #' out <- almplosallviews(doi='10.1371/journal.pone.0040117', days=30)
 #' }
 #' @export
-almplosallviews <- function(doi, info = "detail", months = NULL, days = NULL, 
+almplosallviews <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL, 
+	info = "detail", months = NULL, days = NULL, 
 	url = 'http://alm.plos.org/api/v3/articles', key = NULL, curl = getCurlHandle())
 {
+	id <- compact(list(doi=doi, pmid=pmid, pmcid=pmcid, mendeley=mdid))
+	if(length(id)>1){ stop("Only supply one of: doi, pmid, pmcid, mdid") } else { NULL }
 	key <- getkey(key)
 	doit <- function() {
-		args <- compact(list(api_key = key, info = info, months = months, days = days))
-		if(length(doi)==0){stop("Please provide a DOI")} else
-			if(length(doi)==1){
-				doi <- paste("doi/", doi, sep="")
-				doi2 <- gsub("/", "%2F", doi)
-				url2 <- paste(url, "/info%3A", doi2, sep='')
-				out <- getForm(url2, .params = args, curl = curl)
+		args <- compact(list(api_key = key, info = info, months = months, 
+												 days = days, type = names(id)))
+		if(length(id[[1]])==0){stop("Please provide a DOI")} else
+			if(length(id[[1]])==1){
+				if(names(id) == "doi") id <- gsub("/", "%2F", id)
+				args2 <- c(args, ids = id[[1]])
+				out <- getForm(url, .params = args2, curl = curl)
 				tt <- fromJSON(out)
-				if(info=="summary"){ttt<-tt} else{ttt <- tt[[1]]$sources}
+				if(info=="summary"){ttt<-tt} else{ttt <- tt[[1]]$article$sources}
 			} else
-				if(length(doi)>1){
-					if(length(doi)>100){
+				if(length(id[[1]])>1){
+					if(length(id[[1]])>100){
 						slice <- function(x, n) split(x, as.integer((seq_along(x) - 1) / n))
-						doissplit <- slice(doi, 100)
+						idsplit <- slice(id, 100)
 						repeatit <- function(y) {
-							doi2 <- paste(sapply(y, function(x) gsub("/", "%2F", x)), collapse=",")
-							args2 <- c(args, ids = doi2)
+							if(names(id) == "doi"){ 
+								id2 <- paste(sapply(y, function(x) gsub("/", "%2F", x)), collapse=",")
+							} else
+								{
+									id2 <- paste(id[[1]], collapse=",")
+								}
+							args2 <- c(args, ids = id2)
 							out <- getForm(url, .params = args2, curl = curl)
 							tt <- fromJSON(out)
 							if(info=="summary"){tt} else { 
 								lapply(tt, function(x) x$article$sources) 
 							}
 						}
-						temp <- lapply(doissplit, repeatit)
+						temp <- lapply(idsplit, repeatit)
 						ttt <- unlist(temp, recursive=T, use.names=F)
 					} else {
-						doi2 <- paste(sapply(doi, function(x) gsub("/", "%2F", x)), collapse=",")
-						args2 <- c(args, ids = doi2)
+						if(names(id) == "doi") {
+							id2 <- paste(sapply(id, function(x) gsub("/", "%2F", x)), collapse=",")
+						} else
+							{
+								id2 <- paste(id[[1]], collapse=",")
+							}
+						args2 <- c(args, ids = id2)
 						out <- getForm(url, .params = args2, curl = curl)
 						tt <- fromJSON(out)
 						if(info=="summary"){ttt<-tt} else { 
@@ -101,7 +126,7 @@ almplosallviews <- function(doi, info = "detail", months = NULL, days = NULL,
 				
 				list(metrics = metricsdf, history = historydf)
 			}
-			if(length(doi)>1){ lapply(ttt, getdata) } else { getdata(ttt) }
+			if(length(id[[1]])>1){ lapply(ttt, getdata) } else { getdata(ttt) }
 		}
 	}
 	safe_doit <- plyr::failwith(NULL,doit)
