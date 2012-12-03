@@ -23,7 +23,7 @@ Imports:
     XML,
     plyr,
     stringr,
-    reshape2,
+    reshape,
     googleVis,
     httr,
     grid,
@@ -57,3 +57,4 @@ Collate:
     'zzz.R'
     'alm.R'
     'almplot.R'
+    'almevents.R'

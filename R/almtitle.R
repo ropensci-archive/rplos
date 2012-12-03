@@ -19,5 +19,5 @@ almtitle <- function(doi, url = 'http://alm.plos.org/api/v3/articles',
 	doi2 <- gsub("/", "%2F", doi)
 	url2 <- paste(url, "/info%3A", doi2, '?api_key=', key, '&info=summary', sep='')
 	tt <- fromJSON(url2)
-	str_replace_all(tt$article$title, "<(.|\n)*?>", "")
+	str_replace_all(unlist(tt)["article.title"], "<(.|\n)*?>", "")
 }

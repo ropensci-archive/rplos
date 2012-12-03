@@ -1,6 +1,6 @@
 #' Feed output of almplosallviews to this function to plot results.
 #' 
-#' @import RJSONIO XML RCurl plyr reshape2 ggplot2 grid gridExtra
+#' @import RJSONIO XML RCurl plyr reshape ggplot2 grid gridExtra
 #' @param dat Output from \code{almplosallviews} (character)
 #' @param type One of totalmetrics or history
 #' @param removezero Remove data sources with all zeros prior to plotting.

@@ -1,6 +1,6 @@
 \name{alm}
 \alias{alm}
-\title{Retrieve PLoS altmetrics.}
+\title{Retrieve PLoS article-level metrics (ALM).}
 \usage{
   alm(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
     info = "totals", months = NULL, days = NULL,
@@ -47,7 +47,9 @@
   PLoS altmetrics as data.frame's.
 }
 \description{
-  See details for more information.
+  This is the main function to search the PLoS ALM
+  (article-level metrics) API. See details for more
+  information.
 }
 \details{
   You can only supply one of the parmeters doi, pmid,
@@ -78,7 +80,7 @@ out[["history"]] # get history summary data.frame
 alm(pmid=22590526)
 
 # A single PubMed Central ID (pmcid)
-alm(pmcid=212692)
+alm(pmcid="pmc212692")
 alm(pmcid=212692, info='summary')
 
 # A single Mendeley UUID (mdid)
@@ -87,7 +89,7 @@ alm(mdid="35791700-6d00-11df-a2b2-0026b95e3eb7")
 # Provide more than one DOI
 dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117',
 		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
-out <- alm(doi=dois, info="detail")
+out <- alm(doi=dois)
 out[[1]][["totals"]] # get data for the first DOI, and just the totals
 
 # Provide more than one pmid
