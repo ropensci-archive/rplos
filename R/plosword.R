@@ -56,7 +56,7 @@ plosword <- function(terms, vis = FALSE, url = 'http://api.plos.org/search',
     temp$Term <- as.character(temp$Term)
       if (vis == "TRUE") {
         if(!require(ggplot2)) stop("must first install 'ggplot2' package.")
-        p <- ggplot(temp, aes(x=Term, y=No_Articles)) + geom_bar()
+        p <- ggplot(temp, aes(x=Term, y=No_Articles)) + geom_bar(stat="identity")
       }
     return(list(table = temp, plot = p))
   }
