@@ -1,6 +1,6 @@
 \name{almplot}
 \alias{almplot}
-\title{Feed output of almplosallviews to this function to plot results.}
+\title{Plot results of a call to the alm function.}
 \usage{
   almplot(dat, type = NULL, removezero = TRUE)
 }
@@ -17,8 +17,12 @@
   `history`.
 }
 \description{
-  Feed output of almplosallviews to this function to plot
-  results.
+  Plot results of a call to the alm function.
+}
+\details{
+  You have to specify info='detail' in your call to
+  \code{alm} so that you get history and summary data so
+  that either or both can be plotted in this function.
 }
 \examples{
 \dontrun{

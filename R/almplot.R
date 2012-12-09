@@ -1,10 +1,13 @@
-#' Feed output of almplosallviews to this function to plot results.
+#' Plot results of a call to the alm function.
 #' 
 #' @import RJSONIO XML RCurl plyr reshape ggplot2 grid gridExtra
 #' @param dat Output from \code{alm} (character)
 #' @param type One of totalmetrics or history
 #' @param removezero Remove data sources with all zeros prior to plotting.
 #' @return A ggplot2 bar plot for `totalmetrics` or line plot for `history`.
+#' @details You have to specify info='detail' in your call to \code{alm} so that
+#' 		you get history and summary data so that either or both can be plotted
+#' 		in this function.
 #' @seealso \code{\link{alm}} which is required to use this function.
 #' @examples \dontrun{
 #' out <- alm(doi='10.1371/journal.pone.0001543', info='detail')
