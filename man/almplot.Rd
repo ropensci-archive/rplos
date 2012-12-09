@@ -5,8 +5,7 @@
   almplot(dat, type = NULL, removezero = TRUE)
 }
 \arguments{
-  \item{dat}{Output from \code{almplosallviews}
-  (character)}
+  \item{dat}{Output from \code{alm} (character)}
 
   \item{type}{One of totalmetrics or history}
 
@@ -23,10 +22,13 @@
 }
 \examples{
 \dontrun{
-out <- almplot(doi='10.1371/journal.pone.0001543', info='detail')
-almplot(out, type='totalmetrics') # just totalmetrics data
+out <- alm(doi='10.1371/journal.pone.0001543', info='detail')
+almplot(out, type='totals') # just totalmetrics data
 almplot(dat=out, type='history') # just historical data
 almplot(dat=out) # leaving type as NULL prints both plots
 }
+}
+\seealso{
+  \code{\link{alm}} which is required to use this function.
 }
 

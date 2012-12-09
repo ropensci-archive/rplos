@@ -104,4 +104,7 @@ alm(doi='10.1371/journal.pone.0039395', info='summary')
 alm(doi='10.1371/journal.pone.0040117', days=30)
 }
 }
+\seealso{
+  \code{\link{almplot}}
+}
 

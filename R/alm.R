@@ -20,6 +20,7 @@
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass
 #'  the returned value in here (avoids unnecessary footprint)
+#' @seealso \code{\link{almplot}}
 #' @details You can only supply one of the parmeters doi, pmid, pmcid, and mdid.
 #' 	
 #' 		By default, this function now returns json. Other data return 

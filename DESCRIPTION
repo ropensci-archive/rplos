@@ -58,3 +58,4 @@ Collate:
     'alm.R'
     'almplot.R'
     'almevents.R'
+    'startup.R'

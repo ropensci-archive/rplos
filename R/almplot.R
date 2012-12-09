@@ -1,13 +1,14 @@
 #' Feed output of almplosallviews to this function to plot results.
 #' 
 #' @import RJSONIO XML RCurl plyr reshape ggplot2 grid gridExtra
-#' @param dat Output from \code{almplosallviews} (character)
+#' @param dat Output from \code{alm} (character)
 #' @param type One of totalmetrics or history
 #' @param removezero Remove data sources with all zeros prior to plotting.
 #' @return A ggplot2 bar plot for `totalmetrics` or line plot for `history`.
+#' @seealso \code{\link{alm}} which is required to use this function.
 #' @examples \dontrun{
-#' out <- almplot(doi='10.1371/journal.pone.0001543', info='detail')
-#' almplot(out, type='totalmetrics') # just totalmetrics data
+#' out <- alm(doi='10.1371/journal.pone.0001543', info='detail')
+#' almplot(out, type='totals') # just totalmetrics data
 #' almplot(dat=out, type='history') # just historical data
 #' almplot(dat=out) # leaving type as NULL prints both plots
 #' }
@@ -15,10 +16,10 @@
 almplot <- function(dat, type = NULL, removezero = TRUE)
 {  
   if(is.null(type)) {
-  	dat_m <- melt(dat$metrics, id.vars=".id")
+  	dat_m <- melt(dat$totals, id.vars=".id")
   	dat_m <- na.omit(dat_m)
   	p <- ggplot(dat_m, aes(x = .id, y = value, fill = variable)) +
-  		geom_bar(position="dodge") +
+  		geom_bar(position="dodge", stat="identity") +
   		theme_bw(base_size=18) +
   		coord_flip() +
   		scale_fill_discrete("Metric") +
@@ -39,10 +40,10 @@ almplot <- function(dat, type = NULL, removezero = TRUE)
   	print(q, vp = vplayout(2, 1))
   } else
     if(type == 'totalmetrics') {
-    	dat_m <- melt(dat$metrics, id.vars=".id")
+    	dat_m <- melt(dat$totals, id.vars=".id")
     	dat_m <- na.omit(dat_m)
     	ggplot(dat_m, aes(x = .id, y = value, fill = variable)) +
-    		geom_bar(position="dodge") +
+    		geom_bar(position="dodge", stat="identity") +
     		theme_bw(base_size=18) +
     		coord_flip() +
     		scale_fill_discrete("Metric") +
