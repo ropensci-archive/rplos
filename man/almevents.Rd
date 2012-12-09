@@ -57,10 +57,20 @@
 
   If you supply both the days and months parameters, days
   takes precedence, and months is ignored.
+
+  You can get events from many different sources. After
+  calling almevents, then index the output by the data
+  provider you want. The options are: bloglines, citeulike,
+  connotea, crossref, nature, postgenomic, pubmed, scopus,
+  plos, researchblogging, biod, webofscience, pmc,
+  facebook, mendeley, twitter, and wikipedia.
 }
 \examples{
 \dontrun{
-almevents(doi="10.1371/journal.pone.0029797")
+# For one article
+out <- almevents(doi="10.1371/journal.pone.0029797")
+out[["pmc"]] # get the results for PubMed Central
+out[["twitter"]] # get the results for twitter (boo, there aren't any)
 
 # two doi's
 dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117')

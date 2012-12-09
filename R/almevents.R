@@ -25,10 +25,19 @@
 #' 		Queries for up to 100 articles at a time will be supported soon. 
 #' 		
 #' 		If you supply both the days and months parameters, days takes precedence,
-#' 		and months is ignored. 		
+#' 		and months is ignored.
+#' 		
+#' 		You can get events from many different sources. After calling almevents, 
+#' 		then index the output by the data provider you want. The options are:
+#' 		bloglines, citeulike, connotea, crossref, nature, postgenomic, pubmed, 
+#' 		scopus, plos, researchblogging, biod, webofscience, pmc, facebook,
+#' 		mendeley, twitter, and wikipedia.
 #' @return PLoS altmetrics as data.frame's.
 #' @examples \dontrun{
-#' almevents(doi="10.1371/journal.pone.0029797")
+#' # For one article
+#' out <- almevents(doi="10.1371/journal.pone.0029797")
+#' out[["pmc"]] # get the results for PubMed Central
+#' out[["twitter"]] # get the results for twitter (boo, there aren't any)
 #' 
 #' # two doi's
 #' dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117')
@@ -39,7 +48,6 @@ almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 	months = NULL, days = NULL, key = NULL, 
 	url = 'http://alm.plos.org/api/v3/articles', curl = getCurlHandle())
 {
-
 	id <- compact(list(doi=doi, pmid=pmid, pmcid=pmcid, mendeley=mdid))
 	if(length(id)>1){ stop("Only supply one of: doi, pmid, pmcid, mdid") } else { NULL }
 	key <- getkey(key)
@@ -173,10 +181,19 @@ almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 						df
 					}
 				}
+				else if(y$source$name == "connotea"){
+					if(length(y$source$events)==0){paste("sorry, no events content yet")} else
+					{ paste("implement parsing this dumbo") }
+				}
 			}
 			lapply(x, bbb)
 		}
-		lapply(events, getevents)
+		temp <- lapply(events, getevents)
+		names(temp[[1]]) <- c("bloglines","citeulike","connotea","crossref","nature",
+										"postgenomic","pubmed","scopus","plos","researchblogging",
+										"biod","webofscience","pmc","facebook","mendeley","twitter",
+										"wikipedia")
+		temp[[1]]
 	}
 	safe_doit <- plyr::failwith(NULL,doit)
 	safe_doit()
