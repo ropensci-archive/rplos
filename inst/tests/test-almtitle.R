@@ -5,7 +5,7 @@ test_that("almtitle returns the correct value", {
 	expect_that(almtitle(doi='10.1371/journal.pbio.0000012'), 
 		equals("Genome-Wide RNAi of C. elegans Using the Hypersensitive rrf-3 Strain Reveals Novel Gene Functions"))
 	expect_that(almtitle(doi='10.1371/journal.pbio.1001357'), 
-							equals("Niche-Associated Activation of Rac Promotes the Asymmetric Division of Drosophila Female Germline Stem Cells"))
+		equals("Niche-Associated Activation of Rac Promotes the Asymmetric Division of Drosophila Female Germline Stem Cells"))
 })
 
 test_that("almtitle returns the correct class", {
