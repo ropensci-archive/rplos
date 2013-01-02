@@ -71,7 +71,7 @@ searchplos <- function(terms = NA, fields = NA, toquery = NA, start = 0, limit =
       args$rows <- limit
     tt <- getForm(url, 
       .params = args,
-      ...,
+#       ...,
       curl = curl)
     jsonout <- fromJSON(I(tt))
     tempresults <- jsonout$response$docs

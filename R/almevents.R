@@ -17,12 +17,9 @@
 #' @param curl If using in a loop, call getCurlHandle() first and pass
 #'  the returned value in here (avoids unnecessary footprint)
 #' @details You can only supply one of the parmeters doi, pmid, pmcid, and mdid.
-#' 	
-#' 		By default, this function now returns json. Other data return 
-#' 		formats have been removed for simplicity. Get in touch if you want them 
-#' 		added back. 
 #' 		
-#' 		Queries for up to 100 articles at a time will be supported soon. 
+#' 		Query for as many articles at a time as you like. Though queries are broken
+#' 		up in to smaller bits of 30 identifiers at a time. 
 #' 		
 #' 		If you supply both the days and months parameters, days takes precedence,
 #' 		and months is ignored.
@@ -31,13 +28,17 @@
 #' 		then index the output by the data provider you want. The options are:
 #' 		bloglines, citeulike, connotea, crossref, nature, postgenomic, pubmed, 
 #' 		scopus, plos, researchblogging, biod, webofscience, pmc, facebook,
-#' 		mendeley, twitter, and wikipedia.
+#' 		mendeley, twitter, wikipedia, and scienceseeker.
+#' 		
+#' 		Beware that some data source are not parsed yet, so there may be event data
+#' 		but it is not provided yet as it is so messy to parse. 
 #' @return PLoS altmetrics as data.frame's.
 #' @examples \dontrun{
 #' # For one article
 #' out <- almevents(doi="10.1371/journal.pone.0029797")
 #' out[["pmc"]] # get the results for PubMed Central
 #' out[["twitter"]] # get the results for twitter (boo, there aren't any)
+#' out[c("scienceseeker","crossref")] # get the results for two sources
 #' 
 #' # two doi's
 #' dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117')
@@ -63,9 +64,9 @@ almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 				ttt <- fromJSON(out)
 			} else
 				if(length(id[[1]])>1){
-					if(length(id[[1]])>100){
+					if(length(id[[1]])>30){
 						slice <- function(x, n) split(x, as.integer((seq_along(x) - 1) / n))
-						idsplit <- slice(id, 100)
+						idsplit <- slice(id[[1]], 30)
 						repeatit <- function(y) {
 							if(names(id) == "doi"){ 
 								id2 <- paste(sapply(y, function(x) gsub("/", "%2F", x)), collapse=",")
@@ -78,7 +79,7 @@ almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 							ttt <- fromJSON(out)
 						}
 						temp <- lapply(idsplit, repeatit)
-						ttt <- unlist(temp, recursive=T, use.names=F)
+						ttt <- do.call(c, temp)
 					} else {
 						if(names(id) == "doi") {
 							id2 <- paste(sapply(id, function(x) gsub("/", "%2F", x)), collapse=",")
@@ -180,8 +181,10 @@ almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 						names(df) <- nnn(y$source$events[[1]], TRUE)
 						df
 					}
-				}
-				else if(y$source$name == "connotea"){
+				} else if(y$source$name == "connotea"){
+					if(length(y$source$events)==0){paste("sorry, no events content yet")} else
+					{ paste("implement parsing this dumbo") }
+				} else if(y$source$name == "scienceseeker"){
 					if(length(y$source$events)==0){paste("sorry, no events content yet")} else
 					{ paste("implement parsing this dumbo") }
 				}
@@ -192,7 +195,7 @@ almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 		names(temp[[1]]) <- c("bloglines","citeulike","connotea","crossref","nature",
 										"postgenomic","pubmed","scopus","plos","researchblogging",
 										"biod","webofscience","pmc","facebook","mendeley","twitter",
-										"wikipedia")
+										"wikipedia","scienceseeker")
 		temp[[1]]
 	}
 	safe_doit <- plyr::failwith(NULL,doit)

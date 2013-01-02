@@ -48,12 +48,9 @@
   You can only supply one of the parmeters doi, pmid,
   pmcid, and mdid.
 
-  By default, this function now returns json. Other data
-  return formats have been removed for simplicity. Get in
-  touch if you want them added back.
-
-  Queries for up to 100 articles at a time will be
-  supported soon.
+  Query for as many articles at a time as you like. Though
+  queries are broken up in to smaller bits of 30
+  identifiers at a time.
 
   If you supply both the days and months parameters, days
   takes precedence, and months is ignored.
@@ -63,7 +60,12 @@
   provider you want. The options are: bloglines, citeulike,
   connotea, crossref, nature, postgenomic, pubmed, scopus,
   plos, researchblogging, biod, webofscience, pmc,
-  facebook, mendeley, twitter, and wikipedia.
+  facebook, mendeley, twitter, wikipedia, and
+  scienceseeker.
+
+  Beware that some data source are not parsed yet, so there
+  may be event data but it is not provided yet as it is so
+  messy to parse.
 }
 \examples{
 \dontrun{
@@ -71,6 +73,7 @@
 out <- almevents(doi="10.1371/journal.pone.0029797")
 out[["pmc"]] # get the results for PubMed Central
 out[["twitter"]] # get the results for twitter (boo, there aren't any)
+out[c("scienceseeker","crossref")] # get the results for two sources
 
 # two doi's
 dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117')

@@ -55,12 +55,9 @@
   You can only supply one of the parmeters doi, pmid,
   pmcid, and mdid.
 
-  By default, this function now returns json. Other data
-  return formats have been removed for simplicity. Get in
-  touch if you want them added back.
-
-  Queries for up to 100 articles at a time will be
-  supported soon.
+  Query for as many articles at a time as you like. Though
+  queries are broken up in to smaller bits of 30
+  identifiers at a time.
 
   If you supply both the days and months parameters, days
   takes precedence, and months is ignored.
@@ -80,7 +77,6 @@ out[["history"]] # get history summary data.frame
 alm(pmid=22590526)
 
 # A single PubMed Central ID (pmcid)
-alm(pmcid="pmc212692")
 alm(pmcid=212692, info='summary')
 
 # A single Mendeley UUID (mdid)
@@ -90,12 +86,17 @@ alm(mdid="35791700-6d00-11df-a2b2-0026b95e3eb7")
 dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117',
 		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
 out <- alm(doi=dois)
-out[[1]][["totals"]] # get data for the first DOI, and just the totals
+out[[1]] # get data for the first DOI
+
+# Search for DOI's, then feed into alm
+dois <- searchplos(terms='evolution', fields='id', limit = 30)
+out <- alm(doi=as.character(dois[,1]))
+lapply(out, head)
 
 # Provide more than one pmid
 pmids <- c(19300479, 19390606, 19343216)
-out <- alm(pmid=pmids, info="detail")
-out[[3]][["totals"]] # get data for the third pmid, and just the totals
+out <- alm(pmid=pmids)
+out[[3]] # get data for the third pmid
 
 # Getting just summary data
 alm(doi='10.1371/journal.pone.0039395', info='summary')

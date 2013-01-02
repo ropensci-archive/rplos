@@ -22,12 +22,9 @@
 #'  the returned value in here (avoids unnecessary footprint)
 #' @seealso \code{\link{almplot}}
 #' @details You can only supply one of the parmeters doi, pmid, pmcid, and mdid.
-#' 	
-#' 		By default, this function now returns json. Other data return 
-#' 		formats have been removed for simplicity. Get in touch if you want them 
-#' 		added back. 
-#' 		
-#' 		Queries for up to 100 articles at a time will be supported soon. 
+#' 
+#' 		Query for as many articles at a time as you like. Though queries are broken
+#' 		up in to smaller bits of 30 identifiers at a time.  
 #' 		
 #' 		If you supply both the days and months parameters, days takes precedence,
 #' 		and months is ignored. 		
@@ -46,7 +43,6 @@
 #' alm(pmid=22590526)
 #' 
 #' # A single PubMed Central ID (pmcid)
-#' alm(pmcid="pmc212692")
 #' alm(pmcid=212692, info='summary')
 #' 
 #' # A single Mendeley UUID (mdid)
@@ -56,12 +52,17 @@
 #' dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117',
 #' 		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
 #' out <- alm(doi=dois)
-#' out[[1]][["totals"]] # get data for the first DOI, and just the totals
+#' out[[1]] # get data for the first DOI
+#' 
+#' # Search for DOI's, then feed into alm
+#' dois <- searchplos(terms='evolution', fields='id', limit = 30)
+#' out <- alm(doi=as.character(dois[,1]))
+#' lapply(out, head)
 #' 
 #' # Provide more than one pmid
 #' pmids <- c(19300479, 19390606, 19343216)
-#' out <- alm(pmid=pmids, info="detail")
-#' out[[3]][["totals"]] # get data for the third pmid, and just the totals
+#' out <- alm(pmid=pmids)
+#' out[[3]] # get data for the third pmid
 #' 
 #' # Getting just summary data
 #' alm(doi='10.1371/journal.pone.0039395', info='summary')
@@ -71,13 +72,16 @@
 #' }
 #' @export
 alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL, 
-	info = 'totals', months = NULL, days = NULL, key = NULL, 
-	url = 'http://alm.plos.org/api/v3/articles', curl = getCurlHandle())
+								info = "totals", months = NULL, days = NULL, key = NULL, 
+								url = 'http://alm.plos.org/api/v3/articles', curl = getCurlHandle())
 {
 	if(!info %in% c("summary","totals","history","detail")) {
 		stop("info must be one of summary, totals, history, or detail")
 	}
+	if(!is.null(doi))
+		doi <- doi[!grepl("image", doi)] # remove any DOIs of images
 	id <- compact(list(doi=doi, pmid=pmid, pmcid=pmcid, mendeley=mdid))
+	
 	if(length(id)>1){ stop("Only supply one of: doi, pmid, pmcid, mdid") } else { NULL }
 	key <- getkey(key)
 	doit <- function() {
@@ -95,16 +99,16 @@ alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 				if(info=="summary"){ttt<-tt} else{ttt <- tt[[1]]$article$sources}
 			} else
 				if(length(id[[1]])>1){
-					if(length(id[[1]])>100){
+					if(length(id[[1]])>30){
 						slice <- function(x, n) split(x, as.integer((seq_along(x) - 1) / n))
-						idsplit <- slice(id, 100)
+						idsplit <- slice(id[[1]], 30)
 						repeatit <- function(y) {
 							if(names(id) == "doi"){ 
 								id2 <- paste(sapply(y, function(x) gsub("/", "%2F", x)), collapse=",")
 							} else
-								{
-									id2 <- paste(id[[1]], collapse=",")
-								}
+							{
+								id2 <- paste(id[[1]], collapse=",")
+							}
 							args2 <- c(args, ids = id2)
 							out <- getForm(url, .params = args2, curl = curl)
 							tt <- fromJSON(out)
@@ -113,14 +117,14 @@ alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 							}
 						}
 						temp <- lapply(idsplit, repeatit)
-						ttt <- unlist(temp, recursive=T, use.names=F)
+						ttt <- do.call(c, temp)
 					} else {
 						if(names(id) == "doi") {
 							id2 <- paste(sapply(id, function(x) gsub("/", "%2F", x)), collapse=",")
 						} else
-							{
-								id2 <- paste(id[[1]], collapse=",")
-							}
+						{
+							id2 <- paste(id[[1]], collapse=",")
+						}
 						args2 <- c(args, ids = id2)
 						out <- getForm(url, .params = args2, curl = curl)
 						tt <- fromJSON(out)
@@ -138,25 +142,25 @@ alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 					names(totals) <- servs
 					ldply(totals, function(x) as.data.frame(x))
 				} else
-					{
-						servs <- sapply(data_, function(x) x$source$name)
-						totals <- lapply(data_, function(x) x$source$metrics[!sapply(x$source$metrics, is.null)])
-						names(totals) <- servs
-						totalsdf <- ldply(totals, function(x) as.data.frame(x))
-							
-						hist <- lapply(data_, function(x) x$source$histories)
-						gethist <- function(y) {
-							dates <- sapply(y, function(x) str_split(x[[1]], "T")[[1]][[1]])
-							totals <- sapply(y, function(x) x[[2]])
-							data.frame(dates=dates, totals=totals)	
-						}
-						histdfs <- lapply(hist, gethist)
-						names(histdfs) <- servs
-						historydf <- ldply(histdfs)
-						if(y == "history"){ historydf } else
-							if(y == "detail"){ list(totals = totalsdf, history = historydf) } else
-								stop("info must be one of history or detail")
+				{
+					servs <- sapply(data_, function(x) x$source$name)
+					totals <- lapply(data_, function(x) x$source$metrics[!sapply(x$source$metrics, is.null)])
+					names(totals) <- servs
+					totalsdf <- ldply(totals, function(x) as.data.frame(x))
+					
+					hist <- lapply(data_, function(x) x$source$histories)
+					gethist <- function(y) {
+						dates <- sapply(y, function(x) str_split(x[[1]], "T")[[1]][[1]])
+						totals <- sapply(y, function(x) x[[2]])
+						data.frame(dates=dates, totals=totals)	
 					}
+					histdfs <- lapply(hist, gethist)
+					names(histdfs) <- servs
+					historydf <- ldply(histdfs)
+					if(y == "history"){ historydf } else
+						if(y == "detail"){ list(totals = totalsdf, history = historydf) } else
+							stop("info must be one of history or detail")
+				}
 			}
 			if(length(id[[1]])>1){ lapply(ttt, getdata, y=info) } else { getdata(ttt, y=info) }
 		}
