@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>plosabstract. rplos 0.0-7</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">rplos 0.0-7</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Search PLoS Journals abstracts.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='plosabstract.html'>plosabstract</a></span><span class="keyword">(</span><span class="argument">terms</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">fields</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">limit</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">url</span> <span class="argument">=</span> <span class="string">"http://api.plos.org/search"</span><span class="keyword">,</span>
+  <span class="argument">key</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/options'>getOption</a></span><span class="keyword">(</span><span class="string">"PlosApiKey"</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/stop'>stop</a></span><span class="keyword">(</span><span class="string">"need an API key for PLoS Journals"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>terms</dt>
+      <dd>search terms for article abstract
+  (character)</dd>
+      <dt>fields</dt>
+      <dd>fields to return from search (character)
+  [e.g., 'id,title'], any combination of search fields [see
+  plosfields$field]</dd>
+      <dt>limit</dt>
+      <dd>number of results to return (integer)</dd>
+      <dt>url</dt>
+      <dd>the PLoS API url for the function (should be
+  left to default)</dd>
+      <dt>key</dt>
+      <dd>your PLoS API key, either enter, or loads from
+  .Rprofile</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>Abstract content, in addition to any other fields
+  requested in a data.frame.</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Search PLoS Journals abstracts.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='plosabstract.html'>plosabstract</a></span><span class="keyword">(</span><span class="argument">terms</span> <span class="argument">=</span> <span class="string">'drosophila'</span><span class="keyword">,</span> <span class="argument">fields</span><span class="argument">=</span><span class="string">'abstract'</span><span class="keyword">,</span> <span class="argument">limit</span><span class="argument">=</span><span class="number">10</span><span class="keyword">)</span></div>
+<div class='output'>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             abstract
+1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      \n        A review of Michael Ashburner's book \n\t\t\t\t\tWon for All: How the Drosophila \n\t\t\t\t\tGenome Was Sequenced.\n\t\t\t\t\n      
+2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   \n        Inspired by an undergraduate science project in Drosophila genetics published in PLoS Biology, high school students investigate a model of Alzheimer's Disease.\n      
+3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Background: The Drosophila C virus (DCV) is a common and well-studied Drosophila pathogen. Although natural infections are known from Drosophila melanogaster and D. simulans, and artificial infections have been reported from several Drosophila species and other insects, it remains unclear to date whether DCV infections also occur naturally in other Drosophila species. Methods/Principal Findings: Using reverse transcription PCR, we detected natural infections in six Drosophila species, which have not been previously known as natural hosts. By subsequent Sanger sequencing we compared DCV haplotypes among eight Drosophila host species. Our data suggest that cross-infections might be frequent both within and among species within the laboratory environment. Moreover, we find that some lines exhibit multiple infections with distinct DCV haplotypes. Conclusions: Our results suggest that the natural host range of DCV is much broader than previously assumed and that cross-infections might be a common phenomenon in the laboratory, even among different Drosophila hosts. 
+4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        \n        Experimentally manipulating the resource environment of Drosophila serrata reveals that mating preferences can evolve, at least in part, as a result of environmentally-based divergent natural selection.\n      
+5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      \nHigh resolution MRI of live Drosophila was performed at 18.8 Tesla, with a field of view less than 5 mm, and administration of manganese or gadolinium-based contrast agents. This study demonstrates the feasibility of MR methods for imaging the fruit fly Drosophila with an NMR spectrometer, at a resolution relevant for undertaking future studies of the Drosophila brain and other organs. The fruit fly has long been a principal model organism for elucidating biology and disease, but without capabilities like those of MRI. This feasibility marks progress toward the development of new in vivo research approaches in Drosophila without the requirement for light transparency or destructive assays.\n
+6                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              \nThis new primer, which discusses a study by Zhang et al., provides an overview of the process by which chromosomes achieve dose compensation and the mechanisms underlying this phenomenon in Drosophila S2 cells.\n
+7                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 \nThis primer discusses a study from Bradley et al. in which changes in transcription factor binding between two Drosophila species are revealed by chromatin immunoprecipitation and high-throughput sequencing.\n
+8                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       \n        The Wuerzburg Hybridoma Library against the Drosophila\nbrain represents a collection of around 200 monoclonal antibodies that bind\nto specific structures in the Drosophila brain. Here we describe\nthe immunohistochemical staining patterns, the Western blot signals of one-\nand two-dimensional electrophoretic separation, and the mass spectrometric\ncharacterization of the target protein candidates recognized by the monoclonal\nantibodies aa2 and ab52 from the library. Analysis of a mutant of a candidate\ngene identified the Drosophila homolog of the Epidermal growth\nfactor receptor Pathway Substrate clone 15 (Eps15) as the antigen for these\ntwo antibodies.\n      
+9                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               The frequency of adaptive evolution acting on common loci in distant lineages remains an outstanding question in evolutionary biology. We asked whether the immunity factor, Relish, a gene with a history of directional selection in Drosophila simulans, shows evidence of a similar selective history in other Drosophila species. We found only weak evidence of recurrent adaptive protein evolution at the Relish locus in three sister species pairs, suggesting that this key component of the insect immune system has an idiosyncratic evolutionary history in Drosophila.
+10 \n        Factors and mechanisms controlling lipometabolism homeostasis share a remarkable evolutionary conservation between humans and Drosophila flies. Accordingly, the Drosophila model has been successfully used to understand the pathophysiology of human metabolic diseases such as obesity. Body fat stores in species as different as humans and flies consist of neutral lipids, mainly triacylglycerols. Changes in body fat storage are a diagnostic phenotype of lipometabolism imbalances of genetic or environmental origin. Various methods have been developed to quantify Drosophila body fat storage. The most widely used method adopts a commercial coupled colorimetric assay designed for human serum triacylglycerol quantification, which is based on glycerol content determination after enzymatic conversion of glycerides into glycerol. The coupled colorimetric assay is compatible with large-scale genetic screen approaches and has been successfully applied to characterize central regulators of Drosophila lipometabolism. Recently, the applicability of the coupled colorimetric assay for Drosophila storage fat quantification has been questioned in principle. Here we compare the performance of the coupled colorimetric assay on Drosophila samples with thin layer chromatography, the “gold standard” in storage lipid analysis. Our data show that the presented variant of the coupled colorimetric assay reliably discriminates between lean and fat flies and allows robust, quick and cost-effective quantification of Drosophila body fat stores.\n      
+</div>
+<div class='input'><span class="functioncall"><a href='plosabstract.html'>plosabstract</a></span><span class="keyword">(</span><span class="argument">terms</span> <span class="argument">=</span> <span class="string">'drosophila'</span><span class="keyword">,</span> <span class="argument">fields</span><span class="argument">=</span><span class="string">'author'</span><span class="keyword">,</span> <span class="argument">limit</span> <span class="argument">=</span> <span class="number">5</span><span class="keyword">)</span></div>
+<div class='output'>                                                                                                                       author
+1                                                                                                                John Sulston
+2 Faiza Siyad, Jodianne Griffiths, Faira Janjua, Elizabeth Jackson, Ian Rodrigues, Fiona Kerr, Daniel Mackay, Simon Lovestone
+3                                                              Martin Kapun, Viola Nolte, Thomas Flatt, Christian Schlötterer
+4                                                                                                                          na
+5                                                        Brian Null, Corey W Liu, Maj Hedehus, Steven Conolly, Ronald W Davis
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>plosabstract</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

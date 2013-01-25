@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>plosfigtabcaps. rplos 0.0-7</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">rplos 0.0-7</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Search PLoS Journals figure and table captions.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='plosfigtabcaps.html'>plosfigtabcaps</a></span><span class="keyword">(</span><span class="symbol">terms</span><span class="keyword">,</span> <span class="argument">fields</span> <span class="argument">=</span> <span class="number">NA</span><span class="keyword">,</span> <span class="argument">limit</span> <span class="argument">=</span> <span class="number">NA</span><span class="keyword">,</span> <span class="argument">url</span> <span class="argument">=</span> <span class="string">"http://api.plos.org/search"</span><span class="keyword">,</span>
+  <span class="argument">key</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/options'>getOption</a></span><span class="keyword">(</span><span class="string">"PlosApiKey"</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/stop'>stop</a></span><span class="keyword">(</span><span class="string">"need an API key for PLoS Journals"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">,</span>
+      <span class="argument">curl</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/RCurl/getCurlHandle'>getCurlHandle</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>terms</dt>
+      <dd>search terms</dd>
+      <dt>fields</dt>
+      <dd>fields to return from search (character)
+  [e.g., 'id,title'], any combination of search fields [see
+  plosfields$field]</dd>
+      <dt>limit</dt>
+      <dd>number of results to return (integer)</dd>
+      <dt>url</dt>
+      <dd>the PLoS API url for the function (should be
+  left to default)</dd>
+      <dt>key</dt>
+      <dd>your PLoS API key, either enter, or loads from
+  .Rprofile</dd>
+      <dt>...</dt>
+      <dd>optional additional curl options (debugging
+  tools mostly)</dd>
+      <dt>curl</dt>
+      <dd>If using in a loop, call getCurlHandle()
+  first and pass the returned value in here (avoids
+  unnecessary footprint)</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>Fields that you specify to return in a data.frame, along
+  with the DOI's found.</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Search PLoS Journals figure and table captions.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='plosfigtabcaps.html'>plosfigtabcaps</a></span><span class="keyword">(</span><span class="string">'ecology'</span><span class="keyword">,</span> <span class="string">'id'</span><span class="keyword">,</span> <span class="number">500</span><span class="keyword">)</span></div>
+<div class='output'>                              id
+1   10.1371/journal.pbio.0040449
+2   10.1371/journal.pntd.0001603
+3   10.1371/journal.pbio.1000485
+4   10.1371/journal.pone.0048274
+5   10.1371/journal.pbio.1001055
+6   10.1371/journal.pbio.0060127
+7   10.1371/journal.pbio.1000398
+8   10.1371/journal.pone.0054689
+9   10.1371/journal.pone.0035126
+10  10.1371/journal.pone.0051080
+11  10.1371/journal.pone.0017342
+12  10.1371/journal.pbio.0050120
+13  10.1371/journal.pone.0041337
+14  10.1371/journal.pone.0045062
+15  10.1371/journal.pbio.0000073
+16  10.1371/journal.pone.0005214
+17  10.1371/journal.pone.0033938
+18  10.1371/journal.pbio.0040279
+19  10.1371/journal.pone.0020239
+20  10.1371/journal.ppat.1002796
+21  10.1371/journal.pone.0000563
+22  10.1371/journal.pone.0030991
+23  10.1371/journal.pone.0014355
+24  10.1371/journal.pone.0005451
+25  10.1371/journal.pone.0021710
+26  10.1371/journal.pone.0028465
+27  10.1371/journal.pone.0000176
+28  10.1371/journal.pmed.1000403
+29  10.1371/journal.pone.0001248
+30  10.1371/journal.pone.0013382
+31  10.1371/journal.pbio.0030219
+32  10.1371/journal.pone.0009126
+33  10.1371/journal.pone.0023002
+34  10.1371/journal.pmed.1001260
+35  10.1371/journal.pbio.0050289
+36  10.1371/journal.pbio.1000528
+37  10.1371/journal.pntd.0000483
+38  10.1371/journal.pone.0045814
+39  10.1371/journal.pone.0038437
+40  10.1371/journal.pone.0023080
+41  10.1371/journal.pone.0036290
+42  10.1371/journal.pone.0054023
+43  10.1371/journal.pone.0025845
+44  10.1371/journal.pone.0015659
+45  10.1371/journal.pone.0053139
+46  10.1371/journal.pone.0027392
+47  10.1371/journal.pone.0046418
+48  10.1371/journal.pone.0004246
+49  10.1371/journal.pone.0024192
+50  10.1371/journal.pone.0017134
+51  10.1371/journal.pone.0040482
+52  10.1371/journal.pone.0049939
+53  10.1371/journal.pone.0028920
+54  10.1371/journal.pntd.0000599
+55  10.1371/journal.pbio.1000330
+56  10.1371/journal.pbio.0060325
+57  10.1371/journal.pone.0003202
+58  10.1371/journal.pntd.0000300
+59  10.1371/journal.pone.0003979
+60  10.1371/journal.pone.0030213
+61  10.1371/journal.pone.0019231
+62  10.1371/journal.pone.0049552
+63  10.1371/journal.pone.0051885
+64  10.1371/journal.pone.0042950
+65  10.1371/journal.pbio.0060300
+66  10.1371/journal.pone.0049176
+67  10.1371/journal.pone.0034170
+68  10.1371/journal.pone.0036738
+69  10.1371/journal.pone.0029295
+70  10.1371/journal.pone.0048131
+71  10.1371/journal.pntd.0000836
+72  10.1371/journal.pmed.1000190
+73  10.1371/journal.pone.0044354
+74  10.1371/journal.pntd.0001605
+75  10.1371/journal.pone.0044199
+76  10.1371/journal.pone.0009860
+77  10.1371/journal.pone.0001193
+78  10.1371/journal.pone.0047598
+79  10.1371/journal.pone.0054323
+80  10.1371/journal.pone.0023533
+81  10.1371/journal.pone.0013913
+82  10.1371/journal.pone.0053143
+83  10.1371/journal.pbio.1001049
+84  10.1371/journal.pone.0027523
+85  10.1371/journal.pone.0008594
+86  10.1371/journal.pone.0025248
+87  10.1371/journal.pbio.1001437
+88  10.1371/journal.pntd.0001793
+89  10.1371/journal.pbio.0040277
+90  10.1371/journal.pone.0023254
+91  10.1371/journal.pone.0034896
+92  10.1371/journal.pone.0042764
+93  10.1371/journal.pone.0049465
+94  10.1371/journal.pone.0012553
+95  10.1371/journal.pone.0047675
+96  10.1371/journal.pone.0050096
+97  10.1371/journal.ppat.1000905
+98  10.1371/journal.pone.0022376
+99  10.1371/journal.pone.0040447
+100 10.1371/journal.pone.0016821
+101 10.1371/journal.pone.0021885
+102 10.1371/journal.pone.0000005
+103 10.1371/journal.ppat.1000600
+104 10.1371/journal.pone.0038970
+105 10.1371/journal.pbio.1001248
+106 10.1371/journal.pone.0044458
+107 10.1371/journal.pone.0053218
+108 10.1371/journal.pone.0039690
+109 10.1371/journal.pntd.0001678
+110 10.1371/journal.pone.0041809
+111 10.1371/journal.pone.0023273
+112 10.1371/journal.pcbi.1000494
+113 10.1371/journal.pone.0016863
+114 10.1371/journal.pone.0040791
+115 10.1371/journal.pone.0029329
+116 10.1371/journal.pntd.0000620
+117 10.1371/journal.pone.0052609
+118 10.1371/journal.pntd.0000202
+119 10.1371/journal.pone.0019535
+120 10.1371/journal.pone.0028807
+121 10.1371/journal.pntd.0001304
+122 10.1371/journal.pone.0001745
+123 10.1371/journal.pone.0006731
+124 10.1371/journal.pone.0033257
+125 10.1371/journal.pone.0000454
+126 10.1371/journal.pone.0030901
+127 10.1371/journal.pone.0036269
+128 10.1371/journal.pntd.0000585
+129 10.1371/journal.pone.0007843
+130 10.1371/journal.pone.0001683
+131 10.1371/journal.ppat.1002219
+132 10.1371/journal.pone.0030463
+133 10.1371/journal.pone.0016662
+134 10.1371/journal.pbio.0040129
+135 10.1371/journal.pone.0016558
+136 10.1371/journal.ppat.0030007
+137 10.1371/journal.pmed.1000424
+138 10.1371/journal.pone.0042225
+139 10.1371/journal.pone.0011698
+140 10.1371/journal.pone.0046758
+141 10.1371/journal.pone.0032819
+142 10.1371/journal.pone.0041270
+143 10.1371/journal.pntd.0001015
+144 10.1371/journal.pone.0013159
+145 10.1371/journal.pone.0053200
+146 10.1371/journal.pone.0001341
+147 10.1371/journal.pone.0022977
+148 10.1371/journal.pbio.1001377
+149 10.1371/journal.pcbi.0010018
+150 10.1371/journal.pone.0006408
+151 10.1371/journal.pone.0050969
+152 10.1371/journal.pone.0043866
+153 10.1371/journal.pbio.1001456
+154 10.1371/journal.pone.0043843
+155 10.1371/journal.pone.0032648
+156 10.1371/journal.pone.0016143
+157 10.1371/journal.pcbi.1002808
+158 10.1371/journal.pcbi.1002779
+159 10.1371/journal.pone.0047268
+160 10.1371/journal.pone.0045334
+161 10.1371/journal.pone.0048010
+162 10.1371/journal.pone.0026995
+163 10.1371/journal.pbio.1000531
+164 10.1371/journal.pone.0043384
+165 10.1371/journal.pone.0001017
+166 10.1371/journal.pone.0045447
+167 10.1371/journal.pone.0010114
+168 10.1371/journal.pone.0014738
+169 10.1371/journal.pcbi.1000690
+170 10.1371/journal.pone.0035964
+171 10.1371/journal.pone.0024465
+172 10.1371/journal.pone.0029152
+173 10.1371/journal.pone.0045230
+174 10.1371/journal.pmed.1001354
+175 10.1371/journal.pone.0046049
+176 10.1371/journal.pcbi.1002627
+177 10.1371/journal.pone.0031374
+178 10.1371/journal.pone.0019688
+179 10.1371/journal.pone.0049369
+180 10.1371/journal.pone.0054086
+181 10.1371/journal.pone.0020278
+182 10.1371/journal.pone.0031946
+183 10.1371/journal.pone.0050600
+184 10.1371/journal.pone.0048358
+185 10.1371/journal.pone.0013206
+186 10.1371/journal.pone.0029432
+187 10.1371/journal.pone.0015437
+188 10.1371/journal.pone.0013670
+189 10.1371/journal.pone.0025270
+190 10.1371/journal.pone.0018209
+191 10.1371/journal.pone.0006362
+192 10.1371/journal.pone.0032202
+193 10.1371/journal.pone.0051529
+194 10.1371/journal.pone.0036730
+195 10.1371/journal.pntd.0001207
+196 10.1371/journal.pone.0048882
+197 10.1371/journal.pone.0002034
+198 10.1371/journal.pone.0013666
+199 10.1371/journal.pone.0002777
+200 10.1371/journal.pone.0014424
+201 10.1371/journal.pone.0019254
+202 10.1371/journal.pone.0009941
+203 10.1371/journal.pone.0038105
+204 10.1371/journal.pone.0024107
+205 10.1371/journal.pone.0022199
+206 10.1371/journal.pone.0007610
+207 10.1371/journal.pone.0005317
+208 10.1371/journal.pone.0024166
+209 10.1371/journal.pone.0000521
+210 10.1371/journal.pone.0050346
+211 10.1371/journal.pntd.0001465
+212 10.1371/journal.pbio.1001184
+213 10.1371/journal.pone.0032748
+214 10.1371/journal.pone.0049218
+215 10.1371/journal.pone.0042309
+216 10.1371/journal.pone.0046873
+217 10.1371/journal.pone.0042049
+218 10.1371/journal.pone.0036580
+219 10.1371/journal.pone.0041315
+220 10.1371/journal.pbio.0020340
+221 10.1371/journal.pgen.1002256
+222 10.1371/journal.pone.0039333
+223 10.1371/journal.pbio.1001332
+224 10.1371/journal.pone.0053396
+225 10.1371/journal.pmed.0040229
+226 10.1371/journal.pone.0044271
+227 10.1371/journal.pone.0053763
+228 10.1371/journal.pone.0034867
+229 10.1371/journal.pone.0048812
+230 10.1371/journal.pone.0025460
+231 10.1371/journal.pgen.1002274
+232 10.1371/journal.pone.0011197
+233 10.1371/journal.pone.0000357
+234 10.1371/journal.pone.0042869
+235 10.1371/journal.pone.0009569
+236 10.1371/journal.pone.0024570
+237 10.1371/journal.pone.0045482
+238 10.1371/journal.pone.0047689
+239 10.1371/journal.pone.0028239
+240 10.1371/journal.pone.0011573
+241 10.1371/journal.pone.0013088
+242 10.1371/journal.pone.0010598
+243 10.1371/journal.pcbi.1002723
+244 10.1371/journal.pone.0006372
+245 10.1371/journal.pgen.1001314
+246 10.1371/journal.pone.0051332
+247 10.1371/journal.pcbi.1002835
+248 10.1371/journal.pone.0016859
+249 10.1371/journal.pone.0024113
+250 10.1371/journal.pone.0026665
+251 10.1371/journal.pone.0000740
+252 10.1371/journal.pone.0014645
+253 10.1371/journal.pone.0031480
+254 10.1371/journal.pone.0031183
+255 10.1371/journal.pone.0046972
+256 10.1371/journal.pone.0011842
+257 10.1371/journal.pgen.0020209
+258 10.1371/journal.pone.0041010
+259 10.1371/journal.pone.0035729
+260 10.1371/journal.pgen.1002983
+261 10.1371/journal.pone.0000224
+262 10.1371/journal.pone.0035053
+263 10.1371/journal.pone.0040562
+</div>
+<div class='input'><span class="functioncall"><a href='plosfigtabcaps.html'>plosfigtabcaps</a></span><span class="keyword">(</span><span class="string">'ecology'</span><span class="keyword">,</span> <span class="string">'figure_table_caption'</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">)</span></div>
+<div class='output'>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 figure_table_caption
+1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              The rapid evolution of African cichlid fish driven by strong divergent selection is revealed in a gene that influences both ecological adaptation and mate choice, in keeping with ecological by-product speciation.  
+2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              Social-ecological approach to research on social and environmental determinants and health promotion in helminthiasis control.  Source: based on [22].  , Existing Knowledge and Research Needs in the Social Ecology, Environmental Assessment, and Control of Helminth Infections.  
+3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Location of 42 source sites, embedded within the larger tiger conservation landscapes (TCLs), areas that encompass the ecological habitats suitable for tigers.  
+4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Ecological model of change as applied to health and educational outcomes of pads intervention.  , Participant flow chart.  , Percentage change in attendance by group over time.  , Percentage attendance across sites over time.  
+5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          Piersma T, van Gils JA (2010) The Flexible Phenotype: A Body-Centred\n                        Integration of Ecology, Physiology, and Behaviour. New York: Oxford\n                        University Press. 248 p. ISBN 978-0199233724 (hardcover).\n                        US$117.00.  
+6                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       Courchamp F; Berec L; Gascoigne J (2008). Allee Effects in Ecology and Conservation. Oxford University Press: New York. 256p. ISBN-13 (hardcover): 978-0521872843 US$90.00.  
+7                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Blackburn TM, Lockwood JL, Cassey P (2009) Avian Invasions: The Ecology and Evolution of Exotic Birds. New York: Oxford University Press. 320p. ISBN (paperback): 978-0-19-923255-0. US$55.00.  
+8  Percent area of ecological systems in relation to elevation, soil productivity, and protection status.  Protection status designations include lands managed to maintain biodiversity (A), lands managed for multiple-use (B), and lands that have no permanent protection (C). See Table 1 for protection status descriptions. Percent area of ecological systems determined by combining data for elevation (meters) and soil productivity (http://soils.usda.gov/technical/handbook) with ecological systems grouped by protection status [23], [24], [60].  , Percent protected and available for each Level I land cover group by protection status.  Lands managed to maintain biodiversity (diamonds) are shown relative to lands managed to maintain biodiversity and for multiple-use (squares). See Table 1 for protection status descriptions. A comparison index line is shown, which indicates a 1∶1 relation between percent availability and percent protected [61]. A value below the 1∶1 line represents a Level I land cover group under-represented in the protected areas network, a value above represents a Level I land cover group well represented in the protected areas network, while a value on the line indicates a Level I land cover group available and protected equally [61]. For example, grassland, a Level I land cover group, has about 4% of its area managed to maintain biodiversity, but that increased to about 17% when lands managed for multiple-use were included [23], [24]. A dashed line representing the 17% Aichi Biodiversity Target of the Convention on Biological Diversity is shown [36].  , Percent area of Level II land cover groups by protection status.  The Level II land cover groups are arranged by Level I land cover groups (see Table S1) [23]. Percent area for both lands managed to maintain biodiversity and lands managed for multiple-use are shown [24]. See Table 1 for protection status descriptions. A dashed line representing the 17% Aichi Biodiversity Target of the Convention on Biological Diversity is shown [36].  , Percent area of ecological systems by protection status.  Protection status designations are lands managed to maintain biodiversity (A) and lands managed to maintain biodiversity and multiple-use (B) for the continental US. Percent area is based on the area of each ecological system within each protection status divided by the total area of each ecological system [23], [24]. See Table 1 for protection status descriptions. Only non-modified, non-aquatic ecological systems were included (n = 518; Table S1).  , Area (ha) of Level I land cover groups by ownership and protection status.  Ownership includes federal, state, and local governments as well as private conservation lands. See Table 1 for protection status descriptions. These values were for the continental US. Both BLM and USFS have areas of Level I land cover groups that fall outside the scale on this graph [23], [24]. Values for those Level I land cover groups are shown.  , Redundancy, diversity, and uniqueness of ecological systems within Landscape Conservation Cooperatives (LCC).  Redundancy measures the number of LCC’s in which a single ecological system occurs (A) [23]. The higher the number of LCC’s in which an ecological systems occurs the more redundancy displayed by that ecological system. For example, if an ecological system occurs in 2 LCCs, it has a redundancy value of 2. Diversity is the total number of ecological systems occurring with an LCC, which is shown by color shading of LCCs (B). Uniqueness is the number of ecological systems that occur in a single LCC, which is indicated by the number within each LCC (B). For example, the Great Northern LCC encompasses 126–150 ecological systems total, most of these occur in a total of 7 or 8 LCCs, but 3 are unique and only found in this LCC. Only non-modified, non-aquatic ecological systems were included (n = 518; Table S1). Each LCC is assigned a letter, which indicates the name of the LCC.  , Number of ecological systems occurring only within each protection status by Landscape Conservation Cooperative (LCC).  Ecological systems included occur only within the specified protection status [23], [24]. The total number of ecological systems within each LCC is shown parenthetically. For example, the Great Plains LCC contains 102 ecological systems with 18 occurring only on lands with no permanent protection and none occurring on lands managed to maintain biodiversity or for multiple-use. See Table 1 for protection status descriptions. Only non-modified, non-aquatic ecological systems are included (n = 518; Table S1).  , Percent area of Landscape Conservation Cooperative (LCC) protected or converted and its conversion risk index (CRI).  CRI for each LCC is calculated by dividing percent area converted by percent area protected [62]. The CRI index is shown for lands managed to maintain biodiversity (i.e., labeled maintain biodiversity) as well as for lands managed to maintain biodiversity and multiple-use (i.e., labeled multiple-use) [23]. The LCCs are ordered by percent area within each protection status. See Table 1 for protection status descriptions. A dashed line representing the 17% Aichi Biodiversity Target of the Convention on Biological Diversity is shown [36].  , Description of protection status categories in the Protected Areas Database for US [24].  , Total number and unique number of ecological systems as well as percent area of ecological systems on lands managed to maintain biodiversity and for multiple-use within each Landscape Conservation Cooperative (LCC) in the continental US.  
+9                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               Hydroelectric dams of the Andean Amazon.  Dams sorted by status (existing and planned) and size (2–99 MW, 100–999 MW, and ≥1,000 MW capacity).  , Results of ecological analysis.  (A) Results for tributaries originating in the Colombian, Ecuadorian, and northern Peruvian Andes. (B) Results for tributaries originating in the Bolivian and southern Peruvian Andes.  , Summary of existing and planned dams in the Andean Amazon by country and river basin.  , Summary of estimated ecological impact and potential energy capacity from low and moderate impact dams in relation to projected 2020 demand.  
+10                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             A social ecological model of willingness to participate in HIV vaccine trials among MSM in Chennai and Mumbai, India (n = 82).  Note: CBO = community-based organization MSM = men who have sex with men.  , Sociodemographic characteristics of study participants (n = 82).  , Multi-level factors associated with willingness to participate in HIV vaccine trials manifested across the social ecology of MSM in India (n = 82).  
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>plosfigtabcaps</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

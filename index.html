@@ -2,176 +2,392 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>rplos 0.0-6</title>
+    <title>rplos from ropensci</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Scott Chamberlain, Carl Boettiger">
-
-    <!-- Le styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <style>
-      body {padding-top: 60px;}
-      h2 {padding-top: 20px}
-    </style>
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="css/highlight.css" rel="stylesheet">
-    <link href="css/staticdocs.css" rel="stylesheet">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
+    <meta name="description" content="rplos -- R wrapper for the PLoS Journals API">
+    <meta name="author" content="Scott Chamberlain">
+    <script src="http://use.edgefonts.net/source-code-pro.js"></script>
+    <script src="http://use.edgefonts.net/quattrocento-sans.js"></script>
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles/github.css">
+    <script src="assets/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    </head>
 
   <body>
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class = "container">
-          <a class="brand" href="index.html">rplos 0.0-6</a>
-        </div>
+  <div class="span11 offset1">
+  <div class="row">
+  <br><br>
+   <h1>rplos, v0.0.7</h1>
+  </div>
+
+  <div class"row"><a href="https://github.com/ropensci/rplos">rplos</a> is an R wrapper to the search and altmetrics APIs for PLoS Journals. Let us know of any issue <a href="https://github.com/ropensci/rplos/issues">on our issues page</a>.
+
+  <br><br>
+  <div>
+   <a href="https://github.com/ropensci/rplos/" style="color:#ffffff"> <button class="btn btn-success btn-large" style="display: block; width: 100%;"><i class="icon-white icon-download"></i>Download from GitHub</button></a>
+</div>
+
+  <hr class="soften">
+  </div>
+
+  <div class="row">
+ <div class="span3">
+        <div class="span3 bs-docs-sidebar">
+        <ul class="nav nav-list bs-docs-sidenav">
+          <li><a href="#about"><i class="icon-chevron-right"></i> About</a></li>
+          <li><a href="#installation"><i class="icon-chevron-right"></i> Installation</a></li>
+          <li><a href="#altmetrics1"><i class="icon-chevron-right"></i> Search and get altmetrics data</a></li>
+          <li><a href="#altmetrics2"><i class="icon-chevron-right"></i> Visualize PLoS altmetrics</a></li>
+          <li><a href="#almevents"><i class="icon-chevron-right"></i> Search altmetmrics details</a></li>
+          <li><a href="#crossref"><i class="icon-chevron-right"></i> Crossref searching</a></li>
+          <li><a href="#searchplos"><i class="icon-chevron-right"></i> Search plos - main fxn</a></li>
+          <li><a href="#plostitle"><i class="icon-chevron-right"></i> Search titles only</a></li>
+          <li><a href="#resultsthroughtime"><i class="icon-chevron-right"></i> Plot terms through time</a></li>
+          <li><a href="#plosword"><i class="icon-chevron-right"></i> Search on words</a></li>
+          <li><a href="#support"><i class="icon-chevron-right"></i> Support and Bugs</a></li>
+          <li><a href="#license"><i class="icon-chevron-right"></i> License</a></li>
+          <br><br>
+          <!-- <li><a href="functions.html"><i class="icon-chevron-right"></i> Function index</a></li> -->
+          <li><a href="help/index.html" style="color:#0000ff"><button class="btn btn-info btn" style="display: block; width: 70%;"><i class="icon-white icon-th-list"></i>Function index</button></a></li>
+     </ul>
       </div>
-    </div>
+ </div>
 
-    <div class="container">
-      <div class="hero-unit">
-        <h1>rplos 0.0-6</h1>
-        <p>A programmatic interface to the
-Web Service methods provided by the Public Library
-of Science journals.</p>
-      </div>
-      
-      <div class="row">
-        <div class="span8">
-          <h1><code>rplos</code></h1>
+ <div class="span8">
+  <section id="about">
 
-<p>You can get this package at CRAN here: <a href="http://cran.r-project.org/web/packages/rplos/">http://cran.r-project.org/web/packages/rplos/</a>. </p>
+ <h2>About the package</h2>
+  rplos is an R wrapper to the Public Library of Science search and ALM APIs.
+  <br><br>
+  You do not need any API keys :)
+  <br><br>
+  </section>
 
-<p>Another option to install is install_github within Hadley&#39;s devtools package.</p>
+  <br><br><br>
 
-<pre><code class="R">install.packages(&quot;devtools&quot;)
-require(devtools)
-install_github(&quot;rplos&quot;, &quot;rOpenSci&quot;)
-require(rplos)
+
+   <section id="installation">
+ <h2>Installing rplos</h2>
+A stable version is now available on <a href="http://cran.r-project.org/web/packages/rplos/">CRAN</a>. <br>
+   <pre><code lang="r"># Stable version from CRAN
+install.packages('rplos')
+library(rplos)</code></pre>
+
+
+<pre><code lang="r">
+# or install the development version from our GitHub repo.
+install.packages('devtools')
+library(devtools)
+install_github('rplos', 'ropensci', ref='almv3')
+library(rplos)</code></pre>
+
+  </section>
+
+  <br><br><br>
+
+    <section id="altmetrics1">
+   <h2>Altmetrics on PLoS papers - get em</h2>
+
+   <h3>Get total metrics across dates</h3>
+<pre><code lang="r">> alm(doi="10.1371/journal.pone.0029797")
+                .id shares total citations  pdf  html comments likes groups
+1         citeulike      1     1        NA   NA    NA       NA    NA     NA
+2          crossref     NA     4         4   NA    NA       NA    NA     NA
+3            nature     NA     4         4   NA    NA       NA    NA     NA
+4            pubmed     NA     0         0   NA    NA       NA    NA     NA
+5            scopus     NA     1         1   NA    NA       NA    NA     NA
+6           counter     NA 25603        NA 2113 23391       NA    NA     NA
+7  researchblogging     NA     1         1   NA    NA       NA    NA     NA
+8              biod     NA    19        NA    0     0       NA    NA     NA
+9               wos     NA     0         0   NA    NA       NA    NA     NA
+10              pmc     NA     0        NA    0     0       NA    NA     NA
+11         facebook      0   540        NA   NA    NA        0     0     NA
+12         mendeley      0    37        NA   NA    NA       NA    NA      0
+13          twitter     NA     8        NA   NA    NA        8    NA     NA
+14        wikipedia    169   208        39   NA    NA       NA    NA     NA
+15    scienceseeker     NA     0        NA   NA    NA       NA    NA     NA</code></pre>
+
+  <h3>Search for DOI's, then feed into alm</h3>
+<pre><code lang="r">> dois <- searchplos(terms='evolution', fields='id', limit = 3)
+> out <- alm(doi=as.character(dois[,1]))
+> lapply(out, head)
+[[1]]
+          .id citations total shares pdf html comments likes groups
+1   bloglines         0     0     NA  NA   NA       NA    NA     NA
+2   citeulike        NA    24     24  NA   NA       NA    NA     NA
+3    connotea        NA     6      6  NA   NA       NA    NA     NA
+4    crossref       163   163     NA  NA   NA       NA    NA     NA
+5      nature         0     0     NA  NA   NA       NA    NA     NA
+6 postgenomic        NA     1      1  NA   NA       NA    NA     NA
+
+[[2]]
+          .id citations total shares pdf html comments likes groups
+1   bloglines         0     0     NA  NA   NA       NA    NA     NA
+2   citeulike        NA     0      0  NA   NA       NA    NA     NA
+3    connotea        NA     0      0  NA   NA       NA    NA     NA
+4    crossref         0     0     NA  NA   NA       NA    NA     NA
+5      nature         0     0     NA  NA   NA       NA    NA     NA
+6 postgenomic        NA     0      0  NA   NA       NA    NA     NA
+
+[[3]]
+          .id citations total shares pdf html comments likes groups
+1   bloglines         0     0     NA  NA   NA       NA    NA     NA
+2   citeulike        NA     8      8  NA   NA       NA    NA     NA
+3    connotea        NA     7      7  NA   NA       NA    NA     NA
+4    crossref         8     8     NA  NA   NA       NA    NA     NA
+5      nature         0     0     NA  NA   NA       NA    NA     NA
+6 postgenomic        NA     9      9  NA   NA       NA    NA     NA</code></pre>
+  <br><br>
+
+  </section>
+
+  <br><br><br>
+
+   <section id="altmetrics2">
+   <h2>Altmetrics on PLoS papers - visualize em</h2>
+   
+   <h3>Get altmetrics data for a single paper, and visualize the total data across dates</h3>
+  <pre><code lang="r">> out <- alm(doi='10.1371/journal.pone.0001543', info='detail')
+> almplot(out, type='totalmetrics') # just totalmetrics data</code></pre>
+  
+  <br><br>
+  <img src="assets/img/altmetrics2_1.png" class="img-polaroid">
+  <br><br>
+
+  <h3>Get altmetrics data for a single paper, and visualize the data across dates</h3>
+<pre><code lang="r">almplot(dat=out, type='history') # just historical data</code></pre>
+  
+  <br><br>
+  <img src="assets/img/altmetrics2_2.png" class="img-polaroid">
+  <br><br>
+
+  </section>
+
+  <br><br><br>
+
+
+    <section id="almevents">
+     <h2>Retrieve PLoS article-level metrics (ALM) events (i.e., the details of what actually occurred to generate altmetrics).</h2>
+
+<pre><code lang="r">
+> out <- almevents(doi="10.1371/journal.pone.0029797")
+> out[["pmc"]] # get the results for PubMed Central
+   abstract cited-by figure full-text month pdf scanned-page-browse scanned-summary supp-data unique-ip year
+1         1        0      9        51     1   8                   0               0         0        42 2012
+2         0        0     11        15     2   4                   0               0         2        11 2012
+3         0        0      0        11     3   4                   0               0         0        12 2012
+4         1        0      0         6     4   2                   0               0         0         6 2012
+5         0        0      0         5     5   1                   0               0         0         5 2012
+6         0        0      2         7     6   2                   0               0         0         9 2012
+7         1        0      3         6     7   3                   0               0         0         8 2012
+8         1        0      0         5     8   0                   0               0         0         4 2012
+9         0        0      3        14     9   5                   0               0         0        13 2012
+10        1        0      1        20    10   4                   0               0         0        16 2012
+11        0        0      1        13    12   1                   0               0         0        12 2012
+12        1        0      0        10    11   1                   0               0         0         9 2012</code></pre>
+
+<br><br>
+<pre><code lang="r">> out[["twitter"]] # get the results for twitter (boo, there aren't any)
+[1] "sorry, no events content yet"</code></pre>
+<br><br>
+<pre><code lang="r">> out[c("scienceseeker","pmc")] # get the results for two sources
+$scienceseeker
+[1] "sorry, no events content yet"
+
+$pmc
+   abstract cited-by figure full-text month pdf scanned-page-browse scanned-summary supp-data unique-ip year
+1         1        0      9        51     1   8                   0               0         0        42 2012
+2         0        0     11        15     2   4                   0               0         2        11 2012
+3         0        0      0        11     3   4                   0               0         0        12 2012
+4         1        0      0         6     4   2                   0               0         0         6 2012
+5         0        0      0         5     5   1                   0               0         0         5 2012
+6         0        0      2         7     6   2                   0               0         0         9 2012
+7         1        0      3         6     7   3                   0               0         0         8 2012
+8         1        0      0         5     8   0                   0               0         0         4 2012
+9         0        0      3        14     9   5                   0               0         0        13 2012
+10        1        0      1        20    10   4                   0               0         0        16 2012
+11        0        0      1        13    12   1                   0               0         0        12 2012
+12        1        0      0        10    11   1                   0               0         0         9 2012
+</code></pre>
+  </section>
+
+  <br><br><br>
+
+    <section id="crossref">
+
+ <h2>Lookup article info via CrossRef with DOI.</h2>
+
+<pre><code lang="r">
+> crossref(doi="10.1371/journal.pone.0042793")
+Calvo R, Zheng Y, Kumar S, Olgiati A, Berkman L and Mock N (2012). “Well-Being and Social Capital on
+Planet Earth: Cross-National Evidence from 142 Countries.” _PLoS ONE_, *7*. <URL:
+http://dx.doi.org/10.1371/journal.pone.0042793>.</code></pre>
+<br><br>
+<pre><code lang="r">> print(crossref("10.3998/3336451.0009.101"), style="Bibtex")
+@Article{,
+  title = {In Google We Trust?},
+  author = {Geoffrey Bilder},
+  journal = {The Journal of Electronic Publishing},
+  year = {2006},
+  month = {01},
+  volume = {9},
+  doi = {10.3998/3336451.0009.101},
+}</code></pre>
+  </section>
+
+  <br><br><br>
+
+  
+<section id="searchplos">
+<h2>searchplos is the main function to search the full text of PLoS articles.</h2>
+
+<h3>You can search alot of articles</h3>
+<pre><code lang="r">
+> head(searchplos(terms='ecology', fields='id', limit = 600)) # you can search alot of articles
+                            id
+1 10.1371/journal.pone.0001248
+2 10.1371/journal.pone.0017342
+3 10.1371/journal.pbio.0020072
+4 10.1371/journal.pone.0054689
+5 10.1371/journal.pbio.1001248
+6 10.1371/journal.pbio.0000073
 </code></pre>
 
-<p>This set of functions/package will access full text articles from the Public Library of Science journals using their API. </p>
+<h3>Specifiy fields to return in the output </h3>
+<pre><code lang="r">
+> searchplos('ecology', 'id,publication_date', limit = 2) # specifiy fields to return in the output
+                            id     publication_date id.publication_date
+1 10.1371/journal.pone.0001248 2007-11-28T00:00:00Z                none
+2 10.1371/journal.pone.0017342 2011-03-09T00:00:00Z                none
+</code></pre>
 
-<p>Get your PLoS API key here:  <a href="http://api.plos.org/">http://api.plos.org/</a></p>
+<h3>query a specific journal</h3>
+<pre><code lang="r">
+> head(searchplos(terms="*:*", 'id', toquery=list('cross_published_journal_key:PLoSONE',year=2010), start=0, limit=50)) # query a specific journal
+                            id
+1 10.1371/journal.pone.0037622
+2 10.1371/journal.pone.0016598
+3 10.1371/journal.pone.0018933
+4 10.1371/journal.pone.0025931
+5 10.1371/journal.pone.0014094
+6 10.1371/journal.pone.0042294
+</code></pre>
 
-<p>Put your API key in your .Rprofile file using exactly this: 
-options(PlosApiKey = &ldquo;YOURPLOSAPIKEY&rdquo;), 
-and the functions within this package will be able to use your API key without you having to enter it every time you run a search. </p>
+</section>
 
-<p>rplos tutorial at rOpenSci website here: <a href="http://ropensci.org/tutorials/rplos-tutorial/">http://ropensci.org/tutorials/rplos-tutorial/</a></p>
+  <br><br><br>
 
-<p>Visit our GitHub hosted website here: <a href="http://ropensci.github.com/rplos/">http://ropensci.github.com/rplos/</a></p>
+<section id="plostitle">
+  <h2>uBio</h2>
+<h3>You can also use other functions to search for specific things, like titles</h3>
+<pre><code lang="r">
+> plostitle(terms='drosophila', fields='title', limit=10) # and return the titles only
+                                                   title
+1            Combinatorial Coding for Drosophila Neurons
+2  Phenotypic Plasticity of the Drosophila Transcriptome
+3            Quantification of Food Intake in Drosophila
+4            School Students as Drosophila Experimenters
+5             Parametric Alignment of Drosophila Genomes
+6               A Tripartite Synapse Model in Drosophila
+7          Identification of Drosophila MicroRNA Targets
+8            Expression in Aneuploid Drosophila S2 Cells
+9       Reinforcement of Gametic Isolation in Drosophila
+10                             A DNA Virus of Drosophila
+</code></pre>
 
+<pre><code lang="r">
+> plostitle(terms='drosophila', fields='journal', limit=10) # return just journal name
+                      journal
+1                PLoS Biology
+2               PLoS Genetics
+3                    PLoS ONE
+4                PLoS Biology
+5  PLoS Computational Biology
+6                    PLoS ONE
+7                PLoS Biology
+8                PLoS Biology
+9                PLoS Biology
+10                   PLoS ONE
+</code></pre>
 
-          <h2>Help topics</h2>
+</section>
 
-          <h3>Other</h3>
-          
-          
-          <ul class="index">
-                    
-            <li>
-              <code><a href="almdatepub.html">almdatepub</a></code><br />Get the date when the article was published.</li>
-                              
-            <li>
-              <code><a href="almdateupdated.html">almdateupdated</a></code><br />Get the date when article was last updated.</li>
-                              
-            <li>
-              <code><a href="almplosallviews.html">almplosallviews</a></code><br />Get PLoS altmetrics as xml, json, or csv.</li>
-                              
-            <li>
-              <code><a href="almplotallviews.html">almplotallviews</a></code><br />Feed output of almplosallviews to this function to plot results.</li>
-                              
-            <li>
-              <code><a href="almpubmedcentid.html">almpubmedcentid</a></code><br />Get PubMed Central article ID by inputting the doi for the article.</li>
-                              
-            <li>
-              <code><a href="almpubmedid.html">almpubmedid</a></code><br />Get PubMed article ID by inputting the doi for the article.</li>
-                              
-            <li>
-              <code><a href="almtitle.html">almtitle</a></code><br />Get title of article by inputting the doi for the article.</li>
-                              
-            <li>
-              <code><a href="almtotcites.html">almtotcites</a></code><br />Alt-metrics total citation points from all sources</li>
-                              
-            <li>
-              <code><a href="almupdated.html">almupdated</a></code><br />Date when alt-metrics for the article (by DOI) data was last updated.</li>
-                              
-            <li>
-              <code><a href="articlelength.html">articlelength</a></code><br />Get article length of single paper by DOI, or of many papers as histogram.</li>
-                              
-            <li>
-              <code><a href="crossref.html">crossref</a></code><br />Lookup article info via CrossRef with DOI.</li>
-                              
-            <li>
-              <code><a href="formatarticleurl.html">formatarticleurl</a></code><br />Format a URL for a specific article in a specific PLoS journal.</li>
-                              
-            <li>
-              <code><a href="formatcrossref.html">formatcrossref</a></code><br />Convert crossref XML into a bibentry object</li>
-                              
-            <li>
-              <code><a href="journalnamekey.html">journalnamekey</a></code><br />Get short keys for journals to use in searching specific journals.</li>
-                              
-            <li>
-              <code><a href="plosabstract.html">plosabstract</a></code><br />Search PLoS Journals abstracts.</li>
-                              
-            <li>
-              <code><a href="plosauthor.html">plosauthor</a></code><br />Search PLoS Journals authors.</li>
-                              
-            <li>
-              <code><a href="plosfields.html">plosfields</a></code><br />PLoS API fields to use for searching/retreiving data.</li>
-                              
-            <li>
-              <code><a href="plosfigtabcaps.html">plosfigtabcaps</a></code><br />Search PLoS Journals figure and table captions.</li>
-                              
-            <li>
-              <code><a href="plossubject.html">plossubject</a></code><br />Search PLoS Journals subjects.</li>
-                              
-            <li>
-              <code><a href="plostitle.html">plostitle</a></code><br />Search PLoS Journals titles.</li>
-                              
-            <li>
-              <code><a href="plosviews.html">plosviews</a></code><br />Search PLoS Journals by article views.</li>
-                              
-            <li>
-              <code><a href="plosword.html">plosword</a></code><br />Search results on a keyword over all fields in PLoS Journals.</li>
-                              
-            <li>
-              <code><a href="plot_throughtime.html">plot_throughtime</a></code><br />Plot results through time for serach results from PLoS Journals.</li>
-                              
-            <li>
-              <code><a href="rplos.html">rplos</a></code>(rplos-package)<br />Connect with PLoS API data</li>
-                              
-            <li>
-              <code><a href="searchplos.html">searchplos</a></code><br />Base function to search PLoS Journals</li>
-          
-          </ul>
-          
+  <br><br><br>
 
-        </div>
-        <div class="span3 offset1">
-                    
-          <h2>Dependencies</h2>
-          <ul>
-            <li><strong>Depends</strong>: ggplot2</li>
-            <li><strong>Imports</strong>: ggplot2, RCurl, RJSONIO, XML, plyr, stringr, reshape2, googleVis</li>
-            <li><strong>Suggests</strong>: </li>
-            <li><strong>Extends</strong>: </li>
-          </ul>
-           
-          
-        </div>
-      </div>
+<section id="resultsthroughtime">
+  <h2>Plot results through time for serach results from PLoS Journals. </h2>
+  
+<pre><code lang="r">  
+> plot_throughtime(list('drosophila','monkey'), 100)
+</code></pre>
 
-      <footer class="footer">
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
-      </footer>
-    </div> <!-- /container -->
+<br><br>
+  <img src="assets/img/plotthroughtime.png" class="img-polaroid">
+<br><br>
+
+</section>
+
+<section id="plosword">
+  <h2>Search results on a keyword over all fields in PLoS Journals.</h2>
+  
+<pre><code lang="r">  
+> plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')
+$table
+  No_Articles       Term
+1        4808     monkey
+2         129 Helianthus
+3         348  sunflower
+4       49162    protein
+5         527      whale
+
+$plot
+</code></pre>
+
+<br><br>
+  <img src="assets/img/plosword.png" class="img-polaroid">
+<br><br>
+
+</section>
+
+  <br><br><br>
+
+    <section id="support">
+
+ <h2>Support and Bugs</h2>
+  For bugs, feature requests and other issues, please submit an <a href="https://github.com/ropensci/rplos/issues">issue via Github</a>.
+  <br><br><br>
+
+  For general comments, email scott at ropensci.gmail.com . This package is part of the rOpenSci suite of R tools. For similar packages visit <a href="http://ropensci.org">ropensci.org</a>
+  </section>
+
+  <br><br><br>
+
+      <section id="license">
+ <h2>License</h2>
+ <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative Commons Attribution 3.0 Unported License</a>.
+
+  </section>
+  <br><br><br>
+  </div>
+  </div>
+
+  </div>
+
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-carousel.js"></script>
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+
   </body>
 </html>

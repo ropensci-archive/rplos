@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>plosauthor. rplos 0.0-7</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">rplos 0.0-7</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Search PLoS Journals authors.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='plosauthor.html'>plosauthor</a></span><span class="keyword">(</span><span class="symbol">terms</span><span class="keyword">,</span> <span class="argument">fields</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">limit</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">url</span> <span class="argument">=</span> <span class="string">"http://api.plos.org/search"</span><span class="keyword">,</span>
+  <span class="argument">key</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/options'>getOption</a></span><span class="keyword">(</span><span class="string">"PlosApiKey"</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/stop'>stop</a></span><span class="keyword">(</span><span class="string">"need an API key for PLoS Journals"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>terms</dt>
+      <dd>authors to search for (character)</dd>
+      <dt>fields</dt>
+      <dd>fields to return from search (character)
+  [e.g., 'id,title'], any combination of search fields [see
+  plosfields$field]</dd>
+      <dt>limit</dt>
+      <dd>number of results to return (integer)</dd>
+      <dt>url</dt>
+      <dd>the PLoS API url for the function (should be
+  left to default)</dd>
+      <dt>key</dt>
+      <dd>your PLoS API key, either enter, or loads from
+  .Rprofile</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>Author names, in addition to any other fields requested
+  in a data.frame.</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Search PLoS Journals authors.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='plosauthor.html'>plosauthor</a></span><span class="keyword">(</span><span class="argument">terms</span> <span class="argument">=</span> <span class="string">'johnson'</span><span class="keyword">,</span> <span class="argument">fields</span> <span class="argument">=</span> <span class="string">'title,author'</span><span class="keyword">,</span> <span class="argument">limit</span> <span class="argument">=</span> <span class="number">100</span><span class="keyword">)</span></div>
+<div class='output'>                                                                                                                                                      title
+1                                                                                                                                  Endless Forms Most Viral
+2                                                                           Gene Banks Pay Big Dividends to Agriculture, the Environment, and Human Welfare
+3                                                       Novel Mitochondrial Substrates of Omi Indicate a New Regulatory Role in Neurodegenerative Disorders
+4                                               At the Crossroads of Conspicuous and Concealable: What Race Categories Communicate about Sexual Orientation
+5                                                                     Dissecting and Circumventing the Requirement for RAM in CSL-Dependent Notch Signaling
+6                                                             Technology-Based Self-Care Methods of Improving Antiretroviral Adherence: A Systematic Review
+7                                                                            Retroviral RNA Dimerization and Packaging: The What, How, When, Where, and Why
+8                                             Accelerated and Improved Quantification of Lymphocytic Choriomeningitis Virus (LCMV) Titers by Flow Cytometry
+9                             Short-Term Hurricane Impacts on a Neotropical Community of Marked Birds and Implications for Early-Stage Community Resilience
+10                                                                                    Differential Modulation of TCF/LEF-1 Activity by the Soluble LRP6-ICD
+11        Drosophila Nociceptors Mediate Larval Aversion to Dry Surface Environments Utilizing Both the Painless TRP Channel and the DEG/ENaC Subunit, PPK1
+12                                             TGF-β Sensitivity Restrains CD8+ T Cell Homeostatic Proliferation by Enforcing Sensitivity to IL-7 and IL-15
+13                                                                                         A Quantitative Method to Analyze Drosophila Pupal Eye Patterning
+14                                                     Differential Phagocytosis of White versus Opaque Candida albicans by Drosophila and Mouse Phagocytes
+15                                                   Intracellular Localization and Conformational State of Transglutaminase 2: Implications for Cell Death
+16                                 Disease and the Extended Phenotype: Parasites Control Host Performance and Survival through Induced Changes in Body Plan
+17                                      Lead Exposure in Free-Flying Turkey Vultures Is Associated with Big\n                    Game Hunting in California
+18                                                                                       Bayesian Multimodel Inference for Geostatistical Regression Models
+19                                                              An Investigation of a Role for U2 snRNP Spliceosomal Components in Regulating Transcription
+20                                                         Pharmacodynamics, Population Dynamics, and the Evolution of Persistence in Staphylococcus aureus
+21                                                      First Isolation of Mycobacterium ulcerans from an Aquatic Environment: The End of a 60-Year Search?
+22                   Traditional Taxonomic Groupings Mask Evolutionary History: A Molecular Phylogeny and New Classification of the Chromodorid Nudibranchs
+23                                                                                          Filling in the Gaps: Artistic License in Education and Outreach
+24                                                             Conspecific Plant-Soil Feedbacks of Temperate Tree Species in the Southern Appalachians, USA
+25                                        Acetylation by the Transcriptional Coactivator Gcn5 Plays a Novel Role in Co-Transcriptional Spliceosome Assembly
+26                                                                                         Inference of Microbial Recombination Rates from Metagenomic Data
+27                                                                                                       Robust Short-Term Memory without Synaptic Learning
+28                               Primary Human mDC1, mDC2, and pDC Dendritic Cells Are Differentially Infected and Activated by Respiratory Syncytial Virus
+29                                                                                 A Hierarchical Modeling Framework for Multiple Observer Transect Surveys
+30                  Cytosolic Guanine Nucledotide Binding Deficient Form of Transglutaminase 2 (R580a) Potentiates Cell Death in Oxygen Glucose Deprivation
+31                                                                          Multiple-Pathway Analysis of Double-Strand Break Repair Mutations in Drosophila
+32                                                                   Botulinum Neurotoxin D Uses Synaptic Vesicle Protein SV2 and Gangliosides as Receptors
+33                                                         Lineage Relationship of Direct-Developing Melanocytes and Melanocyte Stem Cells in the Zebrafish
+34                                                                                                                       The Probabilities of Unique Events
+35                                           Pavlovian Fear Conditioning Activates a Common Pattern of Neurons in the Lateral Amygdala of Individual Brains
+36                                                             Multi-Scale Measures of Rugosity, Slope and Aspect from Benthic Stereo Image Reconstructions
+37     A Real Time Metridia Luciferase Based Non-Invasive Reporter Assay of Mammalian Cell Viability and Cytotoxicity via the β-actin Promoter and Enhancer
+38                                                                                            Spatial Geographic Mosaic in an Aquatic Predator-Prey Network
+39                                                      Fortune Favours the Bold: An Agent-Based Model Reveals Adaptive Advantages of Overconfidence in War
+40        Characterization of Two Malaria Parasite Organelle Translation Elongation Factor G Proteins: The Likely Targets of the Anti-Malarial Fusidic Acid
+41                                     A Metazoan/Plant-like Capping Enzyme and Cap Modified Nucleotides in the Unicellular Eukaryote Trichomonas vaginalis
+42                                                                              Conjugative Botulinum Neurotoxin-Encoding Plasmids in Clostridium botulinum
+43               Who Starts? Factors Associated with Starting Antiretroviral Therapy among Eligible Patients in Two, Public HIV Clinics in Lilongwe, Malawi
+44         Environmental Temperature Affects Prevalence of Blood Parasites of Birds on an Elevation Gradient: Implications for Disease in a Warming Climate
+45                                               Cellular Vacuoles Induced by Mycoplasma pneumoniae CARDS Toxin Originate from Rab9-Associated Compartments
+46        Comparative Genomics of Multidrug Resistance-Encoding IncA/C Plasmids from Commensal and Pathogenic Escherichia coli from Multiple Animal Sources
+47                       Quantifying Phenotypic Variation in Isogenic Caenorhabditis elegans Expressing Phsp-16.2::gfp by Clustering 2D Expression Patterns
+48                                                                            Quantitative Analyses of Circadian Gene Expression in Mammalian Cell Cultures
+49                                    Small Molecule Inhibitors of the Candida albicans Budded-to-Hyphal Transition Act through Multiple Signaling Pathways
+50                                                                   Accuracy of Using Visual Identification of White Sharks to Estimate Residency Patterns
+51                                                                             Temporal Trends in Results Availability from Genome-Wide Association Studies
+52                                        VHA-19 Is Essential in Caenorhabditis elegans Oocytes for Embryogenesis and Is Involved in Trafficking in Oocytes
+53                                                       Effects of Patch-Size on Populations of Intertidal Limpets, Siphonaria spp., in a Linear Landscape
+54                                           Perceptual Characterization and Analysis of Aroma Mixtures Using Gas Chromatography Recomposition-Olfactometry
+55            Correction: Relationship Between Mitochondrial Electron Transport Chain Dysfunction, Development and Life Extension in Caenorhabditis elegans
+56           Correction: Relationship Between Mitochondrial Electron Transport Chain Dysfunction, Development, and Life Extension in Caenorhabditis elegans
+57                                      Inference of Type-Specific HPV Transmissibility, Progression and Clearance Rates: A Mathematical Modelling Approach
+58       Genomic Regions Identified by Overlapping Clusters of Nominally-Positive SNPs from Genome-Wide Studies of Alcohol and Illegal Substance Dependence
+59            Correction: Relationship Between Mitochondrial Electron Transport Chain Dysfunction, Development, and Life Extension in Caenorhabditis elegan
+60                                                                          Orientation-Specificity of Adaptation: Isotropic Adaptation Is Purely Monocular
+61                                                                                           Infant Rule Learning: Advantage Language, or Advantage Speech?
+62                                                                           The Role of AGG Interruptions in the Transcription of FMR1 Premutation Alleles
+63     The Absence of MIST1 Leads to Increased Ethanol Sensitivity and Decreased Activity of the Unfolded Protein Response in Mouse Pancreatic Acinar Cells
+64                                                                Education in Time: Cohort Differences in Educational Attainment in African-American Twins
+65                                                     Selection against Aerial Dispersal in Ants: Two Non-Flying Queen Phenotypes in Pogonomyrmex laticeps
+66        Mutations of the Mouse ELMO Domain Containing 1 Gene (Elmod1) Link Small GTPase Signaling to Actin Cytoskeleton Dynamics in Hair Cell Stereocilia
+67                                                               Rediscovery of Leptoxis compacta (Anthony, 1854) (Gastropoda: Cerithioidea: Pleuroceridae)
+68                      Relationship Between Mitochondrial Electron Transport Chain Dysfunction, Development, and Life Extension in Caenorhabditis elegans 
+69  Topoisomerase II– and Condensin-Dependent Breakage of MEC1ATR-Sensitive Fragile Sites Occurs Independently of Spindle Tension, Anaphase, or Cytokinesis
+70                                                                         mTOR Controls Ovarian Follicle Growth by Regulating Granulosa Cell Proliferation
+71                                        Purified Human Pancreatic Duct Cell Culture Conditions Defined by Serum-Free High-Content Growth Factor Screening
+72                                                                     A Statistical Framework for the Adaptive Management of Epidemiological Interventions
+73                                               PPS, a Large Multidomain Protein, Functions with Sex-Lethal to Regulate Alternative Splicing in Drosophila
+74                                                 Examining the Effects of One- and Three-Dimensional Spatial Filtering Analyses in Magnetoencephalography
+75                                                                 HAP2(GCS1)-Dependent Gamete Fusion Requires a Positively Charged Carboxy-Terminal Domain
+76                                                                      Negative Regulation of Active Zone Assembly by a Newly Identified SR Protein Kinase
+77         Global Protein Conjugation by Ubiquitin-Like-Modifiers during Ischemic Stress Is Regulated by MicroRNAs and Confers Robust Tolerance to Ischemia
+78                                                                pHlash: A New Genetically Encoded and Ratiometric Luminescence Sensor of Intracellular pH
+79                                                                            Virtual Histology of Transgenic Mouse Embryos for High-Throughput Phenotyping
+80                                                    Tumor Suppressor Function of Syk in Human MCF10A In Vitro and Normal Mouse Mammary Epithelium In Vivo
+81                                            Effects of Smoking and Cessation on Subclinical Arterial Disease: A Substudy of a Randomized Controlled Trial
+82             Vpu Downmodulates Two Distinct Targets, Tetherin and Gibbon Ape Leukemia Virus Envelope, through Shared Features in the Vpu Cytoplasmic Tail
+83                                                      Sap Transporter Mediated Import and Subsequent Degradation of Antimicrobial Peptides in Haemophilus
+84                            Highly Efficient Amplification of Chronic Wasting Disease Agent by Protein Misfolding Cyclic Amplification with Beads (PMCAb)
+85                                                Following a Foraging Fish-Finder: Diel Habitat Use of Blainville's Beaked Whales Revealed by Echolocation
+86                                             StRAP: An Integrated Resource for Profiling High-Throughput Cancer Genomic Data from Stress Response Studies
+87                                      Mutations in gfpt1 and skiv2l2 Cause Distinct Stage-Specific Defects in Larval Melanocyte Regeneration in Zebrafish
+88                                                           Spire, an Actin Nucleation Factor, Regulates Cell Division during Drosophila Heart Development
+89                                                The Parallel Worm Tracker: A Platform for Measuring Average Speed and Drug-Induced Paralysis in Nematodes
+90                                  Phytosulfokine-α Controls Hypocotyl Length and Cell Expansion in Arabidopsis thaliana through Phytosulfokine Receptor 1
+91                                    Metabolic State Determines Sensitivity to Cellular Stress in Huntington Disease: Normalization by Activation of PPARγ
+92                                                                                         From Modes to Movement in the Behavior of Caenorhabditis elegans
+93                                                                                         Probabilistic Prediction of Contacts in Protein-Ligand Complexes
+94                                                                                           A MIQE-Compliant Real-Time PCR Assay for Aspergillus Detection
+95                                                                       Evidence That a RecQ Helicase Slows Senescence by Resolving Recombining Telomeres 
+96                                     Retinoids Regulate the Formation and Degradation of Gap Junctions in Androgen-Responsive Human Prostate Cancer Cells
+97                                                                                           Clathrin Facilitates the Morphogenesis of Retrovirus Particles
+98                                        Gene Duplication of the Zebrafish kit ligand and Partitioning of Melanocyte Development Functions to kit ligand a
+99                                                               The Evolution of Social Orienting: Evidence from Chicks (Gallus gallus) and Human Newborns
+100                                                                                               Dimensionality and Dynamics in the Behavior of C. elegans
+                                                                                                                                                                    author
+1                                                                                                                                                         Welkin E Johnson
+2                                                                                                                                                              R C Johnson
+3                                                                                                                                      Felicity Johnson, Michael G Kaplitt
+4                                                                                                                                           Kerri L Johnson, Negin Ghavami
+5                                                                                                                                         Scott E Johnson, Douglas Barrick
+6                                                                                                                                          Parya Saberi, Mallory O Johnson
+7                                                                                                                                       Silas F Johnson, Alice Telesnitsky
+8                                                                                                                                       Darlynn Korns Johnson, Dirk Homann
+9                                                                                                                                           Andrew B Johnson, Kevin Winker
+10                                                                                                                                        Brandon Beagle, Gail V W Johnson
+11                                                                                                                                        Wayne A Johnson, Justin W Carder
+12                                                                                                                                     Lisa D S Johnson, Stephen C Jameson
+13                                                                                                                                            Ruth I Johnson, Ross L Cagan
+14                                                                                                                                    Matthew B Lohse, Alexander D Johnson
+15                                                                                                                                        Soner Gundemir, Gail V W Johnson
+16                                                                                                                                     Brett A Goodman, Pieter T J Johnson
+17                                                                                                                                      Terra R Kelly, Christine K Johnson
+18                                                                                                                                     Devin S Johnson, Jennifer A Hoeting
+19                                                                                                                                       Susannah L McKay, Tracy L Johnson
+20                                                                                                                                         Paul J T Johnson, Bruce R Levin
+21                                                                                                                                           Tim Stinear, Paul D R Johnson
+22                                                                                                                                Rebecca Fay Johnson, Terrence M Gosliner
+23                                                                                                                                      David S Goodsell, Graham T Johnson
+24                                                                                                                             Kurt O Reinhart, Daniel Johnson, Keith Clay
+25                                                                                                                                    Felizza Q Gunderson, Tracy L Johnson
+26                                                                                                                                  Philip L F Johnson, Montgomery Slatkin
+27                                                                                                                               Samuel Johnson, J Marro, Joaquín J Torres
+28                                                                         Teresa R Johnson, Christina N Johnson, Kizzmekia S Corbett, Gretchen C Edwards, Barney S Graham
+29                                                                                                                           Paul B Conn, Jeffrey L Laake, Devin S Johnson
+30                                                                                                                        Gozde Colak, Jeffrey W Keillor, Gail V W Johnson
+31                                                                                                                 Dena M Johnson-Schlitz, Carlos Flores, William R Engels
+32                                                                                                                  Lisheng Peng, William H Tepp, Eric A Johnson, Min Dong
+33                                                                                                                     Robert C Tryon, Charles W Higdon, Stephen L Johnson
+34                                                                                                                    Sangeet S Khemlani, Max Lotstein, Phil Johnson-Laird
+35                                                                                                                    Hadley C Bergstrom, Craig G McDonald, Luke R Johnson
+36                                                                                             Ariell Friedman, Oscar Pizarro, Stefan B Williams, Matthew Johnson-Roberson
+37                                                                                                     Shawn E Lupold, Tamara Johnson, Wasim H Chowdhury, Ronald Rodriguez
+38                                                                                                                  Johel Chaves-Campos, Steven G Johnson, C Darrin Hulsey
+39                                                                                                                Dominic D P Johnson, Nils B Weidmann, Lars-Erik Cederman
+40                                                                                                           Russell A Johnson, Geoffrey I McFadden, Christopher D Goodman
+41                                                                                                               Augusto Simoes-Barbosa, Robert P Hirt, Patricia J Johnson
+42                                                                                                                     Kristin M Marshall, Marite Bradshaw, Eric A Johnson
+43                                                                                             Caryl Feldacker, Derek Johnson, Mina Hosseinipour, Sam Phiri, Hannock Tweya
+44                                                                                                         Itzel Zamora-Vilchis, Stephen E Williams, Christopher N Johnson
+45                                                                                                                              Coreen Johnson, T R Kannan, Joel B Baseman
+46                                                                                                          Claudia Fernández-Alarcón, Randall S Singer, Timothy J Johnson
+47                                                                                                 Alexander K Seewald, James Cypser, Alexander Mendenhall, Thomas Johnson
+48                                                                                                     Mariko Izumo, Takashi R Sato, Martin Straume, Carl Hirschie Johnson
+49                                                                                                    John Midkiff, Nathan Borochoff-Porte, Dylan White, Douglas I Johnson
+50                                                                                                         David G Delaney, Ryan Johnson, Marthán N Bester, Enrico Gennari
+51                                                                                                               Andrew D Johnson, Richard Leslie, Christopher J O'Donnell
+52                                                                                                                     Alison J Knight, Nicholas M Johnson, Carolyn A Behm
+53                                                                                                                 Victoria J Cole, Linda G Johnson, Christopher D McQuaid
+54                                                                                                                     Arielle J Johnson, Gregory D Hirson, Susan E Ebeler
+55                                                                                                                         Shane L Rea, Natascia Ventura, Thomas E Johnson
+56                                                                                                                         Shane L Rea, Natascia Ventura, Thomas E Johnson
+57                                                                                                                      Helen C Johnson, K Miriam Elfström, W John Edmunds
+58                                                                                                             Catherine Johnson, Tomas Drgon, Donna Walther, George R Uhl
+59                                                                                                                         Shane L Rea, Natascia Ventura, Thomas E Johnson
+60                                                                                                                     John Cass, Ameika Johnson, Peter J Bex, David Alais
+61                                                                                                              Hugh Rabagliati, Ann Senghas, Scott Johnson, Gary F Marcus
+62                                                                                             Carolyn M Yrigollen, Federica Tassone, Blythe Durbin-Johnson, Flora Tassone
+63                                                                                                     Sruthi Alahari, Rashid Mehmood, Charis L Johnson, Christopher L Pin
+64                                                                                                      Sarah L Szanton, Brandon Johnson, Roland J Thorpe, Keith Whitfield
+65                                                                                                                   Christian Peeters, Roberto A Keller, Robert A Johnson
+66                                                                                                                Kenneth R Johnson, Chantal M Longo-Guess, Leona H Gagnon
+67                                                                                                                          Nathan V Whelan, Paul D Johnson, Phil M Harris
+68                                                                                                                         Shane L Rea, Natascia Ventura, Thomas E Johnson
+69                                                                                                                            Nadia Hashash, Anthony L Johnson, Rita S Cha
+70                                                                                                   James Yu, Aylin Yaba, Corinna Kasiman, Travis Thomson, Joshua Johnson
+71                                                                                                                        Corinne A Hoesli, James D Johnson, James M Piret
+72                                                                                                              Daniel Merl, Leah R Johnson, Robert B Gramacy, Marc Mangel
+73                                                                                                                     Matthew L Johnson, Alexis A Nagengast, Helen K Salz
+74                                                                                                               Sam Johnson, Garreth Prendergast, Mark Hymers, Gary Green
+75                                                                                                                       Julian L Wong, Alexander R Leydon, Mark A Johnson
+76                                                                                                                       Ervin L Johnson, Richard D Fetter, Graeme W Davis
+77                                                                                                                          Yang-ja Lee, Kory R Johnson, John M Hallenbeck
+78                                                                                                     Yunfei Zhang, Qiguang Xie, J Brian Robertson, Carl Hirschie Johnson
+79                                        John T Johnson, Mark S Hansen, Isabel Wu, Lindsey J Healy, Christopher R Johnson, Greg M Jones, Mario R Capecchi, Charles Keller
+80  You Me Sung, Xuehua Xu, Junfeng Sun, Duane Mueller, Kinza Sentissi, Peter Johnson, Elana Urbach, Françoise Seillier-Moiseiwitsch, Michael D Johnson, Susette C Mueller
+81                                                                                       Heather M Johnson, Megan E Piper, Timothy B Baker, Michael C Fiore, James H Stein
+82                                                                                                     Tiffany M Lucas, Sanath K Janaka, Edward B Stephens, Marc C Johnson
+83                                                                                    Catherine L Shelton, Forrest K Raffel, Wandy L Beatty, Sara M Johnson, Kevin M Mason
+84                                                                                        Chad J Johnson, Judd M Aiken, Debbie McKenzie, Michael D Samuel, Joel A Pedersen
+85                                                                Patricia Arranz, Natacha Aguilar de Soto, Peter T Madsen, Alberto Brito, Fernando Bordes, Mark P Johnson
+86                                                   Seth Johnson, Biju Issac, Shuping Zhao, Mohit Bisht, Orieta Celiku, Philip Tofilon, Kevin Camphausen, Uma Shankavaram
+87                                                                                                      Chao-Tsung Yang, Anna E Hindes, Keith A Hultman, Stephen L Johnson
+88                                                                                                    Peng Xu, Tamara L Johnson, Jessica R Stoller-Conrad, Robert A Schulz
+89                                                                                      Daniel Ramot, Brandon E Johnson, Tommie L Berry, Lucinda Carnell, Miriam B Goodman
+90                                                                                      Nils Stührwohldt, Renate I Dahlke, Bianka Steffens, Amanda Johnson, Margret Sauter
+91                                                                                                             Youngnam N Jin, Woong Y Hwang, Chulman Jo, Gail V W Johnson
+92                                                                                                  Greg J Stephens, Bethany Johnson-Kerner, William Bialek, William S Ryu
+93                                                                                       Riku Hakulinen, Santeri Puranen, Jukka V Lehtonen, Mark S Johnson, Jukka Corander
+94                                                                                       Gemma L Johnson, David F Bibby, Stephenie Wong, Samir G Agrawal, Stephen A Bustin
+95                                                                                                  Julia Y Lee, Marina Kozak, Joel D Martin, Erin Pennock, F Brad Johnson
+96                                                                                      Linda Kelsey, Parul Katoch, Kristen E Johnson, Surinder K Batra, Parmender P Mehta
+97                                                                                              Fengwen Zhang, Trinity Zang, Sam J Wilson, Marc C Johnson, Paul D Bieniasz
+98                                                                                                        Keith A Hultman, Nathan Bahary, Leonard I Zon, Stephen L Johnson
+99                                                                              Orsola Rosa Salva, Teresa Farroni, Lucia Regolin, Giorgio Vallortigara, Mark Henry Johnson
+100                                                                                                 Greg J Stephens, Bethany Johnson-Kerner, William Bialek, William S Ryu
+</div>
+<div class='input'><span class="functioncall"><a href='plosauthor.html'>plosauthor</a></span><span class="keyword">(</span><span class="string">'johnson'</span><span class="keyword">,</span>  <span class="argument">limit</span> <span class="argument">=</span> <span class="number">5</span><span class="keyword">)</span></div>
+<strong class='error'>Error in rbind(deparse.level, ...): numbers of columns of arguments do not match</strong>
+<div class='input'><span class="functioncall"><a href='plosauthor.html'>plosauthor</a></span><span class="keyword">(</span><span class="string">'johnson'</span><span class="keyword">,</span>  <span class="string">'title'</span><span class="keyword">,</span> <span class="argument">limit</span> <span class="argument">=</span> <span class="number">5</span><span class="keyword">)</span></div>
+<div class='output'>                                                                                                        title
+1                                                                                    Endless Forms Most Viral
+2                             Gene Banks Pay Big Dividends to Agriculture, the Environment, and Human Welfare
+3         Novel Mitochondrial Substrates of Omi Indicate a New Regulatory Role in Neurodegenerative Disorders
+4 At the Crossroads of Conspicuous and Concealable: What Race Categories Communicate about Sexual Orientation
+5                       Dissecting and Circumventing the Requirement for RAM in CSL-Dependent Notch Signaling
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>plosauthor</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

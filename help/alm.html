@@ -1,0 +1,2841 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>alm. rplos 0.0-7</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">rplos 0.0-7</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Retrieve PLoS article-level metrics (ALM).</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='alm.html'>alm</a></span><span class="keyword">(</span><span class="argument">doi</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">pmid</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">pmcid</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">mdid</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">info</span> <span class="argument">=</span> <span class="string">"totals"</span><span class="keyword">,</span> <span class="argument">months</span> <span class="argument">=</span> NULL<span class="keyword">,</span>
+  <span class="argument">days</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">key</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">url</span> <span class="argument">=</span> <span class="string">"http://alm.plos.org/api/v3/articles"</span><span class="keyword">,</span> <span class="argument">curl</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/RCurl/getCurlHandle'>getCurlHandle</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>doi</dt>
+      <dd>Digital object identifier for an article in
+  PLoS Journals (character)</dd>
+      <dt>pmid</dt>
+      <dd>PubMed object identifier (numeric)</dd>
+      <dt>pmcid</dt>
+      <dd>PubMed Central object identifier (numeric)</dd>
+      <dt>mdid</dt>
+      <dd>Mendeley object identifier (character)</dd>
+      <dt>info</dt>
+      <dd>One of summary, history, or detail (default
+  totals + history in a list). Not specifying anything (the
+  default) returns data.frame of totals across data
+  providers. (character)</dd>
+      <dt>months</dt>
+      <dd>Number of months since publication to
+  request historical data for.  See details for a note.
+  (numeric)</dd>
+      <dt>days</dt>
+      <dd>Number of days since publication to request
+  historical data for.  See details for a note. (numeric)</dd>
+      <dt>key</dt>
+      <dd>your PLoS API key, either enter, or loads from
+  .Rprofile (character)</dd>
+      <dt>url</dt>
+      <dd>the PLoS API url for the function (should be
+  left to default)</dd>
+      <dt>...</dt>
+      <dd>optional additional curl options (debugging
+  tools mostly)</dd>
+      <dt>curl</dt>
+      <dd>If using in a loop, call getCurlHandle()
+  first and pass the returned value in here (avoids
+  unnecessary footprint)</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>PLoS altmetrics as data.frame's.</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>This is the main function to search the PLoS ALM
+  (article-level metrics) API. See details for more
+  information.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>You can only supply one of the parmeters doi, pmid,
+  pmcid, and mdid.</p>
+  
+      <p>Query for as many articles at a time as you like. Though
+  queries are broken up in to smaller bits of 30
+  identifiers at a time.</p>
+  
+      <p>If you supply both the days and months parameters, days
+  takes precedence, and months is ignored.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment"># The default call with either doi, pmid, pmcid, or mdid without specifying</span>
+<span class="comment"># an argument for info</span>
+<span class="functioncall"><a href='alm.html'>alm</a></span><span class="keyword">(</span><span class="argument">doi</span><span class="argument">=</span><span class="string">"10.1371/journal.pone.0029797"</span><span class="keyword">)</span></div>
+<div class='output'>                .id shares total citations  pdf  html comments likes groups
+1         citeulike      1     1        NA   NA    NA       NA    NA     NA
+2          crossref     NA     4         4   NA    NA       NA    NA     NA
+3            nature     NA     4         4   NA    NA       NA    NA     NA
+4            pubmed     NA     0         0   NA    NA       NA    NA     NA
+5            scopus     NA     1         1   NA    NA       NA    NA     NA
+6           counter     NA 25603        NA 2113 23391       NA    NA     NA
+7  researchblogging     NA     1         1   NA    NA       NA    NA     NA
+8              biod     NA    19        NA    0     0       NA    NA     NA
+9               wos     NA     0         0   NA    NA       NA    NA     NA
+10              pmc     NA     0        NA    0     0       NA    NA     NA
+11         facebook      0   540        NA   NA    NA        0     0     NA
+12         mendeley      0    37        NA   NA    NA       NA    NA      0
+13          twitter     NA     8        NA   NA    NA        8    NA     NA
+14        wikipedia    169   208        39   NA    NA       NA    NA     NA
+15    scienceseeker     NA     0        NA   NA    NA       NA    NA     NA
+</div>
+<div class='input'>
+<span class="comment"># A single DOI</span>
+<span class="symbol">out</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='alm.html'>alm</a></span><span class="keyword">(</span><span class="argument">doi</span><span class="argument">=</span><span class="string">'10.1371/journal.pone.0029797'</span><span class="keyword">,</span> <span class="argument">info</span><span class="argument">=</span><span class="string">'detail'</span><span class="keyword">)</span>
+<span class="symbol">out</span><span class="keyword">[[</span><span class="string">"totals"</span>]] <span class="comment"># get totals summary data.frame</span></div>
+<div class='output'>                .id shares total citations  pdf  html comments likes groups
+1         citeulike      1     1        NA   NA    NA       NA    NA     NA
+2          crossref     NA     4         4   NA    NA       NA    NA     NA
+3            nature     NA     4         4   NA    NA       NA    NA     NA
+4            pubmed     NA     0         0   NA    NA       NA    NA     NA
+5            scopus     NA     1         1   NA    NA       NA    NA     NA
+6           counter     NA 25603        NA 2113 23391       NA    NA     NA
+7  researchblogging     NA     1         1   NA    NA       NA    NA     NA
+8              biod     NA    19        NA    0     0       NA    NA     NA
+9               wos     NA     0         0   NA    NA       NA    NA     NA
+10              pmc     NA     0        NA    0     0       NA    NA     NA
+11         facebook      0   540        NA   NA    NA        0     0     NA
+12         mendeley      0    37        NA   NA    NA       NA    NA      0
+13          twitter     NA     8        NA   NA    NA        8    NA     NA
+14        wikipedia    169   208        39   NA    NA       NA    NA     NA
+15    scienceseeker     NA     0        NA   NA    NA       NA    NA     NA
+</div>
+<div class='input'><span class="symbol">out</span><span class="keyword">[[</span><span class="string">"history"</span>]] <span class="comment"># get history summary data.frame</span></div>
+<div class='output'>                  .id      dates totals
+1           citeulike 2012-01-13      1
+2           citeulike 2012-02-01      1
+3           citeulike 2012-03-02      1
+4           citeulike 2012-04-02      1
+5           citeulike 2012-05-03      1
+6           citeulike 2012-06-02      1
+7           citeulike 2012-07-01      1
+8           citeulike 2012-08-05      1
+9           citeulike 2012-08-12      1
+10          citeulike 2012-08-19      1
+11          citeulike 2012-08-26      1
+12          citeulike 2012-09-02      1
+13          citeulike 2012-09-09      1
+14          citeulike 2012-09-16      1
+15          citeulike 2012-09-24      1
+16          citeulike 2012-10-01      1
+17          citeulike 2012-10-09      1
+18          citeulike 2012-10-17      1
+19          citeulike 2012-10-24      1
+20          citeulike 2012-11-01      1
+21          citeulike 2012-11-08      1
+22          citeulike 2012-11-15      1
+23          citeulike 2012-11-23      1
+24          citeulike 2012-12-03      1
+25          citeulike 2012-12-10      1
+26          citeulike 2012-12-17      1
+27          citeulike 2012-12-21      1
+28          citeulike 2012-12-21      1
+29          citeulike 2012-12-22      1
+30          citeulike 2012-12-22      1
+31          citeulike 2012-12-23      1
+32          citeulike 2012-12-23      1
+33          citeulike 2012-12-23      1
+34          citeulike 2012-12-24      1
+35          citeulike 2012-12-24      1
+36          citeulike 2012-12-25      1
+37          citeulike 2012-12-26      1
+38          citeulike 2012-12-26      1
+39          citeulike 2012-12-26      1
+40          citeulike 2012-12-27      1
+41          citeulike 2012-12-27      1
+42          citeulike 2012-12-27      1
+43          citeulike 2012-12-28      1
+44          citeulike 2012-12-28      1
+45          citeulike 2012-12-28      1
+46          citeulike 2012-12-28      1
+47          citeulike 2013-01-04      1
+48          citeulike 2013-01-05      1
+49          citeulike 2013-01-05      1
+50          citeulike 2013-01-06      1
+51          citeulike 2013-01-06      1
+52          citeulike 2013-01-06      1
+53          citeulike 2013-01-06      1
+54          citeulike 2013-01-07      1
+55          citeulike 2013-01-07      1
+56          citeulike 2013-01-08      1
+57          citeulike 2013-01-08      1
+58          citeulike 2013-01-08      1
+59          citeulike 2013-01-09      1
+60          citeulike 2013-01-09      1
+61          citeulike 2013-01-09      1
+62          citeulike 2013-01-10      1
+63          citeulike 2013-01-10      1
+64          citeulike 2013-01-11      1
+65          citeulike 2013-01-11      1
+66          citeulike 2013-01-11      1
+67          citeulike 2013-01-13      1
+68          citeulike 2013-01-13      1
+69          citeulike 2013-01-13      1
+70          citeulike 2013-01-14      1
+71          citeulike 2013-01-14      1
+72          citeulike 2013-01-15      1
+73          citeulike 2013-01-15      1
+74          citeulike 2013-01-16      1
+75          citeulike 2013-01-16      1
+76          citeulike 2013-01-16      1
+77          citeulike 2013-01-17      1
+78          citeulike 2013-01-17      1
+79          citeulike 2013-01-17      1
+80          citeulike 2013-01-18      1
+81          citeulike 2013-01-18      1
+82          citeulike 2013-01-19      1
+83          citeulike 2013-01-19      1
+84          citeulike 2013-01-20      1
+85          citeulike 2013-01-20      1
+86          citeulike 2013-01-21      1
+87          citeulike 2013-01-22      1
+88          citeulike 2013-01-23      1
+89          citeulike 2013-01-24      1
+90          citeulike 2013-01-24      1
+91          citeulike 2013-01-25      1
+92          citeulike 2013-01-25      1
+93           crossref 2012-01-12      0
+94           crossref 2012-02-03      0
+95           crossref 2012-03-03      0
+96           crossref 2012-04-08      0
+97           crossref 2012-05-07      0
+98           crossref 2012-06-07      1
+99           crossref 2012-07-01      1
+100          crossref 2012-07-31      1
+101          crossref 2012-08-07      1
+102          crossref 2012-08-14      1
+103          crossref 2012-08-21      1
+104          crossref 2012-08-29      1
+105          crossref 2012-09-05      1
+106          crossref 2012-09-12      1
+107          crossref 2012-09-20      1
+108          crossref 2012-09-27      1
+109          crossref 2012-10-04      1
+110          crossref 2012-10-12      2
+111          crossref 2012-10-19      2
+112          crossref 2012-10-26      2
+113          crossref 2012-11-03      2
+114          crossref 2012-11-11      2
+115          crossref 2012-11-19      2
+116          crossref 2012-11-27      2
+117          crossref 2012-12-06      2
+118          crossref 2012-12-14      2
+119          crossref 2012-12-21      2
+120          crossref 2012-12-21      2
+121          crossref 2012-12-21      2
+122          crossref 2012-12-21      2
+123          crossref 2012-12-22      2
+124          crossref 2012-12-22      2
+125          crossref 2012-12-22      2
+126          crossref 2012-12-22      2
+127          crossref 2012-12-23      2
+128          crossref 2012-12-23      2
+129          crossref 2012-12-23      2
+130          crossref 2012-12-23      2
+131          crossref 2012-12-24      2
+132          crossref 2012-12-24      2
+133          crossref 2012-12-24      3
+134          crossref 2012-12-24      3
+135          crossref 2012-12-25      3
+136          crossref 2012-12-25      3
+137          crossref 2012-12-25      3
+138          crossref 2012-12-25      3
+139          crossref 2012-12-26      3
+140          crossref 2012-12-26      3
+141          crossref 2012-12-26      3
+142          crossref 2012-12-26      3
+143          crossref 2012-12-27      3
+144          crossref 2012-12-27      3
+145          crossref 2012-12-27      3
+146          crossref 2012-12-27      3
+147          crossref 2012-12-28      3
+148          crossref 2013-01-04      3
+149          crossref 2013-01-04      3
+150          crossref 2013-01-04      3
+151          crossref 2013-01-05      3
+152          crossref 2013-01-05      3
+153          crossref 2013-01-05      3
+154          crossref 2013-01-06      3
+155          crossref 2013-01-06      3
+156          crossref 2013-01-06      3
+157          crossref 2013-01-06      3
+158          crossref 2013-01-07      3
+159          crossref 2013-01-07      3
+160          crossref 2013-01-08      3
+161          crossref 2013-01-08      3
+162          crossref 2013-01-09      3
+163          crossref 2013-01-09      3
+164          crossref 2013-01-10      3
+165          crossref 2013-01-10      4
+166          crossref 2013-01-10      4
+167          crossref 2013-01-10      4
+168          crossref 2013-01-11      4
+169          crossref 2013-01-11      4
+170          crossref 2013-01-11      4
+171          crossref 2013-01-12      4
+172          crossref 2013-01-13      4
+173          crossref 2013-01-13      4
+174          crossref 2013-01-13      4
+175          crossref 2013-01-14      4
+176          crossref 2013-01-14      4
+177          crossref 2013-01-15      4
+178          crossref 2013-01-15      4
+179          crossref 2013-01-16      4
+180          crossref 2013-01-17      4
+181          crossref 2013-01-17      4
+182          crossref 2013-01-18      4
+183          crossref 2013-01-19      4
+184          crossref 2013-01-19      4
+185          crossref 2013-01-19      4
+186          crossref 2013-01-20      4
+187          crossref 2013-01-20      4
+188          crossref 2013-01-20      4
+189          crossref 2013-01-20      4
+190          crossref 2013-01-21      4
+191          crossref 2013-01-22      4
+192          crossref 2013-01-23      4
+193          crossref 2013-01-23      4
+194          crossref 2013-01-24      4
+195          crossref 2013-01-24      4
+196          crossref 2013-01-24      4
+197          crossref 2013-01-24      4
+198          crossref 2013-01-25      4
+199          crossref 2013-01-25      4
+200          crossref 2013-01-25      4
+201            nature 2012-01-12      2
+202            nature 2012-02-03      3
+203            nature 2012-03-03      3
+204            nature 2012-04-08      3
+205            nature 2012-05-07      3
+206            nature 2012-06-07      3
+207            nature 2012-07-01      3
+208            nature 2012-12-06      4
+209            nature 2012-12-09      0
+210            nature 2012-12-27      4
+211            nature 2012-12-28      4
+212            nature 2013-01-05      4
+213            nature 2013-01-06      4
+214            nature 2013-01-08      4
+215            nature 2013-01-10      4
+216            nature 2013-01-14      4
+217            nature 2013-01-16      4
+218            nature 2013-01-17      4
+219            nature 2013-01-19      4
+220            nature 2013-01-20      4
+221            nature 2013-01-21      4
+222            nature 2013-01-22      4
+223            nature 2013-01-23      4
+224            nature 2013-01-24      0
+225            nature 2013-01-25      4
+226            pubmed 2012-01-12      0
+227            pubmed 2012-02-03      0
+228            pubmed 2012-03-03      0
+229            pubmed 2012-04-08      0
+230            pubmed 2012-05-07      0
+231            pubmed 2012-06-07      0
+232            pubmed 2012-07-01      0
+233            pubmed 2012-07-31      0
+234            pubmed 2012-08-07      0
+235            pubmed 2012-08-14      0
+236            pubmed 2012-08-21      0
+237            pubmed 2012-08-28      0
+238            pubmed 2012-09-04      0
+239            pubmed 2012-09-11      0
+240            pubmed 2012-09-19      0
+241            pubmed 2012-09-26      0
+242            pubmed 2012-10-03      0
+243            pubmed 2012-10-10      0
+244            pubmed 2012-10-18      0
+245            pubmed 2012-10-25      0
+246            pubmed 2012-11-02      0
+247            pubmed 2012-11-09      0
+248            pubmed 2012-11-16      0
+249            pubmed 2012-11-24      0
+250            pubmed 2012-12-03      0
+251            pubmed 2012-12-10      0
+252            pubmed 2012-12-17      0
+253            pubmed 2012-12-21      0
+254            pubmed 2012-12-21      0
+255            pubmed 2012-12-22      0
+256            pubmed 2012-12-22      0
+257            pubmed 2012-12-23      0
+258            pubmed 2012-12-24      0
+259            pubmed 2012-12-24      0
+260            pubmed 2012-12-25      0
+261            pubmed 2012-12-25      0
+262            pubmed 2012-12-26      0
+263            pubmed 2012-12-26      0
+264            pubmed 2012-12-27      0
+265            pubmed 2012-12-28      0
+266            pubmed 2013-01-04      0
+267            pubmed 2013-01-05      0
+268            pubmed 2013-01-05      0
+269            pubmed 2013-01-05      0
+270            pubmed 2013-01-06      0
+271            pubmed 2013-01-06      0
+272            pubmed 2013-01-06      0
+273            pubmed 2013-01-06      0
+274            pubmed 2013-01-07      0
+275            pubmed 2013-01-07      0
+276            pubmed 2013-01-08      0
+277            pubmed 2013-01-09      0
+278            pubmed 2013-01-09      0
+279            pubmed 2013-01-09      0
+280            pubmed 2013-01-10      0
+281            pubmed 2013-01-10      0
+282            pubmed 2013-01-11      0
+283            pubmed 2013-01-11      0
+284            pubmed 2013-01-11      0
+285            pubmed 2013-01-12      0
+286            pubmed 2013-01-13      0
+287            pubmed 2013-01-13      0
+288            pubmed 2013-01-13      0
+289            pubmed 2013-01-14      0
+290            pubmed 2013-01-14      0
+291            pubmed 2013-01-15      0
+292            pubmed 2013-01-15      0
+293            pubmed 2013-01-16      0
+294            pubmed 2013-01-16      0
+295            pubmed 2013-01-17      0
+296            pubmed 2013-01-17      0
+297            pubmed 2013-01-18      0
+298            pubmed 2013-01-19      0
+299            pubmed 2013-01-19      0
+300            pubmed 2013-01-20      0
+301            pubmed 2013-01-21      0
+302            pubmed 2013-01-22      0
+303            pubmed 2013-01-23      0
+304            pubmed 2013-01-23      0
+305            pubmed 2013-01-24      0
+306            pubmed 2013-01-25      0
+307            scopus 2012-01-12      0
+308            scopus 2012-02-03      0
+309            scopus 2012-03-03      0
+310            scopus 2012-04-01      0
+311            scopus 2012-05-07      0
+312            scopus 2012-06-07      0
+313            scopus 2012-07-01      0
+314            scopus 2012-08-01      0
+315            scopus 2012-08-08      0
+316            scopus 2012-08-15      0
+317            scopus 2012-08-22      0
+318            scopus 2012-08-29      0
+319            scopus 2012-09-05      0
+320            scopus 2012-09-12      0
+321            scopus 2012-09-19      0
+322            scopus 2012-09-27      0
+323            scopus 2012-10-04      0
+324            scopus 2012-10-11      0
+325            scopus 2012-10-19      0
+326            scopus 2012-10-26      1
+327            scopus 2012-11-03      1
+328            scopus 2012-11-10      1
+329            scopus 2012-11-17      1
+330            scopus 2012-11-24      1
+331            scopus 2012-12-02      1
+332            scopus 2012-12-10      1
+333            scopus 2012-12-18      1
+334            scopus 2012-12-21      1
+335            scopus 2012-12-21      1
+336            scopus 2012-12-21      1
+337            scopus 2012-12-21      1
+338            scopus 2012-12-21      1
+339            scopus 2012-12-22      1
+340            scopus 2012-12-22      1
+341            scopus 2012-12-22      1
+342            scopus 2012-12-22      1
+343            scopus 2012-12-22      1
+344            scopus 2012-12-23      1
+345            scopus 2012-12-23      1
+346            scopus 2012-12-23      1
+347            scopus 2012-12-23      1
+348            scopus 2012-12-23      1
+349            scopus 2012-12-24      1
+350            scopus 2012-12-24      1
+351            scopus 2012-12-24      1
+352            scopus 2012-12-24      1
+353            scopus 2012-12-24      1
+354            scopus 2012-12-25      1
+355            scopus 2012-12-25      1
+356            scopus 2012-12-25      1
+357            scopus 2012-12-25      1
+358            scopus 2012-12-25      1
+359            scopus 2012-12-26      1
+360            scopus 2012-12-26      1
+361            scopus 2012-12-26      1
+362            scopus 2012-12-26      1
+363            scopus 2012-12-26      1
+364            scopus 2012-12-27      1
+365            scopus 2012-12-27      1
+366            scopus 2012-12-27      1
+367            scopus 2012-12-27      1
+368            scopus 2012-12-27      1
+369            scopus 2012-12-28      1
+370            scopus 2012-12-28      1
+371            scopus 2012-12-28      1
+372            scopus 2012-12-28      1
+373            scopus 2012-12-28      1
+374            scopus 2013-01-04      1
+375            scopus 2013-01-04      1
+376            scopus 2013-01-04      1
+377            scopus 2013-01-04      1
+378            scopus 2013-01-04      1
+379            scopus 2013-01-05      1
+380            scopus 2013-01-05      1
+381            scopus 2013-01-05      1
+382            scopus 2013-01-05      1
+383            scopus 2013-01-05      1
+384            scopus 2013-01-06      1
+385            scopus 2013-01-06      1
+386            scopus 2013-01-06      1
+387            scopus 2013-01-06      1
+388            scopus 2013-01-06      1
+389            scopus 2013-01-07      1
+390            scopus 2013-01-07      1
+391            scopus 2013-01-07      1
+392            scopus 2013-01-07      1
+393            scopus 2013-01-07      1
+394            scopus 2013-01-08      1
+395            scopus 2013-01-08      1
+396            scopus 2013-01-08      1
+397            scopus 2013-01-08      1
+398            scopus 2013-01-08      1
+399            scopus 2013-01-09      1
+400            scopus 2013-01-09      1
+401            scopus 2013-01-09      1
+402            scopus 2013-01-09      1
+403            scopus 2013-01-09      1
+404            scopus 2013-01-10      1
+405            scopus 2013-01-10      1
+406            scopus 2013-01-10      1
+407            scopus 2013-01-10      1
+408            scopus 2013-01-11      1
+409            scopus 2013-01-11      1
+410            scopus 2013-01-11      1
+411            scopus 2013-01-11      1
+412            scopus 2013-01-11      1
+413            scopus 2013-01-12      1
+414            scopus 2013-01-13      1
+415            scopus 2013-01-13      1
+416            scopus 2013-01-13      1
+417            scopus 2013-01-13      1
+418            scopus 2013-01-13      1
+419            scopus 2013-01-14      1
+420            scopus 2013-01-14      1
+421            scopus 2013-01-14      1
+422            scopus 2013-01-14      1
+423            scopus 2013-01-15      1
+424            scopus 2013-01-15      1
+425            scopus 2013-01-15      1
+426            scopus 2013-01-15      1
+427            scopus 2013-01-15      1
+428            scopus 2013-01-16      1
+429            scopus 2013-01-16      1
+430            scopus 2013-01-16      1
+431            scopus 2013-01-16      1
+432            scopus 2013-01-16      1
+433            scopus 2013-01-17      1
+434            scopus 2013-01-17      1
+435            scopus 2013-01-17      1
+436            scopus 2013-01-17      1
+437            scopus 2013-01-18      1
+438            scopus 2013-01-18      1
+439            scopus 2013-01-19      1
+440            scopus 2013-01-19      1
+441            scopus 2013-01-19      1
+442            scopus 2013-01-19      1
+443            scopus 2013-01-20      1
+444            scopus 2013-01-20      1
+445            scopus 2013-01-20      1
+446            scopus 2013-01-20      1
+447            scopus 2013-01-21      1
+448            scopus 2013-01-21      1
+449            scopus 2013-01-22      1
+450            scopus 2013-01-23      1
+451            scopus 2013-01-23      1
+452            scopus 2013-01-23      1
+453            scopus 2013-01-24      1
+454            scopus 2013-01-24      1
+455            scopus 2013-01-24      1
+456            scopus 2013-01-24      1
+457            scopus 2013-01-24      1
+458            scopus 2013-01-25      1
+459            scopus 2013-01-25      1
+460            scopus 2013-01-25      1
+461            scopus 2013-01-25      1
+462           counter 2012-01-13      0
+463           counter 2012-02-02      0
+464           counter 2012-03-02      0
+465           counter 2012-04-01      0
+466           counter 2012-05-01      0
+467           counter 2012-06-01      0
+468           counter 2012-07-01      0
+469           counter 2012-07-31  21999
+470           counter 2012-08-01  22012
+471           counter 2012-08-02  22019
+472           counter 2012-08-03  22023
+473           counter 2012-08-04  22027
+474           counter 2012-08-04  22027
+475           counter 2012-08-05  22048
+476           counter 2012-08-05  22048
+477           counter 2012-08-06  22054
+478           counter 2012-08-06  22054
+479           counter 2012-08-07  22068
+480           counter 2012-08-07  22068
+481           counter 2012-08-08  22082
+482           counter 2012-08-08  22082
+483           counter 2012-08-09  22084
+484           counter 2012-08-09  22084
+485           counter 2012-08-10  22100
+486           counter 2012-08-10  22100
+487           counter 2012-08-11  22103
+488           counter 2012-08-11  22103
+489           counter 2012-08-12  22113
+490           counter 2012-08-12  22113
+491           counter 2012-08-13  22123
+492           counter 2012-08-13  22123
+493           counter 2012-08-14  22141
+494           counter 2012-08-14  22141
+495           counter 2012-08-15  22156
+496           counter 2012-08-15  22156
+497           counter 2012-08-16  22166
+498           counter 2012-08-16  22166
+499           counter 2012-08-17  22177
+500           counter 2012-08-17  22177
+501           counter 2012-08-18  22195
+502           counter 2012-08-18  22195
+503           counter 2012-08-19  22200
+504           counter 2012-08-19  22200
+505           counter 2012-08-20  22231
+506           counter 2012-08-20  22231
+507           counter 2012-08-21  22247
+508           counter 2012-08-21  22247
+509           counter 2012-08-22  22267
+510           counter 2012-08-22  22267
+511           counter 2012-08-23  22379
+512           counter 2012-08-23  22379
+513           counter 2012-08-24  22428
+514           counter 2012-08-24  22428
+515           counter 2012-08-25  22428
+516           counter 2012-08-25  22428
+517           counter 2012-08-26  22439
+518           counter 2012-08-26  22439
+519           counter 2012-08-27  22461
+520           counter 2012-08-27  22461
+521           counter 2012-08-28  22473
+522           counter 2012-08-28  22473
+523           counter 2012-08-29  22473
+524           counter 2012-08-29  22473
+525           counter 2012-08-30  22487
+526           counter 2012-08-30  22487
+527           counter 2012-08-31  22487
+528           counter 2012-08-31  22487
+529           counter 2012-09-01  22509
+530           counter 2012-09-01  22509
+531           counter 2012-09-02  22509
+532           counter 2012-09-02  22509
+533           counter 2012-09-03  22523
+534           counter 2012-09-03  22523
+535           counter 2012-09-04  22549
+536           counter 2012-09-04  22549
+537           counter 2012-09-05  22560
+538           counter 2012-09-05  22560
+539           counter 2012-09-06  22574
+540           counter 2012-09-06  22574
+541           counter 2012-09-07  22588
+542           counter 2012-09-07  22588
+543           counter 2012-09-08  22595
+544           counter 2012-09-08  22595
+545           counter 2012-09-09  22601
+546           counter 2012-09-09  22601
+547           counter 2012-09-10  22613
+548           counter 2012-09-10  22613
+549           counter 2012-09-11  22639
+550           counter 2012-09-11  22639
+551           counter 2012-09-12  22648
+552           counter 2012-09-12  22648
+553           counter 2012-09-13  22688
+554           counter 2012-09-13  22688
+555           counter 2012-09-14  22738
+556           counter 2012-09-14  22738
+557           counter 2012-09-15  22760
+558           counter 2012-09-15  22760
+559           counter 2012-09-16  22773
+560           counter 2012-09-16  22773
+561           counter 2012-09-17  22785
+562           counter 2012-09-17  22785
+563           counter 2012-09-18  22804
+564           counter 2012-09-18  22804
+565           counter 2012-09-19  22822
+566           counter 2012-09-19  22822
+567           counter 2012-09-20  22841
+568           counter 2012-09-20  22841
+569           counter 2012-09-21  22865
+570           counter 2012-09-21  22865
+571           counter 2012-09-22  22880
+572           counter 2012-09-22  22880
+573           counter 2012-09-23  22885
+574           counter 2012-09-23  22885
+575           counter 2012-09-24  22901
+576           counter 2012-09-24  22901
+577           counter 2012-09-25  22913
+578           counter 2012-09-25  22913
+579           counter 2012-09-26  22913
+580           counter 2012-09-26  22913
+581           counter 2012-09-27  22931
+582           counter 2012-09-27  22931
+583           counter 2012-09-28  22963
+584           counter 2012-09-28  22963
+585           counter 2012-09-29  22975
+586           counter 2012-09-29  22975
+587           counter 2012-09-30  22983
+588           counter 2012-09-30  22983
+589           counter 2012-10-01  22996
+590           counter 2012-10-01  22996
+591           counter 2012-10-02  23009
+592           counter 2012-10-02  23009
+593           counter 2012-10-03  23024
+594           counter 2012-10-03  23024
+595           counter 2012-10-04  23033
+596           counter 2012-10-04  23033
+597           counter 2012-10-05  23039
+598           counter 2012-10-05  23039
+599           counter 2012-10-06  23048
+600           counter 2012-10-06  23048
+601           counter 2012-10-07  23061
+602           counter 2012-10-07  23061
+603           counter 2012-10-08  23068
+604           counter 2012-10-08  23068
+605           counter 2012-10-09  23088
+606           counter 2012-10-09  23088
+607           counter 2012-10-10  23099
+608           counter 2012-10-10  23099
+609           counter 2012-10-11  23115
+610           counter 2012-10-11  23115
+611           counter 2012-10-12  23132
+612           counter 2012-10-12  23132
+613           counter 2012-10-13  23151
+614           counter 2012-10-13  23151
+615           counter 2012-10-14  23172
+616           counter 2012-10-14  23172
+617           counter 2012-10-15  23203
+618           counter 2012-10-15  23203
+619           counter 2012-10-16  23210
+620           counter 2012-10-16  23210
+621           counter 2012-10-17  23228
+622           counter 2012-10-17  23228
+623           counter 2012-10-18  23247
+624           counter 2012-10-18  23247
+625           counter 2012-10-19  23265
+626           counter 2012-10-19  23265
+627           counter 2012-10-20  23275
+628           counter 2012-10-20  23275
+629           counter 2012-10-21  23283
+630           counter 2012-10-21  23283
+631           counter 2012-10-22  23299
+632           counter 2012-10-22  23299
+633           counter 2012-10-23  23324
+634           counter 2012-10-23  23324
+635           counter 2012-10-24  23345
+636           counter 2012-10-24  23345
+637           counter 2012-10-25  23360
+638           counter 2012-10-25  23360
+639           counter 2012-10-26  23369
+640           counter 2012-10-26  23369
+641           counter 2012-10-27  23378
+642           counter 2012-10-27  23378
+643           counter 2012-10-28  23387
+644           counter 2012-10-28  23387
+645           counter 2012-10-29  23387
+646           counter 2012-10-29  23387
+647           counter 2012-10-30  23407
+648           counter 2012-10-30  23407
+649           counter 2012-11-01  23451
+650           counter 2012-11-01  23451
+651           counter 2012-11-02  23477
+652           counter 2012-11-02  23477
+653           counter 2012-11-03  23486
+654           counter 2012-11-03  23486
+655           counter 2012-11-04  23498
+656           counter 2012-11-04  23498
+657           counter 2012-11-05  23517
+658           counter 2012-11-05  23517
+659           counter 2012-11-06  23526
+660           counter 2012-11-07  23554
+661           counter 2012-11-08  23566
+662           counter 2012-11-09  23580
+663           counter 2012-11-10  23593
+664           counter 2012-11-11  23597
+665           counter 2012-11-12  23612
+666           counter 2012-11-13  23629
+667           counter 2012-11-14  23642
+668           counter 2012-11-15  23659
+669           counter 2012-11-16  23670
+670           counter 2012-11-17  23686
+671           counter 2012-11-18  23689
+672           counter 2012-11-19  23698
+673           counter 2012-11-20  23708
+674           counter 2012-11-21  23724
+675           counter 2012-11-22  23735
+676           counter 2012-11-23  23742
+677           counter 2012-11-24  23752
+678           counter 2012-11-25  23757
+679           counter 2012-11-26  23782
+680           counter 2012-11-27  23786
+681           counter 2012-11-28  23800
+682           counter 2012-11-29  23817
+683           counter 2012-12-02  23860
+684           counter 2012-12-03  23860
+685           counter 2012-12-03  23860
+686           counter 2012-12-03  23864
+687           counter 2012-12-04  23883
+688           counter 2012-12-05  23911
+689           counter 2012-12-06  23925
+690           counter 2012-12-07  23938
+691           counter 2012-12-08  23951
+692           counter 2012-12-09  23961
+693           counter 2012-12-10  23981
+694           counter 2012-12-11  23996
+695           counter 2012-12-12  24016
+696           counter 2012-12-13  24028
+697           counter 2012-12-14  24039
+698           counter 2012-12-15  24052
+699           counter 2012-12-16  24064
+700           counter 2012-12-17  24073
+701           counter 2012-12-18  24084
+702           counter 2012-12-19  24101
+703           counter 2012-12-20  24116
+704           counter 2012-12-21  24147
+705           counter 2012-12-22  24188
+706           counter 2012-12-23  24224
+707           counter 2012-12-24  24237
+708           counter 2012-12-25  24249
+709           counter 2012-12-26  24258
+710           counter 2012-12-27  24623
+711           counter 2012-12-28  24746
+712           counter 2013-01-04  25253
+713           counter 2013-01-04  25253
+714           counter 2013-01-04  25253
+715           counter 2013-01-04  25253
+716           counter 2013-01-04  25276
+717           counter 2013-01-04  25276
+718           counter 2013-01-04  25276
+719           counter 2013-01-05  25289
+720           counter 2013-01-06  25305
+721           counter 2013-01-07  25328
+722           counter 2013-01-08  25351
+723           counter 2013-01-09  25367
+724           counter 2013-01-10  25392
+725           counter 2013-01-11  25400
+726           counter 2013-01-12  25408
+727           counter 2013-01-13  25421
+728           counter 2013-01-14  25443
+729           counter 2013-01-15  25458
+730           counter 2013-01-16  25469
+731           counter 2013-01-17  25485
+732           counter 2013-01-18  25498
+733           counter 2013-01-19  25508
+734           counter 2013-01-20  25508
+735           counter 2013-01-21  25543
+736           counter 2013-01-22  25555
+737           counter 2013-01-23  25573
+738           counter 2013-01-24  25592
+739           counter 2013-01-25  25603
+740  researchblogging 2012-01-12      0
+741  researchblogging 2012-02-25      1
+742  researchblogging 2012-03-03      1
+743  researchblogging 2012-04-08      1
+744  researchblogging 2012-05-07      1
+745  researchblogging 2012-06-07      1
+746  researchblogging 2012-07-01      1
+747  researchblogging 2012-07-31      1
+748  researchblogging 2012-08-07      1
+749  researchblogging 2012-08-14      1
+750  researchblogging 2012-08-21      1
+751  researchblogging 2012-08-28      1
+752  researchblogging 2012-09-05      1
+753  researchblogging 2012-09-12      1
+754  researchblogging 2012-09-19      1
+755  researchblogging 2012-09-26      1
+756  researchblogging 2012-10-04      1
+757  researchblogging 2012-10-11      1
+758  researchblogging 2012-10-18      1
+759  researchblogging 2012-10-26      1
+760  researchblogging 2012-11-02      1
+761  researchblogging 2012-11-09      1
+762  researchblogging 2012-11-17      1
+763  researchblogging 2012-11-24      1
+764  researchblogging 2012-12-03      1
+765  researchblogging 2012-12-10      1
+766  researchblogging 2012-12-17      1
+767  researchblogging 2012-12-21      1
+768  researchblogging 2012-12-23      1
+769  researchblogging 2012-12-24      1
+770  researchblogging 2012-12-26      1
+771  researchblogging 2012-12-27      1
+772  researchblogging 2013-01-04      1
+773  researchblogging 2013-01-10      1
+774  researchblogging 2013-01-12      1
+775  researchblogging 2013-01-14      1
+776  researchblogging 2013-01-16      1
+777  researchblogging 2013-01-17      1
+778  researchblogging 2013-01-19      1
+779  researchblogging 2013-01-21      1
+780  researchblogging 2013-01-22      1
+781  researchblogging 2013-01-24      1
+782              biod 2012-01-12      0
+783              biod 2012-02-01      0
+784              biod 2012-03-02      0
+785              biod 2012-04-02      0
+786              biod 2012-05-03      0
+787              biod 2012-06-14      1
+788              biod 2012-07-01      1
+789              biod 2012-07-31      5
+790              biod 2012-08-01      5
+791              biod 2012-08-02      5
+792              biod 2012-08-03      5
+793              biod 2012-08-04      5
+794              biod 2012-08-04      5
+795              biod 2012-08-05      5
+796              biod 2012-08-05      5
+797              biod 2012-08-06      5
+798              biod 2012-08-06      5
+799              biod 2012-08-07      5
+800              biod 2012-08-07      5
+801              biod 2012-08-08      5
+802              biod 2012-08-08      5
+803              biod 2012-08-09      5
+804              biod 2012-08-09      5
+805              biod 2012-08-10      5
+806              biod 2012-08-10      5
+807              biod 2012-08-11      5
+808              biod 2012-08-11      5
+809              biod 2012-08-12      5
+810              biod 2012-08-12      5
+811              biod 2012-08-13      5
+812              biod 2012-08-13      5
+813              biod 2012-08-14      5
+814              biod 2012-08-14      5
+815              biod 2012-08-15      5
+816              biod 2012-08-15      5
+817              biod 2012-08-16      5
+818              biod 2012-08-16      5
+819              biod 2012-08-17      5
+820              biod 2012-08-17      5
+821              biod 2012-08-18      5
+822              biod 2012-08-18      5
+823              biod 2012-08-19      5
+824              biod 2012-08-19      5
+825              biod 2012-08-20      5
+826              biod 2012-08-20      5
+827              biod 2012-08-21      5
+828              biod 2012-08-21      5
+829              biod 2012-08-22      5
+830              biod 2012-08-22      5
+831              biod 2012-08-23      5
+832              biod 2012-08-23      5
+833              biod 2012-08-24      5
+834              biod 2012-08-24      5
+835              biod 2012-08-25      5
+836              biod 2012-08-25      5
+837              biod 2012-08-26      5
+838              biod 2012-08-26      5
+839              biod 2012-08-27      5
+840              biod 2012-08-27      5
+841              biod 2012-08-28      5
+842              biod 2012-08-28      5
+843              biod 2012-08-29      5
+844              biod 2012-08-29      5
+845              biod 2012-08-30      5
+846              biod 2012-08-30      5
+847              biod 2012-08-31      5
+848              biod 2012-08-31      5
+849              biod 2012-09-01      5
+850              biod 2012-09-01      5
+851              biod 2012-09-02      5
+852              biod 2012-09-02      5
+853              biod 2012-09-03      5
+854              biod 2012-09-03      5
+855              biod 2012-09-04      5
+856              biod 2012-09-04      5
+857              biod 2012-09-05      5
+858              biod 2012-09-05      5
+859              biod 2012-09-06      5
+860              biod 2012-09-06      5
+861              biod 2012-09-07      5
+862              biod 2012-09-07      5
+863              biod 2012-09-08      5
+864              biod 2012-09-08      5
+865              biod 2012-09-09      5
+866              biod 2012-09-09      5
+867              biod 2012-09-10      5
+868              biod 2012-09-10      5
+869              biod 2012-09-11      5
+870              biod 2012-09-11      5
+871              biod 2012-09-12      5
+872              biod 2012-09-12      5
+873              biod 2012-09-13      6
+874              biod 2012-09-13      6
+875              biod 2012-09-14      6
+876              biod 2012-09-14      6
+877              biod 2012-09-15      6
+878              biod 2012-09-15      6
+879              biod 2012-09-16      6
+880              biod 2012-09-16      6
+881              biod 2012-09-17      6
+882              biod 2012-09-17      6
+883              biod 2012-09-18      6
+884              biod 2012-09-18      6
+885              biod 2012-09-19      6
+886              biod 2012-09-19      6
+887              biod 2012-09-20      6
+888              biod 2012-09-20      6
+889              biod 2012-09-21      6
+890              biod 2012-09-21      6
+891              biod 2012-09-22      8
+892              biod 2012-09-22      8
+893              biod 2012-09-23      8
+894              biod 2012-09-23      8
+895              biod 2012-09-24      8
+896              biod 2012-09-24      8
+897              biod 2012-09-25      8
+898              biod 2012-09-25      8
+899              biod 2012-09-26      8
+900              biod 2012-09-26      8
+901              biod 2012-09-27      8
+902              biod 2012-09-27      8
+903              biod 2012-09-28      8
+904              biod 2012-09-28      8
+905              biod 2012-09-29      8
+906              biod 2012-09-29      8
+907              biod 2012-09-30      8
+908              biod 2012-09-30      8
+909              biod 2012-10-01      8
+910              biod 2012-10-01      8
+911              biod 2012-10-02      9
+912              biod 2012-10-02      9
+913              biod 2012-10-03      9
+914              biod 2012-10-03      9
+915              biod 2012-10-04      9
+916              biod 2012-10-04      9
+917              biod 2012-10-05      9
+918              biod 2012-10-05      9
+919              biod 2012-10-06      9
+920              biod 2012-10-06      9
+921              biod 2012-10-07      9
+922              biod 2012-10-07      9
+923              biod 2012-10-08      9
+924              biod 2012-10-08      9
+925              biod 2012-10-09      9
+926              biod 2012-10-09      9
+927              biod 2012-10-10      9
+928              biod 2012-10-10      9
+929              biod 2012-10-11      9
+930              biod 2012-10-11      9
+931              biod 2012-10-12     10
+932              biod 2012-10-12     10
+933              biod 2012-10-13     10
+934              biod 2012-10-13     10
+935              biod 2012-10-14     11
+936              biod 2012-10-14     11
+937              biod 2012-10-15     11
+938              biod 2012-10-15     11
+939              biod 2012-10-16     11
+940              biod 2012-10-16     11
+941              biod 2012-10-17     11
+942              biod 2012-10-17     11
+943              biod 2012-10-18     11
+944              biod 2012-10-18     11
+945              biod 2012-10-19     11
+946              biod 2012-10-19     11
+947              biod 2012-10-20     11
+948              biod 2012-10-20     11
+949              biod 2012-10-21     11
+950              biod 2012-10-21     11
+951              biod 2012-10-22     12
+952              biod 2012-10-22     12
+953              biod 2012-10-23     12
+954              biod 2012-10-23     12
+955              biod 2012-10-24     12
+956              biod 2012-10-24     12
+957              biod 2012-10-25     12
+958              biod 2012-10-25     12
+959              biod 2012-10-26     12
+960              biod 2012-10-26     12
+961              biod 2012-10-27     12
+962              biod 2012-10-27     12
+963              biod 2012-10-28     12
+964              biod 2012-10-28     12
+965              biod 2012-10-29     12
+966              biod 2012-10-29     12
+967              biod 2012-10-30     12
+968              biod 2012-10-30     12
+969              biod 2012-11-01     12
+970              biod 2012-11-01     12
+971              biod 2012-11-02     13
+972              biod 2012-11-02     13
+973              biod 2012-11-03     13
+974              biod 2012-11-03     13
+975              biod 2012-11-04     13
+976              biod 2012-11-04     13
+977              biod 2012-11-05     13
+978              biod 2012-11-05     13
+979              biod 2012-11-06     13
+980              biod 2012-11-07     14
+981              biod 2012-11-08     14
+982              biod 2012-11-09     14
+983              biod 2012-11-10     14
+984              biod 2012-11-11     14
+985              biod 2012-11-12     16
+986              biod 2012-11-13     16
+987              biod 2012-11-14     16
+988              biod 2012-11-15     16
+989              biod 2012-11-16     16
+990              biod 2012-11-17     16
+991              biod 2012-11-18     16
+992              biod 2012-11-19     16
+993              biod 2012-11-20     16
+994              biod 2012-11-21     16
+995              biod 2012-11-22     16
+996              biod 2012-11-23     16
+997              biod 2012-11-24     16
+998              biod 2012-11-25     16
+999              biod 2012-11-26     16
+1000             biod 2012-11-27     16
+1001             biod 2012-11-28     16
+1002             biod 2012-11-29     16
+1003             biod 2012-12-02     16
+1004             biod 2012-12-03     16
+1005             biod 2012-12-03     16
+1006             biod 2012-12-03     16
+1007             biod 2012-12-04     17
+1008             biod 2012-12-05     17
+1009             biod 2012-12-06     17
+1010             biod 2012-12-07     18
+1011             biod 2012-12-08     18
+1012             biod 2012-12-09     18
+1013             biod 2012-12-10     18
+1014             biod 2012-12-11     18
+1015             biod 2012-12-12     19
+1016             biod 2012-12-13     19
+1017             biod 2012-12-14     19
+1018             biod 2012-12-15     19
+1019             biod 2012-12-16     19
+1020             biod 2012-12-17     19
+1021             biod 2012-12-18     19
+1022             biod 2012-12-19     19
+1023             biod 2012-12-20     19
+1024             biod 2012-12-21     19
+1025             biod 2012-12-22     19
+1026             biod 2012-12-23     19
+1027             biod 2012-12-24     19
+1028             biod 2012-12-25     19
+1029             biod 2012-12-26     19
+1030             biod 2012-12-27     19
+1031             biod 2012-12-28     19
+1032             biod 2013-01-04     19
+1033             biod 2013-01-04     19
+1034             biod 2013-01-04     19
+1035             biod 2013-01-04     19
+1036             biod 2013-01-04     19
+1037             biod 2013-01-04     19
+1038             biod 2013-01-04     19
+1039             biod 2013-01-05     19
+1040             biod 2013-01-06     19
+1041             biod 2013-01-07     19
+1042             biod 2013-01-08     19
+1043             biod 2013-01-09     19
+1044             biod 2013-01-10     19
+1045             biod 2013-01-11     19
+1046             biod 2013-01-12     19
+1047             biod 2013-01-13     19
+1048             biod 2013-01-14     19
+1049             biod 2013-01-15     19
+1050             biod 2013-01-16     19
+1051             biod 2013-01-17     19
+1052             biod 2013-01-18     19
+1053             biod 2013-01-19     19
+1054             biod 2013-01-20     19
+1055             biod 2013-01-21     19
+1056             biod 2013-01-22     19
+1057             biod 2013-01-23     19
+1058             biod 2013-01-24     19
+1059             biod 2013-01-25     19
+1060              wos 2012-01-12      0
+1061              wos 2012-02-03      0
+1062              wos 2012-03-03      0
+1063              wos 2012-04-08      0
+1064              wos 2012-05-07      0
+1065              wos 2012-06-07      0
+1066              wos 2012-07-01      0
+1067              wos 2012-07-31      0
+1068              wos 2012-08-07      0
+1069              wos 2012-08-14      0
+1070              wos 2012-08-21      0
+1071              wos 2012-08-28      0
+1072              wos 2012-09-05      0
+1073              wos 2012-09-12      0
+1074              wos 2012-09-19      0
+1075              wos 2012-09-27      0
+1076              wos 2012-10-05      0
+1077              wos 2012-10-12      1
+1078              wos 2012-10-20      1
+1079              wos 2012-10-27      1
+1080              wos 2012-11-04      1
+1081              wos 2012-11-11      1
+1082              wos 2012-11-18      1
+1083              wos 2012-11-25      1
+1084              wos 2012-12-03      1
+1085              wos 2012-12-10      1
+1086              wos 2012-12-18      1
+1087              wos 2012-12-21      1
+1088              wos 2012-12-21      1
+1089              wos 2012-12-22      1
+1090              wos 2012-12-23      1
+1091              wos 2012-12-23      1
+1092              wos 2012-12-24      1
+1093              wos 2012-12-24      1
+1094              wos 2012-12-25      1
+1095              wos 2012-12-25      1
+1096              wos 2012-12-26      1
+1097              wos 2012-12-26      1
+1098              wos 2012-12-27      1
+1099              wos 2012-12-27      1
+1100              wos 2012-12-28      1
+1101              wos 2013-01-04      1
+1102              wos 2013-01-04      1
+1103              wos 2013-01-05      1
+1104              wos 2013-01-06      1
+1105              wos 2013-01-06      1
+1106              wos 2013-01-07      1
+1107              wos 2013-01-07      1
+1108              wos 2013-01-08      1
+1109              wos 2013-01-09      1
+1110              wos 2013-01-09      1
+1111              wos 2013-01-10      1
+1112              wos 2013-01-10      1
+1113              wos 2013-01-11      1
+1114              wos 2013-01-11      1
+1115              wos 2013-01-12      1
+1116              wos 2013-01-13      1
+1117              wos 2013-01-13      1
+1118              wos 2013-01-14      1
+1119              wos 2013-01-15      1
+1120              wos 2013-01-15      1
+1121              wos 2013-01-16      1
+1122              wos 2013-01-16      1
+1123              wos 2013-01-17      1
+1124              wos 2013-01-17      1
+1125              wos 2013-01-18      1
+1126              wos 2013-01-19      1
+1127              wos 2013-01-20      1
+1128              wos 2013-01-21      0
+1129              wos 2013-01-21      0
+1130              wos 2013-01-22      0
+1131              wos 2013-01-23      0
+1132              wos 2013-01-23      0
+1133              wos 2013-01-24      0
+1134              wos 2013-01-25      0
+1135              wos 2013-01-25      0
+1136              pmc 2012-01-12      0
+1137              pmc 2012-02-23      0
+1138              pmc 2012-03-08      0
+1139              pmc 2012-04-04      0
+1140              pmc 2012-05-02      0
+1141              pmc 2012-06-03      0
+1142              pmc 2012-07-09      0
+1143              pmc 2012-07-31    116
+1144              pmc 2012-08-08    125
+1145              pmc 2012-09-12    130
+1146              pmc 2012-10-03    149
+1147              pmc 2012-11-05    173
+1148              pmc 2012-12-02    173
+1149              pmc 2013-01-04    187
+1150              pmc 2013-01-18      0
+1151         facebook 2012-01-12      0
+1152         facebook 2012-02-03      0
+1153         facebook 2012-03-03      0
+1154         facebook 2012-04-08      0
+1155         facebook 2012-05-07      0
+1156         facebook 2012-06-07      0
+1157         facebook 2012-07-01      0
+1158         facebook 2012-08-01    228
+1159         facebook 2012-08-08    228
+1160         facebook 2012-08-15    228
+1161         facebook 2012-08-22    228
+1162         facebook 2012-08-29      0
+1163         facebook 2012-08-29    229
+1164         facebook 2012-09-05    229
+1165         facebook 2012-09-12    229
+1166         facebook 2012-09-19    230
+1167         facebook 2012-09-27    230
+1168         facebook 2012-10-04    232
+1169         facebook 2012-10-12    232
+1170         facebook 2012-10-19    175
+1171         facebook 2012-10-27    175
+1172         facebook 2012-11-03    175
+1173         facebook 2012-11-10    175
+1174         facebook 2012-11-18    176
+1175         facebook 2012-11-25    177
+1176         facebook 2012-12-03    177
+1177         facebook 2012-12-10    177
+1178         facebook 2012-12-18    180
+1179         facebook 2012-12-21    180
+1180         facebook 2012-12-22    180
+1181         facebook 2012-12-23    180
+1182         facebook 2012-12-25    180
+1183         facebook 2012-12-26    180
+1184         facebook 2012-12-27    180
+1185         facebook 2012-12-28    180
+1186         facebook 2013-01-04    180
+1187         facebook 2013-01-05    180
+1188         facebook 2013-01-07    180
+1189         facebook 2013-01-08    180
+1190         facebook 2013-01-09    180
+1191         facebook 2013-01-10    180
+1192         facebook 2013-01-13    540
+1193         facebook 2013-01-19    540
+1194         facebook 2013-01-20    540
+1195         facebook 2013-01-21    540
+1196         facebook 2013-01-23    540
+1197         facebook 2013-01-24    540
+1198         mendeley 2012-01-12      0
+1199         mendeley 2012-02-18      0
+1200         mendeley 2012-03-03      0
+1201         mendeley 2012-04-01      0
+1202         mendeley 2012-05-07      0
+1203         mendeley 2012-06-07      0
+1204         mendeley 2012-07-01      0
+1205         mendeley 2012-08-01     20
+1206         mendeley 2012-08-09      0
+1207         mendeley 2012-08-09     20
+1208         mendeley 2012-08-16     20
+1209         mendeley 2012-08-23     24
+1210         mendeley 2012-08-30     24
+1211         mendeley 2012-09-06     24
+1212         mendeley 2012-09-13     24
+1213         mendeley 2012-09-20     24
+1214         mendeley 2012-09-28     24
+1215         mendeley 2012-10-05     24
+1216         mendeley 2012-10-13     24
+1217         mendeley 2012-10-20     26
+1218         mendeley 2012-10-27     28
+1219         mendeley 2012-11-03     29
+1220         mendeley 2012-11-11     30
+1221         mendeley 2012-11-18     30
+1222         mendeley 2012-11-26     30
+1223         mendeley 2012-12-16     35
+1224         mendeley 2012-12-23     35
+1225         mendeley 2012-12-24     35
+1226         mendeley 2012-12-24     35
+1227         mendeley 2012-12-25     35
+1228         mendeley 2012-12-25     35
+1229         mendeley 2012-12-26     35
+1230         mendeley 2012-12-26     35
+1231         mendeley 2012-12-27     35
+1232         mendeley 2012-12-27     35
+1233         mendeley 2012-12-28     35
+1234         mendeley 2012-12-28     35
+1235         mendeley 2013-01-04     35
+1236         mendeley 2013-01-04     35
+1237         mendeley 2013-01-05     35
+1238         mendeley 2013-01-05     35
+1239         mendeley 2013-01-06     35
+1240         mendeley 2013-01-06     35
+1241         mendeley 2013-01-07     35
+1242         mendeley 2013-01-07     35
+1243         mendeley 2013-01-08     35
+1244         mendeley 2013-01-08     35
+1245         mendeley 2013-01-09     35
+1246         mendeley 2013-01-09     35
+1247         mendeley 2013-01-10     35
+1248         mendeley 2013-01-11     35
+1249         mendeley 2013-01-11     35
+1250         mendeley 2013-01-12     35
+1251         mendeley 2013-01-12     35
+1252         mendeley 2013-01-13     35
+1253         mendeley 2013-01-14     35
+1254         mendeley 2013-01-14     35
+1255         mendeley 2013-01-15     35
+1256         mendeley 2013-01-15     35
+1257         mendeley 2013-01-16     35
+1258         mendeley 2013-01-16     35
+1259         mendeley 2013-01-17     35
+1260         mendeley 2013-01-18     35
+1261         mendeley 2013-01-19     35
+1262         mendeley 2013-01-20     35
+1263         mendeley 2013-01-20     35
+1264         mendeley 2013-01-21     35
+1265         mendeley 2013-01-22     37
+1266         mendeley 2013-01-23     37
+1267         mendeley 2013-01-24     37
+1268         mendeley 2013-01-25     37
+1269         mendeley 2013-01-25     37
+1270          twitter 2012-06-28      0
+1271          twitter 2012-07-09      0
+1272          twitter 2012-07-31      0
+1273          twitter 2012-08-01      0
+1274          twitter 2012-08-02      0
+1275          twitter 2012-08-03      0
+1276          twitter 2012-08-04      0
+1277          twitter 2012-08-05      0
+1278          twitter 2012-08-06      0
+1279          twitter 2012-08-07      0
+1280          twitter 2012-08-08      0
+1281          twitter 2012-08-10      0
+1282          twitter 2012-08-11      0
+1283          twitter 2012-08-12      0
+1284          twitter 2012-08-13      0
+1285          twitter 2012-08-14      0
+1286          twitter 2012-08-15      0
+1287          twitter 2012-08-16      0
+1288          twitter 2012-08-17      0
+1289          twitter 2012-08-18      0
+1290          twitter 2012-08-19      2
+1291          twitter 2012-08-20      2
+1292          twitter 2012-08-21      2
+1293          twitter 2012-08-22      2
+1294          twitter 2012-08-23      2
+1295          twitter 2012-08-24      2
+1296          twitter 2012-08-25      2
+1297          twitter 2012-08-26      2
+1298          twitter 2012-08-27      2
+1299          twitter 2012-08-28      2
+1300          twitter 2012-08-29      2
+1301          twitter 2012-08-30      2
+1302          twitter 2012-08-31      2
+1303          twitter 2012-09-01      2
+1304          twitter 2012-09-02      2
+1305          twitter 2012-09-04      2
+1306          twitter 2012-09-05      2
+1307          twitter 2012-09-06      2
+1308          twitter 2012-09-07      2
+1309          twitter 2012-09-08      2
+1310          twitter 2012-09-09      2
+1311          twitter 2012-09-10      2
+1312          twitter 2012-09-11      2
+1313          twitter 2012-09-12      2
+1314          twitter 2012-09-13      2
+1315          twitter 2012-09-20      2
+1316          twitter 2012-09-27      2
+1317          twitter 2012-10-04      2
+1318          twitter 2012-10-12      2
+1319          twitter 2012-10-19      2
+1320          twitter 2012-10-27      2
+1321          twitter 2012-11-03      5
+1322          twitter 2012-11-11      5
+1323          twitter 2012-11-18      5
+1324          twitter 2012-11-25      5
+1325          twitter 2012-12-03      5
+1326          twitter 2012-12-10      5
+1327          twitter 2012-12-17      5
+1328          twitter 2012-12-20      5
+1329          twitter 2012-12-20      5
+1330          twitter 2012-12-20      5
+1331          twitter 2012-12-21      5
+1332          twitter 2012-12-21      5
+1333          twitter 2012-12-21      5
+1334          twitter 2012-12-21      5
+1335          twitter 2012-12-21      5
+1336          twitter 2012-12-21      5
+1337          twitter 2012-12-21      5
+1338          twitter 2012-12-21      5
+1339          twitter 2012-12-21      5
+1340          twitter 2012-12-21      5
+1341          twitter 2012-12-21      5
+1342          twitter 2012-12-21      5
+1343          twitter 2012-12-21      5
+1344          twitter 2012-12-21      5
+1345          twitter 2012-12-21      5
+1346          twitter 2012-12-21      5
+1347          twitter 2012-12-21      5
+1348          twitter 2012-12-21      5
+1349          twitter 2012-12-21      5
+1350          twitter 2012-12-21      5
+1351          twitter 2012-12-21      5
+1352          twitter 2012-12-21      5
+1353          twitter 2012-12-21      5
+1354          twitter 2012-12-21      5
+1355          twitter 2012-12-21      5
+1356          twitter 2012-12-21      5
+1357          twitter 2012-12-21      5
+1358          twitter 2012-12-21      5
+1359          twitter 2012-12-21      5
+1360          twitter 2012-12-21      5
+1361          twitter 2012-12-21      5
+1362          twitter 2012-12-21      5
+1363          twitter 2012-12-21      5
+1364          twitter 2012-12-21      5
+1365          twitter 2012-12-21      5
+1366          twitter 2012-12-21      5
+1367          twitter 2012-12-21      5
+1368          twitter 2012-12-21      5
+1369          twitter 2012-12-21      5
+1370          twitter 2012-12-21      5
+1371          twitter 2012-12-22      5
+1372          twitter 2012-12-22      5
+1373          twitter 2012-12-22      5
+1374          twitter 2012-12-22      5
+1375          twitter 2012-12-22      5
+1376          twitter 2012-12-22      5
+1377          twitter 2012-12-22      5
+1378          twitter 2012-12-22      5
+1379          twitter 2012-12-22      5
+1380          twitter 2012-12-22      5
+1381          twitter 2012-12-22      5
+1382          twitter 2012-12-22      5
+1383          twitter 2012-12-22      5
+1384          twitter 2012-12-22      5
+1385          twitter 2012-12-22      5
+1386          twitter 2012-12-22      5
+1387          twitter 2012-12-22      5
+1388          twitter 2012-12-22      5
+1389          twitter 2012-12-22      5
+1390          twitter 2012-12-22      5
+1391          twitter 2012-12-22      5
+1392          twitter 2012-12-22      5
+1393          twitter 2012-12-22      5
+1394          twitter 2012-12-22      5
+1395          twitter 2012-12-22      5
+1396          twitter 2012-12-22      5
+1397          twitter 2012-12-22      5
+1398          twitter 2012-12-22      5
+1399          twitter 2012-12-22      5
+1400          twitter 2012-12-22      5
+1401          twitter 2012-12-22      5
+1402          twitter 2012-12-22      7
+1403          twitter 2012-12-22      7
+1404          twitter 2012-12-22      7
+1405          twitter 2012-12-22      7
+1406          twitter 2012-12-22      7
+1407          twitter 2012-12-22      7
+1408          twitter 2012-12-22      7
+1409          twitter 2012-12-22      7
+1410          twitter 2012-12-22      7
+1411          twitter 2012-12-22      7
+1412          twitter 2012-12-22      7
+1413          twitter 2012-12-22      7
+1414          twitter 2012-12-22      7
+1415          twitter 2012-12-22      7
+1416          twitter 2012-12-23      7
+1417          twitter 2012-12-23      7
+1418          twitter 2012-12-23      7
+1419          twitter 2012-12-23      7
+1420          twitter 2012-12-23      7
+1421          twitter 2012-12-23      7
+1422          twitter 2012-12-23      7
+1423          twitter 2012-12-23      7
+1424          twitter 2012-12-23      7
+1425          twitter 2012-12-23      7
+1426          twitter 2012-12-23      7
+1427          twitter 2012-12-23      7
+1428          twitter 2012-12-23      7
+1429          twitter 2012-12-23      7
+1430          twitter 2012-12-23      7
+1431          twitter 2012-12-23      7
+1432          twitter 2012-12-23      7
+1433          twitter 2012-12-23      7
+1434          twitter 2012-12-23      7
+1435          twitter 2012-12-23      7
+1436          twitter 2012-12-23      7
+1437          twitter 2012-12-23      7
+1438          twitter 2012-12-23      7
+1439          twitter 2012-12-23      7
+1440          twitter 2012-12-23      7
+1441          twitter 2012-12-23      7
+1442          twitter 2012-12-23      7
+1443          twitter 2012-12-23      7
+1444          twitter 2012-12-23      7
+1445          twitter 2012-12-23      7
+1446          twitter 2012-12-23      7
+1447          twitter 2012-12-23      7
+1448          twitter 2012-12-23      7
+1449          twitter 2012-12-23      7
+1450          twitter 2012-12-23      7
+1451          twitter 2012-12-23      7
+1452          twitter 2012-12-23      7
+1453          twitter 2012-12-23      7
+1454          twitter 2012-12-23      7
+1455          twitter 2012-12-23      7
+1456          twitter 2012-12-23      7
+1457          twitter 2012-12-23      7
+1458          twitter 2012-12-23      7
+1459          twitter 2012-12-23      7
+1460          twitter 2012-12-23      7
+1461          twitter 2012-12-23      7
+1462          twitter 2012-12-24      7
+1463          twitter 2012-12-24      7
+1464          twitter 2012-12-24      7
+1465          twitter 2012-12-24      7
+1466          twitter 2012-12-24      7
+1467          twitter 2012-12-24      7
+1468          twitter 2012-12-24      7
+1469          twitter 2012-12-24      7
+1470          twitter 2012-12-24      7
+1471          twitter 2012-12-24      7
+1472          twitter 2012-12-24      7
+1473          twitter 2012-12-24      7
+1474          twitter 2012-12-24      7
+1475          twitter 2012-12-24      7
+1476          twitter 2012-12-24      7
+1477          twitter 2012-12-24      7
+1478          twitter 2012-12-24      7
+1479          twitter 2012-12-24      7
+1480          twitter 2012-12-24      7
+1481          twitter 2012-12-24      7
+1482          twitter 2012-12-24      7
+1483          twitter 2012-12-24      7
+1484          twitter 2012-12-24      7
+1485          twitter 2012-12-24      7
+1486          twitter 2012-12-24      7
+1487          twitter 2012-12-24      7
+1488          twitter 2012-12-24      7
+1489          twitter 2012-12-24      7
+1490          twitter 2012-12-24      7
+1491          twitter 2012-12-24      7
+1492          twitter 2012-12-24      7
+1493          twitter 2012-12-24      7
+1494          twitter 2012-12-24      7
+1495          twitter 2012-12-24      7
+1496          twitter 2012-12-24      7
+1497          twitter 2012-12-24      7
+1498          twitter 2012-12-24      7
+1499          twitter 2012-12-24      7
+1500          twitter 2012-12-24      7
+1501          twitter 2012-12-24      7
+1502          twitter 2012-12-24      7
+1503          twitter 2012-12-24      7
+1504          twitter 2012-12-24      7
+1505          twitter 2012-12-25      7
+1506          twitter 2012-12-25      7
+1507          twitter 2012-12-25      7
+1508          twitter 2012-12-25      7
+1509          twitter 2012-12-25      7
+1510          twitter 2012-12-25      7
+1511          twitter 2012-12-25      7
+1512          twitter 2012-12-25      7
+1513          twitter 2012-12-25      7
+1514          twitter 2012-12-25      7
+1515          twitter 2012-12-25      7
+1516          twitter 2012-12-25      7
+1517          twitter 2012-12-25      7
+1518          twitter 2012-12-25      7
+1519          twitter 2012-12-25      7
+1520          twitter 2012-12-25      7
+1521          twitter 2012-12-25      7
+1522          twitter 2012-12-25      7
+1523          twitter 2012-12-25      7
+1524          twitter 2012-12-25      7
+1525          twitter 2012-12-25      7
+1526          twitter 2012-12-25      7
+1527          twitter 2012-12-25      7
+1528          twitter 2012-12-25      7
+1529          twitter 2012-12-25      7
+1530          twitter 2012-12-25      7
+1531          twitter 2012-12-25      7
+1532          twitter 2012-12-25      7
+1533          twitter 2012-12-25      7
+1534          twitter 2012-12-25      7
+1535          twitter 2012-12-25      7
+1536          twitter 2012-12-25      7
+1537          twitter 2012-12-25      7
+1538          twitter 2012-12-25      7
+1539          twitter 2012-12-25      7
+1540          twitter 2012-12-25      7
+1541          twitter 2012-12-25      7
+1542          twitter 2012-12-25      7
+1543          twitter 2012-12-25      7
+1544          twitter 2012-12-25      7
+1545          twitter 2012-12-25      7
+1546          twitter 2012-12-25      7
+1547          twitter 2012-12-26      7
+1548          twitter 2012-12-26      7
+1549          twitter 2012-12-26      7
+1550          twitter 2012-12-26      7
+1551          twitter 2012-12-26      7
+1552          twitter 2012-12-26      7
+1553          twitter 2012-12-26      7
+1554          twitter 2012-12-26      7
+1555          twitter 2012-12-26      7
+1556          twitter 2012-12-26      7
+1557          twitter 2012-12-26      7
+1558          twitter 2012-12-26      7
+1559          twitter 2012-12-26      7
+1560          twitter 2012-12-26      7
+1561          twitter 2012-12-26      7
+1562          twitter 2012-12-26      7
+1563          twitter 2012-12-26      7
+1564          twitter 2012-12-26      7
+1565          twitter 2012-12-26      7
+1566          twitter 2012-12-26      7
+1567          twitter 2012-12-26      7
+1568          twitter 2012-12-26      7
+1569          twitter 2012-12-26      7
+1570          twitter 2012-12-26      7
+1571          twitter 2012-12-26      7
+1572          twitter 2012-12-26      7
+1573          twitter 2012-12-26      7
+1574          twitter 2012-12-26      7
+1575          twitter 2012-12-26      7
+1576          twitter 2012-12-26      7
+1577          twitter 2012-12-26      7
+1578          twitter 2012-12-26      7
+1579          twitter 2012-12-26      7
+1580          twitter 2012-12-26      7
+1581          twitter 2012-12-26      7
+1582          twitter 2012-12-26      7
+1583          twitter 2012-12-26      7
+1584          twitter 2012-12-26      7
+1585          twitter 2012-12-26      7
+1586          twitter 2012-12-26      7
+1587          twitter 2012-12-26      7
+1588          twitter 2012-12-26      7
+1589          twitter 2012-12-26      7
+1590          twitter 2012-12-26      7
+1591          twitter 2012-12-27      7
+1592          twitter 2012-12-27      7
+1593          twitter 2012-12-27      7
+1594          twitter 2012-12-27      7
+1595          twitter 2012-12-27      7
+1596          twitter 2012-12-27      8
+1597          twitter 2012-12-27      8
+1598          twitter 2012-12-27      8
+1599          twitter 2012-12-27      8
+1600          twitter 2012-12-27      8
+1601          twitter 2012-12-27      8
+1602          twitter 2012-12-27      8
+1603          twitter 2012-12-27      8
+1604          twitter 2012-12-27      8
+1605          twitter 2012-12-27      8
+1606          twitter 2012-12-27      8
+1607          twitter 2012-12-27      8
+1608          twitter 2012-12-27      8
+1609          twitter 2012-12-27      8
+1610          twitter 2012-12-27      8
+1611          twitter 2012-12-27      8
+1612          twitter 2012-12-27      8
+1613          twitter 2012-12-27      8
+1614          twitter 2012-12-27      8
+1615          twitter 2012-12-27      8
+1616          twitter 2012-12-27      8
+1617          twitter 2012-12-27      8
+1618          twitter 2012-12-27      8
+1619          twitter 2012-12-27      8
+1620          twitter 2012-12-27      8
+1621          twitter 2012-12-27      8
+1622          twitter 2012-12-27      8
+1623          twitter 2012-12-27      8
+1624          twitter 2012-12-27      8
+1625          twitter 2012-12-27      8
+1626          twitter 2012-12-27      8
+1627          twitter 2012-12-27      8
+1628          twitter 2012-12-27      8
+1629          twitter 2012-12-27      8
+1630          twitter 2012-12-27      8
+1631          twitter 2012-12-27      8
+1632          twitter 2012-12-27      8
+1633          twitter 2012-12-27      8
+1634          twitter 2012-12-28      8
+1635          twitter 2012-12-28      8
+1636          twitter 2012-12-28      8
+1637          twitter 2012-12-28      8
+1638          twitter 2012-12-28      8
+1639          twitter 2012-12-28      8
+1640          twitter 2012-12-28      8
+1641          twitter 2012-12-28      8
+1642          twitter 2012-12-28      8
+1643          twitter 2012-12-28      8
+1644          twitter 2012-12-28      8
+1645          twitter 2012-12-28      8
+1646          twitter 2012-12-28      8
+1647          twitter 2012-12-28      8
+1648          twitter 2012-12-28      8
+1649          twitter 2012-12-28      8
+1650          twitter 2012-12-28      8
+1651          twitter 2012-12-28      8
+1652          twitter 2012-12-28      8
+1653          twitter 2012-12-28      8
+1654          twitter 2012-12-28      8
+1655          twitter 2012-12-28      8
+1656          twitter 2012-12-28      8
+1657          twitter 2012-12-28      8
+1658          twitter 2012-12-28      8
+1659          twitter 2012-12-28      8
+1660          twitter 2012-12-28      8
+1661          twitter 2012-12-28      8
+1662          twitter 2012-12-28      8
+1663          twitter 2012-12-28      8
+1664          twitter 2012-12-28      8
+1665          twitter 2012-12-28      8
+1666          twitter 2012-12-28      8
+1667          twitter 2012-12-28      8
+1668          twitter 2012-12-28      8
+1669          twitter 2012-12-28      8
+1670          twitter 2012-12-28      8
+1671          twitter 2012-12-28      8
+1672          twitter 2012-12-28      8
+1673          twitter 2012-12-28      8
+1674          twitter 2012-12-28      8
+1675          twitter 2012-12-28      8
+1676          twitter 2012-12-28      8
+1677          twitter 2012-12-28      8
+1678          twitter 2012-12-28      8
+1679          twitter 2013-01-04      8
+1680          twitter 2013-01-04      8
+1681          twitter 2013-01-04      8
+1682          twitter 2013-01-04      8
+1683          twitter 2013-01-04      8
+1684          twitter 2013-01-04      8
+1685          twitter 2013-01-04      8
+1686          twitter 2013-01-04      8
+1687          twitter 2013-01-04      8
+1688          twitter 2013-01-04      8
+1689          twitter 2013-01-04      8
+1690          twitter 2013-01-04      8
+1691          twitter 2013-01-04      8
+1692          twitter 2013-01-04      8
+1693          twitter 2013-01-04      8
+1694          twitter 2013-01-04      8
+1695          twitter 2013-01-04      8
+1696          twitter 2013-01-04      8
+1697          twitter 2013-01-04      8
+1698          twitter 2013-01-04      8
+1699          twitter 2013-01-04      8
+1700          twitter 2013-01-04      8
+1701          twitter 2013-01-04      8
+1702          twitter 2013-01-04      8
+1703          twitter 2013-01-04      8
+1704          twitter 2013-01-04      8
+1705          twitter 2013-01-04      8
+1706          twitter 2013-01-04      8
+1707          twitter 2013-01-04      8
+1708          twitter 2013-01-04      8
+1709          twitter 2013-01-04      8
+1710          twitter 2013-01-04      8
+1711          twitter 2013-01-04      8
+1712          twitter 2013-01-04      8
+1713          twitter 2013-01-04      8
+1714          twitter 2013-01-05      8
+1715          twitter 2013-01-05      8
+1716          twitter 2013-01-05      8
+1717          twitter 2013-01-05      8
+1718          twitter 2013-01-05      8
+1719          twitter 2013-01-05      8
+1720          twitter 2013-01-05      8
+1721          twitter 2013-01-05      8
+1722          twitter 2013-01-05      8
+1723          twitter 2013-01-05      8
+1724          twitter 2013-01-05      8
+1725          twitter 2013-01-05      8
+1726          twitter 2013-01-05      8
+1727          twitter 2013-01-05      8
+1728          twitter 2013-01-05      8
+1729          twitter 2013-01-05      8
+1730          twitter 2013-01-05      8
+1731          twitter 2013-01-05      8
+1732          twitter 2013-01-05      8
+1733          twitter 2013-01-05      8
+1734          twitter 2013-01-05      8
+1735          twitter 2013-01-05      8
+1736          twitter 2013-01-05      8
+1737          twitter 2013-01-05      8
+1738          twitter 2013-01-05      8
+1739          twitter 2013-01-05      8
+1740          twitter 2013-01-05      8
+1741          twitter 2013-01-05      8
+1742          twitter 2013-01-05      8
+1743          twitter 2013-01-05      8
+1744          twitter 2013-01-05      8
+1745          twitter 2013-01-05      8
+1746          twitter 2013-01-05      8
+1747          twitter 2013-01-05      8
+1748          twitter 2013-01-05      8
+1749          twitter 2013-01-05      8
+1750          twitter 2013-01-05      8
+1751          twitter 2013-01-05      8
+1752          twitter 2013-01-05      8
+1753          twitter 2013-01-05      8
+1754          twitter 2013-01-05      8
+1755          twitter 2013-01-05      8
+1756          twitter 2013-01-06      8
+1757          twitter 2013-01-06      8
+1758          twitter 2013-01-06      8
+1759          twitter 2013-01-06      8
+1760          twitter 2013-01-06      8
+1761          twitter 2013-01-06      8
+1762          twitter 2013-01-06      8
+1763          twitter 2013-01-06      8
+1764          twitter 2013-01-06      8
+1765          twitter 2013-01-06      8
+1766          twitter 2013-01-06      8
+1767          twitter 2013-01-06      8
+1768          twitter 2013-01-06      8
+1769          twitter 2013-01-06      8
+1770          twitter 2013-01-06      8
+1771          twitter 2013-01-06      8
+1772          twitter 2013-01-06      8
+1773          twitter 2013-01-06      8
+1774          twitter 2013-01-06      8
+1775          twitter 2013-01-06      8
+1776          twitter 2013-01-06      8
+1777          twitter 2013-01-06      8
+1778          twitter 2013-01-06      8
+1779          twitter 2013-01-06      8
+1780          twitter 2013-01-06      8
+1781          twitter 2013-01-06      8
+1782          twitter 2013-01-06      8
+1783          twitter 2013-01-06      8
+1784          twitter 2013-01-06      8
+1785          twitter 2013-01-06      8
+1786          twitter 2013-01-06      8
+1787          twitter 2013-01-06      8
+1788          twitter 2013-01-06      8
+1789          twitter 2013-01-06      8
+1790          twitter 2013-01-06      8
+1791          twitter 2013-01-06      8
+1792          twitter 2013-01-06      8
+1793          twitter 2013-01-06      8
+1794          twitter 2013-01-06      8
+1795          twitter 2013-01-06      8
+1796          twitter 2013-01-06      8
+1797          twitter 2013-01-06      8
+1798          twitter 2013-01-06      8
+1799          twitter 2013-01-06      8
+1800          twitter 2013-01-06      8
+1801          twitter 2013-01-06      8
+1802          twitter 2013-01-07      8
+1803          twitter 2013-01-07      8
+1804          twitter 2013-01-07      8
+1805          twitter 2013-01-07      8
+1806          twitter 2013-01-07      8
+1807          twitter 2013-01-07      8
+1808          twitter 2013-01-07      8
+1809          twitter 2013-01-07      8
+1810          twitter 2013-01-07      8
+1811          twitter 2013-01-07      8
+1812          twitter 2013-01-07      8
+1813          twitter 2013-01-07      8
+1814          twitter 2013-01-07      8
+1815          twitter 2013-01-07      8
+1816          twitter 2013-01-07      8
+1817          twitter 2013-01-07      8
+1818          twitter 2013-01-07      8
+1819          twitter 2013-01-07      8
+1820          twitter 2013-01-07      8
+1821          twitter 2013-01-07      8
+1822          twitter 2013-01-07      8
+1823          twitter 2013-01-07      8
+1824          twitter 2013-01-07      8
+1825          twitter 2013-01-07      8
+1826          twitter 2013-01-07      8
+1827          twitter 2013-01-07      8
+1828          twitter 2013-01-07      8
+1829          twitter 2013-01-07      8
+1830          twitter 2013-01-07      8
+1831          twitter 2013-01-07      8
+1832          twitter 2013-01-07      8
+1833          twitter 2013-01-07      8
+1834          twitter 2013-01-07      8
+1835          twitter 2013-01-07      8
+1836          twitter 2013-01-07      8
+1837          twitter 2013-01-07      8
+1838          twitter 2013-01-07      8
+1839          twitter 2013-01-07      8
+1840          twitter 2013-01-07      8
+1841          twitter 2013-01-07      8
+1842          twitter 2013-01-07      8
+1843          twitter 2013-01-08      8
+1844          twitter 2013-01-08      8
+1845          twitter 2013-01-08      8
+1846          twitter 2013-01-08      8
+1847          twitter 2013-01-08      8
+1848          twitter 2013-01-08      8
+1849          twitter 2013-01-08      8
+1850          twitter 2013-01-08      8
+1851          twitter 2013-01-08      8
+1852          twitter 2013-01-08      8
+1853          twitter 2013-01-08      8
+1854          twitter 2013-01-08      8
+1855          twitter 2013-01-08      8
+1856          twitter 2013-01-08      8
+1857          twitter 2013-01-08      8
+1858          twitter 2013-01-08      8
+1859          twitter 2013-01-08      8
+1860          twitter 2013-01-08      8
+1861          twitter 2013-01-08      8
+1862          twitter 2013-01-08      8
+1863          twitter 2013-01-08      8
+1864          twitter 2013-01-08      8
+1865          twitter 2013-01-08      8
+1866          twitter 2013-01-08      8
+1867          twitter 2013-01-08      8
+1868          twitter 2013-01-08      8
+1869          twitter 2013-01-08      8
+1870          twitter 2013-01-08      8
+1871          twitter 2013-01-08      8
+1872          twitter 2013-01-08      8
+1873          twitter 2013-01-08      8
+1874          twitter 2013-01-08      8
+1875          twitter 2013-01-08      8
+1876          twitter 2013-01-08      8
+1877          twitter 2013-01-08      8
+1878          twitter 2013-01-08      8
+1879          twitter 2013-01-08      8
+1880          twitter 2013-01-08      8
+1881          twitter 2013-01-08      8
+1882          twitter 2013-01-08      8
+1883          twitter 2013-01-08      8
+1884          twitter 2013-01-08      8
+1885          twitter 2013-01-08      8
+1886          twitter 2013-01-08      8
+1887          twitter 2013-01-09      8
+1888          twitter 2013-01-09      8
+1889          twitter 2013-01-09      8
+1890          twitter 2013-01-09      8
+1891          twitter 2013-01-09      8
+1892          twitter 2013-01-09      8
+1893          twitter 2013-01-09      8
+1894          twitter 2013-01-09      8
+1895          twitter 2013-01-09      8
+1896          twitter 2013-01-09      8
+1897          twitter 2013-01-09      8
+1898          twitter 2013-01-09      8
+1899          twitter 2013-01-09      8
+1900          twitter 2013-01-09      8
+1901          twitter 2013-01-09      8
+1902          twitter 2013-01-09      8
+1903          twitter 2013-01-09      8
+1904          twitter 2013-01-09      8
+1905          twitter 2013-01-09      8
+1906          twitter 2013-01-09      8
+1907          twitter 2013-01-09      8
+1908          twitter 2013-01-09      8
+1909          twitter 2013-01-09      8
+1910          twitter 2013-01-09      8
+1911          twitter 2013-01-09      8
+1912          twitter 2013-01-09      8
+1913          twitter 2013-01-09      8
+1914          twitter 2013-01-09      8
+1915          twitter 2013-01-09      8
+1916          twitter 2013-01-09      8
+1917          twitter 2013-01-09      8
+1918          twitter 2013-01-09      8
+1919          twitter 2013-01-09      8
+1920          twitter 2013-01-09      8
+1921          twitter 2013-01-09      8
+1922          twitter 2013-01-09      8
+1923          twitter 2013-01-09      8
+1924          twitter 2013-01-09      8
+1925          twitter 2013-01-09      8
+1926          twitter 2013-01-09      8
+1927          twitter 2013-01-09      8
+1928          twitter 2013-01-09      8
+1929          twitter 2013-01-10      8
+1930          twitter 2013-01-10      8
+1931          twitter 2013-01-10      8
+1932          twitter 2013-01-10      8
+1933          twitter 2013-01-10      8
+1934          twitter 2013-01-10      8
+1935          twitter 2013-01-10      8
+1936          twitter 2013-01-10      8
+1937          twitter 2013-01-10      8
+1938          twitter 2013-01-10      8
+1939          twitter 2013-01-10      8
+1940          twitter 2013-01-10      8
+1941          twitter 2013-01-10      8
+1942          twitter 2013-01-10      8
+1943          twitter 2013-01-10      8
+1944          twitter 2013-01-10      8
+1945          twitter 2013-01-10      8
+1946          twitter 2013-01-10      8
+1947          twitter 2013-01-10      8
+1948          twitter 2013-01-10      8
+1949          twitter 2013-01-10      8
+1950          twitter 2013-01-10      8
+1951          twitter 2013-01-10      8
+1952          twitter 2013-01-10      8
+1953          twitter 2013-01-10      8
+1954          twitter 2013-01-10      8
+1955          twitter 2013-01-10      8
+1956          twitter 2013-01-10      8
+1957          twitter 2013-01-10      8
+1958          twitter 2013-01-10      8
+1959          twitter 2013-01-10      8
+1960          twitter 2013-01-10      8
+1961          twitter 2013-01-10      8
+1962          twitter 2013-01-10      8
+1963          twitter 2013-01-10      8
+1964          twitter 2013-01-10      8
+1965          twitter 2013-01-10      8
+1966          twitter 2013-01-10      8
+1967          twitter 2013-01-10      8
+1968          twitter 2013-01-10      8
+1969          twitter 2013-01-11      8
+1970          twitter 2013-01-11      8
+1971          twitter 2013-01-11      8
+1972          twitter 2013-01-11      8
+1973          twitter 2013-01-11      8
+1974          twitter 2013-01-11      8
+1975          twitter 2013-01-11      8
+1976          twitter 2013-01-11      8
+1977          twitter 2013-01-11      8
+1978          twitter 2013-01-11      8
+1979          twitter 2013-01-11      8
+1980          twitter 2013-01-11      8
+1981          twitter 2013-01-11      8
+1982          twitter 2013-01-11      8
+1983          twitter 2013-01-11      8
+1984          twitter 2013-01-11      8
+1985          twitter 2013-01-11      8
+1986          twitter 2013-01-11      8
+1987          twitter 2013-01-11      8
+1988          twitter 2013-01-11      8
+1989          twitter 2013-01-11      8
+1990          twitter 2013-01-11      8
+1991          twitter 2013-01-11      8
+1992          twitter 2013-01-11      8
+1993          twitter 2013-01-11      8
+1994          twitter 2013-01-11      8
+1995          twitter 2013-01-11      8
+1996          twitter 2013-01-11      8
+1997          twitter 2013-01-11      8
+1998          twitter 2013-01-11      8
+1999          twitter 2013-01-11      8
+2000          twitter 2013-01-11      8
+2001          twitter 2013-01-11      8
+2002          twitter 2013-01-11      8
+2003          twitter 2013-01-11      8
+2004          twitter 2013-01-11      8
+2005          twitter 2013-01-11      8
+2006          twitter 2013-01-11      8
+2007          twitter 2013-01-11      8
+2008          twitter 2013-01-11      8
+2009          twitter 2013-01-12      8
+2010          twitter 2013-01-12      8
+2011          twitter 2013-01-12      8
+2012          twitter 2013-01-13      8
+2013          twitter 2013-01-13      8
+2014          twitter 2013-01-13      8
+2015          twitter 2013-01-13      8
+2016          twitter 2013-01-13      8
+2017          twitter 2013-01-13      8
+2018          twitter 2013-01-13      8
+2019          twitter 2013-01-13      8
+2020          twitter 2013-01-13      8
+2021          twitter 2013-01-13      8
+2022          twitter 2013-01-13      8
+2023          twitter 2013-01-13      8
+2024          twitter 2013-01-13      8
+2025          twitter 2013-01-13      8
+2026          twitter 2013-01-13      8
+2027          twitter 2013-01-13      8
+2028          twitter 2013-01-13      8
+2029          twitter 2013-01-13      8
+2030          twitter 2013-01-13      8
+2031          twitter 2013-01-13      8
+2032          twitter 2013-01-13      8
+2033          twitter 2013-01-13      8
+2034          twitter 2013-01-13      8
+2035          twitter 2013-01-13      8
+2036          twitter 2013-01-13      8
+2037          twitter 2013-01-13      8
+2038          twitter 2013-01-13      8
+2039          twitter 2013-01-13      8
+2040          twitter 2013-01-13      8
+2041          twitter 2013-01-13      8
+2042          twitter 2013-01-13      8
+2043          twitter 2013-01-13      8
+2044          twitter 2013-01-13      8
+2045          twitter 2013-01-13      8
+2046          twitter 2013-01-13      8
+2047          twitter 2013-01-13      8
+2048          twitter 2013-01-13      8
+2049          twitter 2013-01-13      8
+2050          twitter 2013-01-13      8
+2051          twitter 2013-01-14      8
+2052          twitter 2013-01-14      8
+2053          twitter 2013-01-14      8
+2054          twitter 2013-01-14      8
+2055          twitter 2013-01-14      8
+2056          twitter 2013-01-14      8
+2057          twitter 2013-01-14      8
+2058          twitter 2013-01-14      8
+2059          twitter 2013-01-14      8
+2060          twitter 2013-01-14      8
+2061          twitter 2013-01-14      8
+2062          twitter 2013-01-14      8
+2063          twitter 2013-01-14      8
+2064          twitter 2013-01-14      8
+2065          twitter 2013-01-14      8
+2066          twitter 2013-01-14      8
+2067          twitter 2013-01-14      8
+2068          twitter 2013-01-14      8
+2069          twitter 2013-01-14      8
+2070          twitter 2013-01-14      8
+2071          twitter 2013-01-14      8
+2072          twitter 2013-01-14      8
+2073          twitter 2013-01-14      8
+2074          twitter 2013-01-14      8
+2075          twitter 2013-01-14      8
+2076          twitter 2013-01-14      8
+2077          twitter 2013-01-14      8
+2078          twitter 2013-01-14      8
+2079          twitter 2013-01-14      8
+2080          twitter 2013-01-14      8
+2081          twitter 2013-01-14      8
+2082          twitter 2013-01-14      8
+2083          twitter 2013-01-14      8
+2084          twitter 2013-01-14      8
+2085          twitter 2013-01-14      8
+2086          twitter 2013-01-14      8
+2087          twitter 2013-01-14      8
+2088          twitter 2013-01-14      8
+2089          twitter 2013-01-15      8
+2090          twitter 2013-01-15      8
+2091          twitter 2013-01-15      8
+2092          twitter 2013-01-15      8
+2093          twitter 2013-01-15      8
+2094          twitter 2013-01-15      8
+2095          twitter 2013-01-15      8
+2096          twitter 2013-01-15      8
+2097          twitter 2013-01-15      8
+2098          twitter 2013-01-15      8
+2099          twitter 2013-01-15      8
+2100          twitter 2013-01-15      8
+2101          twitter 2013-01-15      8
+2102          twitter 2013-01-15      8
+2103          twitter 2013-01-15      8
+2104          twitter 2013-01-15      8
+2105          twitter 2013-01-15      8
+2106          twitter 2013-01-15      8
+2107          twitter 2013-01-15      8
+2108          twitter 2013-01-15      8
+2109          twitter 2013-01-15      8
+2110          twitter 2013-01-15      8
+2111          twitter 2013-01-15      8
+2112          twitter 2013-01-15      8
+2113          twitter 2013-01-15      8
+2114          twitter 2013-01-15      8
+2115          twitter 2013-01-15      8
+2116          twitter 2013-01-15      8
+2117          twitter 2013-01-15      8
+2118          twitter 2013-01-15      8
+2119          twitter 2013-01-15      8
+2120          twitter 2013-01-15      8
+2121          twitter 2013-01-15      8
+2122          twitter 2013-01-15      8
+2123          twitter 2013-01-15      8
+2124          twitter 2013-01-15      8
+2125          twitter 2013-01-15      8
+2126          twitter 2013-01-15      8
+2127          twitter 2013-01-15      8
+2128          twitter 2013-01-16      8
+2129          twitter 2013-01-16      8
+2130          twitter 2013-01-16      8
+2131          twitter 2013-01-16      8
+2132          twitter 2013-01-16      8
+2133          twitter 2013-01-16      8
+2134          twitter 2013-01-16      8
+2135          twitter 2013-01-16      8
+2136          twitter 2013-01-16      8
+2137          twitter 2013-01-16      8
+2138          twitter 2013-01-16      8
+2139          twitter 2013-01-16      8
+2140          twitter 2013-01-16      8
+2141          twitter 2013-01-16      8
+2142          twitter 2013-01-16      8
+2143          twitter 2013-01-16      8
+2144          twitter 2013-01-16      8
+2145          twitter 2013-01-16      8
+2146          twitter 2013-01-16      8
+2147          twitter 2013-01-16      8
+2148          twitter 2013-01-16      8
+2149          twitter 2013-01-16      8
+2150          twitter 2013-01-16      8
+2151          twitter 2013-01-16      8
+2152          twitter 2013-01-16      8
+2153          twitter 2013-01-16      8
+2154          twitter 2013-01-16      8
+2155          twitter 2013-01-16      8
+2156          twitter 2013-01-16      8
+2157          twitter 2013-01-16      8
+2158          twitter 2013-01-16      8
+2159          twitter 2013-01-16      8
+2160          twitter 2013-01-16      8
+2161          twitter 2013-01-16      8
+2162          twitter 2013-01-16      8
+2163          twitter 2013-01-16      8
+2164          twitter 2013-01-16      8
+2165          twitter 2013-01-16      8
+2166          twitter 2013-01-16      8
+2167          twitter 2013-01-16      8
+2168          twitter 2013-01-17      8
+2169          twitter 2013-01-17      8
+2170          twitter 2013-01-17      8
+2171          twitter 2013-01-17      8
+2172          twitter 2013-01-17      8
+2173          twitter 2013-01-17      8
+2174          twitter 2013-01-17      8
+2175          twitter 2013-01-17      8
+2176          twitter 2013-01-17      8
+2177          twitter 2013-01-17      8
+2178          twitter 2013-01-17      8
+2179          twitter 2013-01-17      8
+2180          twitter 2013-01-17      8
+2181          twitter 2013-01-17      8
+2182          twitter 2013-01-17      8
+2183          twitter 2013-01-17      8
+2184          twitter 2013-01-17      8
+2185          twitter 2013-01-17      8
+2186          twitter 2013-01-17      8
+2187          twitter 2013-01-17      8
+2188          twitter 2013-01-17      8
+2189          twitter 2013-01-17      8
+2190          twitter 2013-01-17      8
+2191          twitter 2013-01-17      8
+2192          twitter 2013-01-17      8
+2193          twitter 2013-01-17      8
+2194          twitter 2013-01-17      8
+2195          twitter 2013-01-17      8
+2196          twitter 2013-01-17      8
+2197          twitter 2013-01-17      8
+2198          twitter 2013-01-17      8
+2199          twitter 2013-01-17      8
+2200          twitter 2013-01-17      8
+2201          twitter 2013-01-17      8
+2202          twitter 2013-01-17      8
+2203          twitter 2013-01-17      8
+2204          twitter 2013-01-17      8
+2205          twitter 2013-01-17      8
+2206          twitter 2013-01-17      8
+2207          twitter 2013-01-18      8
+2208          twitter 2013-01-18      8
+2209          twitter 2013-01-18      8
+2210          twitter 2013-01-19      8
+2211          twitter 2013-01-19      8
+2212          twitter 2013-01-19      8
+2213          twitter 2013-01-19      8
+2214          twitter 2013-01-19      8
+2215          twitter 2013-01-19      8
+2216          twitter 2013-01-20      8
+2217          twitter 2013-01-20      8
+2218          twitter 2013-01-20      8
+2219          twitter 2013-01-20      8
+2220          twitter 2013-01-21      8
+2221          twitter 2013-01-21      8
+2222          twitter 2013-01-21      8
+2223          twitter 2013-01-22      8
+2224          twitter 2013-01-22      8
+2225          twitter 2013-01-22      8
+2226          twitter 2013-01-23      8
+2227          twitter 2013-01-23      8
+2228          twitter 2013-01-23      8
+2229          twitter 2013-01-23      8
+2230          twitter 2013-01-23      8
+2231          twitter 2013-01-23      8
+2232          twitter 2013-01-23      8
+2233          twitter 2013-01-23      8
+2234          twitter 2013-01-23      8
+2235          twitter 2013-01-23      8
+2236          twitter 2013-01-23      8
+2237          twitter 2013-01-23      8
+2238          twitter 2013-01-23      8
+2239          twitter 2013-01-23      8
+2240          twitter 2013-01-23      8
+2241          twitter 2013-01-23      8
+2242          twitter 2013-01-23      8
+2243          twitter 2013-01-23      8
+2244          twitter 2013-01-23      8
+2245          twitter 2013-01-23      8
+2246          twitter 2013-01-23      8
+2247          twitter 2013-01-23      8
+2248          twitter 2013-01-23      8
+2249          twitter 2013-01-23      8
+2250          twitter 2013-01-23      8
+2251          twitter 2013-01-23      8
+2252          twitter 2013-01-23      8
+2253          twitter 2013-01-23      8
+2254          twitter 2013-01-23      8
+2255          twitter 2013-01-23      8
+2256          twitter 2013-01-23      8
+2257          twitter 2013-01-23      8
+2258          twitter 2013-01-24      8
+2259          twitter 2013-01-24      8
+2260          twitter 2013-01-24      8
+2261          twitter 2013-01-24      8
+2262          twitter 2013-01-24      8
+2263          twitter 2013-01-24      8
+2264          twitter 2013-01-24      8
+2265          twitter 2013-01-24      8
+2266          twitter 2013-01-24      8
+2267          twitter 2013-01-24      8
+2268          twitter 2013-01-24      8
+2269          twitter 2013-01-24      8
+2270          twitter 2013-01-24      8
+2271          twitter 2013-01-24      8
+2272          twitter 2013-01-24      8
+2273          twitter 2013-01-24      8
+2274          twitter 2013-01-24      8
+2275          twitter 2013-01-24      8
+2276          twitter 2013-01-24      8
+2277          twitter 2013-01-24      8
+2278          twitter 2013-01-24      8
+2279          twitter 2013-01-24      8
+2280          twitter 2013-01-24      8
+2281          twitter 2013-01-24      8
+2282          twitter 2013-01-24      8
+2283          twitter 2013-01-24      8
+2284          twitter 2013-01-24      8
+2285          twitter 2013-01-24      8
+2286          twitter 2013-01-24      8
+2287          twitter 2013-01-24      8
+2288          twitter 2013-01-24      8
+2289          twitter 2013-01-24      8
+2290          twitter 2013-01-24      8
+2291          twitter 2013-01-24      8
+2292          twitter 2013-01-24      8
+2293          twitter 2013-01-24      8
+2294          twitter 2013-01-24      8
+2295          twitter 2013-01-24      8
+2296          twitter 2013-01-24      8
+2297          twitter 2013-01-25      8
+2298          twitter 2013-01-25      8
+2299          twitter 2013-01-25      8
+2300          twitter 2013-01-25      8
+2301          twitter 2013-01-25      8
+2302          twitter 2013-01-25      8
+2303          twitter 2013-01-25      8
+2304          twitter 2013-01-25      8
+2305          twitter 2013-01-25      8
+2306          twitter 2013-01-25      8
+2307          twitter 2013-01-25      8
+2308          twitter 2013-01-25      8
+2309          twitter 2013-01-25      8
+2310          twitter 2013-01-25      8
+2311          twitter 2013-01-25      8
+2312          twitter 2013-01-25      8
+2313          twitter 2013-01-25      8
+2314          twitter 2013-01-25      8
+2315          twitter 2013-01-25      8
+2316          twitter 2013-01-25      8
+2317          twitter 2013-01-25      8
+2318          twitter 2013-01-25      8
+2319          twitter 2013-01-25      8
+2320          twitter 2013-01-25      8
+2321          twitter 2013-01-25      8
+2322          twitter 2013-01-25      8
+2323          twitter 2013-01-25      8
+2324          twitter 2013-01-25      8
+2325          twitter 2013-01-25      8
+2326          twitter 2013-01-25      8
+2327        wikipedia 2012-09-19    206
+2328        wikipedia 2012-10-17    206
+2329        wikipedia 2012-11-06    208
+2330    scienceseeker 2012-12-21      0
+2331    scienceseeker 2012-12-21      0
+2332    scienceseeker 2012-12-21      0
+2333    scienceseeker 2012-12-21      0
+2334    scienceseeker 2012-12-21      0
+2335    scienceseeker 2012-12-22      0
+2336    scienceseeker 2012-12-22      0
+2337    scienceseeker 2012-12-22      0
+2338    scienceseeker 2012-12-22      0
+2339    scienceseeker 2012-12-23      0
+2340    scienceseeker 2012-12-23      0
+2341    scienceseeker 2012-12-23      0
+2342    scienceseeker 2012-12-23      0
+2343    scienceseeker 2012-12-23      0
+2344    scienceseeker 2012-12-24      0
+2345    scienceseeker 2012-12-24      0
+2346    scienceseeker 2012-12-24      0
+2347    scienceseeker 2012-12-24      0
+2348    scienceseeker 2012-12-25      0
+2349    scienceseeker 2012-12-25      0
+2350    scienceseeker 2012-12-25      0
+2351    scienceseeker 2012-12-25      0
+2352    scienceseeker 2012-12-25      0
+2353    scienceseeker 2012-12-26      0
+2354    scienceseeker 2012-12-26      0
+2355    scienceseeker 2012-12-26      0
+2356    scienceseeker 2012-12-26      0
+2357    scienceseeker 2012-12-27      0
+2358    scienceseeker 2012-12-27      0
+2359    scienceseeker 2012-12-27      0
+2360    scienceseeker 2012-12-27      0
+2361    scienceseeker 2012-12-28      0
+2362    scienceseeker 2012-12-28      0
+2363    scienceseeker 2012-12-28      0
+2364    scienceseeker 2012-12-28      0
+2365    scienceseeker 2012-12-28      0
+2366    scienceseeker 2013-01-04      0
+2367    scienceseeker 2013-01-04      0
+2368    scienceseeker 2013-01-04      0
+2369    scienceseeker 2013-01-04      0
+2370    scienceseeker 2013-01-05      0
+2371    scienceseeker 2013-01-05      0
+2372    scienceseeker 2013-01-05      0
+2373    scienceseeker 2013-01-06      0
+2374    scienceseeker 2013-01-06      0
+2375    scienceseeker 2013-01-06      0
+2376    scienceseeker 2013-01-06      0
+2377    scienceseeker 2013-01-07      0
+2378    scienceseeker 2013-01-07      0
+2379    scienceseeker 2013-01-07      0
+2380    scienceseeker 2013-01-07      0
+2381    scienceseeker 2013-01-08      0
+2382    scienceseeker 2013-01-08      0
+2383    scienceseeker 2013-01-08      0
+2384    scienceseeker 2013-01-08      0
+2385    scienceseeker 2013-01-09      0
+2386    scienceseeker 2013-01-09      0
+2387    scienceseeker 2013-01-09      0
+2388    scienceseeker 2013-01-09      0
+2389    scienceseeker 2013-01-10      0
+2390    scienceseeker 2013-01-10      0
+2391    scienceseeker 2013-01-10      0
+2392    scienceseeker 2013-01-10      0
+2393    scienceseeker 2013-01-11      0
+2394    scienceseeker 2013-01-11      0
+2395    scienceseeker 2013-01-11      0
+2396    scienceseeker 2013-01-11      0
+2397    scienceseeker 2013-01-11      0
+2398    scienceseeker 2013-01-12      0
+2399    scienceseeker 2013-01-12      0
+2400    scienceseeker 2013-01-12      0
+2401    scienceseeker 2013-01-12      0
+2402    scienceseeker 2013-01-13      0
+2403    scienceseeker 2013-01-13      0
+2404    scienceseeker 2013-01-13      0
+2405    scienceseeker 2013-01-13      0
+2406    scienceseeker 2013-01-14      0
+2407    scienceseeker 2013-01-14      0
+2408    scienceseeker 2013-01-14      0
+2409    scienceseeker 2013-01-14      0
+2410    scienceseeker 2013-01-15      0
+2411    scienceseeker 2013-01-15      0
+2412    scienceseeker 2013-01-15      0
+2413    scienceseeker 2013-01-15      0
+2414    scienceseeker 2013-01-16      0
+2415    scienceseeker 2013-01-16      0
+2416    scienceseeker 2013-01-16      0
+2417    scienceseeker 2013-01-16      0
+2418    scienceseeker 2013-01-17      0
+2419    scienceseeker 2013-01-17      0
+2420    scienceseeker 2013-01-17      0
+2421    scienceseeker 2013-01-18      0
+2422    scienceseeker 2013-01-18      0
+2423    scienceseeker 2013-01-18      0
+2424    scienceseeker 2013-01-18      0
+2425    scienceseeker 2013-01-18      0
+2426    scienceseeker 2013-01-19      0
+2427    scienceseeker 2013-01-19      0
+2428    scienceseeker 2013-01-19      0
+2429    scienceseeker 2013-01-19      0
+2430    scienceseeker 2013-01-19      0
+2431    scienceseeker 2013-01-20      0
+2432    scienceseeker 2013-01-20      0
+2433    scienceseeker 2013-01-20      0
+2434    scienceseeker 2013-01-20      0
+2435    scienceseeker 2013-01-21      0
+2436    scienceseeker 2013-01-21      0
+2437    scienceseeker 2013-01-21      0
+2438    scienceseeker 2013-01-21      0
+2439    scienceseeker 2013-01-22      0
+2440    scienceseeker 2013-01-22      0
+2441    scienceseeker 2013-01-22      0
+2442    scienceseeker 2013-01-23      0
+2443    scienceseeker 2013-01-23      0
+2444    scienceseeker 2013-01-23      0
+2445    scienceseeker 2013-01-23      0
+2446    scienceseeker 2013-01-24      0
+2447    scienceseeker 2013-01-24      0
+2448    scienceseeker 2013-01-24      0
+2449    scienceseeker 2013-01-24      0
+2450    scienceseeker 2013-01-25      0
+2451    scienceseeker 2013-01-25      0
+</div>
+<div class='input'>
+<span class="comment"># A single PubMed ID (pmid)</span>
+<span class="functioncall"><a href='alm.html'>alm</a></span><span class="keyword">(</span><span class="argument">pmid</span><span class="argument">=</span><span class="number">22590526</span><span class="keyword">)</span></div>
+<div class='output'>                .id shares total citations pdf  html comments likes groups
+1         citeulike      5     5        NA  NA    NA       NA    NA     NA
+2          crossref     NA     3         3  NA    NA       NA    NA     NA
+3            nature     NA     1         1  NA    NA       NA    NA     NA
+4            pubmed     NA     0         0  NA    NA       NA    NA     NA
+5            scopus     NA     0         0  NA    NA       NA    NA     NA
+6           counter     NA 11430        NA 711 10686       NA    NA     NA
+7  researchblogging     NA     0         0  NA    NA       NA    NA     NA
+8              biod     NA     0        NA   0     0       NA    NA     NA
+9               wos     NA     0         0  NA    NA       NA    NA     NA
+10              pmc     NA    69        NA  16    53       NA    NA     NA
+11         facebook      0   456        NA  NA    NA        0     0     NA
+12         mendeley      0    32        NA  NA    NA       NA    NA      0
+13          twitter     NA   103        NA  NA    NA      103    NA     NA
+14        wikipedia      0     1         0  NA    NA       NA    NA     NA
+15    scienceseeker     NA     0        NA  NA    NA       NA    NA     NA
+</div>
+<div class='input'>
+<span class="comment"># A single PubMed Central ID (pmcid)</span>
+<span class="functioncall"><a href='alm.html'>alm</a></span><span class="keyword">(</span><span class="argument">pmcid</span><span class="argument">=</span><span class="number">212692</span><span class="keyword">,</span> <span class="argument">info</span><span class="argument">=</span><span class="string">'summary'</span><span class="keyword">)</span></div>
+<div class='output'>[[1]]
+[[1]]$article
+[[1]]$article$doi
+[1] "10.1371/journal.pbio.0000012"
+
+[[1]]$article$title
+[1] "Genome-Wide RNAi of <named-content xmlns:xlink=\"http://www.w3.org/1999/xlink\" content-type=\"genus-species\" xlink:type=\"simple\">C. elegans</named-content> Using the Hypersensitive <italic>rrf-3</italic> Strain Reveals Novel Gene Functions"
+
+[[1]]$article$url
+NULL
+
+[[1]]$article$mendeley
+[1] "35791700-6d00-11df-a2b2-0026b95e3eb7"
+
+[[1]]$article$mendeley_url
+NULL
+
+[[1]]$article$pmid
+[1] "14551910"
+
+[[1]]$article$pmcid
+[1] "212692"
+
+[[1]]$article$publication_date
+[1] "2003-10-13T07:00:00Z"
+
+
+
+</div>
+<div class='input'>
+<span class="comment"># A single Mendeley UUID (mdid)</span>
+<span class="functioncall"><a href='alm.html'>alm</a></span><span class="keyword">(</span><span class="argument">mdid</span><span class="argument">=</span><span class="string">"35791700-6d00-11df-a2b2-0026b95e3eb7"</span><span class="keyword">)</span></div>
+<div class='output'>                .id citations total shares  pdf  html comments likes groups
+1         bloglines         0     0     NA   NA    NA       NA    NA     NA
+2         citeulike        NA     8      8   NA    NA       NA    NA     NA
+3          connotea        NA     0      0   NA    NA       NA    NA     NA
+4          crossref       139   139     NA   NA    NA       NA    NA     NA
+5            nature         0     0     NA   NA    NA       NA    NA     NA
+6       postgenomic        NA     0      0   NA    NA       NA    NA     NA
+7            pubmed       116   116     NA   NA    NA       NA    NA     NA
+8            scopus       304   304     NA   NA    NA       NA    NA     NA
+9           counter        NA 20766     NA 2283 18344       NA    NA     NA
+10 researchblogging         0     0     NA   NA    NA       NA    NA     NA
+11             biod        NA     0     NA    0     0       NA    NA     NA
+12              wos         0     0     NA   NA    NA       NA    NA     NA
+13              pmc        NA  6712     NA 2243  4469       NA    NA     NA
+14         facebook        NA     0      0   NA    NA        0     0     NA
+15         mendeley        NA    59     58   NA    NA       NA    NA      1
+16          twitter        NA     0     NA   NA    NA        0    NA     NA
+17        wikipedia         0     0      0   NA    NA       NA    NA     NA
+18    scienceseeker        NA     0     NA   NA    NA       NA    NA     NA
+</div>
+<div class='input'>
+<span class="comment"># Provide more than one DOI</span>
+<span class="symbol">dois</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">'10.1371/journal.pone.0001543'</span><span class="keyword">,</span><span class="string">'10.1371/journal.pone.0040117'</span><span class="keyword">,</span>
+                <span class="string">'10.1371/journal.pone.0029797'</span><span class="keyword">,</span><span class="string">'10.1371/journal.pone.0039395'</span><span class="keyword">)</span>
+<span class="symbol">out</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='alm.html'>alm</a></span><span class="keyword">(</span><span class="argument">doi</span><span class="argument">=</span><span class="symbol">dois</span><span class="keyword">)</span>
+<span class="symbol">out</span><span class="keyword">[[</span><span class="number">1</span>]] <span class="comment"># get data for the first DOI</span></div>
+<div class='output'>                .id citations total shares pdf html comments likes groups
+1         bloglines         0     0     NA  NA   NA       NA    NA     NA
+2         citeulike        NA     0      0  NA   NA       NA    NA     NA
+3          connotea        NA     0      0  NA   NA       NA    NA     NA
+4          crossref         3     3     NA  NA   NA       NA    NA     NA
+5            nature         0     0     NA  NA   NA       NA    NA     NA
+6       postgenomic        NA     1      1  NA   NA       NA    NA     NA
+7            pubmed         4     4     NA  NA   NA       NA    NA     NA
+8            scopus         5     5     NA  NA   NA       NA    NA     NA
+9           counter        NA  2718     NA 386 2294       NA    NA     NA
+10 researchblogging         0     0     NA  NA   NA       NA    NA     NA
+11             biod        NA     0     NA   0    0       NA    NA     NA
+12              wos         0     0     NA  NA   NA       NA    NA     NA
+13              pmc        NA   515     NA 199  316       NA    NA     NA
+14         facebook        NA     0      0  NA   NA        0     0     NA
+15         mendeley        NA     6      0  NA   NA       NA    NA      0
+16          twitter        NA     0     NA  NA   NA        0    NA     NA
+17        wikipedia         0     1      0  NA   NA       NA    NA     NA
+18    scienceseeker        NA     0     NA  NA   NA       NA    NA     NA
+</div>
+<div class='input'>
+<span class="comment"># Search for DOI's, then feed into alm</span>
+<span class="symbol">dois</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='searchplos.html'>searchplos</a></span><span class="keyword">(</span><span class="argument">terms</span><span class="argument">=</span><span class="string">'evolution'</span><span class="keyword">,</span> <span class="argument">fields</span><span class="argument">=</span><span class="string">'id'</span><span class="keyword">,</span> <span class="argument">limit</span> <span class="argument">=</span> <span class="number">3</span><span class="keyword">)</span>
+<span class="symbol">out</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='alm.html'>alm</a></span><span class="keyword">(</span><span class="argument">doi</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/character'>as.character</a></span><span class="keyword">(</span><span class="symbol">dois</span><span class="keyword">[</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/lapply'>lapply</a></span><span class="keyword">(</span><span class="symbol">out</span><span class="keyword">,</span> <span class="symbol">head</span><span class="keyword">)</span></div>
+<div class='output'>[[1]]
+          .id citations total shares pdf html comments likes groups
+1   bloglines         0     0     NA  NA   NA       NA    NA     NA
+2   citeulike        NA    24     24  NA   NA       NA    NA     NA
+3    connotea        NA     6      6  NA   NA       NA    NA     NA
+4    crossref       163   163     NA  NA   NA       NA    NA     NA
+5      nature         0     0     NA  NA   NA       NA    NA     NA
+6 postgenomic        NA     1      1  NA   NA       NA    NA     NA
+
+[[2]]
+          .id citations total shares pdf html comments likes groups
+1   bloglines         0     0     NA  NA   NA       NA    NA     NA
+2   citeulike        NA     0      0  NA   NA       NA    NA     NA
+3    connotea        NA     0      0  NA   NA       NA    NA     NA
+4    crossref         0     0     NA  NA   NA       NA    NA     NA
+5      nature         0     0     NA  NA   NA       NA    NA     NA
+6 postgenomic        NA     0      0  NA   NA       NA    NA     NA
+
+[[3]]
+          .id citations total shares pdf html comments likes groups
+1   bloglines         0     0     NA  NA   NA       NA    NA     NA
+2   citeulike        NA     8      8  NA   NA       NA    NA     NA
+3    connotea        NA     7      7  NA   NA       NA    NA     NA
+4    crossref         8     8     NA  NA   NA       NA    NA     NA
+5      nature         0     0     NA  NA   NA       NA    NA     NA
+6 postgenomic        NA     9      9  NA   NA       NA    NA     NA
+
+</div>
+<div class='input'>
+<span class="comment"># Provide more than one pmid</span>
+<span class="symbol">pmids</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">19300479</span><span class="keyword">,</span> <span class="number">19390606</span><span class="keyword">,</span> <span class="number">19343216</span><span class="keyword">)</span>
+<span class="symbol">out</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='alm.html'>alm</a></span><span class="keyword">(</span><span class="argument">pmid</span><span class="argument">=</span><span class="symbol">pmids</span><span class="keyword">)</span>
+<span class="symbol">out</span><span class="keyword">[[</span><span class="number">3</span>]] <span class="comment"># get data for the third pmid</span></div>
+<div class='output'>                .id shares total citations pdf html comments likes groups
+1         citeulike      1     1        NA  NA   NA       NA    NA     NA
+2          crossref     NA     9         9  NA   NA       NA    NA     NA
+3            nature     NA     0         0  NA   NA       NA    NA     NA
+4       postgenomic      0     0        NA  NA   NA       NA    NA     NA
+5            pubmed     NA     3         3  NA   NA       NA    NA     NA
+6            scopus     NA    15        15  NA   NA       NA    NA     NA
+7           counter     NA  3097        NA 558 2511       NA    NA     NA
+8  researchblogging     NA     0         0  NA   NA       NA    NA     NA
+9              biod     NA     0        NA   0    0       NA    NA     NA
+10              wos     NA     0         0  NA   NA       NA    NA     NA
+11              pmc     NA   738        NA 237  501       NA    NA     NA
+12         facebook      0     0        NA  NA   NA        0     0     NA
+13         mendeley      0    21        NA  NA   NA       NA    NA      0
+14          twitter     NA     0        NA  NA   NA        0    NA     NA
+15        wikipedia      0     0         0  NA   NA       NA    NA     NA
+16    scienceseeker     NA     0        NA  NA   NA       NA    NA     NA
+</div>
+<div class='input'>
+<span class="comment"># Getting just summary data</span>
+<span class="functioncall"><a href='alm.html'>alm</a></span><span class="keyword">(</span><span class="argument">doi</span><span class="argument">=</span><span class="string">'10.1371/journal.pone.0039395'</span><span class="keyword">,</span> <span class="argument">info</span><span class="argument">=</span><span class="string">'summary'</span><span class="keyword">)</span></div>
+<div class='output'>[[1]]
+[[1]]$article
+[[1]]$article$doi
+[1] "10.1371/journal.pone.0039395"
+
+[[1]]$article$title
+[1] "The Welfare Implications of Using Exotic Tortoises as Ecological Replacements"
+
+[[1]]$article$url
+[1] "http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0039395"
+
+[[1]]$article$mendeley
+NULL
+
+[[1]]$article$mendeley_url
+NULL
+
+[[1]]$article$pmid
+[1] "22724012"
+
+[[1]]$article$pmcid
+[1] "3378584"
+
+[[1]]$article$publication_date
+[1] "2012-06-19T07:00:00Z"
+
+
+
+</div>
+<div class='input'>
+<span class="comment"># Using month and day arguments</span>
+<span class="functioncall"><a href='alm.html'>alm</a></span><span class="keyword">(</span><span class="argument">doi</span><span class="argument">=</span><span class="string">'10.1371/journal.pone.0040117'</span><span class="keyword">,</span> <span class="argument">days</span><span class="argument">=</span><span class="number">30</span><span class="keyword">)</span></div>
+<div class='output'>                .id shares total citations pdf html comments likes groups
+1         citeulike      0     0        NA  NA   NA       NA    NA     NA
+2          crossref     NA     0         0  NA   NA       NA    NA     NA
+3            nature     NA     0         0  NA   NA       NA    NA     NA
+4            pubmed     NA     0         0  NA   NA       NA    NA     NA
+5            scopus     NA     0         0  NA   NA       NA    NA     NA
+6           counter     NA   223        NA  31  188       NA    NA     NA
+7  researchblogging     NA     0         0  NA   NA       NA    NA     NA
+8              biod     NA     0        NA   0    0       NA    NA     NA
+9               wos     NA     0         0  NA   NA       NA    NA     NA
+10              pmc     NA     9        NA   2    7       NA    NA     NA
+11         facebook      0     0        NA  NA   NA        0     0     NA
+12         mendeley      0     0        NA  NA   NA       NA    NA      0
+13          twitter     NA     0        NA  NA   NA        0    NA     NA
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>alm</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='almplot.html'>almplot</a></code>
+
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

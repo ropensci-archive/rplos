@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>plostitle. rplos 0.0-7</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">rplos 0.0-7</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Search PLoS Journals titles.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='plostitle.html'>plostitle</a></span><span class="keyword">(</span><span class="symbol">terms</span><span class="keyword">,</span> <span class="argument">fields</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">limit</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">url</span> <span class="argument">=</span> <span class="string">"http://api.plos.org/search"</span><span class="keyword">,</span>
+  <span class="argument">key</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/options'>getOption</a></span><span class="keyword">(</span><span class="string">"PlosApiKey"</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/stop'>stop</a></span><span class="keyword">(</span><span class="string">"need an API key for PLoS Journals"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>terms</dt>
+      <dd>search terms for article titles (character)</dd>
+      <dt>fields</dt>
+      <dd>fields to return from search (character)
+  [e.g., 'id,title'], any combination of search fields [see
+  plosfields$field]</dd>
+      <dt>limit</dt>
+      <dd>number of results to return (integer)</dd>
+      <dt>url</dt>
+      <dd>the PLoS API url for the function (should be
+  left to default)</dd>
+      <dt>key</dt>
+      <dd>your PLoS API key, either enter, or loads from
+  .Rprofile</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>Titles, in addition to any other fields requested in a
+  data.frame.</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Search PLoS Journals titles.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='plostitle.html'>plostitle</a></span><span class="keyword">(</span><span class="argument">terms</span><span class="argument">=</span><span class="string">'drosophila'</span><span class="keyword">,</span> <span class="argument">fields</span><span class="argument">=</span><span class="string">'title'</span><span class="keyword">,</span> <span class="argument">limit</span><span class="argument">=</span><span class="number">99</span><span class="keyword">)</span></div>
+<div class='output'>                                                                                                  title
+1                                                           Combinatorial Coding for Drosophila Neurons
+2                                                 Phenotypic Plasticity of the Drosophila Transcriptome
+3                                                           Quantification of Food Intake in Drosophila
+4                                                           School Students as Drosophila Experimenters
+5                                                            Parametric Alignment of Drosophila Genomes
+6                                                              A Tripartite Synapse Model in Drosophila
+7                                                         Identification of Drosophila MicroRNA Targets
+8                                                           Expression in Aneuploid Drosophila S2 Cells
+9                                                      Reinforcement of Gametic Isolation in Drosophila
+10                                                                            A DNA Virus of Drosophila
+11 In Vivo RNAi Rescue in Drosophila melanogaster with Genomic Transgenes from Drosophila pseudoobscura
+12                                      Role of Spectraplakin in Drosophila Photoreceptor Morphogenesis
+13                                            Drosophila SETDB1 Is Required for Chromosome 4 Silencing 
+14                                             Identification of Synaptic Targets of Drosophila Pumilio
+15                                     Asymmetrical Reinforcement and Wolbachia Infection in Drosophila
+16                                            Identification of Novel Drosophila melanogaster MicroRNAs
+17                                          A Gene Responsible for Hybrid Incompatibility in Drosophila
+18                                                A New Chamber for Studying the Behavior of Drosophila
+19                                             Neurexin in Embryonic Drosophila Neuromuscular Junctions
+20                                            On the Mechanics of Cardiac Function of Drosophila Embryo
+21                                                 Neuronal Function and Dysfunction of Drosophila dTDP
+22                                       Mitochondrial Pseudogenes in the Nuclear Genomes of Drosophila
+23                                          Targeting Determinants of Dosage Compensation in Drosophila
+24                    Polycombing \n\t\t\t\t\tDrosophila for Dynamic Developmental Footprints\n\t\t\t\t
+25                                                    Genetic Modifiers of MeCP2 Function in Drosophila
+26                                            An Automated Paradigm for Drosophila Visual Psychophysics
+27                                    Burkholderia thailandensis Is Virulent in Drosophila melanogaster
+28                                           Evolution of Regulatory Sequences in 12 Drosophila Species
+29                                          X Chromosome Inactivation during Drosophila Spermatogenesis
+30                                      The Many Landscapes of Recombination in Drosophila melanogaster
+31                                                 Host Range and Specificity of the Drosophila C Virus
+32                                     Molecular Evolution of Phosphoprotein Phosphatases in Drosophila
+33                                           The Sexually Antagonistic Genes of Drosophila melanogaster
+34                                                    TrpA1 Regulates Thermal Nociception in Drosophila
+35                                                 Three-Dimensional Imaging of Drosophila melanogaster
+36                                                Pervasive Natural Selection in the Drosophila Genome?
+37                                              Genetic Variation for Cardiac Dysfunction in Drosophila
+38                                Plasticity of the Chemoreceptor Repertoire in Drosophila melanogaster
+39                                                       Modeling Spinal Muscular Atrophy in Drosophila
+40                                              A Database of Wing Diversity in the Hawaiian Drosophila
+41                           The Role of Carcinine in Signaling at the Drosophila Photoreceptor Synapse
+42                                                  Gene Family Evolution across 12 Drosophila Genomes 
+43                      Increased Nucleotide Diversity with Transient Y Linkage in Drosophila americana
+44                         Principles of Genome Evolution in the Drosophila melanogaster Species Group 
+45                                      DNA Topoisomerase II Modulates Insulator Function in Drosophila
+46                           Repression of RNA Polymerase II Transcription by a Drosophila Oligopeptide
+47         Evidence for Transgenerational Transmission of Epigenetic Tumor Susceptibility in Drosophila
+48                                  A Single Basis for Developmental Buffering of Drosophila Wing Shape
+49                     Experimental Selection for Drosophila Survival in Extremely High O2 Environments
+50                                              The Multiple Roles of Mps1 in Drosophila Female Meiosis
+51                        Lineage Tracing of Lamellocytes Demonstrates Drosophila Macrophage Plasticity
+52                                                Drosophila Ninjurin A Induces Nonapoptotic Cell Death
+53                                           The NSL Complex Regulates Housekeeping Genes in Drosophila
+54             A Modular Toolset for Recombination Transgenesis and Neurogenetic Analysis of Drosophila
+55                  A Signaling Network for Patterning of Neuronal Connectivity in the Drosophila Brain
+56                           Dietary Restriction in Drosophila: Delayed Aging or Experimental Artefact?
+57                              Quantitative Genomics of Aggressive Behavior in Drosophila melanogaster
+58                    Inferring the Demographic History and Rate of Adaptive Substitution in Drosophila
+59                           Identification of a TPX2-Like Microtubule-Associated Protein in Drosophila
+60                                       Insulin Signaling Mediates Sexual Attractiveness in Drosophila
+61                       A Low Protein Diet Increases the Hypoxic Tolerance in Drosophila\n            
+62                                 Coevolution of Drosophila melanogaster mtDNA and Wolbachia Genotypes
+63                                     A Quantitative Method to Analyze Drosophila Pupal Eye Patterning
+64                                     miRNA-Dependent Translational Repression in the Drosophila Ovary
+65                         Correction: Asymmetrical Reinforcement and Wolbachia Infection in Drosophila
+66                            In Drosophila Hair Development, Shavenbaby Is at the Beginning of the End
+67                         Multimodal Chemosensory Integration through the Maxillary Palp in Drosophila
+68                                         NELF Potentiates Gene Transcription in the Drosophila Embryo
+69                          Three Distinct Roles for Notch in Drosophila R7 Photoreceptor Specification
+70                             Lifespan Extension by Preserving Proliferative Homeostasis in Drosophila
+71                              Recurring Ethanol Exposure Induces Disinhibited Courtship in Drosophila
+72                                      Song Choice Is Modulated by Female Movement in Drosophila Males
+73                                               Drosophila Porin/VDAC Affects Mitochondrial Morphology
+74                                Redundant Mechanisms for Regulation of Midline Crossing in Drosophila
+75               Circadian Regulation of Glutathione Levels and Biosynthesis in Drosophila melanogaster
+76                                  Cellular and Genetic Analysis of Wound Healing in Drosophila Larvae
+77                           The Role of Dopamine in Drosophila Larval Classical Olfactory Conditioning
+78                                          Drosophila as a Model for MECP2 Gain of Function in Neurons
+79                       Mechanisms of Maximum Information Preservation in the Drosophila Antennal Lobe
+80                                            Molecular Evolution of Drosophila Cuticular Protein Genes
+81                               Transcriptional Control in the Segmentation Gene Network of Drosophila
+82                  Preferential Re-Replication of Drosophila Heterochromatin in the Absence of Geminin
+83                                   Shared Visual Attention and Memory Systems in the Drosophila Brain
+84                        Innate Immune Responses of Drosophila melanogaster Are Altered by Spaceflight
+85                                             Host Plant Adaptation in Drosophila mettleri Populations
+86         Chromosomal Distribution of PcG Proteins during \n\t\t\t\t\tDrosophila Development\n\t\t\t\t
+87                                          Mapping Peptidergic Cells in Drosophila: Where DIMM Fits In
+88                                         Roles of the Drosophila SK Channel (dSK) in Courtship Memory
+89                Protein Crosslinking by Transglutaminase Controls Cuticle Morphogenesis in Drosophila
+90                                Evolutionary Modeling and Prediction of Non-Coding RNAs in Drosophila
+91                                      A Role for Adenosine Deaminase in Drosophila Larval Development
+92                   The Enhancer of Trithorax and Polycomb Corto Interacts with Cyclin G in Drosophila
+93                    Genomic Organization of H2Av Containing Nucleosomes in Drosophila Heterochromatin
+94                  Drosophila Muscleblind Is Involved in troponin T Alternative Splicing and Apoptosis
+95            Impact of the Resident Microbiota on the Nutritional Phenotype of Drosophila melanogaster
+96                                 Genetic and Chemical Modifiers of a CUG Toxicity Model in Drosophila
+97                                     Crucial Roles in Drosophila Development for Little-Known Protein
+98                                  The arouser EPS8L3 Gene Is Critical for Normal Memory in Drosophila
+99                                 Assembly of Drosophila Centromeric Chromatin Proteins during Mitosis
+</div>
+<div class='input'><span class="functioncall"><a href='plostitle.html'>plostitle</a></span><span class="keyword">(</span><span class="argument">terms</span><span class="argument">=</span><span class="string">'drosophila'</span><span class="keyword">,</span> <span class="argument">fields</span><span class="argument">=</span><span class="string">'title,journal'</span><span class="keyword">,</span> <span class="argument">limit</span><span class="argument">=</span><span class="number">10</span><span class="keyword">)</span></div>
+<div class='output'>                      journal                                                 title
+1                PLoS Biology           Combinatorial Coding for Drosophila Neurons
+2               PLoS Genetics Phenotypic Plasticity of the Drosophila Transcriptome
+3                    PLoS ONE           Quantification of Food Intake in Drosophila
+4                PLoS Biology           School Students as Drosophila Experimenters
+5  PLoS Computational Biology            Parametric Alignment of Drosophila Genomes
+6                    PLoS ONE              A Tripartite Synapse Model in Drosophila
+7                PLoS Biology         Identification of Drosophila MicroRNA Targets
+8                PLoS Biology           Expression in Aneuploid Drosophila S2 Cells
+9                PLoS Biology      Reinforcement of Gametic Isolation in Drosophila
+10                   PLoS ONE                             A DNA Virus of Drosophila
+</div>
+<div class='input'><span class="functioncall"><a href='plostitle.html'>plostitle</a></span><span class="keyword">(</span><span class="argument">terms</span><span class="argument">=</span><span class="string">'drosophila'</span><span class="keyword">,</span>  <span class="argument">limit</span> <span class="argument">=</span> <span class="number">5</span><span class="keyword">)</span></div>
+<div class='output'>                            id                    journal     eissn     publication_date
+1 10.1371/journal.pbio.0050051               PLoS Biology 1545-7885 2007-02-06T00:00:00Z
+2 10.1371/journal.pgen.1002593              PLoS Genetics 1553-7404 2012-03-29T00:00:00Z
+3 10.1371/journal.pone.0006063                   PLoS ONE 1932-6203 2009-06-26T00:00:00Z
+4 10.1371/journal.pbio.0030246               PLoS Biology 1545-7885 2005-07-12T00:00:00Z
+5 10.1371/journal.pcbi.0020073 PLoS Computational Biology 1553-7358 2006-06-23T00:00:00Z
+                             article_type
+1                                Synopsis
+2                        Research Article
+3                        Research Article
+4 Correspondence and Other Communications
+5                        Research Article
+                                          title_display
+1    Combinatorial Coding for <i>Drosophila</i> Neurons
+2 Phenotypic Plasticity of the Drosophila Transcriptome
+3    Quantification of Food Intake in <i>Drosophila</i>
+4    School Students as <i>Drosophila</i> Experimenters
+5     Parametric Alignment of <i>Drosophila</i> Genomes
+                                                                                                               author_display
+1                                                                                                                Rachel Jones
+2                                    Shanshan Zhou, Terry G. Campbell, Eric A. Stone, Trudy F. C. Mackay, Robert R. H. Anholt
+3                                                         Richard Wong, Matthew D. W. Piper, Bregje Wertheim, Linda Partridge
+4 Faiza Siyad, Jodianne Griffiths, Faira Janjua, Elizabeth Jackson, Ian Rodrigues, Fiona Kerr, Daniel Mackay, Simon Lovestone
+5                                                  Colin N Dewey, Peter M Huggins, Kevin Woods, Bernd Sturmfels, Lior Pachter
+     score
+1 3.661933
+2 3.661933
+3 3.661933
+4 3.661933
+5 3.661933
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>plostitle</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

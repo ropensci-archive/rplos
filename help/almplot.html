@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>almplot. rplos 0.0-7</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">rplos 0.0-7</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Plot results of a call to the alm function.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='almplot.html'>almplot</a></span><span class="keyword">(</span><span class="symbol">dat</span><span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">removezero</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>dat</dt>
+      <dd>Output from <code>alm</code> (character)</dd>
+      <dt>type</dt>
+      <dd>One of totalmetrics or history</dd>
+      <dt>removezero</dt>
+      <dd>Remove data sources with all zeros
+  prior to plotting.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>A ggplot2 bar plot for `totalmetrics` or line plot for
+  `history`.</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Plot results of a call to the alm function.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>You have to specify info='detail' in your call to
+  <code>alm</code> so that you get history and summary data so
+  that either or both can be plotted in this function.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="symbol">out</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='alm.html'>alm</a></span><span class="keyword">(</span><span class="argument">doi</span><span class="argument">=</span><span class="string">'10.1371/journal.pone.0001543'</span><span class="keyword">,</span> <span class="argument">info</span><span class="argument">=</span><span class="string">'detail'</span><span class="keyword">)</span>
+<span class="functioncall"><a href='almplot.html'>almplot</a></span><span class="keyword">(</span><span class="symbol">out</span><span class="keyword">,</span> <span class="argument">type</span><span class="argument">=</span><span class="string">'totalmetrics'</span><span class="keyword">)</span> <span class="comment"># just totalmetrics data</span></div>
+<p><img src='almplot-2.png' alt='' width='400' height='400' /></p>
+<div class='input'><span class="functioncall"><a href='almplot.html'>almplot</a></span><span class="keyword">(</span><span class="argument">dat</span><span class="argument">=</span><span class="symbol">out</span><span class="keyword">,</span> <span class="argument">type</span><span class="argument">=</span><span class="string">'history'</span><span class="keyword">)</span> <span class="comment"># just historical data</span></div>
+<p><img src='almplot-4.png' alt='' width='400' height='400' /></p>
+<div class='input'><span class="functioncall"><a href='almplot.html'>almplot</a></span><span class="keyword">(</span><span class="argument">dat</span><span class="argument">=</span><span class="symbol">out</span><span class="keyword">)</span> <span class="comment"># leaving type as NULL prints both plots</span></div>
+<p><img src='almplot-6.png' alt='' width='400' height='400' /></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>almplot</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='alm.html'>alm</a></code> which is required to use this function.
+
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

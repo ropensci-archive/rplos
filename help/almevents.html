@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>almevents. rplos 0.0-7</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">rplos 0.0-7</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Retrieve PLoS article-level metrics (ALM) events.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='almevents.html'>almevents</a></span><span class="keyword">(</span><span class="argument">doi</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">pmid</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">pmcid</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">mdid</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">months</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">days</span> <span class="argument">=</span> NULL<span class="keyword">,</span>
+  <span class="argument">key</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">url</span> <span class="argument">=</span> <span class="string">"http://alm.plos.org/api/v3/articles"</span><span class="keyword">,</span> <span class="argument">curl</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/RCurl/getCurlHandle'>getCurlHandle</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>doi</dt>
+      <dd>Digital object identifier for an article in
+  PLoS Journals (character)</dd>
+      <dt>pmid</dt>
+      <dd>PubMed object identifier (numeric)</dd>
+      <dt>pmcid</dt>
+      <dd>PubMed Central object identifier (numeric)</dd>
+      <dt>mdid</dt>
+      <dd>Mendeley object identifier (character)</dd>
+      <dt>months</dt>
+      <dd>Number of months since publication to
+  request historical data for.  See details for a note.
+  (numeric)</dd>
+      <dt>days</dt>
+      <dd>Number of days since publication to request
+  historical data for.  See details for a note. (numeric)</dd>
+      <dt>key</dt>
+      <dd>your PLoS API key, either enter, or loads from
+  .Rprofile (character)</dd>
+      <dt>url</dt>
+      <dd>the PLoS API url for the function (should be
+  left to default)</dd>
+      <dt>...</dt>
+      <dd>optional additional curl options (debugging
+  tools mostly)</dd>
+      <dt>curl</dt>
+      <dd>If using in a loop, call getCurlHandle()
+  first and pass the returned value in here (avoids
+  unnecessary footprint)</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>PLoS altmetrics as data.frame's.</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Events are the details of the metrics that are counted
+  related to PLoS papers.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>You can only supply one of the parmeters doi, pmid,
+  pmcid, and mdid.</p>
+  
+      <p>Query for as many articles at a time as you like. Though
+  queries are broken up in to smaller bits of 30
+  identifiers at a time.</p>
+  
+      <p>If you supply both the days and months parameters, days
+  takes precedence, and months is ignored.</p>
+  
+      <p>You can get events from many different sources. After
+  calling almevents, then index the output by the data
+  provider you want. The options are: bloglines, citeulike,
+  connotea, crossref, nature, postgenomic, pubmed, scopus,
+  plos, researchblogging, biod, webofscience, pmc,
+  facebook, mendeley, twitter, wikipedia, and
+  scienceseeker.</p>
+  
+      <p>Beware that some data source are not parsed yet, so there
+  may be event data but it is not provided yet as it is so
+  messy to parse.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment"># For one article</span>
+<span class="symbol">out</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='almevents.html'>almevents</a></span><span class="keyword">(</span><span class="argument">doi</span><span class="argument">=</span><span class="string">"10.1371/journal.pone.0029797"</span><span class="keyword">)</span>
+<span class="symbol">out</span><span class="keyword">[[</span><span class="string">"pmc"</span>]] <span class="comment"># get the results for PubMed Central</span></div>
+<div class='output'>   abstract cited-by figure full-text month pdf scanned-page-browse scanned-summary
+1         1        0      9        51     1   8                   0               0
+2         0        0     11        15     2   4                   0               0
+3         0        0      0        11     3   4                   0               0
+4         1        0      0         6     4   2                   0               0
+5         0        0      0         5     5   1                   0               0
+6         0        0      2         7     6   2                   0               0
+7         1        0      3         6     7   3                   0               0
+8         1        0      0         5     8   0                   0               0
+9         0        0      3        14     9   5                   0               0
+10        1        0      1        20    10   4                   0               0
+11        0        0      1        13    12   1                   0               0
+12        1        0      0        10    11   1                   0               0
+   supp-data unique-ip year
+1          0        42 2012
+2          2        11 2012
+3          0        12 2012
+4          0         6 2012
+5          0         5 2012
+6          0         9 2012
+7          0         8 2012
+8          0         4 2012
+9          0        13 2012
+10         0        16 2012
+11         0        12 2012
+12         0         9 2012
+</div>
+<div class='input'><span class="symbol">out</span><span class="keyword">[[</span><span class="string">"twitter"</span>]] <span class="comment"># get the results for twitter (boo, there aren't any)</span></div>
+<div class='output'>[1] "sorry, no events content yet"
+</div>
+<div class='input'><span class="symbol">out</span><span class="keyword">[</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"scienceseeker"</span><span class="keyword">,</span><span class="string">"crossref"</span><span class="keyword">)</span><span class="keyword">]</span> <span class="comment"># get the results for two sources</span></div>
+<div class='output'>$scienceseeker
+[1] "sorry, no events content yet"
+
+$crossref
+                  issn                             journal_title journal_abbreviation
+1             00218790                 Journal of Animal Ecology          J Anim Ecol
+2 1936-6426; 1936-6434         Evolution: Education and Outreach     Evo Edu Outreach
+3 0018-0831; 1938-5099                             Herpetologica        Herpetologica
+4             00244066 Biological Journal of the Linnean Society Biol J Linn Soc Lond
+                                                                                                                         article_title
+1                                                                    The evolutionary ecology of dwarfism in three-spined sticklebacks
+2                                                                                           Heterochrony: the Evolution of Development
+3 A New Species of Miniaturized Toadlet, GenusBrachycephalus(Anura: Brachycephalidae), from the Atlantic Forest of Southeastern Brazil
+4                                               Are diminutive turtles miniaturized? The ontogeny of plastron shape in emydine turtles
+                                                                          contributor
+1                            MacColl, true; Nagar, false; de Roij, false; Webb, false
+2                                                                      McNamara, true
+3 Clemente-Carvalho, true; Giaretta, false; Condez, false; Haddad, false; Reis, false
+4                                                    Angielczyk, true; Feldman, false
+  first_page year publication_type                                doi fl_count volume
+1        n/a 2012        full_text            10.1111/1365-2656.12028        0   <NA>
+2        203 2012        full_text          10.1007/s12052-012-0420-3        0      5
+3        365 2012        full_text 10.1655/HERPETOLOGICA-D-11-00085.1        0     68
+4        n/a 2013        full_text                  10.1111/bij.12010        0   <NA>
+  issue
+1  <NA>
+2     2
+3     3
+4  <NA>
+
+</div>
+<div class='input'>
+<span class="comment"># two doi's</span>
+<span class="symbol">dois</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">'10.1371/journal.pone.0001543'</span><span class="keyword">,</span><span class="string">'10.1371/journal.pone.0040117'</span><span class="keyword">)</span>
+<span class="functioncall"><a href='almevents.html'>almevents</a></span><span class="keyword">(</span><span class="argument">doi</span><span class="argument">=</span><span class="symbol">dois</span><span class="keyword">)</span></div>
+<div class='output'>$bloglines
+[1] "sorry, no events content yet"
+
+$citeulike
+[1] "sorry, no events content yet"
+
+$connotea
+[1] "sorry, no events content yet"
+
+$crossref
+      issn               journal_title
+1 1755098X Molecular Ecology Resources
+2 09607412           The Plant Journal
+3 02698463          Functional Ecology
+                                                                                    article_title
+1                           Efficient screening of transgenic plant lines for ecological research
+2 Unpredictability of nectar nicotine promotes outcrossing by hummingbirds in Nicotiana attenuata
+3                     Ecological genetics and genomics of plant defences: evidence and approaches
+                                                                                                     contributor
+1                                     GASE, true; WEINHOLD, false; BOZOROV, false; SCHUCK, false; BALDWIN, false
+2 Kessler, true; Bhattacharya, false; Diezel, false; Rothe, false; Gase, false; Schöttner, false; Baldwin, false
+3                                                                           Anderson, true; Mitchell-Olds, false
+  volume issue first_page year publication_type                              doi fl_count
+1     11     5        890 2011        full_text 10.1111/j.1755-0998.2011.03017.x        7
+2     71     4        529 2012        full_text 10.1111/j.1365-313X.2012.05008.x        4
+3     25     2        312 2011        full_text 10.1111/j.1365-2435.2010.01785.x        8
+
+$nature
+[1] "sorry, no events content yet"
+
+$postgenomic
+                     name                         dois
+1 A Blog Around The Clock 10.1371/journal.pone.0001542
+2 A Blog Around The Clock 10.1371/journal.pone.0001545
+3 A Blog Around The Clock 10.1371/journal.pone.0001543
+4 A Blog Around The Clock 10.1371/journal.pone.0001534
+5 A Blog Around The Clock 10.1371/journal.pone.0001567
+6 A Blog Around The Clock 10.1371/journal.pone.0001561
+7 A Blog Around The Clock 10.1371/journal.pone.0001552
+
+$pubmed
+[1] "2828710" "2850041" "3270032" "3466783"
+
+$scopus
+[1] "5"
+
+$plos
+   months pdf_views html_views xml_views
+1       2        62        539        12
+2       3        15         63         0
+3       4         6         65         0
+4       5        11         50         0
+5       6         5         53         0
+6       7         9         57         1
+7       8         4         55         0
+8       9         0         34         1
+9      10        12         31         0
+10     11         6         21         0
+11     12         3         54         0
+12      1         1         27         0
+13      2         5         23         0
+14      3         3         29         0
+15      4         3         13         0
+16      5         0         11         0
+17      6         4         19         1
+18      7         4         13         1
+19      8         5         15         0
+20      9         3         18         0
+21     10         4         15         1
+22     11         1         20         0
+23     12         2         11         1
+24      1         9         26         0
+25      2         6         24         0
+26      3         0         15         0
+27      4        11         33         1
+28      5         7         26         1
+29      6         9         31         0
+30      7         4         17         0
+31      8         3         32         0
+32      9        10         42         1
+33     10        11         31         1
+34     11         2         15         0
+35     12         4         24         0
+36      1        10         19         2
+37      2         8         24         0
+38      3         5         20         0
+39      4         9         27         0
+40      5         1         13         0
+41      6         4         24         0
+42      7         0         13         0
+43      8         3         23         1
+44      9         7         27         2
+45     10         5         38         0
+46     11         9         65         0
+47     12         3         59         0
+48      1         5         46         2
+49      2         7         32         0
+50      3         4         24         0
+51      4         9         35         1
+52      5        29         53         1
+53      6         5         23         0
+54      7         2         12         0
+55      8         4         13         5
+56      9         1         18         2
+57     10         3         37         0
+58     11         5         53         0
+59     12         0         18         0
+60      1         4         26         0
+
+$researchblogging
+[1] "sorry, no events content yet"
+
+$biod
+[1] "sorry, no events content yet"
+
+$webofscience
+[1] "7"
+
+$pmc
+   abstract cited-by figure full-text month pdf scanned-page-browse scanned-summary
+1         0        0      0        11     1   8                   0               0
+2         0        0      0         4     2   4                   0               0
+3         0        0      0         7     3   4                   0               0
+4         0        0      0         2     4   2                   0               0
+5         2        0      0         3     5   4                   0               0
+6         1        0      0         2     6  10                   0               0
+7         0        0      0         2     7   1                   0               0
+8         0        0      0         4     8   2                   0               0
+9         2        0      6         5     9   2                   0               0
+10        2        0      0         5    10   6                   0               0
+11        0        0      0         1    11   0                   0               0
+12        0        0      0         2    12   3                   0               0
+13        1        0      0         2     1   8                   0               0
+14        1        0      0         4     2   0                   0               0
+15        1        0      0         1     3   5                   0               0
+16        0        0      0         2     4   2                   0               0
+17        3        0      0         6     5   3                   0               0
+18        1        0      0         3     6   4                   0               0
+19        1        0      0         2     7   0                   0               0
+20        1        0      0         6     8   0                   0               0
+21        2        0      0         4     9   0                   0               0
+22        2        0      0         3    10   3                   0               0
+23        0        0      0         2    11   2                   0               0
+24        0        0      1         1     1   0                   0               0
+25        0        0      0         6     3   0                   0               0
+26        0        0      0         2     4   1                   0               0
+27        0        0      0         1     5   1                   0               0
+28        0        2    116         5     2   1                  47              61
+29        0        2     59         4     3   0                  25              30
+30        0        0     58         4     4   4                  22              28
+31        0        0     29         0     5   0                  11              18
+32        1        0      0        27     6  17                   0               0
+33        1        0      0        13     7  10                   0               0
+34        0        0     28         0     8   0                  14              14
+35        4        0      0        10     9   8                   0               0
+36        0        0      1        14    10   9                   0               0
+37        2        0      4        19    11  15                   0               0
+38        2        0      0        13    12   8                   0               0
+39        0        0      0         7     1   4                   0               0
+40        2        0      0         9     2   1                   0               0
+41        3        0      0        16     3   8                   0               0
+42        1        0      0         7     4   4                   0               0
+43        3        0      0        12     5   3                   0               0
+44        1        0      0         7     6   8                   0               0
+45        2        0      0         8     7   8                   0               0
+46        2        0      0         6     8   1                   0               0
+47        0        0      1        10     9   5                   0               0
+48        1        0      0         5    10   2                   0               0
+49        1        0      0         8    11   3                   0               0
+50        1        0      0         5    12   2                   0               0
+51        0        0      0         5     6   0                   0               0
+52        1        0      0         2     7   0                   0               0
+53        0        0      0         1     8   2                   0               0
+54        0        0      0         2     9   0                   0               0
+55        1        0      0         1    10   1                   0               0
+56        0        0      0         1    12   0                   0               0
+57        0        0      0         2    11   0                   0               0
+   supp-data unique-ip year
+1          0        11 2010
+2          0         7 2010
+3          0         7 2010
+4          0         4 2010
+5          1         7 2010
+6          0         6 2010
+7          0         3 2010
+8          1         4 2010
+9          0         6 2010
+10         0         6 2010
+11         0         1 2010
+12         0         3 2010
+13         0         5 2011
+14         1         5 2011
+15         0         7 2011
+16         0         3 2011
+17         0        10 2011
+18         0         8 2011
+19         0         2 2011
+20         0         7 2011
+21         0         4 2011
+22         0         6 2011
+23         0         4 2011
+24         0         1 2012
+25         0         6 2012
+26         0         2 2012
+27         0         2 2012
+28        71         2 2008
+29        38         0 2008
+30        38         0 2008
+31        20         0 2008
+32         0        23 2008
+33         0        17 2008
+34        18         0 2008
+35         0        15 2008
+36         0        15 2008
+37         0        20 2008
+38         0        17 2008
+39         0         9 2009
+40         0        10 2009
+41         0        16 2009
+42         0         8 2009
+43         0        17 2009
+44         0        11 2009
+45         0        11 2009
+46         0         8 2009
+47         0        10 2009
+48         0         5 2009
+49         0         9 2009
+50         0         7 2009
+51         0         3 2012
+52         0         2 2012
+53         0         2 2012
+54         0         2 2012
+55         0         3 2012
+56         0         1 2012
+57         0         2 2012
+
+$facebook
+[1] "sorry, no events content yet"
+
+$mendeley
+$mendeley$identifiers
+                             oai_id                                pmid 
+"oai:pubmedcentral.nih.gov:2212111"                          "18253491" 
+                              other                              pmc_id 
+                 "07-PONE-RA-02719"                           "2212111" 
+                                doi 
+     "10.1371/journal.pone.0001543" 
+
+$mendeley$stats
+$mendeley$stats$readers
+[1] 6
+
+$mendeley$stats$discipline
+$mendeley$stats$discipline[[1]]
+$mendeley$stats$discipline[[1]]$id
+[1] 3
+
+$mendeley$stats$discipline[[1]]$name
+[1] "Biological Sciences"
+
+$mendeley$stats$discipline[[1]]$value
+[1] 83
+
+
+$mendeley$stats$discipline[[2]]
+$mendeley$stats$discipline[[2]]$id
+[1] 6
+
+$mendeley$stats$discipline[[2]]$name
+[1] "Computer and Information Science"
+
+$mendeley$stats$discipline[[2]]$value
+[1] 17
+
+
+
+$mendeley$stats$country
+$mendeley$stats$country[[1]]
+$mendeley$stats$country[[1]]$name
+[1] "Germany"
+
+$mendeley$stats$country[[1]]$value
+[1] 50
+
+
+$mendeley$stats$country[[2]]
+$mendeley$stats$country[[2]]$name
+[1] "Sweden"
+
+$mendeley$stats$country[[2]]$value
+[1] 17
+
+
+$mendeley$stats$country[[3]]
+$mendeley$stats$country[[3]]$name
+[1] "Chile"
+
+$mendeley$stats$country[[3]]$value
+[1] 17
+
+
+
+$mendeley$stats$status
+$mendeley$stats$status[[1]]
+$mendeley$stats$status[[1]]$name
+[1] "Ph.D. Student"
+
+$mendeley$stats$status[[1]]$value
+[1] 67
+
+
+$mendeley$stats$status[[2]]
+$mendeley$stats$status[[2]]$name
+[1] "Lecturer"
+
+$mendeley$stats$status[[2]]$value
+[1] 17
+
+
+$mendeley$stats$status[[3]]
+$mendeley$stats$status[[3]]$name
+[1] "Researcher (at an Academic Institution)"
+
+$mendeley$stats$status[[3]]$value
+[1] 17
+
+
+
+
+$mendeley$issue
+[1] "2"
+
+$mendeley$editors
+$mendeley$editors[[1]]
+  forename    surname 
+  "Justin" "Borevitz" 
+
+
+$mendeley$type
+[1] "Journal Article"
+
+$mendeley$publication_outlet
+[1] "PLoS ONE"
+
+$mendeley$publisher
+[1] "Public Library of Science"
+
+$mendeley$uuid
+[1] "ccf40620-6d06-11df-a2b2-0026b95e3eb7"
+
+$mendeley$authors
+$mendeley$authors[[1]]
+    forename      surname 
+      "Jens" "Schwachtje" 
+
+$mendeley$authors[[2]]
+    forename      surname 
+     "Susan" "Kutschbach" 
+
+$mendeley$authors[[3]]
+ forename   surname 
+  "Ian T" "Baldwin" 
+
+
+$mendeley$title
+[1] "Reverse Genetics in Ecological Research"
+
+$mendeley$year
+[1] 2008
+
+$mendeley$oa_journal
+[1] TRUE
+
+$mendeley$abstract
+[1] "By precisely manipulating the expression of individual genetic elements thought to be important for ecological performance, reverse genetics has the potential to revolutionize plant ecology. However, untested concerns about possible side-effects of the transformation technique, caused by Agrobacterium infection and tissue culture, on plant performance have stymied research by requiring onerous sample sizes. We compare 5 independently transformed Nicotiana attenuata lines harboring empty vector control (EVC) T-DNA lacking silencing information with isogenic wild types (WT), and measured a battery of ecologically relevant traits, known to be important in plant-herbivore interactions: phytohormones, secondary metabolites, growth and fitness parameters under stringent competitive conditions, and transcriptional regulation with microarrays. As a positive control, we included a line silenced in trypsin proteinase inhibitor gene (TPI) expression, a potent anti-herbivore defense known to exact fitness costs in its expression, in the analysis. The experiment was conducted twice, with 10 and 20 biological replicates per genotype. For all parameters, we detected no difference between any EVC and WT lines, but could readily detect a fitness benefit of silencing TPI production. A statistical power analyses revealed that the minimum sample sizes required for detecting significant fitness differences between EVC and WT was 23 orders of magnitude larger than the 10 replicates required to detect a fitness effect of TPI silencing. We conclude that possible side-effects of transformation are far too low to obfuscate the study of ecologically relevant phenotypes."
+
+$mendeley$keywords
+ [1] "ecology"                            "gene expression regulation"        
+ [3] "plant"                              "plant genetics"                    
+ [5] "gene silencing"                     "gene transfer techniques"          
+ [7] "gene transfer techniques standards" "methods"                           
+ [9] "plants"                             "genetically modified"              
+[11] "research"                           "rhizobium"                         
+[13] "rhizobium genetics"                 "tobacco"                           
+[15] "tobacco genetics"                   "transformation"                    
+[17] "bacterial"                         
+
+$mendeley$website
+[1] "http://www.ncbi.nlm.nih.gov/pubmed/18253491"
+
+$mendeley$pages
+[1] "8"
+
+$mendeley$public_file_hash
+[1] "e23e72a0cf3f1f453518fd3980428104e7300c26"
+
+$mendeley$volume
+[1] "3"
+
+$mendeley$categories
+[1]  48 101  43  35 201
+
+$mendeley$mendeley_url
+[1] "http://api.mendeley.com/research/reverse-genetics-ecological-research/"
+
+$mendeley$file_url
+[1] "http://api.mendeley.com/oapi/documents/file/ccf40620-6d06-11df-a2b2-0026b95e3eb7/e23e72a0cf3f1f453518fd3980428104e7300c26/"
+
+$mendeley$related
+$mendeley$related[[1]]
+$mendeley$related[[1]]$uuid
+[1] "5edae550-d863-11df-82d0-0024e8453de6"
+
+$mendeley$related[[1]]$title
+[1] "Ecological and population genetics research imperatives for transgenic trees"
+
+$mendeley$related[[1]]$publication_outlet
+[1] "Tree Genetics Genomes"
+
+$mendeley$related[[1]]$year
+[1] 2007
+
+$mendeley$related[[1]]$mendeley_url
+[1] "http://www.mendeley.com/research/ecological-population-genetics-research-imperatives-transgenic-trees/"
+
+$mendeley$related[[1]]$doi
+[1] "10.1007/s11295-006-0063-z"
+
+$mendeley$related[[1]]$authors
+$mendeley$related[[1]]$authors[[1]]
+forename  surname 
+ "Peter" "Farnum" 
+
+$mendeley$related[[1]]$authors[[2]]
+forename  surname 
+    "Al" "Lucier" 
+
+$mendeley$related[[1]]$authors[[3]]
+ forename   surname 
+"Richard"  "Meilan" 
+
+
+
+$mendeley$related[[2]]
+$mendeley$related[[2]]$uuid
+[1] "87009a10-6d02-11df-afb8-0026b95d30b2"
+
+$mendeley$related[[2]]$title
+[1] "Ecological Genetics"
+
+$mendeley$related[[2]]$publication_outlet
+[1] "Analysis"
+
+$mendeley$related[[2]]$year
+[1] 1912
+
+$mendeley$related[[2]]$mendeley_url
+[1] "http://www.mendeley.com/research/ecological-genetics-1/"
+
+$mendeley$related[[2]]$doi
+[1] "10.1002/9780470015902.a0021214"
+
+$mendeley$related[[2]]$authors
+$mendeley$related[[2]]$authors[[1]]
+forename  surname 
+   "E B"   "Ford" 
+
+
+
+$mendeley$related[[3]]
+$mendeley$related[[3]]$uuid
+[1] "2d201020-37e5-11e1-a0e9-0024e8453de6"
+
+$mendeley$related[[3]]$title
+[1] "Research on basis of reverse genetics system of a Sindbis-like virus XJ-160."
+
+$mendeley$related[[3]]$publication_outlet
+[1] "Virology Journal"
+
+$mendeley$related[[3]]$year
+[1] 2011
+
+$mendeley$related[[3]]$mendeley_url
+[1] "http://www.mendeley.com/research/research-basis-reverse-genetics-system-sindbis-like-virus-xj-160/"
+
+$mendeley$related[[3]]$doi
+[1] "10.1186/1743-422X-8-519"
+
+$mendeley$related[[3]]$authors
+$mendeley$related[[3]]$authors[[1]]
+ forename   surname 
+    "Zhu" "Wu-Yang" 
+
+$mendeley$related[[3]]$authors[[2]]
+  forename    surname 
+   "Liang" "Guo-Dong" 
+
+
+
+$mendeley$related[[4]]
+$mendeley$related[[4]]$uuid
+[1] "125f81b0-6d04-11df-a2b2-0026b95e3eb7"
+
+$mendeley$related[[4]]$title
+[1] "Reverse genetics and cystic fibrosis."
+
+$mendeley$related[[4]]$publication_outlet
+[1] "American Journal of Respiratory Cell and Molecular Biology"
+
+$mendeley$related[[4]]$year
+[1] 1990
+
+$mendeley$related[[4]]$mendeley_url
+[1] "http://www.mendeley.com/research/reverse-genetics-cystic-fibrosis/"
+
+$mendeley$related[[4]]$doi
+NULL
+
+$mendeley$related[[4]]$authors
+$mendeley$related[[4]]$authors[[1]]
+  forename    surname 
+     "M C" "Iannuzzi" 
+
+$mendeley$related[[4]]$authors[[2]]
+ forename   surname 
+    "F S" "Collins" 
+
+
+
+$mendeley$related[[5]]
+$mendeley$related[[5]]$uuid
+[1] "037364d0-ca76-11df-922b-0024e8453de6"
+
+$mendeley$related[[5]]$title
+[1] "Reverse genetics of influenza virus."
+
+$mendeley$related[[5]]$publication_outlet
+[1] "Virology"
+
+$mendeley$related[[5]]$year
+[1] 2001
+
+$mendeley$related[[5]]$mendeley_url
+[1] "http://www.mendeley.com/research/reverse-genetics-influenza-virus/"
+
+$mendeley$related[[5]]$doi
+NULL
+
+$mendeley$related[[5]]$authors
+$mendeley$related[[5]]$authors[[1]]
+ forename   surname 
+      "G" "Neumann" 
+
+$mendeley$related[[5]]$authors[[2]]
+ forename   surname 
+      "Y" "Kawaoka" 
+
+
+
+$mendeley$related[[6]]
+$mendeley$related[[6]]$uuid
+[1] "360c3c90-f637-11df-a785-0024e8453de6"
+
+$mendeley$related[[6]]$title
+[1] "Reverse genetics of mononegavirales"
+
+$mendeley$related[[6]]$publication_outlet
+[1] "Current Topics in Microbiology and Immunology"
+
+$mendeley$related[[6]]$year
+[1] 2004
+
+$mendeley$related[[6]]$mendeley_url
+[1] "http://www.mendeley.com/research/reverse-genetics-mononegavirales-1/"
+
+$mendeley$related[[6]]$doi
+NULL
+
+$mendeley$related[[6]]$authors
+$mendeley$related[[6]]$authors[[1]]
+    forename      surname 
+       "K K" "Conzelmann" 
+
+
+
+$mendeley$related[[7]]
+$mendeley$related[[7]]$uuid
+[1] "36b26f70-6d02-11df-a2b2-0026b95e3eb7"
+
+$mendeley$related[[7]]$title
+[1] "Reverse genetics in zebrafish by TILLING."
+
+$mendeley$related[[7]]$publication_outlet
+[1] "Briefings in functional genomics proteomics"
+
+$mendeley$related[[7]]$year
+[1] 2008
+
+$mendeley$related[[7]]$mendeley_url
+[1] "http://www.mendeley.com/research/reverse-genetics-zebrafish-tilling/"
+
+$mendeley$related[[7]]$doi
+[1] "10.1093/bfgp/eln046"
+
+$mendeley$related[[7]]$authors
+$mendeley$related[[7]]$authors[[1]]
+   forename     surname 
+"Cecilia B"     "Moens" 
+
+$mendeley$related[[7]]$authors[[2]]
+  forename    surname 
+"Thomas M"     "Donn" 
+
+$mendeley$related[[7]]$authors[[3]]
+    forename      surname 
+    "Emma R" "Wolf-Saxon" 
+
+$mendeley$related[[7]]$authors[[4]]
+  forename    surname 
+"Taylur P"       "Ma" 
+
+
+
+$mendeley$related[[8]]
+$mendeley$related[[8]]$uuid
+[1] "68ad4c60-c1ea-11df-833d-0024e8453de6"
+
+$mendeley$related[[8]]$title
+[1] "Reverse genetics and prenatal diagnosis"
+
+$mendeley$related[[8]]$publication_outlet
+[1] "Revue francaise de gynecologie et dobstetrique"
+
+$mendeley$related[[8]]$year
+[1] 1988
+
+$mendeley$related[[8]]$mendeley_url
+[1] "http://www.mendeley.com/research/reverse-genetics-prenatal-diagnosis/"
+
+$mendeley$related[[8]]$doi
+NULL
+
+$mendeley$related[[8]]$authors
+$mendeley$related[[8]]$authors[[1]]
+ forename   surname 
+      "H" "Plauchu" 
+
+
+
+$mendeley$related[[9]]
+$mendeley$related[[9]]$uuid
+[1] "5a7a2210-ee42-11df-99a6-0024e8453de6"
+
+$mendeley$related[[9]]$title
+[1] "Plant Reverse Genetics"
+
+$mendeley$related[[9]]$publication_outlet
+[1] "Methods"
+
+$mendeley$related[[9]]$year
+[1] 2011
+
+$mendeley$related[[9]]$mendeley_url
+[1] "http://www.mendeley.com/research/plant-reverse-genetics-1/"
+
+$mendeley$related[[9]]$doi
+[1] "10.1007/978-1-60761-682-5"
+
+$mendeley$related[[9]]$authors
+$mendeley$related[[9]]$authors[[1]]
+        forename          surname 
+"Shrinivasrao P"           "Mane" 
+
+$mendeley$related[[9]]$authors[[2]]
+forename  surname 
+ "Thero" "Modise" 
+
+$mendeley$related[[9]]$authors[[3]]
+ forename   surname 
+"Bruno W"  "Sobral" 
+
+
+
+$mendeley$related[[10]]
+$mendeley$related[[10]]$uuid
+[1] "8a0024d0-6d0a-11df-a474-0026b95e3e23"
+
+$mendeley$related[[10]]$title
+[1] "Prions: pathogenesis and reverse genetics."
+
+$mendeley$related[[10]]$publication_outlet
+[1] "Annals Of The New York Academy Of Sciences"
+
+$mendeley$related[[10]]$year
+[1] 2000
+
+$mendeley$related[[10]]$mendeley_url
+[1] "http://www.mendeley.com/research/prions-pathogenesis-reverse-genetics/"
+
+$mendeley$related[[10]]$doi
+NULL
+
+$mendeley$related[[10]]$authors
+$mendeley$related[[10]]$authors[[1]]
+forename  surname 
+     "A" "Aguzzi" 
+
+$mendeley$related[[10]]$authors[[2]]
+forename  surname 
+   "M A"  "Klein" 
+
+$mendeley$related[[10]]$authors[[3]]
+   forename     surname 
+        "F" "Montrasio" 
+
+$mendeley$related[[10]]$authors[[4]]
+ forename   surname 
+      "V" "Pekarik" 
+
+$mendeley$related[[10]]$authors[[5]]
+  forename    surname 
+       "S" "Brandner" 
+
+$mendeley$related[[10]]$authors[[6]]
+  forename    surname 
+       "H" "Furukawa" 
+
+$mendeley$related[[10]]$authors[[7]]
+forename  surname 
+     "P"  "Käser" 
+
+$mendeley$related[[10]]$authors[[8]]
+forename  surname 
+     "C"  "Röckl" 
+
+$mendeley$related[[10]]$authors[[9]]
+ forename   surname 
+      "M" "Glatzel" 
+
+
+
+$mendeley$related[[11]]
+$mendeley$related[[11]]$uuid
+[1] "93304770-d699-11e0-83ce-0024e8453de6"
+
+$mendeley$related[[11]]$title
+[1] "Reverse genetics for mammalian reovirus."
+
+$mendeley$related[[11]]$publication_outlet
+[1] "Methods San Diego Calif"
+
+$mendeley$related[[11]]$year
+[1] 2011
+
+$mendeley$related[[11]]$mendeley_url
+[1] "http://www.mendeley.com/research/reverse-genetics-mammalian-reovirus-reovirus-cdna/"
+
+$mendeley$related[[11]]$doi
+[1] "10.1016/j.ymeth.2011.07.002"
+
+$mendeley$related[[11]]$authors
+$mendeley$related[[11]]$authors[[1]]
+forename  surname 
+"Karl W" "Boehme" 
+
+$mendeley$related[[11]]$authors[[2]]
+ forename   surname 
+   "Mine" "Ikizler" 
+
+$mendeley$related[[11]]$authors[[3]]
+   forename     surname 
+  "Takeshi" "Kobayashi" 
+
+$mendeley$related[[11]]$authors[[4]]
+   forename     surname 
+"Terence S"   "Dermody" 
+
+
+
+$mendeley$related[[12]]
+$mendeley$related[[12]]$uuid
+[1] "ceee8640-c0bb-11df-833d-0024e8453de6"
+
+$mendeley$related[[12]]$title
+[1] "Reverse genetics in eukaryotes."
+
+$mendeley$related[[12]]$publication_outlet
+[1] "Biology of the cell under the auspices of the European Cell Biology Organization"
+
+$mendeley$related[[12]]$year
+[1] 2010
+
+$mendeley$related[[12]]$mendeley_url
+[1] "http://www.mendeley.com/research/reverse-genetics-eukaryotes/"
+
+$mendeley$related[[12]]$doi
+NULL
+
+$mendeley$related[[12]]$authors
+$mendeley$related[[12]]$authors[[1]]
+forename  surname 
+ "Serge"  "Hardy" 
+
+$mendeley$related[[12]]$authors[[2]]
+   forename     surname 
+  "Vincent" "Legagneux" 
+
+$mendeley$related[[12]]$authors[[3]]
+forename  surname 
+  "Yann"  "Audic" 
+
+$mendeley$related[[12]]$authors[[4]]
+  forename    surname 
+     "Luc" "Paillard" 
+
+
+
+$mendeley$related[[13]]
+$mendeley$related[[13]]$uuid
+[1] "e5667270-5143-11e0-95c1-0024e8453de6"
+
+$mendeley$related[[13]]$title
+[1] "Reverse Genetics and IBDV"
+
+$mendeley$related[[13]]$publication_outlet
+[1] "The Poultry Informed Professional"
+
+$mendeley$related[[13]]$year
+[1] 2009
+
+$mendeley$related[[13]]$mendeley_url
+[1] "http://www.mendeley.com/research/reverse-genetics-ibdv/"
+
+$mendeley$related[[13]]$doi
+NULL
+
+$mendeley$related[[13]]$authors
+$mendeley$related[[13]]$authors[[1]]
+forename  surname 
+     "E"  "Mundt" 
+
+
+
+$mendeley$related[[14]]
+$mendeley$related[[14]]$uuid
+[1] "fed91a40-6d01-11df-a2b2-0026b95e3eb7"
+
+$mendeley$related[[14]]$title
+[1] "Reverse genetics of Caenorhabditis elegans."
+
+$mendeley$related[[14]]$publication_outlet
+[1] "BioEssays news and reviews in molecular cellular and developmental biology"
+
+$mendeley$related[[14]]$year
+[1] 1992
+
+$mendeley$related[[14]]$mendeley_url
+[1] "http://www.mendeley.com/research/reverse-genetics-caenorhabditis-elegans/"
+
+$mendeley$related[[14]]$doi
+NULL
+
+$mendeley$related[[14]]$authors
+$mendeley$related[[14]]$authors[[1]]
+  forename    surname 
+     "R H" "Plasterk" 
+
+
+
+$mendeley$related[[15]]
+$mendeley$related[[15]]$uuid
+[1] "051b5030-05ae-11e1-b17d-0024e8453de6"
+
+$mendeley$related[[15]]$title
+NULL
+
+$mendeley$related[[15]]$publication_outlet
+NULL
+
+$mendeley$related[[15]]$year
+NULL
+
+$mendeley$related[[15]]$mendeley_url
+[1] "http://www.mendeley.com"
+
+$mendeley$related[[15]]$doi
+NULL
+
+$mendeley$related[[15]]$authors
+NULL
+
+
+$mendeley$related[[16]]
+$mendeley$related[[16]]$uuid
+[1] "1b7383e0-6d0a-11df-a2b2-0026b95e3eb7"
+
+$mendeley$related[[16]]$title
+[1] "The ecological genetics of aliphatic glucosinolates."
+
+$mendeley$related[[16]]$publication_outlet
+[1] "Heredity"
+
+$mendeley$related[[16]]$year
+[1] 2001
+
+$mendeley$related[[16]]$mendeley_url
+[1] "http://www.mendeley.com/research/ecological-genetics-aliphatic-glucosinolates/"
+
+$mendeley$related[[16]]$doi
+NULL
+
+$mendeley$related[[16]]$authors
+$mendeley$related[[16]]$authors[[1]]
+  forename    surname 
+     "A F" "Raybould" 
+
+$mendeley$related[[16]]$authors[[2]]
+forename  surname 
+   "C L"  "Moyes" 
+
+
+
+$mendeley$related[[17]]
+$mendeley$related[[17]]$uuid
+[1] "24be7010-f250-11df-a785-0024e8453de6"
+
+$mendeley$related[[17]]$title
+[1] "Ecological genetics of breakdown in tristyly"
+
+$mendeley$related[[17]]$publication_outlet
+[1] "Structure and Functioning of Plant Populations II Phenotypic and Genotypic Variation in Plant Populations NorthHolland Amsterdam Netherlands"
+
+$mendeley$related[[17]]$year
+[1] 1985
+
+$mendeley$related[[17]]$mendeley_url
+[1] "http://www.mendeley.com/research/ecological-genetics-breakdown-tristyly/"
+
+$mendeley$related[[17]]$doi
+NULL
+
+$mendeley$related[[17]]$authors
+$mendeley$related[[17]]$authors[[1]]
+     forename       surname 
+"Spencer C H"     "Barrett" 
+
+
+
+$mendeley$related[[18]]
+$mendeley$related[[18]]$uuid
+[1] "6cbad100-6d09-11df-a2b2-0026b95e3eb7"
+
+$mendeley$related[[18]]$title
+[1] "The ecological genetics of conditional strategies."
+
+$mendeley$related[[18]]$publication_outlet
+[1] "The American naturalist"
+
+$mendeley$related[[18]]$year
+[1] 2004
+
+$mendeley$related[[18]]$mendeley_url
+[1] "http://www.mendeley.com/research/ecological-genetics-conditional-strategies/"
+
+$mendeley$related[[18]]$doi
+NULL
+
+$mendeley$related[[18]]$authors
+$mendeley$related[[18]]$authors[[1]]
+forename  surname 
+  "Wade"  "Hazel" 
+
+$mendeley$related[[18]]$authors[[2]]
+ forename   surname 
+"Richard"   "Smock" 
+
+$mendeley$related[[18]]$authors[[3]]
+  forename    surname 
+"Curtis M"   "Lively" 
+
+
+
+$mendeley$related[[19]]
+$mendeley$related[[19]]$uuid
+[1] "5bea5c20-d752-11df-82d0-0024e8453de6"
+
+$mendeley$related[[19]]$title
+[1] "Ecological and evolutionary genetics of Arabidopsis"
+
+$mendeley$related[[19]]$publication_outlet
+[1] "Trends in Plant Science"
+
+$mendeley$related[[19]]$year
+[1] 1998
+
+$mendeley$related[[19]]$mendeley_url
+[1] "http://www.mendeley.com/research/ecological-evolutionary-genetics-arabidopsis/"
+
+$mendeley$related[[19]]$doi
+[1] "10.1016/S1360-1385(98)01343-0"
+
+$mendeley$related[[19]]$authors
+$mendeley$related[[19]]$authors[[1]]
+   forename     surname 
+        "M" "Pigliucci" 
+
+
+
+$mendeley$related[[20]]
+$mendeley$related[[20]]$uuid
+[1] "969d60b0-6d03-11df-a2b2-0026b95e3eb7"
+
+$mendeley$related[[20]]$title
+[1] "Genetics and ecological speciation"
+
+$mendeley$related[[20]]$publication_outlet
+[1] "Proceedings of the National Academy of Sciences of the United States of America"
+
+$mendeley$related[[20]]$year
+[1] 2009
+
+$mendeley$related[[20]]$mendeley_url
+[1] "http://www.mendeley.com/research/genetics-ecological-speciation/"
+
+$mendeley$related[[20]]$doi
+[1] "10.1073/pnas.0901264106"
+
+$mendeley$related[[20]]$authors
+$mendeley$related[[20]]$authors[[1]]
+  forename    surname 
+   "Dolph" "Schluter" 
+
+$mendeley$related[[20]]$authors[[2]]
+forename  surname 
+"Gina L"  "Conte" 
+
+
+
+
+
+$twitter
+[1] "sorry, no events content yet"
+
+$wikipedia
+                                                 url             datetime
+1 http://en.wikipedia.org/wiki/User:Thompsma/Sandbox 2011-11-18T03:58:48Z
+                  title language namespace
+1 User:Thompsma/Sandbox       en         2
+
+$scienceseeker
+[1] "sorry, no events content yet"
+
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>almevents</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

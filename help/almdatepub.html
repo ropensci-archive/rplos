@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>almdatepub. rplos 0.0-7</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">rplos 0.0-7</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Get the date when the article was published.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='almdatepub.html'>almdatepub</a></span><span class="keyword">(</span><span class="symbol">doi</span><span class="keyword">,</span> <span class="argument">get</span> <span class="argument">=</span> <span class="number">NA</span><span class="keyword">,</span> <span class="argument">sleep</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">url</span> <span class="argument">=</span> <span class="string">"http://alm.plos.org/api/v3/articles"</span><span class="keyword">,</span>
+  <span class="argument">key</span> <span class="argument">=</span> NULL<span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>doi</dt>
+      <dd>Digital object identifier for an article in
+  PLoS Journals</dd>
+      <dt>get</dt>
+      <dd>Get year, month, or day; if unspecified, whole
+  date returned.</dd>
+      <dt>sleep</dt>
+      <dd>Time (in seconds) before function sends API
+  call - defaults to zero.  Set to higher number if you are
+  using this function in a loop with many API calls.</dd>
+      <dt>url</dt>
+      <dd>the PLoS API url for the function (should be
+  left to default)</dd>
+      <dt>key</dt>
+      <dd>your PLoS API key, either enter, or loads from
+  .Rprofile</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>Date when article was published.</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Get the date when the article was published.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='almdatepub.html'>almdatepub</a></span><span class="keyword">(</span><span class="argument">doi</span><span class="argument">=</span><span class="string">'10.1371/journal.pone.0026871'</span><span class="keyword">)</span></div>
+<div class='output'>[1] "2012-03-26"
+</div>
+<div class='input'><span class="functioncall"><a href='almdatepub.html'>almdatepub</a></span><span class="keyword">(</span><span class="string">'10.1371/journal.pone.0026871'</span><span class="keyword">,</span> <span class="string">'year'</span><span class="keyword">)</span></div>
+<div class='output'>[1] 2012
+</div>
+<div class='input'>
+<span class="comment"># Provide more than one DOI</span>
+<span class="symbol">dois</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">'10.1371/journal.pone.0026871'</span><span class="keyword">,</span><span class="string">'10.1371/journal.pone.0048868'</span><span class="keyword">,</span>
+                <span class="string">'10.1371/journal.pone.0048705'</span><span class="keyword">,</span><span class="string">'10.1371/journal.pone.0048731'</span><span class="keyword">)</span>
+<span class="functioncall"><a href='almdatepub.html'>almdatepub</a></span><span class="keyword">(</span><span class="argument">doi</span><span class="argument">=</span><span class="symbol">dois</span><span class="keyword">,</span> <span class="argument">get</span><span class="argument">=</span><span class="string">"month"</span><span class="keyword">)</span></div>
+<div class='output'>[1]  3 10 10 10
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>almdatepub</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
