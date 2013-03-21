@@ -96,8 +96,9 @@ alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 				args2 <- c(args, ids = id[[1]])
 				out <- getForm(url, .params = args2, curl = curl)
 				tt <- fromJSON(out)
-				if(info=="summary"){ttt<-tt} else{ttt <- tt[[1]]$article$sources}
+				if(info=="summary"){ttt<-tt} else{ttt <- tt[[1]]$sources}
 			} else
+			{
 				if(length(id[[1]])>1){
 					if(length(id[[1]])>30){
 						slice <- function(x, n) split(x, as.integer((seq_along(x) - 1) / n))
@@ -129,26 +130,27 @@ alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 						out <- getForm(url, .params = args2, curl = curl)
 						tt <- fromJSON(out)
 						if(info=="summary"){ttt<-tt} else { 
-							ttt <- lapply(tt, function(x) x$article$sources) 
+							ttt <- lapply(tt, function(x) x$sources) 
 						}
 					}
 				}
+			}
 		if(info=="summary"){ttt} else
 		{
 			getdata <- function(data_, y) {
 				if(y == "totals"){
-					servs <- sapply(data_, function(x) x$source$name)
-					totals <- lapply(data_, function(x) x$source$metrics[!sapply(x$source$metrics, is.null)])
+					servs <- sapply(data_, function(x) x$name)
+					totals <- lapply(data_, function(x) x$metrics[!sapply(x$metrics, is.null)])
 					names(totals) <- servs
 					ldply(totals, function(x) as.data.frame(x))
 				} else
 				{
-					servs <- sapply(data_, function(x) x$source$name)
-					totals <- lapply(data_, function(x) x$source$metrics[!sapply(x$source$metrics, is.null)])
+					servs <- sapply(data_, function(x) x$name)
+					totals <- lapply(data_, function(x) x$metrics[!sapply(x$metrics, is.null)])
 					names(totals) <- servs
 					totalsdf <- ldply(totals, function(x) as.data.frame(x))
 					
-					hist <- lapply(data_, function(x) x$source$histories)
+					hist <- lapply(data_, function(x) x$histories)
 					gethist <- function(y) {
 						dates <- sapply(y, function(x) str_split(x[[1]], "T")[[1]][[1]])
 						totals <- sapply(y, function(x) x[[2]])
