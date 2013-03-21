@@ -1,6 +1,6 @@
 #' Plot results through time for serach results from PLoS Journals.
 #' 
-#' @import RJSONIO RCurl plyr stringr ggplot2 reshape2 googleVis
+#' @import RJSONIO RCurl plyr stringr ggplot2 googleVis reshape
 #' @param terms search terms (character)
 #' @param limit number of results to return (integer)
 #' @param gvis use google visualization via the googleVis package (logical)
@@ -47,8 +47,8 @@ plot_throughtime <- function(terms, limit = NA, gvis = FALSE,
   p <- ggplot(tsum, aes(x = dateplot, y = V1)) + 
     geom_line(colour = "red") +
     theme_bw() +
-    labs(x = "", y = "Number of articles matching search term(s)\n") +
-    opts(title = paste("PLoS search of ", terms, " using the rplos package"))
+    labs(x = "", y = "Number of articles matching search term(s)\n", 
+    		 title = paste("PLoS search of ", terms, " using the rplos package"))
   return(p)
   }
   else {
@@ -84,9 +84,9 @@ plot_throughtime <- function(terms, limit = NA, gvis = FALSE,
       pp <- ggplot(temp2m, aes(x = dateplot, y = value, group = variable, colour = variable)) + 
         geom_line() +
         theme_bw() +
-        labs(x = "", y = "Number of articles matching search term(s)\n") +
-        opts(title = paste("PLoS search of", paste(as.character(terms), collapse=","), "using the rplos package"),
-          legend.position = c(0.35, 0.8)) 
+        labs(x = "", y = "Number of articles matching search term(s)\n",
+        		 title = paste("PLoS search of", paste(as.character(terms), collapse=","), "using the rplos package")) +
+        theme(legend.position = c(0.35, 0.8))
       return(pp)
       }
     else {

@@ -1,6 +1,6 @@
 \name{crossref_r}
 \alias{crossref_r}
-\title{Get 10 random DOI's through CrossRef.}
+\title{Get random DOI's through CrossRef.}
 \usage{
   crossref_r(count = NULL, to = NULL, from = NULL,
     type = NULL,
@@ -29,13 +29,6 @@
 
   \item{url}{The Crossref API url for the function (should
   be left to default)}
-
-  \item{...}{optional additional curl options (debugging
-  tools mostly)}
-
-  \item{curl}{If using in a loop, call getCurlHandle()
-  first and pass the returned value in here (avoids
-  unnecessary footprint)}
 }
 \value{
   Ten DOI's in R's bibentry format.

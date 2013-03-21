@@ -3,9 +3,8 @@
 \title{Get the date when the article was published.}
 \usage{
   almdatepub(doi, get = NA, sleep = 0,
-    url = "http://alm.plos.org/articles",
-    key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-    ..., curl = getCurlHandle())
+    url = "http://alm.plos.org/api/v3/articles",
+    key = NULL)
 }
 \arguments{
   \item{doi}{Digital object identifier for an article in
@@ -18,18 +17,11 @@
   call - defaults to zero.  Set to higher number if you are
   using this function in a loop with many API calls.}
 
-  \item{key}{your PLoS API key, either enter, or loads from
-  .Rprofile}
-
   \item{url}{the PLoS API url for the function (should be
   left to default)}
 
-  \item{...}{optional additional curl options (debugging
-  tools mostly)}
-
-  \item{curl}{If using in a loop, call getCurlHandle()
-  first and pass the returned value in here (avoids
-  unnecessary footprint)}
+  \item{key}{your PLoS API key, either enter, or loads from
+  .Rprofile}
 }
 \value{
   Date when article was published.
@@ -39,11 +31,13 @@
 }
 \examples{
 \dontrun{
-almdatepub('10.1371/journal.pone.0026871')
+almdatepub(doi='10.1371/journal.pone.0026871')
 almdatepub('10.1371/journal.pone.0026871', 'year')
 
-# DOI that does not work, gives NA so that looping isn't interrupted
-almdatepub(doi="10.1371/journal.pone.002699", get='year')
+# Provide more than one DOI
+dois <- c('10.1371/journal.pone.0026871','10.1371/journal.pone.0048868',
+		'10.1371/journal.pone.0048705','10.1371/journal.pone.0048731')
+almdatepub(doi=dois, get="month")
 }
 }
 

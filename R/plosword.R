@@ -13,7 +13,7 @@
 #' @examples \dontrun{
 #' plosword('Helianthus')
 #' plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')
-#' out <- plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')
+#' out <- plosword(list('monkey','replication','design','sunflower','whale'), vis = 'TRUE')
 #' out[[1]] # results in a data frame 
 #' out[[2]] # results in a bar plot
 #' }
@@ -56,7 +56,7 @@ plosword <- function(terms, vis = FALSE, url = 'http://api.plos.org/search',
     temp$Term <- as.character(temp$Term)
       if (vis == "TRUE") {
         if(!require(ggplot2)) stop("must first install 'ggplot2' package.")
-        p <- ggplot(temp, aes(x=Term, y=No_Articles)) + geom_bar()
+        p <- ggplot(temp, aes(x=Term, y=No_Articles)) + geom_bar(stat="identity")
       }
     return(list(table = temp, plot = p))
   }
