@@ -1,6 +1,6 @@
 # `rplos`
 
-## Note: You can install the branch `almv3` that interacts with the new version of the PLoS ALM API, by doing
+## NOTE: You can install the branch `almv3` that interacts with the new version of the PLoS ALM API, by doing
 
 ```R
 install.packages("devtools")
@@ -8,6 +8,8 @@ require(devtools)
 install_github("rplos", "rOpenSci", "almv3")
 require(rplos)
 ```
+
+
 
 
 You can get this package at CRAN [here](http://cran.r-project.org/web/packages/rplos/). 
