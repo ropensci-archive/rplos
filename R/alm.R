@@ -8,13 +8,16 @@
 #' @param pmid PubMed object identifier (numeric)
 #' @param pmcid PubMed Central object identifier (numeric)
 #' @param mdid Mendeley object identifier (character)
-#' @param info One of summary, history, or detail (default totals + history
-#' 		in a list). Not specifying anything (the default) returns data.frame of 
+#' @param info One of summary, history, detail(default totals + history in a list)
+#' 		or event. Not specifying anything (the default) returns data.frame of 
 #' 		totals across data providers. (character)
 #' @param months Number of months since publication to request historical data for.
 #' 		See details for a note. (numeric)
 #' @param days Number of days since publication to request historical data for. 
 #' 		See details for a note. (numeric)
+#' @param year End of which year to request historical data for. 
+#'   	See details for a note. (numeric)
+#' @param source Name of source (or list of sources) to get ALM information for (character)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile (character)
 #' @param url the PLoS API url for the function (should be left to default)
 #' @param ... optional additional curl options (debugging tools mostly)
@@ -24,10 +27,10 @@
 #' @details You can only supply one of the parmeters doi, pmid, pmcid, and mdid.
 #' 
 #' 		Query for as many articles at a time as you like. Though queries are broken
-#' 		up in to smaller bits of 30 identifiers at a time.  
+#' 		up in to smaller bits of 50 identifiers at a time.  
 #' 		
-#' 		If you supply both the days and months parameters, days takes precedence,
-#' 		and months is ignored. 		
+#' 		If you supply days, months and/or year parameters, days takes precedence
+#' 		over months and year. 		
 #' @return PLoS altmetrics as data.frame's.
 #' @examples \dontrun{
 #' # The default call with either doi, pmid, pmcid, or mdid without specifying 
@@ -55,7 +58,7 @@
 #' out[[1]] # get data for the first DOI
 #' 
 #' # Search for DOI's, then feed into alm
-#' dois <- searchplos(terms='evolution', fields='id', limit = 30)
+#' dois <- searchplos(terms='evolution', fields='id', limit = 50)
 #' out <- alm(doi=as.character(dois[,1]))
 #' lapply(out, head)
 #' 
@@ -67,16 +70,16 @@
 #' # Getting just summary data
 #' alm(doi='10.1371/journal.pone.0039395', info='summary')
 #' 
-#' # Using month and day arguments
+#' # Using days argument
 #' alm(doi='10.1371/journal.pone.0040117', days=30)
 #' }
 #' @export
 alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL, 
-								info = "totals", months = NULL, days = NULL, key = NULL, 
+								info = "totals", months = NULL, days = NULL, year = NULL, source = NULL, key = NULL, 
 								url = 'http://alm.plos.org/api/v3/articles', curl = getCurlHandle())
 {
-	if(!info %in% c("summary","totals","history","detail")) {
-		stop("info must be one of summary, totals, history, or detail")
+	if(!info %in% c("summary","totals","history","detail","event")) {
+		stop("info must be one of summary, totals, history, detail or event")
 	}
 	if(!is.null(doi))
 		doi <- doi[!grepl("image", doi)] # remove any DOIs of images
@@ -86,10 +89,10 @@ alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 	key <- getkey(key)
 	doit <- function() {
 		if(info=="totals"){info2 <- NULL} else
-			if(info=="history"|info=="detail"){info2 <- "detail"} else
+			if(info=="history"|info=="detail"|info=="event"){info2 <- "detail"} else
 				if(info=="summary"){info2 <- "summary"}
 		args <- compact(list(api_key = key, info = info2, months = months, 
-												 days = days, type = names(id)))
+												 days = days, year = year, source = source, type = names(id)))
 		if(length(id[[1]])==0){stop("Please provide a DOI")} else
 			if(length(id[[1]])==1){
 				if(names(id) == "doi") id <- gsub("/", "%2F", id)
@@ -100,9 +103,9 @@ alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 			} else
 			{
 				if(length(id[[1]])>1){
-					if(length(id[[1]])>30){
+					if(length(id[[1]])>50){
 						slice <- function(x, n) split(x, as.integer((seq_along(x) - 1) / n))
-						idsplit <- slice(id[[1]], 30)
+						idsplit <- slice(id[[1]], 50)
 						repeatit <- function(y) {
 							if(names(id) == "doi"){ 
 								id2 <- paste(sapply(y, function(x) gsub("/", "%2F", x)), collapse=",")
@@ -160,8 +163,9 @@ alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 					names(histdfs) <- servs
 					historydf <- ldply(histdfs)
 					if(y == "history"){ historydf } else
-						if(y == "detail"){ list(totals = totalsdf, history = historydf) } else
-							stop("info must be one of history or detail")
+					  if(y == "event"){ totalsdf } else
+						  if(y == "detail"){ list(totals = totalsdf, history = historydf) } else
+							  stop("info must be one of history, event or detail")
 				}
 			}
 			if(length(id[[1]])>1){ lapply(ttt, getdata, y=info) } else { getdata(ttt, y=info) }
