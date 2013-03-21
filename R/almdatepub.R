@@ -6,7 +6,6 @@
 #' @param sleep Time (in seconds) before function sends API call - defaults to
 #'    zero.  Set to higher number if you are using this function in a loop with
 #'    many API calls.
-#' @param url the PLoS API url for the function (should be left to default)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @return Date when article was published.
 #' @examples \dontrun{
@@ -23,11 +22,12 @@
 #' almdatepub(doi="10.1371/journal.pone.002699", get='year')
 #' }
 #' @export
-almdatepub <- function(doi, get = NA, sleep = 0, 
-	url = 'http://alm.plos.org/api/v3/articles', key = NULL)
+almdatepub <- function(doi, get = NA, sleep = 0, key = NULL)
 {
+	url = 'http://alm.plos.org/api/v3/articles'
+	
 	getdate <- function(x) {
-		date <- x$article$publication_date
+		date <- x$publication_date
 		date_vector <- str_split(str_split(date, "T")[[1]][1], "-")[[1]]
 		if(is.na(get) == TRUE) {dateout <- str_split(date, "T")[[1]][1]} else
 			if(get == 'year') {dateout <- as.numeric(date_vector[1])} else
@@ -44,7 +44,7 @@ almdatepub <- function(doi, get = NA, sleep = 0,
 	  	doi2 <- gsub("/", "%2F", doi)
 	  	url2 <- paste(url, "/info%3A", doi2, '?api_key=', key, sep='')
 	  	date <- fromJSON(url2)
-	  	getdate(date)
+	  	getdate(date[[1]])
 	  } else
 	  	if(length(doi)>1){
 	  		doi2 <- paste(sapply(doi, function(x) gsub("/", "%2F", x)), collapse=",")

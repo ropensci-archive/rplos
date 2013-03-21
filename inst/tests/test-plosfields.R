@@ -1,7 +1,7 @@
 # tests for plosfields fxn in rplos
 context("plosfields")
 
-data(plosfields)
+data(plosfields, package="rplos")
 
 test_that("plosfields returns the correct class", {
 	expect_that(class(plosfields), equals("data.frame"))

@@ -10,5 +10,5 @@ test_that("plosauthor returns the correct dimensions in the data.frame", {
 
 test_that("plosauthor returns the correct column names", {
 	expect_that(names(plosauthor(terms = 'johnson', fields = 'title,author', limit = 100)), 
-							equals(c("title","author")))
+							equals(c("author","title")))
 })
