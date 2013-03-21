@@ -1,11 +1,6 @@
 # tests for plossubject fxn in rplos
 context("plossubject")
 
-test_that("plossubject returns the correct value", {
-	expect_that(as.character(plossubject(terms = 'ecology', fields = 'subject', limit = 9)[1,1]), 
-							equals("Ecology"))
-})
-
 test_that("plossubject returns the correct class", {
 	expect_that(plossubject('ecology',  fields = 'abstract', limit = 20), 
 							is_a("data.frame"))

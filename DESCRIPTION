@@ -14,6 +14,8 @@ Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "karthik.ram@gmail.com"))
 URL: https://github.com/ropensci/rplos
 BugReports: http://www.github.com/ropensci/rplos/issues
+LazyLoad: yes
+LazyData: yes
 Depends:
     ggplot2
 Imports:

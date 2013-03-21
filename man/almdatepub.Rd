@@ -2,9 +2,7 @@
 \alias{almdatepub}
 \title{Get the date when the article was published.}
 \usage{
-  almdatepub(doi, get = NA, sleep = 0,
-    url = "http://alm.plos.org/api/v3/articles",
-    key = NULL)
+  almdatepub(doi, get = NA, sleep = 0, key = NULL)
 }
 \arguments{
   \item{doi}{Digital object identifier for an article in
