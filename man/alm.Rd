@@ -4,7 +4,7 @@
 \usage{
   alm(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
     info = "totals", months = NULL, days = NULL,
-    key = NULL,
+    year = NULL, source = NULL, key = NULL,
     url = "http://alm.plos.org/api/v3/articles",
     curl = getCurlHandle())
 }
@@ -18,10 +18,10 @@
 
   \item{mdid}{Mendeley object identifier (character)}
 
-  \item{info}{One of summary, history, or detail (default
-  totals + history in a list). Not specifying anything (the
-  default) returns data.frame of totals across data
-  providers. (character)}
+  \item{info}{One of summary, history, detail(default
+  totals + history in a list) or event. Not specifying
+  anything (the default) returns data.frame of totals
+  across data providers. (character)}
 
   \item{months}{Number of months since publication to
   request historical data for.  See details for a note.
@@ -29,6 +29,12 @@
 
   \item{days}{Number of days since publication to request
   historical data for.  See details for a note. (numeric)}
+
+  \item{year}{End of which year to request historical data
+  for.  See details for a note. (numeric)}
+
+  \item{source}{Name of source (or list of sources) to get
+  ALM information for (character)}
 
   \item{key}{your PLoS API key, either enter, or loads from
   .Rprofile (character)}
@@ -56,11 +62,11 @@
   pmcid, and mdid.
 
   Query for as many articles at a time as you like. Though
-  queries are broken up in to smaller bits of 30
+  queries are broken up in to smaller bits of 50
   identifiers at a time.
 
-  If you supply both the days and months parameters, days
-  takes precedence, and months is ignored.
+  If you supply days, months and/or year parameters, days
+  takes precedence over months and year.
 }
 \examples{
 \dontrun{
@@ -89,7 +95,7 @@ out <- alm(doi=dois)
 out[[1]] # get data for the first DOI
 
 # Search for DOI's, then feed into alm
-dois <- searchplos(terms='evolution', fields='id', limit = 30)
+dois <- searchplos(terms='evolution', fields='id', limit = 50)
 out <- alm(doi=as.character(dois[,1]))
 lapply(out, head)
 
@@ -101,7 +107,7 @@ out[[3]] # get data for the third pmid
 # Getting just summary data
 alm(doi='10.1371/journal.pone.0039395', info='summary')
 
-# Using month and day arguments
+# Using days argument
 alm(doi='10.1371/journal.pone.0040117', days=30)
 }
 }

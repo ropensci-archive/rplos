@@ -15,9 +15,6 @@
   call - defaults to zero.  Set to higher number if you are
   using this function in a loop with many API calls.}
 
-  \item{url}{the PLoS API url for the function (should be
-  left to default)}
-
   \item{key}{your PLoS API key, either enter, or loads from
   .Rprofile}
 }

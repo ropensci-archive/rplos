@@ -12,8 +12,6 @@
 #' @param days Number of days since publication to request historical data for. 
 #' 		See details for a note. (numeric)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile (character)
-#' @param url the PLoS API url for the function (should be left to default)
-#' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass
 #'  the returned value in here (avoids unnecessary footprint)
 #' @details You can only supply one of the parmeters doi, pmid, pmcid, and mdid.
@@ -36,24 +34,39 @@
 #' @examples \dontrun{
 #' # For one article
 #' out <- almevents(doi="10.1371/journal.pone.0029797")
+#' names(out) # names of sources
+#' out <- out[!out %in% c("sorry, no events content yet","parser not written yet")] # remove those with no data
 #' out[["pmc"]] # get the results for PubMed Central
 #' out[["twitter"]] # get the results for twitter (boo, there aren't any)
-#' out[c("scienceseeker","crossref")] # get the results for two sources
+#' out[c("twitter","crossref")] # get the results for two sources
 #' 
-#' # two doi's
+#' # Another example
+#' out <- almevents(doi="10.1371/journal.pone.0001543")
+#' out <- out[!out %in% c("sorry, no events content yet","parser not written yet")] # remove those with no data
+#' names(out)
+#' 
+#' # Another example
+#' out <- almevents(doi="10.1371/journal.pone.0035869")
+#' out <- out[!out %in% c("sorry, no events content yet","parser not written yet")] # remove those with no data
+#' names(out)
+#' 
+#' # Two doi's
 #' dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117')
-#' almevents(doi=dois)
+#' out <- almevents(doi=dois)
+#' out[[1]]
+#' out[[2]]
 #' }
 #' @export
 almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL, 
-	months = NULL, days = NULL, key = NULL, 
-	url = 'http://alm.plos.org/api/v3/articles', curl = getCurlHandle())
+	months = NULL, days = NULL, key = NULL, curl = getCurlHandle())
 {
+	url = 'http://alm.plos.org/api/v3/articles'
+	
 	id <- compact(list(doi=doi, pmid=pmid, pmcid=pmcid, mendeley=mdid))
 	if(length(id)>1){ stop("Only supply one of: doi, pmid, pmcid, mdid") } else { NULL }
 	key <- getkey(key)
 	
-	doit <- function() {	
+	parse_events <- function() {	
 		args <- compact(list(api_key = key, info = 'detail', months = months, 
 												 days = days, type = names(id)))
 		if(length(id[[1]])==0){stop("Please provide a DOI")} else
@@ -93,30 +106,32 @@ almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 					}
 				}
 		
-		events <- lapply(ttt, function(x) x$article$sources)
+		# get juse the events data
+		events <- lapply(ttt, function(x) x$sources) 
 	
+		# Function to extract and parse events data for each source
 		getevents <- function(x){
 			bbb <- function(y){
-				if(y$source$name == "counter"){
-					if(length(y$source$events)==0){paste("sorry, no events content yet")} else
+				if(y$name == "counter"){
+					if(length(y$events)==0){paste("sorry, no events content yet")} else
 					{
-						months <- as.numeric(sapply(y$source$events, `[[`, "month"))
-						pdf_views <- as.numeric(sapply(y$source$events, `[[`, "pdf_views"))
-						html_views <- as.numeric(sapply(y$source$events, `[[`, "html_views"))
-						xml_views <- as.numeric(sapply(y$source$events, `[[`, "xml_views"))
+						months <- as.numeric(sapply(y$events, `[[`, "month"))
+						pdf_views <- as.numeric(sapply(y$events, `[[`, "pdf_views"))
+						html_views <- as.numeric(sapply(y$events, `[[`, "html_views"))
+						xml_views <- as.numeric(sapply(y$events, `[[`, "xml_views"))
 						data.frame(months, pdf_views, html_views, xml_views)
 					}
-				} else if(y$source$name == "citeulike"){
-					if(length(y$source$events)==0){paste("sorry, no events content yet")} else
+				} else if(y$name == "citeulike"){
+					if(length(y$events)==0){paste("sorry, no events content yet")} else
 					{
-						temp <- t(data.frame(unlist(y$source$events)))
+						temp <- t(data.frame(unlist(y$events)))
 						row.names(temp) <- NULL
 						temp
 					}
-				} else if(y$source$name == "crossref"){
-					if(length(y$source$events)==0){paste("sorry, no events content yet")} else
+				} else if(y$name == "crossref"){
+					if(length(y$events)==0){paste("sorry, no events content yet")} else
 					{			
-						myy <- function(x) {
+						parsecrossref <- function(x) {
 							if(length(x[[1]]$contributors$contributor[[1]])>1){
 								x[[1]]$contributors$contributor <-
 									paste(sapply(x[[1]]$contributors$contributor,
@@ -130,74 +145,175 @@ almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 								data.frame(x[[1]])
 							}
 						}
-						ldply(y$source$events, myy)
+						ldply(y$events, parsecrossref)
 					}
-				}
-				else if(y$source$name == "nature"){
-					paste("sorry, no events content yet")
-				} else if(y$source$name == "researchblogging"){
-					paste("sorry, no events content yet")
-				} else if(y$source$name == "biod"){
-					paste("sorry, no events content yet")
-				} else if(y$source$name == "pubmed"){
-					if(length(y$source$events)==0){paste("sorry, no events content yet")} else
-						{ sapply(y$source$events, `[[`, "event") }
-				} else if(y$source$name == "facebook"){
-					paste("sorry, no events content yet")
-				} else if(y$source$name == "mendeley"){
-					if(length(y$source$events)==0){paste("sorry, no events content yet")} else
-						{ y$source$events }
-				} else if(y$source$name == "twitter"){
-					paste("sorry, no events content yet")
-				} else if(y$source$name == "wikipedia"){
-					if(length(y$source$events)==0){paste("sorry, no events content yet")} else
-						{ ldply(y$source$events, function(x) as.data.frame(x)) }
-				} else if(y$source$name == "bloglines"){
-					paste("sorry, no events content yet")
-				} else if(y$source$name == "postgenomic"){
-					if(length(y$source$events)==0){paste("sorry, no events content yet")} else
-						{
-							temp <- y$source$events[[1]]
-							name <- temp$event$blog_name
-							dois <- sapply(temp$event$citing, function(x) x$doi_id )
-							data.frame(name, dois)
-						}
-				} else if(y$source$name == "scopus"){
-					if(length(y$source$events)==0){paste("sorry, no events content yet")} else
-						{ y$source$events[[1]] }
-				} else if(y$source$name == "wos"){
-					if(length(y$source$events)==0){paste("sorry, no events content yet")} else
-						{ y$source$events[[1]] }
-				} else if(y$source$name == "pmc"){
-					if(length(y$source$events)==0){paste("sorry, no events content yet")} else
+				} else if(y$name == "nature"){
+					if(length(y$events)==0){paste("sorry, no events content yet")} else
 					{
-						nnn <- function(x, names_){
+						parsenature <- function(x){
+							temp <- x$event
+							blog_ <- data.frame(temp$blog[names(temp$blog) %in% c('title','url')])
+							names(blog_) <- c('blog_title','blog_url')
+							post_ <- data.frame(temp[names(temp) %in% c('title','num_words','url','percent_complex_words','created_at')])	
+							names(post_) <- c('post_percent_complex_words','post_created_at','post_title','post_url','post_num_words')	
+							cbind(blog_, post_)
+						}
+						ldply(y$events, parsenature)
+					} 
+				} else if(y$name == "researchblogging"){
+					if(length(y$events)==0){paste("sorry, no events content yet")} else
+					{
+						parserblogging <- function(x){
+							temp <- x$event
+							bloginfo <- data.frame(temp[names(temp) %in% c('post_title','blog_name','blogger_name','published_date','post_url')])
+							if(length(temp$citations$citation[[1]])>1){
+								citations <- paste(sapply(temp$citations$citation, function(z) z$doi), sep="", collapse=",")
+							} else
+							{ 
+								citations <- temp$citations$citation$doi
+							}
+							cbind(bloginfo, citations)
+						}
+						ldply(y$events, parserblogging, .inform=TRUE)
+					}
+				} else if(y$name == "biod"){
+					if(length(y$events)==0){paste("sorry, no events content yet")} else
+					{
+						parserbiod <- function(x){ data.frame(x) }
+						if(length(y$events) > 1){
+							ldply(y$events, parserbiod)	
+						} else
+						{
+							y$events
+						}
+					}
+				} else if(y$name == "pubmed"){
+					if(length(y$events)==0){paste("sorry, no events content yet")} else
+						{ sapply(y$events, `[[`, "event_url") }
+				} else if(y$name == "facebook"){
+					if(length(y$events)==0){paste("sorry, no events content yet")} else
+					{
+						parsefb <- function(x){ data.frame(x)[,-1] }
+						llply(y$events, parsefb)
+					}
+				} else if(y$name == "mendeley"){
+					if(length(y$events)==0){paste("sorry, no events content yet")} else
+					{
+						parsemendeley <- function(x){
+							readers <- data.frame(name="readers", value=x$stats$readers)
+							disc <- ldply(x$stats$discipline, function(x) data.frame(x))[,-1]
+							country <- ldply(x$stats$country, function(x) data.frame(x))
+							status <- ldply(x$stats$status, function(x) data.frame(x))
+							dfs <- list(readers = readers, discipline = disc, country = country, status = status)
+							ldply(dfs)
+						}
+						parsemendeley(y$events)
+					}
+				} else if(y$name == "twitter"){
+					if(length(y$events)==0){paste("sorry, no events content yet")} else
+					{
+						parsetwitter <- function(x){
+							data.frame(t(x$event))
+						}
+						ldply(y$events, parsetwitter)
+					}
+				} else if(y$name == "wikipedia"){
+					if(length(y$events)==0){paste("sorry, no events content yet")} else
+					{ 
+						ldply(y$events, function(x) as.data.frame(x)) 
+					}
+				} else if(y$name == "bloglines"){
+					if(length(y$events)==0){paste("sorry, no events content yet")} else
+					{ 
+						parsebloglines <- function(x){
+							temp <- data.frame(t(x$event))
+							if(any(names(temp) %in% "author")==TRUE && any(names(temp) %in% "site_name")==TRUE)
+							{
+								temp2 <- temp[,c("site_name","author")]
+							} else
+							{
+								temp2 <- data.frame(site_name=temp$site_name, author="none")
+							}
+							cbind(temp2, event_url=x$event_url)
+						}
+						ldply(y$events, parsebloglines)
+					}
+				} else if(y$name == "postgenomic"){
+					if(length(y$events)==0){paste("sorry, no events content yet")} else
+						{
+							temp <- y$events[[1]]
+							name <- temp$event$blog_name
+							eventurl <- temp$event_url
+							dois <- sapply(temp$event$citing, function(x) x$doi_id )
+							list(blog_name=name, event_url=eventurl, dois=dois)
+						}
+				} else if(y$name == "scopus"){
+					if(length(y$events)==0){paste("sorry, no events content yet")} else
+						{ y$events[[1]] }
+				} else if(y$name == "wos"){
+					if(length(y$events)==0){paste("sorry, no events content yet")} else
+					{ 
+						if(length(y$events) > 1){
+							ldply(y$events, function(x) data.frame(t(x)))
+						} else
+						{
+							y$events
+						}
+					}
+				} else if(y$name == "pmc"){
+					if(length(y$events)==0){paste("sorry, no events content yet")} else
+					{
+						parsepmc <- function(x, names_){
 							gg <- data.frame(x)
 							gg$it <- row.names(gg)
 							if(!names_){as.numeric(as.character(t(sort_df(gg, "it")[,-2])))} else
 							{ sort_df(gg, "it")[,-1] }
 						}
-						df <- ldply(y$source$events, nnn, names_=FALSE)
-						names(df) <- nnn(y$source$events[[1]], TRUE)
+						df <- ldply(y$events, parsepmc, names_=FALSE)
+						names(df) <- parsepmc(y$events[[1]], TRUE)
 						df
 					}
-				} else if(y$source$name == "connotea"){
-					if(length(y$source$events)==0){paste("sorry, no events content yet")} else
-					{ paste("implement parsing this dumbo") }
-				} else if(y$source$name == "scienceseeker"){
-					if(length(y$source$events)==0){paste("sorry, no events content yet")} else
-					{ paste("implement parsing this dumbo") }
+				} else if(y$name == "connotea"){
+					if(length(y$events)==0){paste("sorry, no events content yet")} else
+					{ paste("parser not written yet") }
+				} else if(y$name == "scienceseeker"){
+					if(length(y$events)==0){paste("sorry, no events content yet")} else
+					{
+						 parsesciseeker <- function(x){
+						 	temp <- x$event
+						 	info <- temp[c('title','author')]
+						 	recommendations <- data.frame(t(sapply(temp$`ss:community`$`ss:recommendations`, function(x) x[[2]])))
+						 	names(recommendations) <- c("user","editor")
+						 	categories <- paste(sapply(temp$category, function(x) x[[1]]), collapse=",")
+						 	
+						 	cbind(info, recommendations, categories=categories, event_url=x$event_url)
+						 }
+						 ldply(y$events, parsesciseeker)
+					}
 				}
 			}
-			lapply(x, bbb)
+			datout <- lapply(x, bbb)
+			# Assign names to each list element
+			names(datout) <- c("bloglines","citeulike","connotea","crossref","nature",
+														"postgenomic","pubmed","scopus","plos","researchblogging",
+														"biod","webofscience","pmc","facebook","mendeley","twitter",
+														"wikipedia","scienceseeker")
+			return( datout )
 		}
+		
+		# Actually get the events data
 		temp <- lapply(events, getevents)
-		names(temp[[1]]) <- c("bloglines","citeulike","connotea","crossref","nature",
-										"postgenomic","pubmed","scopus","plos","researchblogging",
-										"biod","webofscience","pmc","facebook","mendeley","twitter",
-										"wikipedia","scienceseeker")
-		temp[[1]]
+		
+		# Assign names to each list element
+# 		names(temp[[1]]) <- c("bloglines","citeulike","connotea","crossref","nature",
+# 										"postgenomic","pubmed","scopus","plos","researchblogging",
+# 										"biod","webofscience","pmc","facebook","mendeley","twitter",
+# 										"wikipedia","scienceseeker")
+		
+		# Return the data
+		return( temp )
 	}
-	safe_doit <- plyr::failwith(NULL,doit)
-	safe_doit()
+	safe_parse_events <- plyr::failwith(NULL, parse_events)
+	finaldata <- safe_parse_events()
+	if(length(finaldata)>1){ return( finaldata )} else { finaldata[[1]] }
 }

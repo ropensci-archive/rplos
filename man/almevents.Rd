@@ -4,7 +4,6 @@
 \usage{
   almevents(doi = NULL, pmid = NULL, pmcid = NULL,
     mdid = NULL, months = NULL, days = NULL, key = NULL,
-    url = "http://alm.plos.org/api/v3/articles",
     curl = getCurlHandle())
 }
 \arguments{
@@ -26,12 +25,6 @@
 
   \item{key}{your PLoS API key, either enter, or loads from
   .Rprofile (character)}
-
-  \item{url}{the PLoS API url for the function (should be
-  left to default)}
-
-  \item{...}{optional additional curl options (debugging
-  tools mostly)}
 
   \item{curl}{If using in a loop, call getCurlHandle()
   first and pass the returned value in here (avoids
@@ -71,13 +64,27 @@
 \dontrun{
 # For one article
 out <- almevents(doi="10.1371/journal.pone.0029797")
+names(out) # names of sources
+out <- out[!out \%in\% c("sorry, no events content yet","parser not written yet")] # remove those with no data
 out[["pmc"]] # get the results for PubMed Central
 out[["twitter"]] # get the results for twitter (boo, there aren't any)
-out[c("scienceseeker","crossref")] # get the results for two sources
+out[c("twitter","crossref")] # get the results for two sources
 
-# two doi's
+# Another example
+out <- almevents(doi="10.1371/journal.pone.0001543")
+out <- out[!out \%in\% c("sorry, no events content yet","parser not written yet")] # remove those with no data
+names(out)
+
+# Another example
+out <- almevents(doi="10.1371/journal.pone.0035869")
+out <- out[!out \%in\% c("sorry, no events content yet","parser not written yet")] # remove those with no data
+names(out)
+
+# Two doi's
 dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117')
-almevents(doi=dois)
+out <- almevents(doi=dois)
+out[[1]]
+out[[2]]
 }
 }
 
