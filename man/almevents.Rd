@@ -3,8 +3,8 @@
 \title{Retrieve PLoS article-level metrics (ALM) events.}
 \usage{
   almevents(doi = NULL, pmid = NULL, pmcid = NULL,
-    mdid = NULL, months = NULL, days = NULL, key = NULL,
-    curl = getCurlHandle())
+    mdid = NULL, months = NULL, days = NULL, source = NULL,
+    key = NULL, curl = getCurlHandle())
 }
 \arguments{
   \item{doi}{Digital object identifier for an article in
@@ -22,6 +22,10 @@
 
   \item{days}{Number of days since publication to request
   historical data for.  See details for a note. (numeric)}
+
+  \item{source}{The source to get events data from. You can
+  pass in a character vector, like:
+  \code{c("mendeley","crossref")}}
 
   \item{key}{your PLoS API key, either enter, or loads from
   .Rprofile (character)}
@@ -85,6 +89,12 @@ dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117')
 out <- almevents(doi=dois)
 out[[1]]
 out[[2]]
+
+# Specify a specific source
+almevents(doi="10.1371/journal.pone.0035869", source="crossref")
+
+# Specify two specific sources
+almevents(doi="10.1371/journal.pone.0035869", source=c("crossref","twitter"))
 }
 }
 

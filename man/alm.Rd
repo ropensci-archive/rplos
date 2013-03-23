@@ -5,7 +5,6 @@
   alm(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
     info = "totals", months = NULL, days = NULL,
     year = NULL, source = NULL, key = NULL,
-    url = "http://alm.plos.org/api/v3/articles",
     curl = getCurlHandle())
 }
 \arguments{
@@ -18,10 +17,10 @@
 
   \item{mdid}{Mendeley object identifier (character)}
 
-  \item{info}{One of summary, history, detail(default
-  totals + history in a list) or event. Not specifying
-  anything (the default) returns data.frame of totals
-  across data providers. (character)}
+  \item{info}{One of summary, history, or detail(default
+  totals + history in a list).  Not specifying anything
+  (the default) returns data.frame of totals across data
+  providers. (character)}
 
   \item{months}{Number of months since publication to
   request historical data for.  See details for a note.
@@ -109,6 +108,14 @@ alm(doi='10.1371/journal.pone.0039395', info='summary')
 
 # Using days argument
 alm(doi='10.1371/journal.pone.0040117', days=30)
+
+# Using the year argument
+alm(doi='10.1371/journal.pone.0040117', year=2012)
+
+# Getting data for a specific source
+alm(doi='10.1371/journal.pone.0035869', source='mendeley')
+alm(doi='10.1371/journal.pone.0035869', source=c('mendeley','twitter','counter'))
+alm(doi='10.1371/journal.pone.0035869', source=c('mendeley','twitter','counter'), info='history')
 }
 }
 \seealso{

@@ -8,9 +8,9 @@
 #' @param pmid PubMed object identifier (numeric)
 #' @param pmcid PubMed Central object identifier (numeric)
 #' @param mdid Mendeley object identifier (character)
-#' @param info One of summary, history, detail(default totals + history in a list)
-#' 		or event. Not specifying anything (the default) returns data.frame of 
-#' 		totals across data providers. (character)
+#' @param info One of summary, history, or detail(default totals + history in a list). 
+#' 		Not specifying anything (the default) returns data.frame of totals across 
+#' 		data providers. (character)
 #' @param months Number of months since publication to request historical data for.
 #' 		See details for a note. (numeric)
 #' @param days Number of days since publication to request historical data for. 
@@ -72,14 +72,24 @@
 #' 
 #' # Using days argument
 #' alm(doi='10.1371/journal.pone.0040117', days=30)
+#' 
+#' # Using the year argument
+#' alm(doi='10.1371/journal.pone.0040117', year=2012)
+#' 
+#' # Getting data for a specific source
+#' alm(doi='10.1371/journal.pone.0035869', source='mendeley')
+#' alm(doi='10.1371/journal.pone.0035869', source=c('mendeley','twitter','counter'))
+#' alm(doi='10.1371/journal.pone.0035869', source=c('mendeley','twitter','counter'), info='history')
 #' }
 #' @export
 alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL, 
-								info = "totals", months = NULL, days = NULL, year = NULL, source = NULL, key = NULL, 
-								url = 'http://alm.plos.org/api/v3/articles', curl = getCurlHandle())
+								info = "totals", months = NULL, days = NULL, year = NULL, 
+								source = NULL, key = NULL, curl = getCurlHandle())
 {
-	if(!info %in% c("summary","totals","history","detail","event")) {
-		stop("info must be one of summary, totals, history, detail or event")
+	url = 'http://alm.plos.org/api/v3/articles'
+	
+	if(!info %in% c("summary","totals","history","detail")) {
+		stop("info must be one of summary, totals, history, or detail")
 	}
 	if(!is.null(doi))
 		doi <- doi[!grepl("image", doi)] # remove any DOIs of images
@@ -87,12 +97,15 @@ alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 	
 	if(length(id)>1){ stop("Only supply one of: doi, pmid, pmcid, mdid") } else { NULL }
 	key <- getkey(key)
-	doit <- function() {
+	
+	if(is.null(source)){source2 <- NULL} else{ source2 <- paste(source,collapse=",") }
+	
+	getalm <- function() {
 		if(info=="totals"){info2 <- NULL} else
-			if(info=="history"|info=="detail"|info=="event"){info2 <- "detail"} else
+			if(info=="history"|info=="detail"){info2 <- "detail"} else
 				if(info=="summary"){info2 <- "summary"}
 		args <- compact(list(api_key = key, info = info2, months = months, 
-												 days = days, year = year, source = source, type = names(id)))
+												 days = days, year = year, source = source2, type = names(id)))
 		if(length(id[[1]])==0){stop("Please provide a DOI")} else
 			if(length(id[[1]])==1){
 				if(names(id) == "doi") id <- gsub("/", "%2F", id)
@@ -163,14 +176,17 @@ alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 					names(histdfs) <- servs
 					historydf <- ldply(histdfs)
 					if(y == "history"){ historydf } else
-					  if(y == "event"){ totalsdf } else
-						  if(y == "detail"){ list(totals = totalsdf, history = historydf) } else
-							  stop("info must be one of history, event or detail")
+						if(y == "detail"){ list(totals = totalsdf, history = historydf) } else
+							stop("info must be one of history, event or detail")
 				}
 			}
 			if(length(id[[1]])>1){ lapply(ttt, getdata, y=info) } else { getdata(ttt, y=info) }
 		}
 	}
-	safe_doit <- plyr::failwith(NULL,doit)
-	safe_doit()
+	
+	# Define safe version so errors don't prevent it from working
+	safe_getalm <- plyr::failwith(NULL, getalm)
+	
+	# Get the data
+	safe_getalm()
 }

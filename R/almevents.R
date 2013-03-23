@@ -11,6 +11,8 @@
 #' 		See details for a note. (numeric)
 #' @param days Number of days since publication to request historical data for. 
 #' 		See details for a note. (numeric)
+#' @param source The source to get events data from. You can pass in a character
+#' 		vector, like: \code{c("mendeley","crossref")}
 #' @param key your PLoS API key, either enter, or loads from .Rprofile (character)
 #' @param curl If using in a loop, call getCurlHandle() first and pass
 #'  the returned value in here (avoids unnecessary footprint)
@@ -55,20 +57,31 @@
 #' out <- almevents(doi=dois)
 #' out[[1]]
 #' out[[2]]
+#' 
+#' # Specify a specific source
+#' almevents(doi="10.1371/journal.pone.0035869", source="crossref")
+#' 
+#' # Specify two specific sources
+#' almevents(doi="10.1371/journal.pone.0035869", source=c("crossref","twitter"))
 #' }
 #' @export
 almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL, 
-	months = NULL, days = NULL, key = NULL, curl = getCurlHandle())
+	months = NULL, days = NULL, source = NULL, key = NULL, curl = getCurlHandle())
 {
 	url = 'http://alm.plos.org/api/v3/articles'
 	
 	id <- compact(list(doi=doi, pmid=pmid, pmcid=pmcid, mendeley=mdid))
 	if(length(id)>1){ stop("Only supply one of: doi, pmid, pmcid, mdid") } else { NULL }
 	key <- getkey(key)
+	if(is.null(source)){source2 <- NULL} else{ source2 <- paste(source,collapse=",") }
 	
 	parse_events <- function() {	
-		args <- compact(list(api_key = key, info = 'detail', months = months, 
-												 days = days, type = names(id)))
+		args <- compact(
+			list(
+				api_key = key, info = 'event', months = months, 
+				days = days, source = source2, type = names(id)
+				)
+			)
 		if(length(id[[1]])==0){stop("Please provide a DOI")} else
 			if(length(id[[1]])==1){
 				if(names(id) == "doi") id <- gsub("/", "%2F", id)
@@ -77,9 +90,9 @@ almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 				ttt <- fromJSON(out)
 			} else
 				if(length(id[[1]])>1){
-					if(length(id[[1]])>30){
+					if(length(id[[1]])>50){
 						slice <- function(x, n) split(x, as.integer((seq_along(x) - 1) / n))
-						idsplit <- slice(id[[1]], 30)
+						idsplit <- slice(id[[1]], 50)
 						repeatit <- function(y) {
 							if(names(id) == "doi"){ 
 								id2 <- paste(sapply(y, function(x) gsub("/", "%2F", x)), collapse=",")
@@ -110,8 +123,10 @@ almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 		events <- lapply(ttt, function(x) x$sources) 
 	
 		# Function to extract and parse events data for each source
-		getevents <- function(x){
-			bbb <- function(y){
+		getevents <- function(x, label=NULL){
+			
+			# Parser code
+			parsers <- function(y){
 				if(y$name == "counter"){
 					if(length(y$events)==0){paste("sorry, no events content yet")} else
 					{
@@ -292,23 +307,25 @@ almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 					}
 				}
 			}
-			datout <- lapply(x, bbb)
+			
+			# Run the parsers on each element
+			datout <- lapply(x, parsers)
+			
 			# Assign names to each list element
-			names(datout) <- c("bloglines","citeulike","connotea","crossref","nature",
-														"postgenomic","pubmed","scopus","plos","researchblogging",
-														"biod","webofscience","pmc","facebook","mendeley","twitter",
-														"wikipedia","scienceseeker")
+			if(is.null(label)){		
+				names(datout) <- c("bloglines","citeulike","connotea","crossref","nature",
+													 "postgenomic","pubmed","scopus","plos","researchblogging",
+													 "biod","webofscience","pmc","facebook","mendeley","twitter",
+													 "wikipedia","scienceseeker")
+			} else
+			{
+				names(datout) <- label
+			}
 			return( datout )
 		}
 		
 		# Actually get the events data
-		temp <- lapply(events, getevents)
-		
-		# Assign names to each list element
-# 		names(temp[[1]]) <- c("bloglines","citeulike","connotea","crossref","nature",
-# 										"postgenomic","pubmed","scopus","plos","researchblogging",
-# 										"biod","webofscience","pmc","facebook","mendeley","twitter",
-# 										"wikipedia","scienceseeker")
+		temp <- lapply(events, getevents, label=source)
 		
 		# Return the data
 		return( temp )
