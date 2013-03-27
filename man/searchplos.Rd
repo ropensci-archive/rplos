@@ -4,7 +4,6 @@
 \usage{
   searchplos(terms = NA, fields = NA, toquery = NA,
     start = 0, limit = NA, returndf = TRUE,
-    url = "http://api.plos.org/search",
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
     ..., curl = getCurlHandle())
 }
@@ -27,9 +26,6 @@
   \item{returndf}{Return data.frame of results or not
   (defaults to TRUE).}
 
-  \item{url}{the PLoS API url for the function (should be
-  left to default)}
-
   \item{key}{your PLoS API key, either enter, or loads from
   .Rprofile}
 
@@ -50,14 +46,17 @@
 }
 \examples{
 \dontrun{
-searchplos(terms='ecology', fields='id', limit = 1200)
 searchplos('ecology', 'id,publication_date', limit = 2)
 searchplos('ecology', 'id,title', limit = 2)
+
+# Get only full article DOIs
 searchplos(terms="*:*", fields='id', toquery='doc_type:full', start=0, limit=250)
-searchplos(terms="*:*", fields='id', toquery='cross_published_journal_key:PLoSONE', start=0, limit=250)
-searchplos(terms="*:*", fields='id',
-   toquery=list('cross_published_journal_key:PLoSONE', 'doc_type:full'),
-   start=0, limit=250)
+
+# Get DOIs for only PLoS One articles
+searchplos(terms="*:*", fields='id', toquery='cross_published_journal_key:PLoSONE', start=0, limit=15)
+
+# Get DOIs for full article in PLoS One
+searchplos(terms="*:*", fields='id', toquery=list('cross_published_journal_key:PLoSONE', 'doc_type:full'), start=0, limit=50)
 }
 }
 

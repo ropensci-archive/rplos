@@ -3,7 +3,6 @@
 \title{Search PLoS Journals authors.}
 \usage{
   plosauthor(terms, fields = NULL, limit = NULL,
-    url = "http://api.plos.org/search",
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")))
 }
 \arguments{
@@ -14,9 +13,6 @@
   plosfields$field]}
 
   \item{limit}{number of results to return (integer)}
-
-  \item{url}{the PLoS API url for the function (should be
-  left to default)}
 
   \item{key}{your PLoS API key, either enter, or loads from
   .Rprofile}
@@ -31,8 +27,8 @@
 \examples{
 \dontrun{
 plosauthor(terms = 'johnson', fields = 'title,author', limit = 100)
-plosauthor('johnson',  limit = 5)
-plosauthor('johnson',  'title', limit = 5)
+plosauthor(terms='johnson', limit = 5)
+plosauthor('johnson', 'title', limit = 5)
 }
 }
 

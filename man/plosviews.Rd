@@ -3,7 +3,7 @@
 \title{Search PLoS Journals by article views.}
 \usage{
   plosviews(search, byfield = NA, views = "alltime",
-    limit = NA, url = "http://api.plos.org/search",
+    limit = NA,
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
     ..., curl = getCurlHandle())
 }
@@ -17,9 +17,6 @@
   days (last30) (character)}
 
   \item{limit}{number of results to return (integer)}
-
-  \item{url}{the PLoS API url for the function (should be
-  left to default)}
 
   \item{key}{your PLoS API key, either enter, or loads from
   .Rprofile}
@@ -44,7 +41,7 @@
 plosviews('10.1371/journal.pone.0002154', 'id', 'alltime')
 plosviews('10.1371/journal.pone.0002154', 'id', 'last30')
 plosviews('10.1371/journal.pone.0002154', 'id', 'alltime,last30')
-plosviews('ecology', 'subject', 'alltime', 99)
+plosviews(search='marine ecology', byfield='subject', views='alltime', limit=5)
 plosviews('evolution', views = 'alltime', limit = 99)
 plosviews('bird', views = 'alltime', limit = 99)
 }

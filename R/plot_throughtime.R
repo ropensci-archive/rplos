@@ -1,10 +1,9 @@
 #' Plot results through time for serach results from PLoS Journals.
 #' 
-#' @import RJSONIO RCurl plyr stringr ggplot2 reshape2 googleVis
+#' @import RJSONIO RCurl plyr stringr ggplot2 googleVis reshape
 #' @param terms search terms (character)
 #' @param limit number of results to return (integer)
 #' @param gvis use google visualization via the googleVis package (logical)
-#' @param url the PLoS API url for the function (should be left to default)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
@@ -18,10 +17,11 @@
 #' }
 #' @export
 plot_throughtime <- function(terms, limit = NA, gvis = FALSE,
-  url = "http://api.plos.org/search",
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., curl = getCurlHandle() ) 
 {
+	url = "http://api.plos.org/search"
+	
   if (length(terms) == 1) {
   args <- list(api_key = key)
   if(!is.na(terms))

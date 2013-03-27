@@ -3,7 +3,6 @@
 \title{Search PLoS Journals figure and table captions.}
 \usage{
   plosfigtabcaps(terms, fields = NA, limit = NA,
-    url = "http://api.plos.org/search",
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
     ..., curl = getCurlHandle())
 }
@@ -15,9 +14,6 @@
   plosfields$field]}
 
   \item{limit}{number of results to return (integer)}
-
-  \item{url}{the PLoS API url for the function (should be
-  left to default)}
 
   \item{key}{your PLoS API key, either enter, or loads from
   .Rprofile}

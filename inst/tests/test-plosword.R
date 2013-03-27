@@ -2,7 +2,6 @@
 context("plosword")
 
 test_that("plosword returns the correct value", {
-	expect_that(plosword('Helianthus')[[1]], equals(107))
 	expect_that(names(plosword('Helianthus')), equals("Number of articles with search term"))
 })
 

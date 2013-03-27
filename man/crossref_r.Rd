@@ -3,8 +3,7 @@
 \title{Get random DOI's through CrossRef.}
 \usage{
   crossref_r(count = NULL, to = NULL, from = NULL,
-    type = NULL,
-    url = "http://random.labs.crossref.org/dois")
+    type = NULL)
 }
 \arguments{
   \item{count}{The number of returned random DOIs. Maximum
@@ -26,9 +25,6 @@
   conference_paper, report_paper, journal_issue, journal,
   book, book_series, book_set, dissertation, content_item,
   series, or standard.}
-
-  \item{url}{The Crossref API url for the function (should
-  be left to default)}
 }
 \value{
   Ten DOI's in R's bibentry format.
