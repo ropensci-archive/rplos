@@ -5,7 +5,6 @@
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
 #'    any combination of search fields [see plosfields$field]
 #' @param limit number of results to return (integer)
-#' @param url the PLoS API url for the function (should be left to default)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
@@ -18,10 +17,11 @@
 #' }
 #' @export
 plosfigtabcaps <- function(terms, fields = NA, limit = NA,
-  url = 'http://api.plos.org/search',
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., curl = getCurlHandle() ) 
 {
+	url = 'http://api.plos.org/search'
+	
   args <- list(apikey = key)
   if(!is.na(terms))
     args$q <- paste('figure_table_caption:', terms, sep="")

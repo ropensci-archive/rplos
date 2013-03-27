@@ -1,11 +1,11 @@
 Package: rplos
-Version: 0.0-7
-Date: 2012-11-05
+Version: 0.1.0
+Date: 2013-03-26
 Description: A programmatic interface to the
     Web Service methods provided by the Public Library
-    of Science journals.
-Title: Interface to PLoS Journals API methods
-License: BSD
+    of Science journals for search and altmetrics.
+Title: Interface to PLoS Journals search and altmetrics API's
+License: CC0
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"),
     person("Carl", "Boettiger", role = "aut",
@@ -40,7 +40,6 @@ Collate:
     'almtitle.R'
     'almtotcites.R'
     'almupdated.R'
-    'articlelength.R'
     'crossref.R'
     'formatarticleurl.R'
     'help.R'

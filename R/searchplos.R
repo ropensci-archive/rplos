@@ -10,7 +10,6 @@
 #' you need to cycle through more results than the max allowed=1000)
 #' @param limit number of results to return (integer)
 #' @param returndf Return data.frame of results or not (defaults to TRUE).
-#' @param url the PLoS API url for the function (should be left to default)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
@@ -19,21 +18,24 @@
 #'    and a histogram of results (vis = TRUE).
 #' @export
 #' @examples \dontrun{
-#' searchplos(terms='ecology', fields='id', limit = 1200)
 #' searchplos('ecology', 'id,publication_date', limit = 2)
 #' searchplos('ecology', 'id,title', limit = 2)
+#' 
+#' # Get only full article DOIs
 #' searchplos(terms="*:*", fields='id', toquery='doc_type:full', start=0, limit=250)
-#' searchplos(terms="*:*", fields='id', toquery=list('cross_published_journal_key:PLoSONE',year=2010), start=0, limit=750)
-#' searchplos(terms="*:*", fields='id', 
-#'    toquery=list('cross_published_journal_key:PLoSONE', 'doc_type:full'), 
-#'    start=0, limit=250)
+#' 
+#' # Get DOIs for only PLoS One articles
+#' searchplos(terms="*:*", fields='id', toquery='cross_published_journal_key:PLoSONE', start=0, limit=15)
+#' 
+#' # Get DOIs for full article in PLoS One
+#' searchplos(terms="*:*", fields='id', toquery=list('cross_published_journal_key:PLoSONE', 'doc_type:full'), start=0, limit=50)
 #' }
 searchplos <- function(terms = NA, fields = NA, toquery = NA, start = 0, limit = NA, 
-	returndf = TRUE,  url = 'http://api.plos.org/search',
-  key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-  ..., 
-  curl = getCurlHandle() ) 
+	returndf = TRUE, key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
+  ..., curl = getCurlHandle() ) 
 {
+	url = 'http://api.plos.org/search'
+	
 	insertnones <- function(x) {
 		toadd <- fields[! fields %in% names(x) ]
 		values <- rep("none", length(toadd))
@@ -71,7 +73,7 @@ searchplos <- function(terms = NA, fields = NA, toquery = NA, start = 0, limit =
       args$rows <- limit
     tt <- getForm(url, 
       .params = args,
-#       ...,
+      ...,
       curl = curl)
     jsonout <- fromJSON(I(tt))
     tempresults <- jsonout$response$docs

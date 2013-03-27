@@ -3,7 +3,6 @@
 #' @import RCurl XML
 #' @param doi digital object identifier for an article in PLoS Journals
 #' @param title return the title of the paper or not (defaults to FALSE)
-#' @param url the PLoS API url for the function (should be left to default)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
@@ -15,9 +14,11 @@
 #' print(crossref("10.3998/3336451.0009.101"), style="text")
 #' }
 #' @export
-crossref <- function(doi, title = FALSE, url = "http://www.crossref.org/openurl/", 
+crossref <- function(doi, title = FALSE, 
 	key = "cboettig@gmail.com", ..., curl = getCurlHandle())
 {
+	url = "http://www.crossref.org/openurl/"
+	
   ## Assemble a url query such as:
   #http://www.crossref.org/openurl/?id=doi:10.3998/3336451.0009.101&noredirect=true&pid=API_KEY&format=unixref
   args = list(id = paste("doi:", doi, sep="") )

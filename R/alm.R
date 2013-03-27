@@ -19,7 +19,6 @@
 #'   	See details for a note. (numeric)
 #' @param source Name of source (or list of sources) to get ALM information for (character)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile (character)
-#' @param url the PLoS API url for the function (should be left to default)
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass
 #'  the returned value in here (avoids unnecessary footprint)
@@ -53,7 +52,7 @@
 #'
 #' # Provide more than one DOI
 #' dois <- c('10.1371/journal.pone.0001543','10.1371/journal.pone.0040117',
-#' 		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
+#'		'10.1371/journal.pone.0029797','10.1371/journal.pone.0039395')
 #' out <- alm(doi=dois)
 #' out[[1]] # get data for the first DOI
 #' 

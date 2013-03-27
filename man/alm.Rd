@@ -38,9 +38,6 @@
   \item{key}{your PLoS API key, either enter, or loads from
   .Rprofile (character)}
 
-  \item{url}{the PLoS API url for the function (should be
-  left to default)}
-
   \item{...}{optional additional curl options (debugging
   tools mostly)}
 

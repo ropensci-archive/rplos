@@ -3,7 +3,6 @@
 #' @import RJSONIO RCurl plyr ggplot2
 #' @param terms search terms (character)
 #' @param vis visualize results in bar plot or not (TRUE or FALSE)
-#' @param url the PLoS API url for the function (should be left to default)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
@@ -18,10 +17,12 @@
 #' out[[2]] # results in a bar plot
 #' }
 #' @export
-plosword <- function(terms, vis = FALSE, url = 'http://api.plos.org/search',
+plosword <- function(terms, vis = FALSE,
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., curl = getCurlHandle() ) 
 {
+	url = 'http://api.plos.org/search'
+	
   if (length(terms) == 1) {
   args <- list(apikey = key)
   if(!is.na(terms))

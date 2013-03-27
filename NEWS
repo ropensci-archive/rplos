@@ -1,13 +1,62 @@
+rplos 0.1.0
+------------
+
+* The `almdateupdated` function has been deprecated - use `almupdated` instead.
+
+* The `articlelength` function has been deprecated - didn't see the usefulness any longer.
+
+* In general simplified and prettified code.
+
+* Changed from using RCurl to httr in many functions, but not all.
+
+* Added more examples for many functions.
+
+* Added three internal functions: `concat_todf`, `addmissing`, and `getkey`.
+
+* Added Karthik Ram as a package author.
+
+BUG FIXES
+
+* All `url` arguments in functions put inside functions as they are not likely to change that often.
+
+* Fixed `crossref` function, and added more examples.
+
+NEW FEATURES
+
+* The `alm` function (previously `almplosallviews`) gains many new features: now allows up to 50 DOIs per call; you can specify the source you want to get alm data from as an argument; you can specify the year you want to get alm data from as an argument.
+
+* Added the plosfields data file to get all the possible fields to use in function calls.
+
+
+NEW FUNCTIONS
+
+* `almplosallviews` changed to `alm`.
+
+* `almplotallviews` changed to `almplot`.
+
+* `almevents` added to specifically search and get detailed events data for a specific source or N sources. 
+
+* `crossref_r` gets 20 random DOIs from Crossref.org.
+
+* Added package startup message.
+
+* `journalnamekey` function to get the short name keys for each PLoS Journal.
+
+
 rplos 0.0-7
 ------------
 
 IMPROVEMENTS AND BUG FIXES
 
 * ALM functions (any functions starting with alm) received updated arguments/parameters according to the ALM API version 3.0 changes. 
+
 * Bug fixes in general across library. 
+
 * Added tests.
-* almplosallviews now outputs different output - two data.frames, one total metrics (summed across time), and history (for metrics for each time period specified in the search)
-* crossref function returns R's native bibtype format.  See examples in crossref function documentation
+
+* `almplosallviews` now outputs different output - two data.frames, one total metrics (summed across time), and history (for metrics for each time period specified in the search)
+
+* `crossref` function returns R's native bibtype format.  See examples in `crossref` function documentation
 
 rplos 0.0-5
 ------------
@@ -31,14 +80,9 @@ NEW FUNCTIONS
 * added function `journalnamekey` to get short keys for journals to use in searching for specific journals
 
 
-
 rplos 0.0-1
 ===============
 
 NEW FEATURES 
 
 * released to CRAN
-
-BUG FIXES
-
-* 
