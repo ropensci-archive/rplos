@@ -3,23 +3,24 @@
 \title{Search PLoS Journals subjects.}
 \usage{
   plossubject(terms, fields = NULL, limit = NULL,
-    url = "http://api.plos.org/search",
+    toquery = NULL,
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")))
 }
 \arguments{
-  \item{terms}{search terms for article subjects
+  \item{terms}{Search terms for article subjects
   (character)}
 
-  \item{fields}{fields to return from search (character)
+  \item{fields}{Fields to return from search (character)
   [e.g., 'id,title'], any combination of search fields [see
   plosfields$field]}
 
-  \item{limit}{number of results to return (integer)}
+  \item{toquery}{Specific fields to query (if NA, all
+  queried), in a comma separated string (character) [e.g.,
+  'doc_type:full,year=2010'].}
 
-  \item{url}{the PLoS API url for the function (should be
-  left to default)}
+  \item{limit}{Number of results to return (integer)}
 
-  \item{key}{your PLoS API key, either enter, or loads from
+  \item{key}{Your PLoS API key, either enter, or loads from
   .Rprofile}
 }
 \value{
@@ -29,11 +30,16 @@
 \description{
   Search PLoS Journals subjects.
 }
+\details{
+  See \url{http://www.plosone.org/taxonomy} for subject
+  areas.
+}
 \examples{
 \dontrun{
-plossubject(terms = 'ecology', fields = 'subject', limit = 9)
-plossubject('ecology',  limit = 5)
-plossubject('ecology',  fields = 'abstract', limit = 20)
+plossubject('marine ecology', limit = 5)[,1:4]
+plossubject(terms='marine ecology',  fields = 'id,journal', limit = 20)
+plossubject('museums', fields = 'id,journal', toquery='doc_type:full', limit = 9)
+plossubject(terms='marine ecology', fields = 'id,journal', toquery=list('doc_type:full','!article_type_facet:"Issue\%20Image"'), limit = 9)
 }
 }
 

@@ -2,10 +2,8 @@
 \alias{crossref}
 \title{Lookup article info via CrossRef with DOI.}
 \usage{
-  crossref(doi, title = FALSE,
-    url = "http://www.crossref.org/openurl/",
-    key = "cboettig@gmail.com", ...,
-    curl = getCurlHandle())
+  crossref(doi, title = FALSE, key = "cboettig@gmail.com",
+    ..., curl = getCurlHandle())
 }
 \arguments{
   \item{doi}{digital object identifier for an article in
@@ -13,9 +11,6 @@
 
   \item{title}{return the title of the paper or not
   (defaults to FALSE)}
-
-  \item{url}{the PLoS API url for the function (should be
-  left to default)}
 
   \item{key}{your PLoS API key, either enter, or loads from
   .Rprofile}

@@ -3,7 +3,6 @@
 \title{Plot results through time for serach results from PLoS Journals.}
 \usage{
   plot_throughtime(terms, limit = NA, gvis = FALSE,
-    url = "http://api.plos.org/search",
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
     ..., curl = getCurlHandle())
 }
@@ -14,9 +13,6 @@
 
   \item{gvis}{use google visualization via the googleVis
   package (logical)}
-
-  \item{url}{the PLoS API url for the function (should be
-  left to default)}
 
   \item{key}{your PLoS API key, either enter, or loads from
   .Rprofile}
