@@ -130,11 +130,12 @@ almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 				if(y$name == "counter"){
 					if(length(y$events)==0){paste("sorry, no events content yet")} else
 					{
-						months <- as.numeric(sapply(y$events, `[[`, "month"))
+						year <- as.numeric(sapply(y$events, `[[`, "year"))
+            month <- as.numeric(sapply(y$events, `[[`, "month"))
 						pdf_views <- as.numeric(sapply(y$events, `[[`, "pdf_views"))
 						html_views <- as.numeric(sapply(y$events, `[[`, "html_views"))
 						xml_views <- as.numeric(sapply(y$events, `[[`, "xml_views"))
-						data.frame(months, pdf_views, html_views, xml_views)
+						data.frame(year, month, pdf_views, html_views, xml_views)
 					}
 				} else if(y$name == "citeulike"){
 					if(length(y$events)==0){paste("sorry, no events content yet")} else
@@ -147,15 +148,22 @@ almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 					if(length(y$events)==0){paste("sorry, no events content yet")} else
 					{			
 						parsecrossref <- function(x) {
-							if(length(x[[1]]$contributors$contributor[[1]])>1){
+              if(is.null(x[[1]][["publication_type"]])){
+                x[[1]][["publication_type"]] <- NA
+              }
+              if(!("contributors" %in% names(x[[1]]))){
+                x[[1]][["contributors"]] <- list(contributor=NA)
+                x[[1]]$issn <- paste(x[[1]]$issn, collapse="; ")
+								data.frame(x[[1]])
+              } else if(length(x[[1]]$contributors$contributor[[1]])>1){
 								x[[1]]$contributors$contributor <-
 									paste(sapply(x[[1]]$contributors$contributor,
-															 function(x) paste(x[2:3], collapse=", ")), collapse="; ")
+															 function(x) paste(x[1:2], collapse=" ")), collapse="; ")
 								x[[1]]$issn <- paste(x[[1]]$issn, collapse="; ")
 								data.frame(x[[1]])
 							} else {
 								x[[1]]$contributors$contributor <-
-									paste(x[[1]]$contributors$contributor[2:3], collapse=", ")
+									paste(x[[1]]$contributors$contributor[1:2], collapse=" ")
 								x[[1]]$issn <- paste(x[[1]]$issn, collapse="; ")
 								data.frame(x[[1]])
 							}
