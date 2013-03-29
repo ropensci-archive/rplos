@@ -130,11 +130,12 @@ almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 				if(y$name == "counter"){
 					if(length(y$events)==0){paste("sorry, no events content yet")} else
 					{
-						months <- as.numeric(sapply(y$events, `[[`, "month"))
+						year <- as.numeric(sapply(y$events, `[[`, "year"))
+            month <- as.numeric(sapply(y$events, `[[`, "month"))
 						pdf_views <- as.numeric(sapply(y$events, `[[`, "pdf_views"))
 						html_views <- as.numeric(sapply(y$events, `[[`, "html_views"))
 						xml_views <- as.numeric(sapply(y$events, `[[`, "xml_views"))
-						data.frame(months, pdf_views, html_views, xml_views)
+						data.frame(year, month, pdf_views, html_views, xml_views)
 					}
 				} else if(y$name == "citeulike"){
 					if(length(y$events)==0){paste("sorry, no events content yet")} else
