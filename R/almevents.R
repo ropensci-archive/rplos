@@ -148,6 +148,9 @@ almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
 					if(length(y$events)==0){paste("sorry, no events content yet")} else
 					{			
 						parsecrossref <- function(x) {
+              if(is.null(x[[1]][["publication_type"]])){
+                x[[1]][["publication_type"]] <- NA
+              }
               if(!("contributors" %in% names(x[[1]]))){
                 x[[1]][["contributors"]] <- list(contributor=NA)
                 x[[1]]$issn <- paste(x[[1]]$issn, collapse="; ")
