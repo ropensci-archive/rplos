@@ -8,10 +8,23 @@
     <meta name="author" content="Scott Chamberlain">
     <script src="http://use.edgefonts.net/source-code-pro.js"></script>
     <script src="http://use.edgefonts.net/quattrocento-sans.js"></script>
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    
+   <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/styles/github.css">
     <script src="assets/js/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- <link href="assets/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link href="assets/css/demo.css" rel="stylesheet"> -->
+    <link href="assets/chardinjs.css" rel="stylesheet">
+
+    <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="assets/chardinjs.min.js"></script>
+    <script src="assets/js/demo.js"></script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+    </script>
+
     </head>
 
   <body>
@@ -19,22 +32,30 @@
   <div class="span11 offset1">
   <div class="row">
   <br><br>
-   <h1>rplos, v0.0.7</h1>
-  </div>
+  <h1>rplos, v0.0.7</h1>
+   <!-- <button data-intro="Some shit poop cacka shit poop" data-position="left" class="btn btn-danger btn" style="display: block; float: right;"><i class="icon-white icon-question-sign"></i> About this page</button> -->
+     <div class="jumbotron">
+        <!-- <img src="assets/img/plosword.png" data-intro="" data-position="right" style="float: right;"/> -->
+        <a href="#" class="btn btn-danger btn" style="display: block; float: right;" data-toggle="chardinjs"><i class="icon-white icon-question-sign"></i> About this page</a>
+       <!-- <a href="" id="opentour" class="hide" data-toggle="chardinjs">Or open it again</a> -->
+     </div>
+   </div>
 
   <div class"row"><a href="https://github.com/ropensci/rplos">rplos</a> is an R wrapper to the search and altmetrics APIs for PLoS Journals. Let us know of any issue <a href="https://github.com/ropensci/rplos/issues">on our issues page</a>.
 
   <br><br>
   <div>
-   <a href="https://github.com/ropensci/rplos/" style="color:#ffffff"> <button class="btn btn-success btn-large" style="display: block; width: 100%;"><i class="icon-white icon-download"></i>Download from GitHub</button></a>
-</div>
+   <a href="https://github.com/ropensci/rplos/" style="color:#ffffff"> <button data-toggle="chardinjs" data-intro="Download and install the repo from GitHub" data-position="top" class="btn btn-success btn-large" style="display: block; width: 100%;"><i class="icon-white icon-download"></i>Download from GitHub</button></a>
+
+   <!-- <a href="https://github.com/ropensci/rplos/" style="color:#ffffff" data-toggle="chardinjs" data-intro="Download and install the repo from GitHub" data-position="right" class="btn btn-success btn-large" style="display: block; width: 100%;"><i class="icon-white icon-download"></i>Download from GitHub</a> -->
+  </div>
 
   <hr class="soften">
   </div>
 
   <div class="row">
  <div class="span3">
-        <div class="span3 bs-docs-sidebar">
+      <div class="span3 bs-docs-sidebar" data-toggle="chardinjs" data-intro="Click a topic to go directly to it" data-position="right">
         <ul class="nav nav-list bs-docs-sidenav">
           <li><a href="#about"><i class="icon-chevron-right"></i> About</a></li>
           <li><a href="#installation"><i class="icon-chevron-right"></i> Installation</a></li>
@@ -49,9 +70,12 @@
           <li><a href="#support"><i class="icon-chevron-right"></i> Support and Bugs</a></li>
           <li><a href="#license"><i class="icon-chevron-right"></i> License</a></li>
           <br><br>
+          </ul>
+      </div>
+
+      <div class="span3 bs-docs-sidebar" data-toggle="chardinjs" data-intro="Click here for help on every function, with parameter options, and more examples" data-position="bottom">
           <!-- <li><a href="functions.html"><i class="icon-chevron-right"></i> Function index</a></li> -->
-          <li><a href="help/index.html" style="color:#0000ff"><button class="btn btn-info btn" style="display: block; width: 70%;"><i class="icon-white icon-th-list"></i>Function index</button></a></li>
-     </ul>
+          <a href="help/index.html" style="color:#0000ff"><button class="btn btn-info btn" style="display: block; width: 70%;"><i class="icon-white icon-th-list"></i>         Function index</button></a>
       </div>
  </div>
 
