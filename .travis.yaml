@@ -1,11 +1,8 @@
-# modified from Yihui's code for knitr
 language: python
 
-# environment variables
 env:
   - R_LIBS_USER=~/R
 
-# install dependencies
 install:
   - sudo apt-add-repository -y ppa:marutter/rdev
   - sudo apt-get update
