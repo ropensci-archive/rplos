@@ -15,7 +15,6 @@ install:
   - R -e '.libPaths(); sessionInfo()'
   - Rscript -e 'install.packages("rplos", dep = TRUE, repos = "http://cran.rstudio.org")'
 
-# run tests
 script:
   - make install
   - make check
