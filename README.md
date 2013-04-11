@@ -19,9 +19,9 @@ install_github("rplos", "rOpenSci")
 require(rplos)
 ```
 
-### What it is?
+### What it is!?
 
-This set of functions/package will access full text articles from the Public Library of Science journals using their API. 
+`rplos` is a set of functions/package will access full text articles from the Public Library of Science journals using their API. 
 
 ### Some info
 
