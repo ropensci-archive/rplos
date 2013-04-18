@@ -85,13 +85,17 @@ searchplos <- function(terms = NA, fields = NA, toquery = NA, start = 0, limit =
     tempresults_
   } else
     { 
-    	getvecs <- seq(from=1, to=getnumrecords, by=500)
-    	lastnum <- as.numeric(str_extract(getnumrecords, "[0-9]{3}$"))-1
-    	if(lastnum > 500){
+    	byby <- 1000
+    	
+    	getvecs <- seq(from=1, to=getnumrecords, by=byby)
+    	lastnum <- as.numeric(str_extract(getnumrecords, "[0-9]{3}$"))
+    	if(lastnum==0)
+    		lastnum <- byby
+    	if(lastnum > byby){
     		lastnum <- getnumrecords-getvecs[length(getvecs)]
     	} else 
     		{lastnum <- lastnum}
-    	getrows <- c(rep(500, length(getvecs)-1), lastnum)
+    	getrows <- c(rep(byby, length(getvecs)-1), lastnum)
       out <- list()
     	message("Looping - printing iterations...")
     	for(i in 1:length(getvecs)) {
