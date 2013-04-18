@@ -8,6 +8,7 @@
 #' @param pmid PubMed object identifier (numeric)
 #' @param pmcid PubMed Central object identifier (numeric)
 #' @param mdid Mendeley object identifier (character)
+#' @param url API endpoint, defaults to http://alm.plos.org/api/v3/articles (character)
 #' @param info One of summary, history, or detail(default totals + history in a list). 
 #' 		Not specifying anything (the default) returns data.frame of totals across 
 #' 		data providers. (character)
@@ -81,12 +82,10 @@
 #' alm(doi='10.1371/journal.pone.0035869', source=c('mendeley','twitter','counter'), info='history')
 #' }
 #' @export
-alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL, 
+alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL, url = 'http://alm.plos.org/api/v3/articles',
 								info = "totals", months = NULL, days = NULL, year = NULL, 
 								source = NULL, key = NULL, curl = getCurlHandle())
-{
-	url = 'http://alm.plos.org/api/v3/articles'
-	
+{	
 	if(!info %in% c("summary","totals","history","detail")) {
 		stop("info must be one of summary, totals, history, or detail")
 	}
