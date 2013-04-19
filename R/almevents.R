@@ -65,10 +65,10 @@
 #' almevents(doi="10.1371/journal.pone.0035869", source=c("crossref","twitter"))
 #' }
 #' @export
-almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL, 
+almevents <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL, url='http://alm.plos.org/api/v3/articles',
 	months = NULL, days = NULL, source = NULL, key = NULL, curl = getCurlHandle())
 {
-	url = 'http://alm.plos.org/api/v3/articles'
+# 	url = 'http://alm.plos.org/api/v3/articles'
 	
 	id <- compact(list(doi=doi, pmid=pmid, pmcid=pmcid, mendeley=mdid))
 	if(length(id)>1){ stop("Only supply one of: doi, pmid, pmcid, mdid") } else { NULL }

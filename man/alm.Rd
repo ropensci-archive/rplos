@@ -3,9 +3,10 @@
 \title{Retrieve PLoS article-level metrics (ALM).}
 \usage{
   alm(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL,
+    url = "http://alm.plos.org/api/v3/articles",
     info = "totals", months = NULL, days = NULL,
     year = NULL, source = NULL, key = NULL,
-    curl = getCurlHandle())
+    curl = getCurlHandle(), total_details = FALSE)
 }
 \arguments{
   \item{doi}{Digital object identifier for an article in
@@ -16,6 +17,9 @@
   \item{pmcid}{PubMed Central object identifier (numeric)}
 
   \item{mdid}{Mendeley object identifier (character)}
+
+  \item{url}{API endpoint, defaults to
+  http://alm.plos.org/api/v3/articles (character)}
 
   \item{info}{One of summary, history, or detail(default
   totals + history in a list).  Not specifying anything
@@ -44,6 +48,13 @@
   \item{curl}{If using in a loop, call getCurlHandle()
   first and pass the returned value in here (avoids
   unnecessary footprint)}
+
+  \item{total_details}{If FALSE (the default) the standard
+  totals data.frame is returned; if TRUE, the totals data
+  is in a wide format with more details about the paper,
+  including publication date, title, etc. If you set this
+  to TRUE, the output should no longer with with
+  \code{\link{almplot}}.}
 }
 \value{
   PLoS altmetrics as data.frame's.
@@ -113,6 +124,9 @@ alm(doi='10.1371/journal.pone.0040117', year=2012)
 alm(doi='10.1371/journal.pone.0035869', source='mendeley')
 alm(doi='10.1371/journal.pone.0035869', source=c('mendeley','twitter','counter'))
 alm(doi='10.1371/journal.pone.0035869', source=c('mendeley','twitter','counter'), info='history')
+
+# Get detailed totals output
+alm(doi='10.1371/journal.pone.0035869', total_details=TRUE)
 }
 }
 \seealso{

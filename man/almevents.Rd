@@ -3,8 +3,10 @@
 \title{Retrieve PLoS article-level metrics (ALM) events.}
 \usage{
   almevents(doi = NULL, pmid = NULL, pmcid = NULL,
-    mdid = NULL, months = NULL, days = NULL, source = NULL,
-    key = NULL, curl = getCurlHandle())
+    mdid = NULL,
+    url = "http://alm.plos.org/api/v3/articles",
+    months = NULL, days = NULL, source = NULL, key = NULL,
+    curl = getCurlHandle())
 }
 \arguments{
   \item{doi}{Digital object identifier for an article in

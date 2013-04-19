@@ -22,7 +22,11 @@
 #' @param key your PLoS API key, either enter, or loads from .Rprofile (character)
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass
-#'  the returned value in here (avoids unnecessary footprint)
+#'    the returned value in here (avoids unnecessary footprint)
+#' @param total_details If FALSE (the default) the standard totals data.frame is
+#'    returned; if TRUE, the totals data is in a wide format with more details
+#'    about the paper, including publication date, title, etc. If you set this 
+#'    to TRUE, the output should no longer with with \code{\link{almplot}}.
 #' @seealso \code{\link{almplot}}
 #' @details You can only supply one of the parmeters doi, pmid, pmcid, and mdid.
 #' 
@@ -80,11 +84,14 @@
 #' alm(doi='10.1371/journal.pone.0035869', source='mendeley')
 #' alm(doi='10.1371/journal.pone.0035869', source=c('mendeley','twitter','counter'))
 #' alm(doi='10.1371/journal.pone.0035869', source=c('mendeley','twitter','counter'), info='history')
+#' 
+#' # Get detailed totals output
+#' alm(doi='10.1371/journal.pone.0035869', total_details=TRUE)
 #' }
 #' @export
 alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL, url = 'http://alm.plos.org/api/v3/articles',
 								info = "totals", months = NULL, days = NULL, year = NULL, 
-								source = NULL, key = NULL, curl = getCurlHandle())
+								source = NULL, key = NULL, curl = getCurlHandle(), total_details = FALSE)
 {	
 	if(!info %in% c("summary","totals","history","detail")) {
 		stop("info must be one of summary, totals, history, or detail")
@@ -110,7 +117,7 @@ alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL, url = 'http:
 				args2 <- c(args, ids = id[[1]])
 				out <- getForm(url, .params = args2, curl = curl)
 				tt <- fromJSON(out)
-				if(info=="summary"){ttt<-tt} else{ttt <- tt[[1]]$sources}
+# 				if(info=="summary"){ttt<-tt} else{ttt <- tt[[1]]$sources}
 			} else
 			{
 				if(length(id[[1]])>1){
@@ -127,9 +134,9 @@ alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL, url = 'http:
 							args2 <- c(args, ids = id2)
 							out <- getForm(url, .params = args2, curl = curl)
 							tt <- fromJSON(out)
-							if(info=="summary"){tt} else { 
-								lapply(tt, function(x) x$article$sources) 
-							}
+# 							if(info=="summary"){tt} else { 
+# 								lapply(tt, function(x) x$article$sources) 
+# 							}
 						}
 						temp <- lapply(idsplit, repeatit)
 						ttt <- do.call(c, temp)
@@ -143,28 +150,53 @@ alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL, url = 'http:
 						args2 <- c(args, ids = id2)
 						out <- getForm(url, .params = args2, curl = curl)
 						tt <- fromJSON(out)
-						if(info=="summary"){ttt<-tt} else { 
-							ttt <- lapply(tt, function(x) x$sources) 
-						}
+# 						if(info=="summary"){ttt<-tt} else { 
+# 							ttt <- lapply(tt, function(x) x$sources) 
+# 						}
 					}
 				}
 			}
-		if(info=="summary"){ttt} else
+		if(info=="summary"){tt} else
 		{
 			getdata <- function(data_, y) {
 				if(y == "totals"){
-					servs <- sapply(data_, function(x) x$name)
-					totals <- lapply(data_, function(x) x$metrics[!sapply(x$metrics, is.null)])
+          data_2 <- data_$sources
+					servs <- sapply(data_2, function(x) x$name)
+					totals <- lapply(data_2, function(x) x$metrics[!sapply(x$metrics, is.null)])
 					names(totals) <- servs
-					ldply(totals, function(x) as.data.frame(x))
+          
+          if(total_details){
+            temp <- data.frame(t(unlist(totals, use.names=TRUE)))
+            names(temp) <- str_replace_all(names(temp), "\\.", "_")
+            return( 
+              cbind(data.frame(title=data_$title, publication_date=data_$publication_date), 
+                    temp)
+            )
+          } else
+          {
+            return(ldply(totals, function(x) as.data.frame(x)))
+          }
 				} else
 				{
-					servs <- sapply(data_, function(x) x$name)
-					totals <- lapply(data_, function(x) x$metrics[!sapply(x$metrics, is.null)])
+				  data_2 <- data_$sources
+					servs <- sapply(data_2, function(x) x$name)
+					totals <- lapply(data_2, function(x) x$metrics[!sapply(x$metrics, is.null)])
 					names(totals) <- servs
 					totalsdf <- ldply(totals, function(x) as.data.frame(x))
+          
+					if(total_details){
+					  temp <- data.frame(t(unlist(totals, use.names=TRUE)))
+					  names(temp) <- str_replace_all(names(temp), "\\.", "_")
+					  return( 
+					    cbind(data.frame(title=data_$title, publication_date=data_$publication_date), 
+					          temp)
+					  )
+					} else
+					{
+					  return(ldply(totals, function(x) as.data.frame(x)))
+					}
 					
-					hist <- lapply(data_, function(x) x$histories)
+					hist <- lapply(data_2, function(x) x$histories)
 					gethist <- function(y) {
 						dates <- sapply(y, function(x) str_split(x[[1]], "T")[[1]][[1]])
 						totals <- sapply(y, function(x) x[[2]])
@@ -178,7 +210,7 @@ alm <- function(doi = NULL, pmid = NULL, pmcid = NULL, mdid = NULL, url = 'http:
 							stop("info must be one of history, event or detail")
 				}
 			}
-			if(length(id[[1]])>1){ lapply(ttt, getdata, y=info) } else { getdata(ttt, y=info) }
+			if(length(id[[1]])>1){ lapply(tt, getdata, y=info) } else { getdata(tt[[1]], y=info) }
 		}
 	}
 	
