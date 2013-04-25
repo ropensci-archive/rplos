@@ -1,10 +1,10 @@
 Package: rplos
-Version: 0.1.0
-Date: 2013-03-26
+Version: 0.1.1
+Date: 2013-04-25
 Description: A programmatic interface to the
     Web Service methods provided by the Public Library
-    of Science journals for search and altmetrics.
-Title: Interface to PLoS Journals search and altmetrics API's
+    of Science journals for search.
+Title: Interface to PLoS Journals search API.
 License: CC0
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"),
@@ -33,13 +33,6 @@ Imports:
 Suggests:
     testthat
 Collate:
-    'almdatepub.R'
-    'almdateupdated.R'
-    'almpubmedcentid.R'
-    'almpubmedid.R'
-    'almtitle.R'
-    'almtotcites.R'
-    'almupdated.R'
     'crossref.R'
     'formatarticleurl.R'
     'help.R'
@@ -56,7 +49,4 @@ Collate:
     'searchplos.R'
     'crossref_r.R'
     'zzz.R'
-    'alm.R'
-    'almplot.R'
-    'almevents.R'
     'startup.R'
