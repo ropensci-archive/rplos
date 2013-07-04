@@ -37,13 +37,15 @@ searchplos <- function(terms = NA, fields = NA, toquery = NA, start = 0, limit =
 	url = 'http://api.plos.org/search'
 	
 	insertnones <- function(x) {
-		toadd <- fields[! fields %in% names(x) ]
+	  f2 <- strsplit(fields, ",")[[1]]
+		toadd <- f2[! f2 %in% names(x) ]
 		values <- rep("none", length(toadd))
 		names(values) <- toadd
 		values <- as.list(values)
 		x <- c(x, values)
 		x
 	}
+  
 	if(is.na(limit)){limit <- 999} else{limit <- limit}
   args <- list()
   if(!is.na(toquery[[1]])) {
@@ -62,9 +64,7 @@ searchplos <- function(terms = NA, fields = NA, toquery = NA, start = 0, limit =
   args$wt <- "json"
   
 	argsgetnum <- list(q=terms, rows=0, wt="json", api_key=key)
-	getnum <- getForm(url, 
-		.params = argsgetnum,
-		curl = curl)
+	getnum <- getForm(url, .params = argsgetnum, curl = curl)
 	getnumrecords <- fromJSON(I(getnum))$response$numFound
 	if(getnumrecords > limit){getnumrecords <- limit} else{getnumrecords <- getnumrecords}
 	
