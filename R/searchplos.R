@@ -68,53 +68,55 @@ searchplos <- function(terms = NA, fields = NA, toquery = NA, start = 0, limit =
 	getnumrecords <- fromJSON(I(getnum))$response$numFound
 	if(getnumrecords > limit){getnumrecords <- limit} else{getnumrecords <- getnumrecords}
 	
-  if(min(getnumrecords, limit) < 1000) {
-    if(!is.na(limit))
-      args$rows <- limit
-    tt <- getForm(url, 
-      .params = args,
-      ...,
-      curl = curl)
-    jsonout <- fromJSON(I(tt))
-    tempresults <- jsonout$response$docs
-    tempresults <- llply(tempresults, insertnones)
-    if(returndf == TRUE){
-    	tempresults_ <- ldply(tempresults, function(x) as.data.frame(x))
-    } else
-    	{tempresults_ <- tempresults}
-    tempresults_
-  } else
-    { 
-    	byby <- 1000
-    	
-    	getvecs <- seq(from=1, to=getnumrecords, by=byby)
-    	lastnum <- as.numeric(str_extract(getnumrecords, "[0-9]{3}$"))
-    	if(lastnum==0)
-    		lastnum <- byby
-    	if(lastnum > byby){
-    		lastnum <- getnumrecords-getvecs[length(getvecs)]
-    	} else 
-    		{lastnum <- lastnum}
-    	getrows <- c(rep(byby, length(getvecs)-1), lastnum)
-      out <- list()
-    	message("Looping - printing iterations...")
-    	for(i in 1:length(getvecs)) {
-    		cat(i,"\n")
-    		args$start <- getvecs[i]
-    		args$rows <- getrows[i]
-    		tt <- getForm(url, 
-    			.params = args,
-    			...,
-    			curl = curl)
-    		jsonout <- fromJSON(I(tt))
-    		tempresults <- jsonout$response$docs 
-    		tempresults <- llply(tempresults, insertnones)
-    		out[[i]] <- tempresults
-    	}
-      if(returndf == TRUE){
-      	tempresults_ <- ldply(out, function(x) ldply(x, function(y) as.data.frame(y)))
-      } else
-      	{tempresults_ <- out}
-      tempresults_
-    }
+	if(min(getnumrecords, limit) < 1000) {
+	  if(!is.na(limit))
+	    args$rows <- limit
+	  tt <- getForm(url, 
+	                .params = args,
+	                ...,
+	                curl = curl)
+	  jsonout <- fromJSON(I(tt))
+	  tempresults <- jsonout$response$docs
+	  tempresults <- llply(tempresults, insertnones)
+	  if(returndf == TRUE){
+	    tempresults_ <- ldply(tempresults, function(x) as.data.frame(x))
+	  } else
+	  {tempresults_ <- tempresults}
+	  
+	  return(tempresults_)
+	  
+	} else
+	{ 
+	  byby <- 1000
+	  
+	  getvecs <- seq(from=1, to=getnumrecords, by=byby)
+	  lastnum <- as.numeric(str_extract(getnumrecords, "[0-9]{3}$"))
+	  if(lastnum==0)
+	    lastnum <- byby
+	  if(lastnum > byby){
+	    lastnum <- getnumrecords-getvecs[length(getvecs)]
+	  } else 
+	  {lastnum <- lastnum}
+	  getrows <- c(rep(byby, length(getvecs)-1), lastnum)
+	  out <- list()
+	  message("Looping - printing iterations...")
+	  for(i in 1:length(getvecs)) {
+	    cat(i,"\n")
+	    args$start <- getvecs[i]
+	    args$rows <- getrows[i]
+	    tt <- getForm(url, 
+	                  .params = args,
+	                  ...,
+	                  curl = curl)
+	    jsonout <- fromJSON(I(tt))
+	    tempresults <- jsonout$response$docs 
+	    tempresults <- llply(tempresults, insertnones)
+	    out[[i]] <- tempresults
+	  }
+	  if(returndf == TRUE){
+	    tempresults_ <- ldply(out, function(x) ldply(x, function(y) as.data.frame(y)))
+	  } else
+	  {tempresults_ <- out}
+	  tempresults_
+	}
 }
