@@ -1,6 +1,6 @@
 Package: rplos
-Version: 0.1.1
-Date: 2013-04-25
+Version: 0.1.2
+Date: 2013-07-04
 Description: A programmatic interface to the
     Web Service methods provided by the Public Library
     of Science journals for search.
@@ -23,9 +23,9 @@ Imports:
     RCurl,
     RJSONIO,
     XML,
+    reshape,
     plyr,
     stringr,
-    reshape,
     googleVis,
     httr,
     grid,
