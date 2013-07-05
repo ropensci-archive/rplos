@@ -29,7 +29,9 @@ Imports:
     googleVis,
     httr,
     grid,
-    gridExtra
+    gridExtra,
+    assertthat,
+    lubridate
 Suggests:
     testthat
 Collate:

@@ -2,10 +2,10 @@
 \alias{searchplos}
 \title{Base function to search PLoS Journals}
 \usage{
-  searchplos(terms = NA, fields = NA, toquery = NA,
+  searchplos(terms = NA, fields = "id", toquery = NA,
     start = 0, limit = NA, returndf = TRUE,
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-    ..., curl = getCurlHandle())
+    sleep = 6, ..., curl = getCurlHandle())
 }
 \arguments{
   \item{terms}{search terms (character)}
@@ -27,8 +27,16 @@
   \item{returndf}{Return data.frame of results or not
   (defaults to TRUE).}
 
-  \item{key}{your PLoS API key, either enter, or loads from
-  .Rprofile}
+  \item{key}{Your PLoS API key, either enter as the key, or
+  loads from .Rprofile. See details.}
+
+  \item{sleep}{Number of seconds to wait between requests.
+  No need to use this for a single call to searchplos.
+  However, if you are using searchplos in a loop or lapply
+  type call, do sleep parameter is used to prevent your IP
+  address from being blocked. You can only do 10 requests
+  per minute, so one request every 6 seconds is about
+  right.}
 
   \item{...}{optional additional curl options (debugging
   tools mostly)}
@@ -44,6 +52,14 @@
 \description{
   Base function to search PLoS Journals
 }
+\details{
+  You can store your PLOS Search API key in your .Rprofile
+  file so that you don't have to enter the key each
+  function call. Open up your .Rprofile file on your
+  computer, and put it an entry like:
+
+  options(PlosApiKey = "<your plos api key>")
+}
 \examples{
 \dontrun{
 searchplos('ecology', 'id,publication_date', limit = 2)
@@ -57,6 +73,11 @@ searchplos(terms="*:*", fields='id', toquery='cross_published_journal_key:PLoSON
 
 # Get DOIs for full article in PLoS One
 searchplos(terms="*:*", fields='id', toquery=list('cross_published_journal_key:PLoSONE', 'doc_type:full'), start=0, limit=50)
+
+# Serch for many terms
+library(plyr)
+terms <- c('ecology','evolution','science')
+llply(terms, function(x) searchplos(x))
 }
 }
 
