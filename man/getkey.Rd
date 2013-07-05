@@ -17,4 +17,5 @@
 getkey()
 }
 }
+\keyword{internal}
 

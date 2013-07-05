@@ -5,18 +5,17 @@
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
 #'    any combination of search fields [type 'data(plosfields)', then 
 #'    'plosfields']
-#' @param toquery list specific fields to query (if NA, all queried)
-#' @param start record to start at (used in combination with limit when 
+#' @param toquery List specific fields to query (if NA, all queried). The possibilities
+#'    for this parameter are the same as those for the fields parameter.
+#' @param start Record to start at (used in combination with limit when 
 #' you need to cycle through more results than the max allowed=1000)
-#' @param limit number of results to return (integer)
+#' @param limit Number of results to return (integer)
 #' @param returndf Return data.frame of results or not (defaults to TRUE).
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
 #'  the returned value in here (avoids unnecessary footprint)
-#' @return Number of search results (vis = FALSE), or number of search in a table
-#'    and a histogram of results (vis = TRUE).
-#' @export
+#' @return Either a data.frame if returndf=TRUE, or a list if returndf=FALSE.
 #' @examples \dontrun{
 #' searchplos('ecology', 'id,publication_date', limit = 2)
 #' searchplos('ecology', 'id,title', limit = 2)
@@ -30,6 +29,7 @@
 #' # Get DOIs for full article in PLoS One
 #' searchplos(terms="*:*", fields='id', toquery=list('cross_published_journal_key:PLoSONE', 'doc_type:full'), start=0, limit=50)
 #' }
+#' @export
 searchplos <- function(terms = NA, fields = NA, toquery = NA, start = 0, limit = NA, 
 	returndf = TRUE, key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., curl = getCurlHandle() ) 

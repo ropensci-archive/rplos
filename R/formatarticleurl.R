@@ -8,10 +8,11 @@
 #'    will be inclued in the built URL.  Options are:
 #'    PLoSBiology, PLoSGenetics, PLoSComputationalBiology, PLoSMedicine,
 #'	  PLoSONE, PLoSNeglectedTropicalDiseases, or PLoSPathogens.
-#' @export
 #' @examples \dontrun{
 #' formatarticleurl("10.1371/journal.pone.0004045", 'PLoSONE')
 #' }
+#' @export
+#' @keywords internal
 formatarticleurl <- function(doi, journal) 
 {
   journalUrls <- c(  # string with all journal base url's

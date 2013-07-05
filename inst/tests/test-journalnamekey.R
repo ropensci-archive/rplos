@@ -4,8 +4,8 @@ context("journalnamekey")
 test_that("journalnamekey returns the correct value", {
 	expect_that(journalnamekey(), 
 							equals(c(
-								"PLoSONE","PLoSGenetics","PLoSPathogens","PLoSBiology",
-								"PLoSCompBiol","PLoSMedicine","PLoSNTD","PLoSCollections",
+								"PLoSONE","PLoSGenetics","PLoSPathogens","PLoSCompBiol",
+								"PLoSBiology","PLoSNTD","PLoSMedicine","PLoSCollections",
 								"PLoSClinicalTrials"
 								)))
 })

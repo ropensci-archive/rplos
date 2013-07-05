@@ -16,4 +16,5 @@
   Concatenate author names, if present, used in other
   functions.
 }
+\keyword{internal}
 

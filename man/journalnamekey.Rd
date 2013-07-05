@@ -5,7 +5,7 @@
   journalnamekey()
 }
 \value{
-  List of journals and their keys.
+  Journals name keys.
 }
 \description{
   Get short keys for journals to use in searching specific

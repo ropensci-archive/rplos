@@ -14,14 +14,15 @@
   [e.g., 'id,title'], any combination of search fields
   [type 'data(plosfields)', then 'plosfields']}
 
-  \item{toquery}{list specific fields to query (if NA, all
-  queried)}
+  \item{toquery}{List specific fields to query (if NA, all
+  queried). The possibilities for this parameter are the
+  same as those for the fields parameter.}
 
-  \item{start}{record to start at (used in combination with
+  \item{start}{Record to start at (used in combination with
   limit when you need to cycle through more results than
   the max allowed=1000)}
 
-  \item{limit}{number of results to return (integer)}
+  \item{limit}{Number of results to return (integer)}
 
   \item{returndf}{Return data.frame of results or not
   (defaults to TRUE).}
@@ -37,9 +38,8 @@
   unnecessary footprint)}
 }
 \value{
-  Number of search results (vis = FALSE), or number of
-  search in a table and a histogram of results (vis =
-  TRUE).
+  Either a data.frame if returndf=TRUE, or a list if
+  returndf=FALSE.
 }
 \description{
   Base function to search PLoS Journals

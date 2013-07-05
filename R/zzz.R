@@ -3,6 +3,7 @@
 #' @param x a single list element with PLoS API returned nested elements
 #' @return data.frame of results, with authors concatenated to single vector.
 #' @export
+#' @keywords internal
 concat_todf <- function(x){
 	if(inherits(x$author_display, "character")){
 		if(length(x$author_display) > 1){x$author_display<-paste(x$author_display, collapse=", ")} else
@@ -24,6 +25,7 @@ concat_todf <- function(x){
 #' @return A list with the missing element added with an 
 #' 		"na", if it is missing.
 #' @export
+#' @keywords internal
 addmissing <- function(x){
 	names_ <- names(x[[which.max(laply(x, length))]])
 	
@@ -48,6 +50,7 @@ addmissing <- function(x){
 #' getkey()
 #' } 
 #' @export
+#' @keywords internal
 getkey <- function(x = NULL) {	
 	if(is.null(x)){
 		key <- getOption("PlosApiKey")

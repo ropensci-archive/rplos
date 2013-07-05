@@ -16,4 +16,5 @@ in the PLoS API call.}
   Adds elements in a list that are missing because they
   were not returned in the PLoS API call.
 }
+\keyword{internal}
 
