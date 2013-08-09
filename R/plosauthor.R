@@ -1,6 +1,7 @@
 #' Search PLoS Journals authors.
 #' 
-#' @import httr plyr
+#' @import httr
+#' @importFrom plyr compact
 #' @param terms authors to search for (character)
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
 #'    any combination of search fields [see plosfields$field]

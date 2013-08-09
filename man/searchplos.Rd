@@ -77,7 +77,7 @@ searchplos(terms="*:*", fields='id', toquery=list('cross_published_journal_key:P
 # Serch for many terms
 library(plyr)
 terms <- c('ecology','evolution','science')
-llply(terms, function(x) searchplos(x))
+llply(terms, function(x) searchplos(x, limit=2))
 }
 }
 

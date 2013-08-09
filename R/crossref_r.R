@@ -3,7 +3,8 @@
 #' From CrossRef website: "It [this API] might be useful to anybody doing research 
 #'    on scholarly publications."
 #' 
-#' @import RJSONIO httr plyr
+#' @import RJSONIO httr 
+#' @importFrom plyr compact
 #' @param count The number of returned random DOIs. Maximum is 1000, default 20. 
 #'    Note that a request for 1000 random DOIs will take a few seconds to 
 #'    complete, whereas a request for 20 will take ~1 second.

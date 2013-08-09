@@ -1,6 +1,7 @@
 #' Search PLoS Journals by article views.
 #' 
-#' @import RJSONIO RCurl stringr
+#' @import RJSONIO RCurl 
+#' @importFrom stringr str_split
 #' @param search search terms (character)
 #' @param byfield field to search by, e.g., subject, author, etc. (character)
 #' @param views views all time (alltime) or views last 30 days (last30) (character)
@@ -40,7 +41,7 @@ plosviews <- function(search, byfield = NA, views = 'alltime', limit = NA,
   args$wt <- "json"
   tt <- getForm(url,
     .params = args,
-#     ...,
+    ...,
     curl = curl)
   jsonout <- fromJSON(I(tt))
   temp <- jsonout$response$docs

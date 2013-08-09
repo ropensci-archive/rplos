@@ -1,6 +1,7 @@
 #' Search results on a keyword over all fields in PLoS Journals.
 #' 
-#' @import RJSONIO RCurl plyr ggplot2
+#' @import RJSONIO RCurl ggplot2
+#' @importFrom plyr ldply 
 #' @param terms search terms (character)
 #' @param vis visualize results in bar plot or not (TRUE or FALSE)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile

@@ -1,6 +1,7 @@
 #' Search PLoS Journals titles.
 #' 
-#' @import httr plyr
+#' @import httr
+#' @importFrom plyr compact
 #' @param terms search terms for article titles (character)
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
 #'    any combination of search fields [see plosfields$field]

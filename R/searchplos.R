@@ -1,6 +1,10 @@
 #' Base function to search PLoS Journals
 #' 
-#' @import RJSONIO RCurl lubridate assertthat
+#' @import RJSONIO RCurl
+#' @importFrom plyr ldply
+#' @importFrom stringr str_extract
+#' @importFrom assertthat assert_that
+#' @importFrom lubridate now
 #' @param terms search terms (character)
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
 #'    any combination of search fields [type 'data(plosfields)', then 
@@ -101,7 +105,7 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, start = 0, limit
 	                curl = curl)
 	  jsonout <- fromJSON(I(tt))
 	  tempresults <- jsonout$response$docs
-	  tempresults <- llply(tempresults, insertnones)
+	  tempresults <- lapply(tempresults, insertnones)
 	  if(returndf == TRUE){
 	    tempresults_ <- ldply(tempresults, function(x) as.data.frame(x))
 	  } else

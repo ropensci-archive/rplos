@@ -19,11 +19,9 @@ LazyData: yes
 Depends:
     ggplot2
 Imports:
-    ggplot2,
     RCurl,
     RJSONIO,
     XML,
-    reshape,
     plyr,
     stringr,
     googleVis,
@@ -31,8 +29,10 @@ Imports:
     grid,
     gridExtra,
     assertthat,
-    lubridate
+    lubridate,
+    reshape2
 Suggests:
+    roxygen2,
     testthat
 Collate:
     'crossref.R'
