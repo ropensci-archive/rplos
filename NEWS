@@ -1,3 +1,10 @@
+rplos 0.1.3
+------------
+
+* searchplos() now removes leading, trailing, and internal whitespace from character strings
+* ldfast() fxn added as an attempt to do ldply faster
+* performance improvements in searchplos
+
 rplos 0.1.1
 ------------
 
