@@ -22,6 +22,8 @@ plosword <- function(terms, vis = FALSE,
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., curl = getCurlHandle() ) 
 {
+  Term = NULL
+  No_Articles = NULL
 	url = 'http://api.plos.org/search'
 	
   if (length(terms) == 1) {

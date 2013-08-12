@@ -12,8 +12,8 @@ test_that("searchplos returns the correct dimensions", {
 })
 
 test_that("searchplos returns the correct class", {
-  expect_that(dat1[1,1], is_a("factor"))
-  expect_that(dat2[1,1], is_a("factor"))
+  expect_that(dat1[1,1][[1]], is_a("character"))
+  expect_that(dat2[1,1][[1]], is_a("character"))
 	expect_that(dat1, is_a("data.frame"))
   expect_that(dat2, is_a("data.frame"))
 })

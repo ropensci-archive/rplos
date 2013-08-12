@@ -24,6 +24,9 @@ plot_throughtime <- function(terms, limit = NA, gvis = FALSE,
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., curl = getCurlHandle() ) 
 {
+  year=NULL; month=NULL; summarise=NULL; dateplot=NULL; 
+  V1=NULL; value=NULL; variable=NULL
+
 	url = "http://api.plos.org/search"
 	
   if (length(terms) == 1) {
@@ -44,7 +47,7 @@ plot_throughtime <- function(terms, limit = NA, gvis = FALSE,
   tt_ <- as.data.frame(t(apply(ttt, 1, function(x) str_split(x[[1]], 
     pattern = "-")[[1]][1:2])))
   names(tt_) <- c("year", "month")
-  tsum <- ddply(tt_, .(year, month), summarise, V1 = length(month))  
+  tsum <- ddply(tt_, c('year','month'), summarise, V1 = length(month))
   tsum$dateplot <- as.Date(paste(tsum$month, "1", 
     str_sub(tsum$year, 3, 4), sep="/"), "%m/%d/%y")
   tsum$V1 <- as.numeric(tsum$V1)
@@ -74,7 +77,7 @@ plot_throughtime <- function(terms, limit = NA, gvis = FALSE,
       tt_ <- as.data.frame(t(apply(ttt, 1, function(x) str_split(x[[1]], 
         pattern = "-")[[1]][1:2])))
       names(tt_) <- c("year", "month")
-      tsum <- ddply(tt_, .(year, month), summarise, V1 = length(month))
+      tsum <- ddply(tt_, c('year','month'), summarise, V1 = length(month))
     return(tsum)
     }
   temp <- llply(terms, search_)

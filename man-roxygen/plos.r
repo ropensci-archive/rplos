@@ -1,8 +1,3 @@
-#' @import RJSONIO RCurl
-#' @importFrom plyr ldply
-#' @importFrom stringr str_extract
-#' @importFrom assertthat assert_that
-#' @importFrom lubridate now
 #' @param terms search terms (character)
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
 #'    any combination of search fields [type 'data(plosfields)', then 
@@ -22,10 +17,10 @@
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
 #'  the returned value in here (avoids unnecessary footprint)
+#'
 #' @details 
 #' You can store your PLOS Search API key in your .Rprofile file so that you 
 #' don't have to enter the key each function call. Open up your .Rprofile file
 #' on your computer, and put it an entry like:
 #' 
-#' options(PlosApiKey = "<your plos api key>")
-#' @export
+#' options(PlosApiKey = "your plos api key")

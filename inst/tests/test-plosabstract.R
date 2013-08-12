@@ -11,6 +11,6 @@ test_that("plosabstract returns the correct dimensioned data.frame", {
 test_that("plosabstract returns the correct class", {
 	expect_that(plosabstract(terms = 'drosophila', fields='author', limit = 5), 
 							is_a("data.frame"))
-	expect_that(plosabstract(terms = 'drosophila', fields='author', limit = 5)[[1]], 
-							is_a("factor"))
+	expect_that(plosabstract(terms = 'Jones', fields='author', limit = 5)[1,1][[1]], 
+							is_a("character"))
 })

@@ -90,7 +90,9 @@ ldfast <- function(x, convertvec=FALSE){
 #' Function to insert "none" character strings where NULL values found to faciliate combining results
 #' @export
 #' @keywords internal
-insertnones <- function(x) {
+insertnones <- function(x) 
+{
+	fields = NULL
 	f2 <- strsplit(fields, ",")[[1]]
 	toadd <- f2[! f2 %in% names(x) ]
 	values <- rep("none", length(toadd))

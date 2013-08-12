@@ -7,6 +7,7 @@
 #' plostitle(terms='drosophila', fields='title,journal', limit=10)
 #' plostitle(terms='drosophila',  limit = 5)
 #' }
+#' @export
 
 plostitle <- function(terms = NA, fields = 'id', toquery = NA, start = 0, 
                         limit = NA, returndf = TRUE, sleep = 6, ..., curl = getCurlHandle(),

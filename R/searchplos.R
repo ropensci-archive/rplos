@@ -1,5 +1,9 @@
 #' Base function to search PLoS Journals
 #' 
+#' @import RJSONIO RCurl
+#' @importFrom plyr ldply
+#' @importFrom stringr str_extract
+#' @importFrom lubridate now
 #' @template plos
 #' @return Either a data.frame if returndf=TRUE, or a list if returndf=FALSE.
 #' @examples \dontrun{
@@ -7,22 +11,29 @@
 #' searchplos('ecology', 'id,title', limit = 2)
 #' 
 #' # Get only full article DOIs
-#' searchplos(terms="*:*", fields='id', toquery='doc_type:full', start=0, limit=250)
+#' searchplos(terms="*:*", fields='id', toquery='doc_type:full', start=0, 
+#' limit=250)
 #' 
 #' # Get DOIs for only PLoS One articles
-#' searchplos(terms="*:*", fields='id', toquery='cross_published_journal_key:PLoSONE', start=0, limit=15)
+#' searchplos(terms="*:*", fields='id', 
+#' toquery='cross_published_journal_key:PLoSONE', start=0, limit=15)
 #' 
 #' # Get DOIs for full article in PLoS One
-#' searchplos(terms="*:*", fields='id', toquery=list('cross_published_journal_key:PLoSONE', 'doc_type:full'), start=0, limit=50)
+#' searchplos(terms="*:*", fields='id', 
+#'    toquery=list('cross_published_journal_key:PLoSONE', 'doc_type:full'), 
+#'    start=0, limit=50)
 #' 
 #' # Serch for many terms
 #' library(plyr)
 #' terms <- c('ecology','evolution','science')
 #' llply(terms, function(x) searchplos(x, limit=2))
+#' }
+#' @export
 
-searchplos <- function(terms = NA, fields = 'id', toquery = NA, start = 0, limit = NA, 
-	returndf = TRUE, key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-  sleep = 6, ..., curl = getCurlHandle() ) 
+searchplos <- function(terms = NA, fields = 'id', toquery = NA, start = 0, 
+  limit = NA, returndf = TRUE, key = getOption("PlosApiKey", 
+  stop("need an API key for PLoS Journals")), sleep = 6, ..., 
+  curl = getCurlHandle())
 {
   # Function to trim leading and trailing whitespace, including newlines
   trim <- function (x) gsub("\\n\\s+", " ", gsub("^\\s+|\\s+$", "", x))
@@ -31,7 +42,8 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, start = 0, limit
   if(!Sys.getenv('plostime') == ""){
     timesince <- as.numeric(now()) - as.numeric(Sys.getenv('plostime'))
     if(timesince < 6){
-      assert_that(is.numeric(sleep))
+#       assert_that(is.numeric(sleep))
+      stopifnot(is.numeric(sleep))
       Sys.sleep(sleep)
     }
   }

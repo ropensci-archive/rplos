@@ -58,7 +58,7 @@
   function call. Open up your .Rprofile file on your
   computer, and put it an entry like:
 
-  options(PlosApiKey = "<your plos api key>")
+  options(PlosApiKey = "your plos api key")
 }
 \examples{
 \dontrun{
@@ -66,17 +66,22 @@ searchplos('ecology', 'id,publication_date', limit = 2)
 searchplos('ecology', 'id,title', limit = 2)
 
 # Get only full article DOIs
-searchplos(terms="*:*", fields='id', toquery='doc_type:full', start=0, limit=250)
+searchplos(terms="*:*", fields='id', toquery='doc_type:full', start=0,
+limit=250)
 
 # Get DOIs for only PLoS One articles
-searchplos(terms="*:*", fields='id', toquery='cross_published_journal_key:PLoSONE', start=0, limit=15)
+searchplos(terms="*:*", fields='id',
+toquery='cross_published_journal_key:PLoSONE', start=0, limit=15)
 
 # Get DOIs for full article in PLoS One
-searchplos(terms="*:*", fields='id', toquery=list('cross_published_journal_key:PLoSONE', 'doc_type:full'), start=0, limit=50)
+searchplos(terms="*:*", fields='id',
+   toquery=list('cross_published_journal_key:PLoSONE', 'doc_type:full'),
+   start=0, limit=50)
 
 # Serch for many terms
 library(plyr)
 terms <- c('ecology','evolution','science')
 llply(terms, function(x) searchplos(x, limit=2))
+}
 }
 

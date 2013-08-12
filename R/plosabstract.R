@@ -7,6 +7,7 @@
 #' plosabstract(terms = 'drosophila', fields='id,author', limit = 5)
 #' plosabstract(terms = 'drosophila', fields='id,author,title', limit = 5)
 #' }
+#' @export
 
 plosabstract <- function(terms = NA, fields = 'id', toquery = NA, start = 0, 
                         limit = NA, returndf = TRUE, sleep = 6, ..., curl = getCurlHandle(),

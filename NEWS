@@ -1,9 +1,19 @@
-rplos 0.1.3
+rplos 0.2.0
 ------------
 
-* searchplos() now removes leading, trailing, and internal whitespace from character strings
+NEW FEATURES
+
+* All functions for interacting with the PLOS ALM (altmetrics) API have been removed, and are now in a separate package called alm (http://github.com/ropensci/alm).
+* Convenience functions `plosabstract`, `plosauthor`, `plosfigtabcaps`, `plossubject`, and `plostitle`, that search specifically within those sections of papers now wrap `searchplos`, so they should behave the same way.
 * ldfast() fxn added as an attempt to do ldply faster
 * performance improvements in searchplos
+
+BUG FIXES
+
+* Dependency on assertthat removed since it's not on CRAN.
+* Fixed namespace conflicts by importing only functions needed from some packages.
+* searchplos() now removes leading, trailing, and internal whitespace from character strings
+
 
 rplos 0.1.1
 ------------

@@ -9,6 +9,7 @@
 #' plossubject(terms='marine ecology', fields = 'id,journal', toquery='doc_type:full', limit = 9)
 #' plossubject(terms='marine ecology', fields = 'id,journal', toquery=list('doc_type:full','!article_type_facet:"Issue%20Image"'), limit = 9)
 #' }
+#' @export
 
 plossubject <- function(terms = NA, fields = 'id', toquery = NA, start = 0, 
         limit = NA, returndf = TRUE, sleep = 6, ..., curl = getCurlHandle(),
