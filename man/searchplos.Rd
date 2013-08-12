@@ -79,5 +79,4 @@ library(plyr)
 terms <- c('ecology','evolution','science')
 llply(terms, function(x) searchplos(x, limit=2))
 }
-}
 

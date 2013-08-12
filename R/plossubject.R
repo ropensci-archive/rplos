@@ -1,17 +1,8 @@
 #' Search PLoS Journals subjects.
 #' 
-#' @import httr
-#' @importFrom plyr compact
-#' @param terms Search terms for article subjects (character)
-#' @param fields Fields to return from search (character) [e.g., 'id,title'], 
-#'    any combination of search fields [see plosfields$field]
-#' @param toquery Specific fields to query (if NA, all queried), in a comma 
-#' 		separated string (character) [e.g., 'doc_type:full,year=2010'].
-#' @param limit Number of results to return (integer)
-#' @param key Your PLoS API key, either enter, or loads from .Rprofile
+#' @template plos
 #' @return Subject content, in addition to any other fields requested in a data.frame.
 #' @details See \url{http://www.plosone.org/taxonomy} for subject areas.
-#' @export
 #' @examples \dontrun{
 #' plossubject('marine ecology', limit = 5)
 #' plossubject(terms='marine ecology',  fields = 'id,journal,title', limit = 20)
