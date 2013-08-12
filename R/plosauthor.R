@@ -24,5 +24,6 @@ plosauthor <- function(terms, fields = NULL, limit = NULL,
 	out <- content(GET(url, query = args))
 	out2 <- out$response$docs
 	out3 <- lapply(out2, concat_todf)
-	do.call(rbind.fill, out3)
+	out3 <- lapply(out3, function(x) lapply(x, trim))
+  ldfast(out3, TRUE)
 }

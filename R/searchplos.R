@@ -57,17 +57,6 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, start = 0, limit
   # Function to trim leading and trailing whitespace, including newlines
   trim <- function (x) gsub("\\n\\s+", " ", gsub("^\\s+|\\s+$", "", x))
   
-  # Function to insert "none" character strings where NULL values found to faciliate combining results
-  insertnones <- function(x) {
-    f2 <- strsplit(fields, ",")[[1]]
-    toadd <- f2[! f2 %in% names(x) ]
-    values <- rep("none", length(toadd))
-    names(values) <- toadd
-    values <- as.list(values)
-    x <- c(x, values)
-    x
-  }
-  
   # Enforce rate limits
   if(!Sys.getenv('plostime') == ""){
     timesince <- as.numeric(now()) - as.numeric(Sys.getenv('plostime'))
@@ -104,15 +93,13 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, start = 0, limit
 	if(min(getnumrecords, limit) < 1000) {
 	  if(!is.na(limit))
 	    args$rows <- limit
-	  tt <- getForm(url, 
-	                .params = args,
-# 	                ...,
-	                curl = curl)
+	  tt <- getForm(url, .params = args, ..., curl = curl)
 	  jsonout <- fromJSON(I(tt))
 	  tempresults <- jsonout$response$docs
 # 	  tempresults <- llply(tempresults, insertnones)
     # clean up whitespace and newlines
-	  tempresults <- lapply(tempresults, trim)
+# 	  tempresults <- lapply(tempresults, trim)
+	  tempresults <- lapply(tempresults, function(x) lapply(x, trim))
 	  if(returndf == TRUE){
 # 	    tempresults_ <- ldply(tempresults, function(x) as.data.frame(x))
 	    tempresults_ <- ldfast(tempresults, TRUE)
@@ -145,7 +132,8 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, start = 0, limit
 	    tempresults <- jsonout$response$docs 
 # 	    tempresults <- llply(tempresults, insertnones)
 	    # clean up whitespace and newlines
-	    tempresults <- lapply(tempresults, trim)
+# 	    tempresults <- lapply(tempresults, trim)
+	    tempresults <- lapply(tempresults, function(x) lapply(x, trim))
 	    out[[i]] <- tempresults
 	  }
 	  if(returndf == TRUE){

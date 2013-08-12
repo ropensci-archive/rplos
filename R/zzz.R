@@ -27,7 +27,7 @@ concat_todf <- function(x){
 #' @export
 #' @keywords internal
 addmissing <- function(x){
-	names_ <- names(x[[which.max(laply(x, length))]])
+	names_ <- names(x[[which.max(lapply(x, length))]])
 	
 	bbb <- function(x){
 		if(identical(names_[!names_ %in% names(x)], character(0))){x} else
@@ -85,4 +85,17 @@ ldfast <- function(x, convertvec=FALSE){
     do.call(rbind.fill, lapply(x, convert2df))
   else
     do.call(rbind.fill, x)
+}
+
+#' Function to insert "none" character strings where NULL values found to faciliate combining results
+#' @export
+#' @keywords internal
+insertnones <- function(x) {
+	f2 <- strsplit(fields, ",")[[1]]
+	toadd <- f2[! f2 %in% names(x) ]
+	values <- rep("none", length(toadd))
+	names(values) <- toadd
+	values <- as.list(values)
+	x <- c(x, values)
+	x
 }

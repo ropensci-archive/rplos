@@ -13,7 +13,7 @@
 #' 		DOI's found.
 #' @examples \dontrun{
 #' plosfigtabcaps('ecology', 'id', 500)
-#' plosfigtabcaps('ecology', 'figure_table_caption', 10)
+#' plosfigtabcaps(terms='ecology', fields='figure_table_caption', limit=10)
 #' }
 #' @export
 plosfigtabcaps <- function(terms, fields = NA, limit = NA,
@@ -22,47 +22,9 @@ plosfigtabcaps <- function(terms, fields = NA, limit = NA,
 {
 	url = 'http://api.plos.org/search'
 	
-  args <- list(apikey = key)
-  if(!is.na(terms))
-    args$q <- paste('figure_table_caption:', terms, sep="")
-  if(!is.na(fields))
-    args$fl <- fields
-  args$wt <- "json"
-  
-  argsgetnum <- args
-  argsgetnum$rows <- 0
-  getnum <- getForm(url, 
-    .params = argsgetnum,
-    ...,
-    curl = curl)
-  getnumrecords <- fromJSON(I(getnum))$response$numFound
-
-  if(min(getnumrecords, limit) < 1000) {
-    if(!is.na(limit))
-      args$rows <- limit
-    tt <- getForm(url, 
-      .params = args,
-      ...,
-      curl = curl)
-    jsonout <- fromJSON(I(tt))
-    tempresults <- jsonout$response$docs
-    data.frame( do.call(rbind, tempresults) )
-  } else
-    { 
-      gotothis <- min(getnumrecords, limit)
-      getvecs <- seq(from=1, to=gotothis, by=500)
-      args$rows <- 500
-      dfresults_ <- list()
-      for(i in 1:length(getvecs)) {
-        args$start <- i
-        tt <- getForm(url, 
-          .params = args,
-          ...,
-          curl = curl)
-        jsonout <- fromJSON(I(tt))
-        tempresults <- jsonout$response$docs  
-        dfresults_[[i]] <- data.frame( do.call(rbind, tempresults) )
-      }
-      do.call(rbind, dfresults_)
-    }
+	args <- compact(list(q = paste('figure_table_caption:', terms, sep=""), fl = fields, 
+	                     rows = limit, wt = "json", apikey = key))
+	out <- content(GET(url, query = args))
+	out2 <- out$response$docs
+	lapply(out2, function(x) lapply(x, trim))
 }

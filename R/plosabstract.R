@@ -1,16 +1,17 @@
 #' Search PLoS Journals abstracts.
 #' 
-#' @import httr 
+#' @import httr
 #' @importFrom plyr compact
 #' @param terms search terms for article abstract (character)
 #' @param fields fields to return from search (character) [e.g., 'id,title'], 
 #'    any combination of search fields [see plosfields$field]
 #' @param limit number of results to return (integer)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
-#' @return Abstract content, in addition to any other fields requested in a data.frame.
+#' @return Abstract content, in addition to any other fields requested in a list.
 #' @examples \dontrun{
 #' plosabstract(terms = 'drosophila', fields='abstract', limit=10)
-#' plosabstract(terms = 'drosophila', fields='author', limit = 5)
+#' plosabstract(terms = 'drosophila', fields='id,author', limit = 5)
+#' plosabstract(terms = 'drosophila', fields='id,author,title', limit = 5)
 #' }
 #' @export
 plosabstract <- function(terms = NULL, fields = NULL, limit = NULL,
@@ -22,7 +23,6 @@ plosabstract <- function(terms = NULL, fields = NULL, limit = NULL,
 											 rows = limit, wt = "json", apikey = key))
 	out <- content(GET(url, query = args))
 	out2 <- out$response$docs
-	out3 <- addmissing(out2)
-	out4 <- lapply(out3, concat_todf)
-	do.call(rbind, out4)
+	out3 <- addmissing(out2)  
+	lapply(out3, function(x) lapply(x, trim))
 }
