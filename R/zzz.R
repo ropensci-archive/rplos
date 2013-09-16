@@ -6,7 +6,9 @@
 #' @keywords internal
 concat_todf <- function(x){
 	if(inherits(x$author_display, "character")){
-		if(length(x$author_display) > 1){x$author_display<-paste(x$author_display, collapse=", ")} else
+	  if(length(x$author_display) > 1){
+	    x$author_display<-paste(x$author_display, collapse=", ")
+	  } else
 		{x$author_display<-x$author_display}
 		data.frame(x)
 	} else
@@ -87,7 +89,9 @@ ldfast <- function(x, convertvec=FALSE){
     do.call(rbind.fill, x)
 }
 
-#' Function to insert "none" character strings where NULL values found to faciliate combining results
+#' Function to insert "none" character strings where NULL values found to 
+#' faciliate combining results
+#' 
 #' @export
 #' @keywords internal
 insertnones <- function(x) 

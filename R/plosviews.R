@@ -4,7 +4,8 @@
 #' @importFrom stringr str_split
 #' @param search search terms (character)
 #' @param byfield field to search by, e.g., subject, author, etc. (character)
-#' @param views views all time (alltime) or views last 30 days (last30) (character)
+#' @param views views all time (alltime) or views last 30 days (last30) 
+#'    (character)
 #' @param limit number of results to return (integer)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param ... optional additional curl options (debugging tools mostly)
@@ -16,7 +17,8 @@
 #' plosviews('10.1371/journal.pone.0002154', 'id', 'alltime')
 #' plosviews('10.1371/journal.pone.0002154', 'id', 'last30')
 #' plosviews('10.1371/journal.pone.0002154', 'id', 'alltime,last30')
-#' plosviews(search='marine ecology', byfield='subject', views='alltime', limit=5)
+#' plosviews(search='marine ecology', byfield='subject', views='alltime', 
+#'    limit=5)
 #' plosviews('evolution', views = 'alltime', limit = 99)
 #' plosviews('bird', views = 'alltime', limit = 99)
 #' }

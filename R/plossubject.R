@@ -1,13 +1,17 @@
 #' Search PLoS Journals subjects.
 #' 
 #' @template plos
-#' @return Subject content, in addition to any other fields requested in a data.frame.
+#' @return Subject content, in addition to any other fields requested in a 
+#'    data.frame.
 #' @details See \url{http://www.plosone.org/taxonomy} for subject areas.
 #' @examples \dontrun{
 #' plossubject('marine ecology', limit = 5)
 #' plossubject(terms='marine ecology',  fields = 'id,journal,title', limit = 20)
-#' plossubject(terms='marine ecology', fields = 'id,journal', toquery='doc_type:full', limit = 9)
-#' plossubject(terms='marine ecology', fields = 'id,journal', toquery=list('doc_type:full','!article_type_facet:"Issue%20Image"'), limit = 9)
+#' plossubject(terms='marine ecology', fields = 'id,journal', 
+#'    toquery='doc_type:full', limit = 9)
+#' plossubject(terms='marine ecology', fields = 'id,journal', 
+#'    toquery=list('doc_type:full','!article_type_facet:"Issue%20Image"'), 
+#'    limit = 9)
 #' }
 #' @export
 

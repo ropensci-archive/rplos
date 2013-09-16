@@ -58,14 +58,17 @@
   function call. Open up your .Rprofile file on your
   computer, and put it an entry like:
 
-  options(PlosApiKey = "<your plos api key>")
+  options(PlosApiKey = "your plos api key")
 }
 \examples{
 \dontrun{
 plossubject('marine ecology', limit = 5)
 plossubject(terms='marine ecology',  fields = 'id,journal,title', limit = 20)
-plossubject(terms='marine ecology', fields = 'id,journal', toquery='doc_type:full', limit = 9)
-plossubject(terms='marine ecology', fields = 'id,journal', toquery=list('doc_type:full','!article_type_facet:"Issue\%20Image"'), limit = 9)
+plossubject(terms='marine ecology', fields = 'id,journal',
+   toquery='doc_type:full', limit = 9)
+plossubject(terms='marine ecology', fields = 'id,journal',
+   toquery=list('doc_type:full','!article_type_facet:"Issue\%20Image"'),
+   limit = 9)
 }
 }
 

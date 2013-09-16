@@ -41,7 +41,8 @@
 plosviews('10.1371/journal.pone.0002154', 'id', 'alltime')
 plosviews('10.1371/journal.pone.0002154', 'id', 'last30')
 plosviews('10.1371/journal.pone.0002154', 'id', 'alltime,last30')
-plosviews(search='marine ecology', byfield='subject', views='alltime', limit=5)
+plosviews(search='marine ecology', byfield='subject', views='alltime',
+   limit=5)
 plosviews('evolution', views = 'alltime', limit = 99)
 plosviews('bird', views = 'alltime', limit = 99)
 }

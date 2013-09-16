@@ -58,7 +58,7 @@
   function call. Open up your .Rprofile file on your
   computer, and put it an entry like:
 
-  options(PlosApiKey = "<your plos api key>")
+  options(PlosApiKey = "your plos api key")
 }
 \examples{
 \dontrun{

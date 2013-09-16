@@ -10,8 +10,8 @@
 #' @export
 
 plosfigtabcaps <- function(terms = NA, fields = 'id', toquery = NA, start = 0, 
-                        limit = NA, returndf = TRUE, sleep = 6, ..., curl = getCurlHandle(),
-                        key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")))
+  limit = NA, returndf = TRUE, sleep = 6, ..., curl = getCurlHandle(),
+  key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")))
 {
   searchplos(terms=paste('figure_table_caption:', '"', terms, '"', sep=""), fields = fields, 
              toquery = toquery, start = start, limit = limit, 
