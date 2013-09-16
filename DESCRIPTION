@@ -26,8 +26,6 @@ Imports:
     stringr,
     googleVis,
     httr,
-    grid,
-    gridExtra,
     lubridate,
     reshape2
 Suggests:
