@@ -3,7 +3,7 @@
 #' @import RJSONIO RCurl ggplot2
 #' @importFrom googleVis gvisMotionChart
 #' @importFrom stringr str_split str_sub
-#' @importFrom plyr ddply llply
+#' @importFrom plyr ddply llply summarise
 #' @importFrom reshape2 melt
 #' @param terms search terms (character)
 #' @param limit number of results to return (integer)
