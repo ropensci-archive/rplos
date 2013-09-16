@@ -24,10 +24,8 @@ plot_throughtime <- function(terms, limit = NA, gvis = FALSE,
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., curl = getCurlHandle() ) 
 {
+  ## avoid false positive 'unreferenced variable' warnings
   year=NULL; month=NULL;
-  ## setting summarise to NULL masks summarise() from ddply!
-  ## this may provoke some false-positive 'unreferenced variable' warnings ...
-  ## summarise=NULL;
   dateplot=NULL; 
   V1=NULL; value=NULL; variable=NULL
 
@@ -51,7 +49,7 @@ plot_throughtime <- function(terms, limit = NA, gvis = FALSE,
   tt_ <- as.data.frame(t(apply(ttt, 1, function(x) str_split(x[[1]], 
     pattern = "-")[[1]][1:2])))
   names(tt_) <- c("year", "month")
-  tsum <- ddply(tt_, c('year','month'), plyr::summarise, V1 = length(month))
+  tsum <- ddply(tt_, c('year','month'), summarise, V1 = length(month))
   tsum$dateplot <- as.Date(paste(tsum$month, "1", 
     str_sub(tsum$year, 3, 4), sep="/"), "%m/%d/%y")
   tsum$V1 <- as.numeric(tsum$V1)
@@ -86,7 +84,7 @@ plot_throughtime <- function(terms, limit = NA, gvis = FALSE,
     }
   temp <- llply(terms, search_)
   temp2 <- merge(temp[[1]], temp[[2]], by=c("year", "month"), 
-    all=T, suffixes=terms)
+    all=TRUE, suffixes=terms)
   temp2$dateplot <- as.Date(paste(temp2$month, "1", 
     str_sub(temp2$year, 3, 4), sep="/"), "%m/%d/%y")
   temp2m <- melt(temp2[, -c(1:2)], id = 3)
