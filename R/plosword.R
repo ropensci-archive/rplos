@@ -61,7 +61,7 @@ plosword <- function(terms, vis = FALSE,
     temp$Term <- terms
     temp$Term <- as.character(temp$Term)
       if (vis == "TRUE") {
-        if(!require(ggplot2)) stop("must first install 'ggplot2' package.")
+     ##   if(!require(ggplot2)) stop("must first install 'ggplot2' package.")
         p <- ggplot(temp, aes(x=Term, y=No_Articles)) + geom_bar(stat="identity")
       }
     return(list(table = temp, plot = p))
