@@ -24,7 +24,9 @@ plot_throughtime <- function(terms, limit = NA, gvis = FALSE,
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   ..., curl = getCurlHandle() ) 
 {
-  year=NULL; month=NULL; summarise=NULL; dateplot=NULL; 
+  ## avoid false positive 'unreferenced variable' warnings
+  year=NULL; month=NULL;
+  dateplot=NULL; 
   V1=NULL; value=NULL; variable=NULL
 
 	url = "http://api.plos.org/search"
@@ -82,7 +84,7 @@ plot_throughtime <- function(terms, limit = NA, gvis = FALSE,
     }
   temp <- llply(terms, search_)
   temp2 <- merge(temp[[1]], temp[[2]], by=c("year", "month"), 
-    all=T, suffixes=terms)
+    all=TRUE, suffixes=terms)
   temp2$dateplot <- as.Date(paste(temp2$month, "1", 
     str_sub(temp2$year, 3, 4), sep="/"), "%m/%d/%y")
   temp2m <- melt(temp2[, -c(1:2)], id = 3)
