@@ -4,7 +4,7 @@
 \usage{
   plosword(terms, vis = FALSE,
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-    ..., curl = getCurlHandle())
+    curl = getCurlHandle(), callopts = list())
 }
 \arguments{
   \item{terms}{search terms (character)}
@@ -15,8 +15,8 @@
   \item{key}{your PLoS API key, either enter, or loads from
   .Rprofile}
 
-  \item{...}{optional additional curl options (debugging
-  tools mostly)}
+  \item{callopts}{Optional additional curl options
+  (debugging tools mostly)}
 
   \item{curl}{If using in a loop, call getCurlHandle()
   first and pass the returned value in here (avoids
@@ -40,6 +40,9 @@ out <- plosword(list('monkey','replication','design','sunflower','whale'),
    vis = 'TRUE')
 out[[1]] # results in a data frame
 out[[2]] # results in a bar plot
+
+# Pass in curl options
+plosword('Helianthus', callopts=list(verbose=TRUE))
 }
 }
 

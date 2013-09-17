@@ -3,9 +3,10 @@
 \title{Search PLoS Journals authors.}
 \usage{
   plosauthor(terms = NA, fields = "id", toquery = NA,
-    start = 0, limit = NA, returndf = TRUE, sleep = 6, ...,
+    start = 0, limit = NA, returndf = TRUE, sleep = 6,
     curl = getCurlHandle(),
-    key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")))
+    key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
+    callopts = list())
 }
 \arguments{
   \item{terms}{search terms (character)}
@@ -38,8 +39,8 @@
   per minute, so one request every 6 seconds is about
   right.}
 
-  \item{...}{optional additional curl options (debugging
-  tools mostly)}
+  \item{callopts}{Optional additional curl options
+  (debugging tools mostly)}
 
   \item{curl}{If using in a loop, call getCurlHandle()
   first and pass the returned value in here (avoids
@@ -62,7 +63,7 @@
 }
 \examples{
 \dontrun{
-plosfigtabcaps('ecology', 'id', 100)
+plosfigtabcaps('ecology', 'id', 50)
 plosfigtabcaps(terms='ecology', fields='figure_table_caption', limit=10)
 }
 }

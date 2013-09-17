@@ -34,5 +34,7 @@ crossref_r <- function(count = NULL, to = NULL, from = NULL, type = NULL)
 {
 	url = "http://random.labs.crossref.org/dois"
 	args <- compact(list(count = count, to = to, from = from, type = type))
-	content(GET(url, query = args))
+	temp <- GET(url, query = args)
+  stop_for_status(temp)
+	content(temp)
 }

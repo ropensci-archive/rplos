@@ -1,3 +1,18 @@
+rplos 0.3.0
+------------
+
+NEW FEATURES
+
+* Added httr::stop_for_status() calls to a few functions to give informative http status errors when they happen
+
+BUG FIXES
+
+* Fixed bug in plot_throughtime() that was throwing errors and preventing fxn from working, thanks to Ben Bolker for the fix.
+* Simplified code in many functions to have cleaner and simpler code.
+* ... parameter in many functions changed to callopts=list(), which passes in curl options to a call to either RCurl::getForm() or httr::GET()
+* Fixed bug in function plosviews() that caused errors in some calls. Now forces full document searches, so that you get views data back for full papers only, not sections of papers. See package alm (https://github.com/ropensci/alm) for more in depth PLOS article-level metrics.
+
+
 rplos 0.2.0
 ------------
 

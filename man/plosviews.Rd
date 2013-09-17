@@ -2,10 +2,10 @@
 \alias{plosviews}
 \title{Search PLoS Journals by article views.}
 \usage{
-  plosviews(search, byfield = NA, views = "alltime",
-    limit = NA,
+  plosviews(search, byfield = NULL, views = "alltime",
+    limit = NULL,
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-    ..., curl = getCurlHandle())
+    callopts = list(), curl = getCurlHandle())
 }
 \arguments{
   \item{search}{search terms (character)}
@@ -21,17 +21,12 @@
   \item{key}{your PLoS API key, either enter, or loads from
   .Rprofile}
 
-  \item{...}{optional additional curl options (debugging
-  tools mostly)}
+  \item{callopts}{Optional additional curl options
+  (debugging tools mostly)}
 
   \item{curl}{If using in a loop, call getCurlHandle()
   first and pass the returned value in here (avoids
   unnecessary footprint)}
-}
-\value{
-  Number of search results (results = FALSE), or number of
-  search results plus the results themselves (results =
-  TRUE).
 }
 \description{
   Search PLoS Journals by article views.
@@ -41,9 +36,8 @@
 plosviews('10.1371/journal.pone.0002154', 'id', 'alltime')
 plosviews('10.1371/journal.pone.0002154', 'id', 'last30')
 plosviews('10.1371/journal.pone.0002154', 'id', 'alltime,last30')
-plosviews(search='marine ecology', byfield='subject', views='alltime',
-   limit=5)
-plosviews('evolution', views = 'alltime', limit = 99)
+plosviews(search='marine ecology', byfield='subject', limit=50)
+plosviews(search='evolution', views = 'alltime', limit = 99)
 plosviews('bird', views = 'alltime', limit = 99)
 }
 }

@@ -1,6 +1,6 @@
 #' Get short keys for journals to use in searching specific journals.
 #' 
-#' @import XML
+#' @import XML httr
 #' @return Journals name keys.
 #' @export
 #' @examples \dontrun{
@@ -8,10 +8,10 @@
 #' }
 journalnamekey <- function()
 {
-  names <- xmlToList(
-    getURL(
-      "http://api.plos.org/search/?q=*:*&rows=0&fl=id,cross_published_journal_key&facet=true&facet.field=cross_published_journal_key"
-    )
-  )[[3]][[2]][seq(2,18,2)]
-  as.character(names)
+  names <- 
+    content(GET(
+      "http://api.plos.org/search/?q=*:*&rows=0&fl=id,cross_published_journal_key&facet=true&facet.field=cross_published_journal_key&wt=json"
+    ))
+  temp <- names$facet_counts$facet_fields[[1]][sapply(names$facet_counts$facet_fields[[1]], is.character)]
+  do.call(c, temp)
 }

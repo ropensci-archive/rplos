@@ -14,7 +14,7 @@
 #'    lapply type call, do sleep parameter is used to prevent your IP address from being 
 #'    blocked. You can only do 10 requests per minute, so one request every 6 seconds is 
 #'    about right. 
-#' @param ... optional additional curl options (debugging tools mostly)
+#' @param callopts Optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
 #'  the returned value in here (avoids unnecessary footprint)
 #'

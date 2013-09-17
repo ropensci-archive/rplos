@@ -5,7 +5,7 @@
   searchplos(terms = NA, fields = "id", toquery = NA,
     start = 0, limit = NA, returndf = TRUE,
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-    sleep = 6, ..., curl = getCurlHandle())
+    sleep = 6, curl = getCurlHandle(), callopts = list())
 }
 \arguments{
   \item{terms}{search terms (character)}
@@ -38,8 +38,8 @@
   per minute, so one request every 6 seconds is about
   right.}
 
-  \item{...}{optional additional curl options (debugging
-  tools mostly)}
+  \item{callopts}{Optional additional curl options
+  (debugging tools mostly)}
 
   \item{curl}{If using in a loop, call getCurlHandle()
   first and pass the returned value in here (avoids

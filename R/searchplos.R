@@ -32,8 +32,8 @@
 
 searchplos <- function(terms = NA, fields = 'id', toquery = NA, start = 0, 
   limit = NA, returndf = TRUE, key = getOption("PlosApiKey", 
-  stop("need an API key for PLoS Journals")), sleep = 6, ..., 
-  curl = getCurlHandle())
+  stop("need an API key for PLoS Journals")), sleep = 6, curl = getCurlHandle(),
+  callopts=list())
 {
   # Function to trim leading and trailing whitespace, including newlines
   trim <- function (x) gsub("\\n\\s+", " ", gsub("^\\s+|\\s+$", "", x))
@@ -75,7 +75,7 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, start = 0,
 	if(min(getnumrecords, limit) < 1000) {
 	  if(!is.na(limit))
 	    args$rows <- limit
-	  tt <- getForm(url, .params = args, ..., curl = curl)
+	  tt <- getForm(url, .params = args, .opts=callopts, curl = curl)
 	  jsonout <- fromJSON(I(tt))
 	  tempresults <- jsonout$response$docs
 # 	  tempresults <- llply(tempresults, insertnones)
@@ -109,7 +109,7 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, start = 0,
 	    cat(i,"\n")
 	    args$start <- getvecs[i]
 	    args$rows <- getrows[i]
-	    tt <- getForm(url, .params = args,...,curl = curl)
+	    tt <- getForm(url, .params = args, .opts=callopts, curl = curl)
 	    jsonout <- fromJSON(I(tt))
 	    tempresults <- jsonout$response$docs 
 # 	    tempresults <- llply(tempresults, insertnones)

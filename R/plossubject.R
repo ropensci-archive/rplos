@@ -16,11 +16,11 @@
 #' @export
 
 plossubject <- function(terms = NA, fields = 'id', toquery = NA, start = 0, 
-        limit = NA, returndf = TRUE, sleep = 6, ..., curl = getCurlHandle(),
-        key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")))
+  limit = NA, returndf = TRUE, sleep = 6, curl = getCurlHandle(),
+  key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")), 
+  callopts=list())
 {
-  searchplos(terms=paste('subject:', '"', terms, '"', sep=""), fields = fields, 
-             toquery = toquery, start = start, limit = limit, 
-             returndf = returndf, sleep = 6, ..., curl = getCurlHandle(),
-             key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")))
+  searchplos(terms=paste('subject:', '"', terms, '"', sep=""), fields=fields, 
+             toquery=toquery, start=start, limit=limit, returndf=returndf, 
+             sleep=sleep, curl=curl, key=key, callopts=callopts)
 }
