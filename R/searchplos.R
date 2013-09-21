@@ -53,9 +53,15 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, start = 0,
 	if(is.na(limit)){limit <- 999} else{limit <- limit}
   args <- list()
   if(!is.na(toquery[[1]])) {
-    if(length(toquery)==1) {args$fq <- toquery} else
-        {args <- list(fq=toquery[[1]], fq=toquery[[2]])} } else
-          NULL
+    if(length(toquery)==1) {
+      args$fq <- toquery
+    } else
+    {
+      args <- toquery
+      names(args) <- rep("fq",length(args))
+    } 
+  } else
+  { NULL }
   args$api_key <- key
   if(!is.na(terms))
     args$q <- terms
