@@ -1,9 +1,10 @@
 #' Base function to search PLoS Journals
 #' 
-#' @import RJSONIO RCurl
+#' @import RCurl
 #' @importFrom plyr ldply
 #' @importFrom stringr str_extract
 #' @importFrom lubridate now
+#' @importFrom RJSONIO fromJSON
 #' @template plos
 #' @return Either a data.frame if returndf=TRUE, or a list if returndf=FALSE.
 #' @examples \dontrun{
@@ -42,7 +43,6 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, start = 0,
   if(!Sys.getenv('plostime') == ""){
     timesince <- as.numeric(now()) - as.numeric(Sys.getenv('plostime'))
     if(timesince < 6){
-#       assert_that(is.numeric(sleep))
       stopifnot(is.numeric(sleep))
       Sys.sleep(sleep)
     }
@@ -84,12 +84,8 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, start = 0,
 	  tt <- getForm(url, .params = args, .opts=callopts, curl = curl)
 	  jsonout <- fromJSON(I(tt))
 	  tempresults <- jsonout$response$docs
-# 	  tempresults <- llply(tempresults, insertnones)
-    # clean up whitespace and newlines
-# 	  tempresults <- lapply(tempresults, trim)
 	  tempresults <- lapply(tempresults, function(x) lapply(x, trim))
 	  if(returndf == TRUE){
-# 	    tempresults_ <- ldply(tempresults, function(x) as.data.frame(x))
 	    tempresults_ <- ldfast(tempresults, TRUE)
 	  } else
 	  {tempresults_ <- tempresults}
@@ -98,7 +94,8 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, start = 0,
 	  
 	} else
 	{ 
-	  byby <- 1000
+# 	  byby <- 1000
+	  byby <- 500
 	  
 	  getvecs <- seq(from=1, to=getnumrecords, by=byby)
 	  lastnum <- as.numeric(str_extract(getnumrecords, "[0-9]{3}$"))
@@ -115,17 +112,18 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, start = 0,
 	    cat(i,"\n")
 	    args$start <- getvecs[i]
 	    args$rows <- getrows[i]
-	    tt <- getForm(url, .params = args, .opts=callopts, curl = curl)
-	    jsonout <- fromJSON(I(tt))
-	    tempresults <- jsonout$response$docs 
-# 	    tempresults <- llply(tempresults, insertnones)
-	    # clean up whitespace and newlines
-# 	    tempresults <- lapply(tempresults, trim)
+# 	    tt <- getForm(url, .params = args, .opts=callopts, curl = curl)
+	    tt <- GET(url, query=args, callopts)
+      stop_for_status(tt)
+	    jsonout <- content(tt)
+# 	    jsonout <- fromJSON(I(tt))
+	    tempresults <- jsonout$response$docs
 	    tempresults <- lapply(tempresults, function(x) lapply(x, trim))
 	    out[[i]] <- tempresults
 	  }
 	  if(returndf == TRUE){
-	    tempresults_ <- do.call(rbind.data.frame, lapply(out, function(x) do.call(rbind, x)))
+	    tempresults_ <- do.call(rbind.data.frame, 
+                              lapply(out, function(x) do.call(rbind, x)))
 	  } else
 	  {tempresults_ <- out}
 	  return(tempresults_)
