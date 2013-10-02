@@ -1,0 +1,88 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{An R Markdown Vignette made with knitr}
+-->
+
+rplos tutorial
+=====
+
+The `rplos` package interacts with the API services of [PLoS](http://www.plos.org/) (Public Library of Science) Journals. In order to use `rplos`, you need to obtain [your own key](http://api.plos.org/registration/) to their API services. Instruction for obtaining and installing keys so they load automatically when you launch R are on our GitHub Wiki page [Installation and use of API keys](https://github.com/ropensci/rOpenSci/wiki/Installation-and-use-of-API-keys).
+
+This tutorial will go through three use cases to demonstrate the kinds
+of things possible in `rplos`.
+
+* Search across PLoS papers in various sections of papers
+* Search for terms and visualize results as a histogram OR as a plot through time
+* Text mining of scientific literature
+
+
+## Load package from CRAN
+
+```{r install, eval=FALSE}
+install.packages("rplos")
+```
+
+
+## Search across PLoS papers in various sections of papers
+
+searchplos is a general search, and in this case searches for the term
+**Helianthus** and returns the DOI's of matching papers
+
+```{r load}
+library(rplos)
+```
+
+```{r search1, message=FALSE, warning=FALSE, comment=NA, cache=TRUE}
+searchplos(terms = "Helianthus", fields = "id", limit = 5)
+```
+
+### plosauthor searches across the author fields at PLoS, and in this case returns the authors of the matching papers
+
+```{r}
+plosauthor(terms = "Eisen", fields = "author", limit = 10, results = "TRUE")
+```
+
+## Search for terms and visualize results as a histogram OR as a plot through time
+
+plosword allows you to search for 1 to K words and visualize the results
+as a histogram, comparing number of matching papers for each word
+
+```{r}
+out <- plosword(list("monkey", "Helianthus", "sunflower", "protein", "whale"), 
+    vis = "TRUE")
+out$table  # results in a data frame
+```
+
+
+```{r}
+out$plot  # and the figure
+```
+
+![](tutorial_images/plosword.png)
+
+
+## Visualize terms
+
+`plot_througtime` allows you to search for up to 2 words and visualize the results as a line plot through time, comparing number of articles matching through time. Visualize with the ggplot2 package, only up to two terms for now.
+
+```{r}
+plot_throughtime(terms = "phylogeny", limit = 200, gvis = FALSE)
+```
+
+![...](tutorial_images/plothroughtime1.png)
+
+```{r}
+plot_throughtime(list("drosophila", "monkey"), 100)
+```
+
+![](tutorial_images/plothroughtime2.png)
+
+### OR using google visualizations through the googleVis package, check it your self using, e.g.
+
+```{r}
+plot_throughtime(terms = list("drosophila", "flower"), limit = 200, gvis = TRUE)
+```
+
+...And a google visualization will render on your local browser and you
+can play with three types of plots (point, histogram, line), all through
+time. The plot is not shown here, but try it out for yourself!!
