@@ -15,71 +15,113 @@ of things possible in `rplos`.
 * Search for terms and visualize results as a histogram OR as a plot through time
 * Text mining of scientific literature
 
-
-## Load package from CRAN
+### Load package from CRAN
 
 ```{r install, eval=FALSE}
 install.packages("rplos")
 ```
 
-
-## Search across PLoS papers in various sections of papers
-
-searchplos is a general search, and in this case searches for the term
-**Helianthus** and returns the DOI's of matching papers
-
-```{r load}
+```{r load, message=FALSE, warning=FALSE}
 library(rplos)
 ```
 
-```{r search1, message=FALSE, warning=FALSE, comment=NA, cache=TRUE}
+### Search across PLoS papers in various sections of papers
+
+`searchplos` is a general search, and in this case searches for the term
+**Helianthus** and returns the DOI's of matching papers
+
+```{r searchplos1, message=FALSE, warning=FALSE, comment=NA, cache=TRUE}
 searchplos(terms = "Helianthus", fields = "id", limit = 5)
 ```
 
-### plosauthor searches across the author fields at PLoS, and in this case returns the authors of the matching papers
+Get only full article DOIs
 
-```{r}
-plosauthor(terms = "Eisen", fields = "author", limit = 10, results = "TRUE")
+```{r searchplos2, message=FALSE, warning=FALSE, comment=NA, cache=TRUE}
+searchplos(terms="*:*", fields='id', toquery='doc_type:full', start=0, limit=20)
 ```
 
-## Search for terms and visualize results as a histogram OR as a plot through time
+Get DOIs for only PLoS One articles
 
-plosword allows you to search for 1 to K words and visualize the results
+```{r searchplos3, message=FALSE, warning=FALSE, comment=NA, cache=TRUE}
+searchplos(terms="*:*", fields='id', toquery='cross_published_journal_key:PLoSONE', start=0, limit=15)
+```
+
+Get DOIs for full article in PLoS One
+
+```{r searchplos4, message=FALSE, warning=FALSE, comment=NA, cache=TRUE}
+searchplos(terms="*:*", fields='id',
+   toquery=list('cross_published_journal_key:PLoSONE', 'doc_type:full'),
+   start=0, limit=20)
+```
+
+Serch for many terms
+
+```{r searchplos5, message=FALSE, warning=FALSE, comment=NA, cache=TRUE}
+terms <- c('ecology','evolution','science')
+lapply(terms, function(x) searchplos(x, limit=2))
+```
+
+### Search on specific sections
+
+A suite of functions were created as light wrappers around `searchplos` as a shorthand to search specific sections of a paper. 
+
+* `plosauthor` searchers in authors
+* `plosabstract` searches in abstracts
+* `plostitle` searches in titles
+* `plosfigtabcaps` searches in figure and table captions
+* `plossubject` searches in subject areas
+
+`plosauthor` searches across authors, and in this case returns the authors of the matching papers. the fields parameter determines what is returned
+
+```{r plosauthor, message=FALSE, warning=FALSE, comment=NA, cache=TRUE}
+plosauthor(terms = "Eisen", fields = "author", limit = 10)
+```
+
+`plosabstract` searches across abstracts, and in this case returns the id and title of the matching papers
+
+```{r plosabstract, message=FALSE, warning=FALSE, comment=NA, cache=TRUE}
+plosabstract(terms = 'drosophila', fields='id,title', limit = 5)
+```
+
+`plostitle` searches across titles, and in this case returns the title and journal of the matching papers
+
+```{r plostitle, message=FALSE, warning=FALSE, comment=NA, cache=TRUE}
+plostitle(terms='drosophila', fields='title,journal', limit=10)
+```
+
+### Search for terms and visualize results as a histogram OR as a plot through time
+
+`plosword` allows you to search for 1 to K words and visualize the results
 as a histogram, comparing number of matching papers for each word
 
-```{r}
+```{r plosword, message=FALSE, warning=FALSE, comment=NA, cache=TRUE}
 out <- plosword(list("monkey", "Helianthus", "sunflower", "protein", "whale"), 
     vis = "TRUE")
-out$table  # results in a data frame
+out$table
+out$plot
 ```
 
+You can also pass in curl options, in this case get verbose information on the curl call.
 
-```{r}
-out$plot  # and the figure
+```{r plosword2, message=FALSE, warning=FALSE, comment=NA, cache=TRUE}
+plosword('Helianthus', callopts=list(verbose=TRUE))
 ```
 
-![](tutorial_images/plosword.png)
-
-
-## Visualize terms
+### Visualize terms
 
 `plot_througtime` allows you to search for up to 2 words and visualize the results as a line plot through time, comparing number of articles matching through time. Visualize with the ggplot2 package, only up to two terms for now.
 
-```{r}
+```{r throughtime1, message=FALSE, warning=FALSE, comment=NA, cache=TRUE}
 plot_throughtime(terms = "phylogeny", limit = 200, gvis = FALSE)
 ```
 
-![...](tutorial_images/plothroughtime1.png)
-
-```{r}
+```{r throughtime2, message=FALSE, warning=FALSE, comment=NA, cache=TRUE}
 plot_throughtime(list("drosophila", "monkey"), 100)
 ```
 
-![](tutorial_images/plothroughtime2.png)
+OR using google visualizations through the googleVis package, check it your self using, e.g.
 
-### OR using google visualizations through the googleVis package, check it your self using, e.g.
-
-```{r}
+```{r gvis, eval=FALSE}
 plot_throughtime(terms = list("drosophila", "flower"), limit = 200, gvis = TRUE)
 ```
 
