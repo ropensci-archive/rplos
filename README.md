@@ -61,4 +61,5 @@ plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE'
 
 ![plosword](/inst/assets/img/plosword.png)
 
-rplos is part of the [rOpenSci Project](http://ropensci.github.com)
+[![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+
