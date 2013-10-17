@@ -1,6 +1,7 @@
-# `rplos`
+rplos
+=====
 
-[![Build Status](https://api.travis-ci.org/ropensci/rplos.png)](https://travis-ci.org/ropensci/rplos)
+<!-- [![Build Status](https://api.travis-ci.org/ropensci/rplos.png)](https://travis-ci.org/ropensci/rplos) -->
 
 ### Install
 
