@@ -1,19 +1,12 @@
-language: python
-env:
-- R_LIBS_USER=~/R
-install:
-- sudo apt-add-repository -y ppa:marutter/rdev
-- sudo apt-get update
-- sudo apt-get install r-base-dev libxml2-dev libcurl4-gnutls-dev qpdf texinfo texlive-latex-extra
-  texlive-fonts-recommended texlive-fonts-extra
-- ! '[ ! -d ~/R ] && mkdir ~/R'
-- R --version
-- R -e '.libPaths(); sessionInfo()'
-- Rscript -e 'install.packages("rplos", dep = TRUE, repos = "http://cran.rstudio.org")'
-script:
-- make install
-- make check
-notifications:
+language: c
+script: ./travis-tool.sh run_tests
+before_script:
+  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
+  - chmod 755 ./travis-tool.sh
+  - ./travis-tool.sh bootstrap
+  - ./travis-tool.sh install_deps
+  - ./travis-tool.sh github_package assertthat
+  notifications:
   hipchat:
     rooms:
       secure: j+olvPf5JFXY3megcZfS4ltlJtJiNEoOww5ReeHgjgdXoA2HX/thhXiukovt5lGBdYysyebXipqIed5G3fx0fg+us6QViVHuScnNfsETPJ0zDc9dwMyEppnUTijA16XxlK4khj/Cttjufx1jJhlm8UyQeNfRaoLi10QqxW4DObU=
