@@ -5,6 +5,7 @@
 #' @examples \dontrun{
 #' plosabstract(terms = 'drosophila', fields='abstract', limit=10)
 #' plosabstract(terms = 'drosophila', fields='id,author', limit = 5)
+#' plosabstract(terms = 'drosophila', fields='author', limit = 5)
 #' plosabstract(terms = 'drosophila', fields='id,author,title', limit = 5)
 #' plosabstract(terms = 'drosophila', fields='id,author,title', limit = 5, 
 #'  callopts=list(verbose=TRUE))

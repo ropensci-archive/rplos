@@ -3,11 +3,13 @@ rplos 0.3.5
 
 NEW FEATURES
 
-* 
+* All search functions (searchplos(), plosabstract(), plosauthor(), plosfigtabcaps(), plossubject(), and plostitle()) gain highlighting argument, setting to TRUE (default=FALSE) returns matching sentence fragments that were matched. NOTE that if highlighting=TRUE the output can be a list of data.frame's if returndf=TRUE, with two named elements 'data' and 'highlighting', or a list of lists if returndf=FALSE.
+* All search functions (searchplos(), plosabstract(), plosauthor(), plosfigtabcaps(), plossubject(), and plostitle()) gain sort argument. You can pass a field to sort by even if you don't return that field in the output, e.g., sort='counter_total_month desc'. 
+* A tiny function parsehighlight() added to parse out html code from highlighting output.
 
 BUG FIXES
 
-* 
+* Some examples in docs didn't work - fixed them.
 
 rplos 0.3.0
 ------------

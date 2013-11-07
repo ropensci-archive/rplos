@@ -12,6 +12,6 @@ test_that("plot_throughtime returns the correct class", {
 })
 
 test_that("plot_throughtime returns the correct dimensions", {
-  expect_equal(nrow(a$data), 86)
+  expect_equal(nrow(a$data), 88)
   expect_equal(nrow(b$data), 176)
 })

@@ -79,7 +79,8 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, sort = NA,
   trim <- function (x) gsub("\\n\\s+", " ", gsub("^\\s+|\\s+$", "", x))
   
   # Function to get rid of html code stuff in highlighting outputs
-  parsehighlight <- function(x) gsub("<[^>]+>","",x[[1]])
+  parsehighlight <- function(x) if(length(x) == 0){ NA } else { gsub("<[^>]+>","",x[[1]]) }
+#   parsehighlight <- function(x) gsub("<[^>]+>","",x)
   
   # Enforce rate limits
   if(!Sys.getenv('plostime') == ""){
@@ -137,6 +138,19 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, sort = NA,
 	  jsonout <- fromJSON(I(tt))
 	  tempresults <- jsonout$response$docs
 	  tempresults <- lapply(tempresults, function(x) lapply(x, trim))
+    
+    # replace any empty lists with some data
+	  tempresults <- tempresults[!sapply(tempresults, length) == 0]
+    
+    # combine results if more than length=1
+	  lengths <- sapply(tempresults, function(x) lapply(x, length))
+    if(any(lengths > 1)){
+      foo <- function(x){
+        if(length(x) > 1){ paste(x, collapse="; ") } else { x }
+      }      
+      tempresults <- lapply(tempresults, function(x) lapply(x, foo))
+    }
+    
 	  if(returndf){
       dat <- do.call(rbind, lapply(tempresults, function(x) data.frame(x, stringsAsFactors=FALSE)))
       hldt <- ldply(lapply(jsonout$highlighting, parsehighlight))
@@ -178,6 +192,16 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, sort = NA,
 	    jsonout <- content(tt)
 	    tempresults <- jsonout$response$docs
 	    tempresults <- lapply(tempresults, function(x) lapply(x, trim))
+      
+	    # combine results if more than length=1
+	    lengths <- sapply(tempresults, function(x) lapply(x, length))
+	    if(any(lengths > 1)){
+	      foo <- function(x){
+	        if(length(x) > 1){ paste(x, collapse="; ") } else { x }
+	      }      
+	      tempresults <- lapply(tempresults, function(x) lapply(x, foo))
+	    }
+      
 	    hlres <- jsonout$highlighting
 	    out[[i]] <- list(dat=tempresults, hl=hlres)
 	  }

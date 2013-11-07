@@ -5,10 +5,10 @@
 #'    data.frame.
 #' @examples \dontrun{
 #' plosauthor('Smith', 'id', limit=50)
-#' plosauthor('Smith', 'figure_table_caption', limit=10)
+#' plosauthor(terms='Smith', fields='id,author', limit=10)
 #' 
 #' # Highlighting
-#' plosauthor(terms='Jones', fields='figure_table_caption', limit = 2, highlighting=TRUE)
+#' plosauthor(terms='Jones', fields='author', limit = 2, highlighting=TRUE)
 #' }
 #' @export
 

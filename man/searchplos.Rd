@@ -109,7 +109,7 @@ searchplos(terms="*:*", fields='id,alm_twitterCount',
 # Show me all articles that have these two words less then about 15 words apart.
 searchplos(terms='everything:"sports alcohol"~15', fields='title', toquery='doc_type:full')
 
-# Now let’s try to narrow our results to 7 words apart.  Here I’m changing the “~15″ to “~7″
+# Now let's try to narrow our results to 7 words apart. Here I'm changing the ~15 to ~7
 searchplos(terms='everything:"sports alcohol"~7', fields='title', toquery='doc_type:full')
 
 # Now, lets also only look at articles that have seen some activity on twitter.
