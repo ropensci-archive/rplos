@@ -10,6 +10,10 @@ NEW FEATURES
 BUG FIXES
 
 * Some examples in docs didn't work - fixed them.
+* Fixed bug in searchplos() that was causing elements of a return field to cause failure because they were longer than 1 (e.g., authors). Now concatenating elements of length > 1. 
+* Fixed bug in searchplos() that was causing elements of length 0 to cause failure. Now removing elements of length 0.
+* Fixed parsehighlight function to return NA if highlighting return of length 0.
+* Fixed broken test for plotauthor(), plosabstract(), and plot_throughtime().
 
 rplos 0.3.0
 ------------

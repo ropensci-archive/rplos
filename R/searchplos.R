@@ -193,6 +193,9 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, sort = NA,
 	    tempresults <- jsonout$response$docs
 	    tempresults <- lapply(tempresults, function(x) lapply(x, trim))
       
+	    # replace any empty lists with some data
+	    tempresults <- tempresults[!sapply(tempresults, length) == 0]
+	    
 	    # combine results if more than length=1
 	    lengths <- sapply(tempresults, function(x) lapply(x, length))
 	    if(any(lengths > 1)){
