@@ -1,6 +1,3 @@
-# Sample .travis.yml for R projects.
-#
-# See README.md for instructions.
 
 language: c
 script: ./travis-tool.sh run_tests
@@ -10,3 +7,7 @@ before_script:
   - ./travis-tool.sh bootstrap
   - ./travis-tool.sh install_deps
   - ./travis-tool.sh github_package assertthat
+notifications:
+  hipchat:
+    rooms:
+      secure: j+olvPf5JFXY3megcZfS4ltlJtJiNEoOww5ReeHgjgdXoA2HX/thhXiukovt5lGBdYysyebXipqIed5G3fx0fg+us6QViVHuScnNfsETPJ0zDc9dwMyEppnUTijA16XxlK4khj/Cttjufx1jJhlm8UyQeNfRaoLi10QqxW4DObU=
