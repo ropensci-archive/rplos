@@ -12,15 +12,19 @@
 #' plossubject(terms='marine ecology', fields = 'id,journal', 
 #'    toquery=list('doc_type:full','!article_type_facet:"Issue%20Image"'), 
 #'    limit = 9)
+#' 
+#' # Highlighting
+#' plossubject(terms='marine ecology', fields='id,journal', limit = 2, highlighting=TRUE)
 #' }
 #' @export
 
-plossubject <- function(terms = NA, fields = 'id', toquery = NA, start = 0, 
-  limit = NA, returndf = TRUE, sleep = 6, curl = getCurlHandle(),
+plossubject <- function(terms = NA, fields = 'id', toquery = NA, sort = NA, 
+  highlighting = FALSE, start = 0, limit = NA, returndf = TRUE, sleep = 6, 
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")), 
-  callopts=list())
+  curl = getCurlHandle(), callopts=list())
 {
   searchplos(terms=paste('subject:', '"', terms, '"', sep=""), fields=fields, 
-             toquery=toquery, start=start, limit=limit, returndf=returndf, 
-             sleep=sleep, curl=curl, key=key, callopts=callopts)
+             toquery=toquery, sort=sort, highlighting=highlighting, start=start, 
+             limit=limit, returndf=returndf, sleep=sleep, curl=curl, key=key, 
+             callopts=callopts)
 }

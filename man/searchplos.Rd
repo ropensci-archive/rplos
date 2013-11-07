@@ -3,7 +3,8 @@
 \title{Base function to search PLoS Journals}
 \usage{
   searchplos(terms = NA, fields = "id", toquery = NA,
-    start = 0, limit = NA, returndf = TRUE,
+    sort = NA, highlighting = FALSE, start = 0, limit = NA,
+    returndf = TRUE,
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
     sleep = 6, curl = getCurlHandle(), callopts = list())
 }
@@ -17,6 +18,14 @@
   \item{toquery}{List specific fields to query (if NA, all
   queried). The possibilities for this parameter are the
   same as those for the fields parameter.}
+
+  \item{sort}{Sort results according to a particular field,
+  and specify ascending (asc) or descending (desc) after a
+  space; see examples.}
+
+  \item{highlighting}{If TRUE, text found matching your
+  query given as a separate data.frame in output. If FALSE
+  (default), highlighting results not returned.}
 
   \item{start}{Record to start at (used in combination with
   limit when you need to cycle through more results than
@@ -82,6 +91,45 @@ searchplos(terms="*:*", fields='id',
 library(plyr)
 terms <- c('ecology','evolution','science')
 llply(terms, function(x) searchplos(x, limit=2))
+
+# Query to get some PLOS article-level metrics, notice difference between two outputs
+out <- searchplos(terms="*:*", fields='id,counter_total_all,alm_twitterCount',
+   toquery='doc_type:full')
+out_sorted <- searchplos(terms="*:*", fields='id,counter_total_all,alm_twitterCount',
+   toquery='doc_type:full', sort='counter_total_all desc')
+head(out)
+head(out_sorted)
+
+# A list of articles about social networks that are popular on a social network
+searchplos(terms="*:*", fields='id,alm_twitterCount',
+   toquery=list('doc_type:full','subject:"Social networks"',
+                'alm_twitterCount:[100 TO 10000]'),
+   sort='counter_total_month desc')
+
+# Show me all articles that have these two words less then about 15 words apart.
+searchplos(terms='everything:"sports alcohol"~15', fields='title', toquery='doc_type:full')
+
+# Now let’s try to narrow our results to 7 words apart.  Here I’m changing the “~15″ to “~7″
+searchplos(terms='everything:"sports alcohol"~7', fields='title', toquery='doc_type:full')
+
+# Now, lets also only look at articles that have seen some activity on twitter.
+# Add “fq=alm_twitterCount:[1 TO *]” as a parameter within the toquery argument.
+searchplos(terms='everything:"sports alcohol"~7', fields='alm_twitterCount,title',
+   toquery=list('doc_type:full','alm_twitterCount:[1 TO *]'))
+searchplos(terms='everything:"sports alcohol"~7', fields='alm_twitterCount,title',
+   toquery=list('doc_type:full','alm_twitterCount:[1 TO *]'),
+   sort='counter_total_month desc')
+
+# Highlighting!! What is that? Setting highlighting=TRUE gives you back the usual
+# fields you want, plus a separate data.frame of the places where the search terms
+# were found
+searchplos(terms='everything:"sports alcohol"~7', fields='alm_twitterCount,title',
+   toquery=list('doc_type:full','alm_twitterCount:[1 TO *]'), highlighting=TRUE)
+
+# Highlighting with lots of results
+out <- searchplos(terms='everything:"experiment"', fields='id,title',
+   toquery='doc_type:full', limit=1100, highlighting = TRUE)
+lapply(out, head)
 }
 }
 

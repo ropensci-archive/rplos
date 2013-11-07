@@ -4,6 +4,10 @@
 #'    'plosfields']
 #' @param toquery List specific fields to query (if NA, all queried). The possibilities
 #'    for this parameter are the same as those for the fields parameter.
+#' @param sort Sort results according to a particular field, and specify ascending (asc)
+#'    or descending (desc) after a space; see examples.
+#' @param highlighting If TRUE, text found matching your query given as a separate data.frame
+#' 	  in output. If FALSE (default), highlighting results not returned.
 #' @param start Record to start at (used in combination with limit when 
 #' you need to cycle through more results than the max allowed=1000)
 #' @param limit Number of results to return (integer)

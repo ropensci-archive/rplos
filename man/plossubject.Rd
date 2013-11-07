@@ -3,10 +3,10 @@
 \title{Search PLoS Journals subjects.}
 \usage{
   plossubject(terms = NA, fields = "id", toquery = NA,
-    start = 0, limit = NA, returndf = TRUE, sleep = 6,
-    curl = getCurlHandle(),
+    sort = NA, highlighting = FALSE, start = 0, limit = NA,
+    returndf = TRUE, sleep = 6,
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-    callopts = list())
+    curl = getCurlHandle(), callopts = list())
 }
 \arguments{
   \item{terms}{search terms (character)}
@@ -18,6 +18,14 @@
   \item{toquery}{List specific fields to query (if NA, all
   queried). The possibilities for this parameter are the
   same as those for the fields parameter.}
+
+  \item{sort}{Sort results according to a particular field,
+  and specify ascending (asc) or descending (desc) after a
+  space; see examples.}
+
+  \item{highlighting}{If TRUE, text found matching your
+  query given as a separate data.frame in output. If FALSE
+  (default), highlighting results not returned.}
 
   \item{start}{Record to start at (used in combination with
   limit when you need to cycle through more results than
@@ -70,6 +78,9 @@ plossubject(terms='marine ecology', fields = 'id,journal',
 plossubject(terms='marine ecology', fields = 'id,journal',
    toquery=list('doc_type:full','!article_type_facet:"Issue\%20Image"'),
    limit = 9)
+
+# Highlighting
+plossubject(terms='marine ecology', fields='id,journal', limit = 2, highlighting=TRUE)
 }
 }
 
