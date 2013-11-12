@@ -2,4 +2,6 @@
 ^Makefile$
 .travis.yml
 man-roxygen
-tests
+tests/test-all.R
+inst/assets
+inst/stuff

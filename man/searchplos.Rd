@@ -113,7 +113,7 @@ searchplos(terms='everything:"sports alcohol"~15', fields='title', toquery='doc_
 searchplos(terms='everything:"sports alcohol"~7', fields='title', toquery='doc_type:full')
 
 # Now, lets also only look at articles that have seen some activity on twitter.
-# Add “fq=alm_twitterCount:[1 TO *]” as a parameter within the toquery argument.
+# Add "fq=alm_twitterCount:[1 TO *]" as a parameter within the toquery argument.
 searchplos(terms='everything:"sports alcohol"~7', fields='alm_twitterCount,title',
    toquery=list('doc_type:full','alm_twitterCount:[1 TO *]'))
 searchplos(terms='everything:"sports alcohol"~7', fields='alm_twitterCount,title',

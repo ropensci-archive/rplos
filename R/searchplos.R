@@ -50,7 +50,7 @@
 #' searchplos(terms='everything:"sports alcohol"~7', fields='title', toquery='doc_type:full')
 #' 
 #' # Now, lets also only look at articles that have seen some activity on twitter. 
-#' # Add “fq=alm_twitterCount:[1 TO *]” as a parameter within the toquery argument.
+#' # Add "fq=alm_twitterCount:[1 TO *]" as a parameter within the toquery argument.
 #' searchplos(terms='everything:"sports alcohol"~7', fields='alm_twitterCount,title', 
 #'    toquery=list('doc_type:full','alm_twitterCount:[1 TO *]'))
 #' searchplos(terms='everything:"sports alcohol"~7', fields='alm_twitterCount,title', 
@@ -144,7 +144,7 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, sort = NA,
     
     # combine results if more than length=1
 	  lengths <- sapply(tempresults, function(x) lapply(x, length))
-    if(any(lengths > 1)){
+    if(any(unlist(lengths) > 1)){
       foo <- function(x){
         if(length(x) > 1){ paste(x, collapse="; ") } else { x }
       }      
@@ -152,7 +152,7 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, sort = NA,
     }
     
 	  if(returndf){
-      dat <- do.call(rbind, lapply(tempresults, function(x) data.frame(x, stringsAsFactors=FALSE)))
+      dat <- do.call(rbind.fill, lapply(tempresults, function(x) data.frame(x, stringsAsFactors=FALSE)))
       hldt <- ldply(lapply(jsonout$highlighting, parsehighlight))
       if(highlighting){
         return( list(data=dat, highlighting=hldt) )
@@ -198,7 +198,7 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, sort = NA,
 	    
 	    # combine results if more than length=1
 	    lengths <- sapply(tempresults, function(x) lapply(x, length))
-	    if(any(lengths > 1)){
+	    if(any(unlist(lengths) > 1)){
 	      foo <- function(x){
 	        if(length(x) > 1){ paste(x, collapse="; ") } else { x }
 	      }      
@@ -210,7 +210,7 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, sort = NA,
 	  }
 	  if(returndf){
 	    dat <- do.call(rbind.data.frame, lapply(lapply(out, "[[", "dat"), function(x) do.call(rbind, lapply(x, function(x) data.frame(x, stringsAsFactors=FALSE)) ) ))
-	    hldt <- do.call(rbind, lapply(lapply(out, "[[", "hl"), function(x) ldply(lapply(x, parsehighlight)) ))
+	    hldt <- do.call(rbind.fill, lapply(lapply(out, "[[", "hl"), function(x) ldply(lapply(x, parsehighlight)) ))
 	    if(highlighting){
 	      return( list(data=dat, highlighting=hldt) )
 	    } else

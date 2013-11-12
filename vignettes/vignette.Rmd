@@ -1,0 +1,6 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{rplos vignette}
+-->
+
+Check out the vignette for the rplos package at [http://ropensci.org/tutorials/rplos_tutorial.html](http://ropensci.org/tutorials/rplos_tutorial.html)

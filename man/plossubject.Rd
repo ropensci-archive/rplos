@@ -80,7 +80,8 @@ plossubject(terms='marine ecology', fields = 'id,journal',
    limit = 9)
 
 # Highlighting
-plossubject(terms='marine ecology', fields='id,journal', limit = 2, highlighting=TRUE)
+plossubject(terms='marine ecology', fields='id,title', toquery='doc_type:full',
+   limit = 2, highlighting=TRUE)
 }
 }
 
