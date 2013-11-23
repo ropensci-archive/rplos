@@ -9,23 +9,35 @@
     curl = getCurlHandle(), callopts = list())
 }
 \arguments{
-  \item{terms}{search terms (character)}
+  \item{terms}{search terms (character). You can search on
+  specific fields by doing 'field:your query'. For example,
+  a real query on a specific field would be
+  'author:Smith'.}
 
   \item{fields}{fields to return from search (character)
   [e.g., 'id,title'], any combination of search fields
-  [type 'data(plosfields)', then 'plosfields']}
+  [type 'data(plosfields)', then 'plosfields'].}
 
-  \item{toquery}{List specific fields to query (if NA, all
-  queried). The possibilities for this parameter are the
-  same as those for the fields parameter.}
+  \item{toquery}{List specific fields to filter the query
+  on (if NA, all queried).  The options for this parameter
+  are the same as those for the fields parameter.  Note
+  that using this parameter doesn't influence the actual
+  query, but is used to filter the resuls to a subset of
+  those you want returned. For example, if you want full
+  articles only, you can do 'doc_type:full'. In another
+  example, if you want only results from the journal PLOS
+  One, you can do 'cross_published_journal_key:PLoSONE'.
+  See journalnamekey() for journal abbreviations.}
 
   \item{sort}{Sort results according to a particular field,
   and specify ascending (asc) or descending (desc) after a
-  space; see examples.}
+  space; see examples. For example, to sort the
+  counter_total_all field in descending fashion, do
+  sort='counter_total_all desc'}
 
   \item{highlighting}{If TRUE, text found matching your
   query given as a separate data.frame in output. If FALSE
-  (default), highlighting results not returned.}
+  (default), nothing returned in the highlighting slot.}
 
   \item{start}{Record to start at (used in combination with
   limit when you need to cycle through more results than
@@ -37,7 +49,7 @@
   (defaults to TRUE).}
 
   \item{key}{Your PLoS API key, either enter as the key, or
-  loads from .Rprofile. See details.}
+  loads from .Rprofile.  See details.}
 
   \item{sleep}{Number of seconds to wait between requests.
   No need to use this for a single call to searchplos.
@@ -62,6 +74,13 @@
   Search PLoS Journals figure and table captions.
 }
 \details{
+  Get a PLOS API key at \url{http://alm.plos.org/}. Note
+  that the API key you recieve at that URL works for the
+  PLOS ALM (article-level metrics) API as well. See the alm
+  package
+  \url{http://cran.r-project.org/web/packages/alm/index.html}
+  to access PLOS ALM data.
+
   You can store your PLOS Search API key in your .Rprofile
   file so that you don't have to enter the key each
   function call. Open up your .Rprofile file on your
@@ -77,5 +96,8 @@ plosfigtabcaps(terms='ecology', fields='figure_table_caption', limit=10)
 # Highlighting
 plosfigtabcaps(terms='ecology', fields='figure_table_caption', limit = 2, highlighting=TRUE)
 }
+}
+\seealso{
+  plosauthor, plosabstract, plostitle, plosfigtabcaps
 }
 

@@ -67,6 +67,14 @@
 #' out <- searchplos(terms='everything:"experiment"', fields='id,title', 
 #'    toquery='doc_type:full', limit=1100, highlighting = TRUE)
 #' lapply(out, head)
+#' 
+#' # Return partial doc parts
+#' ## Return Abstracts only
+#' out <- searchplos(terms='*:*', fields='doc_partial_body,doc_partial_parent_id', 
+#'    toquery=list('doc_type:partial', 'doc_partial_type:Abstract'), limit=3)
+#' ## Return Title's only
+#' out <- searchplos(terms='*:*', fields='doc_partial_body,doc_partial_parent_id', 
+#'    toquery=list('doc_type:partial', 'doc_partial_type:Title'), limit=3)
 #' }
 #' @export
 
