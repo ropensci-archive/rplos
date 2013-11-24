@@ -1,6 +1,6 @@
 #' Base function to search PLoS Journals
 #' 
-#' @import RCurl
+#' @import RCurl data.table
 #' @importFrom plyr ldply
 #' @importFrom stringr str_extract
 #' @importFrom lubridate now
@@ -78,7 +78,7 @@
 #' }
 #' @export
 
-searchplos <- function(terms = NA, fields = 'id', toquery = NA, sort = NA, 
+searchplos <- function(terms = NA, fields = 'id', toquery = NA, sort = NA,
   highlighting = FALSE, start = 0, limit = NA, returndf = TRUE, 
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")), 
   sleep = 6, curl = getCurlHandle(), callopts=list())
@@ -88,6 +88,16 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, sort = NA,
   
   # Function to get rid of html code stuff in highlighting outputs
   parsehighlight <- function(x) if(length(x) == 0){ NA } else { gsub("<[^>]+>","",x[[1]]) }
+  parsehighlight2 <- function(alist){
+    tt <- c()
+    for(i in seq_along(alist)){
+      res <- c(names(alist[i]), alist[[i]][1])
+      names(res)[1] <- "id"
+      res <- lapply(res, parsehighlight)
+      tt[[i]] <- res
+    }
+    tt
+  }
 #   parsehighlight <- function(x) gsub("<[^>]+>","",x)
   
   # Enforce rate limits
@@ -160,8 +170,10 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, sort = NA,
     }
     
 	  if(returndf){
-      dat <- do.call(rbind.fill, lapply(tempresults, function(x) data.frame(x, stringsAsFactors=FALSE)))
-      hldt <- ldply(lapply(jsonout$highlighting, parsehighlight))
+#       dat <- do.call(rbind.fill, lapply(tempresults, function(x) data.frame(x, stringsAsFactors=FALSE)))
+      dat <- data.frame(rbindlist(tempresults))
+      #       hldt <- ldply(lapply(jsonout$highlighting, parsehighlight))
+      hldt <- data.frame(rbindlist(parsehighlight2(jsonout$highlighting)))
       if(highlighting){
         return( list(data=dat, highlighting=hldt) )
       } else
@@ -217,8 +229,10 @@ searchplos <- function(terms = NA, fields = 'id', toquery = NA, sort = NA,
 	    out[[i]] <- list(dat=tempresults, hl=hlres)
 	  }
 	  if(returndf){
-	    dat <- do.call(rbind.data.frame, lapply(lapply(out, "[[", "dat"), function(x) do.call(rbind, lapply(x, function(x) data.frame(x, stringsAsFactors=FALSE)) ) ))
-	    hldt <- do.call(rbind.fill, lapply(lapply(out, "[[", "hl"), function(x) ldply(lapply(x, parsehighlight)) ))
+# 	    dat <- do.call(rbind.data.frame, lapply(lapply(out, "[[", "dat"), function(x) do.call(rbind, lapply(x, function(x) data.frame(x, stringsAsFactors=FALSE)) ) ))
+#       hldt <- do.call(rbind.fill, lapply(lapply(out, "[[", "hl"), function(x) ldply(lapply(x, parsehighlight)) ))
+	    dat <- data.frame(rbindlist(lapply(lapply(out, "[[", "dat"), function(x) rbindlist(x))))
+	    hldt <- data.frame(rbindlist(lapply(lapply(out, "[[", "hl"), function(x) rbindlist(parsehighlight2(x)) )))
 	    if(highlighting){
 	      return( list(data=dat, highlighting=hldt) )
 	    } else

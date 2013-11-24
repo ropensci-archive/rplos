@@ -27,7 +27,8 @@ Imports:
     googleVis,
     httr,
     lubridate,
-    reshape2
+    reshape2,
+    data.table
 Suggests:
     roxygen2,
     testthat
