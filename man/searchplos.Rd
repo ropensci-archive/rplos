@@ -4,7 +4,6 @@
 \usage{
   searchplos(q = NA, fl = "id", fq = NA, sort = NA,
     highlighting = FALSE, start = 0, limit = NA,
-    returndf = TRUE,
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
     sleep = 6, curl = getCurlHandle(), callopts = list(),
     terms, fields, toquery)
@@ -46,9 +45,6 @@
 
   \item{limit}{Number of results to return (integer)}
 
-  \item{returndf}{Return data.frame of results or not
-  (defaults to TRUE).}
-
   \item{key}{Your PLoS API key, either enter as the key, or
   loads from .Rprofile.  See details.}
 
@@ -77,8 +73,8 @@
   fq param.}
 }
 \value{
-  Either a data.frame if returndf=TRUE, or a list if
-  returndf=FALSE.
+  An object of class "plos", with a list of length two,
+  each element being a list itself.
 }
 \description{
   Base function to search PLoS Journals
@@ -97,6 +93,12 @@
   computer, and put it an entry like:
 
   options(PlosApiKey = "your plos api key")
+
+  Highlighting: Read more about highlighting here:
+  url{http://wiki.apache.org/solr/HighlightingParameters}
+
+  Faceting: Read more about faceting here:
+  url{http://wiki.apache.org/solr/SimpleFacetParameters}
 }
 \examples{
 \dontrun{
@@ -154,7 +156,12 @@ plos_todf(out, 'high')
 # Highlighting with lots of results
 out <- searchplos(q='everything:"experiment"', fl='id,title', fq='doc_type:full',
    limit=1100, highlighting = TRUE)
-head(plos_todf(out))
+head(plos_todf(out, "high"))
+
+# Highlighting specific fields
+out <- searchplos(q='everything:"experiment"', fl='id,title', fq='doc_type:full',
+   limit=1100, highlighting = TRUE, h.fl = 'title')
+head(plos_todf(out, "high"))
 
 # Return partial doc parts
 ## Return Abstracts only

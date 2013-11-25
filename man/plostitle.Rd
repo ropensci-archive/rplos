@@ -45,9 +45,6 @@
 
   \item{limit}{Number of results to return (integer)}
 
-  \item{returndf}{Return data.frame of results or not
-  (defaults to TRUE).}
-
   \item{key}{Your PLoS API key, either enter as the key, or
   loads from .Rprofile.  See details.}
 
@@ -96,6 +93,12 @@
   computer, and put it an entry like:
 
   options(PlosApiKey = "your plos api key")
+
+  Highlighting: Read more about highlighting here:
+  url{http://wiki.apache.org/solr/HighlightingParameters}
+
+  Faceting: Read more about faceting here:
+  url{http://wiki.apache.org/solr/SimpleFacetParameters}
 }
 \examples{
 \dontrun{

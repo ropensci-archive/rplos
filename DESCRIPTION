@@ -28,7 +28,8 @@ Imports:
     httr,
     lubridate,
     reshape2,
-    data.table
+    data.table,
+    whisker
 Suggests:
     roxygen2,
     testthat
@@ -51,3 +52,5 @@ Collate:
     'zzz.R'
     'startup.R'
     'utils.r'
+    'high_browse.r'
+    'highplos.r'
