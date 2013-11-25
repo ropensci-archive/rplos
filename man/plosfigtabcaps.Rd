@@ -2,32 +2,32 @@
 \alias{plosfigtabcaps}
 \title{Search PLoS Journals figure and table captions.}
 \usage{
-  plosfigtabcaps(terms = NA, fields = "id", toquery = NA,
-    sort = NA, highlighting = FALSE, start = 0, limit = NA,
+  plosfigtabcaps(q = NA, fl = "id", fq = NA, sort = NA,
+    highlighting = FALSE, start = 0, limit = NA,
     returndf = TRUE, sleep = 6,
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
     curl = getCurlHandle(), callopts = list())
 }
 \arguments{
-  \item{terms}{search terms (character). You can search on
+  \item{q}{Search terms (character). You can search on
   specific fields by doing 'field:your query'. For example,
   a real query on a specific field would be
   'author:Smith'.}
 
-  \item{fields}{fields to return from search (character)
-  [e.g., 'id,title'], any combination of search fields
-  [type 'data(plosfields)', then 'plosfields'].}
+  \item{fl}{Fields to return from search (character) [e.g.,
+  'id,title'], any combination of search fields [type
+  'data(plosfields)', then 'plosfields'].}
 
-  \item{toquery}{List specific fields to filter the query
-  on (if NA, all queried).  The options for this parameter
-  are the same as those for the fields parameter.  Note
-  that using this parameter doesn't influence the actual
-  query, but is used to filter the resuls to a subset of
-  those you want returned. For example, if you want full
-  articles only, you can do 'doc_type:full'. In another
-  example, if you want only results from the journal PLOS
-  One, you can do 'cross_published_journal_key:PLoSONE'.
-  See journalnamekey() for journal abbreviations.}
+  \item{fq}{List specific fields to filter the query on (if
+  NA, all queried).  The options for this parameter are the
+  same as those for the fl parameter.  Note that using this
+  parameter doesn't influence the actual query, but is used
+  to filter the resuls to a subset of those you want
+  returned. For example, if you want full articles only,
+  you can do 'doc_type:full'. In another example, if you
+  want only results from the journal PLOS One, you can do
+  'cross_published_journal_key:PLoSONE'. See
+  journalnamekey() for journal abbreviations.}
 
   \item{sort}{Sort results according to a particular field,
   and specify ascending (asc) or descending (desc) after a
@@ -65,9 +65,18 @@
   \item{curl}{If using in a loop, call getCurlHandle()
   first and pass the returned value in here (avoids
   unnecessary footprint)}
+
+  \item{terms}{DEPRECATED PARAMETER - replaced with the q
+  param.}
+
+  \item{fields}{DEPRECATED PARAMETER - replaced with the fl
+  param.}
+
+  \item{toquery}{DEPRECATED PARAMETER - replaced with the
+  fq param.}
 }
 \value{
-  Fields that you specify to return in a data.frame, along
+  fields that you specify to return in a data.frame, along
   with the DOI's found.
 }
 \description{
@@ -91,10 +100,10 @@
 \examples{
 \dontrun{
 plosfigtabcaps('ecology', 'id', limit=100)
-plosfigtabcaps(terms='ecology', fields='figure_table_caption', limit=10)
+plosfigtabcaps(q='ecology', fl='figure_table_caption', limit=10)
 
 # Highlighting
-plosfigtabcaps(terms='ecology', fields='figure_table_caption', limit = 2, highlighting=TRUE)
+plosfigtabcaps(q='ecology', fl='figure_table_caption', limit = 2, highlighting=TRUE)
 }
 }
 \seealso{

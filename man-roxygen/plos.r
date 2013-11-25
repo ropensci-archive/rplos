@@ -1,11 +1,11 @@
-#' @param terms search terms (character). You can search on specific fields by 
+#' @param q Search terms (character). You can search on specific fields by 
 #'    doing 'field:your query'. For example, a real query on a specific field would 
 #'    be 'author:Smith'.
-#' @param fields fields to return from search (character) [e.g., 'id,title'], 
+#' @param fl Fields to return from search (character) [e.g., 'id,title'], 
 #'    any combination of search fields [type 'data(plosfields)', then 
 #'    'plosfields'].
-#' @param toquery List specific fields to filter the query on (if NA, all queried). 
-#'    The options for this parameter are the same as those for the fields parameter.
+#' @param fq List specific fields to filter the query on (if NA, all queried). 
+#'    The options for this parameter are the same as those for the fl parameter.
 #'    Note that using this parameter doesn't influence the actual query, but is used
 #'    to filter the resuls to a subset of those you want returned. For example, 
 #'    if you want full articles only, you can do 'doc_type:full'. In another example, 
@@ -31,6 +31,9 @@
 #' @param callopts Optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
 #'  the returned value in here (avoids unnecessary footprint)
+#' @param terms DEPRECATED PARAMETER - replaced with the q param. 
+#' @param fields DEPRECATED PARAMETER - replaced with the fl param. 
+#' @param toquery DEPRECATED PARAMETER - replaced with the fq param. 
 #' @seealso plosauthor, plosabstract, plostitle, plosfigtabcaps
 #'
 #' @details 

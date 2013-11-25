@@ -2,32 +2,32 @@
 \alias{plossubject}
 \title{Search PLoS Journals subjects.}
 \usage{
-  plossubject(terms = NA, fields = "id", toquery = NA,
-    sort = NA, highlighting = FALSE, start = 0, limit = NA,
+  plossubject(q = NA, fl = "id", fq = NA, sort = NA,
+    highlighting = FALSE, start = 0, limit = NA,
     returndf = TRUE, sleep = 6,
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
     curl = getCurlHandle(), callopts = list())
 }
 \arguments{
-  \item{terms}{search terms (character). You can search on
+  \item{q}{Search terms (character). You can search on
   specific fields by doing 'field:your query'. For example,
   a real query on a specific field would be
   'author:Smith'.}
 
-  \item{fields}{fields to return from search (character)
-  [e.g., 'id,title'], any combination of search fields
-  [type 'data(plosfields)', then 'plosfields'].}
+  \item{fl}{Fields to return from search (character) [e.g.,
+  'id,title'], any combination of search fields [type
+  'data(plosfields)', then 'plosfields'].}
 
-  \item{toquery}{List specific fields to filter the query
-  on (if NA, all queried).  The options for this parameter
-  are the same as those for the fields parameter.  Note
-  that using this parameter doesn't influence the actual
-  query, but is used to filter the resuls to a subset of
-  those you want returned. For example, if you want full
-  articles only, you can do 'doc_type:full'. In another
-  example, if you want only results from the journal PLOS
-  One, you can do 'cross_published_journal_key:PLoSONE'.
-  See journalnamekey() for journal abbreviations.}
+  \item{fq}{List specific fields to filter the query on (if
+  NA, all queried).  The options for this parameter are the
+  same as those for the fl parameter.  Note that using this
+  parameter doesn't influence the actual query, but is used
+  to filter the resuls to a subset of those you want
+  returned. For example, if you want full articles only,
+  you can do 'doc_type:full'. In another example, if you
+  want only results from the journal PLOS One, you can do
+  'cross_published_journal_key:PLoSONE'. See
+  journalnamekey() for journal abbreviations.}
 
   \item{sort}{Sort results according to a particular field,
   and specify ascending (asc) or descending (desc) after a
@@ -65,6 +65,15 @@
   \item{curl}{If using in a loop, call getCurlHandle()
   first and pass the returned value in here (avoids
   unnecessary footprint)}
+
+  \item{terms}{DEPRECATED PARAMETER - replaced with the q
+  param.}
+
+  \item{fields}{DEPRECATED PARAMETER - replaced with the fl
+  param.}
+
+  \item{toquery}{DEPRECATED PARAMETER - replaced with the
+  fq param.}
 }
 \value{
   Subject content, in addition to any other fields
@@ -91,15 +100,15 @@
 \examples{
 \dontrun{
 plossubject('marine ecology', limit = 5)
-plossubject(terms='marine ecology',  fields = 'id,journal,title', limit = 20)
-plossubject(terms='marine ecology', fields = 'id,journal',
-   toquery='doc_type:full', limit = 9)
-plossubject(terms='marine ecology', fields = 'id,journal',
-   toquery=list('doc_type:full','!article_type_facet:"Issue\%20Image"'),
+plossubject(q='marine ecology',  fl = 'id,journal,title', limit = 20)
+plossubject(q='marine ecology', fl = 'id,journal',
+   fq='doc_type:full', limit = 9)
+plossubject(q='marine ecology', fl = 'id,journal',
+   fq=list('doc_type:full','!article_type_facet:"Issue\%20Image"'),
    limit = 9)
 
 # Highlighting
-plossubject(terms='marine ecology', fields='id,title', toquery='doc_type:full',
+plossubject(q='marine ecology', fl='id,title', fq='doc_type:full',
    limit = 2, highlighting=TRUE)
 }
 }
