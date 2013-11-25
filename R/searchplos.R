@@ -6,7 +6,8 @@
 #' @importFrom lubridate now
 #' @importFrom RJSONIO fromJSON
 #' @template plos
-#' @return Either a data.frame if returndf=TRUE, or a list if returndf=FALSE.
+#' @return An object of class "plos", with a list of length two, each element being 
+#' a list itself.
 #' @examples \dontrun{
 #' plos_todf(searchplos('ecology', 'id,publication_date', limit = 2))
 #' plos_todf(searchplos('ecology', 'id,title', limit = 2))
@@ -70,7 +71,12 @@
 #' # Highlighting with lots of results
 #' out <- searchplos(q='everything:"experiment"', fl='id,title', fq='doc_type:full', 
 #'    limit=1100, highlighting = TRUE)
-#' head(plos_todf(out))
+#' head(plos_todf(out, "high"))
+#' 
+#' # Highlighting specific fields
+#' out <- searchplos(q='everything:"experiment"', fl='id,title', fq='doc_type:full', 
+#'    limit=1100, highlighting = TRUE, h.fl = 'title')
+#' head(plos_todf(out, "high"))
 #' 
 #' # Return partial doc parts
 #' ## Return Abstracts only
@@ -83,7 +89,7 @@
 #' @export
 
 searchplos <- function(q = NA, fl = 'id', fq = NA, sort = NA,
-  highlighting = FALSE, start = 0, limit = NA, returndf = TRUE, 
+  highlighting = FALSE, start = 0, limit = NA,
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")), 
   sleep = 6, curl = getCurlHandle(), callopts=list(), terms, fields, toquery)
 {

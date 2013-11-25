@@ -20,7 +20,6 @@
 #' @param start Record to start at (used in combination with limit when 
 #'    you need to cycle through more results than the max allowed=1000)
 #' @param limit Number of results to return (integer)
-#' @param returndf Return data.frame of results or not (defaults to TRUE).
 #' @param key Your PLoS API key, either enter as the key, or loads from .Rprofile. 
 #'    See details.
 #' @param sleep Number of seconds to wait between requests. No need to use this for
@@ -47,3 +46,9 @@
 #' computer, and put it an entry like:
 #' 
 #' options(PlosApiKey = "your plos api key")
+#' 
+#' Highlighting:
+#' Read more about highlighting here: url{http://wiki.apache.org/solr/HighlightingParameters}
+#' 
+#' Faceting:
+#' Read more about faceting here: url{http://wiki.apache.org/solr/SimpleFacetParameters}
