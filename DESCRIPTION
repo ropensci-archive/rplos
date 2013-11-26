@@ -52,5 +52,5 @@ Collate:
     'zzz.R'
     'startup.R'
     'utils.r'
-    'high_browse.r'
     'highplos.r'
+    'high_brow.r'

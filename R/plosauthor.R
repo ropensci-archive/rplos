@@ -13,12 +13,12 @@
 #' @export
 
 plosauthor <- function(q = NA, fl = 'id', fq = NA, sort = NA, 
-  highlighting = FALSE, start = 0, limit = NA, returndf = TRUE, sleep = 6, 
+  highlighting = FALSE, start = 0, limit = NA, sleep = 6, 
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")), 
-  curl = getCurlHandle(), callopts=list())
+  curl = getCurlHandle(), callopts=list(), ...)
 {
   searchplos(q=paste('author:', '"', q, '"', sep=""), fl=fl, 
              fq=fq, sort=sort, highlighting=highlighting, start=start, 
-             limit=limit, returndf=returndf, sleep=sleep, curl=curl, key=key, 
-             callopts=callopts)
+             limit=limit, sleep=sleep, curl=curl, key=key, 
+             callopts=callopts, ...)
 }

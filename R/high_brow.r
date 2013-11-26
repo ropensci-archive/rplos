@@ -7,13 +7,13 @@
 #'    If FALSE, the file is written, but not opened.
 #' @examples \dontrun{
 #' out <- highplos(q='alcohol', hl.fl = 'abstract', limit=10)
-#' high_browse(out)
+#' high_brow(out)
 #' 
 #' out <- highplos(q='alcohol', hl.fl = 'abstract', limit=1200)
-#' high_browse(out)
+#' high_brow(out)
 #' }
 
-high_browse <- function(input=NULL, output=NULL, browse=TRUE)
+high_brow <- function(input=NULL, output=NULL, browse=TRUE)
 {
   if(is.null(input))
     stop("Please supply some input")

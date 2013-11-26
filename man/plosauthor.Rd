@@ -3,10 +3,9 @@
 \title{Search PLoS Journals authors.}
 \usage{
   plosauthor(q = NA, fl = "id", fq = NA, sort = NA,
-    highlighting = FALSE, start = 0, limit = NA,
-    returndf = TRUE, sleep = 6,
+    highlighting = FALSE, start = 0, limit = NA, sleep = 6,
     key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-    curl = getCurlHandle(), callopts = list())
+    curl = getCurlHandle(), callopts = list(), ...)
 }
 \arguments{
   \item{q}{Search terms (character). You can search on
