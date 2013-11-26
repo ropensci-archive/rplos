@@ -5,20 +5,20 @@
 #'    data.frame.
 #' @examples \dontrun{
 #' plosauthor('Smith', 'id', limit=50)
-#' plosauthor(terms='Smith', fields='id,author', limit=10)
+#' plosauthor(q='Smith', fl='id,author', limit=10)
 #' 
 #' # Highlighting
-#' plosauthor(terms='Jones', fields='author', limit = 2, highlighting=TRUE)
+#' plosauthor(q='Jones', fl='author', limit = 2, highlighting=TRUE)
 #' }
 #' @export
 
-plosauthor <- function(terms = NA, fields = 'id', toquery = NA, sort = NA, 
-  highlighting = FALSE, start = 0, limit = NA, returndf = TRUE, sleep = 6, 
+plosauthor <- function(q = NA, fl = 'id', fq = NA, sort = NA, 
+  highlighting = FALSE, start = 0, limit = NA, sleep = 6, 
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")), 
-  curl = getCurlHandle(), callopts=list())
+  curl = getCurlHandle(), callopts=list(), ...)
 {
-  searchplos(terms=paste('author:', '"', terms, '"', sep=""), fields=fields, 
-             toquery=toquery, sort=sort, highlighting=highlighting, start=start, 
-             limit=limit, returndf=returndf, sleep=sleep, curl=curl, key=key, 
-             callopts=callopts)
+  searchplos(q=paste('author:', '"', q, '"', sep=""), fl=fl, 
+             fq=fq, sort=sort, highlighting=highlighting, start=start, 
+             limit=limit, sleep=sleep, curl=curl, key=key, 
+             callopts=callopts, ...)
 }

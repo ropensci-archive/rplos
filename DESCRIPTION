@@ -1,6 +1,6 @@
 Package: rplos
 Version: 0.3.6
-Date: 2013-11-12
+Date: 2013-11-24
 Description: A programmatic interface to the
     Web Service methods provided by the Public Library
     of Science journals for search.
@@ -28,7 +28,8 @@ Imports:
     httr,
     lubridate,
     reshape2,
-    data.table
+    data.table,
+    whisker
 Suggests:
     roxygen2,
     testthat
@@ -50,3 +51,6 @@ Collate:
     'crossref_r.R'
     'zzz.R'
     'startup.R'
+    'utils.r'
+    'highplos.r'
+    'high_brow.r'

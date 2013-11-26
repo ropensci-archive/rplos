@@ -6,26 +6,26 @@
 #' @details See \url{http://www.plosone.org/taxonomy} for subject areas.
 #' @examples \dontrun{
 #' plossubject('marine ecology', limit = 5)
-#' plossubject(terms='marine ecology',  fields = 'id,journal,title', limit = 20)
-#' plossubject(terms='marine ecology', fields = 'id,journal', 
-#'    toquery='doc_type:full', limit = 9)
-#' plossubject(terms='marine ecology', fields = 'id,journal', 
-#'    toquery=list('doc_type:full','!article_type_facet:"Issue%20Image"'), 
+#' plossubject(q='marine ecology',  fl = 'id,journal,title', limit = 20)
+#' plossubject(q='marine ecology', fl = 'id,journal', 
+#'    fq='doc_type:full', limit = 9)
+#' plossubject(q='marine ecology', fl = 'id,journal', 
+#'    fq=list('doc_type:full','!article_type_facet:"Issue%20Image"'), 
 #'    limit = 9)
 #' 
 #' # Highlighting
-#' plossubject(terms='marine ecology', fields='id,title', toquery='doc_type:full', 
+#' plossubject(q='marine ecology', fl='id,title', fq='doc_type:full', 
 #'    limit = 2, highlighting=TRUE)
 #' }
 #' @export
 
-plossubject <- function(terms = NA, fields = 'id', toquery = NA, sort = NA, 
+plossubject <- function(q = NA, fl = 'id', fq = NA, sort = NA, 
   highlighting = FALSE, start = 0, limit = NA, returndf = TRUE, sleep = 6, 
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")), 
   curl = getCurlHandle(), callopts=list())
 {
-  searchplos(terms=paste('subject:', '"', terms, '"', sep=""), fields=fields, 
-             toquery=toquery, sort=sort, highlighting=highlighting, start=start, 
+  searchplos(q=paste('subject:', '"', q, '"', sep=""), fl=fl, 
+             fq=fq, sort=sort, highlighting=highlighting, start=start, 
              limit=limit, returndf=returndf, sleep=sleep, curl=curl, key=key, 
              callopts=callopts)
 }
