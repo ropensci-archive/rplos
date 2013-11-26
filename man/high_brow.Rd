@@ -5,7 +5,7 @@
   high_brow(input = NULL, output = NULL, browse = TRUE)
 }
 \arguments{
-  \item{x}{Input, usually output from a call to
+  \item{input}{Input, usually output from a call to
   \code{\link[rplos]{highplos}}}
 
   \item{output}{Path and file name for output file. If

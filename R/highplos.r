@@ -52,7 +52,7 @@ highplos <- function(q, hl.fl = NULL, hl.snippets = NULL, hl.fragsize = NULL,
      hl.regex.maxAnalyzedChars = hl.regex.maxAnalyzedChars))
   
   argsgetnum <- list(q=q, rows=0, wt="json", api_key=key)
-  getnum <- getForm(url, .params = argsgetnum, curl = curl, .encoding=)
+  getnum <- getForm(url, .params = argsgetnum, curl = getCurlHandle(), .encoding=)
   getnumrecords <- fromJSON(I(getnum))$response$numFound
   if(getnumrecords > limit){getnumrecords <- limit} else{getnumrecords <- getnumrecords}
   

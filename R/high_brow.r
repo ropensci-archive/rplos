@@ -1,10 +1,11 @@
 #' Browse highlighted fragments in your default browser.
 #' 
 #' @import whisker
-#' @param x Input, usually output from a call to \code{\link[rplos]{highplos}}
+#' @param input Input, usually output from a call to \code{\link[rplos]{highplos}}
 #' @param output Path and file name for output file. If NULL, a temp file is used.
 #' @param browse Browse file in your default browse immediately after file creation.
 #'    If FALSE, the file is written, but not opened.
+#' @export
 #' @examples \dontrun{
 #' out <- highplos(q='alcohol', hl.fl = 'abstract', limit=10)
 #' high_brow(out)
