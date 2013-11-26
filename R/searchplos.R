@@ -96,7 +96,7 @@ searchplos <- function(q = NA, fl = 'id', fq = NA, sort = NA,
   calls <- deparse(sys.calls())
   calls_vec <- sapply(c("terms", "fields", "toquery"), function(x) grepl(x, calls))
   if(any(calls_vec))
-    stop("The parameters terms, fields, and toquery \nhave been replaced with q, fl, and fq, respectively")
+    stop("The parameters terms, fields, and toquery have been replaced with q, fl, and fq, respectively")
   
   # Function to trim leading and trailing whitespace, including newlines
   trim <- function (x) gsub("\\n\\s+", " ", gsub("^\\s+|\\s+$", "", x))

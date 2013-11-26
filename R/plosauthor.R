@@ -17,8 +17,5 @@ plosauthor <- function(q = NA, fl = 'id', fq = NA, sort = NA,
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")), 
   curl = getCurlHandle(), callopts=list(), ...)
 {
-  searchplos(q=paste('author:', '"', q, '"', sep=""), fl=fl, 
-             fq=fq, sort=sort, highlighting=highlighting, start=start, 
-             limit=limit, sleep=sleep, curl=curl, key=key, 
-             callopts=callopts, ...)
+	searchplos(q=paste('author:', '"', q, '"', sep=""), ...)
 }
