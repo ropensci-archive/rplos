@@ -8,13 +8,13 @@
 #' @export
 #' @examples \dontrun{
 #' out <- highplos(q='alcohol', hl.fl = 'abstract', limit=10)
-#' high_brow(out)
+#' highbrow(out)
 #' 
 #' out <- highplos(q='alcohol', hl.fl = 'abstract', limit=1200)
-#' high_brow(out)
+#' highbrow(out)
 #' }
 
-high_brow <- function(input=NULL, output=NULL, browse=TRUE)
+highbrow <- function(input=NULL, output=NULL, browse=TRUE)
 {
   if(is.null(input))
     stop("Please supply some input")
@@ -26,7 +26,11 @@ high_brow <- function(input=NULL, output=NULL, browse=TRUE)
   outlist <- list()
   for(i in seq_along(input)){
     tmp$doi <- names(input[i])
-    tmp$content <- input[[i]][[1]]
+    content_tmp <- input[[i]][[1]]
+    if(length(content_tmp) > 1){
+      content_tmp <- paste(content_tmp, collapse=' ... ')
+    }
+    tmp$content <- content_tmp
     outlist[[i]] <- tmp
   }
   

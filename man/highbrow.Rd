@@ -1,8 +1,8 @@
-\name{high_brow}
-\alias{high_brow}
+\name{highbrow}
+\alias{highbrow}
 \title{Browse highlighted fragments in your default browser.}
 \usage{
-  high_brow(input = NULL, output = NULL, browse = TRUE)
+  highbrow(input = NULL, output = NULL, browse = TRUE)
 }
 \arguments{
   \item{input}{Input, usually output from a call to
@@ -21,10 +21,10 @@
 \examples{
 \dontrun{
 out <- highplos(q='alcohol', hl.fl = 'abstract', limit=10)
-high_brow(out)
+highbrow(out)
 
 out <- highplos(q='alcohol', hl.fl = 'abstract', limit=1200)
-high_brow(out)
+highbrow(out)
 }
 }
 
