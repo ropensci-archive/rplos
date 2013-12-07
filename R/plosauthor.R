@@ -12,10 +12,16 @@
 #' }
 #' @export
 
-plosauthor <- function(q = NA, fl = 'id', fq = NA, sort = NA, 
-  highlighting = FALSE, start = 0, limit = NA, sleep = 6, 
-  key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")), 
-  curl = getCurlHandle(), callopts=list(), ...)
+plosauthor <- function(q = NA, fl = 'id', fq = NA, sort = NA,
+  highlighting = FALSE, start = 0, limit = NA, key = NULL, 
+  sleep = 6, callopts=list(), terms, fields, toquery)
 {
-	searchplos(q=paste('author:', '"', q, '"', sep=""), ...)
+  calls <- deparse(sys.calls())
+  calls_vec <- sapply(c("terms", "fields", "toquery"), function(x) grepl(x, calls))
+  if(any(calls_vec))
+    stop("The parameters terms, fields, and toquery have been replaced with q, fl, and fq, respectively")
+  
+	searchplos(q=paste('author:', '"', q, '"', sep=""), fl=fl, fq=fq,
+	           sort=sort, highlighting=highlighting, start=start, limit=limit,
+	           key=key, sleep=sleep, callopts=callopts)
 }

@@ -3,9 +3,9 @@
 \title{Search PLoS Journals abstracts.}
 \usage{
   plosabstract(q = NA, fl = "id", fq = NA, sort = NA,
-    highlighting = FALSE, start = 0, limit = NA, sleep = 6,
-    key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-    curl = getCurlHandle(), callopts = list())
+    highlighting = FALSE, start = 0, limit = NA,
+    key = NULL, sleep = 6, callopts = list(), terms,
+    fields, toquery)
 }
 \arguments{
   \item{q}{Search terms (character). You can search on

@@ -4,9 +4,8 @@
 \usage{
   searchplos(q = NA, fl = "id", fq = NA, sort = NA,
     highlighting = FALSE, start = 0, limit = NA,
-    key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-    sleep = 6, curl = getCurlHandle(), callopts = list(),
-    terms, fields, toquery)
+    key = NULL, sleep = 6, callopts = list(), terms,
+    fields, toquery)
 }
 \arguments{
   \item{q}{Search terms (character). You can search on
@@ -102,66 +101,71 @@
 }
 \examples{
 \dontrun{
-plos_todf(searchplos('ecology', 'id,publication_date', limit = 2))
-plos_todf(searchplos('ecology', 'id,title', limit = 2))
+searchplos('ecology', 'id,publication_date', limit = 2)
+searchplos('ecology', 'id,publication_date', limit = 2)$data
+searchplos('ecology', 'id,title', limit = 2)$data
 
 # Get only full article DOIs
 out <- searchplos(q="*:*", fl='id', fq='doc_type:full', start=0, limit=250)
-plos_todf(out)
+out$data
 
 # Get DOIs for only PLoS One articles
 out <- searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', start=0, limit=15)
-plos_todf(out)
+out$data
 
 # Get DOIs for full article in PLoS One
 out <- searchplos(q="*:*", fl='id', fq=list('cross_published_journal_key:PLoSONE', 'doc_type:full'), limit=50)
-plos_todf(out)
+out$data
 
 # Serch for many q
-library(plyr)
 q <- c('ecology','evolution','science')
-llply(q, function(x) plos_todf(searchplos(x, limit=2), 'data'))
+lapply(q, function(x) searchplos(x, limit=2)$data)
 
 # Query to get some PLOS article-level metrics, notice difference between two outputs
+out <- searchplos(q="*:*", fl='id,counter_total_all,alm_twitterCount', fq='doc_type:full')
+out_df <- out$data
+out_sorted <- searchplos(q="*:*", fl='id,counter_total_all,alm_twitterCount', fq='doc_type:full', sort='counter_total_all desc')
+out_sorted_df <- out_sorted$data
+head(out_df)
+head(out_sorted_df)
 
 # A list of articles about social networks that are popular on a social network
 out <- searchplos(q="*:*", fl='id,alm_twitterCount',
    fq=list('doc_type:full','subject:"Social networks"',
                 'alm_twitterCount:[100 TO 10000]'),
    sort='counter_total_month desc')
-plos_todf(out)
+out$data
 
 # Show me all articles that have these two words less then about 15 words apart.
-plos_todf(searchplos(q='everything:"sports alcohol"~15', fl='title', fq='doc_type:full'))
+searchplos(q='everything:"sports alcohol"~15', fl='title', fq='doc_type:full')$data
 
 # Now let's try to narrow our results to 7 words apart. Here I'm changing the ~15 to ~7
-plos_todf(searchplos(q='everything:"sports alcohol"~7', fl='title', fq='doc_type:full'))
+searchplos(q='everything:"sports alcohol"~7', fl='title', fq='doc_type:full')$data
 
 # Now, lets also only look at articles that have seen some activity on twitter.
 # Add "fq=alm_twitterCount:[1 TO *]" as a parameter within the fq argument.
-plos_todf(searchplos(q='everything:"sports alcohol"~7', fl='alm_twitterCount,title',
-   fq=list('doc_type:full','alm_twitterCount:[1 TO *]')))
-plos_todf(searchplos(q='everything:"sports alcohol"~7', fl='alm_twitterCount,title',
+searchplos(q='everything:"sports alcohol"~7', fl='alm_twitterCount,title',
+   fq=list('doc_type:full','alm_twitterCount:[1 TO *]'))$data
+searchplos(q='everything:"sports alcohol"~7', fl='alm_twitterCount,title',
    fq=list('doc_type:full','alm_twitterCount:[1 TO *]'),
-   sort='counter_total_month desc'))
+   sort='counter_total_month desc')$data
 
 # Highlighting!! What is that? Setting highlighting=TRUE gives you back the usual
 # fields you want, plus a separate data.frame of the places where the search q
 # were found
 out <- searchplos(q='everything:"sports alcohol"~7', fl='alm_twitterCount,title',
    fq=list('doc_type:full','alm_twitterCount:[1 TO *]'), highlighting=TRUE)
-plos_todf(out, 'both')
-plos_todf(out, 'high')
+out$highlighting
 
 # Highlighting with lots of results
 out <- searchplos(q='everything:"experiment"', fl='id,title', fq='doc_type:full',
    limit=1100, highlighting = TRUE)
-head(plos_todf(out, "high"))
+head(out$highlighting)
 
 # Highlighting specific fields
 out <- searchplos(q='everything:"experiment"', fl='id,title', fq='doc_type:full',
    limit=1100, highlighting = TRUE, h.fl = 'title')
-head(plos_todf(out, "high"))
+head(out$highlighting)
 
 # Return partial doc parts
 ## Return Abstracts only
