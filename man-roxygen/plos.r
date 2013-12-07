@@ -28,8 +28,6 @@
 #'    blocked. You can only do 10 requests per minute, so one request every 6 seconds is 
 #'    about right.
 #' @param callopts Optional additional curl options (debugging tools mostly)
-#' @param curl If using in a loop, call getCurlHandle() first and pass 
-#'  the returned value in here (avoids unnecessary footprint)
 #' @param terms DEPRECATED PARAMETER - replaced with the q param. 
 #' @param fields DEPRECATED PARAMETER - replaced with the fl param. 
 #' @param toquery DEPRECATED PARAMETER - replaced with the fq param. 

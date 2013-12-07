@@ -2,7 +2,7 @@
 context("plosviews")
 
 test_that("plosviews returns the correct value", {
-	expect_that(plosviews('10.1371/journal.pone.0002154', 'id', 'alltime')[,1], prints_text("10.1371/journal.pone.0002154"))
+	expect_that(as.character(plosviews('10.1371/journal.pone.0002154', 'id', 'alltime')[,1]), prints_text("10.1371/journal.pone.0002154"))
 	expect_that(nrow(plosviews('bird', views = 'alltime', limit = 18)), equals(18))
 })
 

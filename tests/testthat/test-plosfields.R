@@ -8,7 +8,7 @@ test_that("plosfields returns the correct class", {
 })
 
 test_that("plosfields returns the correct dimensions of data.frame", {
-	expect_that(nrow(plosfields), equals(48))
+	expect_that(nrow(plosfields), equals(72))
 	expect_that(length(names(plosfields)), equals(3))
 })
 

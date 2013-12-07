@@ -2,6 +2,7 @@
 #' 
 #' @import RJSONIO RCurl 
 #' @importFrom stringr str_split
+#' @importFrom plyr compact
 #' @param search search terms (character)
 #' @param byfield field to search by, e.g., subject, author, etc. (character)
 #' @param views views all time (alltime) or views last 30 days (last30) 

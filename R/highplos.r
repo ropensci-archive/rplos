@@ -4,6 +4,7 @@
 #' @importFrom stringr str_extract
 #' @importFrom lubridate now
 #' @importFrom RJSONIO fromJSON
+#' @importFrom plyr compact
 #' @template high
 #' @return A list.
 #' @examples \dontrun{

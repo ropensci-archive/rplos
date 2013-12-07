@@ -48,7 +48,6 @@ Collate:
     'plosword.R'
     'plot_throughtime.R'
     'searchplos.R'
-    'crossref_r.R'
     'zzz.R'
     'startup.R'
     'utils.r'

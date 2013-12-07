@@ -1,8 +1,8 @@
 # tests for searchplos fxn in rplos
 context("searchplos")
 
-dat1 <- searchplos('ecology', 'id,publication_date', limit = 2)
-dat2 <- searchplos(terms="*:*", fields='id', toquery='cross_published_journal_key:PLoSONE', start=0, limit=15)
+dat1 <- searchplos('ecology', 'id,publication_date', limit = 2)$data
+dat2 <- searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', start=0, limit=15)$data
 
 test_that("searchplos returns the correct dimensions", {
 	expect_that(nrow(dat1), equals(2))

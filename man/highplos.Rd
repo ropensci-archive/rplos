@@ -26,6 +26,11 @@
     sleep = 6, callopts = list())
 }
 \arguments{
+  \item{q}{Search terms (character). You can search on
+  specific fields by doing 'field:your query'. For example,
+  a real query on a specific field would be
+  'author:Smith'.}
+
   \item{hl}{XXXX}
 
   \item{hl.q}{XXXX}
@@ -54,7 +59,9 @@
 
   \item{hl.formatter}{XXXX}
 
-  \item{hl.simple.pre/hl.simple.post}{XXXX}
+  \item{hl.simple.pre}{XXXX}
+
+  \item{hl.simple.post}{XXXX}
 
   \item{hl.fragmenter}{XXXX}
 
@@ -85,6 +92,26 @@
   \item{hl.regex.pattern}{XXXX}
 
   \item{hl.regex.maxAnalyzedChars}{XXXX}
+
+  \item{start}{Record to start at (used in combination with
+  limit when you need to cycle through more results than
+  the max allowed=1000)}
+
+  \item{limit}{Number of results to return (integer)}
+
+  \item{key}{Your PLoS API key, either enter as the key, or
+  loads from .Rprofile.  See details.}
+
+  \item{sleep}{Number of seconds to wait between requests.
+  No need to use this for a single call to searchplos.
+  However, if you are using searchplos in a loop or lapply
+  type call, do sleep parameter is used to prevent your IP
+  address from being blocked. You can only do 10 requests
+  per minute, so one request every 6 seconds is about
+  right.}
+
+  \item{callopts}{Optional additional curl options
+  (debugging tools mostly)}
 }
 \value{
   A list.

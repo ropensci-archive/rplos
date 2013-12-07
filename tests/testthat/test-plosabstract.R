@@ -2,15 +2,15 @@
 context("plosabstract")
 
 test_that("plosabstract returns the correct dimensioned data.frame", {
-	expect_that(nrow(plosabstract(terms = 'drosophila', fields='abstract', limit=10)), 
+	expect_that(nrow(plosabstract(q = 'drosophila', fl='abstract', limit=10)$data), 
 							equals(10))
-	expect_that(nrow(plosabstract(terms = 'drosophila', fields='abstract', limit=5)), 
+	expect_that(nrow(plosabstract(q = 'drosophila', fl='abstract', limit=5)$data), 
 							equals(5))
 })
 
 test_that("plosabstract returns the correct class", {
-	expect_that(plosabstract(terms = 'drosophila', fields='author', limit = 5), 
+	expect_that(plosabstract(q = 'drosophila', fl='author', limit = 5)$data, 
 							is_a("data.frame"))
-	expect_that(plosabstract(terms = 'Jones', fields='author', limit = 5)[1,1][[1]], 
+	expect_that(plosabstract(q = 'Jones', fl='author', limit = 5)$data[1,1], 
 							is_a("character"))
 })

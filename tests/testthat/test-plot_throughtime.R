@@ -10,8 +10,3 @@ test_that("plot_throughtime returns the correct class", {
   expect_is(c, "character")
   expect_is(a$data, "data.frame")
 })
-
-test_that("plot_throughtime returns the correct dimensions", {
-  expect_equal(nrow(a$data), 88)
-  expect_equal(nrow(b$data), 176)
-})
