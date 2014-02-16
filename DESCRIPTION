@@ -29,27 +29,8 @@ Imports:
     lubridate,
     reshape2,
     data.table,
-    whisker
+    whisker,
+    solr
 Suggests:
     roxygen2,
     testthat
-Collate:
-    'crossref.R'
-    'formatarticleurl.R'
-    'help.R'
-    'journalnamekey.R'
-    'plosabstract.R'
-    'plosauthor.R'
-    'plosfields.R'
-    'plosfigtabcaps.R'
-    'plossubject.R'
-    'plostitle.R'
-    'plosviews.R'
-    'plosword.R'
-    'plot_throughtime.R'
-    'searchplos.R'
-    'zzz.R'
-    'startup.R'
-    'utils.r'
-    'highplos.r'
-    'highbrow.r'

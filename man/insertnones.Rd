@@ -3,11 +3,11 @@
 \title{Function to insert "none" character strings where NULL values found to
 faciliate combining results}
 \usage{
-  insertnones(x)
+insertnones(x)
 }
 \description{
-  Function to insert "none" character strings where NULL
-  values found to faciliate combining results
+Function to insert "none" character strings where NULL
+values found to faciliate combining results
 }
 \keyword{internal}
 

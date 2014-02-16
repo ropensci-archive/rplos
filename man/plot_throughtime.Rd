@@ -2,9 +2,9 @@
 \alias{plot_throughtime}
 \title{Plot results through time for serach results from PLoS Journals.}
 \usage{
-  plot_throughtime(terms, limit = NA, gvis = FALSE,
-    key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-    ..., curl = getCurlHandle())
+plot_throughtime(terms, limit = NA, gvis = FALSE,
+  key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
+  ..., curl = getCurlHandle())
 }
 \arguments{
   \item{terms}{search terms (character)}
@@ -25,13 +25,12 @@
   unnecessary footprint)}
 }
 \value{
-  Number of search results (vis = FALSE), or number of
-  search in a table and a histogram of results (vis =
-  TRUE).
+Number of search results (vis = FALSE), or number of search
+in a table and a histogram of results (vis = TRUE).
 }
 \description{
-  Plot results through time for serach results from PLoS
-  Journals.
+Plot results through time for serach results from PLoS
+Journals.
 }
 \examples{
 \dontrun{

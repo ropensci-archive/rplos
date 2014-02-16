@@ -2,10 +2,9 @@
 \alias{plosabstract}
 \title{Search PLoS Journals abstracts.}
 \usage{
-  plosabstract(q = NA, fl = "id", fq = NA, sort = NA,
-    highlighting = FALSE, start = 0, limit = NA,
-    key = NULL, sleep = 6, callopts = list(), terms,
-    fields, toquery)
+plosabstract(q = NA, fl = "id", fq = NA, sort = NA,
+  highlighting = FALSE, start = 0, limit = NA, key = NULL, sleep = 6,
+  callopts = list(), terms, fields, toquery)
 }
 \arguments{
   \item{q}{Search terms (character). You can search on
@@ -68,32 +67,31 @@
   fq param.}
 }
 \value{
-  Abstract content, in addition to any other fields
-  requested in a list.
+Abstract content, in addition to any other fields requested
+in a list.
 }
 \description{
-  Search PLoS Journals abstracts.
+Search PLoS Journals abstracts.
 }
 \details{
-  Get a PLOS API key at \url{http://alm.plos.org/}. Note
-  that the API key you recieve at that URL works for the
-  PLOS ALM (article-level metrics) API as well. See the alm
-  package
-  \url{http://cran.r-project.org/web/packages/alm/index.html}
-  to access PLOS ALM data.
+Get a PLOS API key at \url{http://alm.plos.org/}. Note that
+the API key you recieve at that URL works for the PLOS ALM
+(article-level metrics) API as well. See the alm package
+\url{http://cran.r-project.org/web/packages/alm/index.html}
+to access PLOS ALM data.
 
-  You can store your PLOS Search API key in your .Rprofile
-  file so that you don't have to enter the key each
-  function call. Open up your .Rprofile file on your
-  computer, and put it an entry like:
+You can store your PLOS Search API key in your .Rprofile
+file so that you don't have to enter the key each function
+call. Open up your .Rprofile file on your computer, and put
+it an entry like:
 
-  options(PlosApiKey = "your plos api key")
+options(PlosApiKey = "your plos api key")
 
-  Highlighting: Read more about highlighting here:
-  url{http://wiki.apache.org/solr/HighlightingParameters}
+Highlighting: Read more about highlighting here:
+url{http://wiki.apache.org/solr/HighlightingParameters}
 
-  Faceting: Read more about faceting here:
-  url{http://wiki.apache.org/solr/SimpleFacetParameters}
+Faceting: Read more about faceting here:
+url{http://wiki.apache.org/solr/SimpleFacetParameters}
 }
 \examples{
 \dontrun{
@@ -109,6 +107,6 @@ plosabstract(q='drosophila', fl='abstract', limit = 2, highlighting=TRUE)
 }
 }
 \seealso{
-  plosauthor, plosabstract, plostitle, plosfigtabcaps
+plosauthor, plosabstract, plostitle, plosfigtabcaps
 }
 

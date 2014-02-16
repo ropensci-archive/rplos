@@ -2,8 +2,8 @@
 \alias{crossref}
 \title{Lookup article info via CrossRef with DOI.}
 \usage{
-  crossref(doi, title = FALSE, key = "cboettig@gmail.com",
-    ..., curl = getCurlHandle())
+crossref(doi, title = FALSE, key = "cboettig@gmail.com", ...,
+  curl = getCurlHandle())
 }
 \arguments{
   \item{doi}{digital object identifier for an article in
@@ -23,10 +23,10 @@
   unnecessary footprint)}
 }
 \value{
-  Metadata from DOI in R's bibentry format.
+Metadata from DOI in R's bibentry format.
 }
 \description{
-  Lookup article info via CrossRef with DOI.
+Lookup article info via CrossRef with DOI.
 }
 \examples{
 \dontrun{

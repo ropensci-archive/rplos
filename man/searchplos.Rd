@@ -2,10 +2,9 @@
 \alias{searchplos}
 \title{Base function to search PLoS Journals}
 \usage{
-  searchplos(q = NA, fl = "id", fq = NA, sort = NA,
-    highlighting = FALSE, start = 0, limit = NA,
-    key = NULL, sleep = 6, callopts = list(), terms,
-    fields, toquery)
+searchplos(q = NA, fl = "id", fq = NA, sort = NA,
+  highlighting = FALSE, start = 0, limit = NA, key = NULL, sleep = 6,
+  callopts = list(), terms, fields, toquery)
 }
 \arguments{
   \item{q}{Search terms (character). You can search on
@@ -68,32 +67,31 @@
   fq param.}
 }
 \value{
-  An object of class "plos", with a list of length two,
-  each element being a list itself.
+An object of class "plos", with a list of length two, each
+element being a list itself.
 }
 \description{
-  Base function to search PLoS Journals
+Base function to search PLoS Journals
 }
 \details{
-  Get a PLOS API key at \url{http://alm.plos.org/}. Note
-  that the API key you recieve at that URL works for the
-  PLOS ALM (article-level metrics) API as well. See the alm
-  package
-  \url{http://cran.r-project.org/web/packages/alm/index.html}
-  to access PLOS ALM data.
+Get a PLOS API key at \url{http://alm.plos.org/}. Note that
+the API key you recieve at that URL works for the PLOS ALM
+(article-level metrics) API as well. See the alm package
+\url{http://cran.r-project.org/web/packages/alm/index.html}
+to access PLOS ALM data.
 
-  You can store your PLOS Search API key in your .Rprofile
-  file so that you don't have to enter the key each
-  function call. Open up your .Rprofile file on your
-  computer, and put it an entry like:
+You can store your PLOS Search API key in your .Rprofile
+file so that you don't have to enter the key each function
+call. Open up your .Rprofile file on your computer, and put
+it an entry like:
 
-  options(PlosApiKey = "your plos api key")
+options(PlosApiKey = "your plos api key")
 
-  Highlighting: Read more about highlighting here:
-  url{http://wiki.apache.org/solr/HighlightingParameters}
+Highlighting: Read more about highlighting here:
+url{http://wiki.apache.org/solr/HighlightingParameters}
 
-  Faceting: Read more about faceting here:
-  url{http://wiki.apache.org/solr/SimpleFacetParameters}
+Faceting: Read more about faceting here:
+url{http://wiki.apache.org/solr/SimpleFacetParameters}
 }
 \examples{
 \dontrun{
@@ -173,6 +171,6 @@ out <- searchplos(q='*:*', fl='doc_partial_body,doc_partial_parent_id',
 }
 }
 \seealso{
-  plosauthor, plosabstract, plostitle, plosfigtabcaps
+plosauthor, plosabstract, plostitle, plosfigtabcaps
 }
 

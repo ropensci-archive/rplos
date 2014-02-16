@@ -2,9 +2,9 @@
 \alias{plosword}
 \title{Search results on a keyword over all fields in PLoS Journals.}
 \usage{
-  plosword(terms, vis = FALSE,
-    key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-    curl = getCurlHandle(), callopts = list())
+plosword(terms, vis = FALSE, key = getOption("PlosApiKey",
+  stop("need an API key for PLoS Journals")), curl = getCurlHandle(),
+  callopts = list())
 }
 \arguments{
   \item{terms}{search terms (character)}
@@ -23,13 +23,12 @@
   unnecessary footprint)}
 }
 \value{
-  Number of search results (vis = FALSE), or number of
-  search in a table and a histogram of results (vis =
-  TRUE).
+Number of search results (vis = FALSE), or number of search
+in a table and a histogram of results (vis = TRUE).
 }
 \description{
-  Search results on a keyword over all fields in PLoS
-  Journals.
+Search results on a keyword over all fields in PLoS
+Journals.
 }
 \examples{
 \dontrun{

@@ -2,10 +2,9 @@
 \alias{plosviews}
 \title{Search PLoS Journals by article views.}
 \usage{
-  plosviews(search, byfield = NULL, views = "alltime",
-    limit = NULL,
-    key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-    callopts = list(), curl = getCurlHandle())
+plosviews(search, byfield = NULL, views = "alltime", limit = NULL,
+  key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
+  callopts = list(), curl = getCurlHandle())
 }
 \arguments{
   \item{search}{search terms (character)}
@@ -29,7 +28,7 @@
   unnecessary footprint)}
 }
 \description{
-  Search PLoS Journals by article views.
+Search PLoS Journals by article views.
 }
 \examples{
 \dontrun{

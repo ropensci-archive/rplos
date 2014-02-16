@@ -2,10 +2,9 @@
 \alias{plosfigtabcaps}
 \title{Search PLoS Journals figure and table captions.}
 \usage{
-  plosfigtabcaps(q = NA, fl = "id", fq = NA, sort = NA,
-    highlighting = FALSE, start = 0, limit = NA,
-    key = NULL, sleep = 6, callopts = list(), terms,
-    fields, toquery)
+plosfigtabcaps(q = NA, fl = "id", fq = NA, sort = NA,
+  highlighting = FALSE, start = 0, limit = NA, key = NULL, sleep = 6,
+  callopts = list(), terms, fields, toquery)
 }
 \arguments{
   \item{q}{Search terms (character). You can search on
@@ -68,32 +67,31 @@
   fq param.}
 }
 \value{
-  fields that you specify to return in a data.frame, along
-  with the DOI's found.
+fields that you specify to return in a data.frame, along
+with the DOI's found.
 }
 \description{
-  Search PLoS Journals figure and table captions.
+Search PLoS Journals figure and table captions.
 }
 \details{
-  Get a PLOS API key at \url{http://alm.plos.org/}. Note
-  that the API key you recieve at that URL works for the
-  PLOS ALM (article-level metrics) API as well. See the alm
-  package
-  \url{http://cran.r-project.org/web/packages/alm/index.html}
-  to access PLOS ALM data.
+Get a PLOS API key at \url{http://alm.plos.org/}. Note that
+the API key you recieve at that URL works for the PLOS ALM
+(article-level metrics) API as well. See the alm package
+\url{http://cran.r-project.org/web/packages/alm/index.html}
+to access PLOS ALM data.
 
-  You can store your PLOS Search API key in your .Rprofile
-  file so that you don't have to enter the key each
-  function call. Open up your .Rprofile file on your
-  computer, and put it an entry like:
+You can store your PLOS Search API key in your .Rprofile
+file so that you don't have to enter the key each function
+call. Open up your .Rprofile file on your computer, and put
+it an entry like:
 
-  options(PlosApiKey = "your plos api key")
+options(PlosApiKey = "your plos api key")
 
-  Highlighting: Read more about highlighting here:
-  url{http://wiki.apache.org/solr/HighlightingParameters}
+Highlighting: Read more about highlighting here:
+url{http://wiki.apache.org/solr/HighlightingParameters}
 
-  Faceting: Read more about faceting here:
-  url{http://wiki.apache.org/solr/SimpleFacetParameters}
+Faceting: Read more about faceting here:
+url{http://wiki.apache.org/solr/SimpleFacetParameters}
 }
 \examples{
 \dontrun{
@@ -105,6 +103,6 @@ plosfigtabcaps(q='ecology', fl='figure_table_caption', limit = 2, highlighting=T
 }
 }
 \seealso{
-  plosauthor, plosabstract, plostitle, plosfigtabcaps
+plosauthor, plosabstract, plostitle, plosfigtabcaps
 }
 

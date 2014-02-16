@@ -7,7 +7,7 @@
 #'    If FALSE, the file is written, but not opened.
 #' @export
 #' @examples \dontrun{
-#' out <- highplos(q='alcohol', hl.fl = 'abstract', limit=10)
+#' out <- highplos(q='alcohol', hl.fl = 'abstract', rows=10)
 #' highbrow(out)
 #' 
 #' out <- highplos(q='alcohol', hl.fl = 'abstract', limit=1200)
@@ -45,26 +45,25 @@ highbrow <- function(input=NULL, output=NULL, browse=TRUE)
 
       	<!-- Le styles -->
       	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
-      	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.css" rel="stylesheet">
-      	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
       </head>
 
       <body>
 
       <div class="container">
 
-      <center><h2>rplos - highlights</h2></center>
+      <center><h2>rplos <i class="fa fa-lightbulb-o"></i> highlights</h2></center>
 
       <table class="table table-striped table-hover" align="center">
       	<thead>
       		<tr>
       			<th>DOI</th>
-      			<th>Fragment</th>
+      			<th>Fragment(s)</th>
       		</tr>
       	</thead>
       	<tbody>
         {{#outlist}}
-          <tr><td><a href="http://dx.doi.org/{{doi}}">{{doi}}</a></td><td>{{content}}</td></tr>
+          <tr><td><a href="http://dx.doi.org/{{doi}}"  class="btn btn-info  btn-xs" role="button">{{doi}}</a></td><td>{{content}}</td></tr>
         {{/outlist}}
         </tbody>
       </table>

@@ -2,7 +2,7 @@
 \alias{highbrow}
 \title{Browse highlighted fragments in your default browser.}
 \usage{
-  highbrow(input = NULL, output = NULL, browse = TRUE)
+highbrow(input = NULL, output = NULL, browse = TRUE)
 }
 \arguments{
   \item{input}{Input, usually output from a call to
@@ -16,11 +16,11 @@
   written, but not opened.}
 }
 \description{
-  Browse highlighted fragments in your default browser.
+Browse highlighted fragments in your default browser.
 }
 \examples{
 \dontrun{
-out <- highplos(q='alcohol', hl.fl = 'abstract', limit=10)
+out <- highplos(q='alcohol', hl.fl = 'abstract', rows=10)
 highbrow(out)
 
 out <- highplos(q='alcohol', hl.fl = 'abstract', limit=1200)

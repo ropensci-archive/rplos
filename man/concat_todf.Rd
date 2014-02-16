@@ -2,19 +2,19 @@
 \alias{concat_todf}
 \title{Concatenate author names, if present, used in other functions.}
 \usage{
-  concat_todf(x)
+concat_todf(x)
 }
 \arguments{
   \item{x}{a single list element with PLoS API returned
   nested elements}
 }
 \value{
-  data.frame of results, with authors concatenated to
-  single vector.
+data.frame of results, with authors concatenated to single
+vector.
 }
 \description{
-  Concatenate author names, if present, used in other
-  functions.
+Concatenate author names, if present, used in other
+functions.
 }
 \keyword{internal}
 

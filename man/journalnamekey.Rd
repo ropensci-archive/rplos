@@ -2,14 +2,14 @@
 \alias{journalnamekey}
 \title{Get short keys for journals to use in searching specific journals.}
 \usage{
-  journalnamekey()
+journalnamekey()
 }
 \value{
-  Journals name keys.
+Journals name keys.
 }
 \description{
-  Get short keys for journals to use in searching specific
-  journals.
+Get short keys for journals to use in searching specific
+journals.
 }
 \examples{
 \dontrun{
