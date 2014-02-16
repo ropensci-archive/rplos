@@ -13,15 +13,15 @@ parsehighlight2 <- function(alist){
 
 #' @method print plos
 #' @export
-print.plos <- function(x, ...)
-{
-  cat(" Data")
-  cat(paste("\nNo. of records:", nrow(x$data)))
-  cat(paste("\nNo. of variables:", length(x$data)))
-  cat(paste("\nVariables:", paste(names(x$data), collapse=", ") ))
-  cat("\n")
-  cat("\n Highlighting")
-  cat(paste("\nNo. of records:", nrow(x$highlighting)))
-  cat(paste("\nNo. of variables:", length(x$highlighting) ))
-  cat(paste("\nVariables:", paste(names(x$highlighting), collapse=", ") ))
-}
+# print.plos <- function(x, ...)
+# {
+#   cat(" Data")
+#   cat(paste("\nNo. of records:", nrow(x$data)))
+#   cat(paste("\nNo. of variables:", length(x$data)))
+#   cat(paste("\nVariables:", paste(names(x$data), collapse=", ") ))
+#   cat("\n")
+#   cat("\n Highlighting")
+#   cat(paste("\nNo. of records:", nrow(x$highlighting)))
+#   cat(paste("\nNo. of variables:", length(x$highlighting) ))
+#   cat(paste("\nVariables:", paste(names(x$highlighting), collapse=", ") ))
+# }

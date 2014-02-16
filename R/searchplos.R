@@ -9,72 +9,52 @@
 #' @return An object of class "plos", with a list of length two, each element being 
 #' a list itself.
 #' @examples \dontrun{
+#' searchplos(q='ecology', fl='id,publication_date', limit = 2)
 #' searchplos('ecology', 'id,publication_date', limit = 2)
-#' searchplos('ecology', 'id,publication_date', limit = 2)$data
-#' searchplos('ecology', 'id,title', limit = 2)$data
+#' searchplos('ecology', 'id,title', limit = 2)
 #' 
 #' # Get only full article DOIs
 #' out <- searchplos(q="*:*", fl='id', fq='doc_type:full', start=0, limit=250)
-#' out$data
+#' head(out)
 #' 
 #' # Get DOIs for only PLoS One articles
 #' out <- searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', start=0, limit=15)
-#' out$data
+#' head(out)
 #' 
 #' # Get DOIs for full article in PLoS One
 #' out <- searchplos(q="*:*", fl='id', fq=list('cross_published_journal_key:PLoSONE', 'doc_type:full'), limit=50)
-#' out$data
+#' head(out)
 #' 
 #' # Serch for many q
 #' q <- c('ecology','evolution','science')
-#' lapply(q, function(x) searchplos(x, limit=2)$data)
+#' lapply(q, function(x) searchplos(x, limit=2))
 #' 
 #' # Query to get some PLOS article-level metrics, notice difference between two outputs
 #' out <- searchplos(q="*:*", fl='id,counter_total_all,alm_twitterCount', fq='doc_type:full')
-#' out_df <- out$data
 #' out_sorted <- searchplos(q="*:*", fl='id,counter_total_all,alm_twitterCount', fq='doc_type:full', sort='counter_total_all desc')
-#' out_sorted_df <- out_sorted$data
-#' head(out_df)
-#' head(out_sorted_df)
+#' head(out)
+#' head(out_sorted)
 #' 
 #' # A list of articles about social networks that are popular on a social network
-#' out <- searchplos(q="*:*", fl='id,alm_twitterCount', 
+#' searchplos(q="*:*", fl='id,alm_twitterCount', 
 #'    fq=list('doc_type:full','subject:"Social networks"',
 #'                 'alm_twitterCount:[100 TO 10000]'), 
 #'    sort='counter_total_month desc')
-#' out$data
 #'                  
 #' # Show me all articles that have these two words less then about 15 words apart.
-#' searchplos(q='everything:"sports alcohol"~15', fl='title', fq='doc_type:full')$data
+#' searchplos(q='everything:"sports alcohol"~15', fl='title', fq='doc_type:full')
 #' 
 #' # Now let's try to narrow our results to 7 words apart. Here I'm changing the ~15 to ~7
-#' searchplos(q='everything:"sports alcohol"~7', fl='title', fq='doc_type:full')$data
+#' searchplos(q='everything:"sports alcohol"~7', fl='title', fq='doc_type:full')
 #' 
 #' # Now, lets also only look at articles that have seen some activity on twitter. 
 #' # Add "fq=alm_twitterCount:[1 TO *]" as a parameter within the fq argument.
 #' searchplos(q='everything:"sports alcohol"~7', fl='alm_twitterCount,title', 
-#'    fq=list('doc_type:full','alm_twitterCount:[1 TO *]'))$data
+#'    fq=list('doc_type:full','alm_twitterCount:[1 TO *]'))
 #' searchplos(q='everything:"sports alcohol"~7', fl='alm_twitterCount,title', 
 #'    fq=list('doc_type:full','alm_twitterCount:[1 TO *]'), 
-#'    sort='counter_total_month desc')$data
-#' 
-#' # Highlighting!! What is that? Setting highlighting=TRUE gives you back the usual 
-#' # fields you want, plus a separate data.frame of the places where the search q
-#' # were found
-#' out <- searchplos(q='everything:"sports alcohol"~7', fl='alm_twitterCount,title', 
-#'    fq=list('doc_type:full','alm_twitterCount:[1 TO *]'), highlighting=TRUE)
-#' out$highlighting
-#' 
-#' # Highlighting with lots of results
-#' out <- searchplos(q='everything:"experiment"', fl='id,title', fq='doc_type:full', 
-#'    limit=1100, highlighting = TRUE)
-#' head(out$highlighting)
-#' 
-#' # Highlighting specific fields
-#' out <- searchplos(q='everything:"experiment"', fl='id,title', fq='doc_type:full', 
-#'    limit=1100, highlighting = TRUE, h.fl = 'title')
-#' head(out$highlighting)
-#' 
+#'    sort='counter_total_month desc')
+#'    
 #' # Return partial doc parts
 #' ## Return Abstracts only
 #' out <- searchplos(q='*:*', fl='doc_partial_body,doc_partial_parent_id', 
@@ -85,9 +65,8 @@
 #' }
 #' @export
 
-searchplos <- function(q = NA, fl = 'id', fq = NA, sort = NA,
-  highlighting = FALSE, start = 0, limit = NA, key = NULL, 
-  sleep = 6, callopts=list(), terms, fields, toquery)
+searchplos <- function(q = NA, fl = 'id', fq = NA, sort = NA, start = 0, limit = NA, 
+  key = NULL, sleep = 6, callopts=list(), terms, fields, toquery)
 {
   calls <- deparse(sys.calls())
   calls_vec <- sapply(c("terms", "fields", "toquery"), function(x) grepl(x, calls))
@@ -112,11 +91,11 @@ searchplos <- function(q = NA, fl = 'id', fq = NA, sort = NA,
   
 	url = 'http://api.plos.org/search'
   
-  # If highlighting=TRUE, then force id to be retuned so results can be matched easily
-  if(highlighting){  
-    if(!grepl("id", fl))
-      fl <- paste(fl, 'id', sep=",")
-  }
+#   # If highlighting=TRUE, then force id to be retuned so results can be matched easily
+#   if(highlighting){  
+#     if(!grepl("id", fl))
+#       fl <- paste(fl, 'id', sep=",")
+#   }
   
 	if(is.na(limit)){limit <- 999} else{limit <- limit}
   args <- list()
@@ -141,8 +120,8 @@ searchplos <- function(q = NA, fl = 'id', fq = NA, sort = NA,
     args$rows <- limit
   if(!is.na(sort))
     args$sort <- sort
-  if(!is.na(highlighting))
-    args$hl <- tolower(highlighting)
+#   if(!is.na(highlighting))
+#     args$hl <- tolower(highlighting)
   args$wt <- "json"
   
 	argsgetnum <- list(q=q, rows=0, wt="json", api_key=key)
@@ -171,15 +150,16 @@ searchplos <- function(q = NA, fl = 'id', fq = NA, sort = NA,
       tempresults <- lapply(tempresults, function(x) lapply(x, foo))
     }
     
-	  if(highlighting){
-	    res <- list(data=tempresults, highlighting=jsonout$highlighting)
-	  } else
-	  {
-	    res <- list(data=tempresults, highlighting=NULL)
-	  }
+# 	  if(highlighting){
+# 	    res <- list(data=tempresults, highlighting=jsonout$highlighting)
+# 	  } else
+# 	  {
+# 	    res <- list(data=tempresults, highlighting=NULL)
+# 	  }
+    res <- tempresults
     
 	  resdf  <- plos2df(res)
-    class(resdf) <- "plos"
+#     class(resdf) <- "plos"
     return( resdf )
 	} else
 	{ 
@@ -217,39 +197,38 @@ searchplos <- function(q = NA, fl = 'id', fq = NA, sort = NA,
 	      tempresults <- lapply(tempresults, function(x) lapply(x, foo))
 	    }
       
-	    hlres <- jsonout$highlighting
-	    out[[i]] <- list(dat=tempresults, hl=hlres)
+# 	    hlres <- jsonout$highlighting
+# 	    out[[i]] <- list(dat=tempresults, hl=hlres)
+      out[[i]] <- tempresults
 	  }
 	  
-    if(highlighting){
-      res <- list(data=lapply(out, "[[", "dat"), highlighting=lapply(out, "[[", "hl"))
-	  } else
-	  {
-	    res <- list(data=tempresults, highlighting=NULL)
-	  }
-    
-	  resdf  <- plos2df(res, TRUE)
-	  class(resdf) <- "plos"
+#     if(highlighting){
+#       res <- list(data=lapply(out, "[[", "dat"), highlighting=lapply(out, "[[", "hl"))
+# 	  } else
+# 	  {
+# 	    res <- list(data=tempresults, highlighting=NULL)
+# 	  }
+	  resdf  <- plos2df(out, TRUE)
+# 	  class(resdf) <- "plos"
 	  return( resdf )
 	}
   Sys.setenv(plostime = as.numeric(now()))
 }
 
-
-
 plos2df <- function(input, many=FALSE)
+#   plos2df <- function(input, many=FALSE)
 {  
   if(many){
-    input$data <- do.call(c, input$data)
-    input$highlighting <- do.call(c, input$highlighting)
+    input <- do.call(c, input)
+#     input$highlighting <- do.call(c, input$highlighting)
   }
   
-  if(is.null(input$data)){
+  if(is.null(input)){
     datout <- NULL
   } else{  
-    maxlendat <- max(sapply(input$data, length))
-    namesdat <- names(input$data[which.max(sapply(input$data, length))][[1]])
-    dat <- lapply(input$data, function(x){
+    maxlendat <- max(sapply(input, length))
+    namesdat <- names(input[which.max(sapply(input, length))][[1]])
+    dat <- lapply(input, function(x){
       if(!length(x) < maxlendat){ x } else {
         fillnames <- namesdat[!namesdat %in% names(x)]
         tmp <- c(rep(NA, length(fillnames)), x)
@@ -259,22 +238,23 @@ plos2df <- function(input, many=FALSE)
     })
     datout <- data.frame(rbindlist(dat))
   }
-  
-  if(is.null(input$highlighting)){
-    hlout <- NULL
-  } else {  
-    maxlenhl <- max(sapply(input$highlighting, length))
-    nameshl <- names(input$highlighting[which.max(sapply(input$highlighting, length))][[1]])  
-    hl <- lapply(input$highlighting, function(x){
-      if(!length(x) < maxlenhl){ x } else {
-        fillnames <- nameshl[!nameshl %in% names(x)]
-        tmp <- c(rep(NA, length(fillnames)), x)
-        names(tmp)[seq_along(fillnames)] <- fillnames
-        tmp
-      }
-    })
-    hlout <- data.frame(rbindlist(parsehighlight2(hl)))
-  }
-  
-  list(data = datout, highlighting = hlout)
+  return( datout ) 
 }
+#   if(is.null(input$highlighting)){
+#     hlout <- NULL
+#   } else {  
+#     maxlenhl <- max(sapply(input$highlighting, length))
+#     nameshl <- names(input$highlighting[which.max(sapply(input$highlighting, length))][[1]])  
+#     hl <- lapply(input$highlighting, function(x){
+#       if(!length(x) < maxlenhl){ x } else {
+#         fillnames <- nameshl[!nameshl %in% names(x)]
+#         tmp <- c(rep(NA, length(fillnames)), x)
+#         names(tmp)[seq_along(fillnames)] <- fillnames
+#         tmp
+#       }
+#     })
+#     hlout <- data.frame(rbindlist(parsehighlight2(hl)))
+#   }
+#   
+#   list(data = datout, highlighting = hlout)
+# }
