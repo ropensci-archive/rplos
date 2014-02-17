@@ -15,8 +15,6 @@
 #' @param sort Sort results according to a particular field, and specify ascending (asc)
 #'    or descending (desc) after a space; see examples. For example, to sort the 
 #'    counter_total_all field in descending fashion, do sort='counter_total_all desc'
-#' @param highlighting If TRUE, text found matching your query given as a separate data.frame
-#' 	  in output. If FALSE (default), nothing returned in the highlighting slot.
 #' @param start Record to start at (used in combination with limit when 
 #'    you need to cycle through more results than the max allowed=1000)
 #' @param limit Number of results to return (integer)
@@ -44,9 +42,6 @@
 #' computer, and put it an entry like:
 #' 
 #' options(PlosApiKey = "your plos api key")
-#' 
-#' Highlighting:
-#' Read more about highlighting here: url{http://wiki.apache.org/solr/HighlightingParameters}
-#' 
+#'
 #' Faceting:
 #' Read more about faceting here: url{http://wiki.apache.org/solr/SimpleFacetParameters}

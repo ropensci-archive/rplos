@@ -2,9 +2,9 @@
 \alias{searchplos}
 \title{Base function to search PLoS Journals}
 \usage{
-searchplos(q = NA, fl = "id", fq = NA, sort = NA,
-  highlighting = FALSE, start = 0, limit = NA, key = NULL, sleep = 6,
-  callopts = list(), terms, fields, toquery)
+searchplos(q = NA, fl = "id", fq = NA, sort = NA, start = 0,
+  limit = NA, key = NULL, sleep = 6, callopts = list(), terms, fields,
+  toquery)
 }
 \arguments{
   \item{q}{Search terms (character). You can search on
@@ -32,10 +32,6 @@ searchplos(q = NA, fl = "id", fq = NA, sort = NA,
   space; see examples. For example, to sort the
   counter_total_all field in descending fashion, do
   sort='counter_total_all desc'}
-
-  \item{highlighting}{If TRUE, text found matching your
-  query given as a separate data.frame in output. If FALSE
-  (default), nothing returned in the highlighting slot.}
 
   \item{start}{Record to start at (used in combination with
   limit when you need to cycle through more results than
@@ -87,79 +83,56 @@ it an entry like:
 
 options(PlosApiKey = "your plos api key")
 
-Highlighting: Read more about highlighting here:
-url{http://wiki.apache.org/solr/HighlightingParameters}
-
 Faceting: Read more about faceting here:
 url{http://wiki.apache.org/solr/SimpleFacetParameters}
 }
 \examples{
 \dontrun{
+searchplos(q='ecology', fl='id,publication_date', limit = 2)
 searchplos('ecology', 'id,publication_date', limit = 2)
-searchplos('ecology', 'id,publication_date', limit = 2)$data
-searchplos('ecology', 'id,title', limit = 2)$data
+searchplos('ecology', 'id,title', limit = 2)
 
 # Get only full article DOIs
 out <- searchplos(q="*:*", fl='id', fq='doc_type:full', start=0, limit=250)
-out$data
+head(out)
 
 # Get DOIs for only PLoS One articles
 out <- searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', start=0, limit=15)
-out$data
+head(out)
 
 # Get DOIs for full article in PLoS One
 out <- searchplos(q="*:*", fl='id', fq=list('cross_published_journal_key:PLoSONE', 'doc_type:full'), limit=50)
-out$data
+head(out)
 
 # Serch for many q
 q <- c('ecology','evolution','science')
-lapply(q, function(x) searchplos(x, limit=2)$data)
+lapply(q, function(x) searchplos(x, limit=2))
 
 # Query to get some PLOS article-level metrics, notice difference between two outputs
 out <- searchplos(q="*:*", fl='id,counter_total_all,alm_twitterCount', fq='doc_type:full')
-out_df <- out$data
 out_sorted <- searchplos(q="*:*", fl='id,counter_total_all,alm_twitterCount', fq='doc_type:full', sort='counter_total_all desc')
-out_sorted_df <- out_sorted$data
-head(out_df)
-head(out_sorted_df)
+head(out)
+head(out_sorted)
 
 # A list of articles about social networks that are popular on a social network
-out <- searchplos(q="*:*", fl='id,alm_twitterCount',
+searchplos(q="*:*", fl='id,alm_twitterCount',
    fq=list('doc_type:full','subject:"Social networks"',
                 'alm_twitterCount:[100 TO 10000]'),
    sort='counter_total_month desc')
-out$data
 
 # Show me all articles that have these two words less then about 15 words apart.
-searchplos(q='everything:"sports alcohol"~15', fl='title', fq='doc_type:full')$data
+searchplos(q='everything:"sports alcohol"~15', fl='title', fq='doc_type:full')
 
 # Now let's try to narrow our results to 7 words apart. Here I'm changing the ~15 to ~7
-searchplos(q='everything:"sports alcohol"~7', fl='title', fq='doc_type:full')$data
+searchplos(q='everything:"sports alcohol"~7', fl='title', fq='doc_type:full')
 
 # Now, lets also only look at articles that have seen some activity on twitter.
 # Add "fq=alm_twitterCount:[1 TO *]" as a parameter within the fq argument.
 searchplos(q='everything:"sports alcohol"~7', fl='alm_twitterCount,title',
-   fq=list('doc_type:full','alm_twitterCount:[1 TO *]'))$data
+   fq=list('doc_type:full','alm_twitterCount:[1 TO *]'))
 searchplos(q='everything:"sports alcohol"~7', fl='alm_twitterCount,title',
    fq=list('doc_type:full','alm_twitterCount:[1 TO *]'),
-   sort='counter_total_month desc')$data
-
-# Highlighting!! What is that? Setting highlighting=TRUE gives you back the usual
-# fields you want, plus a separate data.frame of the places where the search q
-# were found
-out <- searchplos(q='everything:"sports alcohol"~7', fl='alm_twitterCount,title',
-   fq=list('doc_type:full','alm_twitterCount:[1 TO *]'), highlighting=TRUE)
-out$highlighting
-
-# Highlighting with lots of results
-out <- searchplos(q='everything:"experiment"', fl='id,title', fq='doc_type:full',
-   limit=1100, highlighting = TRUE)
-head(out$highlighting)
-
-# Highlighting specific fields
-out <- searchplos(q='everything:"experiment"', fl='id,title', fq='doc_type:full',
-   limit=1100, highlighting = TRUE, h.fl = 'title')
-head(out$highlighting)
+   sort='counter_total_month desc')
 
 # Return partial doc parts
 ## Return Abstracts only

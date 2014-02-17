@@ -1,4 +1,3 @@
-S3method(print,plos)
 export(addmissing)
 export(concat_todf)
 export(crossref)

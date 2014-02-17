@@ -12,15 +12,11 @@
 #' plossubject(q='marine ecology', fl = 'id,journal', 
 #'    fq=list('doc_type:full','!article_type_facet:"Issue%20Image"'), 
 #'    limit = 9)
-#' 
-#' # Highlighting
-#' plossubject(q='marine ecology', fl='id,title', fq='doc_type:full', 
-#'    limit = 2, highlighting=TRUE)
 #' }
 #' @export
 
 plossubject <- function(q = NA, fl = 'id', fq = NA, sort = NA,
-  highlighting = FALSE, start = 0, limit = NA, key = NULL, 
+  start = 0, limit = NA, key = NULL, 
   sleep = 6, callopts=list(), terms, fields, toquery)
 {
   calls <- deparse(sys.calls())
@@ -29,6 +25,6 @@ plossubject <- function(q = NA, fl = 'id', fq = NA, sort = NA,
     stop("The parameters terms, fields, and toquery have been replaced with q, fl, and fq, respectively")
   
   searchplos(q=paste('subject:', '"', q, '"', sep=""), fl=fl, fq=fq,
-             sort=sort, highlighting=highlighting, start=start, limit=limit,
+             sort=sort, start=start, limit=limit,
              key=key, sleep=sleep, callopts=callopts)
 }

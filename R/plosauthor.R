@@ -6,14 +6,11 @@
 #' @examples \dontrun{
 #' plosauthor('Smith', 'id', limit=50)
 #' plosauthor(q='Smith', fl='id,author', limit=10)
-#' 
-#' # Highlighting
-#' plosauthor(q='Jones', fl='author', limit = 2, highlighting=TRUE)
 #' }
 #' @export
 
 plosauthor <- function(q = NA, fl = 'id', fq = NA, sort = NA,
-  highlighting = FALSE, start = 0, limit = NA, key = NULL, 
+  start = 0, limit = NA, key = NULL, 
   sleep = 6, callopts=list(), terms, fields, toquery)
 {
   calls <- deparse(sys.calls())
@@ -22,6 +19,6 @@ plosauthor <- function(q = NA, fl = 'id', fq = NA, sort = NA,
     stop("The parameters terms, fields, and toquery have been replaced with q, fl, and fq, respectively")
   
 	searchplos(q=paste('author:', '"', q, '"', sep=""), fl=fl, fq=fq,
-	           sort=sort, highlighting=highlighting, start=start, limit=limit,
+	           sort=sort, start=start, limit=limit,
 	           key=key, sleep=sleep, callopts=callopts)
 }

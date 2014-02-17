@@ -2,9 +2,9 @@
 \alias{plossubject}
 \title{Search PLoS Journals subjects.}
 \usage{
-plossubject(q = NA, fl = "id", fq = NA, sort = NA,
-  highlighting = FALSE, start = 0, limit = NA, key = NULL, sleep = 6,
-  callopts = list(), terms, fields, toquery)
+plossubject(q = NA, fl = "id", fq = NA, sort = NA, start = 0,
+  limit = NA, key = NULL, sleep = 6, callopts = list(), terms, fields,
+  toquery)
 }
 \arguments{
   \item{q}{Search terms (character). You can search on
@@ -32,10 +32,6 @@ plossubject(q = NA, fl = "id", fq = NA, sort = NA,
   space; see examples. For example, to sort the
   counter_total_all field in descending fashion, do
   sort='counter_total_all desc'}
-
-  \item{highlighting}{If TRUE, text found matching your
-  query given as a separate data.frame in output. If FALSE
-  (default), nothing returned in the highlighting slot.}
 
   \item{start}{Record to start at (used in combination with
   limit when you need to cycle through more results than
@@ -87,9 +83,6 @@ it an entry like:
 
 options(PlosApiKey = "your plos api key")
 
-Highlighting: Read more about highlighting here:
-url{http://wiki.apache.org/solr/HighlightingParameters}
-
 Faceting: Read more about faceting here:
 url{http://wiki.apache.org/solr/SimpleFacetParameters}
 }
@@ -102,10 +95,6 @@ plossubject(q='marine ecology', fl = 'id,journal',
 plossubject(q='marine ecology', fl = 'id,journal',
    fq=list('doc_type:full','!article_type_facet:"Issue\%20Image"'),
    limit = 9)
-
-# Highlighting
-plossubject(q='marine ecology', fl='id,title', fq='doc_type:full',
-   limit = 2, highlighting=TRUE)
 }
 }
 \seealso{
