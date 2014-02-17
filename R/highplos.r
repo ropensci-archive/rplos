@@ -1,4 +1,4 @@
-#' Base function to search PLoS Journals
+#' Do highlighted searches on PLOS Journals full-text content
 #' 
 #' @import solr
 #' @template high

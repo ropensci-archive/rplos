@@ -1,8 +1,9 @@
-#' Faceted search of PLOS articles
+#' Do faceted searches on PLOS Journals full-text content
 #' 
 #' @import solr
 #' @template facet
 #' @return A list
+#' @export
 #' @examples \dontrun{
 #' # Facet on a single field
 #' facetplos(q='*:*', facet.field='journal')
@@ -37,7 +38,6 @@
 #'  f.counter_total_all.facet.range.gap=10, f.alm_twitterCount.facet.range.start=5, f.alm_twitterCount.facet.range.end=1000, 
 #'  f.alm_twitterCount.facet.range.gap=10)
 #' }
-#' @export
 
 facetplos <- function(q="*:*", facet.query=NA, facet.field=NA,
   facet.prefix=NA,facet.sort=NA,facet.limit=NA,facet.offset=NA,

@@ -1,6 +1,6 @@
 \name{highplos}
 \alias{highplos}
-\title{Base function to search PLoS Journals}
+\title{Do highlighted searches on PLOS Journals full-text content}
 \usage{
 highplos(q, fl = NULL, fq = NULL, hl.fl = NULL, hl.snippets = NULL,
   hl.fragsize = NULL, hl.q = NULL, hl.mergeContiguous = NULL,
@@ -247,7 +247,7 @@ highplos(q, fl = NULL, fq = NULL, hl.fl = NULL, hl.snippets = NULL,
 A list.
 }
 \description{
-Base function to search PLoS Journals
+Do highlighted searches on PLOS Journals full-text content
 }
 \examples{
 \dontrun{

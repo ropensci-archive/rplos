@@ -1,6 +1,6 @@
 \name{facetplos}
 \alias{facetplos}
-\title{Faceted search of PLOS articles}
+\title{Do faceted searches on PLOS Journals full-text content}
 \usage{
 facetplos(q = "*:*", facet.query = NA, facet.field = NA,
   facet.prefix = NA, facet.sort = NA, facet.limit = NA,
@@ -181,7 +181,7 @@ facetplos(q = "*:*", facet.query = NA, facet.field = NA,
 A list
 }
 \description{
-Faceted search of PLOS articles
+Do faceted searches on PLOS Journals full-text content
 }
 \examples{
 \dontrun{
