@@ -1,0 +1,11 @@
+base
+devtools
+ggplot2
+knitr
+Rdocumentation
+roxygen2
+rplos
+sacbox
+slidify
+slidifyLibraries
+testthat

@@ -1,0 +1,171 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{rplos tutorial}
+-->
+
+rplos tutorial
+=====
+
+The `rplos` package interacts with the API services of [PLoS](http://www.plos.org/) (Public Library of Science) Journals. In order to use `rplos`, you need to obtain [your own key](http://api.plos.org/registration/) to their API services. Instruction for obtaining and installing keys so they load automatically when you launch R are on our GitHub Wiki page [Installation and use of API keys](https://github.com/ropensci/rOpenSci/wiki/Installation-and-use-of-API-keys).
+
+This tutorial will go through three use cases to demonstrate the kinds
+of things possible in `rplos`.
+
+* Search across PLoS papers in various sections of papers
+* Search for terms and visualize results as a histogram OR as a plot through time
+* Text mining of scientific literature
+
+### Load package from CRAN
+
+```{r install, eval=FALSE}
+install.packages("rplos")
+```
+
+```{r load, message=FALSE, warning=FALSE}
+library(rplos)
+```
+
+### Search across PLoS papers in various sections of papers
+
+`searchplos` is a general search, and in this case searches for the term
+**Helianthus** and returns the DOI's of matching papers
+
+```{r searchplos1, message=FALSE, warning=FALSE, cache=FALSE}
+searchplos(q= "Helianthus", fl= "id", limit = 5)
+```
+
+Get only full article DOIs
+
+```{r searchplos2, message=FALSE, warning=FALSE, cache=FALSE}
+searchplos(q="*:*", fl='id', fq='doc_type:full', start=0, limit=5)
+```
+
+Get DOIs for only PLoS One articles
+
+```{r searchplos3, message=FALSE, warning=FALSE, cache=FALSE}
+searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', start=0, limit=5)
+```
+
+Get DOIs for full article in PLoS One
+
+```{r searchplos4, message=FALSE, warning=FALSE, cache=FALSE}
+searchplos(q="*:*", fl='id',
+   fq=list('cross_published_journal_key:PLoSONE', 'doc_type:full'),
+   start=0, limit=5)
+```
+
+Serch for many terms
+
+```{r searchplos5, message=FALSE, warning=FALSE, cache=FALSE}
+q <- c('ecology','evolution','science')
+lapply(q, function(x) searchplos(x, limit=2))
+```
+
+### Search on specific sections
+
+A suite of functions were created as light wrappers around `searchplos` as a shorthand to search specific sections of a paper. 
+
+* `plosauthor` searchers in authors
+* `plosabstract` searches in abstracts
+* `plostitle` searches in titles
+* `plosfigtabcaps` searches in figure and table captions
+* `plossubject` searches in subject areas
+
+`plosauthor` searches across authors, and in this case returns the authors of the matching papers. the fl parameter determines what is returned
+
+```{r plosauthor, message=FALSE, warning=FALSE, cache=FALSE}
+plosauthor(q = "Eisen", fl = "author", limit = 5)
+```
+
+`plosabstract` searches across abstracts, and in this case returns the id and title of the matching papers
+
+```{r plosabstract, message=FALSE, warning=FALSE, cache=FALSE}
+plosabstract(q = 'drosophila', fl='id,title', limit = 5)
+```
+
+`plostitle` searches across titles, and in this case returns the title and journal of the matching papers
+
+```{r plostitle, message=FALSE, warning=FALSE, cache=FALSE}
+plostitle(q='drosophila', fl='title,journal', limit=5)
+```
+
+### Faceted search
+
+Facet by journal
+
+```{r facet1, message=FALSE, warning=FALSE, cache=FALSE}
+facetplos(q='*:*', facet.field='journal')
+```
+
+Using `facet.query` to get counts
+
+```{r facet2, message=FALSE, warning=FALSE, cache=FALSE}
+facetplos(q='*:*', facet.field='journal', facet.query='cell,bird')
+```
+
+Date faceting
+
+```{r facet3, message=FALSE, warning=FALSE, cache=FALSE}
+facetplos(q='*:*', url=url, facet.date='publication_date', 
+  facet.date.start='NOW/DAY-5DAYS', facet.date.end='NOW', facet.date.gap='+1DAY')
+```
+
+### Highlighted search
+
+Search for the term _alcohol_ in the abstracts of articles, return only 10 results
+
+```{r high1, message=FALSE, warning=FALSE, cache=FALSE}
+highplos(q='alcohol', hl.fl = 'abstract', rows=2)
+```
+
+Search for the term _alcohol_ in the abstracts of articles, and return fragment size of 20 characters, return only 5 results
+
+```{r high2, message=FALSE, warning=FALSE, cache=FALSE}
+highplos(q='alcohol', hl.fl='abstract', hl.fragsize=20, rows=2)
+```
+
+Search for the term _experiment_ across all sections of an article, return id (DOI) and title fl only, search in full articles only (via `fq='doc_type:full'`), and return only 10 results
+
+```{r high3, message=FALSE, warning=FALSE, cache=FALSE}
+highplos(q='everything:"experiment"', fl='id,title', fq='doc_type:full', 
+   rows=2)
+```
+
+### Search for terms and visualize results as a histogram OR as a plot through time
+
+`plosword` allows you to search for 1 to K words and visualize the results
+as a histogram, comparing number of matching papers for each word
+
+```{r plosword1, message=FALSE, warning=FALSE, cache=FALSE}
+out <- plosword(list("monkey", "Helianthus", "sunflower", "protein", "whale"), 
+    vis = "TRUE")
+out$table
+```
+
+```{r plosword1plot, message=FALSE, warning=FALSE, cache=FALSE, fig.width=6, fig.height=4}
+out$plot
+```
+
+You can also pass in curl options, in this case get verbose information on the curl call.
+
+```{r plosword2, message=FALSE, warning=FALSE, cache=FALSE}
+plosword('Helianthus', callopts=list(verbose=TRUE))
+```
+
+### Visualize terms
+
+`plot_througtime` allows you to search for up to 2 words and visualize the results as a line plot through time, comparing number of articles matching through time. Visualize with the ggplot2 package, only up to two terms for now.
+
+```{r throughtime1, message=FALSE, warning=FALSE, cache=FALSE, fig.width=6, fig.height=4}
+plot_throughtime(terms = "phylogeny", limit = 200)
+```
+
+OR using google visualizations through the googleVis package, check it your self using, e.g. (not shown here)
+
+```{r gvis, eval=FALSE}
+plot_throughtime(terms = list("drosophila", "flower"), limit = 200, gvis = TRUE)
+```
+
+...And a google visualization will render on your local browser and you
+can play with three types of plots (point, histogram, line), all through
+time. The plot is not shown here, but try it out for yourself!!
