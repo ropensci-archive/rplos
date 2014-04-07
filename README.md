@@ -62,5 +62,33 @@ plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE'
 
 ![plosword](/inst/assets/img/plosword.png)
 
-[![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+## Meta
 
+Please report any issues or bugs](https://github.com/ropensci/rplos/issues).
+
+License: CC0
+
+This package is part of the [rOpenSci](http://ropensci.org/packages) project.
+
+To cite package `rplos` in publications use:
+
+```coffee
+To cite package ‘rplos’ in publications use:
+
+  Scott Chamberlain, Carl Boettiger and Karthik Ram (2014). rplos: Interface to PLoS
+  Journals search API.. R package version 0.3.8. https://github.com/ropensci/rplos
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {rplos: Interface to PLoS Journals search API.},
+    author = {Scott Chamberlain and Carl Boettiger and Karthik Ram},
+    year = {2014},
+    note = {R package version 0.3.8},
+    url = {https://github.com/ropensci/rplos},
+  }
+```
+
+Get citation information for `rplos` in R doing `citation(package = 'rplos')`
+
+[![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
