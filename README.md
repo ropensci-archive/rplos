@@ -64,7 +64,7 @@ plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE'
 
 ## Meta
 
-Please report any issues or bugs](https://github.com/ropensci/rplos/issues).
+Please report any [issues or bugs](https://github.com/ropensci/rplos/issues).
 
 License: CC0
 
