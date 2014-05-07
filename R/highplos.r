@@ -44,7 +44,7 @@ highplos <- function(q, fl=NULL, fq=NULL, hl.fl = NULL, hl.snippets = NULL, hl.f
   if(is.null(key))
     key=getOption("PlosApiKey", stop("need an API key for PLoS Journals"))
   url <- 'http://api.plos.org/search'
-  out <- solr_highlight(url=url, key=key, q=q, fl=fl, fq=fq, wt='json', start=start, rows=rows, hl.fl=hl.fl,
+  out <- solr_highlight(base=url, key=key, q=q, fl=fl, fq=fq, wt='json', start=start, rows=rows, hl.fl=hl.fl,
     hl.snippets=hl.snippets, hl.fragsize=hl.fragsize,
     hl.mergeContiguous = hl.mergeContiguous, hl.requireFieldMatch = hl.requireFieldMatch, 
     hl.maxAnalyzedChars = hl.maxAnalyzedChars, hl.alternateField = hl.alternateField, 

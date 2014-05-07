@@ -17,7 +17,7 @@
 #' the given string prefix. Note that unlike fq, this does not change the search 
 #' results -- it merely reduces the facet values returned to those beginning with 
 #' the specified prefix. This parameter can be specified on a per field basis.
-#' @param facet.sort See \code{\link{solr_facet}}. 
+#' @param facet.sort See \code{\link[solr]{solr_facet}}. 
 #' @param facet.limit This param indicates the maximum number of constraint counts 
 #' that should be returned for the facet fields. A negative value means unlimited. 
 #' Default: 100. Can be specified on a per field basis.
@@ -30,7 +30,7 @@
 #' Term based constraints of a facet field, a count of all matching results which 
 #' have no value for the field should be computed. Default: FALSE. This parameter 
 #' can be specified on a per field basis.
-#' @param facet.method See \code{\link{solr_facet}}.
+#' @param facet.method See \code{\link[solr]{solr_facet}}.
 #' @param facet.enum.cache.minDf This param indicates the minimum document frequency 
 #' (number of documents matching a term) for which the filterCache should be used 
 #' when determining the constraint count for that term. This is only used when 
@@ -67,8 +67,8 @@
 #' possible upper bound greater then facet.date.end such that the range is exactly 
 #' facet.date.gap wide. Default: FALSE. This parameter can be specified on a per 
 #' field basis.
-#' @param facet.date.other See \code{\link{solr_facet}}.
-#' @param facet.date.include See \code{\link{solr_facet}}.
+#' @param facet.date.other See \code{\link[solr]{solr_facet}}.
+#' @param facet.date.include See \code{\link[solr]{solr_facet}}.
 #' @param facet.range Indicates what field to create range facets for. Example: 
 #' facet.range=price&facet.range=age
 #' @param facet.range.start The lower bound of the ranges. Can be specified on a 
@@ -86,8 +86,8 @@
 #' upper bound greater then facet.range.end such that the range is exactly 
 #' facet.range.gap wide. Default: FALSE. This parameter can be specified on a 
 #' per field basis.
-#' @param facet.range.other See \code{\link{solr_facet}}.
-#' @param facet.range.include See \code{\link{solr_facet}}.
+#' @param facet.range.other See \code{\link[solr]{solr_facet}}.
+#' @param facet.range.include See \code{\link[solr]{solr_facet}}.
 #' @param start Record to start at, default to beginning.
 #' @param rows Number of records to return.
 #' @param key API key, if needed.
