@@ -1,5 +1,5 @@
 #' Concatenate author names, if present, used in other functions.
-#' 
+#'
 #' @param x a single list element with PLoS API returned nested elements
 #' @return data.frame of results, with authors concatenated to single vector.
 #' @export
@@ -20,17 +20,17 @@ concat_todf <- function(x){
 	data.frame(x)
 }
 
-#' Adds elements in a list that are missing because they were not returned 
+#' Adds elements in a list that are missing because they were not returned
 #' in the PLoS API call.
-#' 
+#'
 #' @param x A list with PLoS API returned nested elements
-#' @return A list with the missing element added with an 
+#' @return A list with the missing element added with an
 #' 		"na", if it is missing.
 #' @export
 #' @keywords internal
 addmissing <- function(x){
 	names_ <- names(x[[which.max(lapply(x, length))]])
-	
+
 	bbb <- function(x){
 		if(identical(names_[!names_ %in% names(x)], character(0))){x} else
 		{
@@ -42,38 +42,12 @@ addmissing <- function(x){
 	lapply(x, bbb)
 }
 
-#' Function to get an API key. 
-#' 
-#' Checks first to get key from your .Rprofile file for an API key with the name
-#' 		'PlosApiKey'. If it is not found, the default guest key is used. 
-#' 
-#' @param x An API key, defaults to NULL.
-#' @examples \dontrun{
-#' getkey()
-#' } 
-#' @export
-#' @keywords internal
-getkey <- function(x = NULL) {	
-	if(is.null(x)){
-		key <- getOption("PlosApiKey")
-		
-		if(is.null(key)){
-			key <- "MUvThuaeRNV2cNs"
-			message("Using default key: Please get your own API key at http://api.plos.org/")
-		} else 
-			if(class(key)=="character"){key <- key} else 
-				{ stop("check your key input - it should be a character string") }
-	} else 
-		{ key <- x }
-	key
-}
-
-#' Function to insert "none" character strings where NULL values found to 
+#' Function to insert "none" character strings where NULL values found to
 #' faciliate combining results
-#' 
+#'
 #' @export
 #' @keywords internal
-insertnones <- function(x) 
+insertnones <- function(x)
 {
 	fields = NULL
 	f2 <- strsplit(fields, ",")[[1]]
