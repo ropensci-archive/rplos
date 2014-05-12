@@ -128,6 +128,14 @@ out <- searchplos(q='*:*', fl='doc_partial_body,doc_partial_parent_id',
 ## Return Title's only
 out <- searchplos(q='*:*', fl='doc_partial_body,doc_partial_parent_id',
    fq=list('doc_type:partial', 'doc_partial_type:Title'), limit=3)
+
+# Remove DOIs for annotations (i.e., corrections)
+searchplos(q='*:*', fl='id,article_type',
+   fq='-article_type:correction', limit=100)
+
+# Remove DOIs for annotations (i.e., corrections) and Viewpoints articles
+searchplos(q='*:*', fl='id,article_type',
+   fq=list('-article_type:correction','-article_type:viewpoints'), limit=100)
 }
 }
 \seealso{

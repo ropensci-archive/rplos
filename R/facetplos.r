@@ -7,9 +7,10 @@
 #' @examples \dontrun{
 #' # Facet on a single field
 #' facetplos(q='*:*', facet.field='journal')
+#' facetplos(q='alcohol', facet.field='article_type')
 #' 
 #' # Facet on multiple fields
-#' facetplos(q='alcohol', facet.field='journal,subject')
+#' facetplos(q='alcohol', facet.field=c('journal','subject'))
 #' 
 #' # Using mincount
 #' facetplos(q='alcohol', facet.field='journal', facet.mincount='500')
@@ -21,22 +22,24 @@
 #' facetplos(q='*:*', facet.field='journal', facet.query='cell,bird')
 #' 
 #' # Date faceting
-#' facetplos(q='*:*', url=url, facet.date='publication_date', 
+#' facetplos(q='*:*', url=url, facet.date='publication_date',
 #'  facet.date.start='NOW/DAY-5DAYS', facet.date.end='NOW', facet.date.gap='+1DAY')
 #' 
 #' # Range faceting
 #' facetplos(q='*:*', url=url, facet.range='counter_total_all', 
 #'  facet.range.start=5, facet.range.end=1000, facet.range.gap=10)
+#' facetplos(q='alcohol', facet.range='alm_facebookCount', facet.range.start=1000, 
+#'    facet.range.end=5000, facet.range.gap = 100)
 #' 
 #' # Range faceting with > 1 field, same settings
-#' facetplos(q='*:*', url=url, facet.range='counter_total_all,alm_twitterCount', 
+#' facetplos(q='*:*', url=url, facet.range=c('counter_total_all','alm_twitterCount'), 
 #'  facet.range.start=5, facet.range.end=1000, facet.range.gap=10)
 #' 
 #' # Range faceting with > 1 field, different settings
-#' facetplos(q='*:*', url=url, facet.range='counter_total_all,alm_twitterCount', 
+#' facetplos(q='*:*', url=url, facet.range=c('counter_total_all','alm_twitterCount'), 
 #'  f.counter_total_all.facet.range.start=5, f.counter_total_all.facet.range.end=1000, 
-#'  f.counter_total_all.facet.range.gap=10, f.alm_twitterCount.facet.range.start=5, f.alm_twitterCount.facet.range.end=1000, 
-#'  f.alm_twitterCount.facet.range.gap=10)
+#'  f.counter_total_all.facet.range.gap=10, f.alm_twitterCount.facet.range.start=5, 
+#'  f.alm_twitterCount.facet.range.end=1000, f.alm_twitterCount.facet.range.gap=10)
 #' }
 
 facetplos <- function(q="*:*", facet.query=NA, facet.field=NA,
@@ -73,7 +76,7 @@ facetplos <- function(q="*:*", facet.query=NA, facet.field=NA,
     facet.range.start=facet.range.start,facet.range.end=facet.range.end,
     facet.range.gap=facet.range.gap,facet.range.hardend=facet.range.hardend,
     facet.range.other=facet.range.other,facet.range.include=facet.range.include, 
-    start=start, rows=rows, url=url, callopts=callopts, ...)
+    start=start, rows=rows, base=url, callopts=callopts, ...)
 
   return( out )
   

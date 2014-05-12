@@ -153,9 +153,10 @@ Do faceted searches on PLOS Journals full-text content
 \dontrun{
 # Facet on a single field
 facetplos(q='*:*', facet.field='journal')
+facetplos(q='alcohol', facet.field='article_type')
 
 # Facet on multiple fields
-facetplos(q='alcohol', facet.field='journal,subject')
+facetplos(q='alcohol', facet.field=c('journal','subject'))
 
 # Using mincount
 facetplos(q='alcohol', facet.field='journal', facet.mincount='500')
@@ -173,16 +174,18 @@ facetplos(q='*:*', url=url, facet.date='publication_date',
 # Range faceting
 facetplos(q='*:*', url=url, facet.range='counter_total_all',
  facet.range.start=5, facet.range.end=1000, facet.range.gap=10)
+facetplos(q='alcohol', facet.range='alm_facebookCount', facet.range.start=1000,
+   facet.range.end=5000, facet.range.gap = 100)
 
 # Range faceting with > 1 field, same settings
-facetplos(q='*:*', url=url, facet.range='counter_total_all,alm_twitterCount',
+facetplos(q='*:*', url=url, facet.range=c('counter_total_all','alm_twitterCount'),
  facet.range.start=5, facet.range.end=1000, facet.range.gap=10)
 
 # Range faceting with > 1 field, different settings
-facetplos(q='*:*', url=url, facet.range='counter_total_all,alm_twitterCount',
+facetplos(q='*:*', url=url, facet.range=c('counter_total_all','alm_twitterCount'),
  f.counter_total_all.facet.range.start=5, f.counter_total_all.facet.range.end=1000,
- f.counter_total_all.facet.range.gap=10, f.alm_twitterCount.facet.range.start=5, f.alm_twitterCount.facet.range.end=1000,
- f.alm_twitterCount.facet.range.gap=10)
+ f.counter_total_all.facet.range.gap=10, f.alm_twitterCount.facet.range.start=5,
+ f.alm_twitterCount.facet.range.end=1000, f.alm_twitterCount.facet.range.gap=10)
 }
 }
 

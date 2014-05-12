@@ -1,6 +1,7 @@
 #' Base function to search PLoS Journals
 #' 
 #' @import data.table
+#' @export
 #' @importFrom plyr ldply
 #' @importFrom stringr str_extract
 #' @importFrom lubridate now
@@ -62,8 +63,15 @@
 #' ## Return Title's only
 #' out <- searchplos(q='*:*', fl='doc_partial_body,doc_partial_parent_id', 
 #'    fq=list('doc_type:partial', 'doc_partial_type:Title'), limit=3)
+#'    
+#' # Remove DOIs for annotations (i.e., corrections)
+#' searchplos(q='*:*', fl='id,article_type', 
+#'    fq='-article_type:correction', limit=100)
+#' 
+#' # Remove DOIs for annotations (i.e., corrections) and Viewpoints articles
+#' searchplos(q='*:*', fl='id,article_type', 
+#'    fq=list('-article_type:correction','-article_type:viewpoints'), limit=100)
 #' }
-#' @export
 
 searchplos <- function(q = NA, fl = 'id', fq = NA, sort = NA, start = 0, limit = NA, 
   key = NULL, sleep = 6, callopts=list(), terms, fields, toquery)
