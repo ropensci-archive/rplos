@@ -1,9 +1,9 @@
 #' Do faceted searches on PLOS Journals full-text content
 #' 
 #' @import solr
-#' @template facet
-#' @return A list
 #' @export
+#' @return A list
+#' @template facet
 #' @examples \dontrun{
 #' # Facet on a single field
 #' facetplos(q='*:*', facet.field='journal')

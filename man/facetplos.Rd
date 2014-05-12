@@ -91,7 +91,7 @@ which may use the DateMathParser syntax. Can be specified on a per field basis.}
 
 \item{facet.date.gap}{The size of each date range expressed as an interval to
 be added to the lower bound using the DateMathParser syntax. Eg:
-facet.date.gap=%2B1DAY (+1DAY). Can be specified on a per field basis.}
+facet.date.gap=+1DAY. Can be specified on a per field basis.}
 
 \item{facet.date.hardend}{A Boolean parameter instructing Solr what to do in the
 event that facet.date.gap does not divide evenly between facet.date.start and
@@ -116,7 +116,7 @@ field basis. Example: f.price.facet.range.end=1000.0&f.age.facet.range.start=99}
 
 \item{facet.range.gap}{The size of each range expressed as a value to be added
 to the lower bound. For date fields, this should be expressed using the
-DateMathParser syntax. (ie: facet.range.gap=%2B1DAY ... '+1DAY'). Can be specified
+DateMathParser syntax. (ie: facet.range.gap=+1DAY). Can be specified
 on a per field basis. Example: f.price.facet.range.gap=100&f.age.facet.range.gap=10}
 
 \item{facet.range.hardend}{A Boolean parameter instructing Solr what to do in the

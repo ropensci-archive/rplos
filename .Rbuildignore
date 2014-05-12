@@ -2,7 +2,6 @@
 ^Makefile$
 .travis.yml
 man-roxygen
-tests/test-all.R
 inst/assets
 inst/stuff
 vignettes/margins.sty
