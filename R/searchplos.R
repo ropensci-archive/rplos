@@ -10,9 +10,9 @@
 #' @return An object of class "plos", with a list of length two, each element being 
 #' a list itself.
 #' @examples \dontrun{
-#' searchplos(q='ecology', fl='id,publication_date', limit = 2)
-#' searchplos('ecology', 'id,publication_date', limit = 2)
-#' searchplos('ecology', 'id,title', limit = 2)
+#' searchplos(q='ecology', fl=c('id','publication_date'), limit = 2)
+#' searchplos('ecology', fl=c('id','publication_date'), limit = 2)
+#' searchplos('ecology', c('id','title'), limit = 2)
 #' 
 #' # Get only full article DOIs
 #' out <- searchplos(q="*:*", fl='id', fq='doc_type:full', start=0, limit=250)
@@ -23,7 +23,8 @@
 #' head(out)
 #' 
 #' # Get DOIs for full article in PLoS One
-#' out <- searchplos(q="*:*", fl='id', fq=list('cross_published_journal_key:PLoSONE', 'doc_type:full'), limit=50)
+#' out <- searchplos(q="*:*", fl='id', fq=list('cross_published_journal_key:PLoSONE', 
+#'    'doc_type:full'), limit=50)
 #' head(out)
 #' 
 #' # Serch for many q
@@ -31,15 +32,15 @@
 #' lapply(q, function(x) searchplos(x, limit=2))
 #' 
 #' # Query to get some PLOS article-level metrics, notice difference between two outputs
-#' out <- searchplos(q="*:*", fl='id,counter_total_all,alm_twitterCount', fq='doc_type:full')
-#' out_sorted <- searchplos(q="*:*", fl='id,counter_total_all,alm_twitterCount', fq='doc_type:full', sort='counter_total_all desc')
+#' out <- searchplos(q="*:*", fl=c('id','counter_total_all','alm_twitterCount'),fq='doc_type:full')
+#' out_sorted <- searchplos(q="*:*", fl=c('id','counter_total_all','alm_twitterCount'), 
+#'    fq='doc_type:full', sort='counter_total_all desc')
 #' head(out)
 #' head(out_sorted)
 #' 
 #' # A list of articles about social networks that are popular on a social network
-#' searchplos(q="*:*", fl='id,alm_twitterCount', 
-#'    fq=list('doc_type:full','subject:"Social networks"',
-#'                 'alm_twitterCount:[100 TO 10000]'), 
+#' searchplos(q="*:*",fl=c('id','alm_twitterCount'), 
+#'    fq=list('doc_type:full','subject:"Social networks"','alm_twitterCount:[100 TO 10000]'), 
 #'    sort='counter_total_month desc')
 #'                  
 #' # Show me all articles that have these two words less then about 15 words apart.
@@ -50,30 +51,30 @@
 #' 
 #' # Now, lets also only look at articles that have seen some activity on twitter. 
 #' # Add "fq=alm_twitterCount:[1 TO *]" as a parameter within the fq argument.
-#' searchplos(q='everything:"sports alcohol"~7', fl='alm_twitterCount,title', 
+#' searchplos(q='everything:"sports alcohol"~7', fl=c('alm_twitterCount','title'), 
 #'    fq=list('doc_type:full','alm_twitterCount:[1 TO *]'))
-#' searchplos(q='everything:"sports alcohol"~7', fl='alm_twitterCount,title', 
+#' searchplos(q='everything:"sports alcohol"~7', fl=c('alm_twitterCount','title'), 
 #'    fq=list('doc_type:full','alm_twitterCount:[1 TO *]'), 
 #'    sort='counter_total_month desc')
 #'    
 #' # Return partial doc parts
 #' ## Return Abstracts only
-#' out <- searchplos(q='*:*', fl='doc_partial_body,doc_partial_parent_id', 
+#' out <- searchplos(q='*:*', fl=c('doc_partial_body','doc_partial_parent_id'), 
 #'    fq=list('doc_type:partial', 'doc_partial_type:Abstract'), limit=3)
 #' ## Return Title's only
-#' out <- searchplos(q='*:*', fl='doc_partial_body,doc_partial_parent_id', 
+#' out <- searchplos(q='*:*', fl=c('doc_partial_body','doc_partial_parent_id'), 
 #'    fq=list('doc_type:partial', 'doc_partial_type:Title'), limit=3)
 #'    
 #' # Remove DOIs for annotations (i.e., corrections)
-#' searchplos(q='*:*', fl='id,article_type', 
+#' searchplos(q='*:*', fl=c('id','article_type'), 
 #'    fq='-article_type:correction', limit=100)
 #' 
 #' # Remove DOIs for annotations (i.e., corrections) and Viewpoints articles
-#' searchplos(q='*:*', fl='id,article_type', 
+#' searchplos(q='*:*', fl=c('id','article_type'), 
 #'    fq=list('-article_type:correction','-article_type:viewpoints'), limit=100)
 #' }
 
-searchplos <- function(q = NA, fl = 'id', fq = NA, sort = NA, start = 0, limit = NA, 
+searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, limit = NULL, 
   key = NULL, sleep = 6, callopts=list(), terms, fields, toquery)
 {
   calls <- deparse(sys.calls())
@@ -99,41 +100,21 @@ searchplos <- function(q = NA, fl = 'id', fq = NA, sort = NA, start = 0, limit =
   
 	url = 'http://api.plos.org/search'
   
-#   # If highlighting=TRUE, then force id to be retuned so results can be matched easily
-#   if(highlighting){  
-#     if(!grepl("id", fl))
-#       fl <- paste(fl, 'id', sep=",")
-#   }
-  
-	if(is.na(limit)){limit <- 999} else{limit <- limit}
   args <- list()
-  if(!is.na(fq[[1]])) {
-    if(length(fq)==1) {
-      args$fq <- fq
-    } else
-    {
-      args <- fq
-      names(args) <- rep("fq",length(args))
+  if(!is.null(fq[[1]])) {
+    if(length(fq)==1) { args$fq <- fq } else {
+      args <- fq; names(args) <- rep("fq",length(args))
     } 
-  } else
-  { NULL }
-  args$api_key <- key
-  if(!is.na(q))
-    args$q <- q
-	if(!any(is.na(fl)))
-    args$fl <- paste(fl, collapse=",")
-  if(!is.na(start))
-    args$start <- start
-  if(!is.na(limit))
-    args$rows <- limit
-  if(!is.na(sort))
-    args$sort <- sort
-#   if(!is.na(highlighting))
-#     args$hl <- tolower(highlighting)
-  args$wt <- "json"
+  } else { NULL }
+
+	if(is.null(limit)){limit <- 999} else{limit <- limit}
+  fl <- paste(fl, collapse=",")
+  args <- c(args, ploscompact(list(api_key=key, q=q, fl=fl, start=start, rows=limit, sort=sort, wt='json')))
   
 	argsgetnum <- list(q=q, rows=0, wt="json", api_key=key)
-	getnum <- content(GET(url, query = argsgetnum))
+	getnum_tmp <- GET(url, query = argsgetnum)
+  stop_for_status(getnum_tmp)
+  getnum <- content(getnum_tmp)
 	getnumrecords <- getnum$response$numFound
 	if(getnumrecords > limit){getnumrecords <- limit} else{getnumrecords <- getnumrecords}
 	
@@ -157,17 +138,10 @@ searchplos <- function(q = NA, fl = 'id', fq = NA, sort = NA, start = 0, limit =
       }      
       tempresults <- lapply(tempresults, function(x) lapply(x, foo))
     }
-    
-# 	  if(highlighting){
-# 	    res <- list(data=tempresults, highlighting=jsonout$highlighting)
-# 	  } else
-# 	  {
-# 	    res <- list(data=tempresults, highlighting=NULL)
-# 	  }
+
     res <- tempresults
     
 	  resdf  <- plos2df(res)
-#     class(resdf) <- "plos"
     return( resdf )
 	} else
 	{ 
@@ -204,31 +178,19 @@ searchplos <- function(q = NA, fl = 'id', fq = NA, sort = NA, start = 0, limit =
 	      }      
 	      tempresults <- lapply(tempresults, function(x) lapply(x, foo))
 	    }
-      
-# 	    hlres <- jsonout$highlighting
-# 	    out[[i]] <- list(dat=tempresults, hl=hlres)
       out[[i]] <- tempresults
 	  }
 	  
-#     if(highlighting){
-#       res <- list(data=lapply(out, "[[", "dat"), highlighting=lapply(out, "[[", "hl"))
-# 	  } else
-# 	  {
-# 	    res <- list(data=tempresults, highlighting=NULL)
-# 	  }
 	  resdf  <- plos2df(out, TRUE)
-# 	  class(resdf) <- "plos"
 	  return( resdf )
 	}
   Sys.setenv(plostime = as.numeric(now()))
 }
 
 plos2df <- function(input, many=FALSE)
-#   plos2df <- function(input, many=FALSE)
 {  
   if(many){
     input <- do.call(c, input)
-#     input$highlighting <- do.call(c, input$highlighting)
   }
   
   if(is.null(input)){
@@ -244,25 +206,7 @@ plos2df <- function(input, many=FALSE)
         tmp
       }
     })
-    datout <- data.frame(rbindlist(dat))
+    datout <- data.frame(rbindlist(dat), stringsAsFactors = FALSE)
   }
   return( datout ) 
 }
-#   if(is.null(input$highlighting)){
-#     hlout <- NULL
-#   } else {  
-#     maxlenhl <- max(sapply(input$highlighting, length))
-#     nameshl <- names(input$highlighting[which.max(sapply(input$highlighting, length))][[1]])  
-#     hl <- lapply(input$highlighting, function(x){
-#       if(!length(x) < maxlenhl){ x } else {
-#         fillnames <- nameshl[!nameshl %in% names(x)]
-#         tmp <- c(rep(NA, length(fillnames)), x)
-#         names(tmp)[seq_along(fillnames)] <- fillnames
-#         tmp
-#       }
-#     })
-#     hlout <- data.frame(rbindlist(parsehighlight2(hl)))
-#   }
-#   
-#   list(data = datout, highlighting = hlout)
-# }

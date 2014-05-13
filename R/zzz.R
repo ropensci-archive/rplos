@@ -58,3 +58,5 @@ insertnones <- function(x)
 	x <- c(x, values)
 	x
 }
+
+ploscompact <- function(l) Filter(Negate(is.null), l)

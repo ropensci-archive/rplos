@@ -3,8 +3,8 @@
 \alias{searchplos}
 \title{Base function to search PLoS Journals}
 \usage{
-searchplos(q = NA, fl = "id", fq = NA, sort = NA, start = 0,
-  limit = NA, key = NULL, sleep = 6, callopts = list(), terms, fields,
+searchplos(q = NULL, fl = "id", fq = NULL, sort = NULL, start = 0,
+  limit = NULL, key = NULL, sleep = 6, callopts = list(), terms, fields,
   toquery)
 }
 \arguments{
@@ -75,9 +75,9 @@ Read more about faceting here: url{http://wiki.apache.org/solr/SimpleFacetParame
 }
 \examples{
 \dontrun{
-searchplos(q='ecology', fl='id,publication_date', limit = 2)
-searchplos('ecology', 'id,publication_date', limit = 2)
-searchplos('ecology', 'id,title', limit = 2)
+searchplos(q='ecology', fl=c('id','publication_date'), limit = 2)
+searchplos('ecology', fl=c('id','publication_date'), limit = 2)
+searchplos('ecology', c('id','title'), limit = 2)
 
 # Get only full article DOIs
 out <- searchplos(q="*:*", fl='id', fq='doc_type:full', start=0, limit=250)
@@ -88,7 +88,8 @@ out <- searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', st
 head(out)
 
 # Get DOIs for full article in PLoS One
-out <- searchplos(q="*:*", fl='id', fq=list('cross_published_journal_key:PLoSONE', 'doc_type:full'), limit=50)
+out <- searchplos(q="*:*", fl='id', fq=list('cross_published_journal_key:PLoSONE',
+   'doc_type:full'), limit=50)
 head(out)
 
 # Serch for many q
@@ -96,15 +97,15 @@ q <- c('ecology','evolution','science')
 lapply(q, function(x) searchplos(x, limit=2))
 
 # Query to get some PLOS article-level metrics, notice difference between two outputs
-out <- searchplos(q="*:*", fl='id,counter_total_all,alm_twitterCount', fq='doc_type:full')
-out_sorted <- searchplos(q="*:*", fl='id,counter_total_all,alm_twitterCount', fq='doc_type:full', sort='counter_total_all desc')
+out <- searchplos(q="*:*", fl=c('id','counter_total_all','alm_twitterCount'),fq='doc_type:full')
+out_sorted <- searchplos(q="*:*", fl=c('id','counter_total_all','alm_twitterCount'),
+   fq='doc_type:full', sort='counter_total_all desc')
 head(out)
 head(out_sorted)
 
 # A list of articles about social networks that are popular on a social network
-searchplos(q="*:*", fl='id,alm_twitterCount',
-   fq=list('doc_type:full','subject:"Social networks"',
-                'alm_twitterCount:[100 TO 10000]'),
+searchplos(q="*:*",fl=c('id','alm_twitterCount'),
+   fq=list('doc_type:full','subject:"Social networks"','alm_twitterCount:[100 TO 10000]'),
    sort='counter_total_month desc')
 
 # Show me all articles that have these two words less then about 15 words apart.
@@ -115,26 +116,26 @@ searchplos(q='everything:"sports alcohol"~7', fl='title', fq='doc_type:full')
 
 # Now, lets also only look at articles that have seen some activity on twitter.
 # Add "fq=alm_twitterCount:[1 TO *]" as a parameter within the fq argument.
-searchplos(q='everything:"sports alcohol"~7', fl='alm_twitterCount,title',
+searchplos(q='everything:"sports alcohol"~7', fl=c('alm_twitterCount','title'),
    fq=list('doc_type:full','alm_twitterCount:[1 TO *]'))
-searchplos(q='everything:"sports alcohol"~7', fl='alm_twitterCount,title',
+searchplos(q='everything:"sports alcohol"~7', fl=c('alm_twitterCount','title'),
    fq=list('doc_type:full','alm_twitterCount:[1 TO *]'),
    sort='counter_total_month desc')
 
 # Return partial doc parts
 ## Return Abstracts only
-out <- searchplos(q='*:*', fl='doc_partial_body,doc_partial_parent_id',
+out <- searchplos(q='*:*', fl=c('doc_partial_body','doc_partial_parent_id'),
    fq=list('doc_type:partial', 'doc_partial_type:Abstract'), limit=3)
 ## Return Title's only
-out <- searchplos(q='*:*', fl='doc_partial_body,doc_partial_parent_id',
+out <- searchplos(q='*:*', fl=c('doc_partial_body','doc_partial_parent_id'),
    fq=list('doc_type:partial', 'doc_partial_type:Title'), limit=3)
 
 # Remove DOIs for annotations (i.e., corrections)
-searchplos(q='*:*', fl='id,article_type',
+searchplos(q='*:*', fl=c('id','article_type'),
    fq='-article_type:correction', limit=100)
 
 # Remove DOIs for annotations (i.e., corrections) and Viewpoints articles
-searchplos(q='*:*', fl='id,article_type',
+searchplos(q='*:*', fl=c('id','article_type'),
    fq=list('-article_type:correction','-article_type:viewpoints'), limit=100)
 }
 }
