@@ -63,6 +63,7 @@ insertnones <- function(x)
 ploscompact <- function(l) Filter(Negate(is.null), l)
 
 #' Check response from PLOS, including status codes, server error messages, mime-type, etc.
+#' @export
 #' @keywords internal
 check_response <- function(x){
   if(!x$status_code == 200){
@@ -75,9 +76,12 @@ check_response <- function(x){
   }
   assert_that(x$headers$`content-type` == 'application/json;charset=UTF-8')
   res <- content(x, as = 'text', encoding = "UTF-8")
-  out <- fromJSON(res)
+  out <- RJSONIO::fromJSON(res)
   if('response' %in% names(out)){
-    if(out$response$numFound == 0){ message("Sorry, no data found") }
+    if(out$response$numFound == 0){ 
+      message("Sorry, no data found")
+      out 
+    }
   } else {
     if( class(try(out$response, silent=TRUE))=="try-error" | is.null(try(out$response, silent=TRUE)) )
       stop("Sorry, no data found")

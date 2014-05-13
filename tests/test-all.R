@@ -1,2 +1,2 @@
 library(testthat)
-test_package("rplos")
+test_check("rplos")

@@ -212,17 +212,21 @@ plos2df <- function(input, many=FALSE)
   if(is.null(input)){
     datout <- NULL
   } else{  
-    maxlendat <- max(sapply(input, length))
-    namesdat <- names(input[which.max(sapply(input, length))][[1]])
-    dat <- lapply(input, function(x){
-      if(!length(x) < maxlendat){ x } else {
-        fillnames <- namesdat[!namesdat %in% names(x)]
-        tmp <- c(rep("none", length(fillnames)), x)
-        names(tmp)[seq_along(fillnames)] <- fillnames
-        tmp[match(namesdat, names(tmp))]
-      }
-    })
-    datout <- data.frame(rbindlist(dat), stringsAsFactors = FALSE)
+    if(length(input) == 0){
+      datout <- NA
+    } else{
+      maxlendat <- max(sapply(input, length))
+      namesdat <- names(input[which.max(sapply(input, length))][[1]])
+      dat <- lapply(input, function(x){
+        if(!length(x) < maxlendat){ x } else {
+          fillnames <- namesdat[!namesdat %in% names(x)]
+          tmp <- c(rep("none", length(fillnames)), x)
+          names(tmp)[seq_along(fillnames)] <- fillnames
+          tmp[match(namesdat, names(tmp))]
+        }
+      })
+      datout <- data.frame(rbindlist(dat), stringsAsFactors = FALSE)
+    }
   }
   return( datout ) 
 }

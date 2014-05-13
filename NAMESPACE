@@ -2,6 +2,7 @@
 
 S3method(print,plosft)
 export(addmissing)
+export(check_response)
 export(concat_todf)
 export(crossref)
 export(facetplos)
