@@ -1,6 +1,6 @@
 #' Base function to search PLoS Journals
 #' 
-#' @import data.table
+#' @import data.table assertthat
 #' @export
 #' @importFrom plyr ldply
 #' @importFrom stringr str_extract
@@ -72,6 +72,10 @@
 #' # Remove DOIs for annotations (i.e., corrections) and Viewpoints articles
 #' searchplos(q='*:*', fl=c('id','article_type'), 
 #'    fq=list('-article_type:correction','-article_type:viewpoints'), limit=100)
+#'    
+#' # Get eissn codes
+#' searchplos(q='*:*', fl=c('id','journal','eissn','cross_published_journal_eissn'), 
+#'    fq="doc_type:full", limit = 60)   
 #' }
 
 searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, limit = NULL, 
@@ -119,11 +123,13 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
 	if(getnumrecords > limit){getnumrecords <- limit} else{getnumrecords <- getnumrecords}
 	
 	if(min(getnumrecords, limit) < 1000) {
-	  if(!is.na(limit))
+	  if(!is.null(limit))
 	    args$rows <- limit
 	  tt <- GET(url, query=args, callopts)
     stop_for_status(tt)
-	  jsonout <- content(tt)
+	  assert_that(tt$headers$`content-type` == 'application/json;charset=UTF-8')
+	  respout <- content(tt, as = "text")
+    jsonout <- fromJSON(respout)
 	  tempresults <- jsonout$response$docs
 	  tempresults <- lapply(tempresults, function(x) lapply(x, trim))
     
@@ -201,12 +207,14 @@ plos2df <- function(input, many=FALSE)
     dat <- lapply(input, function(x){
       if(!length(x) < maxlendat){ x } else {
         fillnames <- namesdat[!namesdat %in% names(x)]
-        tmp <- c(rep(NA, length(fillnames)), x)
+        tmp <- c(rep("none", length(fillnames)), x)
         names(tmp)[seq_along(fillnames)] <- fillnames
-        tmp
+        tmp[match(namesdat, names(tmp))]
       }
     })
     datout <- data.frame(rbindlist(dat), stringsAsFactors = FALSE)
+    datout
+#       rbind_all(lapply(dat, data.frame, stringsAsFactors = FALSE))
   }
   return( datout ) 
 }

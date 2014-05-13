@@ -137,6 +137,10 @@ searchplos(q='*:*', fl=c('id','article_type'),
 # Remove DOIs for annotations (i.e., corrections) and Viewpoints articles
 searchplos(q='*:*', fl=c('id','article_type'),
    fq=list('-article_type:correction','-article_type:viewpoints'), limit=100)
+
+# Get eissn codes
+searchplos(q='*:*', fl=c('id','journal','eissn','cross_published_journal_eissn'),
+   fq="doc_type:full", limit = 60)
 }
 }
 \seealso{
