@@ -9,12 +9,12 @@ undef <- 'http://api.plos.org/search?q=*:*&facet.range=counter_total_all,alm_twi
 
 test_that("check_response catches wrong sort specification correctly", {
   expect_error(check_response(httr::GET(sortspec)), "Can't determine a Sort Order")
-  expect_error(searchplos(q="*:*", sort="counter_total_all desadfc"), "Can't determine a Sort Order")
+  expect_error(searchplos(q="*:*", sort="counter_total_all desadfc", key = "hello"), "Can't determine a Sort Order")
 })
 
 test_that("check_response catches no data found correctly", {
   expect_message(check_response(httr::GET(datanotfound)), "no data found")
-  expect_message(searchplos(q="monkey pies and cheese cows horses"), "no data found")
+  expect_message(searchplos(q="monkey pies and cheese cows horses", key = "hello"), "no data found")
 })
 
 test_that("check_response catches undefined fields correctly", {
@@ -22,5 +22,5 @@ test_that("check_response catches undefined fields correctly", {
 })
 
 test_that("check_response catches incorrect value to start", {
-  expect_error(searchplos(q="*:*", start = "a"), "For input string")
+  expect_error(searchplos(q="*:*", start = "a", key = "hello"), "For input string")
 })
