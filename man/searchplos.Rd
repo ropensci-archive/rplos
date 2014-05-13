@@ -4,7 +4,7 @@
 \title{Base function to search PLoS Journals}
 \usage{
 searchplos(q = NULL, fl = "id", fq = NULL, sort = NULL, start = 0,
-  limit = NULL, key = NULL, sleep = 6, callopts = list(), terms, fields,
+  limit = 10, key = NULL, sleep = 6, callopts = list(), terms, fields,
   toquery)
 }
 \arguments{

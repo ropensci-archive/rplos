@@ -21,3 +21,7 @@ test_that("searchplos returns the correct class", {
 test_that("searchplos returns the correct value", {
   expect_that(grepl('10.1371', dat2[1,1]), is_true())
 })
+
+test_that("searchplos catches bad limit param", {
+  expect_error(searchplos(q="*:*", limit = "a"), "limit should be a numeric")
+})

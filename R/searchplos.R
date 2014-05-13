@@ -78,7 +78,7 @@
 #'    fq="doc_type:full", limit = 60)   
 #' }
 
-searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, limit = NULL, 
+searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, limit = 10, 
   key = NULL, sleep = 6, callopts=list(), terms, fields, toquery)
 {
   calls <- deparse(sys.calls())
@@ -92,6 +92,14 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
   
   # Function to trim leading and trailing whitespace, including newlines
   trim <- function (x) gsub("\\n\\s+", " ", gsub("^\\s+|\\s+$", "", x))
+  
+  # Make sure limit is a numeric or integer
+  limit <- tryCatch(as.numeric(as.character(limit)), warning=function(e) e)
+  if("warning" %in% class(limit)){
+    stop("limit should be a numeric or integer class value")
+  }
+  if(!is(limit, "numeric") | is.na(limit))
+    stop("limit should be a numeric or integer class value")
   
   # Enforce rate limits
   if(!Sys.getenv('plostime') == ""){
@@ -126,10 +134,11 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
 	  if(!is.null(limit))
 	    args$rows <- limit
 	  tt <- GET(url, query=args, callopts)
-    stop_for_status(tt)
-	  assert_that(tt$headers$`content-type` == 'application/json;charset=UTF-8')
-	  respout <- content(tt, as = "text")
-    jsonout <- fromJSON(respout)
+    jsonout <- check_response(tt)
+#     stop_for_status(tt)
+# 	  assert_that(tt$headers$`content-type` == 'application/json;charset=UTF-8')
+# 	  respout <- content(tt, as = "text")
+#     jsonout <- fromJSON(respout)
 	  tempresults <- jsonout$response$docs
 	  tempresults <- lapply(tempresults, function(x) lapply(x, trim))
     
@@ -168,8 +177,9 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
 	    args$start <- getvecs[i]
 	    args$rows <- getrows[i]
 	    tt <- GET(url, query=args, callopts)
-      stop_for_status(tt)
-	    jsonout <- content(tt)
+	    jsonout <- check_response(tt)
+#       stop_for_status(tt)
+# 	    jsonout <- content(tt)
 	    tempresults <- jsonout$response$docs
 	    tempresults <- lapply(tempresults, function(x) lapply(x, trim))
       
@@ -212,9 +222,7 @@ plos2df <- function(input, many=FALSE)
         tmp[match(namesdat, names(tmp))]
       }
     })
-    datout <- data.frame(rbindlist(dat), stringsAsFactors = FALSE)
-    datout
-#       rbind_all(lapply(dat, data.frame, stringsAsFactors = FALSE))
+    data.frame(rbindlist(dat), stringsAsFactors = FALSE)
   }
   return( datout ) 
 }
