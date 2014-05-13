@@ -4,8 +4,8 @@ rplos 0.4.0
 NEW FEATURES
 
 * Errors from the data provider are reported now. At least we attempt to do so when they are given, for example if you specify `asc` or `desc` incorrectly with the `sort` parameter. See the [`check_response()` function](https://github.com/ropensci/rplos/blob/master/tests/testthat/test-check_response.R) for examples.
-* 
-*
+* New functions `facetplos()` and `highplos()` using the `solr` R wrapper to the Solr indexing engine. The PLOS API just exposes the Solr endpoints, so we can use the general Solr wrapper package `solr` to allow more flexible Solr searching.
+* New function `highbrow()` to visualize highlighting results in a browser.
 *
 
 BUG FIXES
@@ -14,6 +14,12 @@ BUG FIXES
 *
 *
 *
+
+IMPROVEMENTS
+
+* Removed function `crossref_r()` as we are working on a package for the CrossRef API.
+* Parameter arguments in `searchplos()`, `plosauthor()`, `plosfigtabcaps()`, `plossubject()`, and `plostitle()` were changed to match closer the Solr parameter names. `terms` to `q`. `fields` to `fl`. `toquery` to `fq`.
+* Multiple values passed to `fields `
 
 rplos 0.3.6
 ------------
