@@ -3,11 +3,17 @@ rplos 0.4.0
 
 NEW FEATURES
 
-* X
+* Errors from the data provider are reported now. At least we attempt to do so when they are given, for example if you specify `asc` or `desc` incorrectly with the `sort` parameter. See the [`check_response()` function](https://github.com/ropensci/rplos/blob/master/tests/testthat/test-check_response.R) for examples.
+* 
+*
+*
 
 BUG FIXES
 
-* X
+* Fixed bug in tests where we forgot to give a key. No key is required per se, but PLOS encourages it so we prevent a call from happening without at least a dumby key.
+*
+*
+*
 
 rplos 0.3.6
 ------------
