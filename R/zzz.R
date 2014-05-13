@@ -64,6 +64,7 @@ ploscompact <- function(l) Filter(Negate(is.null), l)
 
 #' Check response from PLOS, including status codes, server error messages, mime-type, etc.
 #' @export
+#' @import assertthat httr RJSONIO
 #' @keywords internal
 check_response <- function(x){
   if(!x$status_code == 200){

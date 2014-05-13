@@ -13,10 +13,10 @@
 #' }
 
 plosabstract <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, 
-  limit = 10, key = NULL, sleep = 6, callopts=list(), terms, fields, toquery)
+  limit = 10, key = NULL, sleep = 6, callopts=list(), terms=NULL, fields=NULL, toquery=NULL)
 {
-  calls <- deparse(sys.calls())
-  calls_vec <- sapply(c("terms", "fields", "toquery"), function(x) grepl(x, calls))
+  calls <- names(sapply(match.call(), deparse))[-1]
+  calls_vec <- c("terms", "fields", "toquery") %in% calls
   if(any(calls_vec))
     stop("The parameters terms, fields, and toquery have been replaced with q, fl, and fq, respectively")
   

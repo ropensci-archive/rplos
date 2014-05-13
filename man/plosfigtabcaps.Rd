@@ -4,8 +4,8 @@
 \title{Search PLoS Journals figure and table captions.}
 \usage{
 plosfigtabcaps(q = NULL, fl = "id", fq = NULL, sort = NULL, start = 0,
-  limit = 10, key = NULL, sleep = 6, callopts = list(), terms, fields,
-  toquery)
+  limit = 10, key = NULL, sleep = 6, callopts = list(), terms = NULL,
+  fields = NULL, toquery = NULL)
 }
 \arguments{
 \item{q}{Search terms (character). You can search on specific fields by
