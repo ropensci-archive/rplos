@@ -1,5 +1,6 @@
 #' Search PLoS Journals subjects.
 #' 
+#' @export
 #' @template plos
 #' @return Subject content, in addition to any other fields requested in a 
 #'    data.frame.
@@ -13,10 +14,9 @@
 #'    fq=list('doc_type:full','!article_type_facet:"Issue%20Image"'), 
 #'    limit = 9)
 #' }
-#' @export
 
-plossubject <- function(q = NA, fl = 'id', fq = NA, sort = NA,
-  start = 0, limit = NA, key = NULL, 
+plossubject <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL,
+  start = 0, limit = 10, key = NULL, 
   sleep = 6, callopts=list(), terms, fields, toquery)
 {
   calls <- deparse(sys.calls())

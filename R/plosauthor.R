@@ -1,5 +1,6 @@
 #' Search PLoS Journals authors.
 #' 
+#' @export
 #' @template plos
 #' @return Author names, in addition to any other fields requested in a 
 #'    data.frame.
@@ -7,10 +8,9 @@
 #' plosauthor('Smith', 'id', limit=50)
 #' plosauthor(q='Smith', fl='id,author', limit=10)
 #' }
-#' @export
 
-plosauthor <- function(q = NA, fl = 'id', fq = NA, sort = NA,
-  start = 0, limit = NA, key = NULL, 
+plosauthor <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL,
+  start = 0, limit = 10, key = NULL, 
   sleep = 6, callopts=list(), terms, fields, toquery)
 {
   calls <- deparse(sys.calls())

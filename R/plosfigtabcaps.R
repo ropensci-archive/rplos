@@ -1,5 +1,6 @@
 #' Search PLoS Journals figure and table captions.
 #' 
+#' @export
 #' @template plos
 #' @return fields that you specify to return in a data.frame, along with the 
 #' 		DOI's found.
@@ -7,10 +8,9 @@
 #' plosfigtabcaps('ecology', 'id', limit=100)
 #' plosfigtabcaps(q='ecology', fl='figure_table_caption', limit=10)
 #' }
-#' @export
 
-plosfigtabcaps <- function(q = NA, fl = 'id', fq = NA, sort = NA,
-  start = 0, limit = NA, key = NULL, 
+plosfigtabcaps <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL,
+  start = 0, limit = 10, key = NULL, 
   sleep = 6, callopts=list(), terms, fields, toquery)
 {
   calls <- deparse(sys.calls())

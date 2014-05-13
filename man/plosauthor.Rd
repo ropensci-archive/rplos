@@ -3,8 +3,8 @@
 \alias{plosauthor}
 \title{Search PLoS Journals authors.}
 \usage{
-plosauthor(q = NA, fl = "id", fq = NA, sort = NA, start = 0,
-  limit = NA, key = NULL, sleep = 6, callopts = list(), terms, fields,
+plosauthor(q = NULL, fl = "id", fq = NULL, sort = NULL, start = 0,
+  limit = 10, key = NULL, sleep = 6, callopts = list(), terms, fields,
   toquery)
 }
 \arguments{
