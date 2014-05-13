@@ -22,7 +22,3 @@ test_that("check_response catches undefined fields correctly", {
 test_that("check_response catches incorrect value to start", {
   expect_error(searchplos(q="*:*", start = "a"), "undefined field")
 })
-
-test_that("check_response catches incorrect value to start", {
-  expect_error(searchplos(), "undefined field")
-})

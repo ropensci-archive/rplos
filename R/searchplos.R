@@ -222,7 +222,7 @@ plos2df <- function(input, many=FALSE)
         tmp[match(namesdat, names(tmp))]
       }
     })
-    data.frame(rbindlist(dat), stringsAsFactors = FALSE)
+    datout <- data.frame(rbindlist(dat), stringsAsFactors = FALSE)
   }
   return( datout ) 
 }

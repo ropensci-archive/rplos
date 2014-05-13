@@ -36,3 +36,4 @@ Imports:
 Suggests:
     roxygen2,
     testthat
+Enhances: tm
