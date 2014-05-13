@@ -1,26 +1,27 @@
 #' Create urls for full text articles in PLOS journals.
-#' 
+#'
 #' @export
 #' @param doi One or more doi's
 #' @return One or more urls, same length as input vector of dois
-#' @examples
+#' @examples \dontrun{
 #' full_text_urls(doi='10.1371/journal.pone.0086169')
 #' full_text_urls(doi='10.1371/journal.pbio.1001845')
 #' full_text_urls(doi=c('10.1371/journal.pone.0086169','10.1371/journal.pbio.1001845'))
 #' dois <- searchplos(q = "*:*", fq='doc_type:full', limit=20)$id
 #' full_text_urls(dois)
+#' }
 
 full_text_urls <- function(doi){
   makeurl <- function(x){
     doijournal <- strsplit(x, "\\.")[[1]][[3]]
-    journal <- switch(doijournal, 
+    journal <- switch(doijournal,
                       pone = 'plosone',
                       pbio = 'plosbiology',
                       pmed = 'plosmedicine',
                       pgen = 'plosgenetics',
                       pcbi = 'ploscompbiol',
                       ppat = 'plospathogens',
-                      pntd = 'plosntds')  
+                      pntd = 'plosntds')
     ub <- 'http://www.%s.org/article/fetchObject.action?uri=info:doi/%s&representation=XML'
     sprintf(ub, journal, x)
   }
@@ -28,11 +29,11 @@ full_text_urls <- function(doi){
 }
 
 #' Get full text xml of PLOS papers given a DOI
-#' 
+#'
 #' @export
 #' @param doi One or more DOIs
 #' @param callopts Curl options passed on to httr::GET
-#' @return Character string of XML. 
+#' @return Character string of XML.
 #' @examples \dontrun{
 #' plos_fulltext(doi='10.1371/journal.pone.0086169')
 #' plos_fulltext(c('10.1371/journal.pone.0086169','10.1371/journal.pbio.1001845'))
@@ -40,14 +41,14 @@ full_text_urls <- function(doi){
 #' out <- plos_fulltext(dois)
 #' out['10.1371/journal.pntd.0001738']
 #' out[1:2]
-#' 
+#'
 #' # Extract text from the XML strings
 #' library("XML")
 #' lapply(out[2:3], function(x){
 #'  tmp <- xmlParse(x)
 #'  xpathApply(tmp, "//abstract", xmlValue)
 #' })
-#' 
+#'
 #' # Make a text corpus
 #' library("tm")
 #' out_parsed <- lapply(out, function(x){
