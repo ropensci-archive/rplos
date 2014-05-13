@@ -135,10 +135,6 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
 	    args$rows <- limit
 	  tt <- GET(url, query=args, callopts)
     jsonout <- check_response(tt)
-#     stop_for_status(tt)
-# 	  assert_that(tt$headers$`content-type` == 'application/json;charset=UTF-8')
-# 	  respout <- content(tt, as = "text")
-#     jsonout <- fromJSON(respout)
 	  tempresults <- jsonout$response$docs
 	  tempresults <- lapply(tempresults, function(x) lapply(x, trim))
     
@@ -178,8 +174,6 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
 	    args$rows <- getrows[i]
 	    tt <- GET(url, query=args, callopts)
 	    jsonout <- check_response(tt)
-#       stop_for_status(tt)
-# 	    jsonout <- content(tt)
 	    tempresults <- jsonout$response$docs
 	    tempresults <- lapply(tempresults, function(x) lapply(x, trim))
       

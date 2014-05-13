@@ -6,15 +6,13 @@
 #' @export
 #' @examples \dontrun{
 #' highplos(q='alcohol', hl.fl = 'abstract', rows=10)
+#' highplos(q='alcohol', hl.fl = c('abstract','title'), rows=10)
 #' highplos(q='everything:"sports alcohol"~7', hl.fl='everything')
 #' highplos(q='alcohol', hl.fl='abstract', hl.fragsize=20, rows=5)
 #' highplos(q='alcohol', hl.fl='abstract', hl.snippets=5, rows=5)
 #' highplos(q='alcohol', hl.fl='abstract', hl.snippets=5, hl.mergeContiguous='true', rows=5)
 #' highplos(q='alcohol', hl.fl='abstract', hl.useFastVectorHighlighter='true', rows=5)
-#' highplos(q='everything:"experiment"', fl='id,title', fq='doc_type:full', 
-#'    rows=10)
-#' highplos(q='everything:"experiment"', fl='id,title', fq='doc_type:full', 
-#'    rows=100, hl.fl = 'title')
+#' highplos(q='everything:"experiment"', fq='doc_type:full', rows=100, hl.fl = 'title')
 #' }
 #'    
 #' @examples \donttest{
@@ -44,6 +42,7 @@ highplos <- function(q, fl=NULL, fq=NULL, hl.fl = NULL, hl.snippets = NULL, hl.f
   if(is.null(key))
     key=getOption("PlosApiKey", stop("need an API key for PLoS Journals"))
   url <- 'http://api.plos.org/search'
+  if(!is.null(fl)) fl <- paste(fl, collapse = ",")
   out <- solr_highlight(base=url, key=key, q=q, fl=fl, fq=fq, wt='json', start=start, rows=rows, hl.fl=hl.fl,
     hl.snippets=hl.snippets, hl.fragsize=hl.fragsize,
     hl.mergeContiguous = hl.mergeContiguous, hl.requireFieldMatch = hl.requireFieldMatch, 
