@@ -76,7 +76,7 @@ Read more about faceting here: url{http://wiki.apache.org/solr/SimpleFacetParame
 \examples{
 \dontrun{
 plosauthor('Smith', 'id', limit=50)
-plosauthor(q='Smith', fl='id,author', limit=10)
+plosauthor(q='Smith', fl=c('id','author'), limit=10)
 }
 }
 \seealso{

@@ -5,10 +5,10 @@
 #' @return Abstract content, in addition to any other fields requested in a list.
 #' @examples \dontrun{
 #' plosabstract(q = 'drosophila', fl='abstract', limit=10)
-#' plosabstract(q = 'drosophila', fl='id,author', limit = 5)
+#' plosabstract(q = 'drosophila', fl=c('id','author'), limit = 5)
 #' plosabstract(q = 'drosophila', fl='author', limit = 5)
-#' plosabstract(q = 'drosophila', fl='id,author,title', limit = 5)
-#' plosabstract(q = 'drosophila', fl='id,author,title', limit = 5, 
+#' plosabstract(q = 'drosophila', fl=c('id','author','title'), limit = 5)
+#' plosabstract(q = 'drosophila', fl=c('id','author','title'), limit = 5, 
 #'  callopts=list(verbose=TRUE))
 #' }
 

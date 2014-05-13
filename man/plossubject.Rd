@@ -76,10 +76,10 @@ Read more about faceting here: url{http://wiki.apache.org/solr/SimpleFacetParame
 \examples{
 \dontrun{
 plossubject('marine ecology', limit = 5)
-plossubject(q='marine ecology',  fl = 'id,journal,title', limit = 20)
-plossubject(q='marine ecology', fl = 'id,journal',
+plossubject(q='marine ecology',  fl = c('id','journal','title'), limit = 20)
+plossubject(q='marine ecology', fl = c('id','journal'),
    fq='doc_type:full', limit = 9)
-plossubject(q='marine ecology', fl = 'id,journal',
+plossubject(q='marine ecology', fl = c('id','journal'),
    fq=list('doc_type:full','!article_type_facet:"Issue\%20Image"'),
    limit = 9)
 }

@@ -6,7 +6,7 @@
 #'    data.frame.
 #' @examples \dontrun{
 #' plosauthor('Smith', 'id', limit=50)
-#' plosauthor(q='Smith', fl='id,author', limit=10)
+#' plosauthor(q='Smith', fl=c('id','author'), limit=10)
 #' }
 
 plosauthor <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL,

@@ -1,6 +1,6 @@
 #' Search PLoS Journals by article views.
 #' 
-#' @import RJSONIO RCurl 
+#' @import RJSONIO httr
 #' @importFrom stringr str_split
 #' @importFrom plyr compact
 #' @param search search terms (character)
@@ -36,18 +36,9 @@ plosviews <- function(search, byfield = NULL, views = 'alltime', limit = NULL,
     if (views == 'alltime') {args$fl <- 'id,counter_total_all'} else
       if (views == 'last30') {args$fl <- 'id,counter_total_month'} else
         {args$fl <- 'id,counter_total_all,counter_total_month'}
-#   tt <- getForm(url,
-#     .params = args,
-#     .opts=callopts,
-#     curl = curl)
 	tt <- GET(url, query=args, callopts)
 	stop_for_status(tt)
 	temp <- content(tt)$response$docs
-#   jsonout <- fromJSON(I(tt))
-#   temp <- jsonout$response$docs
   df <- do.call(rbind, lapply(temp, function(x) data.frame(x)))
-#   newcol <- do.call(rbind, lapply(str_split(df$id, "/"), function(x) x[length(x) < 3]))
-#   newcol_ <- paste(newcol[,1], newcol[,2], sep="/")
-#   newdf <- merge(data.frame(newcol_), df, by.x="newcol_", by.y="id")
 	df[order(df[,2]), ]
 }

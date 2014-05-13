@@ -75,7 +75,7 @@ Read more about faceting here: url{http://wiki.apache.org/solr/SimpleFacetParame
 \examples{
 \dontrun{
 plostitle(q='drosophila', fl='title', limit=99)
-plostitle(q='drosophila', fl='title,journal', limit=10)
+plostitle(q='drosophila', fl=c('title','journal'), limit=10)
 plostitle(q='drosophila',  limit = 5)
 }
 }
