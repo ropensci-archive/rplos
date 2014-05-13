@@ -1,5 +1,5 @@
 <!--
-%\VignetteEngine{knitr}
+%\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{rplos tutorial}
 -->
 
@@ -63,7 +63,7 @@ lapply(q, function(x) searchplos(x, limit=2))
 
 ### Search on specific sections
 
-A suite of functions were created as light wrappers around `searchplos` as a shorthand to search specific sections of a paper. 
+A suite of functions were created as light wrappers around `searchplos` as a shorthand to search specific sections of a paper.
 
 * `plosauthor` searchers in authors
 * `plosabstract` searches in abstracts
@@ -106,7 +106,7 @@ facetplos(q='*:*', facet.field='journal', facet.query='cell,bird')
 Date faceting
 
 ```{r facet3, message=FALSE, warning=FALSE, cache=FALSE}
-facetplos(q='*:*', url=url, facet.date='publication_date', 
+facetplos(q='*:*', url=url, facet.date='publication_date',
   facet.date.start='NOW/DAY-5DAYS', facet.date.end='NOW', facet.date.gap='+1DAY')
 ```
 
@@ -127,7 +127,7 @@ highplos(q='alcohol', hl.fl='abstract', hl.fragsize=20, rows=2)
 Search for the term _experiment_ across all sections of an article, return id (DOI) and title fl only, search in full articles only (via `fq='doc_type:full'`), and return only 10 results
 
 ```{r high3, message=FALSE, warning=FALSE, cache=FALSE}
-highplos(q='everything:"experiment"', fl='id,title', fq='doc_type:full', 
+highplos(q='everything:"experiment"', fl='id,title', fq='doc_type:full',
    rows=2)
 ```
 
@@ -137,7 +137,7 @@ highplos(q='everything:"experiment"', fl='id,title', fq='doc_type:full',
 as a histogram, comparing number of matching papers for each word
 
 ```{r plosword1, message=FALSE, warning=FALSE, cache=FALSE}
-out <- plosword(list("monkey", "Helianthus", "sunflower", "protein", "whale"), 
+out <- plosword(list("monkey", "Helianthus", "sunflower", "protein", "whale"),
     vis = "TRUE")
 out$table
 ```
