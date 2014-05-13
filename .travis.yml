@@ -6,6 +6,7 @@ before_script:
   - chmod 755 ./travis-tool.sh
   - ./travis-tool.sh bootstrap
   - ./travis-tool.sh install_deps
+  - ./travis-tool.sh install_aptget r-cran-tm
   - ./travis-tool.sh github_package assertthat
 notifications:
  slack: ropensci:wh30e1MP9Am3wXb2wJx1ZRFi
