@@ -5,3 +5,4 @@ man-roxygen
 inst/assets
 inst/stuff
 vignettes/margins.sty
+tests/test-all.R
