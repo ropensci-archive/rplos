@@ -2,10 +2,8 @@
 context("plosauthor")
 
 test_that("plosauthor returns the correct dimensions in the data.frame", {
-	expect_that(nrow(plosauthor(q = 'johnson', fl = 'title,author', limit = 100, key = "hello")), 
-							equals(100))
-	expect_that(length(names(plosauthor(q = 'johnson', fl = 'title,author', limit = 100, key = "hello"))), 
-							equals(2))
+	expect_equal(nrow(plosauthor(q = 'johnson', fl = 'title,author', limit = 100, key = "hello")), 100)
+	expect_equal(length(names(plosauthor(q = 'johnson', fl = 'title,author', limit = 100, key = "hello"))), 2)
 })
 
 test_that("plosauthor returns the correct column names", {
