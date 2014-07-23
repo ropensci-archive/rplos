@@ -16,16 +16,16 @@
 #' 
 #' # Get only full article DOIs
 #' out <- searchplos(q="*:*", fl='id', fq='doc_type:full', start=0, limit=250)
-#' head(out)
+#' head(out$data)
 #' 
 #' # Get DOIs for only PLoS One articles
 #' out <- searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', start=0, limit=15)
-#' head(out)
+#' head(out$data)
 #' 
 #' # Get DOIs for full article in PLoS One
 #' out <- searchplos(q="*:*", fl='id', fq=list('cross_published_journal_key:PLoSONE', 
 #'    'doc_type:full'), limit=50)
-#' head(out)
+#' head(out$data)
 #' 
 #' # Serch for many q
 #' q <- c('ecology','evolution','science')
@@ -35,8 +35,8 @@
 #' out <- searchplos(q="*:*", fl=c('id','counter_total_all','alm_twitterCount'),fq='doc_type:full')
 #' out_sorted <- searchplos(q="*:*", fl=c('id','counter_total_all','alm_twitterCount'), 
 #'    fq='doc_type:full', sort='counter_total_all desc')
-#' head(out)
-#' head(out_sorted)
+#' head(out$data)
+#' head(out_sorted$data)
 #' 
 #' # A list of articles about social networks that are popular on a social network
 #' searchplos(q="*:*",fl=c('id','alm_twitterCount'), 
@@ -155,7 +155,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
     res <- tempresults
     
 	  resdf  <- plos2df(res)
-    return( resdf )
+    return( list(meta=getnum$response[c('numFound','start','maxScore')], data=resdf) )
 	} else
 	{ 
 	  byby <- 500
@@ -194,7 +194,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
 	  }
 	  
 	  resdf  <- plos2df(out, TRUE)
-	  return( resdf )
+	  return( list(meta=getnum$response[c('numFound','start','maxScore')], data=resdf) )
 	}
   Sys.setenv(plostime = as.numeric(now()))
 }
