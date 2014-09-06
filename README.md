@@ -79,7 +79,7 @@ To cite package `rplos` in publications use:
 To cite package ‘rplos’ in publications use:
 
   Scott Chamberlain, Carl Boettiger and Karthik Ram (2014). rplos: Interface to PLoS
-  Journals search API.. R package version 0.4.0. https://github.com/ropensci/rplos
+  Journals search API. R package version 0.4.0. https://github.com/ropensci/rplos
 
 A BibTeX entry for LaTeX users is
 
