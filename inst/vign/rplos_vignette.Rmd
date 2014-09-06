@@ -22,7 +22,7 @@ install.packages("rplos")
 ```
 
 ```{r load, message=FALSE, warning=FALSE}
-library(rplos)
+library('rplos')
 ```
 
 ### Search across PLoS papers in various sections of papers

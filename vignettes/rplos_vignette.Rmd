@@ -24,7 +24,7 @@ install.packages("rplos")
 
 
 ```r
-library(rplos)
+library('rplos')
 ```
 
 ### Search across PLoS papers in various sections of papers
@@ -55,11 +55,11 @@ searchplos(q="*:*", fl='id', fq='doc_type:full', start=0, limit=5)
 
 ```
 ##                             id
-## 1 10.1371/journal.pntd.0001738
-## 2 10.1371/journal.pone.0035044
-## 3 10.1371/journal.pone.0067070
-## 4 10.1371/journal.pone.0095362
-## 5 10.1371/journal.pone.0031015
+## 1 10.1371/journal.pone.0060703
+## 2 10.1371/journal.pone.0060702
+## 3 10.1371/journal.pone.0056341
+## 4 10.1371/journal.pone.0095765
+## 5 10.1371/journal.pone.0038836
 ```
 
 Get DOIs for only PLoS One articles
@@ -70,12 +70,12 @@ searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', start=0, 
 ```
 
 ```
-##                                        id
-## 1      10.1371/journal.pone.0067079/title
-## 2   10.1371/journal.pone.0067079/abstract
-## 3 10.1371/journal.pone.0067079/references
-## 4       10.1371/journal.pone.0067079/body
-## 5       10.1371/journal.pone.0095366/body
+##                                          id
+## 1        10.1371/journal.pone.0082577/title
+## 2     10.1371/journal.pone.0082577/abstract
+## 3   10.1371/journal.pone.0082577/references
+## 4         10.1371/journal.pone.0082577/body
+## 5 10.1371/journal.pone.0082577/introduction
 ```
 
 Get DOIs for full article in PLoS One
@@ -89,11 +89,11 @@ searchplos(q="*:*", fl='id',
 
 ```
 ##                             id
-## 1 10.1371/journal.pone.0035044
-## 2 10.1371/journal.pone.0067070
-## 3 10.1371/journal.pone.0095362
-## 4 10.1371/journal.pone.0031015
-## 5 10.1371/journal.pone.0059231
+## 1 10.1371/journal.pone.0060703
+## 2 10.1371/journal.pone.0060702
+## 3 10.1371/journal.pone.0056341
+## 4 10.1371/journal.pone.0095765
+## 5 10.1371/journal.pone.0038836
 ```
 
 Search for many terms
@@ -178,11 +178,11 @@ plostitle(q='drosophila', fl='title,journal', limit=5)
 
 ```
 ##         journal                                                 title
-## 1  PLoS Biology           Combinatorial Coding for Drosophila Neurons
-## 2  PLoS Biology           School Students as Drosophila Experimenters
-## 3      PLoS ONE              A Tripartite Synapse Model in Drosophila
+## 1 PLoS Genetics Phenotypic Plasticity of the Drosophila Transcriptome
+## 2  PLoS Biology         Identification of Drosophila MicroRNA Targets
+## 3  PLoS Biology           School Students as Drosophila Experimenters
 ## 4      PLoS ONE                             A DNA Virus of Drosophila
-## 5 PLoS Genetics Phenotypic Plasticity of the Drosophila Transcriptome
+## 5      PLoS ONE              A Tripartite Synapse Model in Drosophila
 ```
 
 ### Faceted search
@@ -201,15 +201,15 @@ facetplos(q='*:*', facet.field='journal')
 ## $facet_fields
 ## $facet_fields$journal
 ##                                  X1     X2
-## 1                          plos one 792679
-## 2                     plos genetics  36699
-## 3                    plos pathogens  32259
-## 4        plos computational biology  26944
-## 5                      plos biology  25123
-## 6  plos neglected tropical diseases  21071
-## 7                     plos medicine  17693
+## 1                          plos one 873297
+## 2                     plos genetics  38745
+## 3                    plos pathogens  34183
+## 4        plos computational biology  28747
+## 5                      plos biology  25700
+## 6  plos neglected tropical diseases  23463
+## 7                     plos medicine  18114
 ## 8              plos clinical trials    521
-## 9                  plos collections     20
+## 9                  plos collections     10
 ## 10                     plos medicin      9
 ## 
 ## 
@@ -230,20 +230,20 @@ facetplos(q='*:*', facet.field='journal', facet.query='cell,bird')
 ```
 ## $facet_queries
 ##        term value
-## 1 cell,bird    14
+## 1 cell,bird    15
 ## 
 ## $facet_fields
 ## $facet_fields$journal
 ##                                  X1     X2
-## 1                          plos one 792679
-## 2                     plos genetics  36699
-## 3                    plos pathogens  32259
-## 4        plos computational biology  26944
-## 5                      plos biology  25123
-## 6  plos neglected tropical diseases  21071
-## 7                     plos medicine  17693
+## 1                          plos one 873297
+## 2                     plos genetics  38745
+## 3                    plos pathogens  34183
+## 4        plos computational biology  28747
+## 5                      plos biology  25700
+## 6  plos neglected tropical diseases  23463
+## 7                     plos medicine  18114
 ## 8              plos clinical trials    521
-## 9                  plos collections     20
+## 9                  plos collections     10
 ## 10                     plos medicin      9
 ## 
 ## 
@@ -272,12 +272,12 @@ facetplos(q='*:*', url=url, facet.date='publication_date',
 ## $facet_dates
 ## $facet_dates$publication_date
 ##                   date value
-## 1 2014-05-08T00:00:00Z  2872
-## 2 2014-05-09T00:00:00Z  1208
-## 3 2014-05-10T00:00:00Z     0
-## 4 2014-05-11T00:00:00Z  1111
-## 5 2014-05-12T00:00:00Z  2379
-## 6 2014-05-13T00:00:00Z  1268
+## 1 2014-09-01T00:00:00Z  1255
+## 2 2014-09-02T00:00:00Z  2440
+## 3 2014-09-03T00:00:00Z  2644
+## 4 2014-09-04T00:00:00Z  2439
+## 5 2014-09-05T00:00:00Z   980
+## 6 2014-09-06T00:00:00Z     0
 ## 
 ## 
 ## $facet_ranges
@@ -355,11 +355,11 @@ out$table
 
 ```
 ##   No_Articles       Term
-## 1        7340     monkey
-## 2         245 Helianthus
-## 3         673  sunflower
-## 4       79470    protein
-## 5         876      whale
+## 1        7838     monkey
+## 2         271 Helianthus
+## 3         753  sunflower
+## 4       85696    protein
+## 5         953      whale
 ```
 
 
@@ -378,7 +378,7 @@ plosword('Helianthus', callopts=list(verbose=TRUE))
 
 ```
 ## Number of articles with search term 
-##                                 245
+##                                 271
 ```
 
 ### Visualize terms
