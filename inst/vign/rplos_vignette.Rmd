@@ -54,7 +54,7 @@ searchplos(q="*:*", fl='id',
    start=0, limit=5)
 ```
 
-Serch for many terms
+Search for many terms
 
 ```{r searchplos5, message=FALSE, warning=FALSE, cache=FALSE}
 q <- c('ecology','evolution','science')
@@ -154,7 +154,7 @@ plosword('Helianthus', callopts=list(verbose=TRUE))
 
 ### Visualize terms
 
-`plot_througtime` allows you to search for up to 2 words and visualize the results as a line plot through time, comparing number of articles matching through time. Visualize with the ggplot2 package, only up to two terms for now.
+`plot_throughtime` allows you to search for up to 2 words and visualize the results as a line plot through time, comparing number of articles matching through time. Visualize with the ggplot2 package, only up to two terms for now.
 
 ```{r throughtime1, message=FALSE, warning=FALSE, cache=FALSE, fig.width=6, fig.height=4}
 plot_throughtime(terms = "phylogeny", limit = 200)
