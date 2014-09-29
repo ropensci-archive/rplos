@@ -33,11 +33,11 @@ Put your API key in your .Rprofile file using exactly this:
 options(PlosApiKey = "YOURPLOSAPIKEY"),
 and the functions within this package will be able to use your API key without you having to enter it every time you run a search.
 
-rplos tutorial at rOpenSci website [here](http://ropensci.github.io/rplos/)
+rplos tutorial at rOpenSci website [here](http://ropensci.org/tutorials/rplos_tutorial.html)
 
 PLoS API documentation [here](http://api.plos.org/)
 
-Crossref API documentation [here](http://random.labs.crossref.org/) and [here](http://help.crossref.org/#home). Note that we are working on a new package `rcrossref` with a much fuller implementation of R functions for all Crossref endpoints.
+Crossref API documentation [here](https://github.com/CrossRef/rest-api-doc/blob/master/rest_api.md), [here](http://crosstech.crossref.org/2014/04/%E2%99%AB-researchers-just-wanna-have-funds-%E2%99%AB.html), and [here](http://help.crossref.org/#home). Note that we are working on a new package `rcrossref` with a much fuller implementation of R functions for all Crossref endpoints.
 
 ### Quick start
 
