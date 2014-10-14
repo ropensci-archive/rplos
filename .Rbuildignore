@@ -8,3 +8,5 @@ vignettes/margins.sty
 tests/test-all.R
 cran-comments.md
 ^appveyor\.yml$
+^.*\.Rproj$
+^\.Rproj\.user$

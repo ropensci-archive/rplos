@@ -2,3 +2,5 @@
 .RData
 .RHistory
 schema.xml
+.Rproj.user
+rplos.Rproj
