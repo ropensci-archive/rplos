@@ -37,16 +37,16 @@ full_text_urls <- function(doi){
 #' @examples \dontrun{
 #' plos_fulltext(doi='10.1371/journal.pone.0086169')
 #' plos_fulltext(c('10.1371/journal.pone.0086169','10.1371/journal.pbio.1001845'))
-#' dois <- searchplos(q = "*:*", fq='doc_type:full', limit=20)$id
+#' dois <- searchplos(q = "*:*", fq='doc_type:full', limit=3)$data$id
 #' out <- plos_fulltext(dois)
-#' out['10.1371/journal.pone.0013747']
+#' out[dois[1]]
 #' out[1:2]
 #'
 #' # Extract text from the XML strings
 #' library("XML")
 #' lapply(out[2:3], function(x){
 #'  tmp <- xmlParse(x)
-#'  xpathApply(tmp, "//abstract", xmlValue)
+#'  xpathApply(tmp, "//ref-list")
 #' })
 #'
 #' # Make a text corpus
