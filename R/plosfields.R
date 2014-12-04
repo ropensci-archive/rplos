@@ -3,3 +3,9 @@
 #' @docType data
 #' @keywords datasets
 NULL
+
+#' Country names and FIPS codes
+#' @name isocodes
+#' @docType data
+#' @keywords datasets
+NULL

@@ -52,20 +52,19 @@ Crossref API documentation [here](https://github.com/CrossRef/rest-api-doc/blob/
 
 Search for the term ecology, and return id (DOI) and publication date, limiting to 5 items
 
-
 ```r
 searchplos('ecology', 'id,publication_date', limit = 5)
 #> $meta
 #> $meta$numFound
 #> [1] 24231
-#> 
+#>
 #> $meta$start
 #> [1] 0
-#> 
+#>
 #> $meta$maxScore
 #> [1] 0.9783118
-#> 
-#> 
+#>
+#>
 #> $data
 #>                                                        id
 #> 1                            10.1371/journal.pone.0059813
@@ -90,14 +89,14 @@ searchplos(q="*:*", fl='id', fq=list('cross_published_journal_key:PLoSONE',
 #> $meta
 #> $meta$numFound
 #> [1] 1166974
-#> 
+#>
 #> $meta$start
 #> [1] 0
-#> 
+#>
 #> $meta$maxScore
 #> [1] 1
-#> 
-#> 
+#>
+#>
 #> $data
 #>                             id
 #> 1 10.1371/journal.pone.0024331
@@ -142,14 +141,14 @@ searchplos(q="*:*",fl=c('id','alm_twitterCount'),
 #> $meta
 #> $meta$numFound
 #> [1] 1166974
-#> 
+#>
 #> $meta$start
 #> [1] 0
-#> 
+#>
 #> $meta$maxScore
 #> [1] 1
-#> 
-#> 
+#>
+#>
 #> $data
 #>                              id alm_twitterCount
 #> 1  10.1371/journal.pone.0069841              809
@@ -172,14 +171,14 @@ searchplos(q='everything:"sports alcohol"~15', fl='title', fq='doc_type:full', l
 #> $meta
 #> $meta$numFound
 #> [1] 63
-#> 
+#>
 #> $meta$start
 #> [1] 0
-#> 
+#>
 #> $meta$maxScore
 #> [1] 0.223016
-#> 
-#> 
+#>
+#>
 #> $data
 #>                                                                                                                                                                         title
 #> 1                                      Alcohol Ingestion Impairs Maximal Post-Exercise Rates of Myofibrillar Protein Synthesis following a Single Bout of Concurrent Training
@@ -195,14 +194,14 @@ searchplos(q='everything:"sports alcohol"~7', fl='title', fq='doc_type:full', li
 #> $meta
 #> $meta$numFound
 #> [1] 28
-#> 
+#>
 #> $meta$start
 #> [1] 0
-#> 
+#>
 #> $meta$maxScore
 #> [1] 0.2088928
-#> 
-#> 
+#>
+#>
 #> $data
 #>                                                                                                                                                                         title
 #> 1                                      Alcohol Ingestion Impairs Maximal Post-Exercise Rates of Myofibrillar Protein Synthesis following a Single Bout of Concurrent Training
@@ -219,14 +218,14 @@ searchplos(q='*:*', fl=c('id','article_type'),
 #> $meta
 #> $meta$numFound
 #> [1] 1166974
-#> 
+#>
 #> $meta$start
 #> [1] 0
-#> 
+#>
 #> $meta$maxScore
 #> [1] 1
-#> 
-#> 
+#>
+#>
 #> $data
 #>                                        id     article_type
 #> 1            10.1371/journal.ppat.1003958 Research Article
@@ -245,7 +244,7 @@ Facet on multiple fields
 facetplos(q='alcohol', facet.field=c('journal','subject'), facet.limit=5)
 #> $facet_queries
 #> NULL
-#> 
+#>
 #> $facet_fields
 #> $facet_fields$journal
 #>                           X1     X2
@@ -254,7 +253,7 @@ facetplos(q='alcohol', facet.field=c('journal','subject'), facet.limit=5)
 #> 3             plos pathogens  35392
 #> 4 plos computational biology  29759
 #> 5               plos biology  26133
-#> 
+#>
 #> $facet_fields$subject
 #>                              X1      X2
 #> 1     biology and life sciences 1101568
@@ -262,11 +261,11 @@ facetplos(q='alcohol', facet.field=c('journal','subject'), facet.limit=5)
 #> 3 research and analysis methods  719409
 #> 4                  biochemistry  542215
 #> 5                  cell biology  495749
-#> 
-#> 
+#>
+#>
 #> $facet_dates
 #> NULL
-#> 
+#>
 #> $facet_ranges
 #> NULL
 ```
@@ -279,13 +278,13 @@ facetplos(q='*:*', url=url, facet.range='counter_total_all',
  facet.range.start=5, facet.range.end=100, facet.range.gap=10)
 #> $facet_queries
 #> NULL
-#> 
+#>
 #> $facet_fields
 #> NULL
-#> 
+#>
 #> $facet_dates
 #> NULL
-#> 
+#>
 #> $facet_ranges
 #> $facet_ranges$counter_total_all
 #>    X1  X2
@@ -311,13 +310,13 @@ Search for and highlight the term _alcohol_ in the abstract field only
 #> $`10.1371/journal.pmed.0040151`
 #> $`10.1371/journal.pmed.0040151`$abstract
 #> [1] "Background: <em>Alcohol</em> consumption causes an estimated 4% of the global disease burden, prompting"
-#> 
-#> 
+#>
+#>
 #> $`10.1371/journal.pone.0027752`
 #> $`10.1371/journal.pone.0027752`$abstract
 #> [1] "Background: The negative influences of <em>alcohol</em> on TB management with regard to delays in seeking"
-#> 
-#> 
+#>
+#>
 #> $`10.1371/journal.pmed.0050108`
 #> $`10.1371/journal.pmed.0050108`$abstract
 #> [1] " study that links retail <em>alcohol</em> sales and violent assaults.\n      "
@@ -347,10 +346,10 @@ full_text_urls(doi='10.1371/journal.pone.0086169')
 
 ```r
 (out <- plos_fulltext(doi='10.1371/journal.pone.0086169'))
-#> 1 full-text articles retrieved 
-#> Min. Length: 111132 - Max. Length: 111132 
-#> DOIs: 10.1371/journal.pone.0086169 ... 
-#> 
+#> 1 full-text articles retrieved
+#> Min. Length: 111132 - Max. Length: 111132
+#> DOIs: 10.1371/journal.pone.0086169 ...
+#>
 #> NOTE: extract xml strings like output['<doi>']
 ```
 
@@ -365,7 +364,7 @@ xpathSApply(xmlParse(out$`10.1371/journal.pone.0086169`), "//abstract", xmlValue
 
 ### Search within a field
 
-There are a series of convience functions for searching within sections of articles. 
+There are a series of convience functions for searching within sections of articles.
 
 * `plosauthor()`
 * `plosabstract()`
@@ -381,14 +380,14 @@ plossubject(q='marine ecology',  fl = c('id','journal'), limit = 10)
 #> $meta
 #> $meta$numFound
 #> [1] 2105
-#> 
+#>
 #> $meta$start
 #> [1] 0
-#> 
+#>
 #> $meta$maxScore
 #> [1] 2.286991
-#> 
-#> 
+#>
+#>
 #> $data
 #>                                                     id  journal
 #> 1                         10.1371/journal.pone.0070647 PLoS ONE
@@ -403,7 +402,7 @@ plossubject(q='marine ecology',  fl = c('id','journal'), limit = 10)
 #> 10                        10.1371/journal.pone.0092590 PLoS ONE
 ```
 
-However, you can always just do this in `searchplos()` like `searchplos(q = "subject:science")`. See also the `fq` parameter. The above convenience functions are simply wrappers around `searchplos`, so take all the same parameters. 
+However, you can always just do this in `searchplos()` like `searchplos(q = "subject:science")`. See also the `fq` parameter. The above convenience functions are simply wrappers around `searchplos`, so take all the same parameters.
 
 ### Search by article views
 
@@ -434,11 +433,11 @@ plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE'
 #> 3         802  sunflower
 #> 4       89810    protein
 #> 5        1000      whale
-#> 
+#>
 #> $plot
 ```
 
-![](inst/assets/img/unnamed-chunk-21-1.png) 
+![](inst/assets/img/unnamed-chunk-21-1.png)
 
 ## Meta
 
