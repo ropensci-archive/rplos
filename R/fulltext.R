@@ -64,7 +64,7 @@ plos_fulltext <- function(doi, callopts=list()){
   getfulltext <- function(x){
     out <- GET(x, list(), callopts)
     warn_for_status(out)
-    assert_that(out$headers$`content-type` == 'text/xml')
+    stopifnot(out$headers$`content-type` == 'text/xml')
     content(out, as = "text")
   }
   res <- lapply(urls, getfulltext)

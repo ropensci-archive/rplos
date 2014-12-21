@@ -36,8 +36,7 @@ Imports:
     reshape2,
     data.table,
     whisker,
-    solr,
-    assertthat
+    solr
 Suggests:
     testthat,
     roxygen2,
