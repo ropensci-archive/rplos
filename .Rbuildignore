@@ -10,3 +10,4 @@ cran-comments.md
 ^appveyor\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+README.Rmd
