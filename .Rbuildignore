@@ -5,7 +5,6 @@ man-roxygen
 inst/assets
 inst/stuff
 vignettes/margins.sty
-tests/test-all.R
 cran-comments.md
 ^appveyor\.yml$
 ^.*\.Rproj$
