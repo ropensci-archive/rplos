@@ -52,19 +52,20 @@ Crossref API documentation [here](https://github.com/CrossRef/rest-api-doc/blob/
 
 Search for the term ecology, and return id (DOI) and publication date, limiting to 5 items
 
+
 ```r
 searchplos('ecology', 'id,publication_date', limit = 5)
 #> $meta
 #> $meta$numFound
-#> [1] 24231
-#>
+#> [1] 24708
+#> 
 #> $meta$start
 #> [1] 0
-#>
+#> 
 #> $meta$maxScore
-#> [1] 0.9783118
-#>
-#>
+#> [1] 0.9767659
+#> 
+#> 
 #> $data
 #>                                                        id
 #> 1                            10.1371/journal.pone.0059813
@@ -88,22 +89,22 @@ searchplos(q="*:*", fl='id', fq=list('cross_published_journal_key:PLoSONE',
    'doc_type:full'), limit=5)
 #> $meta
 #> $meta$numFound
-#> [1] 1166974
-#>
+#> [1] 1188800
+#> 
 #> $meta$start
 #> [1] 0
-#>
+#> 
 #> $meta$maxScore
 #> [1] 1
-#>
-#>
+#> 
+#> 
 #> $data
 #>                             id
-#> 1 10.1371/journal.pone.0024331
-#> 2 10.1371/journal.pone.0000953
-#> 3 10.1371/journal.pone.0070307
-#> 4 10.1371/journal.pone.0047272
-#> 5 10.1371/journal.pone.0000952
+#> 1 10.1371/journal.pone.0091136
+#> 2 10.1371/journal.pone.0063757
+#> 3 10.1371/journal.pone.0008061
+#> 4 10.1371/journal.pone.0091135
+#> 5 10.1371/journal.pone.0106004
 ```
 
 Query to get some PLOS article-level metrics, notice difference between two outputs
@@ -115,20 +116,20 @@ out_sorted <- searchplos(q="*:*", fl=c('id','counter_total_all','alm_twitterCoun
    fq='doc_type:full', sort='counter_total_all desc')
 head(out$data)
 #>                             id alm_twitterCount counter_total_all
-#> 1 10.1371/journal.ppat.1003958                1              3423
-#> 2 10.1371/journal.pone.0024331                0              2465
-#> 3 10.1371/journal.pone.0000953                0              4498
-#> 4 10.1371/journal.pone.0070307                0              1386
-#> 5 10.1371/journal.pone.0047272                1              2208
-#> 6 10.1371/journal.pone.0000952                0              3132
+#> 1 10.1371/journal.pone.0091136                0              1363
+#> 2 10.1371/journal.pgen.1003894                0              2906
+#> 3 10.1371/journal.pone.0063757                0              1453
+#> 4 10.1371/journal.pone.0008061                0              2119
+#> 5 10.1371/journal.pone.0091135                0              3083
+#> 6 10.1371/journal.pone.0106004                0               389
 head(out_sorted$data)
 #>                             id alm_twitterCount counter_total_all
-#> 1 10.1371/journal.pmed.0020124             1636            999294
-#> 2 10.1371/journal.pmed.0050045              113            324273
-#> 3 10.1371/journal.pone.0007595              191            314950
-#> 4 10.1371/journal.pone.0033288               39            305912
-#> 5 10.1371/journal.pone.0069841              809            275998
-#> 6 10.1371/journal.pone.0044864               87            238581
+#> 1 10.1371/journal.pmed.0020124                0           1018530
+#> 2 10.1371/journal.pmed.0050045                0            326579
+#> 3 10.1371/journal.pone.0007595                0            316792
+#> 4 10.1371/journal.pone.0033288                0            306159
+#> 5 10.1371/journal.pone.0069841                0            285014
+#> 6 10.1371/journal.pone.0044864                0            239187
 ```
 
 A list of articles about social networks that are popular on a social network
@@ -140,27 +141,17 @@ searchplos(q="*:*",fl=c('id','alm_twitterCount'),
    sort='counter_total_month desc')
 #> $meta
 #> $meta$numFound
-#> [1] 1166974
-#>
+#> [1] 1188800
+#> 
 #> $meta$start
 #> [1] 0
-#>
+#> 
 #> $meta$maxScore
 #> [1] 1
-#>
-#>
+#> 
+#> 
 #> $data
-#>                              id alm_twitterCount
-#> 1  10.1371/journal.pone.0069841              809
-#> 2  10.1371/journal.pone.0073791              746
-#> 3  10.1371/journal.pbio.1001960              189
-#> 4  10.1371/journal.pcbi.1003789             1026
-#> 5  10.1371/journal.pbio.1001535             1624
-#> 6  10.1371/journal.pone.0090315              396
-#> 7  10.1371/journal.pone.0061981             2298
-#> 8  10.1371/journal.pone.0069215              209
-#> 9  10.1371/journal.pone.0059030              214
-#> 10 10.1371/journal.pone.0064841              119
+#> [1] NA
 ```
 
 Show all articles that have these two words less then about 15 words apart
@@ -171,14 +162,14 @@ searchplos(q='everything:"sports alcohol"~15', fl='title', fq='doc_type:full', l
 #> $meta
 #> $meta$numFound
 #> [1] 63
-#>
+#> 
 #> $meta$start
 #> [1] 0
-#>
+#> 
 #> $meta$maxScore
-#> [1] 0.223016
-#>
-#>
+#> [1] 0.2231594
+#> 
+#> 
 #> $data
 #>                                                                                                                                                                         title
 #> 1                                      Alcohol Ingestion Impairs Maximal Post-Exercise Rates of Myofibrillar Protein Synthesis following a Single Bout of Concurrent Training
@@ -194,14 +185,14 @@ searchplos(q='everything:"sports alcohol"~7', fl='title', fq='doc_type:full', li
 #> $meta
 #> $meta$numFound
 #> [1] 28
-#>
+#> 
 #> $meta$start
 #> [1] 0
-#>
+#> 
 #> $meta$maxScore
-#> [1] 0.2088928
-#>
-#>
+#> [1] 0.2090272
+#> 
+#> 
 #> $data
 #>                                                                                                                                                                         title
 #> 1                                      Alcohol Ingestion Impairs Maximal Post-Exercise Rates of Myofibrillar Protein Synthesis following a Single Bout of Concurrent Training
@@ -217,22 +208,22 @@ searchplos(q='*:*', fl=c('id','article_type'),
    fq=list('-article_type:correction','-article_type:viewpoints'), limit=5)
 #> $meta
 #> $meta$numFound
-#> [1] 1166974
-#>
+#> [1] 1188800
+#> 
 #> $meta$start
 #> [1] 0
-#>
+#> 
 #> $meta$maxScore
 #> [1] 1
-#>
-#>
+#> 
+#> 
 #> $data
-#>                                        id     article_type
-#> 1            10.1371/journal.ppat.1003958 Research Article
-#> 2      10.1371/journal.ppat.1003958/title Research Article
-#> 3   10.1371/journal.ppat.1003958/abstract Research Article
-#> 4 10.1371/journal.ppat.1003958/references Research Article
-#> 5       10.1371/journal.ppat.1003958/body Research Article
+#>                                                    id     article_type
+#> 1           10.1371/journal.pone.0098523/introduction Research Article
+#> 2           10.1371/journal.pone.0015652/introduction Research Article
+#> 3 10.1371/journal.pone.0015652/results_and_discussion Research Article
+#> 4  10.1371/journal.pone.0015652/materials_and_methods Research Article
+#> 5 10.1371/journal.pone.0098523/results_and_discussion Research Article
 ```
 
 ### Faceted search
@@ -244,28 +235,28 @@ Facet on multiple fields
 facetplos(q='alcohol', facet.field=c('journal','subject'), facet.limit=5)
 #> $facet_queries
 #> NULL
-#>
+#> 
 #> $facet_fields
 #> $facet_fields$journal
 #>                           X1     X2
-#> 1                   plos one 927724
-#> 2              plos genetics  40470
-#> 3             plos pathogens  35392
-#> 4 plos computational biology  29759
-#> 5               plos biology  26133
-#>
+#> 1                   plos one 946507
+#> 2              plos genetics  41277
+#> 3             plos pathogens  35950
+#> 4 plos computational biology  30312
+#> 5               plos biology  26292
+#> 
 #> $facet_fields$subject
 #>                              X1      X2
-#> 1     biology and life sciences 1101568
-#> 2  medicine and health sciences  838974
-#> 3 research and analysis methods  719409
-#> 4                  biochemistry  542215
-#> 5                  cell biology  495749
-#>
-#>
+#> 1     biology and life sciences 1119028
+#> 2  medicine and health sciences  852924
+#> 3 research and analysis methods  730373
+#> 4                  biochemistry  550328
+#> 5                  cell biology  502705
+#> 
+#> 
 #> $facet_dates
 #> NULL
-#>
+#> 
 #> $facet_ranges
 #> NULL
 ```
@@ -278,26 +269,26 @@ facetplos(q='*:*', url=url, facet.range='counter_total_all',
  facet.range.start=5, facet.range.end=100, facet.range.gap=10)
 #> $facet_queries
 #> NULL
-#>
+#> 
 #> $facet_fields
 #> NULL
-#>
+#> 
 #> $facet_dates
 #> NULL
-#>
+#> 
 #> $facet_ranges
 #> $facet_ranges$counter_total_all
 #>    X1  X2
-#> 1   5 448
-#> 2  15 377
-#> 3  25 281
-#> 4  35 213
-#> 5  45 103
-#> 6  55 209
-#> 7  65 385
-#> 8  75 614
-#> 9  85 557
-#> 10 95 696
+#> 1   5   0
+#> 2  15   0
+#> 3  25   0
+#> 4  35   0
+#> 5  45   0
+#> 6  55   5
+#> 7  65  46
+#> 8  75 135
+#> 9  85 138
+#> 10 95 266
 ```
 
 ### Highlight searches
@@ -310,13 +301,13 @@ Search for and highlight the term _alcohol_ in the abstract field only
 #> $`10.1371/journal.pmed.0040151`
 #> $`10.1371/journal.pmed.0040151`$abstract
 #> [1] "Background: <em>Alcohol</em> consumption causes an estimated 4% of the global disease burden, prompting"
-#>
-#>
+#> 
+#> 
 #> $`10.1371/journal.pone.0027752`
 #> $`10.1371/journal.pone.0027752`$abstract
 #> [1] "Background: The negative influences of <em>alcohol</em> on TB management with regard to delays in seeking"
-#>
-#>
+#> 
+#> 
 #> $`10.1371/journal.pmed.0050108`
 #> $`10.1371/journal.pmed.0050108`$abstract
 #> [1] " study that links retail <em>alcohol</em> sales and violent assaults.\n      "
@@ -329,7 +320,7 @@ And you can browse the results in your default browser
 highbrow(out)
 ```
 
-![](inst/assets/img/highbrow.png)
+![highbrow](inst/assets/img/highbrow.png)
 
 ### Full text urls
 
@@ -346,10 +337,10 @@ full_text_urls(doi='10.1371/journal.pone.0086169')
 
 ```r
 (out <- plos_fulltext(doi='10.1371/journal.pone.0086169'))
-#> 1 full-text articles retrieved
-#> Min. Length: 111132 - Max. Length: 111132
-#> DOIs: 10.1371/journal.pone.0086169 ...
-#>
+#> 1 full-text articles retrieved 
+#> Min. Length: 111132 - Max. Length: 111132 
+#> DOIs: 10.1371/journal.pone.0086169 ... 
+#> 
 #> NOTE: extract xml strings like output['<doi>']
 ```
 
@@ -364,7 +355,7 @@ xpathSApply(xmlParse(out$`10.1371/journal.pone.0086169`), "//abstract", xmlValue
 
 ### Search within a field
 
-There are a series of convience functions for searching within sections of articles.
+There are a series of convience functions for searching within sections of articles. 
 
 * `plosauthor()`
 * `plosabstract()`
@@ -379,30 +370,30 @@ For example:
 plossubject(q='marine ecology',  fl = c('id','journal'), limit = 10)
 #> $meta
 #> $meta$numFound
-#> [1] 2105
-#>
+#> [1] 2133
+#> 
 #> $meta$start
 #> [1] 0
-#>
+#> 
 #> $meta$maxScore
-#> [1] 2.286991
-#>
-#>
+#> [1] 2.276767
+#> 
+#> 
 #> $data
-#>                                                     id  journal
-#> 1                         10.1371/journal.pone.0070647 PLoS ONE
-#> 2                   10.1371/journal.pone.0070647/title PLoS ONE
-#> 3                10.1371/journal.pone.0070647/abstract PLoS ONE
-#> 4              10.1371/journal.pone.0070647/references PLoS ONE
-#> 5                    10.1371/journal.pone.0070647/body PLoS ONE
-#> 6            10.1371/journal.pone.0070647/introduction PLoS ONE
-#> 7  10.1371/journal.pone.0070647/results_and_discussion PLoS ONE
-#> 8   10.1371/journal.pone.0070647/materials_and_methods PLoS ONE
-#> 9  10.1371/journal.pone.0070647/supporting_information PLoS ONE
-#> 10                        10.1371/journal.pone.0092590 PLoS ONE
+#>                                                    id  journal
+#> 1                        10.1371/journal.pone.0021810 PLoS ONE
+#> 2                  10.1371/journal.pone.0021810/title PLoS ONE
+#> 3               10.1371/journal.pone.0021810/abstract PLoS ONE
+#> 4             10.1371/journal.pone.0021810/references PLoS ONE
+#> 5                   10.1371/journal.pone.0021810/body PLoS ONE
+#> 6           10.1371/journal.pone.0021810/introduction PLoS ONE
+#> 7  10.1371/journal.pone.0021810/materials_and_methods PLoS ONE
+#> 8                        10.1371/journal.pone.0022881 PLoS ONE
+#> 9                  10.1371/journal.pone.0022881/title PLoS ONE
+#> 10              10.1371/journal.pone.0022881/abstract PLoS ONE
 ```
 
-However, you can always just do this in `searchplos()` like `searchplos(q = "subject:science")`. See also the `fq` parameter. The above convenience functions are simply wrappers around `searchplos`, so take all the same parameters.
+However, you can always just do this in `searchplos()` like `searchplos(q = "subject:science")`. See also the `fq` parameter. The above convenience functions are simply wrappers around `searchplos`, so take all the same parameters. 
 
 ### Search by article views
 
@@ -412,11 +403,11 @@ Search with term _marine ecology_, by field _subject_, and limit to 5 results
 ```r
 plosviews(search='marine ecology', byfield='subject', limit=5)
 #>                             id counter_total_all
-#> 4 10.1371/journal.pone.0021810              1428
-#> 1 10.1371/journal.pone.0070647              1434
-#> 5 10.1371/journal.pone.0012946              3278
-#> 2 10.1371/journal.pone.0092590              4050
-#> 3 10.1371/journal.pone.0022881              7380
+#> 3 10.1371/journal.pone.0028556              1188
+#> 1 10.1371/journal.pone.0021810              1469
+#> 4 10.1371/journal.pone.0070647              1475
+#> 5 10.1371/journal.pone.0012946              3329
+#> 2 10.1371/journal.pone.0022881              7664
 ```
 
 ### Visualize
@@ -428,21 +419,21 @@ Visualize word use across articles
 plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')
 #> $table
 #>   No_Articles       Term
-#> 1        8155     monkey
-#> 2         293 Helianthus
-#> 3         802  sunflower
-#> 4       89810    protein
-#> 5        1000      whale
-#>
+#> 1        8274     monkey
+#> 2         296 Helianthus
+#> 3         809  sunflower
+#> 4       91291    protein
+#> 5        1014      whale
+#> 
 #> $plot
 ```
 
-![](inst/assets/img/unnamed-chunk-21-1.png)
+![wordusage](inst/assets/img/unnamed-chunk-21-1.png) 
 
 ## Meta
 
 * Please report any [issues or bugs](https://github.com/ropensci/rplos/issues).
-* License: CC0
+* License: MIT
 * Get citation information for `rplos` in R doing `citation(package = 'rplos')`
 
 ---
@@ -451,4 +442,4 @@ This package is part of a richer suite called [fulltext](https://github.com/rope
 
 ---
 
-[![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+[![rofooter](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)

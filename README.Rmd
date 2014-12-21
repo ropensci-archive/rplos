@@ -135,7 +135,7 @@ And you can browse the results in your default browser
 highbrow(out)
 ```
 
-![](inst/assets/img/highbrow.png)
+![highbrow](inst/assets/img/highbrow.png)
 
 ### Full text urls
 
@@ -188,7 +188,7 @@ plosviews(search='marine ecology', byfield='subject', limit=5)
 
 Visualize word use across articles
 
-```{r}
+```{r fig.cap="wordusage"}
 plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')
 ```
 
@@ -204,4 +204,4 @@ This package is part of a richer suite called [fulltext](https://github.com/rope
 
 ---
 
-[![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+[![rofooter](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
