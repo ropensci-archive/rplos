@@ -2,12 +2,7 @@
 context("journalnamekey")
 
 test_that("journalnamekey returns the correct value", {
-	expect_that(journalnamekey(), 
-							equals(c(
-								"PLoSONE","PLoSGenetics","PLoSPathogens","PLoSCompBiol",
-								"PLoSBiology","PLoSNTD","PLoSMedicine","PLoSCollections",
-								"PLoSClinicalTrials"
-								)))
+	expect_output(paste0(journalnamekey(), collapse = " "), "PLoSONE")
 })
 
 test_that("journalnamekey returns the correct class", {
