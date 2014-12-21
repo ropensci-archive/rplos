@@ -4,7 +4,7 @@ context("plossubject")
 tt <- plossubject(q='marine ecology', fl = 'id,journal', fq='doc_type:full', limit = 9, key = "hello")
 
 test_that("plossubject returns the correct class", {
-	expect_that(tt, is_a("data.frame"))
-	expect_that(dim(tt), equals(c(9,2)))
-	expect_that(tt$journal, is_a("character"))
+	expect_that(tt$data, is_a("data.frame"))
+	expect_that(dim(tt$data), equals(c(9,2)))
+	expect_that(tt$data$journal, is_a("character"))
 })
