@@ -14,7 +14,7 @@ its help documentation.
 rplos functions
 
 Most rplos functions make web calls (using the RCurl package), and either
-parse xml (using the XML package) or json (using the RJSONIO package)
+parse xml (using the XML package) or json (using the jsonlite package)
 results.
 
 PLoS API keys

@@ -26,12 +26,12 @@ Depends:
     ggplot2
 Imports:
     RCurl,
-    RJSONIO,
+    httr,
+    jsonlite,
     XML,
     plyr,
     stringr,
     googleVis,
-    httr,
     lubridate,
     reshape2,
     data.table,
@@ -40,6 +40,5 @@ Imports:
 Suggests:
     testthat,
     roxygen2,
-    jsonlite,
     knitr
 Enhances: tm

@@ -1,5 +1,5 @@
 #' Do highlighted searches on PLOS Journals full-text content
-#' 
+#'
 #' @import solr
 #' @template high
 #' @return A list.
@@ -14,22 +14,22 @@
 #' highplos(q='alcohol', hl.fl='abstract', hl.useFastVectorHighlighter='true', rows=5)
 #' highplos(q='everything:"experiment"', fq='doc_type:full', rows=100, hl.fl = 'title')
 #' }
-#'    
+#'
 #' @examples \donttest{
 #' highplos(q='alcohol', hl.fl = 'abstract', rows=1200)
 #' }
 
 highplos <- function(q, fl=NULL, fq=NULL, hl.fl = NULL, hl.snippets = NULL, hl.fragsize = NULL,
-   hl.q = NULL, hl.mergeContiguous = NULL, hl.requireFieldMatch = NULL, 
-   hl.maxAnalyzedChars = NULL, hl.alternateField = NULL, hl.maxAlternateFieldLength = NULL, 
-   hl.preserveMulti = NULL, hl.maxMultiValuedToExamine = NULL, 
-   hl.maxMultiValuedToMatch = NULL, hl.formatter = NULL, hl.simple.pre = NULL, 
-   hl.simple.post = NULL, hl.fragmenter = NULL, hl.fragListBuilder = NULL, 
-   hl.fragmentsBuilder = NULL, hl.boundaryScanner = NULL, hl.bs.maxScan = NULL, 
-   hl.bs.chars = NULL, hl.bs.type = NULL, hl.bs.language = NULL, hl.bs.country = NULL, 
-   hl.useFastVectorHighlighter = NULL, hl.usePhraseHighlighter = NULL, 
-   hl.highlightMultiTerm = NULL, hl.regex.slop = NULL, hl.regex.pattern = NULL, 
-   hl.regex.maxAnalyzedChars = NULL, start = 0, rows = NULL, 
+   hl.q = NULL, hl.mergeContiguous = NULL, hl.requireFieldMatch = NULL,
+   hl.maxAnalyzedChars = NULL, hl.alternateField = NULL, hl.maxAlternateFieldLength = NULL,
+   hl.preserveMulti = NULL, hl.maxMultiValuedToExamine = NULL,
+   hl.maxMultiValuedToMatch = NULL, hl.formatter = NULL, hl.simple.pre = NULL,
+   hl.simple.post = NULL, hl.fragmenter = NULL, hl.fragListBuilder = NULL,
+   hl.fragmentsBuilder = NULL, hl.boundaryScanner = NULL, hl.bs.maxScan = NULL,
+   hl.bs.chars = NULL, hl.bs.type = NULL, hl.bs.language = NULL, hl.bs.country = NULL,
+   hl.useFastVectorHighlighter = NULL, hl.usePhraseHighlighter = NULL,
+   hl.highlightMultiTerm = NULL, hl.regex.slop = NULL, hl.regex.pattern = NULL,
+   hl.regex.maxAnalyzedChars = NULL, start = 0, rows = NULL,
    key = NULL, callopts=list(), sleep=6, ...)
 {
   if(!Sys.getenv('plostime') == ""){
@@ -45,33 +45,33 @@ highplos <- function(q, fl=NULL, fq=NULL, hl.fl = NULL, hl.snippets = NULL, hl.f
   if(!is.null(fl)) fl <- paste(fl, collapse = ",")
   out <- solr_highlight(base=url, key=key, q=q, fl=fl, fq=fq, wt='json', start=start, rows=rows, hl.fl=hl.fl,
     hl.snippets=hl.snippets, hl.fragsize=hl.fragsize,
-    hl.mergeContiguous = hl.mergeContiguous, hl.requireFieldMatch = hl.requireFieldMatch, 
-    hl.maxAnalyzedChars = hl.maxAnalyzedChars, hl.alternateField = hl.alternateField, 
-    hl.maxAlternateFieldLength = hl.maxAlternateFieldLength, hl.preserveMulti = hl.preserveMulti, 
-    hl.maxMultiValuedToExamine = hl.maxMultiValuedToExamine, hl.maxMultiValuedToMatch = hl.maxMultiValuedToMatch, 
-    hl.formatter = hl.formatter, hl.simple.pre = hl.simple.pre, hl.simple.post = hl.simple.post, 
-    hl.fragmenter = hl.fragmenter, hl.fragListBuilder = hl.fragListBuilder, hl.fragmentsBuilder = hl.fragmentsBuilder, 
-    hl.boundaryScanner = hl.boundaryScanner, hl.bs.maxScan = hl.bs.maxScan, hl.bs.chars = hl.bs.chars, 
-    hl.bs.type = hl.bs.type, hl.bs.language = hl.bs.language, hl.bs.country = hl.bs.country, 
-    hl.useFastVectorHighlighter = hl.useFastVectorHighlighter, hl.usePhraseHighlighter = hl.usePhraseHighlighter, 
-    hl.highlightMultiTerm = hl.highlightMultiTerm, hl.regex.slop = hl.regex.slop, hl.regex.pattern = hl.regex.pattern, 
+    hl.mergeContiguous = hl.mergeContiguous, hl.requireFieldMatch = hl.requireFieldMatch,
+    hl.maxAnalyzedChars = hl.maxAnalyzedChars, hl.alternateField = hl.alternateField,
+    hl.maxAlternateFieldLength = hl.maxAlternateFieldLength, hl.preserveMulti = hl.preserveMulti,
+    hl.maxMultiValuedToExamine = hl.maxMultiValuedToExamine, hl.maxMultiValuedToMatch = hl.maxMultiValuedToMatch,
+    hl.formatter = hl.formatter, hl.simple.pre = hl.simple.pre, hl.simple.post = hl.simple.post,
+    hl.fragmenter = hl.fragmenter, hl.fragListBuilder = hl.fragListBuilder, hl.fragmentsBuilder = hl.fragmentsBuilder,
+    hl.boundaryScanner = hl.boundaryScanner, hl.bs.maxScan = hl.bs.maxScan, hl.bs.chars = hl.bs.chars,
+    hl.bs.type = hl.bs.type, hl.bs.language = hl.bs.language, hl.bs.country = hl.bs.country,
+    hl.useFastVectorHighlighter = hl.useFastVectorHighlighter, hl.usePhraseHighlighter = hl.usePhraseHighlighter,
+    hl.highlightMultiTerm = hl.highlightMultiTerm, hl.regex.slop = hl.regex.slop, hl.regex.pattern = hl.regex.pattern,
     hl.regex.maxAnalyzedChars = hl.regex.maxAnalyzedChars, ...)
   return( out )
   Sys.setenv(plostime=as.numeric(now()))
 }
 
 # highplos <- function(q, hl.fl = NULL, hl.snippets = NULL, hl.fragsize = NULL,
-#   hl.q = NULL, hl.mergeContiguous = NULL, hl.requireFieldMatch = NULL, 
-#   hl.maxAnalyzedChars = NULL, hl.alternateField = NULL, hl.maxAlternateFieldLength = NULL, 
-#   hl.preserveMulti = NULL, hl.maxMultiValuedToExamine = NULL, 
-#   hl.maxMultiValuedToMatch = NULL, hl.formatter = NULL, hl.simple.pre = NULL, 
-#   hl.simple.post = NULL, hl.fragmenter = NULL, hl.fragListBuilder = NULL, 
-#   hl.fragmentsBuilder = NULL, hl.boundaryScanner = NULL, hl.bs.maxScan = NULL, 
-#   hl.bs.chars = NULL, hl.bs.type = NULL, hl.bs.language = NULL, hl.bs.country = NULL, 
-#   hl.useFastVectorHighlighter = NULL, hl.usePhraseHighlighter = NULL, 
-#   hl.highlightMultiTerm = NULL, hl.regex.slop = NULL, hl.regex.pattern = NULL, 
-#   hl.regex.maxAnalyzedChars = NULL, start = 0, limit = NA, 
-#   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")), 
+#   hl.q = NULL, hl.mergeContiguous = NULL, hl.requireFieldMatch = NULL,
+#   hl.maxAnalyzedChars = NULL, hl.alternateField = NULL, hl.maxAlternateFieldLength = NULL,
+#   hl.preserveMulti = NULL, hl.maxMultiValuedToExamine = NULL,
+#   hl.maxMultiValuedToMatch = NULL, hl.formatter = NULL, hl.simple.pre = NULL,
+#   hl.simple.post = NULL, hl.fragmenter = NULL, hl.fragListBuilder = NULL,
+#   hl.fragmentsBuilder = NULL, hl.boundaryScanner = NULL, hl.bs.maxScan = NULL,
+#   hl.bs.chars = NULL, hl.bs.type = NULL, hl.bs.language = NULL, hl.bs.country = NULL,
+#   hl.useFastVectorHighlighter = NULL, hl.usePhraseHighlighter = NULL,
+#   hl.highlightMultiTerm = NULL, hl.regex.slop = NULL, hl.regex.pattern = NULL,
+#   hl.regex.maxAnalyzedChars = NULL, start = 0, limit = NA,
+#   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
 #   sleep = 6, callopts=list())
 # {
 #   # Enforce rate limits
@@ -82,28 +82,28 @@ highplos <- function(q, fl=NULL, fq=NULL, hl.fl = NULL, hl.snippets = NULL, hl.f
 #       Sys.sleep(sleep)
 #     }
 #   }
-#   
+#
 #   url = 'http://api.plos.org/search'
-#   
+#
 #   args <- compact(list(wt="json", q=q, start=start, rows=limit, hl='true', hl.fl=hl.fl,
-#      hl.snippets=hl.snippets, hl.fragsize=hl.fragsize, fl='DOES_NOT_EXIST', 
-#      hl.mergeContiguous = hl.mergeContiguous, hl.requireFieldMatch = hl.requireFieldMatch, 
-#      hl.maxAnalyzedChars = hl.maxAnalyzedChars, hl.alternateField = hl.alternateField, 
-#      hl.maxAlternateFieldLength = hl.maxAlternateFieldLength, hl.preserveMulti = hl.preserveMulti, 
-#      hl.maxMultiValuedToExamine = hl.maxMultiValuedToExamine, hl.maxMultiValuedToMatch = hl.maxMultiValuedToMatch, 
-#      hl.formatter = hl.formatter, hl.simple.pre = hl.simple.pre, hl.simple.post = hl.simple.post, 
-#      hl.fragmenter = hl.fragmenter, hl.fragListBuilder = hl.fragListBuilder, hl.fragmentsBuilder = hl.fragmentsBuilder, 
-#      hl.boundaryScanner = hl.boundaryScanner, hl.bs.maxScan = hl.bs.maxScan, hl.bs.chars = hl.bs.chars, 
-#      hl.bs.type = hl.bs.type, hl.bs.language = hl.bs.language, hl.bs.country = hl.bs.country, 
-#      hl.useFastVectorHighlighter = hl.useFastVectorHighlighter, hl.usePhraseHighlighter = hl.usePhraseHighlighter, 
-#      hl.highlightMultiTerm = hl.highlightMultiTerm, hl.regex.slop = hl.regex.slop, hl.regex.pattern = hl.regex.pattern, 
+#      hl.snippets=hl.snippets, hl.fragsize=hl.fragsize, fl='DOES_NOT_EXIST',
+#      hl.mergeContiguous = hl.mergeContiguous, hl.requireFieldMatch = hl.requireFieldMatch,
+#      hl.maxAnalyzedChars = hl.maxAnalyzedChars, hl.alternateField = hl.alternateField,
+#      hl.maxAlternateFieldLength = hl.maxAlternateFieldLength, hl.preserveMulti = hl.preserveMulti,
+#      hl.maxMultiValuedToExamine = hl.maxMultiValuedToExamine, hl.maxMultiValuedToMatch = hl.maxMultiValuedToMatch,
+#      hl.formatter = hl.formatter, hl.simple.pre = hl.simple.pre, hl.simple.post = hl.simple.post,
+#      hl.fragmenter = hl.fragmenter, hl.fragListBuilder = hl.fragListBuilder, hl.fragmentsBuilder = hl.fragmentsBuilder,
+#      hl.boundaryScanner = hl.boundaryScanner, hl.bs.maxScan = hl.bs.maxScan, hl.bs.chars = hl.bs.chars,
+#      hl.bs.type = hl.bs.type, hl.bs.language = hl.bs.language, hl.bs.country = hl.bs.country,
+#      hl.useFastVectorHighlighter = hl.useFastVectorHighlighter, hl.usePhraseHighlighter = hl.usePhraseHighlighter,
+#      hl.highlightMultiTerm = hl.highlightMultiTerm, hl.regex.slop = hl.regex.slop, hl.regex.pattern = hl.regex.pattern,
 #      hl.regex.maxAnalyzedChars = hl.regex.maxAnalyzedChars))
-#   
+#
 #   argsgetnum <- list(q=q, rows=0, wt="json", api_key=key)
 #   getnum <- getForm(url, .params = argsgetnum, curl = getCurlHandle(), .encoding=)
-#   getnumrecords <- fromJSON(I(getnum))$response$numFound
+#   getnumrecords <- jsonlite::fromJSON(I(getnum), FALSE)$response$numFound
 #   if(getnumrecords > limit){getnumrecords <- limit} else{getnumrecords <- getnumrecords}
-#   
+#
 #   if(min(getnumrecords, limit) < 1000) {
 #     if(!is.na(limit))
 #       args$rows <- limit
@@ -111,7 +111,7 @@ highplos <- function(q, fl=NULL, fq=NULL, hl.fl = NULL, hl.snippets = NULL, hl.f
 #     stop_for_status(tt)
 #     return( content(tt)$highlighting )
 #   } else
-#   { 
+#   {
 #     byby <- 500
 #     getvecs <- seq(from=1, to=getnumrecords, by=byby)
 #     lastnum <- as.numeric(str_extract(getnumrecords, "[0-9]{3}$"))
@@ -119,7 +119,7 @@ highplos <- function(q, fl=NULL, fq=NULL, hl.fl = NULL, hl.snippets = NULL, hl.f
 #       lastnum <- byby
 #     if(lastnum > byby){
 #       lastnum <- getnumrecords-getvecs[length(getvecs)]
-#     } else 
+#     } else
 #     {lastnum <- lastnum}
 #     getrows <- c(rep(byby, length(getvecs)-1), lastnum)
 #     out <- list()

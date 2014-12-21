@@ -1,11 +1,11 @@
 #' Search PLoS Journals by article views.
-#' 
-#' @import RJSONIO httr
+#'
+#' @import httr
 #' @importFrom stringr str_split
 #' @importFrom plyr compact
 #' @param search search terms (character)
 #' @param byfield field to search by, e.g., subject, author, etc. (character)
-#' @param views views all time (alltime) or views last 30 days (last30) 
+#' @param views views all time (alltime) or views last 30 days (last30)
 #'    (character)
 #' @param limit number of results to return (integer)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
@@ -26,7 +26,7 @@ plosviews <- function(search, byfield = NULL, views = 'alltime', limit = NULL,
   callopts=list(), curl = getCurlHandle())
 {
 	url = 'http://api.plos.org/search'
-	
+
   args <- compact(list(apikey = key, wt = "json", fq = "doc_type:full", rows = limit))
   if(is.null(byfield)) {byfield_ <- byfield} else
     {byfield_ <- paste(byfield, ":", sep="")}
