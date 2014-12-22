@@ -1,7 +1,7 @@
 #' Base function to search PLoS Journals
 #'
 #' @export
-#' @import data.table
+#' @importFrom dplyr rbind_all
 #' @importFrom plyr ldply
 #' @importFrom lubridate now
 #' @template plos
@@ -66,10 +66,8 @@
 searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, limit = 10,
   key = NULL, sleep = 6, callopts=list(), terms=NULL, fields=NULL, toquery=NULL)
 {
-#   calls <- deparse(sys.calls())
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- c("terms", "fields", "toquery") %in% calls
-#   calls_vec <- sapply(c("terms", "fields", "toquery"), function(x) grepl(x, calls))
   if(any(calls_vec))
     stop("The parameters terms, fields, and toquery have been replaced with q, fl, and fq, respectively")
 
@@ -204,7 +202,7 @@ plos2df <- function(input, many=FALSE)
           tmp[match(namesdat, names(tmp))]
         }
       })
-      datout <- data.frame(rbindlist(dat), stringsAsFactors = FALSE)
+      datout <- data.frame(rbind_all(lapply(dat, data.frame, stringsAsFactors = FALSE)))
     }
   }
   return( datout )

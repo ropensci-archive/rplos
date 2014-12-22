@@ -32,7 +32,6 @@ Imports:
     plyr,
     lubridate,
     reshape2,
-    data.table,
     whisker,
     solr
 Suggests:

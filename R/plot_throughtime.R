@@ -39,6 +39,7 @@ plot_throughtime <- function(terms, limit = NA,
 }
 
 timesearch <- function(terms, limit, key, ...){
+  month=NULL
   args <- ploscompact(list(q = terms, fl = "publication_date", wt = "json", rows = limit, api_key = key))
   tt <- GET(pbase(), query = args, ...)
   stop_for_status(tt)
