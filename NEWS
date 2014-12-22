@@ -1,3 +1,25 @@
+rplos 0.4.6
+------------
+
+MINOR IMPROVEMENTS
+
+* Switched from CC0 to MIT license.
+* No longer importing libraries `RCurl`, `data.table`, `googleVis`, `assertthat`, `RJSONIO`, and `stringr`
+* Now importing `dplyr`.
+* Moved `jsonlite` from Suggests to Imports. Replaces use of `RJSONIO`.
+* `crossref()` now defunct. See package `rcrossref` https://github.com/ropensci/rcrossref. (#83)
+* `highplos()` now uses `solr::solr_highlight()` to do highlight searches.
+* `searchplos()`, `plosabstract()`, and other functions that wrap `searchplos()` now use `...` to pass in curl options to `httr::GET()`. You'll now get an error on using `callopts` parameter. 
+* Added manual file entry for the dataset `isocodes`.
+* Reworked both `plosword()` and `plot_throughtime()` to have far less code, uses `httr` now instead of `RCurl`, but to the user, everything should be the same.
+* `meta` slot in `searchplos` and friends now given back as a `data.frame` instead of a `list`.
+
+BUG FIXES
+
+* Removed some examples from `searchplos()` that are now not working for some unknown reason. (#81)
+* Previously when user set `limit=0`, we still gave back data, this is fixed, and now only the `meta` slot given back. (#85)
+* asdf
+
 rplos 0.4.1
 ------------
 
