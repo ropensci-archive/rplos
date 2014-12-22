@@ -1,7 +1,7 @@
 #' Search PLoS Journals by article views.
 #'
+#' @export
 #' @import httr
-#' @importFrom plyr compact
 #' @param search search terms (character)
 #' @param byfield field to search by, e.g., subject, author, etc. (character)
 #' @param views views all time (alltime) or views last 30 days (last30)
@@ -19,14 +19,14 @@
 #' plosviews(search='evolution', views = 'alltime', limit = 99)
 #' plosviews('bird', views = 'alltime', limit = 99)
 #' }
-#' @export
+
 plosviews <- function(search, byfield = NULL, views = 'alltime', limit = NULL,
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
   callopts=list(), curl = getCurlHandle())
 {
 	url = 'http://api.plos.org/search'
 
-  args <- compact(list(apikey = key, wt = "json", fq = "doc_type:full", rows = limit))
+  args <- ploscompact(list(apikey = key, wt = "json", fq = "doc_type:full", rows = limit))
   if(is.null(byfield)) {byfield_ <- byfield} else
     {byfield_ <- paste(byfield, ":", sep="")}
   if(!is.na(search))
