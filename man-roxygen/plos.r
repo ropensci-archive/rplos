@@ -25,10 +25,12 @@
 #'    lapply type call, do sleep parameter is used to prevent your IP address from being
 #'    blocked. You can only do 10 requests per minute, so one request every 6 seconds is
 #'    about right.
-#' @param callopts Optional additional curl options (debugging tools mostly)
-#' @param terms DEPRECATED PARAMETER - replaced with the q param.
-#' @param fields DEPRECATED PARAMETER - replaced with the fl param.
-#' @param toquery DEPRECATED PARAMETER - replaced with the fq param.
+#' @param ... Optional additional curl options (debugging tools mostly), passed on to 
+#' \code{\link[httr]{GET}}
+#' @param terms DEPRECATED PARAMETER - replaced with the \code{q} param.
+#' @param fields DEPRECATED PARAMETER - replaced with the \code{fl} param.
+#' @param toquery DEPRECATED PARAMETER - replaced with the \code{fq} param.
+#' @param callopts DEPRECATED PARAMETER - replaced with the \code{...} param.
 #' @seealso plosauthor, plosabstract, plostitle, plosfigtabcaps
 #'
 #' @details

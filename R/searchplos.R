@@ -64,12 +64,12 @@
 #' }
 
 searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, limit = 10,
-  key = NULL, sleep = 6, callopts=list(), terms=NULL, fields=NULL, toquery=NULL)
+  key = NULL, sleep = 6, terms=NULL, fields=NULL, toquery=NULL, callopts=NULL, ...)
 {
   calls <- names(sapply(match.call(), deparse))[-1]
-  calls_vec <- c("terms", "fields", "toquery") %in% calls
+  calls_vec <- c("terms", "fields", "toquery", "callopts") %in% calls
   if(any(calls_vec))
-    stop("The parameters terms, fields, and toquery have been replaced with q, fl, and fq, respectively")
+    stop("The parameters terms, fields, toquery, and callopts replaced with q, fl, fq, and ..., respectively")
 
   # Key
   if(is.null(key))
@@ -116,7 +116,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
 	if(min(getnumrecords, limit) < 1000) {
 	  if(!is.null(limit))
 	    args$rows <- limit
-	  tt <- GET(pbase(), query=args, callopts)
+	  tt <- GET(pbase(), query=args, ...)
     jsonout <- check_response(tt)
 	  tempresults <- jsonout$response$docs
 	  tempresults <- lapply(tempresults, function(x) lapply(x, trim))
@@ -155,7 +155,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
 	    cat(i,"\n")
 	    args$start <- getvecs[i]
 	    args$rows <- getrows[i]
-	    tt <- GET(pbase(), query=args, callopts)
+	    tt <- GET(pbase(), query=args, ...)
 	    jsonout <- check_response(tt)
 	    tempresults <- jsonout$response$docs
 	    tempresults <- lapply(tempresults, function(x) lapply(x, trim))

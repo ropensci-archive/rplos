@@ -17,14 +17,14 @@
 
 plossubject <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL,
   start = 0, limit = 10, key = NULL, 
-  sleep = 6, callopts=list(), terms=NULL, fields=NULL, toquery=NULL)
+  sleep = 6, terms=NULL, fields=NULL, toquery=NULL, callopts=NULL, ...)
 {
   calls <- names(sapply(match.call(), deparse))[-1]
-  calls_vec <- c("terms", "fields", "toquery") %in% calls
+  calls_vec <- c("terms", "fields", "toquery", "callopts") %in% calls
   if(any(calls_vec))
-    stop("The parameters terms, fields, and toquery have been replaced with q, fl, and fq, respectively")
+    stop("The parameters terms, fields, toquery, and callopts replaced with q, fl, fq, ..., respectively")
   
   searchplos(q=paste('subject:', '"', q, '"', sep=""), fl=fl, fq=fq,
              sort=sort, start=start, limit=limit,
-             key=key, sleep=sleep, callopts=callopts)
+             key=key, sleep=sleep, ...)
 }

@@ -5,8 +5,8 @@
 \title{Search PLoS Journals authors.}
 \usage{
 plosauthor(q = NULL, fl = "id", fq = NULL, sort = NULL, start = 0,
-  limit = 10, key = NULL, sleep = 6, callopts = list(), terms = NULL,
-  fields = NULL, toquery = NULL)
+  limit = 10, key = NULL, sleep = 6, terms = NULL, fields = NULL,
+  toquery = NULL, callopts = NULL, ...)
 }
 \arguments{
 \item{q}{Search terms (character). You can search on specific fields by
@@ -44,13 +44,16 @@ lapply type call, do sleep parameter is used to prevent your IP address from bei
 blocked. You can only do 10 requests per minute, so one request every 6 seconds is
 about right.}
 
-\item{callopts}{Optional additional curl options (debugging tools mostly)}
+\item{terms}{DEPRECATED PARAMETER - replaced with the \code{q} param.}
 
-\item{terms}{DEPRECATED PARAMETER - replaced with the q param.}
+\item{fields}{DEPRECATED PARAMETER - replaced with the \code{fl} param.}
 
-\item{fields}{DEPRECATED PARAMETER - replaced with the fl param.}
+\item{toquery}{DEPRECATED PARAMETER - replaced with the \code{fq} param.}
 
-\item{toquery}{DEPRECATED PARAMETER - replaced with the fq param.}
+\item{callopts}{DEPRECATED PARAMETER - replaced with the \code{...} param.}
+
+\item{...}{Optional additional curl options (debugging tools mostly), passed on to
+\code{\link[httr]{GET}}}
 }
 \value{
 Author names, in addition to any other fields requested in a
