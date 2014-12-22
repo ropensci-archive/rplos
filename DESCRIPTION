@@ -25,7 +25,6 @@ VignetteBuilder: knitr
 Depends:
     ggplot2
 Imports:
-    RCurl,
     httr,
     jsonlite,
     XML,
