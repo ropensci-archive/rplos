@@ -17,7 +17,7 @@ test_that("searchplos returns the correct class", {
 	expect_that(dat1$data, is_a("data.frame"))
   expect_that(dat2$data, is_a("data.frame"))
   expect_is(dat2, "list")
-  expect_is(dat2$meta, "list")
+  expect_is(dat2$meta, "data.frame")
 })
 
 test_that("searchplos returns the correct value", {

@@ -13,6 +13,6 @@ test_that("plosfigtabcaps returns the correct dimenion result", {
 
 test_that("plosfigtabcaps returns the correct class", {
 	expect_is(dat, "list")
-	expect_is(dat$meta, "list")
+	expect_is(dat$meta, "data.frame")
 	expect_is(dat$data, "data.frame")
 })
