@@ -56,15 +56,8 @@ Search for the term ecology, and return id (DOI) and publication date, limiting 
 ```r
 searchplos('ecology', 'id,publication_date', limit = 5)
 #> $meta
-#> $meta$numFound
-#> [1] 24708
-#> 
-#> $meta$start
-#> [1] 0
-#> 
-#> $meta$maxScore
-#> [1] 0.9767659
-#> 
+#>   numFound start maxScore
+#> 1    24708     0       NA
 #> 
 #> $data
 #>                                                        id
@@ -88,23 +81,16 @@ Get DOIs for full article in PLoS One
 searchplos(q="*:*", fl='id', fq=list('cross_published_journal_key:PLoSONE',
    'doc_type:full'), limit=5)
 #> $meta
-#> $meta$numFound
-#> [1] 1188800
-#> 
-#> $meta$start
-#> [1] 0
-#> 
-#> $meta$maxScore
-#> [1] 1
-#> 
+#>   numFound start maxScore
+#> 1   117997     0       NA
 #> 
 #> $data
 #>                             id
-#> 1 10.1371/journal.pone.0091136
-#> 2 10.1371/journal.pone.0063757
-#> 3 10.1371/journal.pone.0008061
-#> 4 10.1371/journal.pone.0091135
-#> 5 10.1371/journal.pone.0106004
+#> 1 10.1371/journal.pone.0057487
+#> 2 10.1371/journal.pone.0071347
+#> 3 10.1371/journal.pone.0043700
+#> 4 10.1371/journal.pone.0015651
+#> 5 10.1371/journal.pone.0029650
 ```
 
 Query to get some PLOS article-level metrics, notice difference between two outputs
@@ -116,17 +102,17 @@ out_sorted <- searchplos(q="*:*", fl=c('id','counter_total_all','alm_twitterCoun
    fq='doc_type:full', sort='counter_total_all desc')
 head(out$data)
 #>                             id alm_twitterCount counter_total_all
-#> 1 10.1371/journal.pone.0091136                0              1363
-#> 2 10.1371/journal.pgen.1003894                0              2906
-#> 3 10.1371/journal.pone.0063757                0              1453
-#> 4 10.1371/journal.pone.0008061                0              2119
-#> 5 10.1371/journal.pone.0091135                0              3083
-#> 6 10.1371/journal.pone.0106004                0               389
+#> 1 10.1371/journal.pone.0057487                0              2145
+#> 2 10.1371/journal.ppat.0030138                0              7640
+#> 3 10.1371/journal.pone.0071347                0              1639
+#> 4 10.1371/journal.pone.0043700                0              1851
+#> 5 10.1371/journal.pone.0015651                0              2791
+#> 6 10.1371/journal.pone.0029650                0              2740
 head(out_sorted$data)
 #>                             id alm_twitterCount counter_total_all
-#> 1 10.1371/journal.pmed.0020124                0           1018530
+#> 1 10.1371/journal.pmed.0020124                0           1018974
 #> 2 10.1371/journal.pmed.0050045                0            326579
-#> 3 10.1371/journal.pone.0007595                0            316792
+#> 3 10.1371/journal.pone.0007595                0            316853
 #> 4 10.1371/journal.pone.0033288                0            306159
 #> 5 10.1371/journal.pone.0069841                0            285014
 #> 6 10.1371/journal.pone.0044864                0            239187
@@ -140,15 +126,8 @@ searchplos(q="*:*",fl=c('id','alm_twitterCount'),
    fq=list('doc_type:full','subject:"Social networks"','alm_twitterCount:[100 TO 10000]'),
    sort='counter_total_month desc')
 #> $meta
-#> $meta$numFound
-#> [1] 1188800
-#> 
-#> $meta$start
-#> [1] 0
-#> 
-#> $meta$maxScore
-#> [1] 1
-#> 
+#>   numFound start maxScore
+#> 1        0     0       NA
 #> 
 #> $data
 #> [1] NA
@@ -160,15 +139,8 @@ Show all articles that have these two words less then about 15 words apart
 ```r
 searchplos(q='everything:"sports alcohol"~15', fl='title', fq='doc_type:full', limit=3)
 #> $meta
-#> $meta$numFound
-#> [1] 63
-#> 
-#> $meta$start
-#> [1] 0
-#> 
-#> $meta$maxScore
-#> [1] 0.2231594
-#> 
+#>   numFound start maxScore
+#> 1       63     0       NA
 #> 
 #> $data
 #>                                                                                                                                                                         title
@@ -183,15 +155,8 @@ Narrow results to 7 words apart, changing the ~15 to ~7
 ```r
 searchplos(q='everything:"sports alcohol"~7', fl='title', fq='doc_type:full', limit=3)
 #> $meta
-#> $meta$numFound
-#> [1] 28
-#> 
-#> $meta$start
-#> [1] 0
-#> 
-#> $meta$maxScore
-#> [1] 0.2090272
-#> 
+#>   numFound start maxScore
+#> 1       28     0       NA
 #> 
 #> $data
 #>                                                                                                                                                                         title
@@ -207,15 +172,8 @@ Remove DOIs for annotations (i.e., corrections) and Viewpoints articles
 searchplos(q='*:*', fl=c('id','article_type'),
    fq=list('-article_type:correction','-article_type:viewpoints'), limit=5)
 #> $meta
-#> $meta$numFound
-#> [1] 1188800
-#> 
-#> $meta$start
-#> [1] 0
-#> 
-#> $meta$maxScore
-#> [1] 1
-#> 
+#>   numFound start maxScore
+#> 1  1161199     0       NA
 #> 
 #> $data
 #>                                                    id     article_type
@@ -247,11 +205,11 @@ facetplos(q='alcohol', facet.field=c('journal','subject'), facet.limit=5)
 #> 
 #> $facet_fields$subject
 #>                              X1      X2
-#> 1     biology and life sciences 1119028
-#> 2  medicine and health sciences  852924
-#> 3 research and analysis methods  730373
-#> 4                  biochemistry  550328
-#> 5                  cell biology  502705
+#> 1     biology and life sciences 1119010
+#> 2  medicine and health sciences  852915
+#> 3 research and analysis methods  730364
+#> 4                  biochemistry  550319
+#> 5                  cell biology  502696
 #> 
 #> 
 #> $facet_dates
@@ -286,8 +244,8 @@ facetplos(q='*:*', url=url, facet.range='counter_total_all',
 #> 5  45   0
 #> 6  55   5
 #> 7  65  46
-#> 8  75 135
-#> 9  85 138
+#> 8  75 130
+#> 9  85 143
 #> 10 95 266
 ```
 
@@ -369,28 +327,21 @@ For example:
 ```r
 plossubject(q='marine ecology',  fl = c('id','journal'), limit = 10)
 #> $meta
-#> $meta$numFound
-#> [1] 2133
-#> 
-#> $meta$start
-#> [1] 0
-#> 
-#> $meta$maxScore
-#> [1] 2.276767
-#> 
+#>   numFound start maxScore
+#> 1     2133     0       NA
 #> 
 #> $data
-#>                                                    id  journal
-#> 1                        10.1371/journal.pone.0021810 PLoS ONE
-#> 2                  10.1371/journal.pone.0021810/title PLoS ONE
-#> 3               10.1371/journal.pone.0021810/abstract PLoS ONE
-#> 4             10.1371/journal.pone.0021810/references PLoS ONE
-#> 5                   10.1371/journal.pone.0021810/body PLoS ONE
-#> 6           10.1371/journal.pone.0021810/introduction PLoS ONE
-#> 7  10.1371/journal.pone.0021810/materials_and_methods PLoS ONE
-#> 8                        10.1371/journal.pone.0022881 PLoS ONE
-#> 9                  10.1371/journal.pone.0022881/title PLoS ONE
-#> 10              10.1371/journal.pone.0022881/abstract PLoS ONE
+#>                                                     id  journal
+#> 1                         10.1371/journal.pone.0028556 PLoS ONE
+#> 2                   10.1371/journal.pone.0028556/title PLoS ONE
+#> 3                10.1371/journal.pone.0028556/abstract PLoS ONE
+#> 4              10.1371/journal.pone.0028556/references PLoS ONE
+#> 5                    10.1371/journal.pone.0028556/body PLoS ONE
+#> 6            10.1371/journal.pone.0028556/introduction PLoS ONE
+#> 7  10.1371/journal.pone.0028556/results_and_discussion PLoS ONE
+#> 8   10.1371/journal.pone.0028556/materials_and_methods PLoS ONE
+#> 9                         10.1371/journal.pone.0070647 PLoS ONE
+#> 10                  10.1371/journal.pone.0070647/title PLoS ONE
 ```
 
 However, you can always just do this in `searchplos()` like `searchplos(q = "subject:science")`. See also the `fq` parameter. The above convenience functions are simply wrappers around `searchplos`, so take all the same parameters. 
@@ -403,11 +354,11 @@ Search with term _marine ecology_, by field _subject_, and limit to 5 results
 ```r
 plosviews(search='marine ecology', byfield='subject', limit=5)
 #>                             id counter_total_all
-#> 3 10.1371/journal.pone.0028556              1188
-#> 1 10.1371/journal.pone.0021810              1469
-#> 4 10.1371/journal.pone.0070647              1475
-#> 5 10.1371/journal.pone.0012946              3329
-#> 2 10.1371/journal.pone.0022881              7664
+#> 1 10.1371/journal.pone.0028556              1188
+#> 5 10.1371/journal.pone.0021810              1469
+#> 2 10.1371/journal.pone.0070647              1475
+#> 3 10.1371/journal.pone.0012946              3329
+#> 4 10.1371/journal.pbio.1001552             12799
 ```
 
 ### Visualize
