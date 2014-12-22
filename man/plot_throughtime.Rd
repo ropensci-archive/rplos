@@ -27,7 +27,7 @@ Plot results through time for serach results from PLoS Journals.
 \dontrun{
 plot_throughtime(terms='phylogeny', limit=300)
 plot_throughtime(list('drosophila','monkey'), 100)
-plot_throughtime(list('drosophila','flower'), 100, TRUE)
+plot_throughtime(list('drosophila','flower','dolphin','cell','cloud'), 100)
 }
 }
 

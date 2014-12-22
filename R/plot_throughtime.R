@@ -14,7 +14,7 @@
 #' @examples \dontrun{
 #' plot_throughtime(terms='phylogeny', limit=300)
 #' plot_throughtime(list('drosophila','monkey'), 100)
-#' plot_throughtime(list('drosophila','flower'), 100, TRUE)
+#' plot_throughtime(list('drosophila','flower','dolphin','cell','cloud'), 100)
 #' }
 
 plot_throughtime <- function(terms, limit = NA,
@@ -30,8 +30,8 @@ plot_throughtime <- function(terms, limit = NA,
   dfm <- melt(df[, -c(1:2)], id.vars = "dateplot")
   dfm$value <- as.numeric(dfm$value)
   pp <- ggplot(dfm, aes(x = dateplot, y = value, group = variable, colour = variable)) +
-    geom_line() +
-    theme_bw() +
+    geom_line(size = 2) +
+    scale_colour_brewer(palette = "Blues") +
     labs(x = "", y = "Number of articles matching search term(s)\n",
          title = paste("PLoS search of", paste(as.character(terms), collapse=","), "using the rplos package")) +
     theme(legend.position = c(0.35, 0.8))
