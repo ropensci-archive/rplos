@@ -25,7 +25,7 @@ Choose the journal abbreviation, and the appropriate base URL
 }
 \examples{
 \dontrun{
-formatarticleurl("10.1371/journal.pone.0004045", 'PLoSONE')
+formatarticleurl(doi="10.1371/journal.pone.0004045", journal='PLoSONE')
 }
 }
 \keyword{internal}

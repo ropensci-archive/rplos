@@ -29,6 +29,7 @@ Imports:
     httr,
     jsonlite,
     XML,
+    dplyr,
     plyr,
     stringr,
     googleVis,

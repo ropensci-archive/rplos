@@ -1,7 +1,6 @@
 #' Search PLoS Journals by article views.
 #'
 #' @import httr
-#' @importFrom stringr str_split
 #' @importFrom plyr compact
 #' @param search search terms (character)
 #' @param byfield field to search by, e.g., subject, author, etc. (character)

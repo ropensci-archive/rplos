@@ -90,3 +90,8 @@ check_response <- function(x){
   }
   return( out )
 }
+
+strextract <- function(str, pattern) regmatches(str, regexpr(pattern, str))
+strtrim <- function(str) gsub("^\\s+|\\s+$", "", str)
+strreplace <- function(str) x
+strsub <- function(str) x

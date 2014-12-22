@@ -6,7 +6,7 @@
 \usage{
 plot_throughtime(terms, limit = NA, gvis = FALSE,
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-  ..., curl = getCurlHandle())
+  ...)
 }
 \arguments{
 \item{terms}{search terms (character)}
@@ -31,7 +31,7 @@ Plot results through time for serach results from PLoS Journals.
 }
 \examples{
 \dontrun{
-plot_throughtime('phylogeny', 300)
+plot_throughtime(terms='phylogeny', limit=300)
 plot_throughtime(list('drosophila','monkey'), 100)
 plot_throughtime(list('drosophila','flower'), 100, TRUE)
 }

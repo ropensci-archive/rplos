@@ -114,7 +114,7 @@ highplos <- function(q, fl=NULL, fq=NULL, hl.fl = NULL, hl.snippets = NULL, hl.f
 #   {
 #     byby <- 500
 #     getvecs <- seq(from=1, to=getnumrecords, by=byby)
-#     lastnum <- as.numeric(str_extract(getnumrecords, "[0-9]{3}$"))
+#     lastnum <- as.numeric(strextract(getnumrecords, "[0-9]{3}$"))
 #     if(lastnum==0)
 #       lastnum <- byby
 #     if(lastnum > byby){

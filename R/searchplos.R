@@ -3,7 +3,6 @@
 #' @export
 #' @import data.table
 #' @importFrom plyr ldply
-#' @importFrom stringr str_extract
 #' @importFrom lubridate now
 #' @template plos
 #' @return An object of class "plos", with a list of length two, each element being
@@ -146,7 +145,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
 	{
 	  byby <- 500
 	  getvecs <- seq(from=1, to=getnumrecords, by=byby)
-	  lastnum <- as.numeric(str_extract(getnumrecords, "[0-9]{3}$"))
+	  lastnum <- as.numeric(strextract(getnumrecords, "[0-9]{3}$"))
 	  if(lastnum==0)
 	    lastnum <- byby
 	  if(lastnum > byby){

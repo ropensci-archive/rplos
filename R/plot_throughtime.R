@@ -1,8 +1,9 @@
 #' Plot results through time for serach results from PLoS Journals.
 #'
-#' @import RCurl ggplot2
+#' @export
+#' @import ggplot2 stringr
 #' @importFrom googleVis gvisMotionChart
-#' @importFrom stringr str_split str_sub
+#' @importFrom dplyr left_join
 #' @importFrom plyr ddply llply summarise
 #' @importFrom reshape2 melt
 #' @param terms search terms (character)
@@ -15,92 +16,45 @@
 #' @return Number of search results (vis = FALSE), or number of search in a table
 #'    and a histogram of results (vis = TRUE).
 #' @examples \dontrun{
-#' plot_throughtime('phylogeny', 300)
+#' plot_throughtime(terms='phylogeny', limit=300)
 #' plot_throughtime(list('drosophila','monkey'), 100)
 #' plot_throughtime(list('drosophila','flower'), 100, TRUE)
 #' }
-#' @export
+
 plot_throughtime <- function(terms, limit = NA, gvis = FALSE,
-  key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-  ..., curl = getCurlHandle() )
+  key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")), ...)
 {
   ## avoid false positive 'unreferenced variable' warnings
-  year=NULL; month=NULL;
-  dateplot=NULL;
-  V1=NULL; value=NULL; variable=NULL
-
-	url = "http://api.plos.org/search"
-
-  if (length(terms) == 1) {
-  args <- list(api_key = key)
-  if(!is.na(terms))
-    args$q <- terms
-  if(!is.na(limit))
-    args$rows <- limit
-  args$fl <- "publication_date"
-  args$wt <- "json"
-  tt <- getForm(url,
-    .params = args,
-    ...,
-    curl = curl)
-  jsonout <- jsonlite::fromJSON(I(tt), FALSE)
-  tempresults <- jsonout$response$docs
-  ttt <- data.frame( do.call(rbind, tempresults) )
-  tt_ <- as.data.frame(t(apply(ttt, 1, function(x) str_split(x[[1]],
-    pattern = "-")[[1]][1:2])))
-  names(tt_) <- c("year", "month")
-  tsum <- ddply(tt_, c('year','month'), summarise, V1 = length(month))
-  tsum$dateplot <- as.Date(paste(tsum$month, "1",
-    str_sub(tsum$year, 3, 4), sep="/"), "%m/%d/%y")
-  tsum$V1 <- as.numeric(tsum$V1)
-  p <- ggplot(tsum, aes(x = dateplot, y = V1)) +
-    geom_line(colour = "red") +
-    theme_bw() +
-    labs(x = "", y = "Number of articles matching search term(s)\n",
-    		 title = paste("PLoS search of ", terms, " using the rplos package"))
-  return(p)
+  year=month=dateplot=V1=value=variable=NULL
+  temp <- lapply(terms, timesearch, limit=limit, key=key, ...)
+  ij <- function(...) left_join(..., by=c("year", "month"))
+  df <- setNames(Reduce(ij, temp), c("year", "month", terms))
+  df$dateplot <- as.Date(paste(df$month, "1",
+                               str_sub(df$year, 3, 4), sep="/"), "%m/%d/%y")
+  dfm <- melt(df[, -c(1:2)], id.vars = "dateplot")
+  dfm$value <- as.numeric(dfm$value)
+  if(!gvis){
+    pp <- ggplot(dfm, aes(x = dateplot, y = value, group = variable, colour = variable)) +
+      geom_line() +
+      theme_bw() +
+      labs(x = "", y = "Number of articles matching search term(s)\n",
+           title = paste("PLoS search of", paste(as.character(terms), collapse=","), "using the rplos package")) +
+      theme(legend.position = c(0.35, 0.8))
+    return(pp)
+  } else {
+    gvisplot <- gvisMotionChart(dfm, idvar="variable", timevar="dateplot")
+    plot(gvisplot)
   }
-  else {
-  search_ <- function(x) {
-      args <- list(api_key = key)
-      if(!is.na(x))
-        args$q <- x
-      if(!is.na(limit))
-        args$rows <- limit
-      args$fl <- "publication_date"
-      args$wt <- "json"
-      tt <- getForm(url,
-        .params = args,
-        ...,
-        curl = curl)
-      jsonout <- jsonlite::fromJSON(I(tt), FALSE)
-      tempresults <- jsonout$response$docs
-      ttt <- data.frame( do.call(rbind, tempresults) )
-      tt_ <- as.data.frame(t(apply(ttt, 1, function(x) str_split(x[[1]],
-        pattern = "-")[[1]][1:2])))
-      names(tt_) <- c("year", "month")
-      tsum <- ddply(tt_, c('year','month'), summarise, V1 = length(month))
-    return(tsum)
-    }
-  temp <- llply(terms, search_)
-  temp2 <- merge(temp[[1]], temp[[2]], by=c("year", "month"),
-    all=TRUE, suffixes=terms)
-  temp2$dateplot <- as.Date(paste(temp2$month, "1",
-    str_sub(temp2$year, 3, 4), sep="/"), "%m/%d/%y")
-  temp2m <- melt(temp2[, -c(1:2)], id = 3)
-  temp2m$value <- as.numeric(temp2m$value)
-    if(gvis == "FALSE") {
-      pp <- ggplot(temp2m, aes(x = dateplot, y = value, group = variable, colour = variable)) +
-        geom_line() +
-        theme_bw() +
-        labs(x = "", y = "Number of articles matching search term(s)\n",
-        		 title = paste("PLoS search of", paste(as.character(terms), collapse=","), "using the rplos package")) +
-        theme(legend.position = c(0.35, 0.8))
-      return(pp)
-      }
-    else {
-      gvisplot <- gvisMotionChart(temp2m, idvar="variable", timevar="dateplot")
-      plot(gvisplot)
-    }
-  }
+}
+
+timesearch <- function(terms, limit, key, ...){
+  args <- ploscompact(list(q = terms, fl = "publication_date", wt = "json", rows = limit, api_key = key))
+  tt <- GET("http://api.plos.org/search", query = args, ...)
+  stop_for_status(tt)
+  res <- content(tt, as = "text")
+  json <- jsonlite::fromJSON(res, FALSE)
+  tempresults <- json$response$docs
+  ttt <- data.frame( do.call(rbind, tempresults), stringsAsFactors = FALSE )
+  tt_ <- setNames(as.data.frame(t(apply(ttt, 1, function(x) strsplit(x[[1]], "-")[[1]][1:2])), stringsAsFactors = FALSE), c("year", "month"))
+  ddply(tt_, c('year','month'), summarise, V1 = length(month))
 }
