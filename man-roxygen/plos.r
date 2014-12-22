@@ -31,9 +31,9 @@
 #' @param fields DEPRECATED PARAMETER - replaced with the \code{fl} param.
 #' @param toquery DEPRECATED PARAMETER - replaced with the \code{fq} param.
 #' @param callopts DEPRECATED PARAMETER - replaced with the \code{...} param.
-#' @seealso plosauthor, plosabstract, plostitle, plosfigtabcaps
 #'
-#' @details
+#' @details 
+#' \section Authentication:
 #' Get a PLOS API key at \url{http://alm.plos.org/}. Note that the API key you recieve
 #' at that URL works for the PLOS ALM (article-level metrics) API as well. See the
 #' alm package \url{http://cran.r-project.org/web/packages/alm/index.html} to
@@ -43,7 +43,12 @@
 #' have to enter the key each function call. Open up your .Rprofile file on your
 #' computer, and put it an entry like:
 #'
-#' options(PlosApiKey = "your plos api key")
+#' \code{options(PlosApiKey = "your plos api key")}
 #'
-#' Faceting:
+#' \section Faceting:
 #' Read more about faceting here: url{http://wiki.apache.org/solr/SimpleFacetParameters}
+#' 
+#' \section Website vs. API behavior:
+#' Don't be surprised if queries you perform in a scripting language, like using \code{rplos}
+#' in R, give different results than when searching for articles on the PLOS website. I am 
+#' not sure what exact defaults they use on their website. For one, they 

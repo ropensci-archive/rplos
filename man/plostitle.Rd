@@ -62,6 +62,7 @@ Titles, in addition to any other fields requested in a data.frame.
 Search PLoS Journals titles.
 }
 \details{
+\section Authentication:
 Get a PLOS API key at \url{http://alm.plos.org/}. Note that the API key you recieve
 at that URL works for the PLOS ALM (article-level metrics) API as well. See the
 alm package \url{http://cran.r-project.org/web/packages/alm/index.html} to
@@ -71,10 +72,15 @@ You can store your PLOS Search API key in your .Rprofile file so that you don't
 have to enter the key each function call. Open up your .Rprofile file on your
 computer, and put it an entry like:
 
-options(PlosApiKey = "your plos api key")
+\code{options(PlosApiKey = "your plos api key")}
 
-Faceting:
+\section Faceting:
 Read more about faceting here: url{http://wiki.apache.org/solr/SimpleFacetParameters}
+
+\section Website vs. API behavior:
+Don't be surprised if queries you perform in a scripting language, like using \code{rplos}
+in R, give different results than when searching for articles on the PLOS website. I am
+not sure what exact defaults they use on their website. For one, they
 }
 \examples{
 \dontrun{
@@ -82,8 +88,5 @@ plostitle(q='drosophila', fl='title', limit=99)
 plostitle(q='drosophila', fl=c('title','journal'), limit=10)
 plostitle(q='drosophila',  limit = 5)
 }
-}
-\seealso{
-plosauthor, plosabstract, plostitle, plosfigtabcaps
 }
 

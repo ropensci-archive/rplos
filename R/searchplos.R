@@ -109,7 +109,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
 	argsgetnum <- list(q=q, rows=0, wt="json", api_key=key)
 	getnum_tmp <- GET(pbase(), query = argsgetnum)
   stop_for_status(getnum_tmp)
-  getnum <- content(getnum_tmp)
+  getnum <- httr::content(getnum_tmp)
 	getnumrecords <- getnum$response$numFound
 	if(getnumrecords > limit){getnumrecords <- limit} else{getnumrecords <- getnumrecords}
 
@@ -136,7 +136,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
     res <- tempresults
 
 	  resdf  <- plos2df(res)
-    return( list(meta=get_meta(getnum$response), data=resdf) )
+    return( list(meta=get_meta(jsonout$response), data=resdf) )
 	} else
 	{
 	  byby <- 500
@@ -175,7 +175,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
 	  }
 
 	  resdf  <- plos2df(out, TRUE)
-	  return( list(meta=get_meta(getnum$response), data=resdf) )
+	  return( list(meta=get_meta(jsonout$response), data=resdf) )
 	}
   Sys.setenv(plostime = as.numeric(now()))
 }
@@ -209,5 +209,8 @@ plos2df <- function(input, many=FALSE)
 }
 
 get_meta <- function(x){
-  data.frame(x[c('numFound','start','maxScore')], stringsAsFactors = FALSE)
+  nms <- c('numFound','start','maxScore')
+  tmp <- setNames(x[nms], nms)
+  tmp[sapply(tmp, is.null)] <- NA
+  data.frame(tmp, stringsAsFactors = FALSE)
 }

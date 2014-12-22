@@ -63,6 +63,7 @@ Author names, in addition to any other fields requested in a
 Search PLoS Journals authors.
 }
 \details{
+\section Authentication:
 Get a PLOS API key at \url{http://alm.plos.org/}. Note that the API key you recieve
 at that URL works for the PLOS ALM (article-level metrics) API as well. See the
 alm package \url{http://cran.r-project.org/web/packages/alm/index.html} to
@@ -72,18 +73,20 @@ You can store your PLOS Search API key in your .Rprofile file so that you don't
 have to enter the key each function call. Open up your .Rprofile file on your
 computer, and put it an entry like:
 
-options(PlosApiKey = "your plos api key")
+\code{options(PlosApiKey = "your plos api key")}
 
-Faceting:
+\section Faceting:
 Read more about faceting here: url{http://wiki.apache.org/solr/SimpleFacetParameters}
+
+\section Website vs. API behavior:
+Don't be surprised if queries you perform in a scripting language, like using \code{rplos}
+in R, give different results than when searching for articles on the PLOS website. I am
+not sure what exact defaults they use on their website. For one, they
 }
 \examples{
 \dontrun{
 plosauthor('Smith', 'id', limit=50)
 plosauthor(q='Smith', fl=c('id','author'), limit=10)
 }
-}
-\seealso{
-plosauthor, plosabstract, plostitle, plosfigtabcaps
 }
 
