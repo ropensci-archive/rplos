@@ -64,7 +64,7 @@ ploscompact <- function(l) Filter(Negate(is.null), l)
 
 #' Check response from PLOS, including status codes, server error messages, mime-type, etc.
 #' @export
-#' @import httr 
+#' @import httr
 #' @importFrom jsonlite fromJSON
 #' @keywords internal
 check_response <- function(x){
@@ -93,5 +93,3 @@ check_response <- function(x){
 
 strextract <- function(str, pattern) regmatches(str, regexpr(pattern, str))
 strtrim <- function(str) gsub("^\\s+|\\s+$", "", str)
-strreplace <- function(str) x
-strsub <- function(str) x

@@ -15,9 +15,6 @@ plot_throughtime(terms, limit = NA, key = getOption("PlosApiKey",
 \item{key}{your PLoS API key, either enter, or loads from .Rprofile}
 
 \item{...}{optional additional curl options (debugging tools mostly)}
-
-\item{curl}{If using in a loop, call getCurlHandle() first and pass
-the returned value in here (avoids unnecessary footprint)}
 }
 \value{
 Number of search results (vis = FALSE), or number of search in a table
