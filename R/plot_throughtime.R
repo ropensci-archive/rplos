@@ -1,7 +1,7 @@
 #' Plot results through time for serach results from PLoS Journals.
 #'
 #' @export
-#' @import ggplot2 stringr
+#' @import ggplot2
 #' @importFrom dplyr left_join
 #' @importFrom plyr ddply llply summarise
 #' @importFrom reshape2 melt
@@ -28,7 +28,7 @@ plot_throughtime <- function(terms, limit = NA,
   ij <- function(...) left_join(..., by=c("year", "month"))
   df <- setNames(Reduce(ij, temp), c("year", "month", terms))
   df$dateplot <- as.Date(paste(df$month, "1",
-                               str_sub(df$year, 3, 4), sep="/"), "%m/%d/%y")
+                               substring(df$year, 3, 4), sep="/"), "%m/%d/%y")
   dfm <- melt(df[, -c(1:2)], id.vars = "dateplot")
   dfm$value <- as.numeric(dfm$value)
   pp <- ggplot(dfm, aes(x = dateplot, y = value, group = variable, colour = variable)) +

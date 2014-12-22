@@ -31,7 +31,6 @@ Imports:
     XML,
     dplyr,
     plyr,
-    stringr,
     lubridate,
     reshape2,
     data.table,
