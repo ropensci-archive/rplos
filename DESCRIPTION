@@ -32,7 +32,6 @@ Imports:
     dplyr,
     plyr,
     stringr,
-    googleVis,
     lubridate,
     reshape2,
     data.table,

@@ -2,13 +2,11 @@
 #'
 #' @export
 #' @import ggplot2 stringr
-#' @importFrom googleVis gvisMotionChart
 #' @importFrom dplyr left_join
 #' @importFrom plyr ddply llply summarise
 #' @importFrom reshape2 melt
 #' @param terms search terms (character)
 #' @param limit number of results to return (integer)
-#' @param gvis use google visualization via the googleVis package (logical)
 #' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @param curl If using in a loop, call getCurlHandle() first and pass
@@ -21,7 +19,7 @@
 #' plot_throughtime(list('drosophila','flower'), 100, TRUE)
 #' }
 
-plot_throughtime <- function(terms, limit = NA, gvis = FALSE,
+plot_throughtime <- function(terms, limit = NA, 
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")), ...)
 {
   ## avoid false positive 'unreferenced variable' warnings
@@ -33,18 +31,13 @@ plot_throughtime <- function(terms, limit = NA, gvis = FALSE,
                                str_sub(df$year, 3, 4), sep="/"), "%m/%d/%y")
   dfm <- melt(df[, -c(1:2)], id.vars = "dateplot")
   dfm$value <- as.numeric(dfm$value)
-  if(!gvis){
-    pp <- ggplot(dfm, aes(x = dateplot, y = value, group = variable, colour = variable)) +
-      geom_line() +
-      theme_bw() +
-      labs(x = "", y = "Number of articles matching search term(s)\n",
-           title = paste("PLoS search of", paste(as.character(terms), collapse=","), "using the rplos package")) +
-      theme(legend.position = c(0.35, 0.8))
-    return(pp)
-  } else {
-    gvisplot <- gvisMotionChart(dfm, idvar="variable", timevar="dateplot")
-    plot(gvisplot)
-  }
+  pp <- ggplot(dfm, aes(x = dateplot, y = value, group = variable, colour = variable)) +
+    geom_line() +
+    theme_bw() +
+    labs(x = "", y = "Number of articles matching search term(s)\n",
+         title = paste("PLoS search of", paste(as.character(terms), collapse=","), "using the rplos package")) +
+    theme(legend.position = c(0.35, 0.8))
+  return(pp)
 }
 
 timesearch <- function(terms, limit, key, ...){
