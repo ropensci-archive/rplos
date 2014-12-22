@@ -2,24 +2,24 @@
 #'    doing 'field:your query'. For example, a real query on a specific field would
 #'    be 'author:Smith'.
 #' @param fl Fields to return from search (character) [e.g., 'id,title'],
-#'    any combination of search fields [type 'data(plosfields)', then
-#'    'plosfields'].
+#'    any combination of search fields (see the dataset \code{plosfields})
 #' @param fq List specific fields to filter the query on (if NA, all queried).
 #'    The options for this parameter are the same as those for the fl parameter.
 #'    Note that using this parameter doesn't influence the actual query, but is used
 #'    to filter the resuls to a subset of those you want returned. For example,
-#'    if you want full articles only, you can do 'doc_type:full'. In another example,
+#'    if you want full articles only, you can do \code{'doc_type:full'}. In another example,
 #'    if you want only results from the journal PLOS One, you can do
-#'    'cross_published_journal_key:PLoSONE'. See journalnamekey() for journal
+#'    \code{'cross_published_journal_key:PLoSONE'}. See \code{\link{journalnamekey}} for journal
 #'    abbreviations.
 #' @param sort Sort results according to a particular field, and specify ascending (asc)
 #'    or descending (desc) after a space; see examples. For example, to sort the
 #'    counter_total_all field in descending fashion, do sort='counter_total_all desc'
 #' @param start Record to start at (used in combination with limit when
 #'    you need to cycle through more results than the max allowed=1000)
-#' @param limit Number of results to return (integer)
-#' @param key Your PLoS API key, either enter as the key, or loads from .Rprofile.
-#'    See details.
+#' @param limit Number of results to return (integer). Setting \code{limit=0} returns only 
+#'    metadta.
+#' @param key Your PLoS API key, either enter as the key, or loads from \code{.Rprofile}.
+#'    See Details.
 #' @param sleep Number of seconds to wait between requests. No need to use this for
 #'    a single call to searchplos. However, if you are using searchplos in a loop or
 #'    lapply type call, do sleep parameter is used to prevent your IP address from being
@@ -32,8 +32,8 @@
 #' @param toquery DEPRECATED PARAMETER - replaced with the \code{fq} param.
 #' @param callopts DEPRECATED PARAMETER - replaced with the \code{...} param.
 #'
-#' @details 
-#' \section Authentication:
+#' @details Details:
+#' @section Authentication:
 #' Get a PLOS API key at \url{http://alm.plos.org/}. Note that the API key you recieve
 #' at that URL works for the PLOS ALM (article-level metrics) API as well. See the
 #' alm package \url{http://cran.r-project.org/web/packages/alm/index.html} to
@@ -45,10 +45,14 @@
 #'
 #' \code{options(PlosApiKey = "your plos api key")}
 #'
-#' \section Faceting:
+#' @section Faceting:
 #' Read more about faceting here: url{http://wiki.apache.org/solr/SimpleFacetParameters}
 #' 
-#' \section Website vs. API behavior:
+#' @section Website vs. API behavior:
 #' Don't be surprised if queries you perform in a scripting language, like using \code{rplos}
 #' in R, give different results than when searching for articles on the PLOS website. I am 
-#' not sure what exact defaults they use on their website. For one, they 
+#' not sure what exact defaults they use on their website. There are a few things to consider. 
+#' You can tweak which types of articles are returned: Try using the \code{article_type} 
+#' filter in the \code{fq} parameter. For which journal to search, e.g., do 
+#' \code{'cross_published_journal_key:PLoSONE'}. See \code{journalnamekey()} for journal 
+#' abbreviations. 

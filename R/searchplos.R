@@ -81,10 +81,10 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
   # Make sure limit is a numeric or integer
   limit <- tryCatch(as.numeric(as.character(limit)), warning=function(e) e)
   if("warning" %in% class(limit)){
-    stop("limit should be a numeric or integer class value")
+    stop("limit should be a numeric or integer class value", call. = FALSE)
   }
   if(!is(limit, "numeric") | is.na(limit))
-    stop("limit should be a numeric or integer class value")
+    stop("limit should be a numeric or integer class value", call. = FALSE)
 
   # Enforce rate limits
   if(!Sys.getenv('plostime') == ""){
@@ -103,6 +103,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
   } else { NULL }
 
 	if(is.null(limit)){limit <- 999} else{limit <- limit}
+  if(limit == 0) fl <- NULL
   fl <- paste(fl, collapse=",")
   args <- c(args, ploscompact(list(api_key=key, q=q, fl=fl, start=start, rows=limit, sort=sort, wt='json')))
 
