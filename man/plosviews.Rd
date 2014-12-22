@@ -6,7 +6,7 @@
 \usage{
 plosviews(search, byfield = NULL, views = "alltime", limit = NULL,
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-  callopts = list(), curl = getCurlHandle())
+  ...)
 }
 \arguments{
 \item{search}{search terms (character)}
@@ -20,10 +20,7 @@ plosviews(search, byfield = NULL, views = "alltime", limit = NULL,
 
 \item{key}{your PLoS API key, either enter, or loads from .Rprofile}
 
-\item{callopts}{Optional additional curl options (debugging tools mostly)}
-
-\item{curl}{If using in a loop, call getCurlHandle() first and pass
-the returned value in here (avoids unnecessary footprint)}
+\item{...}{Optional additional curl options (debugging tools mostly)}
 }
 \description{
 Search PLoS Journals by article views.
