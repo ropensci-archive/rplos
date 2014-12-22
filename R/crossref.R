@@ -1,22 +1,11 @@
 #' Lookup article info via CrossRef with DOI.
 #' 
-#' @import RCurl XML
-#' @param doi digital object identifier for an article in PLoS Journals
-#' @param title return the title of the paper or not (defaults to FALSE)
-#' @param key your PLoS API key, either enter, or loads from .Rprofile
-#' @param ... optional additional curl options (debugging tools mostly)
-#' @param curl If using in a loop, call getCurlHandle() first and pass 
-#'  the returned value in here (avoids unnecessary footprint)
-#' @return Metadata from DOI in R's bibentry format.
-#' @examples \dontrun{
-#' crossref(doi="10.1371/journal.pone.0042793")
-#' print(crossref("10.3998/3336451.0009.101"), style="Bibtex")
-#' print(crossref("10.3998/3336451.0009.101"), style="text")
-#' }
-#' @export
-crossref <- function(doi, title = FALSE, 
-	key = "cboettig@gmail.com", ..., curl = getCurlHandle())
+#' @rdname crossref-defunct
+#' @keywords internal
+crossref <- function(...)
 {
+  .Defunct("rcrossref", "Crossref functionality moved to package rcrossref")
+  
 	url = "http://www.crossref.org/openurl/"
 	
   ## Assemble a url query such as:
@@ -32,12 +21,6 @@ crossref <- function(doi, title = FALSE,
   formatcrossref(ans)
 }
 
-
-#' Convert crossref XML into a bibentry object
-#' 
-#' @param a crossref XML output
-#' @return a bibentry format of the output
-#' @details internal helper function
 formatcrossref <- function(a){
  authors <- person(family=as.list(xpathSApply(a, "//surname", xmlValue)),
                   given=as.list(xpathSApply(a, "//given_name", xmlValue)))
