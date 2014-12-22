@@ -13,7 +13,7 @@ its help documentation.
 \details{
 rplos functions
 
-Most rplos functions make web calls (using the RCurl package), and either
+Most rplos functions make web calls (using the httr package), and either
 parse xml (using the XML package) or json (using the jsonlite package)
 results.
 

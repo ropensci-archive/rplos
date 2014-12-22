@@ -1,3 +1,5 @@
+pbase <- function() 'http://api.plos.org/search'
+
 #' Concatenate author names, if present, used in other functions.
 #'
 #' @param x a single list element with PLoS API returned nested elements
