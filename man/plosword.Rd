@@ -5,8 +5,7 @@
 \title{Search results on a keyword over all fields in PLoS Journals.}
 \usage{
 plosword(terms, vis = FALSE, key = getOption("PlosApiKey",
-  stop("need an API key for PLoS Journals")), curl = getCurlHandle(),
-  callopts = list())
+  stop("need an API key for PLoS Journals")), ...)
 }
 \arguments{
 \item{terms}{search terms (character)}
@@ -15,10 +14,7 @@ plosword(terms, vis = FALSE, key = getOption("PlosApiKey",
 
 \item{key}{your PLoS API key, either enter, or loads from .Rprofile}
 
-\item{curl}{If using in a loop, call getCurlHandle() first and pass
-the returned value in here (avoids unnecessary footprint)}
-
-\item{callopts}{Optional additional curl options (debugging tools mostly)}
+\item{...}{Optional additional curl options (debugging tools mostly)}
 }
 \value{
 Number of search results (vis = FALSE), or number of search in a table
@@ -30,15 +26,13 @@ Search results on a keyword over all fields in PLoS Journals.
 \examples{
 \dontrun{
 plosword('Helianthus')
-plosword(list('monkey','Helianthus','sunflower','protein','whale'),
-   vis = TRUE)
 out <- plosword(list('monkey','replication','design','sunflower','whale'),
    vis = TRUE)
 out[[1]] # results in a data frame
 out[[2]] # results in a bar plot
 
 # Pass in curl options
-plosword('Helianthus', callopts=list(verbose=TRUE))
+plosword('Helianthus', config=verbose())
 }
 }
 
