@@ -136,7 +136,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
     res <- tempresults
 
 	  resdf  <- plos2df(res)
-    return( list(meta=getnum$response[c('numFound','start','maxScore')], data=resdf) )
+    return( list(meta=get_meta(getnum$response), data=resdf) )
 	} else
 	{
 	  byby <- 500
@@ -175,7 +175,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
 	  }
 
 	  resdf  <- plos2df(out, TRUE)
-	  return( list(meta=getnum$response[c('numFound','start','maxScore')], data=resdf) )
+	  return( list(meta=get_meta(getnum$response), data=resdf) )
 	}
   Sys.setenv(plostime = as.numeric(now()))
 }
@@ -206,4 +206,8 @@ plos2df <- function(input, many=FALSE)
     }
   }
   return( datout )
+}
+
+get_meta <- function(x){
+  data.frame(x[c('numFound','start','maxScore')], stringsAsFactors = FALSE)
 }
