@@ -28,3 +28,12 @@
 #' @name rplos
 #' @aliases rplos rplos-package
 NULL
+
+#' Defunct functions in rplos
+#' 
+#' \itemize{
+#'  \item \code{\link{crossref}}: service no longer provided
+#' }
+#' 
+#' @name rplos-defunct
+NULL
