@@ -97,8 +97,6 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
     }
   }
 
-	url = 'http://api.plos.org/search'
-
   args <- list()
   if(!is.null(fq[[1]])) {
     if(length(fq)==1) { args$fq <- fq } else {
@@ -111,7 +109,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
   args <- c(args, ploscompact(list(api_key=key, q=q, fl=fl, start=start, rows=limit, sort=sort, wt='json')))
 
 	argsgetnum <- list(q=q, rows=0, wt="json", api_key=key)
-	getnum_tmp <- GET(url, query = argsgetnum)
+	getnum_tmp <- GET(pbase(), query = argsgetnum)
   stop_for_status(getnum_tmp)
   getnum <- content(getnum_tmp)
 	getnumrecords <- getnum$response$numFound
@@ -120,7 +118,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
 	if(min(getnumrecords, limit) < 1000) {
 	  if(!is.null(limit))
 	    args$rows <- limit
-	  tt <- GET(url, query=args, callopts)
+	  tt <- GET(pbase(), query=args, callopts)
     jsonout <- check_response(tt)
 	  tempresults <- jsonout$response$docs
 	  tempresults <- lapply(tempresults, function(x) lapply(x, trim))
@@ -159,7 +157,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
 	    cat(i,"\n")
 	    args$start <- getvecs[i]
 	    args$rows <- getrows[i]
-	    tt <- GET(url, query=args, callopts)
+	    tt <- GET(pbase(), query=args, callopts)
 	    jsonout <- check_response(tt)
 	    tempresults <- jsonout$response$docs
 	    tempresults <- lapply(tempresults, function(x) lapply(x, trim))

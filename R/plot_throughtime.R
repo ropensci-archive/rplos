@@ -17,7 +17,7 @@
 #' plot_throughtime(list('drosophila','flower'), 100, TRUE)
 #' }
 
-plot_throughtime <- function(terms, limit = NA, 
+plot_throughtime <- function(terms, limit = NA,
   key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")), ...)
 {
   ## avoid false positive 'unreferenced variable' warnings
@@ -40,7 +40,7 @@ plot_throughtime <- function(terms, limit = NA,
 
 timesearch <- function(terms, limit, key, ...){
   args <- ploscompact(list(q = terms, fl = "publication_date", wt = "json", rows = limit, api_key = key))
-  tt <- GET("http://api.plos.org/search", query = args, ...)
+  tt <- GET(pbase(), query = args, ...)
   stop_for_status(tt)
   res <- content(tt, as = "text")
   json <- jsonlite::fromJSON(res, FALSE)
