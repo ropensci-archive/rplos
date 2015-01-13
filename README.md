@@ -34,11 +34,7 @@ library("rplos")
 
 ## Information
 
-Get your PLoS API key [here](http://alm.plos.org/)
-
-Put your API key in your .Rprofile file using exactly this:
-options(PlosApiKey = "YOURPLOSAPIKEY"),
-and the functions within this package will be able to use your API key without you having to enter it every time you run a search.
+You used to need a key to use `rplos` - you no longer do as of 2015-01-13 (or `v0.4.5.999`).
 
 rplos tutorial at rOpenSci website [here](http://ropensci.org/tutorials/rplos_tutorial.html)
 
@@ -57,7 +53,7 @@ Search for the term ecology, and return id (DOI) and publication date, limiting 
 searchplos('ecology', 'id,publication_date', limit = 5)
 #> $meta
 #>   numFound start maxScore
-#> 1    24708     0       NA
+#> 1    24901     0       NA
 #> 
 #> $data
 #>                                                        id
@@ -82,15 +78,15 @@ searchplos(q="*:*", fl='id', fq=list('cross_published_journal_key:PLoSONE',
    'doc_type:full'), limit=5)
 #> $meta
 #>   numFound start maxScore
-#> 1   117997     0       NA
+#> 1   118810     0       NA
 #> 
 #> $data
 #>                             id
-#> 1 10.1371/journal.pone.0057487
-#> 2 10.1371/journal.pone.0071347
-#> 3 10.1371/journal.pone.0043700
-#> 4 10.1371/journal.pone.0015651
-#> 5 10.1371/journal.pone.0029650
+#> 1 10.1371/journal.pone.0081446
+#> 2 10.1371/journal.pone.0011207
+#> 3 10.1371/journal.pone.0109955
+#> 4 10.1371/journal.pone.0025570
+#> 5 10.1371/journal.pone.0039782
 ```
 
 Query to get some PLOS article-level metrics, notice difference between two outputs
@@ -102,20 +98,20 @@ out_sorted <- searchplos(q="*:*", fl=c('id','counter_total_all','alm_twitterCoun
    fq='doc_type:full', sort='counter_total_all desc')
 head(out$data)
 #>                             id alm_twitterCount counter_total_all
-#> 1 10.1371/journal.pone.0057487                0              2145
-#> 2 10.1371/journal.ppat.0030138                0              7640
-#> 3 10.1371/journal.pone.0071347                0              1639
-#> 4 10.1371/journal.pone.0043700                0              1851
-#> 5 10.1371/journal.pone.0015651                0              2791
-#> 6 10.1371/journal.pone.0029650                0              2740
+#> 1 10.1371/journal.pone.0081446                3               757
+#> 2 10.1371/journal.pntd.0000780                0              3523
+#> 3 10.1371/journal.pone.0011207                0              1419
+#> 4 10.1371/journal.pone.0109955                7              1089
+#> 5 10.1371/journal.pone.0025570                0              2199
+#> 6 10.1371/journal.pone.0039782                1              2720
 head(out_sorted$data)
 #>                             id alm_twitterCount counter_total_all
-#> 1 10.1371/journal.pmed.0020124                0           1018974
-#> 2 10.1371/journal.pmed.0050045                0            326579
-#> 3 10.1371/journal.pone.0007595                0            316853
-#> 4 10.1371/journal.pone.0033288                0            306159
-#> 5 10.1371/journal.pone.0069841                0            285014
-#> 6 10.1371/journal.pone.0044864                0            239187
+#> 1 10.1371/journal.pmed.0020124             1758           1029569
+#> 2 10.1371/journal.pmed.0050045              116            327789
+#> 3 10.1371/journal.pone.0007595              196            318182
+#> 4 10.1371/journal.pone.0033288               39            306973
+#> 5 10.1371/journal.pone.0069841              819            288091
+#> 6 10.1371/journal.pone.0044864               87            239420
 ```
 
 A list of articles about social networks that are popular on a social network
@@ -127,10 +123,20 @@ searchplos(q="*:*",fl=c('id','alm_twitterCount'),
    sort='counter_total_month desc')
 #> $meta
 #>   numFound start maxScore
-#> 1        0     0       NA
+#> 1       21     0       NA
 #> 
 #> $data
-#> [1] NA
+#>                              id alm_twitterCount
+#> 1  10.1371/journal.pbio.1001535             1657
+#> 2  10.1371/journal.pone.0069841              819
+#> 3  10.1371/journal.pone.0073791              780
+#> 4  10.1371/journal.pone.0061981             2381
+#> 5  10.1371/journal.pone.0090315              402
+#> 6  10.1371/journal.pcbi.1003789             1077
+#> 7  10.1371/journal.pone.0059030              215
+#> 8  10.1371/journal.pone.0064841              120
+#> 9  10.1371/journal.pone.0069215              209
+#> 10 10.1371/journal.pbio.1001960              190
 ```
 
 Show all articles that have these two words less then about 15 words apart
@@ -173,15 +179,15 @@ searchplos(q='*:*', fl=c('id','article_type'),
    fq=list('-article_type:correction','-article_type:viewpoints'), limit=5)
 #> $meta
 #>   numFound start maxScore
-#> 1  1161199     0       NA
+#> 1  1169167     0       NA
 #> 
 #> $data
-#>                                                    id     article_type
-#> 1           10.1371/journal.pone.0098523/introduction Research Article
-#> 2           10.1371/journal.pone.0015652/introduction Research Article
-#> 3 10.1371/journal.pone.0015652/results_and_discussion Research Article
-#> 4  10.1371/journal.pone.0015652/materials_and_methods Research Article
-#> 5 10.1371/journal.pone.0098523/results_and_discussion Research Article
+#>                                        id     article_type
+#> 1            10.1371/journal.pone.0081446 Research Article
+#> 2      10.1371/journal.pone.0081446/title Research Article
+#> 3   10.1371/journal.pone.0081446/abstract Research Article
+#> 4 10.1371/journal.pone.0081446/references Research Article
+#> 5       10.1371/journal.pone.0081446/body Research Article
 ```
 
 ### Faceted search
@@ -197,19 +203,19 @@ facetplos(q='alcohol', facet.field=c('journal','subject'), facet.limit=5)
 #> $facet_fields
 #> $facet_fields$journal
 #>                           X1     X2
-#> 1                   plos one 946507
-#> 2              plos genetics  41277
-#> 3             plos pathogens  35950
-#> 4 plos computational biology  30312
-#> 5               plos biology  26292
+#> 1                   plos one 953510
+#> 2              plos genetics  41569
+#> 3             plos pathogens  36109
+#> 4 plos computational biology  30463
+#> 5               plos biology  26420
 #> 
 #> $facet_fields$subject
 #>                              X1      X2
-#> 1     biology and life sciences 1119010
-#> 2  medicine and health sciences  852915
-#> 3 research and analysis methods  730364
-#> 4                  biochemistry  550319
-#> 5                  cell biology  502696
+#> 1     biology and life sciences 1126150
+#> 2  medicine and health sciences  858428
+#> 3 research and analysis methods  735124
+#> 4                  biochemistry  553475
+#> 5                  cell biology  505441
 #> 
 #> 
 #> $facet_dates
@@ -242,11 +248,11 @@ facetplos(q='*:*', url=url, facet.range='counter_total_all',
 #> 3  25   0
 #> 4  35   0
 #> 5  45   0
-#> 6  55   5
-#> 7  65  46
-#> 8  75 130
-#> 9  85 143
-#> 10 95 266
+#> 6  55   0
+#> 7  65  11
+#> 8  75  56
+#> 9  85 125
+#> 10 95 183
 ```
 
 ### Highlight searches
@@ -328,20 +334,20 @@ For example:
 plossubject(q='marine ecology',  fl = c('id','journal'), limit = 10)
 #> $meta
 #>   numFound start maxScore
-#> 1     2133     0       NA
+#> 1     2142     0       NA
 #> 
 #> $data
-#>                                                     id  journal
-#> 1                         10.1371/journal.pone.0028556 PLoS ONE
-#> 2                   10.1371/journal.pone.0028556/title PLoS ONE
-#> 3                10.1371/journal.pone.0028556/abstract PLoS ONE
-#> 4              10.1371/journal.pone.0028556/references PLoS ONE
-#> 5                    10.1371/journal.pone.0028556/body PLoS ONE
-#> 6            10.1371/journal.pone.0028556/introduction PLoS ONE
-#> 7  10.1371/journal.pone.0028556/results_and_discussion PLoS ONE
-#> 8   10.1371/journal.pone.0028556/materials_and_methods PLoS ONE
-#> 9                         10.1371/journal.pone.0070647 PLoS ONE
-#> 10                  10.1371/journal.pone.0070647/title PLoS ONE
+#>                                          id      journal
+#> 1              10.1371/journal.pbio.1001552 PLoS Biology
+#> 2        10.1371/journal.pbio.1001552/title PLoS Biology
+#> 3     10.1371/journal.pbio.1001552/abstract PLoS Biology
+#> 4   10.1371/journal.pbio.1001552/references PLoS Biology
+#> 5         10.1371/journal.pbio.1001552/body PLoS Biology
+#> 6  10.1371/journal.pbio.1001552/conclusions PLoS Biology
+#> 7              10.1371/journal.pone.0092590     PLoS ONE
+#> 8              10.1371/journal.pone.0022881     PLoS ONE
+#> 9        10.1371/journal.pone.0022881/title     PLoS ONE
+#> 10    10.1371/journal.pone.0022881/abstract     PLoS ONE
 ```
 
 However, you can always just do this in `searchplos()` like `searchplos(q = "subject:science")`. See also the `fq` parameter. The above convenience functions are simply wrappers around `searchplos`, so take all the same parameters. 
@@ -354,11 +360,11 @@ Search with term _marine ecology_, by field _subject_, and limit to 5 results
 ```r
 plosviews(search='marine ecology', byfield='subject', limit=5)
 #>                             id counter_total_all
-#> 1 10.1371/journal.pone.0028556              1188
-#> 5 10.1371/journal.pone.0021810              1469
-#> 2 10.1371/journal.pone.0070647              1475
-#> 3 10.1371/journal.pone.0012946              3329
-#> 4 10.1371/journal.pbio.1001552             12799
+#> 5 10.1371/journal.pone.0028556              1242
+#> 4 10.1371/journal.pone.0070647              1493
+#> 2 10.1371/journal.pone.0092590              4253
+#> 3 10.1371/journal.pone.0022881              7765
+#> 1 10.1371/journal.pbio.1001552             12872
 ```
 
 ### Visualize
@@ -370,11 +376,11 @@ Visualize word use across articles
 plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')
 #> $table
 #>   No_Articles       Term
-#> 1        8274     monkey
-#> 2         296 Helianthus
-#> 3         809  sunflower
-#> 4       91291    protein
-#> 5        1014      whale
+#> 1        8327     monkey
+#> 2         300 Helianthus
+#> 3         817  sunflower
+#> 4       91835    protein
+#> 5        1023      whale
 #> 
 #> $plot
 ```

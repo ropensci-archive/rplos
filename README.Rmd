@@ -40,11 +40,7 @@ library("rplos")
 
 ## Information
 
-Get your PLoS API key [here](http://alm.plos.org/)
-
-Put your API key in your .Rprofile file using exactly this:
-options(PlosApiKey = "YOURPLOSAPIKEY"),
-and the functions within this package will be able to use your API key without you having to enter it every time you run a search.
+You used to need a key to use `rplos` - you no longer do as of 2015-01-13 (or `v0.4.5.999`).
 
 rplos tutorial at rOpenSci website [here](http://ropensci.org/tutorials/rplos_tutorial.html)
 
