@@ -141,8 +141,6 @@ per field basis.}
 \item{callopts}{Call options passed on to httr::GET}
 
 \item{...}{Further args.}
-
-\item{key}{API key, if needed.}
 }
 \value{
 A list

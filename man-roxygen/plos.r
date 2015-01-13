@@ -16,16 +16,14 @@
 #'    counter_total_all field in descending fashion, do sort='counter_total_all desc'
 #' @param start Record to start at (used in combination with limit when
 #'    you need to cycle through more results than the max allowed=1000)
-#' @param limit Number of results to return (integer). Setting \code{limit=0} returns only 
+#' @param limit Number of results to return (integer). Setting \code{limit=0} returns only
 #'    metadta.
-#' @param key Your PLoS API key, either enter as the key, or loads from \code{.Rprofile}.
-#'    See Details.
 #' @param sleep Number of seconds to wait between requests. No need to use this for
 #'    a single call to searchplos. However, if you are using searchplos in a loop or
 #'    lapply type call, do sleep parameter is used to prevent your IP address from being
 #'    blocked. You can only do 10 requests per minute, so one request every 6 seconds is
 #'    about right.
-#' @param ... Optional additional curl options (debugging tools mostly), passed on to 
+#' @param ... Optional additional curl options (debugging tools mostly), passed on to
 #' \code{\link[httr]{GET}}
 #' @param terms DEPRECATED PARAMETER - replaced with the \code{q} param.
 #' @param fields DEPRECATED PARAMETER - replaced with the \code{fl} param.
@@ -33,26 +31,14 @@
 #' @param callopts DEPRECATED PARAMETER - replaced with the \code{...} param.
 #'
 #' @details Details:
-#' @section Authentication:
-#' Get a PLOS API key at \url{http://alm.plos.org/}. Note that the API key you recieve
-#' at that URL works for the PLOS ALM (article-level metrics) API as well. See the
-#' alm package \url{http://cran.r-project.org/web/packages/alm/index.html} to
-#' access PLOS ALM data.
-#'
-#' You can store your PLOS Search API key in your .Rprofile file so that you don't
-#' have to enter the key each function call. Open up your .Rprofile file on your
-#' computer, and put it an entry like:
-#'
-#' \code{options(PlosApiKey = "your plos api key")}
-#'
 #' @section Faceting:
 #' Read more about faceting here: url{http://wiki.apache.org/solr/SimpleFacetParameters}
-#' 
+#'
 #' @section Website vs. API behavior:
 #' Don't be surprised if queries you perform in a scripting language, like using \code{rplos}
-#' in R, give different results than when searching for articles on the PLOS website. I am 
-#' not sure what exact defaults they use on their website. There are a few things to consider. 
-#' You can tweak which types of articles are returned: Try using the \code{article_type} 
-#' filter in the \code{fq} parameter. For which journal to search, e.g., do 
-#' \code{'cross_published_journal_key:PLoSONE'}. See \code{journalnamekey()} for journal 
-#' abbreviations. 
+#' in R, give different results than when searching for articles on the PLOS website. I am
+#' not sure what exact defaults they use on their website. There are a few things to consider.
+#' You can tweak which types of articles are returned: Try using the \code{article_type}
+#' filter in the \code{fq} parameter. For which journal to search, e.g., do
+#' \code{'cross_published_journal_key:PLoSONE'}. See \code{journalnamekey()} for journal
+#' abbreviations.

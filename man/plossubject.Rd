@@ -51,9 +51,6 @@ about right.}
 
 \item{...}{Optional additional curl options (debugging tools mostly), passed on to
 \code{\link[httr]{GET}}}
-
-\item{key}{Your PLoS API key, either enter as the key, or loads from \code{.Rprofile}.
-See Details.}
 }
 \value{
 Subject content, in addition to any other fields requested in a
@@ -65,20 +62,6 @@ Search PLoS Journals subjects.
 \details{
 Details:
 }
-\section{Authentication}{
-
-Get a PLOS API key at \url{http://alm.plos.org/}. Note that the API key you recieve
-at that URL works for the PLOS ALM (article-level metrics) API as well. See the
-alm package \url{http://cran.r-project.org/web/packages/alm/index.html} to
-access PLOS ALM data.
-
-You can store your PLOS Search API key in your .Rprofile file so that you don't
-have to enter the key each function call. Open up your .Rprofile file on your
-computer, and put it an entry like:
-
-\code{options(PlosApiKey = "your plos api key")}
-}
-
 \section{Faceting}{
 
 Read more about faceting here: url{http://wiki.apache.org/solr/SimpleFacetParameters}

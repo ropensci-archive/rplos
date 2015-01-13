@@ -90,7 +90,6 @@
 #' @param facet.range.include See \code{\link[solr]{solr_facet}}.
 #' @param start Record to start at, default to beginning.
 #' @param rows Number of records to return.
-#' @param key API key, if needed.
 #' @param url URL endpoint
 #' @param callopts Call options passed on to httr::GET
 #' @param ... Further args.

@@ -117,8 +117,6 @@
 #' @param start Record to start at (used in combination with limit when
 #'    you need to cycle through more results than the max allowed=1000)
 #' @param rows Number of results to return (integer)
-#' @param key Your PLoS API key, either enter as the key, or loads from .Rprofile.
-#'    See details.
 #' @param sleep Number of seconds to wait between requests. No need to use this for
 #'    a single call to searchplos. However, if you are using searchplos in a loop or
 #'    lapply type call, do sleep parameter is used to prevent your IP address from being

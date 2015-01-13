@@ -183,9 +183,6 @@ blocked. You can only do 10 requests per minute, so one request every 6 seconds 
 about right.}
 
 \item{...}{Further arguments passed on to solr_highlight}
-
-\item{key}{Your PLoS API key, either enter as the key, or loads from .Rprofile.
-See details.}
 }
 \value{
 A list.
