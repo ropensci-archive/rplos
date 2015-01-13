@@ -2,10 +2,10 @@
 context("plosword")
 
 test_that("plosword returns the correct value", {
-	expect_that(names(plosword('Helianthus', key = "hello")), equals("Number of articles with search term"))
+	expect_that(names(plosword('Helianthus')), equals("Number of articles with search term"))
 })
 
 test_that("plosword returns the correct class", {
-	expect_that(plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE', key = "hello")[[2]], 
+	expect_that(plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')[[2]],
 							is_a("ggplot"))
 })
