@@ -4,9 +4,7 @@
 \alias{plosviews}
 \title{Search PLoS Journals by article views.}
 \usage{
-plosviews(search, byfield = NULL, views = "alltime", limit = NULL,
-  key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-  ...)
+plosviews(search, byfield = NULL, views = "alltime", limit = NULL, ...)
 }
 \arguments{
 \item{search}{search terms (character)}
@@ -17,8 +15,6 @@ plosviews(search, byfield = NULL, views = "alltime", limit = NULL,
 (character)}
 
 \item{limit}{number of results to return (integer)}
-
-\item{key}{your PLoS API key, either enter, or loads from .Rprofile}
 
 \item{...}{Optional additional curl options (debugging tools mostly)}
 }

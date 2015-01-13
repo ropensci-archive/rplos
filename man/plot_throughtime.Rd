@@ -4,15 +4,12 @@
 \alias{plot_throughtime}
 \title{Plot results through time for serach results from PLoS Journals.}
 \usage{
-plot_throughtime(terms, limit = NA, key = getOption("PlosApiKey",
-  stop("need an API key for PLoS Journals")), ...)
+plot_throughtime(terms, limit = NA, ...)
 }
 \arguments{
 \item{terms}{search terms (character)}
 
 \item{limit}{number of results to return (integer)}
-
-\item{key}{your PLoS API key, either enter, or loads from .Rprofile}
 
 \item{...}{optional additional curl options (debugging tools mostly)}
 }

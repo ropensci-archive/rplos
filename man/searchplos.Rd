@@ -5,8 +5,8 @@
 \title{Base function to search PLoS Journals}
 \usage{
 searchplos(q = NULL, fl = "id", fq = NULL, sort = NULL, start = 0,
-  limit = 10, key = NULL, sleep = 6, terms = NULL, fields = NULL,
-  toquery = NULL, callopts = NULL, ...)
+  limit = 10, sleep = 6, terms = NULL, fields = NULL, toquery = NULL,
+  callopts = NULL, ...)
 }
 \arguments{
 \item{q}{Search terms (character). You can search on specific fields by
@@ -35,9 +35,6 @@ you need to cycle through more results than the max allowed=1000)}
 \item{limit}{Number of results to return (integer). Setting \code{limit=0} returns only
 metadta.}
 
-\item{key}{Your PLoS API key, either enter as the key, or loads from \code{.Rprofile}.
-See Details.}
-
 \item{sleep}{Number of seconds to wait between requests. No need to use this for
 a single call to searchplos. However, if you are using searchplos in a loop or
 lapply type call, do sleep parameter is used to prevent your IP address from being
@@ -54,6 +51,9 @@ about right.}
 
 \item{...}{Optional additional curl options (debugging tools mostly), passed on to
 \code{\link[httr]{GET}}}
+
+\item{key}{Your PLoS API key, either enter as the key, or loads from \code{.Rprofile}.
+See Details.}
 }
 \value{
 An object of class "plos", with a list of length two, each element being

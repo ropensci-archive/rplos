@@ -6,7 +6,6 @@
 #' 
 #' @param terms search terms (character)
 #' @param vis visualize results in bar plot or not (TRUE or FALSE)
-#' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param ... Optional additional curl options (debugging tools mostly)
 #' 
 #' @return Number of search results (vis = FALSE), or number of search in a table
@@ -22,15 +21,14 @@
 #' plosword('Helianthus', config=verbose())
 #' }
 
-plosword <- function(terms, vis = FALSE,
-  key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")), ...)
+plosword <- function(terms, vis = FALSE, ...)
 {
   Term=No_Articles=NULL
 
   if (length(terms) == 1) {
-    setNames(search_(terms, key, ...), 'Number of articles with search term')
+    setNames(search_(terms, ...), 'Number of articles with search term')
   } else {
-    temp <- setNames(ldply(terms, search_, key=key, ...), "No_Articles")
+    temp <- setNames(ldply(terms, search_, ...), "No_Articles")
     temp$Term <- terms
     temp$Term <- as.character(temp$Term)
     if (vis) {
@@ -43,8 +41,8 @@ plosword <- function(terms, vis = FALSE,
   }
 }
 
-search_ <- function(terms, key, ...){
-  args <- ploscompact(list(apikey = key, q = terms, fl="id", wt="json"))
+search_ <- function(terms, ...){
+  args <- ploscompact(list(q = terms, fl="id", wt="json"))
   tt <- GET(pbase(), query = args, ...)
   stop_for_status(tt)
   jsonlite::fromJSON(content(tt, "text"), FALSE)$response$numFound

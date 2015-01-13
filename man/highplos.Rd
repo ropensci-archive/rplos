@@ -17,7 +17,7 @@ highplos(q, fl = NULL, fq = NULL, hl.fl = NULL, hl.snippets = NULL,
   hl.useFastVectorHighlighter = NULL, hl.usePhraseHighlighter = NULL,
   hl.highlightMultiTerm = NULL, hl.regex.slop = NULL,
   hl.regex.pattern = NULL, hl.regex.maxAnalyzedChars = NULL, start = 0,
-  rows = NULL, key = NULL, callopts = list(), sleep = 6, ...)
+  rows = NULL, callopts = list(), sleep = 6, ...)
 }
 \arguments{
 \item{q}{Search terms (character). You can search on specific fields by
@@ -174,9 +174,6 @@ you need to cycle through more results than the max allowed=1000)}
 
 \item{rows}{Number of results to return (integer)}
 
-\item{key}{Your PLoS API key, either enter as the key, or loads from .Rprofile.
-See details.}
-
 \item{callopts}{Optional additional curl options (debugging tools mostly)}
 
 \item{sleep}{Number of seconds to wait between requests. No need to use this for
@@ -186,6 +183,9 @@ blocked. You can only do 10 requests per minute, so one request every 6 seconds 
 about right.}
 
 \item{...}{Further arguments passed on to solr_highlight}
+
+\item{key}{Your PLoS API key, either enter as the key, or loads from .Rprofile.
+See details.}
 }
 \value{
 A list.

@@ -7,7 +7,6 @@
 #' @param views views all time (alltime) or views last 30 days (last30)
 #'    (character)
 #' @param limit number of results to return (integer)
-#' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param ... Optional additional curl options (debugging tools mostly)
 #' @examples \dontrun{
 #' plosviews('10.1371/journal.pone.0002154', 'id', 'alltime')
@@ -18,11 +17,9 @@
 #' plosviews('bird', views = 'alltime', limit = 99)
 #' }
 
-plosviews <- function(search, byfield = NULL, views = 'alltime', limit = NULL,
-  key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")),
-  ...)
+plosviews <- function(search, byfield = NULL, views = 'alltime', limit = NULL, ...)
 {
-  args <- ploscompact(list(apikey = key, wt = "json", fq = "doc_type:full", rows = limit))
+  args <- ploscompact(list(wt = "json", fq = "doc_type:full", rows = limit))
   if(is.null(byfield)) {byfield_ <- byfield} else
     {byfield_ <- paste(byfield, ":", sep="")}
   if(!is.na(search))

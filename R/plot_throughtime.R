@@ -7,7 +7,6 @@
 #' @importFrom reshape2 melt
 #' @param terms search terms (character)
 #' @param limit number of results to return (integer)
-#' @param key your PLoS API key, either enter, or loads from .Rprofile
 #' @param ... optional additional curl options (debugging tools mostly)
 #' @return Number of search results (vis = FALSE), or number of search in a table
 #'    and a histogram of results (vis = TRUE).
@@ -17,12 +16,11 @@
 #' plot_throughtime(list('drosophila','flower','dolphin','cell','cloud'), 100)
 #' }
 
-plot_throughtime <- function(terms, limit = NA,
-  key = getOption("PlosApiKey", stop("need an API key for PLoS Journals")), ...)
+plot_throughtime <- function(terms, limit = NA, ...)
 {
   ## avoid false positive 'unreferenced variable' warnings
   year=month=dateplot=V1=value=variable=NULL
-  temp <- lapply(terms, timesearch, limit=limit, key=key, ...)
+  temp <- lapply(terms, timesearch, limit=limit, ...)
   ij <- function(...) left_join(..., by=c("year", "month"))
   df <- setNames(Reduce(ij, temp), c("year", "month", terms))
   df$dateplot <- as.Date(paste(df$month, "1",
@@ -38,9 +36,9 @@ plot_throughtime <- function(terms, limit = NA,
   return(pp)
 }
 
-timesearch <- function(terms, limit, key, ...){
+timesearch <- function(terms, limit, ...){
   month=NULL
-  args <- ploscompact(list(q = terms, fl = "publication_date", wt = "json", rows = limit, api_key = key))
+  args <- ploscompact(list(q = terms, fl = "publication_date", wt = "json", rows = limit))
   tt <- GET(pbase(), query = args, ...)
   stop_for_status(tt)
   res <- content(tt, as = "text")

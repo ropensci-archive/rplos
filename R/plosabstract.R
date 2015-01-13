@@ -13,7 +13,7 @@
 #' }
 
 plosabstract <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, 
-  limit = 10, key = NULL, sleep = 6, terms=NULL, fields=NULL, toquery=NULL, callopts=NULL, ...)
+  limit = 10, sleep = 6, terms=NULL, fields=NULL, toquery=NULL, callopts=NULL, ...)
 {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- c("terms", "fields", "toquery", "callopts") %in% calls
@@ -22,5 +22,5 @@ plosabstract <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
   
   searchplos(q=paste('abstract:', '"', q, '"', sep=""), fl=fl, fq=fq,
              sort=sort, start=start, limit=limit,
-             key=key, sleep=sleep, ...)
+             sleep=sleep, ...)
 }

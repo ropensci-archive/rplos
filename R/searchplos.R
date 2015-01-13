@@ -64,16 +64,12 @@
 #' }
 
 searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, limit = 10,
-  key = NULL, sleep = 6, terms=NULL, fields=NULL, toquery=NULL, callopts=NULL, ...)
+  sleep = 6, terms=NULL, fields=NULL, toquery=NULL, callopts=NULL, ...)
 {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- c("terms", "fields", "toquery", "callopts") %in% calls
   if(any(calls_vec))
     stop("The parameters terms, fields, toquery, and callopts replaced with q, fl, fq, and ..., respectively")
-
-  # Key
-  if(is.null(key))
-    key <- getOption("PlosApiKey", stop("need an API key for PLoS Journals"))
 
   # Function to trim leading and trailing whitespace, including newlines
   trim <- function (x) gsub("\\n\\s+", " ", gsub("^\\s+|\\s+$", "", x))
@@ -105,9 +101,9 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
 	if(is.null(limit)){limit <- 999} else{limit <- limit}
   if(limit == 0) fl <- NULL
   fl <- paste(fl, collapse=",")
-  args <- c(args, ploscompact(list(api_key=key, q=q, fl=fl, start=start, rows=limit, sort=sort, wt='json')))
+  args <- c(args, ploscompact(list(q=q, fl=fl, start=start, rows=limit, sort=sort, wt='json')))
 
-	argsgetnum <- list(q=q, rows=0, wt="json", api_key=key)
+	argsgetnum <- list(q=q, rows=0, wt="json")
 	getnum_tmp <- GET(pbase(), query = argsgetnum)
   stop_for_status(getnum_tmp)
   getnum <- httr::content(getnum_tmp)

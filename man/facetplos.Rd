@@ -13,7 +13,7 @@ facetplos(q = "*:*", facet.query = NA, facet.field = NA,
   facet.date.include = NA, facet.range = NA, facet.range.start = NA,
   facet.range.end = NA, facet.range.gap = NA, facet.range.hardend = NA,
   facet.range.other = NA, facet.range.include = NA, start = NA,
-  rows = NA, key = NULL, url = NA, callopts = list(), ...)
+  rows = NA, url = NA, callopts = list(), ...)
 }
 \arguments{
 \item{q}{Query terms.}
@@ -136,13 +136,13 @@ per field basis.}
 
 \item{rows}{Number of records to return.}
 
-\item{key}{API key, if needed.}
-
 \item{url}{URL endpoint}
 
 \item{callopts}{Call options passed on to httr::GET}
 
 \item{...}{Further args.}
+
+\item{key}{API key, if needed.}
 }
 \value{
 A list

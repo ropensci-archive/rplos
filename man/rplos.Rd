@@ -19,10 +19,8 @@ results.
 
 PLoS API keys
 
-Get your PLoS API key here: http://api.plos.org/.  Put your API key in your
-.Rprofile file by adding \code{options(PlosApiKey = "YOURPLOSAPIKEY")},
-and the functions within this package will be able to use your API key
-without you having to enter it every time you run a search.
+You used to need an API key to use this package - no longer as of 2015-01-13
+
 rplos tutorial at rOpenSci website here:
 http://ropensci.org/tutorials/rplos-tutorial/
 

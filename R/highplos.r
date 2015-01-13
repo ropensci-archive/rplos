@@ -30,7 +30,7 @@ highplos <- function(q, fl=NULL, fq=NULL, hl.fl = NULL, hl.snippets = NULL, hl.f
    hl.useFastVectorHighlighter = NULL, hl.usePhraseHighlighter = NULL,
    hl.highlightMultiTerm = NULL, hl.regex.slop = NULL, hl.regex.pattern = NULL,
    hl.regex.maxAnalyzedChars = NULL, start = 0, rows = NULL,
-   key = NULL, callopts=list(), sleep=6, ...)
+   callopts=list(), sleep=6, ...)
 {
   if(!Sys.getenv('plostime') == ""){
     timesince <- as.numeric(now()) - as.numeric(Sys.getenv('plostime'))
@@ -39,10 +39,9 @@ highplos <- function(q, fl=NULL, fq=NULL, hl.fl = NULL, hl.snippets = NULL, hl.f
       Sys.sleep(sleep)
     }
   }
-  if(is.null(key))
-    key=getOption("PlosApiKey", stop("need an API key for PLoS Journals"))
+  
   if(!is.null(fl)) fl <- paste(fl, collapse = ",")
-  out <- solr_highlight(base=pbase(), key=key, q=q, fl=fl, fq=fq, wt='json', start=start, rows=rows, hl.fl=hl.fl,
+  out <- solr_highlight(base=pbase(), q=q, fl=fl, fq=fq, wt='json', start=start, rows=rows, hl.fl=hl.fl,
     hl.snippets=hl.snippets, hl.fragsize=hl.fragsize,
     hl.mergeContiguous = hl.mergeContiguous, hl.requireFieldMatch = hl.requireFieldMatch,
     hl.maxAnalyzedChars = hl.maxAnalyzedChars, hl.alternateField = hl.alternateField,

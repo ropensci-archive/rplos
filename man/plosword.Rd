@@ -4,15 +4,12 @@
 \alias{plosword}
 \title{Search results on a keyword over all fields in PLoS Journals.}
 \usage{
-plosword(terms, vis = FALSE, key = getOption("PlosApiKey",
-  stop("need an API key for PLoS Journals")), ...)
+plosword(terms, vis = FALSE, ...)
 }
 \arguments{
 \item{terms}{search terms (character)}
 
 \item{vis}{visualize results in bar plot or not (TRUE or FALSE)}
-
-\item{key}{your PLoS API key, either enter, or loads from .Rprofile}
 
 \item{...}{Optional additional curl options (debugging tools mostly)}
 }

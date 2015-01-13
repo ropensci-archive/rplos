@@ -16,7 +16,7 @@
 #' }
 
 plossubject <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL,
-  start = 0, limit = 10, key = NULL, 
+  start = 0, limit = 10,
   sleep = 6, terms=NULL, fields=NULL, toquery=NULL, callopts=NULL, ...)
 {
   calls <- names(sapply(match.call(), deparse))[-1]
@@ -26,5 +26,5 @@ plossubject <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL,
   
   searchplos(q=paste('subject:', '"', q, '"', sep=""), fl=fl, fq=fq,
              sort=sort, start=start, limit=limit,
-             key=key, sleep=sleep, ...)
+             sleep=sleep, ...)
 }
