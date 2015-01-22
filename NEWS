@@ -7,6 +7,7 @@ NEW FEATURES
 
 MINOR IMPROVEMENTS
 
+* `searchplos()` now returns a list of length two, `meta` and `data`, and `meta` is a data.frame of metadata for the search.
 * Switched from CC0 to MIT license.
 * No longer importing libraries `RCurl`, `data.table`, `googleVis`, `assertthat`, `RJSONIO`, and `stringr` (#79) (#82) (#84) 
 * Now importing `dplyr`.
@@ -16,8 +17,8 @@ MINOR IMPROVEMENTS
 * `searchplos()`, `plosabstract()`, and other functions that wrap `searchplos()` now use `...` to pass in curl options to `httr::GET()`. You'll now get an error on using `callopts` parameter. 
 * Added manual file entry for the dataset `isocodes`.
 * Reworked both `plosword()` and `plot_throughtime()` to have far less code, uses `httr` now instead of `RCurl`, but to the user, everything should be the same.
-* `meta` slot in `searchplos` and friends now given back as a `data.frame` instead of a `list`.
 * Made documentation more clear on discrepancy between PLOS website behavior and `rplos` behavior, and how to make them match, or match more closely (#76)
+* Added package level man file to allow `?rplos` to go to help page.
 
 BUG FIXES
 
