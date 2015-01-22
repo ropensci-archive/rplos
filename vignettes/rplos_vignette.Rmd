@@ -8,7 +8,7 @@ rplos tutorial
 
 
 
-The `rplos` package interacts with the API services of [PLoS](http://www.plos.org/) (Public Library of Science) Journals. In order to use `rplos`, you need to obtain [your own key](http://api.plos.org/registration/) to their API services. Instruction for obtaining and installing keys so they load automatically when you launch R are on our GitHub Wiki page [Installation and use of API keys](https://github.com/ropensci/rOpenSci/wiki/Installation-and-use-of-API-keys).
+The `rplos` package interacts with the API services of [PLoS](http://www.plos.org/) (Public Library of Science) Journals. You used to need an API key to work with this package - that is no longer needed!
 
 This tutorial will go through three use cases to demonstrate the kinds
 of things possible in `rplos`.
@@ -41,8 +41,8 @@ searchplos(q= "Helianthus", fl= "id", limit = 5)
 
 ```
 #> $meta
-#>   numFound start  maxScore
-#> 1      296     0 0.4991457
+#>   numFound start maxScore
+#> 1      300     0       NA
 #> 
 #> $data
 #>                             id
@@ -63,15 +63,15 @@ searchplos(q="*:*", fl='id', fq='doc_type:full', start=0, limit=5)
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1  1188800     0        1
+#> 1   142126     0       NA
 #> 
 #> $data
 #>                             id
-#> 1 10.1371/journal.pone.0057487
-#> 2 10.1371/journal.ppat.0030138
-#> 3 10.1371/journal.pone.0071347
-#> 4 10.1371/journal.pone.0043700
-#> 5 10.1371/journal.pone.0015651
+#> 1 10.1371/journal.pbio.1000156
+#> 2 10.1371/journal.pbio.1000106
+#> 3 10.1371/journal.pmed.1001197
+#> 4 10.1371/journal.pbio.0040294
+#> 5 10.1371/journal.pone.0093878
 ```
 
 Get DOIs for only PLoS One articles
@@ -84,15 +84,15 @@ searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', start=0, 
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1  1188800     0        1
+#> 1  1013893     0       NA
 #> 
 #> $data
-#>                                                    id
-#> 1           10.1371/journal.pone.0098523/introduction
-#> 2           10.1371/journal.pone.0015652/introduction
-#> 3 10.1371/journal.pone.0015652/results_and_discussion
-#> 4  10.1371/journal.pone.0015652/materials_and_methods
-#> 5 10.1371/journal.pone.0098523/results_and_discussion
+#>                                        id
+#> 1       10.1371/journal.pone.0094673/body
+#> 2            10.1371/journal.pone.0093878
+#> 3      10.1371/journal.pone.0093878/title
+#> 4   10.1371/journal.pone.0093878/abstract
+#> 5 10.1371/journal.pone.0093878/references
 ```
 
 Get DOIs for full article in PLoS One
@@ -107,15 +107,15 @@ searchplos(q="*:*", fl='id',
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1  1188800     0        1
+#> 1   118989     0       NA
 #> 
 #> $data
 #>                             id
-#> 1 10.1371/journal.pone.0057487
-#> 2 10.1371/journal.pone.0071347
-#> 3 10.1371/journal.pone.0043700
-#> 4 10.1371/journal.pone.0015651
-#> 5 10.1371/journal.pone.0029650
+#> 1 10.1371/journal.pone.0093878
+#> 2 10.1371/journal.pone.0094012
+#> 3 10.1371/journal.pone.0094113
+#> 4 10.1371/journal.pone.0094154
+#> 5 10.1371/journal.pone.0094152
 ```
 
 Search for many terms
@@ -129,8 +129,8 @@ lapply(q, function(x) searchplos(x, limit=2))
 ```
 #> [[1]]
 #> [[1]]$meta
-#>   numFound start  maxScore
-#> 1    24708     0 0.9781508
+#>   numFound start maxScore
+#> 1    24936     0       NA
 #> 
 #> [[1]]$data
 #>                             id
@@ -140,8 +140,8 @@ lapply(q, function(x) searchplos(x, limit=2))
 #> 
 #> [[2]]
 #> [[2]]$meta
-#>   numFound start  maxScore
-#> 1    41781     0 0.8152939
+#>   numFound start maxScore
+#> 1    42116     0       NA
 #> 
 #> [[2]]$data
 #>                                                        id
@@ -151,8 +151,8 @@ lapply(q, function(x) searchplos(x, limit=2))
 #> 
 #> [[3]]
 #> [[3]]$meta
-#>   numFound start  maxScore
-#> 1   120601     0 0.6816086
+#>   numFound start maxScore
+#> 1   121700     0       NA
 #> 
 #> [[3]]$data
 #>                             id
@@ -180,7 +180,7 @@ plosauthor(q = "Eisen", fl = "author", limit = 5)
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1      741     0 4.189553
+#> 1      741     0       NA
 #> 
 #> $data
 #>             author
@@ -201,21 +201,21 @@ plosabstract(q = 'drosophila', fl='id,title', limit = 5)
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1     2491     0 2.239879
+#> 1     2498     0       NA
 #> 
 #> $data
 #>                             id
 #> 1 10.1371/journal.pbio.0040198
 #> 2 10.1371/journal.pbio.0030246
 #> 3 10.1371/journal.pone.0012421
-#> 4 10.1371/journal.pone.0002817
-#> 5 10.1371/journal.pbio.0030389
-#>                                                                             title
-#> 1                                                                     All for All
-#> 2                                     School Students as Drosophila Experimenters
-#> 3                            Host Range and Specificity of the Drosophila C Virus
-#> 4 High-Resolution, In Vivo Magnetic Resonance Imaging of Drosophila at 18.8 Tesla
-#> 5                     New Environments Set the Stage for Changing Tastes in Mates
+#> 4 10.1371/journal.pbio.0030389
+#> 5 10.1371/journal.pbio.1000342
+#>                                                                       title
+#> 1                                                               All for All
+#> 2                               School Students as Drosophila Experimenters
+#> 3                      Host Range and Specificity of the Drosophila C Virus
+#> 4               New Environments Set the Stage for Changing Tastes in Mates
+#> 5 Variable Transcription Factor Binding: A Mechanism of Evolutionary Change
 ```
 
 `plostitle` searches across titles, and in this case returns the title and journal of the matching papers
@@ -228,20 +228,20 @@ plostitle(q='drosophila', fl='title,journal', limit=5)
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1     1599     0 3.805348
+#> 1     1603     0       NA
 #> 
 #> $data
 #>                      journal
-#> 1                   PLoS ONE
-#> 2                   PLoS ONE
-#> 3              PLoS Genetics
+#> 1               PLoS Biology
+#> 2              PLoS Genetics
+#> 3               PLoS Biology
 #> 4                   PLoS ONE
 #> 5 PLoS Computational Biology
 #>                                                   title
-#> 1              A Tripartite Synapse Model in Drosophila
-#> 2           Quantification of Food Intake in Drosophila
-#> 3 Phenotypic Plasticity of the Drosophila Transcriptome
-#> 4                             A DNA Virus of Drosophila
+#> 1           School Students as Drosophila Experimenters
+#> 2 Phenotypic Plasticity of the Drosophila Transcriptome
+#> 3         Identification of Drosophila MicroRNA Targets
+#> 4           Quantification of Food Intake in Drosophila
 #> 5            Parametric Alignment of Drosophila Genomes
 ```
 
@@ -261,15 +261,15 @@ facetplos(q='*:*', facet.field='journal')
 #> $facet_fields
 #> $facet_fields$journal
 #>                                  X1     X2
-#> 1                          plos one 946507
-#> 2                     plos genetics  41277
-#> 3                    plos pathogens  35950
-#> 4        plos computational biology  30312
-#> 5                      plos biology  26292
-#> 6  plos neglected tropical diseases  25694
-#> 7                     plos medicine  18601
+#> 1                          plos one 955046
+#> 2                     plos genetics  41615
+#> 3                    plos pathogens  36230
+#> 4        plos computational biology  30535
+#> 5                      plos biology  26456
+#> 6  plos neglected tropical diseases  26120
+#> 7                     plos medicine  18672
 #> 8              plos clinical trials    521
-#> 9                  plos collections     10
+#> 9                  plos collections     15
 #> 10                     plos medicin      9
 #> 
 #> 
@@ -295,15 +295,15 @@ facetplos(q='*:*', facet.field='journal', facet.query='cell,bird')
 #> $facet_fields
 #> $facet_fields$journal
 #>                                  X1     X2
-#> 1                          plos one 946507
-#> 2                     plos genetics  41277
-#> 3                    plos pathogens  35950
-#> 4        plos computational biology  30312
-#> 5                      plos biology  26292
-#> 6  plos neglected tropical diseases  25694
-#> 7                     plos medicine  18601
+#> 1                          plos one 955046
+#> 2                     plos genetics  41615
+#> 3                    plos pathogens  36230
+#> 4        plos computational biology  30535
+#> 5                      plos biology  26456
+#> 6  plos neglected tropical diseases  26120
+#> 7                     plos medicine  18672
 #> 8              plos clinical trials    521
-#> 9                  plos collections     10
+#> 9                  plos collections     15
 #> 10                     plos medicin      9
 #> 
 #> 
@@ -332,12 +332,12 @@ facetplos(q='*:*', url=url, facet.date='publication_date',
 #> $facet_dates
 #> $facet_dates$publication_date
 #>                   date value
-#> 1 2014-12-17T00:00:00Z  1712
-#> 2 2014-12-18T00:00:00Z  1569
-#> 3 2014-12-19T00:00:00Z   536
-#> 4 2014-12-20T00:00:00Z     0
-#> 5 2014-12-21T00:00:00Z     0
-#> 6 2014-12-22T00:00:00Z     0
+#> 1 2015-01-17T00:00:00Z     0
+#> 2 2015-01-18T00:00:00Z     0
+#> 3 2015-01-19T00:00:00Z   406
+#> 4 2015-01-20T00:00:00Z   930
+#> 5 2015-01-21T00:00:00Z   745
+#> 6 2015-01-22T00:00:00Z   221
 #> 
 #> 
 #> $facet_ranges
@@ -396,9 +396,9 @@ highplos(q='everything:"experiment"', fl='id,title', fq='doc_type:full',
 #> [1] " Selection of Transcriptomics <em>Experiments</em> Improves Guilt-by-Association Analyses Transcriptomics <em>Experiment</em>"
 #> 
 #> 
-#> $`10.1371/journal.pone.0108803`
-#> $`10.1371/journal.pone.0108803`$everything
-#> [1] " PONE-D-14-40021  10.1371/journal.pone.0108803  Correction   Correction: Partner <em>Experiences</em>"
+#> $`10.1371/annotation/9b8741e2-0f5f-49f9-9eaa-1b0cb9b8d25f`
+#> $`10.1371/annotation/9b8741e2-0f5f-49f9-9eaa-1b0cb9b8d25f`$everything
+#> [1] " in the labels under the bars. The labels should read <em>Experiment</em> 3 / <em>Experiment</em> 4 instead of <em>Experiment</em>"
 ```
 
 ### Search for terms and visualize results as a histogram OR as a plot through time
@@ -415,11 +415,11 @@ out$table
 
 ```
 #>   No_Articles       Term
-#> 1        8274     monkey
-#> 2         296 Helianthus
-#> 3         809  sunflower
-#> 4       91291    protein
-#> 5        1014      whale
+#> 1        8335     monkey
+#> 2         300 Helianthus
+#> 3         818  sunflower
+#> 4       91971    protein
+#> 5        1023      whale
 ```
 
 
@@ -438,7 +438,7 @@ plosword('Helianthus', callopts=list(verbose=TRUE))
 
 ```
 #> Number of articles with search term 
-#>                                 296
+#>                                 300
 ```
 
 ### Visualize terms
