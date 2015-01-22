@@ -5,14 +5,16 @@
 \alias{print.plosft}
 \title{Get full text xml of PLOS papers given a DOI}
 \usage{
-plos_fulltext(doi, callopts = list())
+plos_fulltext(doi, ...)
 
 \method{print}{plosft}(x, ...)
 }
 \arguments{
 \item{doi}{One or more DOIs}
 
-\item{callopts}{Curl options passed on to httr::GET}
+\item{...}{Curl options passed on to \code{\link[httr]{GET}}}
+
+\item{x}{Input to print method}
 }
 \value{
 Character string of XML.

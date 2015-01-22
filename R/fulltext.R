@@ -32,7 +32,8 @@ full_text_urls <- function(doi){
 #'
 #' @export
 #' @param doi One or more DOIs
-#' @param callopts Curl options passed on to httr::GET
+#' @param ... Curl options passed on to \code{\link[httr]{GET}}
+#' @param x Input to print method
 #' @return Character string of XML.
 #' @examples \dontrun{
 #' plos_fulltext(doi='10.1371/journal.pone.0086169')
@@ -59,10 +60,10 @@ full_text_urls <- function(doi){
 #' (dtm <- DocumentTermMatrix(tmcorpus))
 #' findFreqTerms(dtm, lowfreq = 50)
 #' }
-plos_fulltext <- function(doi, callopts=list()){
+plos_fulltext <- function(doi, ...){
   urls <- full_text_urls(doi)
   getfulltext <- function(x){
-    out <- GET(x, list(), callopts)
+    out <- GET(x, list(), ...)
     warn_for_status(out)
     stopifnot(out$headers$`content-type` == 'text/xml')
     content(out, as = "text")
