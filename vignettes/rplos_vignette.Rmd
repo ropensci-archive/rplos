@@ -1,9 +1,9 @@
 <!--
 %\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{rplos tutorial}
+%\VignetteIndexEntry{rplos introduction}
 -->
 
-rplos tutorial
+rplos introduction
 =====
 
 
@@ -63,7 +63,7 @@ searchplos(q="*:*", fl='id', fq='doc_type:full', start=0, limit=5)
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1   142126     0       NA
+#> 1   142153     0       NA
 #> 
 #> $data
 #>                             id
@@ -84,7 +84,7 @@ searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', start=0, 
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1  1013893     0       NA
+#> 1  1014109     0       NA
 #> 
 #> $data
 #>                                        id
@@ -107,7 +107,7 @@ searchplos(q="*:*", fl='id',
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1   118989     0       NA
+#> 1   119014     0       NA
 #> 
 #> $data
 #>                             id
@@ -130,7 +130,7 @@ lapply(q, function(x) searchplos(x, limit=2))
 #> [[1]]
 #> [[1]]$meta
 #>   numFound start maxScore
-#> 1    24936     0       NA
+#> 1    24939     0       NA
 #> 
 #> [[1]]$data
 #>                             id
@@ -141,7 +141,7 @@ lapply(q, function(x) searchplos(x, limit=2))
 #> [[2]]
 #> [[2]]$meta
 #>   numFound start maxScore
-#> 1    42116     0       NA
+#> 1    42123     0       NA
 #> 
 #> [[2]]$data
 #>                                                        id
@@ -152,7 +152,7 @@ lapply(q, function(x) searchplos(x, limit=2))
 #> [[3]]
 #> [[3]]$meta
 #>   numFound start maxScore
-#> 1   121700     0       NA
+#> 1   121719     0       NA
 #> 
 #> [[3]]$data
 #>                             id
@@ -245,162 +245,6 @@ plostitle(q='drosophila', fl='title,journal', limit=5)
 #> 5            Parametric Alignment of Drosophila Genomes
 ```
 
-### Faceted search
-
-Facet by journal
-
-
-```r
-facetplos(q='*:*', facet.field='journal')
-```
-
-```
-#> $facet_queries
-#> NULL
-#> 
-#> $facet_fields
-#> $facet_fields$journal
-#>                                  X1     X2
-#> 1                          plos one 955046
-#> 2                     plos genetics  41615
-#> 3                    plos pathogens  36230
-#> 4        plos computational biology  30535
-#> 5                      plos biology  26456
-#> 6  plos neglected tropical diseases  26120
-#> 7                     plos medicine  18672
-#> 8              plos clinical trials    521
-#> 9                  plos collections     15
-#> 10                     plos medicin      9
-#> 
-#> 
-#> $facet_dates
-#> NULL
-#> 
-#> $facet_ranges
-#> NULL
-```
-
-Using `facet.query` to get counts
-
-
-```r
-facetplos(q='*:*', facet.field='journal', facet.query='cell,bird')
-```
-
-```
-#> $facet_queries
-#>        term value
-#> 1 cell,bird    18
-#> 
-#> $facet_fields
-#> $facet_fields$journal
-#>                                  X1     X2
-#> 1                          plos one 955046
-#> 2                     plos genetics  41615
-#> 3                    plos pathogens  36230
-#> 4        plos computational biology  30535
-#> 5                      plos biology  26456
-#> 6  plos neglected tropical diseases  26120
-#> 7                     plos medicine  18672
-#> 8              plos clinical trials    521
-#> 9                  plos collections     15
-#> 10                     plos medicin      9
-#> 
-#> 
-#> $facet_dates
-#> NULL
-#> 
-#> $facet_ranges
-#> NULL
-```
-
-Date faceting
-
-
-```r
-facetplos(q='*:*', url=url, facet.date='publication_date',
-  facet.date.start='NOW/DAY-5DAYS', facet.date.end='NOW', facet.date.gap='+1DAY')
-```
-
-```
-#> $facet_queries
-#> NULL
-#> 
-#> $facet_fields
-#> NULL
-#> 
-#> $facet_dates
-#> $facet_dates$publication_date
-#>                   date value
-#> 1 2015-01-17T00:00:00Z     0
-#> 2 2015-01-18T00:00:00Z     0
-#> 3 2015-01-19T00:00:00Z   406
-#> 4 2015-01-20T00:00:00Z   930
-#> 5 2015-01-21T00:00:00Z   745
-#> 6 2015-01-22T00:00:00Z   221
-#> 
-#> 
-#> $facet_ranges
-#> NULL
-```
-
-### Highlighted search
-
-Search for the term _alcohol_ in the abstracts of articles, return only 10 results
-
-
-```r
-highplos(q='alcohol', hl.fl = 'abstract', rows=2)
-```
-
-```
-#> $`10.1371/journal.pmed.0040151`
-#> $`10.1371/journal.pmed.0040151`$abstract
-#> [1] "Background: <em>Alcohol</em> consumption causes an estimated 4% of the global disease burden, prompting"
-#> 
-#> 
-#> $`10.1371/journal.pone.0027752`
-#> $`10.1371/journal.pone.0027752`$abstract
-#> [1] "Background: The negative influences of <em>alcohol</em> on TB management with regard to delays in seeking"
-```
-
-Search for the term _alcohol_ in the abstracts of articles, and return fragment size of 20 characters, return only 5 results
-
-
-```r
-highplos(q='alcohol', hl.fl='abstract', hl.fragsize=20, rows=2)
-```
-
-```
-#> $`10.1371/journal.pmed.0040151`
-#> $`10.1371/journal.pmed.0040151`$abstract
-#> [1] "Background: <em>Alcohol</em>"
-#> 
-#> 
-#> $`10.1371/journal.pone.0027752`
-#> $`10.1371/journal.pone.0027752`$abstract
-#> [1] " of <em>alcohol</em> on TB management"
-```
-
-Search for the term _experiment_ across all sections of an article, return id (DOI) and title fl only, search in full articles only (via `fq='doc_type:full'`), and return only 10 results
-
-
-```r
-highplos(q='everything:"experiment"', fl='id,title', fq='doc_type:full',
-   rows=2)
-```
-
-```
-#> $`10.1371/journal.pone.0039681`
-#> $`10.1371/journal.pone.0039681`$everything
-#> [1] " Selection of Transcriptomics <em>Experiments</em> Improves Guilt-by-Association Analyses Transcriptomics <em>Experiment</em>"
-#> 
-#> 
-#> $`10.1371/annotation/9b8741e2-0f5f-49f9-9eaa-1b0cb9b8d25f`
-#> $`10.1371/annotation/9b8741e2-0f5f-49f9-9eaa-1b0cb9b8d25f`$everything
-#> [1] " in the labels under the bars. The labels should read <em>Experiment</em> 3 / <em>Experiment</em> 4 instead of <em>Experiment</em>"
-```
-
 ### Search for terms and visualize results as a histogram OR as a plot through time
 
 `plosword` allows you to search for 1 to K words and visualize the results
@@ -418,7 +262,7 @@ out$table
 #> 1        8335     monkey
 #> 2         300 Helianthus
 #> 3         818  sunflower
-#> 4       91971    protein
+#> 4       91981    protein
 #> 5        1023      whale
 ```
 
@@ -451,3 +295,7 @@ plot_throughtime(terms = "phylogeny", limit = 200) + geom_line(size=2, color='bl
 ```
 
 ![plot of chunk throughtime1](figure/throughtime1-1.png) 
+
+### More
+
+See the _Faceted and highlighted searches_ and _Full text_ vignettes for more `rplos` help.
