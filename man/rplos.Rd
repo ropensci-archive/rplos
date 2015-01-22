@@ -13,8 +13,8 @@ article-Level metrics data, see the \code{alm} package.
 \section{rplos functions}{
 
 
-Most rplos functions make web calls using the \code{\link{httr}} package, and parse json using
-the \code{\link{jsonlite}} package.
+Most rplos functions make web calls using the \code{httr} package, and parse json using
+the \code{jsonlite} package.
 }
 
 \section{PLoS API key}{
