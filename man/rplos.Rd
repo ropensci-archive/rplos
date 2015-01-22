@@ -6,27 +6,40 @@
 \alias{rplos-package}
 \title{Connect with PLoS API data}
 \description{
-rplos provides a wrapper to the PLoS Search API and the Article-Level
-metrics API.  More information about each function can be found in
-its help documentation.
+\code{rplos} provides an R interface to the PLoS Search API. More information about each
+function can be found in its help documentation. If you are looking for PLOS
+article-Level metrics data, see the \code{alm} package.
 }
-\details{
-rplos functions
+\section{rplos functions}{
 
-Most rplos functions make web calls (using the httr package), and either
-parse xml (using the XML package) or json (using the jsonlite package)
-results.
 
-PLoS API keys
+Most rplos functions make web calls using the \code{\link{httr}} package, and parse json using
+the \code{\link{jsonlite}} package.
+}
 
-You used to need an API key to use this package - no longer as of 2015-01-13
+\section{PLoS API key}{
 
-rplos tutorial at rOpenSci website here:
-http://ropensci.org/tutorials/rplos-tutorial/
 
-Tutorials
+You used to need an API key to use this package - no longer needed
+}
+
+\section{Tutorials}{
+
 
 See the rOpenSci website for a tutorial:
 http://ropensci.org/tutorials/rplos_tutorial.html
+}
+\examples{
+\dontrun{
+searchplos(q='ecology', fl=c('id','publication_date'), limit = 2)
+
+# Get only full article DOIs
+out <- searchplos(q="*:*", fl='id', fq='doc_type:full', start=0, limit=250)
+head(out$data)
+
+# Get DOIs for only PLoS One articles
+out <- searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', start=0, limit=15)
+head(out$data)
+}
 }
 

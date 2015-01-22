@@ -13,10 +13,6 @@ plos_fulltext(doi, callopts = list())
 \item{doi}{One or more DOIs}
 
 \item{callopts}{Curl options passed on to httr::GET}
-
-\item{x}{Input, of class plosft}
-
-\item{...}{Further args, ignored}
 }
 \value{
 Character string of XML.

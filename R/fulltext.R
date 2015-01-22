@@ -7,7 +7,7 @@
 #' full_text_urls(doi='10.1371/journal.pone.0086169')
 #' full_text_urls(doi='10.1371/journal.pbio.1001845')
 #' full_text_urls(doi=c('10.1371/journal.pone.0086169','10.1371/journal.pbio.1001845'))
-#' dois <- searchplos(q = "*:*", fq='doc_type:full', limit=20)$id
+#' dois <- searchplos(q = "*:*", fq='doc_type:full', limit=20)$data$id
 #' full_text_urls(dois)
 #' }
 
@@ -74,8 +74,6 @@ plos_fulltext <- function(doi, callopts=list()){
 }
 
 #' @export
-#' @param x Input, of class plosft
-#' @param ... Further args, ignored
 #' @rdname plos_fulltext
 print.plosft <- function(x, ...){
   namesprint <- paste(na.omit(names(x)[1:10]), collapse = " ")
