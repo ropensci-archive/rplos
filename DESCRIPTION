@@ -5,7 +5,7 @@ Description: A programmatic interface to the SOLR based
     of Science journals to search their articles. Functions
     are included for searching for articles, retrieving
     articles, making plots, doing faceted searches, doing
-    highlight searches, and viewing results of higlighted
+    highlight searches, and viewing results of highlighted
     searches in a browser.
 Version: 0.4.6
 Date: 2015-01-22
