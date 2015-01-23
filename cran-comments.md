@@ -1,6 +1,5 @@
-This is follow up submission to my submission yesterday (2015-01-22) in which 
-I had a word spelled incorrectly in the DESCRIPTION file - that is fixed in 
-this submission. The following comments were from yesterday's submission:
+This is a follow up submission to my submission yesterday (2015-01-22) in which I had a word spelled incorrectly in the DESCRIPTION file - that is 
+fixed in this submission. The following comments were from yesterday's submission:
 
 
 R CMD CHECK passed on my local OS X install on R 3.1.2 and R development
