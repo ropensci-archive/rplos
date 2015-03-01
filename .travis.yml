@@ -1,11 +1,11 @@
-language: c
-script: "./travis-tool.sh run_tests"
-before_script:
-- curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-- chmod 755 ./travis-tool.sh
-- "./travis-tool.sh bootstrap"
-- "./travis-tool.sh install_deps"
-- "./travis-tool.sh install_aptget r-cran-tm"
+language: r
+apt_packages:
+ - r-cran-tm
+r_github_packages:
+ - jimhester/covr
+after_success:
+  - Rscript -e 'library(covr); coveralls()'
+
 notifications:
   slack:
     secure: W/SNFeqFQ9Ezth8VqJtWSL+296iqEvzJQ2SrxrfNx66StjNywRUc8Sp/Yw1/kZHwsHu8pb9uO42yxanSly9LZa235kuG3EkB0hzW6md0kQ9o1fGI/GjOLKW49IE9utJ81e6Pg4e1evNTNQgEk5f4UZHLguNnkOGqUm31VrVal4k=
