@@ -7,8 +7,8 @@ Description: A programmatic interface to the SOLR based
     articles, making plots, doing faceted searches, doing
     highlight searches, and viewing results of highlighted
     searches in a browser.
-Version: 0.4.6
-Date: 2015-01-23
+Version: 0.4.6.99
+Date: 2015-03-07
 License: MIT + file LICENSE
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"),
