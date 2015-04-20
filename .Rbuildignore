@@ -4,7 +4,7 @@
 man-roxygen
 inst/assets
 inst/stuff
-vignettes/margins.sty
+vignettes/figure
 cran-comments.md
 ^appveyor\.yml$
 ^.*\.Rproj$
