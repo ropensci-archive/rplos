@@ -18,8 +18,7 @@ Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "karthik.ram@gmail.com"))
 URL: https://github.com/ropensci/rplos
 BugReports: https://github.com/ropensci/rplos/issues
-LazyLoad: yes
-LazyData: yes
+LazyData: true
 Roxygen: list(wrap = FALSE)
 VignetteBuilder: knitr
 Depends:
