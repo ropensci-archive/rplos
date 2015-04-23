@@ -29,8 +29,10 @@
 #' }
 
 citations <- function(uri = NULL, doi = NULL, random = NULL, parse = FALSE, ...) {
+  # one has to be non-NULL
+  stopifnot(length(ploscompact(list(uri, doi, random))) == 1)
   stopifnot(checknum(random))
-  uri <- uriparse(uri, doi)
+  if (is.null(random)) uri <- uriparse(uri, doi)
   args <- ploscompact(list(uri = uri, random = random))
   res <- GET(richbase(), query = args, ...)
   stop_for_status(res)
