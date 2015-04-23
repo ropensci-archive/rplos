@@ -3,6 +3,7 @@
 S3method(print,plosft)
 export(addmissing)
 export(check_response)
+export(citations)
 export(concat_todf)
 export(facetplos)
 export(formatarticleurl)
