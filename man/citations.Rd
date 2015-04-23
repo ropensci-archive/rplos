@@ -7,8 +7,9 @@
 citations(uri = NULL, doi = NULL, random = NULL, parse = FALSE, ...)
 }
 \arguments{
-\item{uri}{(character) A URI, can be of the form \code{http://dx.doi.org/<DOI>},
-or just a DOI}
+\item{uri}{(character) A URI, of the form \code{http://dx.doi.org/<DOI>}}
+
+\item{doi}{(character) A PLOS journals DOI}
 
 \item{random}{(integer) A number of random articles to get data for.
 Default: NULL}
@@ -16,6 +17,8 @@ Default: NULL}
 \item{parse}{(logical) Passed to \code{\link[jsonlite]{fromJSON}}, toggles
 whether we return json parsed to data.frame's where possible, or not.
 Default: FALSE}
+
+\item{...}{Curl options passed to \code{\link[httr]{GET}}}
 }
 \value{
 A list

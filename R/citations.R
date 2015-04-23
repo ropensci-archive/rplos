@@ -1,13 +1,14 @@
 #' Search PLOS Rich Citations API
 #'
 #' @export
-#' @param uri (character) A URI, can be of the form \code{http://dx.doi.org/<DOI>},
-#' or just a DOI
+#' @param uri (character) A URI, of the form \code{http://dx.doi.org/<DOI>}
+#' @param doi (character) A PLOS journals DOI
 #' @param random (integer) A number of random articles to get data for. 
 #' Default: NULL
 #' @param parse (logical) Passed to \code{\link[jsonlite]{fromJSON}}, toggles 
 #' whether we return json parsed to data.frame's where possible, or not. 
 #' Default: FALSE
+#' @param ... Curl options passed to \code{\link[httr]{GET}}
 #' @return A list
 #' @references \url{http://api.richcitations.org/}
 #' @details To get an API key, email \email{ploslabs@@plos.org} and request a key
