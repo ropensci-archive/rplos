@@ -1,14 +1,14 @@
 Package: rplos
 Title: Interface to PLoS Journals Search API
 Description: A programmatic interface to the SOLR based
-    search API provided by the Public Library
-    of Science journals to search their articles. Functions
-    are included for searching for articles, retrieving
+    search API (http://api.plos.org/) provided by the Public 
+    Library of Science journals to search their articles. 
+    Functions are included for searching for articles, retrieving
     articles, making plots, doing faceted searches, doing
     highlight searches, and viewing results of highlighted
     searches in a browser.
 Version: 0.4.6.99
-Date: 2015-04-20
+Date: 2015-04-23
 License: MIT + file LICENSE
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"),
