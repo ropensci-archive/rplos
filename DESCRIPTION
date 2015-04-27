@@ -1,6 +1,6 @@
 Package: rplos
-Title: Interface to PLoS Journals Search API
-Description: A programmatic interface to the SOLR based
+Title: Interface to the Search API for the 'PLoS' Journals
+Description: A programmatic interface to the 'SOLR' based
     search API (http://api.plos.org/) provided by the Public 
     Library of Science journals to search their articles. 
     Functions are included for searching for articles, retrieving
