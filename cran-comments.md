@@ -4,4 +4,7 @@ version, Ubuntu running on Travis-CI, and Win-Builder.
 This version includes a fix requested by CRAN:
 - Add vignettes/figure to .Rbuildignore 
 
+In addition, this submission includes a fix for the DESCRIPTION file 
+to quote non-words.
+
 Thanks! Scott Chamberlain
