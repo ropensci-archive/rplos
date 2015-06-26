@@ -8,8 +8,7 @@
 #' plosabstract(q = 'drosophila', fl=c('id','author'), limit = 5)
 #' plosabstract(q = 'drosophila', fl='author', limit = 5)
 #' plosabstract(q = 'drosophila', fl=c('id','author','title'), limit = 5)
-#' plosabstract(q = 'drosophila', fl=c('id','author','title'), limit = 5, 
-#'  callopts=list(verbose=TRUE))
+#' plosabstract(q = 'drosophila', fl=c('id','author','title'), limit = 5, config=verbose())
 #' }
 
 plosabstract <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, 

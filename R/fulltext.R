@@ -63,10 +63,10 @@ full_text_urls <- function(doi){
 plos_fulltext <- function(doi, ...){
   urls <- full_text_urls(doi)
   getfulltext <- function(x){
-    out <- GET(x, list(), ...)
-    warn_for_status(out)
+    out <- httr::GET(x, ...)
+    httr::warn_for_status(out)
     stopifnot(out$headers$`content-type` == 'text/xml')
-    content(out, as = "text")
+    httr::content(out, as = "text")
   }
   res <- lapply(urls, getfulltext)
   names(res) <- doi
@@ -85,7 +85,7 @@ print.plosft <- function(x, ...){
   cat("NOTE: extract xml strings like output['<doi>']")
 }
 
-rplos_wrap <- function (..., indent = 0, width = getOption("width")){
+rplos_wrap <- function(..., indent = 0, width = getOption("width")) {
   x <- paste0(..., collapse = "")
   wrapped <- strwrap(x, indent = indent, exdent = indent + 2, width = width)
   paste0(wrapped, collapse = "\n")

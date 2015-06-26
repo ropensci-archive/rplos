@@ -117,6 +117,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
   args <- c(args, ploscompact(list(q=q, fl=fl, start=start, rows=limit, sort=sort, wt='json')))
 
 	argsgetnum <- list(q=q, rows=0, wt="json")
+	if (length(argsgetnum) == 0) argsgetnum <- NULL
 	getnum_tmp <- GET(pbase(), query = argsgetnum)
   stop_for_status(getnum_tmp)
   getnum <- httr::content(getnum_tmp)
@@ -126,6 +127,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
 	if(min(getnumrecords, limit) < 1000) {
 	  if(!is.null(limit))
 	    args$rows <- limit
+	  if (length(args) == 0) args <- NULL
 	  tt <- GET(pbase(), query=args, ...)
     jsonout <- check_response(tt)
 	  tempresults <- jsonout$response$docs
@@ -165,6 +167,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
 	    cat(i,"\n")
 	    args$start <- getvecs[i]
 	    args$rows <- getrows[i]
+	    if (length(args) == 0) args <- NULL
 	    tt <- GET(pbase(), query=args, ...)
 	    jsonout <- check_response(tt)
 	    tempresults <- jsonout$response$docs

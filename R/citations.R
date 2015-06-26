@@ -3,10 +3,10 @@
 #' @export
 #' @param uri (character) A URI, of the form \code{http://dx.doi.org/<DOI>}
 #' @param doi (character) A PLOS journals DOI
-#' @param random (integer) A number of random articles to get data for. 
+#' @param random (integer) A number of random articles to get data for.
 #' Default: NULL
-#' @param parse (logical) Passed to \code{\link[jsonlite]{fromJSON}}, toggles 
-#' whether we return json parsed to data.frame's where possible, or not. 
+#' @param parse (logical) Passed to \code{\link[jsonlite]{fromJSON}}, toggles
+#' whether we return json parsed to data.frame's where possible, or not.
 #' Default: FALSE
 #' @param ... Curl options passed to \code{\link[httr]{GET}}
 #' @return A list
@@ -17,13 +17,13 @@
 #' uri <- "http://dx.doi.org/10.1371%2Fjournal.pone.0000000"
 #' citations(uri)
 #' citations(uri, parse = TRUE)
-#' 
+#'
 #' # pass in a DOI, url encoded or not
 #' citations(doi = "10.1371%2Fjournal.pone.0000000")
 #' citations(doi = "10.1371/journal.pone.0000000")
 #' ids <- searchplos(q='ecology', fl='id', limit = 20)$data$id
 #' citations(doi = ids[1])
-#' 
+#'
 #' # get citations for a random article
 #' citations(random = 1)
 #' }
@@ -34,6 +34,7 @@ citations <- function(uri = NULL, doi = NULL, random = NULL, parse = FALSE, ...)
   stopifnot(checknum(random))
   if (is.null(random)) uri <- uriparse(uri, doi)
   args <- ploscompact(list(uri = uri, random = random))
+  if (length(args) == 0) args <- NULL
   res <- GET(richbase(), query = args, ...)
   stop_for_status(res)
   tt <- httr::content(res, "text")
