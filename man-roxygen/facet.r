@@ -91,5 +91,9 @@
 #' @param start Record to start at, default to beginning.
 #' @param rows Number of records to return.
 #' @param url URL endpoint
-#' @param callopts Call options passed on to httr::GET
-#' @param ... Further args.
+#' @param sleep Number of seconds to wait between requests. No need to use this for
+#'    a single call. However, if you are doing many calls in a loop or lapply type call, 
+#'    sleep parameter is used to prevent your IP address from being blocked. You can only 
+#'    do 10 requests per minute, so one request every 6 seconds is about right.
+#' @param callopts Call options passed on to \code{\link[httr]{GET}}
+#' @param ... Further args to \code{\link[solr]{solr_facet}}
