@@ -13,7 +13,7 @@ facetplos(q = "*:*", facet.query = NA, facet.field = NA,
   facet.date.include = NA, facet.range = NA, facet.range.start = NA,
   facet.range.end = NA, facet.range.gap = NA, facet.range.hardend = NA,
   facet.range.other = NA, facet.range.include = NA, start = NA,
-  rows = NA, url = NA, callopts = list(), ...)
+  rows = NA, url = NA, sleep = 6, callopts = list(), ...)
 }
 \arguments{
 \item{q}{Query terms.}
@@ -138,9 +138,14 @@ per field basis.}
 
 \item{url}{URL endpoint}
 
-\item{callopts}{Call options passed on to httr::GET}
+\item{sleep}{Number of seconds to wait between requests. No need to use this for
+a single call. However, if you are doing many calls in a loop or lapply type call,
+sleep parameter is used to prevent your IP address from being blocked. You can only
+do 10 requests per minute, so one request every 6 seconds is about right.}
 
-\item{...}{Further args.}
+\item{callopts}{Call options passed on to \code{\link[httr]{GET}}}
+
+\item{...}{Further args to \code{\link[solr]{solr_facet}}}
 }
 \value{
 A list

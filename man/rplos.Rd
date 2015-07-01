@@ -42,4 +42,12 @@ out <- searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', st
 head(out$data)
 }
 }
+\author{
+Scott Chamberlain \email{myrmecocystus@gmail.com}
+
+Carl Boettiger \email{cboettig@gmail.com}
+
+Karthik Ram \email{karthik.ram@gmail.com}
+}
+\keyword{package}
 

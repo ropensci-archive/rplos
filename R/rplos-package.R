@@ -30,7 +30,9 @@
 #' head(out$data)
 #' }
 #' 
-#' @importFrom 
+#' @importFrom stats setNames na.omit
+#' @importFrom utils browseURL
+#' @importFrom methods is
 #' @docType package
 #' @name rplos
 #' @aliases rplos rplos-package
