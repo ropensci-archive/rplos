@@ -66,7 +66,6 @@ ploscompact <- function(l) Filter(Negate(is.null), l)
 
 #' Check response from PLOS, including status codes, server error messages, mime-type, etc.
 #' @export
-#' @import httr
 #' @importFrom jsonlite fromJSON
 #' @keywords internal
 check_response <- function(x){

@@ -28,7 +28,6 @@ Imports:
     stats,
     httr,
     jsonlite,
-    XML,
     dplyr,
     plyr,
     lubridate,
@@ -36,6 +35,7 @@ Imports:
     whisker,
     solr
 Suggests:
+    XML,
     testthat,
     roxygen2,
     knitr

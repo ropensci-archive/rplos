@@ -1,6 +1,5 @@
 #' Do faceted searches on PLOS Journals full-text content
 #'
-#' @import solr
 #' @export
 #' @return A list
 #' @template facet

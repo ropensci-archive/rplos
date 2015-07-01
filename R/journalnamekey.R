@@ -1,6 +1,5 @@
 #' Get short keys for journals to use in searching specific journals.
 #'
-#' @import XML httr
 #' @return Journals name keys.
 #' @export
 #' @examples \dontrun{

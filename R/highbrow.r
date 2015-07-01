@@ -1,6 +1,6 @@
 #' Browse highlighted fragments in your default browser.
-#' 
-#' @import whisker
+#'
+#' @importFrom whisker whisker.render
 #' @param input Input, usually output from a call to \code{\link[rplos]{highplos}}
 #' @param output Path and file name for output file. If NULL, a temp file is used.
 #' @param browse Browse file in your default browse immediately after file creation.
@@ -9,7 +9,7 @@
 #' @examples \dontrun{
 #' out <- highplos(q='alcohol', hl.fl = 'abstract', rows=10)
 #' highbrow(out)
-#' 
+#'
 #' out <- highplos(q='alcohol', hl.fl = 'abstract', rows=1200)
 #' highbrow(out)
 #' }
@@ -18,10 +18,10 @@ highbrow <- function(input=NULL, output=NULL, browse=TRUE)
 {
   if(is.null(input))
     stop("Please supply some input")
-  
+
   # replace length 0 lists with "no data"
   input <- lapply(input, function(x) ifelse(length(x)==0, "no data", x))
-  
+
   tmp <- NULL
   outlist <- list()
   for(i in seq_along(input)){
@@ -33,7 +33,7 @@ highbrow <- function(input=NULL, output=NULL, browse=TRUE)
     tmp$content <- content_tmp
     outlist[[i]] <- tmp
   }
-  
+
   template <-
     '<!DOCTYPE html>
       <head>
@@ -74,7 +74,7 @@ highbrow <- function(input=NULL, output=NULL, browse=TRUE)
 
       </body>
       </html>'
-        
+
   rendered <- whisker.render(template)
   rendered <- gsub("&lt;em&gt;", "<b>", rendered)
   rendered <- gsub("&lt;/em&gt;", "</b>", rendered)

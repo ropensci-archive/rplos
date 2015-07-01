@@ -1,6 +1,6 @@
 #' Do highlighted searches on PLOS Journals full-text content
 #'
-#' @import solr
+#' @importFrom solr solr_highlight solr_facet
 #' @template high
 #' @return A list.
 #' @export
@@ -39,7 +39,7 @@ highplos <- function(q, fl=NULL, fq=NULL, hl.fl = NULL, hl.snippets = NULL, hl.f
       Sys.sleep(sleep)
     }
   }
-  
+
   if(!is.null(fl)) fl <- paste(fl, collapse = ",")
   out <- solr_highlight(base=pbase(), q=q, fl=fl, fq=fq, wt='json', start=start, rows=rows, hl.fl=hl.fl,
     hl.snippets=hl.snippets, hl.fragsize=hl.fragsize,
