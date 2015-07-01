@@ -11,3 +11,4 @@ cran-comments.md
 ^\.Rproj\.user$
 README.Rmd
 tests/test-all.R
+vignettes/figure
