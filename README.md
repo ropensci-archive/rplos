@@ -56,7 +56,7 @@ Search for the term ecology, and return id (DOI) and publication date, limiting 
 searchplos('ecology', 'id,publication_date', limit = 5)
 #> $meta
 #>   numFound start maxScore
-#> 1    27732     0       NA
+#> 1    27832     0       NA
 #> 
 #> $data
 #>                                                        id
@@ -81,7 +81,7 @@ searchplos(q="*:*", fl='id', fq=list('cross_published_journal_key:PLoSONE',
    'doc_type:full'), limit=5)
 #> $meta
 #>   numFound start maxScore
-#> 1   133446     0       NA
+#> 1   133907     0       NA
 #> 
 #> $data
 #>                             id
@@ -182,7 +182,7 @@ searchplos(q='*:*', fl=c('id','article_type'),
    fq=list('-article_type:correction','-article_type:viewpoints'), limit=5)
 #> $meta
 #>   numFound start maxScore
-#> 1  1303531     0       NA
+#> 1  1307941     0       NA
 #> 
 #> $data
 #>                                          id     article_type
@@ -206,19 +206,19 @@ facetplos(q='alcohol', facet.field=c('journal','subject'), facet.limit=5)
 #> $facet_fields
 #> $facet_fields$journal
 #>                                 X1      X2
-#> 1                         plos one 1079461
-#> 2                    plos genetics   44924
-#> 3                   plos pathogens   39263
-#> 4       plos computational biology   32788
-#> 5 plos neglected tropical diseases   29477
+#> 1                         plos one 1083485
+#> 2                    plos genetics   45073
+#> 3                   plos pathogens   39357
+#> 4       plos computational biology   32816
+#> 5 plos neglected tropical diseases   29607
 #> 
 #> $facet_fields$subject
 #>                              X1      X2
-#> 1     biology and life sciences 1250443
-#> 2  medicine and health sciences  958649
-#> 3 research and analysis methods  798167
-#> 4                  biochemistry  617815
-#> 5                  cell biology  550702
+#> 1     biology and life sciences 1250577
+#> 2  medicine and health sciences  958759
+#> 3 research and analysis methods  798256
+#> 4                  biochemistry  617863
+#> 5                  cell biology  550737
 #> 
 #> 
 #> $facet_dates
@@ -379,11 +379,11 @@ Visualize word use across articles
 plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')
 #> $table
 #>   No_Articles       Term
-#> 1        9075     monkey
+#> 1        9098     monkey
 #> 2         347 Helianthus
 #> 3         937  sunflower
-#> 4      100767    protein
-#> 5        1137      whale
+#> 4      101040    protein
+#> 5        1139      whale
 #> 
 #> $plot
 ```
