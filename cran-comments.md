@@ -1,10 +1,10 @@
-R CMD CHECK passed on my local OS X install on R 3.2.0 and R development
+R CMD CHECK passed on my local OS X install on R 3.2.1 and R development
 version, Ubuntu running on Travis-CI, and Win-Builder.
 
-This version includes a fix requested by CRAN:
-- Add vignettes/figure to .Rbuildignore 
+This submission is mostly to fix a number of broken functions due to the
+recent update in httr on CRAN to v1.0.
 
-In addition, this submission includes a fix for the DESCRIPTION file 
-to quote non-words.
+In addition, this package now imports non-base functions explicitly as 
+needed in accordance with R-devel changes. 
 
 Thanks! Scott Chamberlain

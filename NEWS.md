@@ -1,13 +1,13 @@
 rplos 0.5.0
 ------------
 
-## NEW FEATURES
+## MINOR IMPROVEMENTS
 
-* xxx
+* Now importing non-Base R functions from `utils`, `stats`, and `methods` packages (#90)
 
 ## BUG FIXES
 
-* xxx
+* Fixes for `httr` `v1` that broke `rplos` when length 0 list passed to `query` parameter (#89)
 
 
 rplos 0.4.7
