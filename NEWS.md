@@ -1,11 +1,11 @@
 rplos 0.5.0
 ------------
 
-## MINOR IMPROVEMENTS
+### MINOR IMPROVEMENTS
 
 * Now importing non-Base R functions from `utils`, `stats`, and `methods` packages (#90)
 
-## BUG FIXES
+### BUG FIXES
 
 * Fixes for `httr` `v1` that broke `rplos` when length 0 list passed to `query` parameter (#89)
 
@@ -13,22 +13,22 @@ rplos 0.5.0
 rplos 0.4.7
 ------------
 
-## NEW FEATURES
+### NEW FEATURES
 
 * New function `citations()` for querying the [PLOS Rich Citations API](http://api.richcitations.org/) (#88)
 
-## BUG FIXES
+### BUG FIXES
 
 * Added `vignettes/figure` to `.Rbuildignore` as requested by CRAN admin (#87)
 
 rplos 0.4.6
 ------------
 
-## NEW FEATURES
+### NEW FEATURES
 
 * API key no longer required (#86)
 
-## MINOR IMPROVEMENTS
+### MINOR IMPROVEMENTS
 
 * `searchplos()` now returns a list of length two, `meta` and `data`, and `meta` is a data.frame of metadata for the search.
 * Switched from CC0 to MIT license.
@@ -43,7 +43,7 @@ rplos 0.4.6
 * Made documentation more clear on discrepancy between PLOS website behavior and `rplos` behavior, and how to make them match, or match more closely (#76)
 * Added package level man file to allow `?rplos` to go to help page.
 
-## BUG FIXES
+### BUG FIXES
 
 * Removed some examples from `searchplos()` that are now not working for some unknown reason. (#81)
 * Previously when user set `limit=0`, we still gave back data, this is fixed, and now the `meta` slot given back, and the `data` slot gives an `NA` (#85)
@@ -51,26 +51,26 @@ rplos 0.4.6
 rplos 0.4.1
 ------------
 
-## BUG FIXES
+### BUG FIXES
 
 * Fixed some broken tests.
 
 rplos 0.4.0
 ------------
 
-## NEW FEATURES
+### NEW FEATURES
 
 * Errors from the data provider are reported now. At least we attempt to do so when they are given, for example if you specify `asc` or `desc` incorrectly with the `sort` parameter. See the [`check_response()` function](https://github.com/ropensci/rplos/blob/master/tests/testthat/test-check_response.R) for examples.
 * New functions `facetplos()` and `highplos()` using the `solr` R wrapper to the Solr indexing engine. The PLOS API just exposes the Solr endpoints, so we can use the general Solr wrapper package `solr` to allow more flexible Solr searching.
 * New function `highbrow()` to visualize highlighting results in a browser.
 * New function `plos_fulltext()` to get full text xml of PLOS articles. Helper function `full_text_urls()` constructs the URL's for full text xml.
 
-## BUG FIXES
+### BUG FIXES
 
 * Fixed bug in tests where we forgot to give a key. No key is required per se, but PLOS encourages it so we prevent a call from happening without at least a dumby key.
 * Added function `check_response()` to check responses from the PLOS API, deals with capturing server error messages, and checking for correct content type, etc.
 
-## IMPROVEMENTS
+### IMPROVEMENTS
 
 * Removed function `crossref_r()` as we are working on a package for the CrossRef API.
 * Parameter arguments in `searchplos()`, `plosauthor()`, `plosfigtabcaps()`, `plossubject()`, and `plostitle()` were changed to match closer the Solr parameter names. `terms` to `q`. `fields` to `fl`. `toquery` to `fq`.
@@ -81,13 +81,13 @@ rplos 0.4.0
 rplos 0.3.6
 ------------
 
-## NEW FEATURES
+### NEW FEATURES
 
 * All search functions (searchplos(), plosabstract(), plosauthor(), plosfigtabcaps(), plossubject(), and plostitle()) gain highlighting argument, setting to TRUE (default=FALSE) returns matching sentence fragments that were matched. NOTE that if highlighting=TRUE the output can be a list of data.frame's if returndf=TRUE, with two named elements 'data' and 'highlighting', or a list of lists if returndf=FALSE.
 * All search functions (searchplos(), plosabstract(), plosauthor(), plosfigtabcaps(), plossubject(), and plostitle()) gain sort argument. You can pass a field to sort by even if you don't return that field in the output, e.g., sort='counter_total_month desc'.
 * A tiny function parsehighlight() added to parse out html code from highlighting output.
 
-## BUG FIXES
+### BUG FIXES
 
 * Some examples in docs didn't work - fixed them.
 * Fixed bug in searchplos() that was causing elements of a return field to cause failure because they were longer than 1 (e.g., authors). Now concatenating elements of length > 1.
@@ -98,11 +98,11 @@ rplos 0.3.6
 rplos 0.3.0
 ------------
 
-## NEW FEATURES
+### NEW FEATURES
 
 * Added httr::stop_for_status() calls to a few functions to give informative http status errors when they happen
 
-## BUG FIXES
+### BUG FIXES
 
 * Fixed bug in plot_throughtime() that was throwing errors and preventing fxn from working, thanks to Ben Bolker for the fix.
 * Simplified code in many functions to have cleaner and simpler code.
@@ -113,14 +113,14 @@ rplos 0.3.0
 rplos 0.2.0
 ------------
 
-## NEW FEATURES
+### NEW FEATURES
 
 * All functions for interacting with the PLOS ALM (altmetrics) API have been removed, and are now in a separate package called alm (http://github.com/ropensci/alm).
 * Convenience functions `plosabstract`, `plosauthor`, `plosfigtabcaps`, `plossubject`, and `plostitle`, that search specifically within those sections of papers now wrap `searchplos`, so they should behave the same way.
 * ldfast() fxn added as an attempt to do ldply faster
 * performance improvements in searchplos
 
-## BUG FIXES
+### BUG FIXES
 
 * Dependency on assertthat removed since it's not on CRAN.
 * Fixed namespace conflicts by importing only functions needed from some packages.
@@ -150,20 +150,20 @@ rplos 0.1.0
 
 * Added Karthik Ram as a package author.
 
-## BUG FIXES
+### BUG FIXES
 
 * All `url` arguments in functions put inside functions as they are not likely to change that often.
 
 * Fixed `crossref` function, and added more examples.
 
-## NEW FEATURES
+### NEW FEATURES
 
-* The `alm` function (previously `almplosallviews`) gains many ## new features: now allows up to 50 DOIs per call; you can specify the source you want to get alm data from as an argument; you can specify the year you want to get alm data from as an argument.
+* The `alm` function (previously `almplosallviews`) gains many ### new features: now allows up to 50 DOIs per call; you can specify the source you want to get alm data from as an argument; you can specify the year you want to get alm data from as an argument.
 
 * Added the plosfields data file to get all the possible fields to use in function calls.
 
 
-## NEW FUNCTIONS
+### NEW FUNCTIONS
 
 * `almplosallviews` changed to `alm`.
 
@@ -181,11 +181,11 @@ rplos 0.1.0
 rplos 0.0-7
 ------------
 
-## IMPROVEMENTS AND ## BUG FIXES
+## IMPROVEMENTS AND ### BUG FIXES
 
 * ALM functions (any functions starting with alm) received updated arguments/parameters according to the ALM API version 3.0 changes.
 
-* ## Bug fixes in general across library.
+* ### Bug fixes in general across library.
 
 * Added tests.
 
@@ -196,7 +196,7 @@ rplos 0.0-7
 rplos 0.0-5
 ------------
 
-## IMPROVEMENTS AND BUG FIXES
+### IMPROVEMENTS AND BUG FIXES
 
 * `almpub` changed to `almdatepub`
 
@@ -210,7 +210,7 @@ rplos 0.0-5
 
 * more examples added to some functions
 
-## NEW FUNCTIONS
+### NEW FUNCTIONS
 
 * added function `journalnamekey` to get short keys for journals to use in searching for specific journals
 
@@ -218,6 +218,6 @@ rplos 0.0-5
 rplos 0.0-1
 ===============
 
-## NEW FEATURES
+### NEW FEATURES
 
 * released to CRAN
