@@ -1,6 +1,7 @@
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{Full text}
+%\VignetteEncoding{UTF-8}
 -->
 
 Full text

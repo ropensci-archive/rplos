@@ -1,6 +1,7 @@
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{rplos introduction}
+%\VignetteEncoding{UTF-8}
 -->
 
 rplos introduction
@@ -42,7 +43,7 @@ searchplos(q= "Helianthus", fl= "id", limit = 5)
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1      300     0       NA
+#> 1      347     0       NA
 #> 
 #> $data
 #>                             id
@@ -63,15 +64,15 @@ searchplos(q="*:*", fl='id', fq='doc_type:full', start=0, limit=5)
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1   142153     0       NA
+#> 1   158745     0       NA
 #> 
 #> $data
 #>                             id
-#> 1 10.1371/journal.pbio.1000156
-#> 2 10.1371/journal.pbio.1000106
-#> 3 10.1371/journal.pmed.1001197
-#> 4 10.1371/journal.pbio.0040294
-#> 5 10.1371/journal.pone.0093878
+#> 1 10.1371/journal.pone.0031384
+#> 2 10.1371/journal.pone.0031385
+#> 3 10.1371/journal.pone.0107441
+#> 4 10.1371/journal.pone.0000339
+#> 5 10.1371/journal.pone.0046739
 ```
 
 Get DOIs for only PLoS One articles
@@ -84,15 +85,15 @@ searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', start=0, 
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1  1014109     0       NA
+#> 1  1142335     0       NA
 #> 
 #> $data
-#>                                        id
-#> 1       10.1371/journal.pone.0094673/body
-#> 2            10.1371/journal.pone.0093878
-#> 3      10.1371/journal.pone.0093878/title
-#> 4   10.1371/journal.pone.0093878/abstract
-#> 5 10.1371/journal.pone.0093878/references
+#>                                          id
+#> 1        10.1371/journal.pone.0123754/title
+#> 2     10.1371/journal.pone.0123754/abstract
+#> 3   10.1371/journal.pone.0123754/references
+#> 4         10.1371/journal.pone.0123754/body
+#> 5 10.1371/journal.pone.0123754/introduction
 ```
 
 Get DOIs for full article in PLoS One
@@ -107,15 +108,15 @@ searchplos(q="*:*", fl='id',
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1   119014     0       NA
+#> 1   133907     0       NA
 #> 
 #> $data
 #>                             id
-#> 1 10.1371/journal.pone.0093878
-#> 2 10.1371/journal.pone.0094012
-#> 3 10.1371/journal.pone.0094113
-#> 4 10.1371/journal.pone.0094154
-#> 5 10.1371/journal.pone.0094152
+#> 1 10.1371/journal.pone.0031384
+#> 2 10.1371/journal.pone.0031385
+#> 3 10.1371/journal.pone.0107441
+#> 4 10.1371/journal.pone.0000339
+#> 5 10.1371/journal.pone.0046739
 ```
 
 Search for many terms
@@ -130,7 +131,7 @@ lapply(q, function(x) searchplos(x, limit=2))
 #> [[1]]
 #> [[1]]$meta
 #>   numFound start maxScore
-#> 1    24939     0       NA
+#> 1    27832     0       NA
 #> 
 #> [[1]]$data
 #>                             id
@@ -141,7 +142,7 @@ lapply(q, function(x) searchplos(x, limit=2))
 #> [[2]]
 #> [[2]]$meta
 #>   numFound start maxScore
-#> 1    42123     0       NA
+#> 1    46467     0       NA
 #> 
 #> [[2]]$data
 #>                                                        id
@@ -152,7 +153,7 @@ lapply(q, function(x) searchplos(x, limit=2))
 #> [[3]]
 #> [[3]]$meta
 #>   numFound start maxScore
-#> 1   121719     0       NA
+#> 1   134888     0       NA
 #> 
 #> [[3]]$data
 #>                             id
@@ -180,7 +181,7 @@ plosauthor(q = "Eisen", fl = "author", limit = 5)
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1      741     0       NA
+#> 1      764     0       NA
 #> 
 #> $data
 #>             author
@@ -201,7 +202,7 @@ plosabstract(q = 'drosophila', fl='id,title', limit = 5)
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1     2498     0       NA
+#> 1     2669     0       NA
 #> 
 #> $data
 #>                             id
@@ -228,21 +229,15 @@ plostitle(q='drosophila', fl='title,journal', limit=5)
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1     1603     0       NA
+#> 1     1718     0       NA
 #> 
 #> $data
-#>                      journal
-#> 1               PLoS Biology
-#> 2              PLoS Genetics
-#> 3               PLoS Biology
-#> 4                   PLoS ONE
-#> 5 PLoS Computational Biology
-#>                                                   title
-#> 1           School Students as Drosophila Experimenters
-#> 2 Phenotypic Plasticity of the Drosophila Transcriptome
-#> 3         Identification of Drosophila MicroRNA Targets
-#> 4           Quantification of Food Intake in Drosophila
-#> 5            Parametric Alignment of Drosophila Genomes
+#>        journal                                         title
+#> 1 PLoS Biology Identification of Drosophila MicroRNA Targets
+#> 2     PLoS ONE                     A DNA Virus of Drosophila
+#> 3 PLoS Biology   School Students as Drosophila Experimenters
+#> 4 PLoS Biology   Expression in Aneuploid Drosophila S2 Cells
+#> 5     PLoS ONE   Quantification of Food Intake in Drosophila
 ```
 
 ### Search for terms and visualize results as a histogram OR as a plot through time
@@ -259,11 +254,11 @@ out$table
 
 ```
 #>   No_Articles       Term
-#> 1        8335     monkey
-#> 2         300 Helianthus
-#> 3         818  sunflower
-#> 4       91981    protein
-#> 5        1023      whale
+#> 1        9098     monkey
+#> 2         347 Helianthus
+#> 3         937  sunflower
+#> 4      101040    protein
+#> 5        1139      whale
 ```
 
 
@@ -282,7 +277,7 @@ plosword('Helianthus', callopts=list(verbose=TRUE))
 
 ```
 #> Number of articles with search term 
-#>                                 300
+#>                                 347
 ```
 
 ### Visualize terms

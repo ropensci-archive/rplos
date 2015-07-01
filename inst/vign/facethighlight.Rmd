@@ -1,6 +1,7 @@
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{Faceted and highlighted searches}
+%\VignetteEncoding{UTF-8}
 -->
 
 Faceted and highlighted searches

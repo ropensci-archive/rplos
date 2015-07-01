@@ -1,6 +1,7 @@
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{Faceted and highlighted searches}
+%\VignetteEncoding{UTF-8}
 -->
 
 Faceted and highlighted searches
@@ -37,17 +38,17 @@ facetplos(q='*:*', facet.field='journal')
 #> 
 #> $facet_fields
 #> $facet_fields$journal
-#>                                  X1     X2
-#> 1                          plos one 955046
-#> 2                     plos genetics  41615
-#> 3                    plos pathogens  36230
-#> 4        plos computational biology  30544
-#> 5                      plos biology  26456
-#> 6  plos neglected tropical diseases  26120
-#> 7                     plos medicine  18672
-#> 8              plos clinical trials    521
-#> 9                  plos collections     15
-#> 10                     plos medicin      9
+#>                                  X1      X2
+#> 1                          plos one 1083485
+#> 2                     plos genetics   45073
+#> 3                    plos pathogens   39357
+#> 4        plos computational biology   32816
+#> 5  plos neglected tropical diseases   29607
+#> 6                      plos biology   27463
+#> 7                     plos medicine   19179
+#> 8              plos clinical trials     521
+#> 9                  plos collections      15
+#> 10                     plos medicin       9
 #> 
 #> 
 #> $facet_dates
@@ -67,21 +68,21 @@ facetplos(q='*:*', facet.field='journal', facet.query='cell,bird')
 ```
 #> $facet_queries
 #>        term value
-#> 1 cell,bird    18
+#> 1 cell,bird    21
 #> 
 #> $facet_fields
 #> $facet_fields$journal
-#>                                  X1     X2
-#> 1                          plos one 955046
-#> 2                     plos genetics  41615
-#> 3                    plos pathogens  36230
-#> 4        plos computational biology  30544
-#> 5                      plos biology  26456
-#> 6  plos neglected tropical diseases  26120
-#> 7                     plos medicine  18672
-#> 8              plos clinical trials    521
-#> 9                  plos collections     15
-#> 10                     plos medicin      9
+#>                                  X1      X2
+#> 1                          plos one 1083485
+#> 2                     plos genetics   45073
+#> 3                    plos pathogens   39357
+#> 4        plos computational biology   32816
+#> 5  plos neglected tropical diseases   29607
+#> 6                      plos biology   27463
+#> 7                     plos medicine   19179
+#> 8              plos clinical trials     521
+#> 9                  plos collections      15
+#> 10                     plos medicin       9
 #> 
 #> 
 #> $facet_dates
@@ -109,12 +110,12 @@ facetplos(q='*:*', url=url, facet.date='publication_date',
 #> $facet_dates
 #> $facet_dates$publication_date
 #>                   date value
-#> 1 2015-01-17T00:00:00Z     0
-#> 2 2015-01-18T00:00:00Z     0
-#> 3 2015-01-19T00:00:00Z   406
-#> 4 2015-01-20T00:00:00Z   930
-#> 5 2015-01-21T00:00:00Z   754
-#> 6 2015-01-22T00:00:00Z   230
+#> 1 2015-06-26T00:00:00Z  1918
+#> 2 2015-06-27T00:00:00Z     0
+#> 3 2015-06-28T00:00:00Z  1814
+#> 4 2015-06-29T00:00:00Z  2573
+#> 5 2015-06-30T00:00:00Z   759
+#> 6 2015-07-01T00:00:00Z     0
 #> 
 #> 
 #> $facet_ranges

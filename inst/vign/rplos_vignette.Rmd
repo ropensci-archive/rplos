@@ -1,6 +1,7 @@
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{rplos introduction}
+%\VignetteEncoding{UTF-8}
 -->
 
 rplos introduction
