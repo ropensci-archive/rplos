@@ -33,7 +33,7 @@ Imports:
     lubridate,
     reshape2,
     whisker,
-    solr
+    solr (<= 0.1.4)
 Suggests:
     XML,
     testthat,
