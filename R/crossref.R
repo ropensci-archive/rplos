@@ -2,7 +2,6 @@
 #' 
 #' @rdname crossref-defunct
 #' @keywords internal
-crossref <- function(...)
-{
-  .Defunct("rcrossref", "Crossref functionality moved to package rcrossref")
+crossref <- function(...) {
+  .Defunct("rcrossref", msg = "Crossref functionality moved to package rcrossref")
 }

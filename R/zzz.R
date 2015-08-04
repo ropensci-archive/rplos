@@ -94,3 +94,18 @@ check_response <- function(x){
 
 strextract <- function(str, pattern) regmatches(str, regexpr(pattern, str))
 strtrim <- function(str) gsub("^\\s+|\\s+$", "", str)
+
+plos_is_doi <- function(x) {
+  grepl("[0-9]+\\.[0-9]+/.+", x)
+}
+
+plos_check_dois <- function(x) {
+  stopifnot(is(x, "list") || is(x, "vector"))
+  x <- vapply(x, URLdecode, "")
+  res <- vapply(x, plos_is_doi, logical(1))
+  if (all(res)) {
+    TRUE
+  } else {
+    stop("These are probably not DOIs:\n\n", paste0(names(res[!res]), "\n"), call. = FALSE)
+  }
+}

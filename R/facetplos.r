@@ -21,7 +21,7 @@
 #' facetplos(q='*:*', facet.field='journal', facet.query='cell,bird')
 #'
 #' # Date faceting
-#' facetplos(q='*:*', url=url, facet.date='publication_date',
+#' facetplos(q='*:*', facet.date='publication_date',
 #'  facet.date.start='NOW/DAY-5DAYS', facet.date.end='NOW', facet.date.gap='+1DAY')
 #'
 #' # Range faceting
@@ -51,9 +51,9 @@ facetplos <- function(q="*:*", facet.query=NA, facet.field=NA,
   facet.range.include=NA, start=NA, rows=NA, url=NA, sleep = 6, callopts=list(), ...)
 {
   # Enforce rate limits
-  if(!Sys.getenv('plostime') == ""){
+  if (!Sys.getenv('plostime') == "") {
     timesince <- as.numeric(now()) - as.numeric(Sys.getenv('plostime'))
-    if(timesince < 6){
+    if (timesince < 6) {
       stopifnot(is.numeric(sleep))
       Sys.sleep(sleep)
     }
@@ -74,5 +74,5 @@ facetplos <- function(q="*:*", facet.query=NA, facet.field=NA,
 
   return( out )
 
-  Sys.setenv(plostime=as.numeric(now()))
+  Sys.setenv(plostime = as.numeric(now()))
 }

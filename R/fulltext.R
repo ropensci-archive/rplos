@@ -12,6 +12,7 @@
 #' }
 
 full_text_urls <- function(doi){
+  plos_check_dois(doi)
   makeurl <- function(x){
     doijournal <- strsplit(x, "\\.")[[1]][[3]]
     journal <- switch(doijournal,

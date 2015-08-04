@@ -14,21 +14,26 @@
 #' highbrow(out)
 #' }
 
-highbrow <- function(input=NULL, output=NULL, browse=TRUE)
-{
-  if(is.null(input))
-    stop("Please supply some input")
+highbrow <- function(input=NULL, output=NULL, browse=TRUE) {
+  
+  if (is.null(input)) {
+    stop("Please supply some input", call. = FALSE)
+  }
+  if (!is(input, "list")) {
+    stop("Please supply a list object", call. = FALSE)
+  }
+  plos_check_dois(names(input))
 
   # replace length 0 lists with "no data"
-  input <- lapply(input, function(x) ifelse(length(x)==0, "no data", x))
+  input <- lapply(input, function(x) ifelse(length(x) == 0, "no data", x))
 
   tmp <- NULL
   outlist <- list()
-  for(i in seq_along(input)){
+  for (i in seq_along(input)) {
     tmp$doi <- names(input[i])
     content_tmp <- input[[i]][[1]]
-    if(length(content_tmp) > 1){
-      content_tmp <- paste(content_tmp, collapse=' ... ')
+    if (length(content_tmp) > 1) {
+      content_tmp <- paste(content_tmp, collapse = ' ... ')
     }
     tmp$content <- content_tmp
     outlist[[i]] <- tmp
@@ -78,8 +83,9 @@ highbrow <- function(input=NULL, output=NULL, browse=TRUE)
   rendered <- whisker.render(template)
   rendered <- gsub("&lt;em&gt;", "<b>", rendered)
   rendered <- gsub("&lt;/em&gt;", "</b>", rendered)
-  if(is.null(output))
-    output <- tempfile(fileext=".html")
+  if (is.null(output)) {
+    output <- tempfile(fileext = ".html")
+  }
   write(rendered, file = output)
-  if(browse) browseURL(output)
+  if (browse) browseURL(output) else output
 }

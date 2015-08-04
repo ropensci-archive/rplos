@@ -172,7 +172,7 @@ facetplos(q='*:*', facet.field='journal', facet.query='cell')
 facetplos(q='*:*', facet.field='journal', facet.query='cell,bird')
 
 # Date faceting
-facetplos(q='*:*', url=url, facet.date='publication_date',
+facetplos(q='*:*', facet.date='publication_date',
  facet.date.start='NOW/DAY-5DAYS', facet.date.end='NOW', facet.date.gap='+1DAY')
 
 # Range faceting
