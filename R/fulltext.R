@@ -66,7 +66,7 @@ plos_fulltext <- function(doi, ...){
     out <- httr::GET(x, ...)
     httr::warn_for_status(out)
     stopifnot(out$headers$`content-type` == 'text/xml')
-    httr::content(out, as = "text")
+    httr::content(out, as = "text", encoding = "UTF-8")
   }
   res <- lapply(urls, getfulltext)
   names(res) <- doi
