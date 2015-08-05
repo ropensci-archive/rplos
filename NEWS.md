@@ -1,3 +1,15 @@
+rplos 0.5.2
+------------
+
+### MINOR IMPROVEMENTS
+
+* More tests added (#94)
+
+### BUG FIXES
+
+* Fix encoding in parsing of XML data in `plos_fulltext()` to 
+avoid unicode problems (#93)
+
 rplos 0.5.0
 ------------
 
