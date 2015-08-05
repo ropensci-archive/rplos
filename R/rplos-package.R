@@ -31,7 +31,7 @@
 #' }
 #' 
 #' @importFrom stats setNames na.omit
-#' @importFrom utils browseURL
+#' @importFrom utils browseURL URLdecode
 #' @importFrom methods is
 #' @docType package
 #' @name rplos
