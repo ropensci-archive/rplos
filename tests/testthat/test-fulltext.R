@@ -30,7 +30,7 @@ test_that("plos_fulltext", {
   
   aa <- plos_fulltext(doi = '10.1371/journal.pone.0086169')
   bb <- plos_fulltext(c('10.1371/journal.pone.0086169', '10.1371/journal.pbio.1001845'))
-  dois <- searchplos(q = "*:*", fq = 'doc_type:full', limit = 3)$data$id
+  dois <- searchplos(q = "*:*", fq = list('doc_type:full', 'article_type:"Research Article"'), limit = 3)$data$id
   cc <- plos_fulltext(dois)
   
   # citations returns the correct classes
