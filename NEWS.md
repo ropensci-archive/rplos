@@ -1,3 +1,10 @@
+rplos 0.5.4
+------------
+
+### MINOR IMPROVEMENTS
+
+* Change `solr` dependency to require version `v0.1.6` or less (#94)
+
 rplos 0.5.2
 ------------
 

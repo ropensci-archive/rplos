@@ -7,7 +7,7 @@ Description: A programmatic interface to the 'SOLR' based
     articles, making plots, doing 'faceted' searches,
     'highlight' searches, and viewing results of 'highlighted'
     searches in a browser.
-Version: 0.5.2.9000
+Version: 0.5.4
 License: MIT + file LICENSE
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"),
@@ -33,7 +33,7 @@ Imports:
     lubridate,
     reshape2,
     whisker,
-    solr (<= 0.1.4)
+    solr (<= 0.1.6)
 Suggests:
     XML,
     testthat,
