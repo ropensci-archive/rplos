@@ -1,8 +1,8 @@
 #' Search PLoS Journals figure and table captions.
-#' 
+#'
 #' @export
 #' @template plos
-#' @return fields that you specify to return in a data.frame, along with the 
+#' @return fields that you specify to return in a data.frame, along with the
 #' 		DOI's found.
 #' @examples \dontrun{
 #' plosfigtabcaps('ecology', 'id', limit=100)
@@ -16,7 +16,7 @@ plosfigtabcaps <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL,
   calls_vec <- c("terms", "fields", "toquery", "callopts") %in% calls
   if(any(calls_vec))
     stop("The parameters terms, fields, toquery, and callopts replaced with q, fl, fq, ..., respectively")
-  
+
   searchplos(q=paste('figure_table_caption:', '"', q, '"', sep=""), fl=fl, fq=fq,
              sort=sort, start=start, limit=limit,
              sleep=sleep, ...)

@@ -41,12 +41,12 @@
 #'
 #' # Now let's try to narrow our results to 7 words apart. Here I'm changing the ~15 to ~7
 #' searchplos(q='everything:"sports alcohol"~7', fl='title', fq='doc_type:full')
-#' 
+#'
 #' # A list of articles about social networks that are popular on a social network
 #' searchplos(q="*:*",fl=c('id','alm_twitterCount'),
 #'    fq=list('doc_type:full','subject:"Social networks"','alm_twitterCount:[100 TO 10000]'),
-#'    sort='counter_total_month desc')  
-#' 
+#'    sort='counter_total_month desc')
+#'
 #' # Now, lets also only look at articles that have seen some activity on twitter.
 #' # Add "fq=alm_twitterCount:[1 TO *]" as a parameter within the fq argument.
 #' searchplos(q='everything:"sports alcohol"~7', fl=c('alm_twitterCount','title'),

@@ -1,5 +1,5 @@
 #' Search PLoS Journals titles.
-#' 
+#'
 #' @export
 #' @template plos
 #' @return Titles, in addition to any other fields requested in a data.frame.
@@ -17,7 +17,7 @@ plostitle <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL,
   calls_vec <- c("terms", "fields", "toquery", "callopts") %in% calls
   if(any(calls_vec))
     stop("The parameters terms, fields, toquery, and callopts replaced with q, fl, fq, ..., respectively")
-  
+
   searchplos(q=paste('title:', '"', q, '"', sep=""), fl=fl, fq=fq,
              sort=sort, start=start, limit=limit,
              sleep=sleep, ...)

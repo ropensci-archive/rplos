@@ -3,11 +3,11 @@
 #' @export
 #' @import ggplot2
 #' @importFrom plyr ldply
-#' 
+#'
 #' @param terms search terms (character)
 #' @param vis visualize results in bar plot or not (TRUE or FALSE)
 #' @param ... Optional additional curl options (debugging tools mostly)
-#' 
+#'
 #' @return Number of search results (vis = FALSE), or number of search in a table
 #'    and a histogram of results (vis = TRUE).
 #' @examples \dontrun{

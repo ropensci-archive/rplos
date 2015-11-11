@@ -15,7 +15,7 @@
 #' }
 
 highbrow <- function(input=NULL, output=NULL, browse=TRUE) {
-  
+
   if (is.null(input)) {
     stop("Please supply some input", call. = FALSE)
   }
