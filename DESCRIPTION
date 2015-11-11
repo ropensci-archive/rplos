@@ -40,3 +40,4 @@ Suggests:
     roxygen2,
     knitr
 Enhances: tm
+RoxygenNote: 5.0.1
