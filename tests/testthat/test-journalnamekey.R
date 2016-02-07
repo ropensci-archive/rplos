@@ -16,5 +16,5 @@ test_that("journalnamekey returns the correct class", {
 test_that("journalnamekey returns the correct length vector", {
 	skip_on_cran()
 
-	expect_that(length(journalnamekey()), equals(9))
+	expect_gt(length(journalnamekey()), 0)
 })
