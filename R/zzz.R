@@ -69,25 +69,30 @@ ploscompact <- function(l) Filter(Negate(is.null), l)
 #' @importFrom jsonlite fromJSON
 #' @keywords internal
 check_response <- function(x){
-  if(!x$status_code == 200){
-    stnames <- names(content(x))
-    if(!is.null(stnames)){
-      if('error' %in% stnames){
-        stop(sprintf("(%s) - %s", x$status_code, content(x)$error$msg), call. = FALSE)
-      } else { stop(sprintf("(%s)", x$status_code), call. = FALSE) }
-    } else { stop_for_status(x) }
+  if (!x$status_code == 200) {
+    stnames <- names(jsonlite::fromJSON(utf8cont(x), FALSE))
+    if (!is.null(stnames)) {
+      if ('error' %in% stnames) {
+        stop(sprintf("(%s) - %s", x$status_code, jsonlite::fromJSON(utf8cont(x), FALSE)$error$msg), call. = FALSE)
+      } else { 
+        stop(sprintf("(%s)", x$status_code), call. = FALSE) 
+      }
+    } else { 
+      stop_for_status(x) 
+    }
   }
   stopifnot(x$headers$`content-type` == 'application/json;charset=UTF-8')
-  res <- content(x, as = 'text', encoding = "UTF-8")
+  res <- utf8cont(x)
   out <- jsonlite::fromJSON(res, FALSE)
-  if('response' %in% names(out)){
-    if(out$response$numFound == 0){
+  if ('response' %in% names(out)) { 
+    if (out$response$numFound == 0) {
       message("Sorry, no data found")
       out
     }
   } else {
-    if( class(try(out$response, silent=TRUE))=="try-error" | is.null(try(out$response, silent=TRUE)) )
-      stop("Sorry, no data found")
+    if ( class(try(out$response, silent = TRUE)) == "try-error" | is.null(try(out$response, silent = TRUE)) ) {
+      stop("Sorry, no data found", call. = FALSE)
+    }
   }
   return( out )
 }
@@ -109,3 +114,5 @@ plos_check_dois <- function(x) {
     stop("These are probably not DOIs:\n\n", paste0(names(res[!res]), "\n"), call. = FALSE)
   }
 }
+
+utf8cont <- function(x) httr::content(x, "text", encoding = "UTF-8")

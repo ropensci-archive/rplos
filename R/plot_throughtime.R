@@ -41,7 +41,7 @@ timesearch <- function(terms, limit, ...){
   args <- ploscompact(list(q = terms, fl = "publication_date", wt = "json", rows = limit))
   tt <- GET(pbase(), query = args, ...)
   stop_for_status(tt)
-  res <- content(tt, as = "text")
+  res <- utf8cont(tt)
   json <- jsonlite::fromJSON(res, FALSE)
   tempresults <- json$response$docs
   ttt <- data.frame( do.call(rbind, tempresults), stringsAsFactors = FALSE )

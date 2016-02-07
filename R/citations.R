@@ -37,8 +37,7 @@ citations <- function(uri = NULL, doi = NULL, random = NULL, parse = FALSE, ...)
   if (length(args) == 0) args <- NULL
   res <- GET(richbase(), query = args, ...)
   stop_for_status(res)
-  tt <- httr::content(res, "text")
-  jsonlite::fromJSON(tt, parse)
+  jsonlite::fromJSON(utf8cont(res), parse)
 }
 
 richbase <- function() "http://api.richcitations.org/papers"

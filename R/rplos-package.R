@@ -33,6 +33,7 @@
 #' @importFrom stats setNames na.omit
 #' @importFrom utils browseURL URLdecode
 #' @importFrom methods is
+#' @importFrom httr GET content stop_for_status
 #' @docType package
 #' @name rplos
 #' @aliases rplos rplos-package

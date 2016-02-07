@@ -7,18 +7,16 @@ Description: A programmatic interface to the 'SOLR' based
     articles, making plots, doing 'faceted' searches,
     'highlight' searches, and viewing results of 'highlighted'
     searches in a browser.
-Version: 0.5.4.9200
+Version: 0.5.4.9590
 License: MIT + file LICENSE
-Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
-    email = "myrmecocystus@gmail.com"),
-    person("Carl", "Boettiger", role = "aut",
-    email = "cboettig@gmail.com"),
-    person("Karthik", "Ram", role = "aut",
-    email = "karthik.ram@gmail.com"))
+Authors@R: c(
+    person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus@gmail.com"),
+    person("Carl", "Boettiger", role = "aut", email = "cboettig@gmail.com"),
+    person("Karthik", "Ram", role = "aut", email = "karthik.ram@gmail.com")
+    )
 URL: https://github.com/ropensci/rplos
 BugReports: https://github.com/ropensci/rplos/issues
 LazyData: true
-Roxygen: list(wrap = FALSE)
 VignetteBuilder: knitr
 Depends:
     ggplot2
@@ -26,7 +24,7 @@ Imports:
     methods,
     utils,
     stats,
-    httr,
+    httr (>= 1.0.0),
     jsonlite,
     dplyr,
     plyr,
@@ -37,7 +35,6 @@ Imports:
 Suggests:
     XML,
     testthat,
-    roxygen2,
     knitr
 Enhances: tm
 RoxygenNote: 5.0.1

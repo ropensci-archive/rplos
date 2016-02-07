@@ -120,7 +120,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
 	if (length(argsgetnum) == 0) argsgetnum <- NULL
 	getnum_tmp <- GET(pbase(), query = argsgetnum)
   stop_for_status(getnum_tmp)
-  getnum <- httr::content(getnum_tmp)
+  getnum <- jsonlite::fromJSON(utf8cont(getnum_tmp), FALSE)
 	getnumrecords <- getnum$response$numFound
 	if(getnumrecords > limit){getnumrecords <- limit} else{getnumrecords <- getnumrecords}
 
