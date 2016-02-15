@@ -1,3 +1,13 @@
+rplos 0.5.6
+------------
+
+### MINOR IMPROVEMENTS
+
+* move `ggplot2` from _Depends_ to _Imports_, and using `@importFrom` for 
+`ggplot2` functions, now all imports are using `@importFrom` (#99)
+* Fixes for `httr::content()` to parse manually, and use explicit 
+encoding of `UTF-8` (#102)
+
 rplos 0.5.4
 ------------
 

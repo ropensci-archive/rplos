@@ -1,7 +1,7 @@
-R CMD CHECK passed on my local OS X install on R 3.2.2 and R development
+R CMD CHECK passed on my local OS X install on R 3.2.3 and R development
 version, Ubuntu running on Travis-CI, and Win-Builder.
 
-This submission is simply to bump requirement of solr v0.1.4 to v0.1.6
-so that I can submit a new version of solr to CRAN. 
+This submission fixes http requests via httr for changes in that package,
+and moves ggplot2 from depends to imports. 
 
 Thanks! Scott Chamberlain
