@@ -49,11 +49,10 @@ addmissing <- function(x){
 #'
 #' @export
 #' @keywords internal
-insertnones <- function(x)
-{
+insertnones <- function(x) {
 	fields = NULL
 	f2 <- strsplit(fields, ",")[[1]]
-	toadd <- f2[! f2 %in% names(x) ]
+	toadd <- f2[!f2 %in% names(x) ]
 	values <- rep("none", length(toadd))
 	names(values) <- toadd
 	values <- as.list(values)
@@ -61,12 +60,10 @@ insertnones <- function(x)
 	x
 }
 
-# plyr compact
 ploscompact <- function(l) Filter(Negate(is.null), l)
 
 #' Check response from PLOS, including status codes, server error messages, mime-type, etc.
 #' @export
-#' @importFrom jsonlite fromJSON
 #' @keywords internal
 check_response <- function(x){
   if (!x$status_code == 200) {

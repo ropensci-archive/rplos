@@ -34,6 +34,14 @@
 #' @importFrom utils browseURL URLdecode
 #' @importFrom methods is
 #' @importFrom httr GET content stop_for_status
+#' @importFrom jsonlite fromJSON
+#' @importFrom dplyr left_join rbind_all
+#' @importFrom plyr ddply llply summarise ldply
+#' @importFrom reshape2 melt
+#' @importFrom whisker whisker.render
+#' @importFrom solr solr_highlight solr_facet
+#' @importFrom lubridate now
+#' @import ggplot2
 #' @docType package
 #' @name rplos
 #' @aliases rplos rplos-package

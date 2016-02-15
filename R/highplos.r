@@ -1,9 +1,8 @@
 #' Do highlighted searches on PLOS Journals full-text content
 #'
-#' @importFrom solr solr_highlight solr_facet
+#' @export
 #' @template high
 #' @return A list.
-#' @export
 #' @examples \dontrun{
 #' highplos(q='alcohol', hl.fl = 'abstract', rows=10)
 #' highplos(q='alcohol', hl.fl = c('abstract','title'), rows=10)

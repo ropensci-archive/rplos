@@ -1,9 +1,6 @@
 #' Search results on a keyword over all fields in PLoS Journals.
 #'
 #' @export
-#' @import ggplot2
-#' @importFrom plyr ldply
-#'
 #' @param terms search terms (character)
 #' @param vis visualize results in bar plot or not (TRUE or FALSE)
 #' @param ... Optional additional curl options (debugging tools mostly)

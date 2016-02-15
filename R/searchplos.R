@@ -1,9 +1,6 @@
 #' Base function to search PLoS Journals
 #'
 #' @export
-#' @importFrom dplyr rbind_all
-#' @importFrom plyr ldply
-#' @importFrom lubridate now
 #' @template plos
 #' @return An object of class "plos", with a list of length two, each element being
 #' a list itself.

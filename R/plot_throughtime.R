@@ -1,10 +1,6 @@
 #' Plot results through time for serach results from PLoS Journals.
 #'
 #' @export
-#' @import ggplot2
-#' @importFrom dplyr left_join
-#' @importFrom plyr ddply llply summarise
-#' @importFrom reshape2 melt
 #' @param terms search terms (character)
 #' @param limit number of results to return (integer)
 #' @param ... optional additional curl options (debugging tools mostly)
