@@ -29,6 +29,7 @@ out[[1]] # results in a data frame
 out[[2]] # results in a bar plot
 
 # Pass in curl options
+library("httr")
 plosword('Helianthus', config=verbose())
 }
 }

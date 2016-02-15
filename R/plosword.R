@@ -15,6 +15,7 @@
 #' out[[2]] # results in a bar plot
 #'
 #' # Pass in curl options
+#' library("httr")
 #' plosword('Helianthus', config=verbose())
 #' }
 

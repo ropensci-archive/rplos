@@ -41,7 +41,7 @@
 #' @importFrom whisker whisker.render
 #' @importFrom solr solr_highlight solr_facet
 #' @importFrom lubridate now
-#' @import ggplot2
+#' @importFrom ggplot2 ggplot aes geom_bar theme_grey geom_line scale_colour_brewer labs theme
 #' @docType package
 #' @name rplos
 #' @aliases rplos rplos-package
