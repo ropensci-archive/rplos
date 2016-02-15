@@ -9,7 +9,7 @@ test_that("highbrow", {
 
   expect_is(out, "list")
   expect_is(aa, "character")
-  expect_match(aa, "/var/folders")
+  expect_match(aa, ".html")
   
   # output parameter works
   ff <- tempfile(pattern = "fart", fileext = ".html")
