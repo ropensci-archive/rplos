@@ -3,8 +3,6 @@
 #' @export
 #' @param uri (character) A URI, of the form \code{http://dx.doi.org/<DOI>}
 #' @param doi (character) A PLOS journals DOI
-#' @param random (integer) A number of random articles to get data for.
-#' Default: NULL
 #' @param parse (logical) Passed to \code{\link[jsonlite]{fromJSON}}, toggles
 #' whether we return json parsed to data.frame's where possible, or not.
 #' Default: FALSE
@@ -23,17 +21,16 @@
 #' citations(doi = "10.1371/journal.pone.0000000")
 #' ids <- searchplos(q='ecology', fl='id', limit = 20)$data$id
 #' citations(doi = ids[1])
-#'
-#' # get citations for a random article
-#' citations(random = 1)
 #' }
 
-citations <- function(uri = NULL, doi = NULL, random = NULL, parse = FALSE, ...) {
+citations <- function(uri = NULL, doi = NULL, parse = FALSE, ...) {
+  calls <- names(sapply(match.call(), deparse))[-1]
+  if ("random" %in% calls) stop("The parameter 'random' has been removed", call. = FALSE)
+  
   # one has to be non-NULL
-  stopifnot(length(ploscompact(list(uri, doi, random))) == 1)
-  stopifnot(checknum(random))
-  if (is.null(random)) uri <- uriparse(uri, doi)
-  args <- ploscompact(list(uri = uri, random = random))
+  stopifnot(length(ploscompact(list(uri, doi))) == 1)
+  uri <- uriparse(uri, doi)
+  args <- ploscompact(list(uri = uri))
   if (length(args) == 0) args <- NULL
   res <- GET(richbase(), query = args, ...)
   stop_for_status(res)
@@ -41,14 +38,6 @@ citations <- function(uri = NULL, doi = NULL, random = NULL, parse = FALSE, ...)
 }
 
 richbase <- function() "http://api.richcitations.org/papers"
-
-checknum <- function(x) {
-  if (is.null(x)) {
-    TRUE
-  } else {
-    is.numeric(x)
-  }
-}
 
 uriparse <- function(x, y) {
   # both can't be null

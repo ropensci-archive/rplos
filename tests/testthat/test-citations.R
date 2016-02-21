@@ -14,10 +14,7 @@ test_that("citations", {
   d <- citations(doi = "10.1371/journal.pone.0000000")
   ids <- searchplos(q = 'ecology', fl = 'id', limit = 20)$data$id
   e <- citations(doi = ids[1])
-
-  # get citations for a random article
-  f <- citations(random = 1)
-
+  
   # citations returns the correct classes
   expect_is(a, "list")
   expect_is(a$uri, "character")

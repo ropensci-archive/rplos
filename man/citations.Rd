@@ -4,15 +4,12 @@
 \alias{citations}
 \title{Search PLOS Rich Citations API}
 \usage{
-citations(uri = NULL, doi = NULL, random = NULL, parse = FALSE, ...)
+citations(uri = NULL, doi = NULL, parse = FALSE, ...)
 }
 \arguments{
 \item{uri}{(character) A URI, of the form \code{http://dx.doi.org/<DOI>}}
 
 \item{doi}{(character) A PLOS journals DOI}
-
-\item{random}{(integer) A number of random articles to get data for.
-Default: NULL}
 
 \item{parse}{(logical) Passed to \code{\link[jsonlite]{fromJSON}}, toggles
 whether we return json parsed to data.frame's where possible, or not.
@@ -41,9 +38,6 @@ citations(doi = "10.1371\%2Fjournal.pone.0000000")
 citations(doi = "10.1371/journal.pone.0000000")
 ids <- searchplos(q='ecology', fl='id', limit = 20)$data$id
 citations(doi = ids[1])
-
-# get citations for a random article
-citations(random = 1)
 }
 }
 \references{
