@@ -3,9 +3,8 @@ language: r
 apt_packages:
  - r-cran-tm
 
-r_github_packages:
- - jimhester/robustr
- - jimhester/covr
+r_packages:
+ - covr
 
 after_success:
   - Rscript -e 'covr::codecov()'
