@@ -1,10 +1,14 @@
 language: r
+sudo: false
+cache: packages
 
-apt_packages:
- - r-cran-tm
+addons:
+  apt:
+    packages:
+      - r-cran-tm
 
-r_packages:
- - covr
+r_github_packages:
+ - jimhester/covr
 
 after_success:
   - Rscript -e 'covr::codecov()'
