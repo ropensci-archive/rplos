@@ -1,5 +1,6 @@
 environment:
   R_CHECK_ARGS: --no-build-vignettes --no-manual
+  R_VERSION: stable
 
 init:
   ps: |
