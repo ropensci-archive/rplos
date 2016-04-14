@@ -4,7 +4,7 @@ context("journalnamekey")
 test_that("journalnamekey returns the correct value", {
 	skip_on_cran()
 
-	expect_output(paste0(journalnamekey(), collapse = " "), "PLoSONE")
+	expect_true(grepl("PLoSONE", paste0(journalnamekey(), collapse = " ")))
 })
 
 test_that("journalnamekey returns the correct class", {

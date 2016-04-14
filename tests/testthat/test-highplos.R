@@ -32,7 +32,7 @@ test_that("highplos", {
   expect_is(dd[[1]], "list")
   expect_is(dd[[1]][[1]], "character")
   ## character strings are longer than result from cc call
-  expect_more_than(nchar(dd[[1]][[1]]), nchar(cc[[1]][[1]]))
+  expect_gt(nchar(dd[[1]][[1]]), nchar(cc[[1]][[1]]))
 
   # fails well
   expect_error(length(highplos(verbose = FALSE)), "\"q\" is missing, with no default")

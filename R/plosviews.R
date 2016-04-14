@@ -40,6 +40,6 @@ plosviews <- function(search, byfield = NULL, views = 'alltime', limit = NULL, .
 	tt <- GET(pbase(), query = args, ...)
 	stop_for_status(tt)
 	temp <- jsonlite::fromJSON(utf8cont(tt), FALSE)$response$docs
-  df <- do.call(rbind, lapply(temp, function(x) data.frame(x)))
+  df <- do.call(rbind, lapply(temp, function(x) data.frame(x, stringsAsFactors = FALSE)))
 	df[order(df[,2]), ]
 }

@@ -39,7 +39,7 @@ test_that("facetplos", {
   expect_is(cc$facet_fields, "list")
   expect_is(cc$facet_fields[[1]], "data.frame")
   expect_named(cc$facet_fields, 'journal')
-  expect_less_than(NROW(cc$facet_fields$journal), NROW(aa$facet_fields$journal))
+  expect_lt(NROW(cc$facet_fields$journal), NROW(aa$facet_fields$journal))
 
   expect_is(dd, "list")
   expect_is(dd$facet_queries, "data.frame")
