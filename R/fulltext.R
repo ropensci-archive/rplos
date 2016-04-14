@@ -22,9 +22,15 @@ full_text_urls <- function(doi){
                       pgen = 'plosgenetics',
                       pcbi = 'ploscompbiol',
                       ppat = 'plospathogens',
-                      pntd = 'plosntds')
-    ub <- 'http://www.%s.org/article/fetchObject.action?uri=info:doi/%s&representation=XML'
-    sprintf(ub, journal, x)
+                      pntd = 'plosntds',
+                      pctr = 'plosclinicaltrials')
+    if ("plosclinicaltrials" == journal) {
+      ub <- 'http://journals.plos.org/plosclinicaltrials/article/asset?id=%s.XML'
+      sprintf(ub, x)
+    } else {
+      ub <- 'http://www.%s.org/article/fetchObject.action?uri=info:doi/%s&representation=XML'
+      sprintf(ub, journal, x)
+    }
   }
   vapply(doi, makeurl, "", USE.NAMES = FALSE)
 }
