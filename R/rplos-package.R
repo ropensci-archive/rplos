@@ -35,7 +35,7 @@
 #' @importFrom methods is
 #' @importFrom httr GET content stop_for_status
 #' @importFrom jsonlite fromJSON
-#' @importFrom dplyr left_join rbind_all
+#' @importFrom dplyr left_join bind_rows
 #' @importFrom plyr ddply llply summarise ldply
 #' @importFrom reshape2 melt
 #' @importFrom whisker whisker.render
