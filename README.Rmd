@@ -16,11 +16,11 @@ knitr::opts_chunk$set(
 [![Build status](https://ci.appveyor.com/api/projects/status/m5lek0xawvgi5bwc/branch/master)](https://ci.appveyor.com/project/sckott/rplos/branch/master)
 [![codecov.io](https://codecov.io/github/ropensci/rplos/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rplos?branch=master)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/rplos)](https://github.com/metacran/cranlogs.app)
-[![cran version](http://www.r-pkg.org/badges/version/rplos)](http://cran.rstudio.com/web/packages/rplos)
+[![cran version](http://www.r-pkg.org/badges/version/rplos)](https://cran.r-project.org/package=rplos)
 
 ## Install
 
-You can get this package at CRAN [here](http://cran.rstudio.com/package=rplos), or install it within R by doing
+You can get this package at CRAN [here](https://cran.r-project.org/package=rplos), or install it within R by doing
 
 ```{r eval=FALSE}
 install.packages("rplos")
@@ -49,7 +49,7 @@ rplos tutorial at rOpenSci website [here](http://ropensci.org/tutorials/rplos_tu
 
 PLoS API documentation [here](http://api.plos.org/)
 
-Crossref API documentation [here](https://github.com/CrossRef/rest-api-doc/blob/master/rest_api.md), [here](http://crosstech.crossref.org/2014/04/%E2%99%AB-researchers-just-wanna-have-funds-%E2%99%AB.html), and [here](http://help.crossref.org/#home). Note that we are working on a new package [rcrossref](https://github.com/ropensci/rcrossref) ([on CRAN](http://cran.rstudio.com/package=rcrossref)) with a much fuller implementation of R functions for all Crossref endpoints.
+Crossref API documentation [here](https://github.com/CrossRef/rest-api-doc/blob/master/rest_api.md), [here](http://crosstech.crossref.org/2014/04/%E2%99%AB-researchers-just-wanna-have-funds-%E2%99%AB.html), and [here](http://help.crossref.org/#home). Note that we are working on a new package [rcrossref](https://github.com/ropensci/rcrossref) ([on CRAN](https://cran.r-project.org/package=rcrossref)) with a much fuller implementation of R functions for all Crossref endpoints.
 
 ## Quick start
 
