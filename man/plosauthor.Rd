@@ -77,6 +77,18 @@ filter in the \code{fq} parameter. For which journal to search, e.g., do
 \code{'cross_published_journal_key:PLoSONE'}. See \code{journalnamekey()} for journal
 abbreviations.
 }
+
+\section{Phrase searching}{
+
+To search phrases, e.g., \strong{synthetic biology} as a single item, rather than 
+separate occurrences of \strong{synthetic} and \strong{biology}, simply put double
+quotes around the phrase. For example, to search for cases of \strong{synthetic biology},
+do \code{searchplos(q = '"synthetic biology"')}.
+
+You can modify phrase searches as well. For example,
+\code{searchplos(q = '"synthetic biology" ~ 10')} asks for cases of 
+\strong{synthetic biology} within 10 words of each other. See examples.
+}
 \examples{
 \dontrun{
 plosauthor('Smith', 'id', limit=50)
