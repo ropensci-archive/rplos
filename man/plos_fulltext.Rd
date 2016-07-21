@@ -26,7 +26,8 @@ Get full text xml of PLOS papers given a DOI
 \dontrun{
 plos_fulltext(doi='10.1371/journal.pone.0086169')
 plos_fulltext(c('10.1371/journal.pone.0086169','10.1371/journal.pbio.1001845'))
-dois <- searchplos(q = "*:*", fq='doc_type:full', limit=3)$data$id
+dois <- searchplos(q = "*:*", fq=list('doc_type:full', 'article_type:"Research Article"'), 
+limit=3)$data$id
 out <- plos_fulltext(dois)
 out[dois[1]]
 out[1:2]

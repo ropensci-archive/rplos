@@ -3,33 +3,46 @@
 #' @export
 #' @param doi One or more doi's
 #' @return One or more urls, same length as input vector of dois
+#' @details We give \strong{NA} for DOIs that are for annotations. Those can easily
+#' be removed like \code{Filter(Negate(is.na), res)}
 #' @examples \dontrun{
 #' full_text_urls(doi='10.1371/journal.pone.0086169')
 #' full_text_urls(doi='10.1371/journal.pbio.1001845')
 #' full_text_urls(doi=c('10.1371/journal.pone.0086169','10.1371/journal.pbio.1001845'))
+#' 
+#' # contains some annotation DOIs
 #' dois <- searchplos(q = "*:*", fq='doc_type:full', limit=20)$data$id
+#' full_text_urls(dois)
+#' 
+#' # contains no annotation DOIs
+#' dois <- searchplos(q = "*:*", fq=list('doc_type:full', 'article_type:"Research Article"'), 
+#' limit=20)$data$id
 #' full_text_urls(dois)
 #' }
 
-full_text_urls <- function(doi){
+full_text_urls <- function(doi) {
   plos_check_dois(doi)
-  makeurl <- function(x){
-    doijournal <- strsplit(x, "\\.")[[1]][[3]]
-    journal <- switch(doijournal,
-                      pone = 'plosone',
-                      pbio = 'plosbiology',
-                      pmed = 'plosmedicine',
-                      pgen = 'plosgenetics',
-                      pcbi = 'ploscompbiol',
-                      ppat = 'plospathogens',
-                      pntd = 'plosntds',
-                      pctr = 'plosclinicaltrials')
-    if ("plosclinicaltrials" == journal) {
-      ub <- 'http://journals.plos.org/plosclinicaltrials/article/asset?id=%s.XML'
-      sprintf(ub, x)
+  makeurl <- function(x) {
+    if (grepl("annotation", x)) {
+      NA_character_
     } else {
-      ub <- 'http://www.%s.org/article/fetchObject.action?uri=info:doi/%s&representation=XML'
-      sprintf(ub, journal, x)
+      doijournal <- strsplit(x, "\\.")[[1]][[3]]
+      journal <- switch(doijournal,
+                        pone = 'plosone',
+                        pbio = 'plosbiology',
+                        pmed = 'plosmedicine',
+                        pgen = 'plosgenetics',
+                        pcbi = 'ploscompbiol',
+                        ppat = 'plospathogens',
+                        pntd = 'plosntds',
+                        pctr = 'plosclinicaltrials')
+      if ("plosclinicaltrials" == journal) {
+        ub <- 'http://journals.plos.org/plosclinicaltrials/article/asset?id=%s.XML'
+        sprintf(ub, x)
+      } else {
+        ub <- 'http://www.%s.org/article/fetchObject.action?uri=info:doi/%s&representation=XML'
+        sprintf(ub, journal, x)
+      }
     }
   }
   vapply(doi, makeurl, "", USE.NAMES = FALSE)
@@ -45,7 +58,8 @@ full_text_urls <- function(doi){
 #' @examples \dontrun{
 #' plos_fulltext(doi='10.1371/journal.pone.0086169')
 #' plos_fulltext(c('10.1371/journal.pone.0086169','10.1371/journal.pbio.1001845'))
-#' dois <- searchplos(q = "*:*", fq='doc_type:full', limit=3)$data$id
+#' dois <- searchplos(q = "*:*", fq=list('doc_type:full', 'article_type:"Research Article"'), 
+#' limit=3)$data$id
 #' out <- plos_fulltext(dois)
 #' out[dois[1]]
 #' out[1:2]
