@@ -25,6 +25,18 @@ test_that("full_text_urls", {
   expect_error(full_text_urls("adfaf"), "These are probably not DOIs")
 })
 
+test_that("full_text_urls - NA's on annotation DOIs", {
+  skip_on_cran()
+  
+  dois <- searchplos(q = "*:*", fq = 'doc_type:full', limit = 20)$data$id
+  aa <- full_text_urls(dois)
+  
+  expect_is(dois, "character")
+  expect_is(aa, "character")
+  expect_true(any(is.na(aa)))
+  expect_false(any(is.na(Filter(Negate(is.na), aa))))
+})
+
 test_that("plos_fulltext", {
   skip_on_cran()
   
