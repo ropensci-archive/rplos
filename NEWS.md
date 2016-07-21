@@ -1,3 +1,21 @@
+rplos 0.6.0
+------------
+
+### MINOR IMPROVEMENTS
+
+* Added notes to documentation for relavant functions for how to do 
+phrase searching. (#96) (#97) thanks @poldham
+* Removed parameter `random` parameter from `citations()` function as it's 
+no longer available in the API (#103)
+* Swapped out all uses of `dplyr::rbind_all()` for `dplyr::bind_rows()` (#105)
+* `full_text_urls()` now gives back `NA` when DOIs for annotations are 
+given, which can be easily removed.
+
+### BUG FIXES
+
+* Fixed `full_text_urls()` function to create full text URLs for PLOS 
+Clinical Trials correctly (#104)
+
 rplos 0.5.6
 ------------
 

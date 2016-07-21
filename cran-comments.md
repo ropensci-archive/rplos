@@ -1,7 +1,27 @@
-R CMD CHECK passed on my local OS X install on R 3.2.3 and R development
-version, Ubuntu running on Travis-CI, and Win-Builder.
+## Test environments
 
-This submission fixes http requests via httr for changes in that package,
-and moves ggplot2 from depends to imports. 
+* local OS X install, R 3.3.1
+* ubuntu 12.04 (on travis-ci), R 3.3.1
+* win-builder (devel and release)
 
-Thanks! Scott Chamberlain
+## R CMD check results
+
+0 errors | 0 warnings | 1 note
+
+   License components with restrictions and base license permitting such:
+     MIT + file LICENSE
+   File 'LICENSE':
+     YEAR: 2016
+     COPYRIGHT HOLDER: Scott Chamberlain
+
+## Reverse dependencies
+
+* I have run R CMD check on the 2 downstream dependencies, with no errors.
+  Summary at <https://github.com/ropensci/rplos/blob/master/revdep/README.md>
+
+----------
+
+This submission includes a number of minor changes.
+
+Thanks!
+Scott Chamberlain
