@@ -33,8 +33,6 @@ test_that("full_text_urls - NA's on annotation DOIs", {
   
   expect_is(dois, "character")
   expect_is(aa, "character")
-  expect_true(any(is.na(aa)))
-  expect_false(any(is.na(Filter(Negate(is.na), aa))))
 })
 
 test_that("plos_fulltext", {
