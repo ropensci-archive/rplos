@@ -40,8 +40,6 @@ full_text_urls <- function(doi) {
         ub <- 'http://journals.plos.org/plosclinicaltrials/article/asset?id=%s.XML'
         sprintf(ub, x)
       } else {
-        # ub <- 'http://www.%s.org/article/fetchObject.action?uri=info:doi/%s&representation=XML'
-        # ub <- 'http://journals.plos.org/%s/article/asset?id=%s.XML'
         ub <- 'http://journals.plos.org/%s/article/file?id=%s&type=manuscript'
         sprintf(ub, journal, x)
       }

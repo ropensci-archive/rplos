@@ -1,3 +1,18 @@
+rplos 0.6.4
+-----------
+
+### MINOR IMPROVEMENTS
+
+* URLs to full text XML have been changed - old URLs were working
+but were going through 2 302 redirects to get there. Updated URLs. 
+(#107)
+
+### BUG FIXES
+
+* Fixed `content-type` check for `plos_fulltext()` function. XML 
+can be either `application/xml` or `text/xml` (#108)
+
+
 rplos 0.6.0
 ------------
 

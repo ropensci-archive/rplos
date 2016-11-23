@@ -1,8 +1,9 @@
 ## Test environments
 
-* local OS X install, R 3.3.1
-* ubuntu 12.04 (on travis-ci), R 3.3.1
+* local OS X install, R 3.3.2
+* ubuntu 12.04 (on travis-ci), R 3.3.2
 * win-builder (devel and release)
+* R-hub (xxx)
 
 ## R CMD check results
 
@@ -21,7 +22,8 @@
 
 ----------
 
-This submission includes a number of minor changes.
+This version includes a bug fix and updates to URLs for full text 
+XML content of articles.
 
 Thanks!
 Scott Chamberlain
