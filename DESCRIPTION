@@ -19,9 +19,6 @@ BugReports: https://github.com/ropensci/rplos/issues
 LazyData: true
 VignetteBuilder: knitr
 Imports:
-    methods,
-    utils,
-    stats,
     ggplot2,
     httr (>= 1.0.0),
     jsonlite,

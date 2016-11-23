@@ -17,7 +17,7 @@ plot_throughtime <- function(terms, limit = NA, ...) {
   year = month = dateplot = V1 = value = variable = NULL
   temp <- lapply(terms, timesearch, limit = limit, ...)
   ij <- function(...) left_join(..., by = c("year", "month"))
-  df <- setNames(Reduce(ij, temp), c("year", "month", terms))
+  df <- stats::setNames(Reduce(ij, temp), c("year", "month", terms))
   df$dateplot <- as.Date(paste(df$month, "1",
                                substring(df$year, 3, 4), sep = "/"), "%m/%d/%y")
   dfm <- melt(df[, -c(1:2)], id.vars = "dateplot")
@@ -40,6 +40,6 @@ timesearch <- function(terms, limit, ...){
   json <- jsonlite::fromJSON(res, FALSE)
   tempresults <- json$response$docs
   ttt <- data.frame( do.call(rbind, tempresults), stringsAsFactors = FALSE )
-  tt_ <- setNames(as.data.frame(t(apply(ttt, 1, function(x) strsplit(x[[1]], "-")[[1]][1:2])), stringsAsFactors = FALSE), c("year", "month"))
+  tt_ <- stats::setNames(as.data.frame(t(apply(ttt, 1, function(x) strsplit(x[[1]], "-")[[1]][1:2])), stringsAsFactors = FALSE), c("year", "month"))
   ddply(tt_, c('year','month'), summarise, V1 = length(month))
 }

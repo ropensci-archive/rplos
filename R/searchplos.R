@@ -89,7 +89,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, l
   if("warning" %in% class(limit)){
     stop("limit should be a numeric or integer class value", call. = FALSE)
   }
-  if(!is(limit, "numeric") | is.na(limit))
+  if(!inherits(limit, "numeric") | is.na(limit))
     stop("limit should be a numeric or integer class value", call. = FALSE)
 
   # Enforce rate limits
@@ -220,7 +220,7 @@ plos2df <- function(input, many=FALSE)
 
 get_meta <- function(x){
   nms <- c('numFound','start','maxScore')
-  tmp <- setNames(x[nms], nms)
+  tmp <- stats::setNames(x[nms], nms)
   tmp[sapply(tmp, is.null)] <- NA
   data.frame(tmp, stringsAsFactors = FALSE)
 }

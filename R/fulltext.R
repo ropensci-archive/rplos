@@ -100,7 +100,7 @@ plos_fulltext <- function(doi, ...){
 #' @export
 #' @rdname plos_fulltext
 print.plosft <- function(x, ...){
-  namesprint <- paste(na.omit(names(x)[1:10]), collapse = " ")
+  namesprint <- paste(stats::na.omit(names(x)[1:10]), collapse = " ")
   lengths <- vapply(x, nchar, 1, USE.NAMES = FALSE)
   cat(sprintf("%s full-text articles retrieved", length(x)), "\n")
   cat(sprintf("Min. Length: %s - Max. Length: %s", min(lengths), max(lengths)), "\n")

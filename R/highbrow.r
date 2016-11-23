@@ -18,7 +18,7 @@ highbrow <- function(input=NULL, output=NULL, browse=TRUE) {
   if (is.null(input)) {
     stop("Please supply some input", call. = FALSE)
   }
-  if (!is(input, "list")) {
+  if (!inherits(input, "list")) {
     stop("Please supply a list object", call. = FALSE)
   }
   plos_check_dois(names(input))
@@ -86,5 +86,5 @@ highbrow <- function(input=NULL, output=NULL, browse=TRUE) {
     output <- tempfile(fileext = ".html")
   }
   write(rendered, file = output)
-  if (browse) browseURL(output) else output
+  if (browse) utils::browseURL(output) else output
 }

@@ -24,9 +24,9 @@ plosword <- function(terms, vis = FALSE, ...) {
   Term <- No_Articles <- NULL
 
   if (length(terms) == 1) {
-    setNames(search_(terms, ...), 'Number of articles with search term')
+    stats::setNames(search_(terms, ...), 'Number of articles with search term')
   } else {
-    temp <- setNames(ldply(terms, search_, ...), "No_Articles")
+    temp <- stats::setNames(ldply(terms, search_, ...), "No_Articles")
     temp$Term <- terms
     temp$Term <- as.character(temp$Term)
     if (vis) {

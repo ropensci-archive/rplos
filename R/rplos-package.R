@@ -30,9 +30,6 @@
 #' head(out$data)
 #' }
 #'
-#' @importFrom stats setNames na.omit
-#' @importFrom utils browseURL URLdecode
-#' @importFrom methods is
 #' @importFrom httr GET content stop_for_status
 #' @importFrom jsonlite fromJSON
 #' @importFrom dplyr left_join bind_rows
