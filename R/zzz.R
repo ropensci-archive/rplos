@@ -102,7 +102,7 @@ plos_is_doi <- function(x) {
 }
 
 plos_check_dois <- function(x) {
-  stopifnot(inherits(x, "list") || inherits(x, "vector"))
+  stopifnot(inherits(x, "list") || inherits(x, "character"))
   x <- vapply(x, utils::URLdecode, "")
   res <- vapply(x, plos_is_doi, logical(1))
   if (all(res)) {
