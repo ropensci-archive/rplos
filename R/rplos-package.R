@@ -1,13 +1,14 @@
 #' Connect with PLoS API data
 #'
-#' \code{rplos} provides an R interface to the PLoS Search API. More information about each
-#' function can be found in its help documentation. If you are looking for PLOS
-#' article-Level metrics data, see the \code{alm} package.
+#' \code{rplos} provides an R interface to the PLoS Search API. More 
+#' information about each function can be found in its help documentation. 
+#' If you are looking for PLOS article-Level metrics data, see the 
+#' \code{alm} package.
 #'
 #' @section rplos functions:
 #'
-#' Most rplos functions make web calls using the \code{httr} package, and parse json using
-#' the \code{jsonlite} package.
+#' Most rplos functions make web calls using the \code{httr} package, 
+#' and parse json using the \code{jsonlite} package.
 #'
 #' @section PLoS API key:
 #'
@@ -26,7 +27,8 @@
 #' head(out$data)
 #'
 #' # Get DOIs for only PLoS One articles
-#' out <- searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', start=0, limit=15)
+#' out <- searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', 
+#'   start=0, limit=15)
 #' head(out$data)
 #' }
 #'
@@ -38,7 +40,8 @@
 #' @importFrom whisker whisker.render
 #' @importFrom solr solr_highlight solr_facet
 #' @importFrom lubridate now
-#' @importFrom ggplot2 ggplot aes geom_bar theme_grey geom_line scale_colour_brewer labs theme
+#' @importFrom ggplot2 ggplot aes geom_bar theme_grey geom_line 
+#' scale_colour_brewer labs theme
 #' @docType package
 #' @name rplos
 #' @aliases rplos rplos-package
@@ -51,7 +54,8 @@ NULL
 #' Defunct functions in rplos
 #'
 #' \itemize{
-#'  \item \code{\link{crossref}}: service no longer provided - see the package \code{rcrossref}
+#'  \item \code{\link{crossref}}: service no longer provided - 
+#'  see the package \code{rcrossref}
 #' }
 #'
 #' @name rplos-defunct
