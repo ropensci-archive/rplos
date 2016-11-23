@@ -40,7 +40,9 @@ full_text_urls <- function(doi) {
         ub <- 'http://journals.plos.org/plosclinicaltrials/article/asset?id=%s.XML'
         sprintf(ub, x)
       } else {
-        ub <- 'http://www.%s.org/article/fetchObject.action?uri=info:doi/%s&representation=XML'
+        # ub <- 'http://www.%s.org/article/fetchObject.action?uri=info:doi/%s&representation=XML'
+        # ub <- 'http://journals.plos.org/%s/article/asset?id=%s.XML'
+        ub <- 'http://journals.plos.org/%s/article/file?id=%s&type=manuscript'
         sprintf(ub, journal, x)
       }
     }
@@ -86,7 +88,9 @@ plos_fulltext <- function(doi, ...){
   getfulltext <- function(x){
     out <- httr::GET(x, ...)
     httr::warn_for_status(out)
-    stopifnot(out$headers$`content-type` == 'text/xml')
+    if (!out$headers$`content-type` %in% c('application/xml', 'text/xml')) {
+      stop('content-type not one of "application/xml" or "text/xml"', call. = FALSE)
+    }
     utf8cont(out)
   }
   res <- lapply(urls, getfulltext)
