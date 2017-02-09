@@ -2,10 +2,8 @@ language: r
 sudo: false
 cache: packages
 
-addons:
-  apt:
-    packages:
-      - r-cran-tm
+r_binary_packages:
+  - tm
 
 r_check_args: "--as-cran --run-dontrun"
 
