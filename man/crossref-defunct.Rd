@@ -10,4 +10,3 @@ crossref(...)
 Lookup article info via CrossRef with DOI.
 }
 \keyword{internal}
-

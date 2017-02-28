@@ -10,7 +10,7 @@
 #'    to filter the resuls to a subset of those you want returned. For example,
 #'    if you want full articles only, you can do 'doc_type:full'. In another example,
 #'    if you want only results from the journal PLOS One, you can do
-#'    'cross_published_journal_key:PLoSONE'. See journalnamekey() for journal
+#'    'journal_key:PLoSONE'. See journalnamekey() for journal
 #'    abbreviations.
 #' @param hl.q Set a query request to be highlighted. It overrides q parameter for
 #' highlighting. Solr query syntax is acceptable for this parameter.

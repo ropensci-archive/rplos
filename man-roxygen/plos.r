@@ -6,10 +6,10 @@
 #' @param fq List specific fields to filter the query on (if NA, all queried).
 #'    The options for this parameter are the same as those for the fl parameter.
 #'    Note that using this parameter doesn't influence the actual query, but is used
-#'    to filter the resuls to a subset of those you want returned. For example,
+#'    to filter the results to a subset of those you want returned. For example,
 #'    if you want full articles only, you can do \code{'doc_type:full'}. In another example,
 #'    if you want only results from the journal PLOS One, you can do
-#'    \code{'cross_published_journal_key:PLoSONE'}. See \code{\link{journalnamekey}} for journal
+#'    \code{'journal_key:PLoSONE'}. See \code{\link{journalnamekey}} for journal
 #'    abbreviations.
 #' @param sort Sort results according to a particular field, and specify ascending (asc)
 #'    or descending (desc) after a space; see examples. For example, to sort the
@@ -40,7 +40,7 @@
 #' not sure what exact defaults they use on their website. There are a few things to consider.
 #' You can tweak which types of articles are returned: Try using the \code{article_type}
 #' filter in the \code{fq} parameter. For which journal to search, e.g., do
-#' \code{'cross_published_journal_key:PLoSONE'}. See \code{journalnamekey()} for journal
+#' \code{'journal_key:PLoSONE'}. See \code{journalnamekey()} for journal
 #' abbreviations.
 #' 
 #' @section Phrase searching:

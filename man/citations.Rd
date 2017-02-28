@@ -43,4 +43,3 @@ citations(doi = ids[1])
 \references{
 \url{http://api.richcitations.org/}
 }
-

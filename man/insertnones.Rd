@@ -12,4 +12,3 @@ Function to insert "none" character strings where NULL values found to
 faciliate combining results
 }
 \keyword{internal}
-

@@ -34,7 +34,7 @@ Note that using this parameter doesn't influence the actual query, but is used
 to filter the resuls to a subset of those you want returned. For example,
 if you want full articles only, you can do 'doc_type:full'. In another example,
 if you want only results from the journal PLOS One, you can do
-'cross_published_journal_key:PLoSONE'. See journalnamekey() for journal
+'journal_key:PLoSONE'. See journalnamekey() for journal
 abbreviations.}
 
 \item{hl.fl}{A comma-separated list of fields for which to generate highlighted snippets.
@@ -202,5 +202,7 @@ highplos(q='alcohol', hl.fl='abstract', hl.useFastVectorHighlighter='true', rows
 highplos(q='everything:"experiment"', fq='doc_type:full', rows=100, hl.fl = 'title')
 }
 
+\donttest{
+highplos(q='alcohol', hl.fl = 'abstract', rows=1200)
 }
-
+}

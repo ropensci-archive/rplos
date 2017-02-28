@@ -26,4 +26,3 @@ out <- highplos(q='alcohol', hl.fl = 'abstract', rows=1200)
 highbrow(out)
 }
 }
-

@@ -19,10 +19,10 @@ any combination of search fields (see the dataset \code{plosfields})}
 \item{fq}{List specific fields to filter the query on (if NA, all queried).
 The options for this parameter are the same as those for the fl parameter.
 Note that using this parameter doesn't influence the actual query, but is used
-to filter the resuls to a subset of those you want returned. For example,
+to filter the results to a subset of those you want returned. For example,
 if you want full articles only, you can do \code{'doc_type:full'}. In another example,
 if you want only results from the journal PLOS One, you can do
-\code{'cross_published_journal_key:PLoSONE'}. See \code{\link{journalnamekey}} for journal
+\code{'journal_key:PLoSONE'}. See \code{\link{journalnamekey}} for journal
 abbreviations.}
 
 \item{sort}{Sort results according to a particular field, and specify ascending (asc)
@@ -73,7 +73,7 @@ in R, give different results than when searching for articles on the PLOS websit
 not sure what exact defaults they use on their website. There are a few things to consider.
 You can tweak which types of articles are returned: Try using the \code{article_type}
 filter in the \code{fq} parameter. For which journal to search, e.g., do
-\code{'cross_published_journal_key:PLoSONE'}. See \code{journalnamekey()} for journal
+\code{'journal_key:PLoSONE'}. See \code{journalnamekey()} for journal
 abbreviations.
 }
 
@@ -88,6 +88,7 @@ You can modify phrase searches as well. For example,
 \code{searchplos(q = '"synthetic biology" ~ 10')} asks for cases of 
 \strong{synthetic biology} within 10 words of each other. See examples.
 }
+
 \examples{
 \dontrun{
 plosabstract(q = 'drosophila', fl='abstract', limit=10)
@@ -97,4 +98,3 @@ plosabstract(q = 'drosophila', fl=c('id','author','title'), limit = 5)
 plosabstract(q = 'drosophila', fl=c('id','author','title'), limit = 5, config=verbose())
 }
 }
-

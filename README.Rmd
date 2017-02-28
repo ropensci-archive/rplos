@@ -64,7 +64,7 @@ searchplos('ecology', 'id,publication_date', limit = 5)
 Get DOIs for full article in PLoS One
 
 ```{r}
-searchplos(q="*:*", fl='id', fq=list('cross_published_journal_key:PLoSONE',
+searchplos(q="*:*", fl='id', fq=list('journal_key:PLoSONE',
    'doc_type:full'), limit=5)
 ```
 

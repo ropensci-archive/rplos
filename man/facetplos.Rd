@@ -192,4 +192,3 @@ facetplos(q='*:*', url=url, facet.range=c('counter_total_all','alm_twitterCount'
  f.alm_twitterCount.facet.range.end=1000, f.alm_twitterCount.facet.range.gap=10)
 }
 }
-

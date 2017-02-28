@@ -14,11 +14,11 @@
 #' head(out$data)
 #'
 #' # Get DOIs for only PLoS One articles
-#' out <- searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', start=0, limit=15)
+#' out <- searchplos(q="*:*", fl='id', fq='journal_key:PLoSONE', start=0, limit=15)
 #' head(out$data)
 #'
 #' # Get DOIs for full article in PLoS One
-#' out <- searchplos(q="*:*", fl='id', fq=list('cross_published_journal_key:PLoSONE',
+#' out <- searchplos(q="*:*", fl='id', fq=list('journal_key:PLoSONE',
 #'    'doc_type:full'), limit=50)
 #' head(out$data)
 #'

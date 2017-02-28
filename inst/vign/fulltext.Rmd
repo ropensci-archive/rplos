@@ -15,7 +15,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-Search functions in `rplos` can be used to get back full text in addition to any section of an article. However, if you prefer XML, this vignette is for you.
+Search functions in `rplos` can be used to get back full text in addition to 
+any section of an article. However, if you prefer XML, this vignette is 
+for you.
 
 ### Load package from CRAN
 
@@ -34,25 +36,26 @@ Create urls for full text articles in PLOS journals
 Here's the URL for XML full text for the DOI `10.1371/journal.pone.0086169`
 
 ```{r}
-full_text_urls(doi='10.1371/journal.pone.0086169')
+full_text_urls(doi = '10.1371/journal.pone.0086169')
 ```
 
 And for the DOI `10.1371/journal.pbio.1001845`
 
 ```{r}
-full_text_urls(doi='10.1371/journal.pbio.1001845')
+full_text_urls(doi = '10.1371/journal.pbio.1001845')
 ```
 
 The function is vectorized, so you can pass in many DOIs
 
 ```{r}
-full_text_urls(doi=c('10.1371/journal.pone.0086169','10.1371/journal.pbio.1001845'))
-````
+full_text_urls(doi = c('10.1371/journal.pone.0086169', 
+                       '10.1371/journal.pbio.1001845'))
+```
 
 Use `searchplos()` to get a lot of DOIs, then get the URLs for full text XML
 
 ```{r}
-dois <- searchplos(q = "*:*", fq='doc_type:full', limit=20)$data$id
+dois <- searchplos(q = "*:*", fq = 'doc_type:full', limit = 20)$data$id
 full_text_urls(dois)
 ```
 
@@ -61,7 +64,7 @@ full_text_urls(dois)
 Get full text XML of PLOS papers given a DOI
 
 ```{r}
-plos_fulltext(doi='10.1371/journal.pone.0086169')
+plos_fulltext(doi = '10.1371/journal.pone.0086169')
 ```
 
 `plos_fulltext()` is vectorized, so you can pass in more than one DOI
@@ -70,10 +73,11 @@ plos_fulltext(doi='10.1371/journal.pone.0086169')
 plos_fulltext(c('10.1371/journal.pone.0086169','10.1371/journal.pbio.1001845'))
 ```
 
-Get many DOIs, then index to get the full XML of the one you want (output not shown)
+Get many DOIs, then index to get the full XML of the one you want 
+(output not shown)
 
 ```{r}
-dois <- searchplos(q = "*:*", fq='doc_type:full', limit=3)$data$id
+dois <- searchplos(q = "*:*", fq = 'doc_type:full', limit = 3)$data$id
 out <- plos_fulltext(dois)
 xml <- out[dois[1]][[1]]
 ```
@@ -81,26 +85,19 @@ xml <- out[dois[1]][[1]]
 Extract the abstract from the XML
 
 ```{r}
-library("XML")
-xpathSApply(xmlParse(xml), "//abstract/p", xmlValue)
+if (requireNamespace("xml2")) {
+  library("xml2")
+  xml_text(xml_find_all(read_xml(xml), "//abstract/p"))
+}
 ```
 
 Extract reference lists, just give back first one from each for brevity sake
 
 ```{r}
-lapply(out[2:3], function(x){
- xpathApply(xmlParse(x), "//ref-list/ref")[[1]]
-})
-```
-
-Make a text corpus
-
-```{r}
-library("tm")
-out_parsed <- lapply(out, function(x){
- xpathApply(xmlParse(x), "//body", xmlValue)
-})
-tmcorpus <- Corpus(VectorSource(out_parsed))
-(dtm <- DocumentTermMatrix(tmcorpus))
-findFreqTerms(dtm, lowfreq = 50)
+if (requireNamespace("xml2")) {
+  library("xml2")
+  lapply(out[2:3], function(x){
+    xml_find_all(read_xml(x), "//ref-list/ref")[[1]]
+  })
+}
 ```

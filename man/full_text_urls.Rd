@@ -35,4 +35,3 @@ limit=20)$data$id
 full_text_urls(dois)
 }
 }
-

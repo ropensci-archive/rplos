@@ -8,4 +8,3 @@
 Country names and FIPS codes
 }
 \keyword{datasets}
-

@@ -27,7 +27,7 @@
 #' head(out$data)
 #'
 #' # Get DOIs for only PLoS One articles
-#' out <- searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', 
+#' out <- searchplos(q="*:*", fl='id', fq='journal_key:PLoSONE', 
 #'   start=0, limit=15)
 #' head(out$data)
 #' }

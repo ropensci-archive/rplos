@@ -4,6 +4,7 @@
 \name{rplos}
 \alias{rplos}
 \alias{rplos-package}
+\alias{rplos-package}
 \title{Connect with PLoS API data}
 \description{
 \code{rplos} provides an R interface to the PLoS Search API. More 
@@ -30,6 +31,7 @@ You used to need an API key to use this package - no longer needed
 See the rOpenSci website for a tutorial:
 http://ropensci.org/tutorials/rplos_tutorial.html
 }
+
 \examples{
 \dontrun{
 searchplos(q='ecology', fl=c('id','publication_date'), limit = 2)
@@ -39,7 +41,7 @@ out <- searchplos(q="*:*", fl='id', fq='doc_type:full', start=0, limit=250)
 head(out$data)
 
 # Get DOIs for only PLoS One articles
-out <- searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', 
+out <- searchplos(q="*:*", fl='id', fq='journal_key:PLoSONE', 
   start=0, limit=15)
 head(out$data)
 }
@@ -53,4 +55,3 @@ Carl Boettiger \email{cboettig@gmail.com}
 Karthik Ram \email{karthik.ram@gmail.com}
 }
 \keyword{package}
-

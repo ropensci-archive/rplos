@@ -9,7 +9,9 @@ Full text
 
 
 
-Search functions in `rplos` can be used to get back full text in addition to any section of an article. However, if you prefer XML, this vignette is for you.
+Search functions in `rplos` can be used to get back full text in addition to 
+any section of an article. However, if you prefer XML, this vignette is 
+for you.
 
 ### Load package from CRAN
 
@@ -31,65 +33,66 @@ Here's the URL for XML full text for the DOI `10.1371/journal.pone.0086169`
 
 
 ```r
-full_text_urls(doi='10.1371/journal.pone.0086169')
+full_text_urls(doi = '10.1371/journal.pone.0086169')
 ```
 
 ```
-#> [1] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0086169&representation=XML"
+#> [1] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0086169&type=manuscript"
 ```
 
 And for the DOI `10.1371/journal.pbio.1001845`
 
 
 ```r
-full_text_urls(doi='10.1371/journal.pbio.1001845')
+full_text_urls(doi = '10.1371/journal.pbio.1001845')
 ```
 
 ```
-#> [1] "http://www.plosbiology.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pbio.1001845&representation=XML"
+#> [1] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1001845&type=manuscript"
 ```
 
 The function is vectorized, so you can pass in many DOIs
 
 
 ```r
-full_text_urls(doi=c('10.1371/journal.pone.0086169','10.1371/journal.pbio.1001845'))
+full_text_urls(doi = c('10.1371/journal.pone.0086169', 
+                       '10.1371/journal.pbio.1001845'))
 ```
 
 ```
-#> [1] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0086169&representation=XML"    
-#> [2] "http://www.plosbiology.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pbio.1001845&representation=XML"
+#> [1] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0086169&type=manuscript"    
+#> [2] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1001845&type=manuscript"
 ```
 
 Use `searchplos()` to get a lot of DOIs, then get the URLs for full text XML
 
 
 ```r
-dois <- searchplos(q = "*:*", fq='doc_type:full', limit=20)$data$id
+dois <- searchplos(q = "*:*", fq = 'doc_type:full', limit = 20)$data$id
 full_text_urls(dois)
 ```
 
 ```
-#>  [1] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0031384&representation=XML"
-#>  [2] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0031385&representation=XML"
-#>  [3] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0107441&representation=XML"
-#>  [4] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0000339&representation=XML"
-#>  [5] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0046739&representation=XML"
-#>  [6] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0061900&representation=XML"
-#>  [7] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0061895&representation=XML"
-#>  [8] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0077194&representation=XML"
-#>  [9] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0015930&representation=XML"
-#> [10] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0123741&representation=XML"
-#> [11] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0031375&representation=XML"
-#> [12] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0061894&representation=XML"
-#> [13] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0123740&representation=XML"
-#> [14] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0107433&representation=XML"
-#> [15] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0000334&representation=XML"
-#> [16] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0031374&representation=XML"
-#> [17] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0092196&representation=XML"
-#> [18] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0046713&representation=XML"
-#> [19] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0046715&representation=XML"
-#> [20] "http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0000335&representation=XML"
+#>  [1] "http://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1000942&type=manuscript"
+#>  [2] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0130089&type=manuscript"     
+#>  [3] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0165670&type=manuscript"     
+#>  [4] "http://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1002909&type=manuscript"
+#>  [5] "http://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1004317&type=manuscript"
+#>  [6] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1002259&type=manuscript" 
+#>  [7] "http://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1003554&type=manuscript"
+#>  [8] "http://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1004432&type=manuscript"
+#>  [9] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0162873&type=manuscript"     
+#> [10] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0163015&type=manuscript"     
+#> [11] "http://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1003597&type=manuscript"
+#> [12] "http://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1004934&type=manuscript"
+#> [13] "http://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1004795&type=manuscript"
+#> [14] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.0000004&type=manuscript" 
+#> [15] "http://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1003631&type=manuscript"
+#> [16] "http://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1003549&type=manuscript"
+#> [17] "http://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1003507&type=manuscript"
+#> [18] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.0000040&type=manuscript" 
+#> [19] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.0000026&type=manuscript" 
+#> [20] "http://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1003332&type=manuscript"
 ```
 
 ### Get XML
@@ -98,12 +101,12 @@ Get full text XML of PLOS papers given a DOI
 
 
 ```r
-plos_fulltext(doi='10.1371/journal.pone.0086169')
+plos_fulltext(doi = '10.1371/journal.pone.0086169')
 ```
 
 ```
 #> 1 full-text articles retrieved 
-#> Min. Length: 111132 - Max. Length: 111132 
+#> Min. Length: 110717 - Max. Length: 110717 
 #> DOIs: 10.1371/journal.pone.0086169 ... 
 #> 
 #> NOTE: extract xml strings like output['<doi>']
@@ -118,17 +121,18 @@ plos_fulltext(c('10.1371/journal.pone.0086169','10.1371/journal.pbio.1001845'))
 
 ```
 #> 2 full-text articles retrieved 
-#> Min. Length: 111132 - Max. Length: 143937 
+#> Min. Length: 110717 - Max. Length: 143442 
 #> DOIs: 10.1371/journal.pone.0086169 10.1371/journal.pbio.1001845 ... 
 #> 
 #> NOTE: extract xml strings like output['<doi>']
 ```
 
-Get many DOIs, then index to get the full XML of the one you want (output not shown)
+Get many DOIs, then index to get the full XML of the one you want 
+(output not shown)
 
 
 ```r
-dois <- searchplos(q = "*:*", fq='doc_type:full', limit=3)$data$id
+dois <- searchplos(q = "*:*", fq = 'doc_type:full', limit = 3)$data$id
 out <- plos_fulltext(dois)
 xml <- out[dois[1]][[1]]
 ```
@@ -137,116 +141,39 @@ Extract the abstract from the XML
 
 
 ```r
-library("XML")
-xpathSApply(xmlParse(xml), "//abstract/p", xmlValue)
+if (requireNamespace("xml2")) {
+  library("xml2")
+  xml_text(xml_find_all(read_xml(xml), "//abstract/p"))
+}
 ```
 
 ```
-#> [1] "Pancreatic adenocarcinoma, a desmoplastic disease, is the fourth leading cause of cancer-related death in the Western world due, in large part, to locally invasive primary tumor growth and ensuing metastasis. SPARC is a matricellular protein that governs extracellular matrix (ECM) deposition and maturation during tissue remodeling, particularly, during wound healing and tumorigenesis. In the present study, we sought to determine the mechanism by which lack of host SPARC alters the tumor microenvironment and enhances invasion and metastasis of an orthotopic model of pancreatic cancer. We identified that levels of active TGFÎ²1 were increased significantly in tumors grown in SPARC-null mice. TGFÎ²1 contributes to many aspects of tumor development including metastasis, endothelial cell permeability, inflammation and fibrosis, all of which are altered in the absence of stromal-derived SPARC. Given these results, we performed a survival study to assess the contribution of increased TGFÎ²1 activity to tumor progression in SPARC-null mice using losartan, an angiotensin II type 1 receptor antagonist that diminishes TGFÎ²1 expression and activation in vivo. Tumors grown in SPARC-null mice progressed more quickly than those grown in wild-type littermates leading to a significant reduction in median survival. However, median survival of SPARC-null animals treated with losartan was extended to that of losartan-treated wild-type controls. In addition, losartan abrogated TGFÎ² induced gene expression, reduced local invasion and metastasis, decreased vascular permeability and altered the immune profile of tumors grown in SPARC-null mice. These data support the concept that aberrant TGFÎ²1-activation in the absence of host SPARC contributes significantly to tumor progression and suggests that SPARC, by controlling ECM deposition and maturation, can regulate TGFÎ² availability and activation."
+#> [1] "Quantitative linkages between individual organism movements and the resulting population distributions are fundamental to understanding a wide range of ecological processes, including rates of reproduction, consumption, and mortality, as well as the spread of diseases and invasions. Typically, quantitative data are collected on either movement behaviors or population distributions, rarely both. This study combines empirical observations and model simulations to gain a mechanistic understanding and predictive ability of the linkages between both individual movement behaviors and population distributions of a single-celled planktonic herbivore. In the laboratory, microscopic 3D movements and macroscopic population distributions were simultaneously quantified in a 1L tank, using automated video- and image-analysis routines. The vertical velocity component of cell movements was extracted from the empirical data and used to motivate a series of correlated random walk models that predicted population distributions. Validation of the model predictions with empirical data was essential to distinguish amongst a number of theoretically plausible model formulations. All model predictions captured the essence of the population redistribution (mean upward drift) but only models assuming long correlation times (minute), captured the variance in population distribution. Models assuming correlation times of 8 minutes predicted the least deviation from the empirical observations. Autocorrelation analysis of the empirical data failed to identify a de-correlation time in the up to 30-second-long swimming trajectories. These minute-scale estimates are considerably greater than previous estimates of second-scale correlation times. Considerable cell-to-cell variation and behavioral heterogeneity were critical to these results. Strongly correlated random walkers were predicted to have significantly greater dispersal distances and more rapid encounters with remote targets (e.g. resource patches, predators) than weakly correlated random walkers. The tendency to disperse rapidly in the absence of aggregative stimuli has important ramifications for the ecology and biogeography of planktonic organisms that perform this kind of random walk."
+#> [2] "Organism movement is fundamental to how organisms interact with each other and the environment. Such movements are also important on the population level and determine the spread of disease and invasion, reproduction, consumption, and mortality. Theoretical ecologists have sought to predict population dispersal rates, which are often hard to measure, from individual movement behaviors, which are often easier to measure. This problem has been non-trivial. This manuscript contributes seldom available, simultaneously measured movement behaviors and population distributions of a single celled planktonic organism. The empirical data are used to distinguish amongst a set of plausible theoretical modeling approaches to suggest that organism movements are highly correlated, meaning movement direction and speed is consistent over several minutes. Previous estimates suggested persistence only lasted several seconds. Minute-scale correlations result in much more rapid organism dispersal and greater dispersal distance, indicating that organisms encounter and impact a greater portion of their surrounding habitat than previously suspected."
 ```
 
 Extract reference lists, just give back first one from each for brevity sake
 
 
 ```r
-lapply(out[2:3], function(x){
- xpathApply(xmlParse(x), "//ref-list/ref")[[1]]
-})
+if (requireNamespace("xml2")) {
+  library("xml2")
+  lapply(out[2:3], function(x){
+    xml_find_all(read_xml(x), "//ref-list/ref")[[1]]
+  })
+}
 ```
 
 ```
-#> $`10.1371/journal.pone.0031385`
-#> <ref id="pone.0031385-Machesky1">
-#>   <label>1</label>
-#>   <element-citation publication-type="journal" xlink:type="simple">
-#>     <person-group person-group-type="author">
-#>       <name name-style="western">
-#>         <surname>Machesky</surname>
-#>         <given-names>LM</given-names>
-#>       </name>
-#>       <name name-style="western">
-#>         <surname>Atkinson</surname>
-#>         <given-names>SJ</given-names>
-#>       </name>
-#>       <name name-style="western">
-#>         <surname>Ampe</surname>
-#>         <given-names>C</given-names>
-#>       </name>
-#>       <name name-style="western">
-#>         <surname>Vandekerckhove</surname>
-#>         <given-names>J</given-names>
-#>       </name>
-#>       <name name-style="western">
-#>         <surname>Pollard</surname>
-#>         <given-names>TD</given-names>
-#>       </name>
-#>     </person-group>
-#>     <year>1994</year>
-#>     <article-title>Purification of a cortical complex containing two unconventional actins from Acanthamoeba by affinity chromatography on profilin- agarose.</article-title>
-#>     <source>J Cell Biol</source>
-#>     <volume>127</volume>
-#>     <fpage>107</fpage>
-#>     <lpage>115</lpage>
-#>   </element-citation>
-#> </ref> 
+#> $`10.1371/journal.pone.0130089`
+#> {xml_node}
+#> <ref id="pone.0130089.ref001">
+#> [1] <label>1</label>
+#> [2] <mixed-citation xlink:type="simple" publication-type="book"><name na ...
 #> 
-#> $`10.1371/journal.pone.0107441`
-#> <ref id="pone.0107441-Daszak1">
-#>   <label>1</label>
-#>   <mixed-citation publication-type="journal" xlink:type="simple"><name name-style="western"><surname>Daszak</surname><given-names>P</given-names></name>, <name name-style="western"><surname>Cunningham</surname><given-names>AA</given-names></name>, <name name-style="western"><surname>Hyatt</surname><given-names>AD</given-names></name> (<year>2000</year>) <article-title>Emerging Infectious Diseases of Wildlifeâ Threats to Biodiversity and Human Health</article-title>. <source>Science (80â)</source> <volume>287</volume>: <fpage>443</fpage>â<lpage>449</lpage> Available: <ext-link ext-link-type="uri" xlink:href="http://www.sciencemag.org/cgi/doi/10.1126/science.287.5452.443" xlink:type="simple">http://www.sciencemag.org/cgi/doi/10.1126/science.287.5452.443</ext-link> Accessed 2 March 2013.</mixed-citation>
-#> </ref>
-```
-
-Make a text corpus
-
-
-```r
-library("tm")
-out_parsed <- lapply(out, function(x){
- xpathApply(xmlParse(x), "//body", xmlValue)
-})
-tmcorpus <- Corpus(VectorSource(out_parsed))
-(dtm <- DocumentTermMatrix(tmcorpus))
-```
-
-```
-#> <<DocumentTermMatrix (documents: 3, terms: 5334)>>
-#> Non-/sparse entries: 6513/9489
-#> Sparsity           : 59%
-#> Maximal term length: 109
-#> Weighting          : term frequency (tf)
-```
-
-```r
-findFreqTerms(dtm, lowfreq = 50)
-```
-
-```
-#>  [1] "(figure"                          "actin"                           
-#>  [3] "all"                              "amphibian"                       
-#>  [5] "and"                              "are"                             
-#>  [7] "âµm"                              "barbed"                          
-#>  [9] "between"                          "bundles"                         
-#> [11] "catesbeianus"                     "cell"                            
-#> [13] "cells"                            "comet"                           
-#> [15] "density"                          "each"                            
-#> [17] "filament"                         "filaments"                       
-#> [19] "for"                              "from"                            
-#> [21] "grown"                            "growth"                          
-#> [23] "have"                             "host"                            
-#> [25] "individual"                       "individuals"                     
-#> [27] "infection"                        "losartan"                        
-#> [29] "low"                              "mg2+"                            
-#> [31] "mice"                             "motility"                        
-#> [33] "not"                              "number"                          
-#> [35] "other"                            "our"                             
-#> [37] "pan02"                            "sparc"                           
-#> [39] "sparc+/+"                         "sparcâ\u0088\u0092/â\u0088\u0092"
-#> [41] "species"                          "tail"                            
-#> [43] "tgfî²1"                           "that"                            
-#> [45] "the"                              "this"                            
-#> [47] "total"                            "treatment"                       
-#> [49] "tumor"                            "tumors"                          
-#> [51] "was"                              "were"                            
-#> [53] "wetland"                          "with"
+#> $`10.1371/journal.pone.0165670`
+#> {xml_node}
+#> <ref id="pone.0165670.ref001">
+#> [1] <label>1</label>
+#> [2] <mixed-citation publication-type="book" xlink:type="simple"><collab> ...
 ```

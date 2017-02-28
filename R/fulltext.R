@@ -58,28 +58,22 @@ full_text_urls <- function(doi) {
 #' @examples \dontrun{
 #' plos_fulltext(doi='10.1371/journal.pone.0086169')
 #' plos_fulltext(c('10.1371/journal.pone.0086169','10.1371/journal.pbio.1001845'))
-#' dois <- searchplos(q = "*:*", fq=list('doc_type:full', 'article_type:"Research Article"'), 
-#' limit=3)$data$id
+#' dois <- searchplos(q = "*:*", 
+#'   fq = list('doc_type:full', 'article_type:"Research Article"'), 
+#'   limit = 3)$data$id
 #' out <- plos_fulltext(dois)
 #' out[dois[1]]
 #' out[1:2]
 #'
-#' # Extract text from the XML strings
-#' library("XML")
-#' lapply(out[2:3], function(x){
-#'  tmp <- xmlParse(x)
-#'  xpathApply(tmp, "//ref-list")
-#' })
-#'
-#' # Make a text corpus
-#' library("tm")
-#' out_parsed <- lapply(out, function(x){
-#'  tmp <- xmlParse(x)
-#'  xpathApply(tmp, "//body", xmlValue)
-#' })
-#' tmcorpus <- Corpus(VectorSource(out_parsed))
-#' (dtm <- DocumentTermMatrix(tmcorpus))
-#' findFreqTerms(dtm, lowfreq = 50)
+#' # Extract text from the XML strings - xml2 package required
+#' if (requireNamespace("xml2")) {
+#'   library("xml2")
+#'   lapply(out, function(x){
+#'     tmp <- xml2::read_xml(x)
+#'     xml2::xml_find_all(tmp, "//ref-list//ref")
+#'   })
+#' }
+#' 
 #' }
 plos_fulltext <- function(doi, ...){
   urls <- full_text_urls(doi)

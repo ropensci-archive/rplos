@@ -15,13 +15,16 @@ knitr::opts_chunk$set(
 )
 ```
 
-The `rplos` package interacts with the API services of [PLoS](http://www.plos.org/) (Public Library of Science) Journals. You used to need an API key to work with this package - that is no longer needed!
+The `rplos` package interacts with the API services of [PLoS](http://www.plos.org/) 
+(Public Library of Science) Journals. You used to need an API key to work with 
+this package - that is no longer needed!
 
 This tutorial will go through three use cases to demonstrate the kinds
 of things possible in `rplos`.
 
 * Search across PLoS papers in various sections of papers
-* Search for terms and visualize results as a histogram OR as a plot through time
+* Search for terms and visualize results as a histogram OR as a plot through 
+time
 * Text mining of scientific literature
 
 ### Load package from CRAN
@@ -40,39 +43,41 @@ library('rplos')
 **Helianthus** and returns the DOI's of matching papers
 
 ```{r searchplos1}
-searchplos(q= "Helianthus", fl= "id", limit = 5)
+searchplos(q = "Helianthus", fl = "id", limit = 5)
 ```
 
 Get only full article DOIs
 
 ```{r searchplos2}
-searchplos(q="*:*", fl='id', fq='doc_type:full', start=0, limit=5)
+searchplos(q = "*:*", fl = 'id', fq = 'doc_type:full', start = 0, limit = 5)
 ```
 
 Get DOIs for only PLoS One articles
 
 ```{r searchplos3}
-searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', start=0, limit=5)
+searchplos(q = "*:*", fl = 'id', fq = 'journal_key:PLoSONE', 
+           start = 0, limit = 5)
 ```
 
 Get DOIs for full article in PLoS One
 
 ```{r searchplos4}
-searchplos(q="*:*", fl='id',
-   fq=list('cross_published_journal_key:PLoSONE', 'doc_type:full'),
-   start=0, limit=5)
+searchplos(q = "*:*", fl = 'id',
+   fq = list('journal_key:PLoSONE', 'doc_type:full'),
+   start = 0, limit = 5)
 ```
 
 Search for many terms
 
 ```{r searchplos5}
 q <- c('ecology','evolution','science')
-lapply(q, function(x) searchplos(x, limit=2))
+lapply(q, function(x) searchplos(x, limit = 2))
 ```
 
 ### Search on specific sections
 
-A suite of functions were created as light wrappers around `searchplos` as a shorthand to search specific sections of a paper.
+A suite of functions were created as light wrappers around `searchplos` as 
+a shorthand to search specific sections of a paper.
 
 * `plosauthor` searchers in authors
 * `plosabstract` searches in abstracts
@@ -80,25 +85,28 @@ A suite of functions were created as light wrappers around `searchplos` as a sho
 * `plosfigtabcaps` searches in figure and table captions
 * `plossubject` searches in subject areas
 
-`plosauthor` searches across authors, and in this case returns the authors of the matching papers. the fl parameter determines what is returned
+`plosauthor` searches across authors, and in this case returns the authors of 
+the matching papers. the fl parameter determines what is returned
 
 ```{r plosauthor}
 plosauthor(q = "Eisen", fl = "author", limit = 5)
 ```
 
-`plosabstract` searches across abstracts, and in this case returns the id and title of the matching papers
+`plosabstract` searches across abstracts, and in this case returns the id and 
+title of the matching papers
 
 ```{r plosabstract}
-plosabstract(q = 'drosophila', fl='id,title', limit = 5)
+plosabstract(q = 'drosophila', fl = 'id,title', limit = 5)
 ```
 
-`plostitle` searches across titles, and in this case returns the title and journal of the matching papers
+`plostitle` searches across titles, and in this case returns the title and 
+journal of the matching papers
 
 ```{r plostitle}
-plostitle(q='drosophila', fl='title,journal', limit=5)
+plostitle(q = 'drosophila', fl = 'title,journal', limit = 5)
 ```
 
-### Search for terms and visualize results as a histogram OR as a plot through time
+### Search terms & visualize results as a histogram OR as a plot through time
 
 `plosword` allows you to search for 1 to K words and visualize the results
 as a histogram, comparing number of matching papers for each word
@@ -113,20 +121,26 @@ out$table
 out$plot
 ```
 
-You can also pass in curl options, in this case get verbose information on the curl call.
+You can also pass in curl options, in this case get verbose information on the 
+curl call.
 
 ```{r plosword2}
-plosword('Helianthus', callopts=list(verbose=TRUE))
+plosword('Helianthus', callopts = list(verbose = TRUE))
 ```
 
 ### Visualize terms
 
-`plot_throughtime` allows you to search for up to 2 words and visualize the results as a line plot through time, comparing number of articles matching through time. Visualize with the ggplot2 package, only up to two terms for now.
+`plot_throughtime` allows you to search for up to 2 words and visualize the 
+results as a line plot through time, comparing number of articles matching 
+through time. Visualize with the ggplot2 package, only up to two terms for now.
 
 ```{r throughtime1, fig.width=6, fig.height=4}
-plot_throughtime(terms = "phylogeny", limit = 200) + geom_line(size=2, color='black')
+library("ggplot2")
+plot_throughtime(terms = "phylogeny", limit = 200) + 
+  geom_line(size = 2, color = 'black')
 ```
 
 ### More
 
-See the _Faceted and highlighted searches_ and _Full text_ vignettes for more `rplos` help.
+See the _Faceted and highlighted searches_ and _Full text_ vignettes for 
+more `rplos` help.

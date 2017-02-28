@@ -17,4 +17,3 @@ Get short keys for journals to use in searching specific journals.
 journalnamekey()
 }
 }
-

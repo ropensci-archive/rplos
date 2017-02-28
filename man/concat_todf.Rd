@@ -16,4 +16,3 @@ data.frame of results, with authors concatenated to single vector.
 Concatenate author names, if present, used in other functions.
 }
 \keyword{internal}
-

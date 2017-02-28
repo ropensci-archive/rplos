@@ -9,13 +9,16 @@ rplos introduction
 
 
 
-The `rplos` package interacts with the API services of [PLoS](http://www.plos.org/) (Public Library of Science) Journals. You used to need an API key to work with this package - that is no longer needed!
+The `rplos` package interacts with the API services of [PLoS](http://www.plos.org/) 
+(Public Library of Science) Journals. You used to need an API key to work with 
+this package - that is no longer needed!
 
 This tutorial will go through three use cases to demonstrate the kinds
 of things possible in `rplos`.
 
 * Search across PLoS papers in various sections of papers
-* Search for terms and visualize results as a histogram OR as a plot through time
+* Search for terms and visualize results as a histogram OR as a plot through 
+time
 * Text mining of scientific literature
 
 ### Load package from CRAN
@@ -37,86 +40,87 @@ library('rplos')
 
 
 ```r
-searchplos(q= "Helianthus", fl= "id", limit = 5)
+searchplos(q = "Helianthus", fl = "id", limit = 5)
 ```
 
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1      347     0       NA
+#> 1      466     0       NA
 #> 
 #> $data
 #>                             id
-#> 1 10.1371/journal.pone.0111982
-#> 2 10.1371/journal.pone.0057533
-#> 3 10.1371/journal.pone.0045899
-#> 4 10.1371/journal.pone.0037191
-#> 5 10.1371/journal.pone.0051360
+#> 1 10.1371/journal.pone.0148280
+#> 2 10.1371/journal.pone.0111982
+#> 3 10.1371/journal.pone.0139188
+#> 4 10.1371/journal.pone.0057533
+#> 5 10.1371/journal.pone.0045899
 ```
 
 Get only full article DOIs
 
 
 ```r
-searchplos(q="*:*", fl='id', fq='doc_type:full', start=0, limit=5)
+searchplos(q = "*:*", fl = 'id', fq = 'doc_type:full', start = 0, limit = 5)
 ```
 
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1   158745     0       NA
+#> 1   197382     0       NA
 #> 
 #> $data
 #>                             id
-#> 1 10.1371/journal.pone.0031384
-#> 2 10.1371/journal.pone.0031385
-#> 3 10.1371/journal.pone.0107441
-#> 4 10.1371/journal.pone.0000339
-#> 5 10.1371/journal.pone.0046739
+#> 1 10.1371/journal.pcbi.1000942
+#> 2 10.1371/journal.pone.0130089
+#> 3 10.1371/journal.pone.0165670
+#> 4 10.1371/journal.pgen.1002909
+#> 5 10.1371/journal.pcbi.1004317
 ```
 
 Get DOIs for only PLoS One articles
 
 
 ```r
-searchplos(q="*:*", fl='id', fq='cross_published_journal_key:PLoSONE', start=0, limit=5)
+searchplos(q = "*:*", fl = 'id', fq = 'journal_key:PLoSONE', 
+           start = 0, limit = 5)
 ```
 
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1  1142335     0       NA
+#> 1  1465904     0       NA
 #> 
 #> $data
-#>                                          id
-#> 1        10.1371/journal.pone.0123754/title
-#> 2     10.1371/journal.pone.0123754/abstract
-#> 3   10.1371/journal.pone.0123754/references
-#> 4         10.1371/journal.pone.0123754/body
-#> 5 10.1371/journal.pone.0123754/introduction
+#>                                                    id
+#> 1 10.1371/journal.pone.0130089/results_and_discussion
+#> 2  10.1371/journal.pone.0130089/materials_and_methods
+#> 3 10.1371/journal.pone.0130089/supporting_information
+#> 4                        10.1371/journal.pone.0130089
+#> 5                  10.1371/journal.pone.0130089/title
 ```
 
 Get DOIs for full article in PLoS One
 
 
 ```r
-searchplos(q="*:*", fl='id',
-   fq=list('cross_published_journal_key:PLoSONE', 'doc_type:full'),
-   start=0, limit=5)
+searchplos(q = "*:*", fl = 'id',
+   fq = list('journal_key:PLoSONE', 'doc_type:full'),
+   start = 0, limit = 5)
 ```
 
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1   133907     0       NA
+#> 1   167954     0       NA
 #> 
 #> $data
 #>                             id
-#> 1 10.1371/journal.pone.0031384
-#> 2 10.1371/journal.pone.0031385
-#> 3 10.1371/journal.pone.0107441
-#> 4 10.1371/journal.pone.0000339
-#> 5 10.1371/journal.pone.0046739
+#> 1 10.1371/journal.pone.0130089
+#> 2 10.1371/journal.pone.0165670
+#> 3 10.1371/journal.pone.0162873
+#> 4 10.1371/journal.pone.0163015
+#> 5 10.1371/journal.pone.0167202
 ```
 
 Search for many terms
@@ -124,14 +128,14 @@ Search for many terms
 
 ```r
 q <- c('ecology','evolution','science')
-lapply(q, function(x) searchplos(x, limit=2))
+lapply(q, function(x) searchplos(x, limit = 2))
 ```
 
 ```
 #> [[1]]
 #> [[1]]$meta
 #>   numFound start maxScore
-#> 1    27832     0       NA
+#> 1    36908     0       NA
 #> 
 #> [[1]]$data
 #>                             id
@@ -142,18 +146,18 @@ lapply(q, function(x) searchplos(x, limit=2))
 #> [[2]]
 #> [[2]]$meta
 #>   numFound start maxScore
-#> 1    46467     0       NA
+#> 1    59186     0       NA
 #> 
 #> [[2]]$data
-#>                                                        id
-#> 1 10.1371/annotation/9773af53-a076-4946-a3f1-83914226c10d
-#> 2 10.1371/annotation/c55d5089-ba2f-449d-8696-2bc8395978db
+#>                             id
+#> 1 10.1371/journal.pbio.0050030
+#> 2 10.1371/journal.pbio.0030245
 #> 
 #> 
 #> [[3]]
 #> [[3]]$meta
 #>   numFound start maxScore
-#> 1   134888     0       NA
+#> 1   176450     0       NA
 #> 
 #> [[3]]$data
 #>                             id
@@ -163,7 +167,8 @@ lapply(q, function(x) searchplos(x, limit=2))
 
 ### Search on specific sections
 
-A suite of functions were created as light wrappers around `searchplos` as a shorthand to search specific sections of a paper.
+A suite of functions were created as light wrappers around `searchplos` as 
+a shorthand to search specific sections of a paper.
 
 * `plosauthor` searchers in authors
 * `plosabstract` searches in abstracts
@@ -171,7 +176,8 @@ A suite of functions were created as light wrappers around `searchplos` as a sho
 * `plosfigtabcaps` searches in figure and table captions
 * `plossubject` searches in subject areas
 
-`plosauthor` searches across authors, and in this case returns the authors of the matching papers. the fl parameter determines what is returned
+`plosauthor` searches across authors, and in this case returns the authors of 
+the matching papers. the fl parameter determines what is returned
 
 
 ```r
@@ -181,7 +187,7 @@ plosauthor(q = "Eisen", fl = "author", limit = 5)
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1      764     0       NA
+#> 1      876     0       NA
 #> 
 #> $data
 #>             author
@@ -192,55 +198,57 @@ plosauthor(q = "Eisen", fl = "author", limit = 5)
 #> 5 Jonathan A Eisen
 ```
 
-`plosabstract` searches across abstracts, and in this case returns the id and title of the matching papers
+`plosabstract` searches across abstracts, and in this case returns the id and 
+title of the matching papers
 
 
 ```r
-plosabstract(q = 'drosophila', fl='id,title', limit = 5)
+plosabstract(q = 'drosophila', fl = 'id,title', limit = 5)
 ```
 
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1     2669     0       NA
+#> 1     3116     0       NA
 #> 
 #> $data
 #>                             id
 #> 1 10.1371/journal.pbio.0040198
 #> 2 10.1371/journal.pbio.0030246
 #> 3 10.1371/journal.pone.0012421
-#> 4 10.1371/journal.pbio.0030389
-#> 5 10.1371/journal.pbio.1000342
-#>                                                                       title
-#> 1                                                               All for All
-#> 2                               School Students as Drosophila Experimenters
-#> 3                      Host Range and Specificity of the Drosophila C Virus
-#> 4               New Environments Set the Stage for Changing Tastes in Mates
-#> 5 Variable Transcription Factor Binding: A Mechanism of Evolutionary Change
+#> 4 10.1371/journal.pone.0002817
+#> 5 10.1371/journal.pbio.1000318
+#>                                                                                       title
+#> 1                                                                               All for All
+#> 2                                               School Students as Drosophila Experimenters
+#> 3                                      Host Range and Specificity of the Drosophila C Virus
+#> 4           High-Resolution, In Vivo Magnetic Resonance Imaging of Drosophila at 18.8 Tesla
+#> 5 Genomic Responses to Abnormal Gene Dosage: The X Chromosome Improved on a Common Strategy
 ```
 
-`plostitle` searches across titles, and in this case returns the title and journal of the matching papers
+`plostitle` searches across titles, and in this case returns the title and 
+journal of the matching papers
 
 
 ```r
-plostitle(q='drosophila', fl='title,journal', limit=5)
+plostitle(q = 'drosophila', fl = 'title,journal', limit = 5)
 ```
 
 ```
 #> $meta
 #>   numFound start maxScore
-#> 1     1718     0       NA
+#> 1     1930     0       NA
 #> 
 #> $data
-#>        journal                                         title
-#> 1 PLoS Biology Identification of Drosophila MicroRNA Targets
-#> 2     PLoS ONE                     A DNA Virus of Drosophila
-#> 3 PLoS Biology   School Students as Drosophila Experimenters
-#> 4 PLoS Biology   Expression in Aneuploid Drosophila S2 Cells
-#> 5     PLoS ONE   Quantification of Food Intake in Drosophila
+#>        journal                                          title
+#> 1 PLoS Biology    Expression in Aneuploid Drosophila S2 Cells
+#> 2     PLOS ONE Contribution of Drosophila TRPA1 to Metabolism
+#> 3 PLoS Biology    Combinatorial Coding for Drosophila Neurons
+#> 4 PLoS Biology    School Students as Drosophila Experimenters
+#> 5     PLoS ONE    Quantification of Food Intake in Drosophila
 ```
 
-### Search for terms and visualize results as a histogram OR as a plot through time
+### Search terms & visualize results as a histogram OR as a plot through time
 
 `plosword` allows you to search for 1 to K words and visualize the results
 as a histogram, comparing number of matching papers for each word
@@ -254,11 +262,11 @@ out$table
 
 ```
 #>   No_Articles       Term
-#> 1        9098     monkey
-#> 2         347 Helianthus
-#> 3         937  sunflower
-#> 4      101040    protein
-#> 5        1139      whale
+#> 1       11163     monkey
+#> 2         466 Helianthus
+#> 3        1285  sunflower
+#> 4      125467    protein
+#> 5        1465      whale
 ```
 
 
@@ -266,31 +274,37 @@ out$table
 out$plot
 ```
 
-![plot of chunk plosword1plot](figure/plosword1plot-1.png) 
+![plot of chunk plosword1plot](figure/plosword1plot-1.png)
 
-You can also pass in curl options, in this case get verbose information on the curl call.
+You can also pass in curl options, in this case get verbose information on the 
+curl call.
 
 
 ```r
-plosword('Helianthus', callopts=list(verbose=TRUE))
+plosword('Helianthus', callopts = list(verbose = TRUE))
 ```
 
 ```
 #> Number of articles with search term 
-#>                                 347
+#>                                 466
 ```
 
 ### Visualize terms
 
-`plot_throughtime` allows you to search for up to 2 words and visualize the results as a line plot through time, comparing number of articles matching through time. Visualize with the ggplot2 package, only up to two terms for now.
+`plot_throughtime` allows you to search for up to 2 words and visualize the 
+results as a line plot through time, comparing number of articles matching 
+through time. Visualize with the ggplot2 package, only up to two terms for now.
 
 
 ```r
-plot_throughtime(terms = "phylogeny", limit = 200) + geom_line(size=2, color='black')
+library("ggplot2")
+plot_throughtime(terms = "phylogeny", limit = 200) + 
+  geom_line(size = 2, color = 'black')
 ```
 
-![plot of chunk throughtime1](figure/throughtime1-1.png) 
+![plot of chunk throughtime1](figure/throughtime1-1.png)
 
 ### More
 
-See the _Faceted and highlighted searches_ and _Full text_ vignettes for more `rplos` help.
+See the _Faceted and highlighted searches_ and _Full text_ vignettes for 
+more `rplos` help.

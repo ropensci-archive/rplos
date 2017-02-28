@@ -27,4 +27,3 @@ plot_throughtime(list('drosophila','monkey'), 100)
 plot_throughtime(list('drosophila','flower','dolphin','cell','cloud'), 100)
 }
 }
-
