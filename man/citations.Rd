@@ -29,15 +29,15 @@ To get an API key, email \email{ploslabs@plos.org} and request a key
 \examples{
 \dontrun{
 # get citations for an article (via its DOI)
-uri <- "http://dx.doi.org/10.1371\%2Fjournal.pone.0000000"
-citations(uri)
-citations(uri, parse = TRUE)
+# uri <- "http://dx.doi.org/10.1371\%2Fjournal.pone.0000000"
+# citations(uri)
+# citations(uri, parse = TRUE)
 
 # pass in a DOI, url encoded or not
-citations(doi = "10.1371\%2Fjournal.pone.0000000")
-citations(doi = "10.1371/journal.pone.0000000")
-ids <- searchplos(q='ecology', fl='id', limit = 20)$data$id
-citations(doi = ids[1])
+# citations(doi = "10.1371\%2Fjournal.pone.0000000")
+# citations(doi = "10.1371/journal.pone.0000000")
+# ids <- searchplos(q='ecology', fl='id', limit = 20)$data$id
+# citations(doi = ids[1])
 }
 }
 \references{

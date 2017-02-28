@@ -17,7 +17,7 @@
 #' @section Tutorials:
 #'
 #' See the rOpenSci website for a tutorial:
-#' http://ropensci.org/tutorials/rplos_tutorial.html
+#' https://ropensci.org/tutorials/rplos_tutorial.html
 #'
 #' @examples \dontrun{
 #' searchplos(q='ecology', fl=c('id','publication_date'), limit = 2)

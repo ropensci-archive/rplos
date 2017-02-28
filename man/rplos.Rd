@@ -29,7 +29,7 @@ You used to need an API key to use this package - no longer needed
 
 
 See the rOpenSci website for a tutorial:
-http://ropensci.org/tutorials/rplos_tutorial.html
+https://ropensci.org/tutorials/rplos_tutorial.html
 }
 
 \examples{
