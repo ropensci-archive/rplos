@@ -12,10 +12,8 @@
 #' highplos(q='alcohol', hl.fl='abstract', hl.snippets=5, hl.mergeContiguous='true', rows=5)
 #' highplos(q='alcohol', hl.fl='abstract', hl.useFastVectorHighlighter='true', rows=5)
 #' highplos(q='everything:"experiment"', fq='doc_type:full', rows=100, hl.fl = 'title')
-#' }
-#'
-#' @examples \donttest{
-#' highplos(q='alcohol', hl.fl = 'abstract', rows=1200)
+#' 
+#' # highplos(q='alcohol', hl.fl = 'abstract', rows=1200)
 #' }
 
 highplos <- function(q, fl=NULL, fq=NULL, hl.fl = NULL, hl.snippets = NULL, hl.fragsize = NULL,

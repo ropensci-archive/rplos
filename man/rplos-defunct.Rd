@@ -7,5 +7,6 @@
 \itemize{
  \item \code{\link{crossref}}: service no longer provided - 
  see the package \code{rcrossref}
+ \item \code{\link{citations}}: service no longer available
 }
 }

@@ -77,7 +77,7 @@ rplos 0.4.7
 
 ### NEW FEATURES
 
-* New function `citations()` for querying the [PLOS Rich Citations API](http://api.richcitations.org/) (#88)
+* New function `citations()` for querying the PLOS Rich Citations API (http://api.richcitations.org/) (#88)
 
 ### BUG FIXES
 

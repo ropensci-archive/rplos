@@ -95,6 +95,5 @@ plosabstract(q = 'drosophila', fl='abstract', limit=10)
 plosabstract(q = 'drosophila', fl=c('id','author'), limit = 5)
 plosabstract(q = 'drosophila', fl='author', limit = 5)
 plosabstract(q = 'drosophila', fl=c('id','author','title'), limit = 5)
-plosabstract(q = 'drosophila', fl=c('id','author','title'), limit = 5, config=verbose())
 }
 }
