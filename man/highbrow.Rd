@@ -22,7 +22,7 @@ Browse highlighted fragments in your default browser.
 out <- highplos(q='alcohol', hl.fl = 'abstract', rows=10)
 highbrow(out)
 
-out <- highplos(q='alcohol', hl.fl = 'abstract', rows=1200)
+out <- highplos(q='alcohol', hl.fl = 'abstract', rows=100)
 highbrow(out)
 }
 }
