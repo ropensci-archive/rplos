@@ -31,6 +31,5 @@ Imports:
 Suggests:
     xml2,
     testthat,
-    knitr,
-    covr
+    knitr
 RoxygenNote: 6.0.1
