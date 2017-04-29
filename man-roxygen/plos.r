@@ -29,6 +29,15 @@
 #' @param fields DEPRECATED PARAMETER - replaced with the \code{fl} param.
 #' @param toquery DEPRECATED PARAMETER - replaced with the \code{fq} param.
 #' @param callopts DEPRECATED PARAMETER - replaced with the \code{...} param.
+#' @param proxy List of arguments for a proxy connection, including one or more of:
+#' url, port, username, password, and auth. See \code{\link[httr]{use_proxy}} for
+#' help, which is used to construct the proxy connection.
+#' @param errors (character) One of simple or complete. Simple gives http code and
+#' error message on an error, while complete gives both http code and error message,
+#' and stack trace, if available.
+#' @param verbose (logical) Whether to print help messages or not. E.g., if
+#' \code{TRUE}, we print the URL on each request to a Solr server for your
+#' reference. Default: \code{TRUE}
 #'
 #' @details Details:
 #' @section Faceting:

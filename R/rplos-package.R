@@ -38,7 +38,7 @@
 #' @importFrom plyr ddply llply summarise ldply
 #' @importFrom reshape2 melt
 #' @importFrom whisker whisker.render
-#' @importFrom solr solr_highlight solr_facet
+#' @importFrom solrium solr_highlight solr_facet
 #' @importFrom lubridate now
 #' @importFrom ggplot2 ggplot aes geom_bar theme_grey geom_line 
 #' scale_colour_brewer labs theme

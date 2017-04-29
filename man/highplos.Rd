@@ -17,7 +17,8 @@ highplos(q, fl = NULL, fq = NULL, hl.fl = NULL, hl.snippets = NULL,
   hl.useFastVectorHighlighter = NULL, hl.usePhraseHighlighter = NULL,
   hl.highlightMultiTerm = NULL, hl.regex.slop = NULL,
   hl.regex.pattern = NULL, hl.regex.maxAnalyzedChars = NULL, start = 0,
-  rows = NULL, callopts = list(), sleep = 6, ...)
+  rows = NULL, verbose = TRUE, errors = "simple", proxy = NULL,
+  callopts = list(), sleep = 6, ...)
 }
 \arguments{
 \item{q}{Search terms (character). You can search on specific fields by
@@ -174,6 +175,18 @@ you need to cycle through more results than the max allowed=1000)}
 
 \item{rows}{Number of results to return (integer)}
 
+\item{verbose}{(logical) Whether to print help messages or not. E.g., if
+\code{TRUE}, we print the URL on each request to a Solr server for your
+reference. Default: \code{TRUE}}
+
+\item{errors}{(character) One of simple or complete. Simple gives http code and
+error message on an error, while complete gives both http code and error message,
+and stack trace, if available.}
+
+\item{proxy}{List of arguments for a proxy connection, including one or more of:
+url, port, username, password, and auth. See \code{\link[httr]{use_proxy}} for
+help, which is used to construct the proxy connection.}
+
 \item{callopts}{Optional additional curl options (debugging tools mostly)}
 
 \item{sleep}{Number of seconds to wait between requests. No need to use this for
@@ -197,10 +210,11 @@ highplos(q='alcohol', hl.fl = c('abstract','title'), rows=10)
 highplos(q='everything:"sports alcohol"~7', hl.fl='everything')
 highplos(q='alcohol', hl.fl='abstract', hl.fragsize=20, rows=5)
 highplos(q='alcohol', hl.fl='abstract', hl.snippets=5, rows=5)
-highplos(q='alcohol', hl.fl='abstract', hl.snippets=5, hl.mergeContiguous='true', rows=5)
-highplos(q='alcohol', hl.fl='abstract', hl.useFastVectorHighlighter='true', rows=5)
-highplos(q='everything:"experiment"', fq='doc_type:full', rows=100, hl.fl = 'title')
-
-# highplos(q='alcohol', hl.fl = 'abstract', rows=1200)
+highplos(q='alcohol', hl.fl='abstract', hl.snippets=5, 
+  hl.mergeContiguous='true', rows=5)
+highplos(q='alcohol', hl.fl='abstract', hl.useFastVectorHighlighter='true', 
+  rows=5)
+highplos(q='everything:"experiment"', fq='doc_type:full', rows=100, 
+  hl.fl = 'title')
 }
 }

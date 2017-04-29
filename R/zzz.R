@@ -113,3 +113,9 @@ plos_check_dois <- function(x) {
 }
 
 utf8cont <- function(x) httr::content(x, "text", encoding = "UTF-8")
+
+check_conn <- function(verbose, errors, proxy) {
+  solrium::solr_connect(pbase(), proxy = proxy, errors = errors, 
+                        verbose = verbose)
+}
+

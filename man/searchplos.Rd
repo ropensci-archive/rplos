@@ -6,7 +6,7 @@
 \usage{
 searchplos(q = NULL, fl = "id", fq = NULL, sort = NULL, start = 0,
   limit = 10, sleep = 6, terms = NULL, fields = NULL, toquery = NULL,
-  callopts = NULL, ...)
+  verbose = TRUE, errors = "simple", proxy = NULL, callopts = NULL, ...)
 }
 \arguments{
 \item{q}{Search terms (character). You can search on specific fields by
@@ -47,14 +47,26 @@ about right.}
 
 \item{toquery}{DEPRECATED PARAMETER - replaced with the \code{fq} param.}
 
+\item{verbose}{(logical) Whether to print help messages or not. E.g., if
+\code{TRUE}, we print the URL on each request to a Solr server for your
+reference. Default: \code{TRUE}}
+
+\item{errors}{(character) One of simple or complete. Simple gives http code and
+error message on an error, while complete gives both http code and error message,
+and stack trace, if available.}
+
+\item{proxy}{List of arguments for a proxy connection, including one or more of:
+url, port, username, password, and auth. See \code{\link[httr]{use_proxy}} for
+help, which is used to construct the proxy connection.}
+
 \item{callopts}{DEPRECATED PARAMETER - replaced with the \code{...} param.}
 
 \item{...}{Optional additional curl options (debugging tools mostly), passed on to
 \code{\link[httr]{GET}}}
 }
 \value{
-An object of class "plos", with a list of length two, each element being
-a list itself.
+An object of class "plos", with a list of length two, each 
+element being a list itself.
 }
 \description{
 Base function to search PLoS Journals
@@ -102,12 +114,12 @@ head(out$data)
 
 # Get DOIs for only PLoS One articles
 out <- searchplos(q="*:*", fl='id', fq='journal_key:PLoSONE', start=0, limit=15)
-head(out$data)
+out$data
 
 # Get DOIs for full article in PLoS One
 out <- searchplos(q="*:*", fl='id', fq=list('journal_key:PLoSONE',
    'doc_type:full'), limit=50)
-head(out$data)
+out$data
 
 # Serch for many q
 q <- c('ecology','evolution','science')
@@ -117,8 +129,8 @@ lapply(q, function(x) searchplos(x, limit=2))
 out <- searchplos(q="*:*", fl=c('id','counter_total_all','alm_twitterCount'),fq='doc_type:full')
 out_sorted <- searchplos(q="*:*", fl=c('id','counter_total_all','alm_twitterCount'),
    fq='doc_type:full', sort='counter_total_all desc')
-head(out$data)
-head(out_sorted$data)
+out$data
+out_sorted$data
 
 # Show me all articles that have these two words less then about 15 words apart.
 searchplos(q='everything:"sports alcohol"~15', fl='title', fq='doc_type:full')
@@ -158,5 +170,8 @@ searchplos(q='*:*', fl=c('id','article_type'),
 # Get eissn codes
 searchplos(q='*:*', fl=c('id','journal','eissn','cross_published_journal_eissn'),
    fq="doc_type:full", limit = 60)
+   
+searchplos(q='*:*', fl=c('id','journal','eissn','cross_published_journal_eissn'),
+   limit = 2000)
 }
 }

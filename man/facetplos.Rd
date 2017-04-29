@@ -13,7 +13,8 @@ facetplos(q = "*:*", facet.query = NA, facet.field = NA,
   facet.date.include = NA, facet.range = NA, facet.range.start = NA,
   facet.range.end = NA, facet.range.gap = NA, facet.range.hardend = NA,
   facet.range.other = NA, facet.range.include = NA, start = NA,
-  rows = NA, url = NA, sleep = 6, callopts = list(), ...)
+  rows = NA, url = NA, sleep = 6, verbose = TRUE, errors = "simple",
+  proxy = NULL, callopts = list(), ...)
 }
 \arguments{
 \item{q}{Query terms.}
@@ -143,7 +144,19 @@ a single call. However, if you are doing many calls in a loop or lapply type cal
 sleep parameter is used to prevent your IP address from being blocked. You can only 
 do 10 requests per minute, so one request every 6 seconds is about right.}
 
-\item{callopts}{Call options passed on to \code{\link[httr]{GET}}}
+\item{verbose}{(logical) Whether to print help messages or not. E.g., if
+\code{TRUE}, we print the URL on each request to a Solr server for your
+reference. Default: \code{TRUE}}
+
+\item{errors}{(character) One of simple or complete. Simple gives http code and
+error message on an error, while complete gives both http code and error message,
+and stack trace, if available.}
+
+\item{proxy}{List of arguments for a proxy connection, including one or more of:
+url, port, username, password, and auth. See \code{\link[httr]{use_proxy}} for
+help, which is used to construct the proxy connection.}
+
+\item{callopts}{Further args passed on to \code{\link[httr]{GET}}}
 
 \item{...}{Further args to \code{\link[solr]{solr_facet}}}
 }
@@ -177,7 +190,7 @@ facetplos(q='*:*', facet.date='publication_date',
 
 # Range faceting
 facetplos(q='*:*', url=url, facet.range='counter_total_all',
- facet.range.start=5, facet.range.end=1000, facet.range.gap=10)
+   facet.range.start=5, facet.range.end=1000, facet.range.gap=10)
 facetplos(q='alcohol', facet.range='alm_facebookCount', facet.range.start=1000,
    facet.range.end=5000, facet.range.gap = 100)
 

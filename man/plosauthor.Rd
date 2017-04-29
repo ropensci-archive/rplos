@@ -6,7 +6,7 @@
 \usage{
 plosauthor(q = NULL, fl = "id", fq = NULL, sort = NULL, start = 0,
   limit = 10, sleep = 6, terms = NULL, fields = NULL, toquery = NULL,
-  callopts = NULL, ...)
+  verbose = TRUE, errors = "simple", proxy = NULL, callopts = NULL, ...)
 }
 \arguments{
 \item{q}{Search terms (character). You can search on specific fields by
@@ -46,6 +46,18 @@ about right.}
 \item{fields}{DEPRECATED PARAMETER - replaced with the \code{fl} param.}
 
 \item{toquery}{DEPRECATED PARAMETER - replaced with the \code{fq} param.}
+
+\item{verbose}{(logical) Whether to print help messages or not. E.g., if
+\code{TRUE}, we print the URL on each request to a Solr server for your
+reference. Default: \code{TRUE}}
+
+\item{errors}{(character) One of simple or complete. Simple gives http code and
+error message on an error, while complete gives both http code and error message,
+and stack trace, if available.}
+
+\item{proxy}{List of arguments for a proxy connection, including one or more of:
+url, port, username, password, and auth. See \code{\link[httr]{use_proxy}} for
+help, which is used to construct the proxy connection.}
 
 \item{callopts}{DEPRECATED PARAMETER - replaced with the \code{...} param.}
 

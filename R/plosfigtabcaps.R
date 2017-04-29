@@ -10,7 +10,8 @@
 #' }
 
 plosfigtabcaps <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL,
-  start = 0, limit = 10, sleep = 6, terms=NULL, fields=NULL, toquery=NULL, callopts=NULL, ...)
+  start = 0, limit = 10, sleep = 6, terms=NULL, fields=NULL, toquery=NULL, 
+  verbose = TRUE, errors = "simple", proxy = NULL, callopts=NULL, ...)
 {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- c("terms", "fields", "toquery", "callopts") %in% calls
@@ -19,5 +20,6 @@ plosfigtabcaps <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL,
 
   searchplos(q=paste('figure_table_caption:', '"', q, '"', sep=""), fl=fl, fq=fq,
              sort=sort, start=start, limit=limit,
-             sleep=sleep, ...)
+             sleep=sleep, verbose = verbose, errors = errors, 
+             proxy = proxy, ...)
 }
