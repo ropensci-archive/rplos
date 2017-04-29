@@ -61,7 +61,7 @@ facetplos <- function(q="*:*", facet.query=NA, facet.field=NA,
   }
 
   check_conn(verbose, errors, proxy)
-  out <- solr_facet(facet.query=facet.query,facet.field=facet.field,
+  out <- solrium::solr_facet(facet.query=facet.query,facet.field=facet.field,
     facet.prefix=facet.prefix,facet.sort=facet.sort,facet.limit=facet.limit,
     facet.offset=facet.offset,facet.mincount=facet.mincount,facet.missing=facet.missing,
     facet.method=facet.method,facet.enum.cache.minDf=facet.enum.cache.minDf,

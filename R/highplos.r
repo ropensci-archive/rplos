@@ -43,7 +43,7 @@ highplos <- function(q, fl=NULL, fq=NULL, hl.fl = NULL, hl.snippets = NULL,
 
   check_conn(verbose, errors, proxy)
   if (!is.null(fl)) fl <- paste(fl, collapse = ",")
-  out <- solr_highlight(q=q, fl=fl, fq=fq, wt='json', start=start, rows=rows, hl.fl=hl.fl,
+  out <- solrium::solr_highlight(q=q, fl=fl, fq=fq, wt='json', start=start, rows=rows, hl.fl=hl.fl,
     hl.snippets=hl.snippets, hl.fragsize=hl.fragsize,
     hl.mergeContiguous = hl.mergeContiguous, hl.requireFieldMatch = hl.requireFieldMatch,
     hl.maxAnalyzedChars = hl.maxAnalyzedChars, hl.alternateField = hl.alternateField,
