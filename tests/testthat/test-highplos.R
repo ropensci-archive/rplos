@@ -5,9 +5,12 @@ test_that("highplos", {
   skip_on_cran()
 
   aa <- highplos(q='alcohol', hl.fl = 'abstract', rows=10, verbose = FALSE)
-  bb <- highplos(q='everything:"sports alcohol"~7', hl.fl='everything', verbose = FALSE)
-  cc <- highplos(q='alcohol', hl.fl='abstract', hl.fragsize=20, rows=5, verbose = FALSE)
-  dd <- highplos(q='alcohol', hl.fl='abstract', hl.snippets=5, hl.mergeContiguous='true', rows=5, verbose = FALSE)
+  bb <- highplos(q='everything:"sports alcohol"~7', hl.fl='everything', 
+                 verbose = FALSE)
+  cc <- highplos(q='alcohol', hl.fl='abstract', hl.fragsize=20, rows=5, 
+                 verbose = FALSE)
+  dd <- highplos(q='alcohol', hl.fl='abstract', hl.snippets=5, 
+                 hl.mergeContiguous='true', rows=5, verbose = FALSE)
 
   # citations returns the correct classes
   expect_is(aa, "list")
@@ -35,8 +38,11 @@ test_that("highplos", {
   expect_gt(nchar(dd[[1]][[1]]), nchar(cc[[1]][[1]]))
 
   # fails well
-  expect_error(length(highplos(verbose = FALSE)), "\"q\" is missing, with no default")
+  expect_error(length(highplos(verbose = FALSE)), 
+               "\"q\" is missing, with no default")
   expect_equal(length(highplos("*:*", verbose = FALSE)[[1]]), 0)
-  expect_error(highplos("alcohol", hl.fragsize = "adsfad", verbose = FALSE), "Bad Request")
-  expect_error(highplos("alcohol", hl.snippets = "adsfad", verbose = FALSE), "Bad Request")
+  expect_error(highplos("alcohol", hl.fragsize = "adsfad", verbose = FALSE), 
+               "400 - For input string")
+  expect_error(highplos("alcohol", hl.snippets = "adsfad", verbose = FALSE), 
+               "400 - For input string")
 })

@@ -18,7 +18,10 @@ test_that("check_response catches no data found correctly", {
 	skip_on_cran()
 
   expect_message(check_response(httr::GET(datanotfound)), "no data found")
-  expect_message(searchplos(q="monkey pies and cheese cows horses"), "no data found")
+  expect_equal(
+    NROW(searchplos("monkey pies and cheese cows horses")$datA), 
+    0
+  )
 })
 
 test_that("check_response catches undefined fields correctly", {
