@@ -62,38 +62,6 @@ insertnones <- function(x) {
 
 ploscompact <- function(l) Filter(Negate(is.null), l)
 
-#' Check response from PLOS, including status codes, server error messages, mime-type, etc.
-#' @export
-#' @keywords internal
-check_response <- function(x){
-  if (!x$status_code == 200) {
-    stnames <- names(jsonlite::fromJSON(utf8cont(x), FALSE))
-    if (!is.null(stnames)) {
-      if ('error' %in% stnames) {
-        stop(sprintf("(%s) - %s", x$status_code, jsonlite::fromJSON(utf8cont(x), FALSE)$error$msg), call. = FALSE)
-      } else { 
-        stop(sprintf("(%s)", x$status_code), call. = FALSE) 
-      }
-    } else { 
-      stop_for_status(x) 
-    }
-  }
-  stopifnot(x$headers$`content-type` == 'application/json;charset=UTF-8')
-  res <- utf8cont(x)
-  out <- jsonlite::fromJSON(res, FALSE)
-  if ('response' %in% names(out)) { 
-    if (out$response$numFound == 0) {
-      message("Sorry, no data found")
-      out
-    }
-  } else {
-    if ( class(try(out$response, silent = TRUE)) == "try-error" | is.null(try(out$response, silent = TRUE)) ) {
-      stop("Sorry, no data found", call. = FALSE)
-    }
-  }
-  return( out )
-}
-
 strextract <- function(str, pattern) regmatches(str, regexpr(pattern, str))
 strtrim <- function(str) gsub("^\\s+|\\s+$", "", str)
 
@@ -111,8 +79,6 @@ plos_check_dois <- function(x) {
     stop("These are probably not DOIs:\n\n", paste0(names(res[!res]), "\n"), call. = FALSE)
   }
 }
-
-utf8cont <- function(x) httr::content(x, "text", encoding = "UTF-8")
 
 check_conn <- function(verbose, errors, proxy) {
   solrium::solr_connect(pbase(), proxy = proxy, errors = errors, 

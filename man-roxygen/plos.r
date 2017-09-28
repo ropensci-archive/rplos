@@ -23,14 +23,13 @@
 #'    lapply type call, do sleep parameter is used to prevent your IP address from being
 #'    blocked. You can only do 10 requests per minute, so one request every 6 seconds is
 #'    about right.
-#' @param ... Optional additional curl options (debugging tools mostly), passed on to
-#' \code{\link[httr]{GET}}
+#' @param ... optional curl options passed to \code{\link[crul]{HttpClient}}
 #' @param terms DEPRECATED PARAMETER - replaced with the \code{q} param.
 #' @param fields DEPRECATED PARAMETER - replaced with the \code{fl} param.
 #' @param toquery DEPRECATED PARAMETER - replaced with the \code{fq} param.
 #' @param callopts DEPRECATED PARAMETER - replaced with the \code{...} param.
 #' @param proxy List of arguments for a proxy connection, including one or more of:
-#' url, port, username, password, and auth. See \code{\link[httr]{use_proxy}} for
+#' url, port, username, password, and auth. See \code{\link[crul]{proxy}} for
 #' help, which is used to construct the proxy connection.
 #' @param errors (character) One of simple or complete. Simple gives http code and
 #' error message on an error, while complete gives both http code and error message,

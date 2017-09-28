@@ -11,11 +11,11 @@ plot_throughtime(terms, limit = NA, ...)
 
 \item{limit}{number of results to return (integer)}
 
-\item{...}{optional additional curl options (debugging tools mostly)}
+\item{...}{optional curl options passed to \code{\link[crul]{HttpClient}}}
 }
 \value{
-Number of search results (vis = FALSE), or number of search in a table
-   and a histogram of results (vis = TRUE).
+Number of search results (vis = FALSE), or number of search in 
+a table and a histogram of results (vis = TRUE).
 }
 \description{
 Plot results through time for serach results from PLoS Journals.

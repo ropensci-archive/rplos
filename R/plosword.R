@@ -3,20 +3,17 @@
 #' @export
 #' @param terms search terms (character)
 #' @param vis visualize results in bar plot or not (TRUE or FALSE)
-#' @param ... Optional additional curl options (debugging tools mostly)
+#' @param ... Optional additional curl options passed to 
+#' \code{\link[crul]{HttpClient}}
 #'
-#' @return Number of search results (vis = FALSE), or number of search in a table
-#'    and a histogram of results (vis = TRUE).
+#' @return Number of search results (vis = FALSE), or number of search in a 
+#' table and a histogram of results (vis = TRUE).
 #' @examples \dontrun{
 #' plosword('Helianthus')
 #' out <- plosword(list('monkey','replication','design','sunflower','whale'),
 #'    vis = TRUE)
 #' out[[1]] # results in a data frame
 #' out[[2]] # results in a bar plot
-#'
-#' # Pass in curl options
-#' library("httr")
-#' plosword('Helianthus', config=verbose())
 #' }
 
 plosword <- function(terms, vis = FALSE, ...) {
@@ -41,7 +38,8 @@ plosword <- function(terms, vis = FALSE, ...) {
 
 search_ <- function(terms, ...){
   args <- ploscompact(list(q = terms, fl = "id", wt = "json"))
-  tt <- GET(pbase(), query = args, ...)
-  stop_for_status(tt)
-  jsonlite::fromJSON(utf8cont(tt), FALSE)$response$numFound
+  cli <- HttpClient$new(url = pbase())
+  tt <- cli$get(query = args, ...)
+  tt$raise_for_status()
+  jsonlite::fromJSON(tt$parse("UTF-8"), FALSE)$response$numFound
 }

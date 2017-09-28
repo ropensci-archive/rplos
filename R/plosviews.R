@@ -6,7 +6,8 @@
 #' @param views views all time (alltime) or views last 30 days (last30)
 #'    (character)
 #' @param limit number of results to return (integer)
-#' @param ... Optional additional curl options (debugging tools mostly)
+#' @param ... Optional additional curl options passed to 
+#' \code{\link[crul]{HttpClient}}
 #' @examples \dontrun{
 #' plosviews('10.1371/journal.pone.0002154', 'id', 'alltime')
 #' plosviews('10.1371/journal.pone.0002154', 'id', 'last30')
@@ -37,9 +38,10 @@ plosviews <- function(search, byfield = NULL, views = 'alltime', limit = NULL, .
       }
     }
   }
-	tt <- GET(pbase(), query = args, ...)
-	stop_for_status(tt)
-	temp <- jsonlite::fromJSON(utf8cont(tt), FALSE)$response$docs
+  cli <- HttpClient$new(url = pbase())
+  tt <- cli$get(query = args, ...)
+  tt$raise_for_status()
+	temp <- jsonlite::fromJSON(tt$parse("UTF-8"), FALSE)$response$docs
   df <- do.call(rbind, lapply(temp, function(x) data.frame(x, stringsAsFactors = FALSE)))
 	df[order(df[,2]), ]
 }

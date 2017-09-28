@@ -16,7 +16,8 @@ plosviews(search, byfield = NULL, views = "alltime", limit = NULL, ...)
 
 \item{limit}{number of results to return (integer)}
 
-\item{...}{Optional additional curl options (debugging tools mostly)}
+\item{...}{Optional additional curl options passed to 
+\code{\link[crul]{HttpClient}}}
 }
 \description{
 Search PLoS Journals by article views.

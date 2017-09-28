@@ -123,7 +123,7 @@
 #'    blocked. You can only do 10 requests per minute, so one request every 6 seconds is
 #'    about right.
 #' @param proxy List of arguments for a proxy connection, including one or more of:
-#' url, port, username, password, and auth. See \code{\link[httr]{use_proxy}} for
+#' url, port, username, password, and auth. See \code{\link[crul]{proxy}} for
 #' help, which is used to construct the proxy connection.
 #' @param errors (character) One of simple or complete. Simple gives http code and
 #' error message on an error, while complete gives both http code and error message,
@@ -131,5 +131,6 @@
 #' @param verbose (logical) Whether to print help messages or not. E.g., if
 #' \code{TRUE}, we print the URL on each request to a Solr server for your
 #' reference. Default: \code{TRUE}
-#' @param callopts Optional additional curl options (debugging tools mostly)
+#' @param callopts Optional additional curl options passed to 
+#' \code{\link[crul]{HttpClient}}
 #' @param ... Further arguments passed on to solr_highlight

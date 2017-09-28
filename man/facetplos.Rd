@@ -153,10 +153,10 @@ error message on an error, while complete gives both http code and error message
 and stack trace, if available.}
 
 \item{proxy}{List of arguments for a proxy connection, including one or more of:
-url, port, username, password, and auth. See \code{\link[httr]{use_proxy}} for
+url, port, username, password, and auth. See \code{\link[crul]{proxy}} for
 help, which is used to construct the proxy connection.}
 
-\item{callopts}{Further args passed on to \code{\link[httr]{GET}}}
+\item{callopts}{Further args passed on to \code{\link[crul]{HttpClient}}}
 
 \item{...}{Further args to \code{\link[solr]{solr_facet}}}
 }

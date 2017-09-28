@@ -2,13 +2,11 @@
 #'
 #' \code{rplos} provides an R interface to the PLoS Search API. More 
 #' information about each function can be found in its help documentation. 
-#' If you are looking for PLOS article-Level metrics data, see the 
-#' \code{alm} package.
 #'
 #' @section rplos functions:
 #'
-#' Most rplos functions make web calls using the \code{httr} package, 
-#' and parse json using the \code{jsonlite} package.
+#' \pkg{rplos} functions make HTTP requests using the \pkg{crul} package, 
+#' and parse json using the \pkg{jsonlite} package.
 #'
 #' @section PLoS API key:
 #'
@@ -32,7 +30,7 @@
 #' head(out$data)
 #' }
 #'
-#' @importFrom httr GET content stop_for_status
+#' @importFrom crul HttpClient
 #' @importFrom jsonlite fromJSON
 #' @importFrom dplyr left_join bind_rows
 #' @importFrom plyr ddply llply summarise ldply

@@ -16,21 +16,23 @@ One or more urls, same length as input vector of dois
 Create urls for full text articles in PLOS journals.
 }
 \details{
-We give \strong{NA} for DOIs that are for annotations. Those can easily
-be removed like \code{Filter(Negate(is.na), res)}
+We give \strong{NA} for DOIs that are for annotations. Those can 
+easily be removed like \code{Filter(Negate(is.na), res)}
 }
 \examples{
 \dontrun{
 full_text_urls(doi='10.1371/journal.pone.0086169')
 full_text_urls(doi='10.1371/journal.pbio.1001845')
-full_text_urls(doi=c('10.1371/journal.pone.0086169','10.1371/journal.pbio.1001845'))
+full_text_urls(doi=c('10.1371/journal.pone.0086169',
+  '10.1371/journal.pbio.1001845'))
 
 # contains some annotation DOIs
 dois <- searchplos(q = "*:*", fq='doc_type:full', limit=20)$data$id
 full_text_urls(dois)
 
 # contains no annotation DOIs
-dois <- searchplos(q = "*:*", fq=list('doc_type:full', 'article_type:"Research Article"'), 
+dois <- searchplos(q = "*:*", 
+  fq=list('doc_type:full', 'article_type:"Research Article"'), 
 limit=20)$data$id
 full_text_urls(dois)
 }

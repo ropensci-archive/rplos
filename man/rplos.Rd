@@ -8,15 +8,13 @@
 \title{Connect with PLoS API data}
 \description{
 \code{rplos} provides an R interface to the PLoS Search API. More 
-information about each function can be found in its help documentation. 
-If you are looking for PLOS article-Level metrics data, see the 
-\code{alm} package.
+information about each function can be found in its help documentation.
 }
 \section{rplos functions}{
 
 
-Most rplos functions make web calls using the \code{httr} package, 
-and parse json using the \code{jsonlite} package.
+\pkg{rplos} functions make HTTP requests using the \pkg{crul} package, 
+and parse json using the \pkg{jsonlite} package.
 }
 
 \section{PLoS API key}{

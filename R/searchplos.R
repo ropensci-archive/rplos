@@ -167,7 +167,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
 	      q = args$q, fl = args$fl, fq = args$fq, 
 	      sort = args$sort, 
 	      rows = args$rows, start = args$start, 
-	      wt = "json", callopts = httr::progress(), ...
+	      wt = "json", ...
 	    ))
 	    out[[i]] <- jsonout
 	  }

@@ -4,7 +4,10 @@
 \alias{journalnamekey}
 \title{Get short keys for journals to use in searching specific journals.}
 \usage{
-journalnamekey()
+journalnamekey(...)
+}
+\arguments{
+\item{...}{optional curl options passed to \code{\link[crul]{HttpClient}}}
 }
 \value{
 (character) journal name keys

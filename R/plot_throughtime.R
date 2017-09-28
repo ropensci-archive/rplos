@@ -3,9 +3,9 @@
 #' @export
 #' @param terms search terms (character)
 #' @param limit number of results to return (integer)
-#' @param ... optional additional curl options (debugging tools mostly)
-#' @return Number of search results (vis = FALSE), or number of search in a table
-#'    and a histogram of results (vis = TRUE).
+#' @param ... optional curl options passed to \code{\link[crul]{HttpClient}}
+#' @return Number of search results (vis = FALSE), or number of search in 
+#' a table and a histogram of results (vis = TRUE).
 #' @examples \dontrun{
 #' plot_throughtime(terms='phylogeny', limit=300)
 #' plot_throughtime(list('drosophila','monkey'), 100)
@@ -22,24 +22,33 @@ plot_throughtime <- function(terms, limit = NA, ...) {
                                substring(df$year, 3, 4), sep = "/"), "%m/%d/%y")
   dfm <- melt(df[, -c(1:2)], id.vars = "dateplot")
   dfm$value <- as.numeric(dfm$value)
-  pp <- ggplot(dfm, aes(x = dateplot, y = value, group = variable, colour = variable)) +
+  pp <- ggplot(dfm, aes(x = dateplot, y = value, group = variable, 
+                        colour = variable)) +
     geom_line(size = 2) +
     scale_colour_brewer(palette = "Dark2") +
-    labs(x = "", y = "Number of articles matching search term(s)\n",
-         title = paste("PLoS search of", paste(as.character(terms), collapse = ","), "using the rplos package")) +
+    labs(x = "", 
+         y = "Number of articles matching search term(s)\n",
+         title = paste("PLoS search of", 
+                       paste(as.character(terms), collapse = ","), 
+                       "using the rplos package")) +
     theme(legend.position = c(0.35, 0.8))
   return(pp)
 }
 
-timesearch <- function(terms, limit, ...){
+timesearch <- function(terms, limit, ...) {
   month <- NULL
-  args <- ploscompact(list(q = terms, fl = "publication_date", wt = "json", rows = limit))
-  tt <- GET(pbase(), query = args, ...)
-  stop_for_status(tt)
-  res <- utf8cont(tt)
+  args <- ploscompact(list(q = terms, fl = "publication_date", wt = "json", 
+                           rows = limit))
+  cli <- HttpClient$new(url = pbase())
+  tt <- cli$get(query = args, ...)
+  tt$raise_for_status()
+  res <- tt$parse("UTF-8")
   json <- jsonlite::fromJSON(res, FALSE)
   tempresults <- json$response$docs
   ttt <- data.frame( do.call(rbind, tempresults), stringsAsFactors = FALSE )
-  tt_ <- stats::setNames(as.data.frame(t(apply(ttt, 1, function(x) strsplit(x[[1]], "-")[[1]][1:2])), stringsAsFactors = FALSE), c("year", "month"))
+  tt_ <- stats::setNames(
+    as.data.frame(t(apply(ttt, 1, 
+                          function(x) strsplit(x[[1]], "-")[[1]][1:2])), 
+                  stringsAsFactors = FALSE), c("year", "month"))
   ddply(tt_, c('year','month'), summarise, V1 = length(month))
 }

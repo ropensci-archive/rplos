@@ -184,10 +184,11 @@ error message on an error, while complete gives both http code and error message
 and stack trace, if available.}
 
 \item{proxy}{List of arguments for a proxy connection, including one or more of:
-url, port, username, password, and auth. See \code{\link[httr]{use_proxy}} for
+url, port, username, password, and auth. See \code{\link[crul]{proxy}} for
 help, which is used to construct the proxy connection.}
 
-\item{callopts}{Optional additional curl options (debugging tools mostly)}
+\item{callopts}{Optional additional curl options passed to 
+\code{\link[crul]{HttpClient}}}
 
 \item{sleep}{Number of seconds to wait between requests. No need to use this for
 a single call to searchplos. However, if you are using searchplos in a loop or
