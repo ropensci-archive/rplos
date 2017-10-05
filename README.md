@@ -1,4 +1,4 @@
-rplos
+﻿rplos
 =====
 
 
@@ -323,7 +323,7 @@ And you can browse the results in your default browser
 highbrow(out)
 ```
 
-![highbrow](inst/assets/img/highbrow.png)
+![highbrow](tools/highbrow.png)
 
 ### Full text urls
 
@@ -428,7 +428,7 @@ plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE'
 #> $plot
 ```
 
-![wordusage](inst/assets/img/unnamed-chunk-21-1.png)
+![wordusage](tools/unnamed-chunk-21-1.png)
 
 ## Meta
 

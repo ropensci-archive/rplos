@@ -134,7 +134,7 @@ And you can browse the results in your default browser
 highbrow(out)
 ```
 
-![highbrow](inst/assets/img/highbrow.png)
+![highbrow](tools/highbrow.png)
 
 ### Full text urls
 
