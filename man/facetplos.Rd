@@ -40,7 +40,7 @@ the given string prefix. Note that unlike fq, this does not change the search
 results -- it merely reduces the facet values returned to those beginning with
 the specified prefix. This parameter can be specified on a per field basis.}
 
-\item{facet.sort}{See \code{\link[solr]{solr_facet}}.}
+\item{facet.sort}{See \code{\link[solrium]{solr_facet}}.}
 
 \item{facet.limit}{This param indicates the maximum number of constraint counts
 that should be returned for the facet fields. A negative value means unlimited.
@@ -58,7 +58,7 @@ Term based constraints of a facet field, a count of all matching results which
 have no value for the field should be computed. Default: FALSE. This parameter
 can be specified on a per field basis.}
 
-\item{facet.method}{See \code{\link[solr]{solr_facet}}.}
+\item{facet.method}{See \code{\link[solrium]{solr_facet}}.}
 
 \item{facet.enum.cache.minDf}{This param indicates the minimum document frequency
 (number of documents matching a term) for which the filterCache should be used
@@ -103,9 +103,9 @@ possible upper bound greater then facet.date.end such that the range is exactly
 facet.date.gap wide. Default: FALSE. This parameter can be specified on a per
 field basis.}
 
-\item{facet.date.other}{See \code{\link[solr]{solr_facet}}.}
+\item{facet.date.other}{See \code{\link[solrium]{solr_facet}}.}
 
-\item{facet.date.include}{See \code{\link[solr]{solr_facet}}.}
+\item{facet.date.include}{See \code{\link[solrium]{solr_facet}}.}
 
 \item{facet.range}{Indicates what field to create range facets for. Example:
 facet.range=price&facet.range=age}
@@ -129,9 +129,9 @@ upper bound greater then facet.range.end such that the range is exactly
 facet.range.gap wide. Default: FALSE. This parameter can be specified on a
 per field basis.}
 
-\item{facet.range.other}{See \code{\link[solr]{solr_facet}}.}
+\item{facet.range.other}{See \code{\link[solrium]{solr_facet}}.}
 
-\item{facet.range.include}{See \code{\link[solr]{solr_facet}}.}
+\item{facet.range.include}{See \code{\link[solrium]{solr_facet}}.}
 
 \item{start}{Record to start at, default to beginning.}
 
@@ -140,8 +140,8 @@ per field basis.}
 \item{url}{URL endpoint}
 
 \item{sleep}{Number of seconds to wait between requests. No need to use this for
-a single call. However, if you are doing many calls in a loop or lapply type call, 
-sleep parameter is used to prevent your IP address from being blocked. You can only 
+a single call. However, if you are doing many calls in a loop or lapply type call,
+sleep parameter is used to prevent your IP address from being blocked. You can only
 do 10 requests per minute, so one request every 6 seconds is about right.}
 
 \item{verbose}{(logical) Whether to print help messages or not. E.g., if
@@ -158,7 +158,7 @@ help, which is used to construct the proxy connection.}
 
 \item{callopts}{Further args passed on to \code{\link[crul]{HttpClient}}}
 
-\item{...}{Further args to \code{\link[solr]{solr_facet}}}
+\item{...}{Further args to \code{\link[solrium]{solr_facet}}}
 }
 \value{
 A list
