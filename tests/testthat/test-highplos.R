@@ -4,13 +4,11 @@ context("highplos")
 test_that("highplos", {
   skip_on_cran()
 
-  aa <- highplos(q='alcohol', hl.fl = 'abstract', rows=10, verbose = FALSE)
-  bb <- highplos(q='everything:"sports alcohol"~7', hl.fl='everything', 
-                 verbose = FALSE)
-  cc <- highplos(q='alcohol', hl.fl='abstract', hl.fragsize=20, rows=5, 
-                 verbose = FALSE)
-  dd <- highplos(q='alcohol', hl.fl='abstract', hl.snippets=5, 
-                 hl.mergeContiguous='true', rows=5, verbose = FALSE)
+  aa <- highplos(q='alcohol', hl.fl = 'abstract', rows=10)
+  bb <- highplos(q='everything:"sports alcohol"~7', hl.fl='everything')
+  cc <- highplos(q='alcohol', hl.fl='abstract', hl.fragsize=20, rows=5)
+  dd <- highplos(q='alcohol', hl.fl='abstract', hl.snippets=5,
+                 hl.mergeContiguous='true', rows=5)
 
   # citations returns the correct classes
   expect_is(aa, "list")
@@ -35,14 +33,14 @@ test_that("highplos", {
   expect_is(dd[[1]], "list")
   expect_is(dd[[1]][[1]], "character")
   ## character strings are longer than result from cc call
-  expect_gt(nchar(dd[[1]][[1]]), nchar(cc[[1]][[1]]))
+  expect_gt(nchar(dd[[1]][[1]][[1]]), nchar(cc[[1]][[1]]))
 
   # fails well
-  expect_error(length(highplos(verbose = FALSE)), 
+  expect_error(length(highplos()),
                "\"q\" is missing, with no default")
-  expect_equal(length(highplos("*:*", verbose = FALSE)[[1]]), 0)
-  expect_error(highplos("alcohol", hl.fragsize = "adsfad", verbose = FALSE), 
+  expect_equal(length(highplos("*:*")[[1]]), 0)
+  expect_error(highplos("alcohol", hl.fragsize = "adsfad"),
                "400 - For input string")
-  expect_error(highplos("alcohol", hl.snippets = "adsfad", verbose = FALSE), 
+  expect_error(highplos("alcohol", hl.snippets = "adsfad"),
                "400 - For input string")
 })

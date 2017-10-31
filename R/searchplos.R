@@ -2,7 +2,7 @@
 #'
 #' @export
 #' @template plos
-#' @return An object of class "plos", with a list of length two, each 
+#' @return An object of class "plos", with a list of length two, each
 #' element being a list itself.
 #' @examples \dontrun{
 #' searchplos(q='ecology', fl=c('id','publication_date'), limit = 2)
@@ -71,22 +71,13 @@
 #' # Get eissn codes
 #' searchplos(q='*:*', fl=c('id','journal','eissn','cross_published_journal_eissn'),
 #'    fq="doc_type:full", limit = 60)
-#'    
+#'
 #' searchplos(q='*:*', fl=c('id','journal','eissn','cross_published_journal_eissn'),
 #'    limit = 2000)
 #' }
 
-searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0, 
-  limit = 10, sleep = 6, terms=NULL, fields=NULL, toquery=NULL, verbose = TRUE, 
-  errors = "simple", proxy = NULL, callopts=NULL, ...) {
-  
-  calls <- names(sapply(match.call(), deparse))[-1]
-  calls_vec <- c("terms", "fields", "toquery", "callopts") %in% calls
-  if(any(calls_vec))
-    stop("The parameters terms, fields, toquery, and callopts replaced with q, fl, fq, and ..., respectively")
-
-  # Function to trim leading and trailing whitespace, including newlines
-  trim <- function (x) gsub("\\n\\s+", " ", gsub("^\\s+|\\s+$", "", x))
+searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
+  limit = 10, sleep = 6, errors = "simple", proxy = NULL, callopts = list(), ...) {
 
   # Make sure limit is a numeric or integer
   limit <- tryCatch(as.numeric(as.character(limit)), warning=function(e) e)
@@ -104,28 +95,28 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
       Sys.sleep(sleep)
     }
   }
-  
-  # solr connection
-  check_conn(verbose, errors, proxy)
-
-  args <- list()
-  if (!is.null(fq[[1]])) {
-    if (length(fq) == 1) { args$fq <- fq } else {
-      args <- fq; names(args) <- rep("fq",length(args))
-    }
-  }
 
   if (is.null(limit)) limit <- 999
   if (limit == 0) fl <- NULL
   fl <- paste(fl, collapse = ",")
-  args <- c(args, ploscompact(list(q = q, fl = fl, start = start, 
-                                   rows = limit, sort = sort, wt = 'json')))
+
+  args <- list()
+ 	if (!is.null(fq[[1]])) {
+  	if (length(fq) == 1) {
+  		args$fq <- fq
+  	} else {
+    	args <- fq
+    	names(args) <- rep("fq",length(args))
+  	}
+  }
+  args <- c(args, ploscompact(list(q = q, fl = fl, start = start,
+                       rows = limit, sort = sort, wt = 'json')))
 
 	getnum_tmp <- suppressMessages(
-	  solrium::solr_search(q = q, fl = fl, rows = 0, wt = "json")
+	  conn_plos$search(params = list(q = q, fl = fl, rows = 0, wt = "json"))
 	)
 	getnumrecords <- attr(getnum_tmp, "numFound")
-	
+
 	if (getnumrecords > limit) {
 	  getnumrecords <- limit
 	} else {
@@ -136,12 +127,11 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
 	  if (!is.null(limit)) args$rows <- limit
 	  if (length(args) == 0) args <- NULL
 	  jsonout <- suppressMessages(
-	    solrium::solr_search(q = q, fl = fl, fq = fq, sort = sort, 
-	                                  rows = limit, start = start, 
-	                                  wt = "json", ...)
+	    conn_plos$search(params = args, callopts = callopts,
+	    	minOptimizedRows = FALSE, ...)
 	  )
 	  meta <- dplyr::data_frame(
-	    numFound = attr(jsonout, "numFound"), 
+	    numFound = attr(jsonout, "numFound"),
 	    start = attr(jsonout, "start")
 	  )
     return(list(meta = meta, data = jsonout))
@@ -163,20 +153,23 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
 	    args$start <- getvecs[i]
 	    args$rows <- getrows[i]
 	    if (length(args) == 0) args <- NULL
-	    jsonout <- suppressMessages(solrium::solr_search(
-	      q = args$q, fl = args$fl, fq = args$fq, 
-	      sort = args$sort, 
-	      rows = args$rows, start = args$start, 
-	      wt = "json", ...
+	    jsonout <- suppressMessages(conn_plos$search(
+	      params = ploscompact(list(q = args$q, fl = args$fl, fq = args$fq,
+	      sort = args$sort,
+	      rows = args$rows, start = args$start,
+	      wt = "json")), minOptimizedRows = FALSE, callopts = callopts, ...
 	    ))
 	    out[[i]] <- jsonout
 	  }
 	  resdf  <- dplyr::bind_rows(out)
 	  meta <- dplyr::data_frame(
-	    numFound = attr(jsonout, "numFound"), 
+	    numFound = attr(jsonout, "numFound"),
 	    start = attr(jsonout, "start")
 	  )
 	  return(list(meta = meta, data = resdf))
 	}
   Sys.setenv(plostime = as.numeric(now()))
 }
+
+# Function to trim leading and trailing whitespace, including newlines
+trim <- function(x) gsub("\\n\\s+", " ", gsub("^\\s+|\\s+$", "", x))

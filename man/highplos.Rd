@@ -211,11 +211,11 @@ highplos(q='alcohol', hl.fl = c('abstract','title'), rows=10)
 highplos(q='everything:"sports alcohol"~7', hl.fl='everything')
 highplos(q='alcohol', hl.fl='abstract', hl.fragsize=20, rows=5)
 highplos(q='alcohol', hl.fl='abstract', hl.snippets=5, rows=5)
-highplos(q='alcohol', hl.fl='abstract', hl.snippets=5, 
+highplos(q='alcohol', hl.fl='abstract', hl.snippets=5,
   hl.mergeContiguous='true', rows=5)
-highplos(q='alcohol', hl.fl='abstract', hl.useFastVectorHighlighter='true', 
+highplos(q='alcohol', hl.fl='abstract', hl.useFastVectorHighlighter='true',
   rows=5)
-highplos(q='everything:"experiment"', fq='doc_type:full', rows=100, 
+highplos(q='everything:"experiment"', fq='doc_type:full', rows=100,
   hl.fl = 'title')
 }
 }

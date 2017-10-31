@@ -79,9 +79,3 @@ plos_check_dois <- function(x) {
     stop("These are probably not DOIs:\n\n", paste0(names(res[!res]), "\n"), call. = FALSE)
   }
 }
-
-check_conn <- function(verbose, errors, proxy) {
-  solrium::solr_connect(pbase(), proxy = proxy, errors = errors, 
-                        verbose = verbose)
-}
-

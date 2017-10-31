@@ -1,11 +1,11 @@
 #' Connect with PLoS API data
 #'
-#' \code{rplos} provides an R interface to the PLoS Search API. More 
-#' information about each function can be found in its help documentation. 
+#' \code{rplos} provides an R interface to the PLoS Search API. More
+#' information about each function can be found in its help documentation.
 #'
 #' @section rplos functions:
 #'
-#' \pkg{rplos} functions make HTTP requests using the \pkg{crul} package, 
+#' \pkg{rplos} functions make HTTP requests using the \pkg{crul} package,
 #' and parse json using the \pkg{jsonlite} package.
 #'
 #' @section PLoS API key:
@@ -25,7 +25,7 @@
 #' head(out$data)
 #'
 #' # Get DOIs for only PLoS One articles
-#' out <- searchplos(q="*:*", fl='id', fq='journal_key:PLoSONE', 
+#' out <- searchplos(q="*:*", fl='id', fq='journal_key:PLoSONE',
 #'   start=0, limit=15)
 #' head(out$data)
 #' }
@@ -36,9 +36,9 @@
 #' @importFrom plyr ddply llply summarise ldply
 #' @importFrom reshape2 melt
 #' @importFrom whisker whisker.render
-#' @importFrom solrium solr_highlight solr_facet
+#' @importFrom solrium SolrClient
 #' @importFrom lubridate now
-#' @importFrom ggplot2 ggplot aes geom_bar theme_grey geom_line 
+#' @importFrom ggplot2 ggplot aes geom_bar theme_grey geom_line
 #' scale_colour_brewer labs theme
 #' @docType package
 #' @name rplos
@@ -52,7 +52,7 @@ NULL
 #' Defunct functions in rplos
 #'
 #' \itemize{
-#'  \item \code{\link{crossref}}: service no longer provided - 
+#'  \item \code{\link{crossref}}: service no longer provided -
 #'  see the package \code{rcrossref}
 #'  \item \code{\link{citations}}: service no longer available
 #' }

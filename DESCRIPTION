@@ -7,10 +7,10 @@ Description: A programmatic interface to the 'SOLR' based
     articles, making plots, doing 'faceted' searches,
     'highlight' searches, and viewing results of 'highlighted'
     searches in a browser.
-Version: 0.7.8.9110
+Version: 0.7.9.9210
 License: MIT + file LICENSE
 Authors@R: c(
-    person("Scott", "Chamberlain", role = c("aut", "cre"), 
+    person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"),
     person("Carl", "Boettiger", role = "aut", email = "cboettig@gmail.com"),
     person("Karthik", "Ram", role = "aut", email = "karthik.ram@gmail.com")
@@ -28,9 +28,10 @@ Imports:
     lubridate,
     reshape2,
     whisker,
-    solrium
+    solrium (>= 0.9.9.9100)
 Suggests:
     xml2,
     testthat,
     knitr
+Remotes: ropensci/solrium
 RoxygenNote: 6.0.1

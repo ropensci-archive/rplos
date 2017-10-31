@@ -7,13 +7,13 @@
 \alias{rplos-package}
 \title{Connect with PLoS API data}
 \description{
-\code{rplos} provides an R interface to the PLoS Search API. More 
+\code{rplos} provides an R interface to the PLoS Search API. More
 information about each function can be found in its help documentation.
 }
 \section{rplos functions}{
 
 
-\pkg{rplos} functions make HTTP requests using the \pkg{crul} package, 
+\pkg{rplos} functions make HTTP requests using the \pkg{crul} package,
 and parse json using the \pkg{jsonlite} package.
 }
 
@@ -39,7 +39,7 @@ out <- searchplos(q="*:*", fl='id', fq='doc_type:full', start=0, limit=250)
 head(out$data)
 
 # Get DOIs for only PLoS One articles
-out <- searchplos(q="*:*", fl='id', fq='journal_key:PLoSONE', 
+out <- searchplos(q="*:*", fl='id', fq='journal_key:PLoSONE',
   start=0, limit=15)
 head(out$data)
 }

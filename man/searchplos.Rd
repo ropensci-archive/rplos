@@ -5,8 +5,8 @@
 \title{Base function to search PLoS Journals}
 \usage{
 searchplos(q = NULL, fl = "id", fq = NULL, sort = NULL, start = 0,
-  limit = 10, sleep = 6, terms = NULL, fields = NULL, toquery = NULL,
-  verbose = TRUE, errors = "simple", proxy = NULL, callopts = NULL, ...)
+  limit = 10, sleep = 6, errors = "simple", proxy = NULL,
+  callopts = list(), ...)
 }
 \arguments{
 \item{q}{Search terms (character). You can search on specific fields by
@@ -41,16 +41,6 @@ lapply type call, do sleep parameter is used to prevent your IP address from bei
 blocked. You can only do 10 requests per minute, so one request every 6 seconds is
 about right.}
 
-\item{terms}{DEPRECATED PARAMETER - replaced with the \code{q} param.}
-
-\item{fields}{DEPRECATED PARAMETER - replaced with the \code{fl} param.}
-
-\item{toquery}{DEPRECATED PARAMETER - replaced with the \code{fq} param.}
-
-\item{verbose}{(logical) Whether to print help messages or not. E.g., if
-\code{TRUE}, we print the URL on each request to a Solr server for your
-reference. Default: \code{TRUE}}
-
 \item{errors}{(character) One of simple or complete. Simple gives http code and
 error message on an error, while complete gives both http code and error message,
 and stack trace, if available.}
@@ -59,12 +49,12 @@ and stack trace, if available.}
 url, port, username, password, and auth. See \code{\link[crul]{proxy}} for
 help, which is used to construct the proxy connection.}
 
-\item{callopts}{DEPRECATED PARAMETER - replaced with the \code{...} param.}
+\item{callopts}{(list) optional curl options passed to \code{\link[crul]{HttpClient}}}
 
-\item{...}{optional curl options passed to \code{\link[crul]{HttpClient}}}
+\item{...}{Additional Solr arguments}
 }
 \value{
-An object of class "plos", with a list of length two, each 
+An object of class "plos", with a list of length two, each
 element being a list itself.
 }
 \description{
@@ -91,13 +81,13 @@ abbreviations.
 
 \section{Phrase searching}{
 
-To search phrases, e.g., \strong{synthetic biology} as a single item, rather than 
+To search phrases, e.g., \strong{synthetic biology} as a single item, rather than
 separate occurrences of \strong{synthetic} and \strong{biology}, simply put double
 quotes around the phrase. For example, to search for cases of \strong{synthetic biology},
 do \code{searchplos(q = '"synthetic biology"')}.
 
 You can modify phrase searches as well. For example,
-\code{searchplos(q = '"synthetic biology" ~ 10')} asks for cases of 
+\code{searchplos(q = '"synthetic biology" ~ 10')} asks for cases of
 \strong{synthetic biology} within 10 words of each other. See examples.
 }
 
@@ -169,7 +159,7 @@ searchplos(q='*:*', fl=c('id','article_type'),
 # Get eissn codes
 searchplos(q='*:*', fl=c('id','journal','eissn','cross_published_journal_eissn'),
    fq="doc_type:full", limit = 60)
-   
+
 searchplos(q='*:*', fl=c('id','journal','eissn','cross_published_journal_eissn'),
    limit = 2000)
 }
