@@ -7,11 +7,17 @@ test_that("facetplos", {
   # Facet on a single field
   aa <- facetplos(q='*:*', facet.field='journal')
 
+  Sys.sleep(2)
+
   # Facet on multiple fields
   bb <- facetplos(q='alcohol', facet.field=c('journal','subject'))
 
+  Sys.sleep(2)
+
   # Using mincount
   cc <- facetplos(q='alcohol', facet.field='journal', facet.mincount='500')
+
+  Sys.sleep(2)
 
   # Using facet.query to get counts
   ## Many facet.query terms

@@ -4,7 +4,9 @@ test_that("plot_throughtime returns the correct class", {
 	skip_on_cran()
 
 	a <- plot_throughtime('phylogeny', 300)
+	Sys.sleep(2)
 	b <- plot_throughtime(list('drosophila','monkey'), 100)
+	Sys.sleep(2)
 	c <- plot_throughtime(list('drosophila','flower'), 100)
 
   expect_is(a, "ggplot")
