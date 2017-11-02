@@ -3,21 +3,19 @@
 #' @export
 #' @param terms search terms (character)
 #' @param vis visualize results in bar plot or not (TRUE or FALSE)
-#' @param ... Optional additional curl options passed to 
+#' @param ... Optional additional curl options passed to
 #' \code{\link[crul]{HttpClient}}
 #'
-#' @return Number of search results (vis = FALSE), or number of search in a 
+#' @return Number of search results (vis = FALSE), or number of search in a
 #' table and a histogram of results (vis = TRUE).
 #' @examples \dontrun{
 #' plosword('Helianthus')
-#' out <- plosword(list('monkey','replication','design','sunflower','whale'),
+#' plosword(list('monkey','replication','design','sunflower','whale'),
 #'    vis = TRUE)
-#' out[[1]] # results in a data frame
-#' out[[2]] # results in a bar plot
 #' }
 
 plosword <- function(terms, vis = FALSE, ...) {
-  
+
   Term <- No_Articles <- NULL
 
   if (length(terms) == 1) {

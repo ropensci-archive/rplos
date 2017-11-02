@@ -11,11 +11,11 @@ plosword(terms, vis = FALSE, ...)
 
 \item{vis}{visualize results in bar plot or not (TRUE or FALSE)}
 
-\item{...}{Optional additional curl options passed to 
+\item{...}{Optional additional curl options passed to
 \code{\link[crul]{HttpClient}}}
 }
 \value{
-Number of search results (vis = FALSE), or number of search in a 
+Number of search results (vis = FALSE), or number of search in a
 table and a histogram of results (vis = TRUE).
 }
 \description{
@@ -24,9 +24,7 @@ Search results on a keyword over all fields in PLoS Journals.
 \examples{
 \dontrun{
 plosword('Helianthus')
-out <- plosword(list('monkey','replication','design','sunflower','whale'),
+plosword(list('monkey','replication','design','sunflower','whale'),
    vis = TRUE)
-out[[1]] # results in a data frame
-out[[2]] # results in a bar plot
 }
 }
