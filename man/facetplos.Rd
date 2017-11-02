@@ -13,8 +13,8 @@ facetplos(q = "*:*", facet.query = NA, facet.field = NA,
   facet.date.include = NA, facet.range = NA, facet.range.start = NA,
   facet.range.end = NA, facet.range.gap = NA, facet.range.hardend = NA,
   facet.range.other = NA, facet.range.include = NA, start = NA,
-  rows = NA, url = NA, sleep = 6, verbose = TRUE, errors = "simple",
-  proxy = NULL, callopts = list(), ...)
+  rows = NA, url = NA, sleep = 6, errors = "simple", proxy = NULL,
+  callopts = list(), ...)
 }
 \arguments{
 \item{q}{Query terms.}
@@ -143,10 +143,6 @@ per field basis.}
 a single call. However, if you are doing many calls in a loop or lapply type call,
 sleep parameter is used to prevent your IP address from being blocked. You can only
 do 10 requests per minute, so one request every 6 seconds is about right.}
-
-\item{verbose}{(logical) Whether to print help messages or not. E.g., if
-\code{TRUE}, we print the URL on each request to a Solr server for your
-reference. Default: \code{TRUE}}
 
 \item{errors}{(character) One of simple or complete. Simple gives http code and
 error message on an error, while complete gives both http code and error message,

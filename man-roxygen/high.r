@@ -128,9 +128,6 @@
 #' @param errors (character) One of simple or complete. Simple gives http code and
 #' error message on an error, while complete gives both http code and error message,
 #' and stack trace, if available.
-#' @param verbose (logical) Whether to print help messages or not. E.g., if
-#' \code{TRUE}, we print the URL on each request to a Solr server for your
-#' reference. Default: \code{TRUE}
-#' @param callopts Optional additional curl options passed to 
+#' @param callopts Optional additional curl options passed to
 #' \code{\link[crul]{HttpClient}}
 #' @param ... Further arguments passed on to solr_highlight

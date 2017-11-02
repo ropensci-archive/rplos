@@ -30,8 +30,7 @@ highplos <- function(q, fl=NULL, fq=NULL, hl.fl = NULL, hl.snippets = NULL,
   hl.usePhraseHighlighter = NULL, hl.highlightMultiTerm = NULL,
   hl.regex.slop = NULL, hl.regex.pattern = NULL,
   hl.regex.maxAnalyzedChars = NULL, start = 0, rows = NULL,
-  verbose = TRUE, errors = "simple", proxy = NULL, callopts=list(),
-  sleep=6, ...) {
+  errors = "simple", proxy = NULL, callopts=list(), sleep=6, ...) {
 
   if (!Sys.getenv('plostime') == "") {
     timesince <- as.numeric(now()) - as.numeric(Sys.getenv('plostime'))

@@ -45,7 +45,7 @@ facetplos <- function(q="*:*", facet.query=NA, facet.field=NA,
   facet.date.include=NA,facet.range=NA,facet.range.start=NA,facet.range.end=NA,
   facet.range.gap=NA,facet.range.hardend=NA,facet.range.other=NA,
   facet.range.include=NA, start=NA, rows=NA, url=NA, sleep = 6,
-  verbose = TRUE, errors = "simple", proxy = NULL, callopts=list(), ...)
+  errors = "simple", proxy = NULL, callopts=list(), ...)
 {
   # Enforce rate limits
   if (!Sys.getenv('plostime') == "") {

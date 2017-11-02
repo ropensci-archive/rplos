@@ -17,8 +17,8 @@ highplos(q, fl = NULL, fq = NULL, hl.fl = NULL, hl.snippets = NULL,
   hl.useFastVectorHighlighter = NULL, hl.usePhraseHighlighter = NULL,
   hl.highlightMultiTerm = NULL, hl.regex.slop = NULL,
   hl.regex.pattern = NULL, hl.regex.maxAnalyzedChars = NULL, start = 0,
-  rows = NULL, verbose = TRUE, errors = "simple", proxy = NULL,
-  callopts = list(), sleep = 6, ...)
+  rows = NULL, errors = "simple", proxy = NULL, callopts = list(),
+  sleep = 6, ...)
 }
 \arguments{
 \item{q}{Search terms (character). You can search on specific fields by
@@ -175,10 +175,6 @@ you need to cycle through more results than the max allowed=1000)}
 
 \item{rows}{Number of results to return (integer)}
 
-\item{verbose}{(logical) Whether to print help messages or not. E.g., if
-\code{TRUE}, we print the URL on each request to a Solr server for your
-reference. Default: \code{TRUE}}
-
 \item{errors}{(character) One of simple or complete. Simple gives http code and
 error message on an error, while complete gives both http code and error message,
 and stack trace, if available.}
@@ -187,7 +183,7 @@ and stack trace, if available.}
 url, port, username, password, and auth. See \code{\link[crul]{proxy}} for
 help, which is used to construct the proxy connection.}
 
-\item{callopts}{Optional additional curl options passed to 
+\item{callopts}{Optional additional curl options passed to
 \code{\link[crul]{HttpClient}}}
 
 \item{sleep}{Number of seconds to wait between requests. No need to use this for
