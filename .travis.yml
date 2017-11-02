@@ -3,7 +3,7 @@ sudo: false
 cache: packages
 dist: trusty
 
-r_check_args: "--as-cran --run-dontrun"
+r_check_args: "--as-cran"
 
 r_github_packages:
   - jimhester/covr

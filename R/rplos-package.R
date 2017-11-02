@@ -17,6 +17,12 @@
 #' See the rOpenSci website for a tutorial:
 #' https://ropensci.org/tutorials/rplos_tutorial.html
 #'
+#' @section Throttling:
+#' Beware, PLOS recently has started throttling requests. That is,
+#' they will give error messages like "(503) Service Unavailable -
+#' The server cannot process the request due to a high load", which
+#' probably means you've done too many requests in a certain time period.
+#'
 #' @examples \dontrun{
 #' searchplos(q='ecology', fl=c('id','publication_date'), limit = 2)
 #'
