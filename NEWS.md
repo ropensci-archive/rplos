@@ -1,15 +1,38 @@
+rplos 0.8.0
+-----------
+
+### NEW FEATURES
+
+* Now using `solrium` for under the hood Solr interaction instead
+of `solr` package (#106)
+* Along with above change, the following: `facetplos`, `searchplos`,
+and `highplos` lose parameter `verbose`, and gain parameters
+`error` and `proxy` for changing how verbose error reporting is, and
+for setting proxy details, respectively.
+* Now using `crul` instead of `httr` for HTTP requests (#110)
+
+### MINOR IMPROVEMENTS
+
+* Fix to placement of images for README requested by CRAN (#114)
+* Replaced `XML` with `xml2` (#112)
+* `citations` function for PLOS rich citations is defunct as the
+service is gone (#113)
+* package `tm` dropped from Enhances (#111)
+* added code of conduct, issue and pull request templates
+
+
 rplos 0.6.4
 -----------
 
 ### MINOR IMPROVEMENTS
 
 * URLs to full text XML have been changed - old URLs were working
-but were going through 2 302 redirects to get there. Updated URLs. 
+but were going through 2 302 redirects to get there. Updated URLs.
 (#107)
 
 ### BUG FIXES
 
-* Fixed `content-type` check for `plos_fulltext()` function. XML 
+* Fixed `content-type` check for `plos_fulltext()` function. XML
 can be either `application/xml` or `text/xml` (#108)
 
 
@@ -18,17 +41,17 @@ rplos 0.6.0
 
 ### MINOR IMPROVEMENTS
 
-* Added notes to documentation for relavant functions for how to do 
+* Added notes to documentation for relavant functions for how to do
 phrase searching. (#96) (#97) thanks @poldham
-* Removed parameter `random` parameter from `citations()` function as it's 
+* Removed parameter `random` parameter from `citations()` function as it's
 no longer available in the API (#103)
 * Swapped out all uses of `dplyr::rbind_all()` for `dplyr::bind_rows()` (#105)
-* `full_text_urls()` now gives back `NA` when DOIs for annotations are 
+* `full_text_urls()` now gives back `NA` when DOIs for annotations are
 given, which can be easily removed.
 
 ### BUG FIXES
 
-* Fixed `full_text_urls()` function to create full text URLs for PLOS 
+* Fixed `full_text_urls()` function to create full text URLs for PLOS
 Clinical Trials correctly (#104)
 
 rplos 0.5.6
@@ -36,9 +59,9 @@ rplos 0.5.6
 
 ### MINOR IMPROVEMENTS
 
-* move `ggplot2` from _Depends_ to _Imports_, and using `@importFrom` for 
+* move `ggplot2` from _Depends_ to _Imports_, and using `@importFrom` for
 `ggplot2` functions, now all imports are using `@importFrom` (#99)
-* Fixes for `httr::content()` to parse manually, and use explicit 
+* Fixes for `httr::content()` to parse manually, and use explicit
 encoding of `UTF-8` (#102)
 
 rplos 0.5.4
@@ -57,7 +80,7 @@ rplos 0.5.2
 
 ### BUG FIXES
 
-* Fix encoding in parsing of XML data in `plos_fulltext()` to 
+* Fix encoding in parsing of XML data in `plos_fulltext()` to
 avoid unicode problems (#93)
 
 rplos 0.5.0
@@ -94,12 +117,12 @@ rplos 0.4.6
 
 * `searchplos()` now returns a list of length two, `meta` and `data`, and `meta` is a data.frame of metadata for the search.
 * Switched from CC0 to MIT license.
-* No longer importing libraries `RCurl`, `data.table`, `googleVis`, `assertthat`, `RJSONIO`, and `stringr` (#79) (#82) (#84) 
+* No longer importing libraries `RCurl`, `data.table`, `googleVis`, `assertthat`, `RJSONIO`, and `stringr` (#79) (#82) (#84)
 * Now importing `dplyr`.
 * Moved `jsonlite` from Suggests to Imports. Replaces use of `RJSONIO`. (#80)
 * `crossref()` now defunct. See package `rcrossref` https://github.com/ropensci/rcrossref. (#83)
 * `highplos()` now uses `solr::solr_highlight()` to do highlight searches.
-* `searchplos()`, `plosabstract()`, and other functions that wrap `searchplos()` now use `...` to pass in curl options to `httr::GET()`. You'll now get an error on using `callopts` parameter. 
+* `searchplos()`, `plosabstract()`, and other functions that wrap `searchplos()` now use `...` to pass in curl options to `httr::GET()`. You'll now get an error on using `callopts` parameter.
 * Added manual file entry for the dataset `isocodes`.
 * Reworked both `plosword()` and `plot_throughtime()` to have far less code, uses `httr` now instead of `RCurl`, but to the user, everything should be the same.
 * Made documentation more clear on discrepancy between PLOS website behavior and `rplos` behavior, and how to make them match, or match more closely (#76)
