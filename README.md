@@ -45,10 +45,15 @@ PLoS API documentation [here](http://api.plos.org/)
 
 Crossref API documentation [here](https://github.com/CrossRef/rest-api-doc/blob/master/rest_api.md), and [here](http://help.crossref.org/#home). Note that we are working on a new package [rcrossref](https://github.com/ropensci/rcrossref) ([on CRAN](https://cran.r-project.org/package=rcrossref)) with a much fuller implementation of R functions for all Crossref endpoints.
 
+## Throttling
+
 Beware, PLOS recently has started throttling requests. That is,
 they will give error messages like "(503) Service Unavailable -
 The server cannot process the request due to a high load", which
-probably means you've done too many requests in a certain time period.
+means you've done too many requests in a certain time period. Here's
+[what they say](http://api.plos.org/solr/faq/#solr_api_recommended_usage) on the matter:
+
+> Please limit your API requests to 7200 requests a day, 300 per hour, 10 per minute and allow 5 seconds for your search to return results. If you exceed this threshold, we will lock out your IP address. If you’re a high-volume user of the PLOS Search API and need more API requests a day, please contact us at api@plos.org to discuss your options. We currently limit API users to no more than five concurrent connections from a single IP address.
 
 ## Quick start
 
@@ -64,7 +69,7 @@ searchplos('ecology', 'id,publication_date', limit = 5)
 #>   numFound start
 #>      <int> <int>
 #> 1    40530     0
-#> 
+#>
 #> $data
 #> # A tibble: 5 x 2
 #>                             id     publication_date
@@ -87,7 +92,7 @@ searchplos(q="*:*", fl='id', fq=list('journal_key:PLoSONE',
 #>   numFound start
 #>      <int> <int>
 #> 1   189936     0
-#> 
+#>
 #> $data
 #> # A tibble: 5 x 1
 #>                             id
@@ -141,7 +146,7 @@ searchplos(q="*:*",fl=c('id','alm_twitterCount'),
 #>   numFound start
 #>      <int> <int>
 #> 1       56     0
-#> 
+#>
 #> $data
 #> # A tibble: 10 x 2
 #>                              id alm_twitterCount
@@ -168,7 +173,7 @@ searchplos(q='everything:"sports alcohol"~15', fl='title', fq='doc_type:full', l
 #>   numFound start
 #>      <int> <int>
 #> 1      111     0
-#> 
+#>
 #> $data
 #> # A tibble: 3 x 1
 #>                                                                         title
@@ -188,7 +193,7 @@ searchplos(q='everything:"sports alcohol"~7', fl='title', fq='doc_type:full', li
 #>   numFound start
 #>      <int> <int>
 #> 1       60     0
-#> 
+#>
 #> $data
 #> # A tibble: 3 x 1
 #>                                                                         title
@@ -209,7 +214,7 @@ searchplos(q='*:*', fl=c('id','article_type'),
 #>   numFound start
 #>      <int> <int>
 #> 1  1851430     0
-#> 
+#>
 #> $data
 #> # A tibble: 5 x 2
 #>                                        id     article_type
@@ -230,7 +235,7 @@ Facet on multiple fields
 facetplos(q='alcohol', facet.field=c('journal','subject'), facet.limit=5)
 #> $facet_queries
 #> NULL
-#> 
+#>
 #> $facet_fields
 #> $facet_fields$journal
 #> # A tibble: 5 x 2
@@ -241,7 +246,7 @@ facetplos(q='alcohol', facet.field=c('journal','subject'), facet.limit=5)
 #> 3                    plos medicine   452
 #> 4 plos neglected tropical diseases   415
 #> 5                   plos pathogens   311
-#> 
+#>
 #> $facet_fields$subject
 #> # A tibble: 5 x 2
 #>                            term value
@@ -251,14 +256,14 @@ facetplos(q='alcohol', facet.field=c('journal','subject'), facet.limit=5)
 #> 3 research and analysis methods 14372
 #> 4                  biochemistry 12309
 #> 5             physical sciences  9342
-#> 
-#> 
+#>
+#>
 #> $facet_pivot
 #> NULL
-#> 
+#>
 #> $facet_dates
 #> NULL
-#> 
+#>
 #> $facet_ranges
 #> NULL
 ```
@@ -271,16 +276,16 @@ facetplos(q='*:*', url=url, facet.range='counter_total_all',
  facet.range.start=5, facet.range.end=100, facet.range.gap=10)
 #> $facet_queries
 #> NULL
-#> 
+#>
 #> $facet_fields
 #> NULL
-#> 
+#>
 #> $facet_pivot
 #> NULL
-#> 
+#>
 #> $facet_dates
 #> NULL
-#> 
+#>
 #> $facet_ranges
 #> $facet_ranges$counter_total_all
 #> # A tibble: 10 x 2
@@ -308,13 +313,13 @@ Search for and highlight the term _alcohol_ in the abstract field only
 #> $`10.1371/journal.pone.0185457`
 #> $`10.1371/journal.pone.0185457`$abstract
 #> [1] "Objectives: <em>Alcohol</em>-related morbidity and mortality are significant public health issues"
-#> 
-#> 
+#>
+#>
 #> $`10.1371/journal.pone.0071284`
 #> $`10.1371/journal.pone.0071284`$abstract
 #> [1] "\n<em>Alcohol</em> dependence is a heterogeneous disorder where several signalling systems play important"
-#> 
-#> 
+#>
+#>
 #> $`10.1371/journal.pone.0027752`
 #> $`10.1371/journal.pone.0027752`$abstract
 #> [1] "Background: The negative influences of <em>alcohol</em> on TB management with regard to delays in seeking"
@@ -344,10 +349,10 @@ full_text_urls(doi='10.1371/journal.pone.0086169')
 
 ```r
 (out <- plos_fulltext(doi='10.1371/journal.pone.0086169'))
-#> 1 full-text articles retrieved 
-#> Min. Length: 110717 - Max. Length: 110717 
-#> DOIs: 10.1371/journal.pone.0086169 ... 
-#> 
+#> 1 full-text articles retrieved
+#> Min. Length: 110717 - Max. Length: 110717
+#> DOIs: 10.1371/journal.pone.0086169 ...
+#>
 #> NOTE: extract xml strings like output['<doi>']
 ```
 
@@ -380,7 +385,7 @@ plossubject(q='marine ecology',  fl = c('id','journal'), limit = 10)
 #>   numFound start
 #>      <int> <int>
 #> 1     3560     0
-#> 
+#>
 #> $data
 #> # A tibble: 10 x 2
 #>                                         id  journal
@@ -428,7 +433,7 @@ plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE'
 #> 3        1394  sunflower
 #> 4      135029    protein
 #> 5        1613      whale
-#> 
+#>
 #> $plot
 ```
 
