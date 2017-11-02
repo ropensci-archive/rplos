@@ -4,6 +4,7 @@ context("plosfigtabcaps")
 test_that("plosfigtabcaps returns the correct dimenion result", {
 	skip_on_cran()
 
+	Sys.sleep(5)
 	dat <- plosfigtabcaps(q='ecology', fl='figure_table_caption', limit=10)
 
 	# correct values

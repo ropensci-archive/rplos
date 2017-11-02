@@ -5,11 +5,11 @@ test_that("highplos", {
   skip_on_cran()
 
   aa <- highplos(q='alcohol', hl.fl = 'abstract', rows=10)
-  Sys.sleep(2)
+  Sys.sleep(5)
   bb <- highplos(q='everything:"sports alcohol"~7', hl.fl='everything')
-  Sys.sleep(2)
+  Sys.sleep(5)
   cc <- highplos(q='alcohol', hl.fl='abstract', hl.fragsize=20, rows=5)
-  Sys.sleep(2)
+  Sys.sleep(5)
   dd <- highplos(q='alcohol', hl.fl='abstract', hl.snippets=5,
                  hl.mergeContiguous='true', rows=5)
 

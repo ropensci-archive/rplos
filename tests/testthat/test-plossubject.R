@@ -4,6 +4,7 @@ context("plossubject")
 test_that("plossubject returns the correct class", {
 	skip_on_cran()
 
+	Sys.sleep(5)
 	tt <- plossubject(q='marine ecology', fl = 'id,journal', fq='doc_type:full', limit = 9)
 
 	expect_that(tt$data, is_a("data.frame"))
