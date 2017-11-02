@@ -5,11 +5,6 @@ dist: trusty
 
 r_check_args: "--as-cran --run-dontrun"
 
-r:
-  - oldrel
-  - release
-  - devel
-
 r_github_packages:
   - jimhester/covr
 
