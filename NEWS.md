@@ -145,7 +145,7 @@ rplos 0.4.0
 
 ### NEW FEATURES
 
-* Errors from the data provider are reported now. At least we attempt to do so when they are given, for example if you specify `asc` or `desc` incorrectly with the `sort` parameter. See the [`check_response()` function](https://github.com/ropensci/rplos/blob/master/tests/testthat/test-check_response.R) for examples.
+* Errors from the data provider are reported now. At least we attempt to do so when they are given, for example if you specify `asc` or `desc` incorrectly with the `sort` parameter. See the `check_response()` function https://github.com/ropensci/rplos/blob/master/tests/testthat/test-check_response.R for examples.
 * New functions `facetplos()` and `highplos()` using the `solr` R wrapper to the Solr indexing engine. The PLOS API just exposes the Solr endpoints, so we can use the general Solr wrapper package `solr` to allow more flexible Solr searching.
 * New function `highbrow()` to visualize highlighting results in a browser.
 * New function `plos_fulltext()` to get full text xml of PLOS articles. Helper function `full_text_urls()` constructs the URL's for full text xml.
