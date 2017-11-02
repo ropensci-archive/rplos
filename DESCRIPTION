@@ -28,7 +28,7 @@ Imports:
     lubridate,
     reshape2,
     whisker,
-    solrium (>= 0.9.9.9100)
+    solrium (>= 1.0.0)
 Suggests:
     xml2,
     testthat,
