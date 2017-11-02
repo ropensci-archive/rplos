@@ -33,5 +33,4 @@ Suggests:
     xml2,
     testthat,
     knitr
-Remotes: ropensci/solrium
 RoxygenNote: 6.0.1

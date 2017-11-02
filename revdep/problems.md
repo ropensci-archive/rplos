@@ -2,23 +2,26 @@
 
 ## Platform
 
-|setting  |value                        |
-|:--------|:----------------------------|
-|version  |R version 3.3.2 (2016-10-31) |
-|system   |x86_64, darwin13.4.0         |
-|ui       |RStudio (1.0.117)            |
-|language |(EN)                         |
-|collate  |en_US.UTF-8                  |
-|tz       |America/Los_Angeles          |
-|date     |2016-11-23                   |
+|setting  |value                                       |
+|:--------|:-------------------------------------------|
+|version  |R version 3.4.2 Patched (2017-10-30 r73642) |
+|system   |x86_64, darwin15.6.0                        |
+|ui       |X11                                         |
+|language |(EN)                                        |
+|collate  |en_US.UTF-8                                 |
+|tz       |America/Los_Angeles                         |
+|date     |2017-11-02                                  |
 
 ## Packages
 
 |package |*  |version |date       |source                    |
 |:-------|:--|:-------|:----------|:-------------------------|
-|rplos   |   |0.6.4   |2016-11-23 |local (ropensci/rplos@NA) |
+|rplos   |   |0.8.0   |2017-11-02 |local (ropensci/rplos@NA) |
 
 # Check results
+
 0 packages with problems
+
+
 
 
