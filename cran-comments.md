@@ -20,6 +20,9 @@
 
 ----------
 
+This is a resubmission of the same version with a fix for a
+non-ascii character.
+
 This version includes moves to depending on some different packages,
 and fixes placement of README images to tools/.
 
