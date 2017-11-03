@@ -28,7 +28,7 @@
 #'
 #' "Please limit your API requests to 7200 requests a day, 300 per hour, 10 per
 #' minute and allow 5 seconds for your search to return results. If you exceed this
-#' threshold, we will lock out your IP address. If you’re a high-volume user of
+#' threshold, we will lock out your IP address. If you're a high-volume user of
 #' the PLOS Search API and need more API requests a day, please contact us at
 #' api@plos.org to discuss your options. We currently limit API users to no more
 #' than five concurrent connections from a single IP address.""
