@@ -35,6 +35,8 @@ test_that("full_text_urls - NA's on annotation DOIs", {
   expect_is(aa, "character")
 })
 
+Sys.sleep(6)
+
 test_that("plos_fulltext works", {
   skip_on_cran()
 

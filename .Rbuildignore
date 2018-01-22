@@ -14,3 +14,4 @@ README.Rmd
 ^revdep$
 .github
 ^CONDUCT\.md$
+tests/test-all.R

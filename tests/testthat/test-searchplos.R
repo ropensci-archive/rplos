@@ -4,9 +4,9 @@ context("searchplos")
 test_that("searchplos returns the correct", {
   skip_on_cran()
 
-  Sys.sleep(5)
+  Sys.sleep(6)
   dat1 <- searchplos('ecology', 'id,publication_date', limit = 2)
-  Sys.sleep(5)
+  Sys.sleep(6)
   dat2 <- searchplos(q="*:*", fl='id', fq='journal_key:PLoSONE', start=0, limit=15)
 
   # values
