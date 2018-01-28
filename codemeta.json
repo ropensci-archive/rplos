@@ -1,0 +1,192 @@
+{
+  "@context": ["http://purl.org/codemeta/2.0", "http://schema.org"],
+  "@type": "SoftwareSourceCode",
+  "identifier": "rplos",
+  "description": "A programmatic interface to the 'SOLR' based\n    search 'API' (<http://api.plos.org/>) provided by the Public\n    Library of Science journals to search their articles.\n    Functions are included for searching for articles, retrieving\n    articles, making plots, doing 'faceted' searches,\n    'highlight' searches, and viewing results of 'highlighted'\n    searches in a browser.",
+  "name": "rplos: Interface to the Search 'API' for 'PLoS' Journals",
+  "codeRepository": "https://github.com/ropensci/rplos",
+  "issueTracker": "https://github.com/ropensci/rplos/issues",
+  "license": "https://spdx.org/licenses/MIT",
+  "version": "0.8.0.9100",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "version": "3.4.3",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 3.4.3 Patched (2018-01-01 r74017)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Central R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Scott",
+      "familyName": "Chamberlain",
+      "email": "myrmecocystus@gmail.com"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Carl",
+      "familyName": "Boettiger",
+      "email": "cboettig@gmail.com"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Karthik",
+      "familyName": "Ram",
+      "email": "karthik.ram@gmail.com"
+    }
+  ],
+  "maintainer": {
+    "@type": "Person",
+    "givenName": "Scott",
+    "familyName": "Chamberlain",
+    "email": "myrmecocystus@gmail.com"
+  },
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "xml2",
+      "name": "xml2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    }
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "ggplot2",
+      "name": "ggplot2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "crul",
+      "name": "crul",
+      "version": "0.4.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "jsonlite",
+      "name": "jsonlite",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "dplyr",
+      "name": "dplyr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "plyr",
+      "name": "plyr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "lubridate",
+      "name": "lubridate",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "reshape2",
+      "name": "reshape2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "whisker",
+      "name": "whisker",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "solrium",
+      "name": "solrium",
+      "version": "1.0.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    }
+  ],
+  "contIntegration": "https://travis-ci.org/ropensci/rplos",
+  "releaseNotes": "https://github.com/ropensci/rplos/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/rplos/blob/master/README.md",
+  "fileSize": "861.917KB"
+}

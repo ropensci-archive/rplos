@@ -15,3 +15,4 @@ README.Rmd
 .github
 ^CONDUCT\.md$
 tests/test-all.R
+^codemeta\.json$
