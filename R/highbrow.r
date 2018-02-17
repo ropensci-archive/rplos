@@ -67,7 +67,7 @@ highbrow <- function(input=NULL, output=NULL, browse=TRUE) {
       	</thead>
       	<tbody>
         {{#outlist}}
-          <tr><td><a href="http://dx.doi.org/{{doi}}"  class="btn btn-info  btn-xs" role="button">{{doi}}</a></td><td>{{content}}</td></tr>
+          <tr><td><a href="https://doi.org/{{doi}}"  class="btn btn-info  btn-xs" role="button">{{doi}}</a></td><td>{{content}}</td></tr>
         {{/outlist}}
         </tbody>
       </table>
