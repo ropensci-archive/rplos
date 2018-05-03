@@ -2,19 +2,19 @@
 context("journalnamekey")
 
 test_that("journalnamekey returns the correct value", {
-	skip_on_cran()
-
-	expect_true(grepl("PLoSONE", paste0(journalnamekey(), collapse = " ")))
+	vcr::use_cassette("journalnamekey1", {
+  	expect_true(grepl("PLoSONE", paste0(journalnamekey(), collapse = " ")))
+  })
 })
 
 test_that("journalnamekey returns the correct class", {
-	skip_on_cran()
-
-	expect_that(journalnamekey(), is_a("character"))
+	vcr::use_cassette("journalnamekey2", {
+  	expect_that(journalnamekey(), is_a("character"))
+  })
 })
 
 test_that("journalnamekey returns the correct length vector", {
-	skip_on_cran()
-
-	expect_gt(length(journalnamekey()), 0)
+	vcr::use_cassette("journalnamekey3", {
+  	expect_gt(length(journalnamekey()), 0)
+  })
 })

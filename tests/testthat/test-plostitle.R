@@ -2,23 +2,19 @@
 context("plostitle")
 
 test_that("plostitle returns the correct dimensionsed data.frame", {
-	skip_on_cran()
-
-	Sys.sleep(6)
-	expect_that(nrow(plostitle(q='drosophila', fl='title', limit=19)$data),
-							equals(19))
-	Sys.sleep(6)
-	expect_that(length(names(plostitle(q='drosophila', fl='title', limit=19)$data)),
-							equals(1))
-	Sys.sleep(6)
-	expect_that(names(plostitle(q='drosophila', fl='title,journal', limit = 5)$data),
-							equals(c("journal","title")))
+	vcr::use_cassette("plostitle", {
+		expect_that(nrow(plostitle(q='drosophila', fl='title', limit=19)$data),
+								equals(19))
+		expect_that(length(names(plostitle(q='drosophila', fl='title', limit=19)$data)),
+								equals(1))
+		expect_that(names(plostitle(q='drosophila', fl='title,journal', limit = 5)$data),
+								equals(c("journal","title")))
+	})
 })
 
 test_that("plostitle returns the correct class", {
-	skip_on_cran()
-
-	expect_is(plostitle(q='drosophila',  limit = 5)$data, "data.frame")
-	Sys.sleep(6)
-	expect_is(plostitle(q='drosophila', fl='title,journal', limit = 5)$data, "data.frame")
+	vcr::use_cassette("plostitle_class", {
+		expect_is(plostitle(q='drosophila',  limit = 5)$data, "data.frame")
+		expect_is(plostitle(q='drosophila', fl='title,journal', limit = 5)$data, "data.frame")
+	})
 })

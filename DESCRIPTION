@@ -7,7 +7,7 @@ Description: A programmatic interface to the 'SOLR' based
     articles, making plots, doing 'faceted' searches,
     'highlight' searches, and viewing results of 'highlighted'
     searches in a browser.
-Version: 0.8.0.9100
+Version: 0.8.0.9110
 License: MIT + file LICENSE
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"),
@@ -32,5 +32,8 @@ Imports:
 Suggests:
     xml2,
     testthat,
-    knitr
+    knitr,
+    webmockr (>= 0.2.2.9114),
+    vcr (>= 0.0.8.9538)
+Remotes: ropensci/vcr, ropensci/webmockr
 RoxygenNote: 6.0.1

@@ -1,0 +1,241 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=title%3A%22drosophila%22&fl=title&rows=0&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.12.2
+      date: Thu, 03 May 2018 06:09:14 GMT
+      content-type: application/json; charset=UTF-8
+      content-length: '51'
+      connection: keep-alive
+      last-modified: Wed, 02 May 2018 20:22:57 GMT
+      etag: '"Zjc1YzE4MDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      string: |
+        {"response":{"numFound":2178,"start":0,"docs":[]}}
+  recorded_at: 2018-05-03 06:09:16 GMT
+  recorded_with: vcr/0.0.8.9538, webmockr/0.2.2.9119, crul/0.5.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=title%3A%22drosophila%22&fl=title&start=0&rows=19&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.12.2
+      date: Thu, 03 May 2018 06:09:15 GMT
+      content-type: application/json; charset=UTF-8
+      content-length: '1370'
+      connection: keep-alive
+      last-modified: Wed, 02 May 2018 20:22:57 GMT
+      etag: '"Zjc1YzE4MDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      string: |
+        {"response":{"numFound":2178,"start":0,"docs":[{"title":"Peptidergic control in a fruit crop pest: The spotted-wing drosophila, Drosophila suzukii"},{"title":"Nematocytes: Discovery and characterization of a novel anculeate hemocyte in Drosophila falleni and Drosophila phalerata"},{"title":"Tandem Duplications and the Limits of Natural Selection in Drosophila yakuba and Drosophila simulans"},{"title":"In Vivo RNAi Rescue in Drosophila melanogaster with Genomic Transgenes from Drosophila pseudoobscura"},{"title":"A Tripartite Synapse Model in Drosophila"},{"title":"Identification of Drosophila MicroRNA Targets"},{"title":"Combinatorial Coding for Drosophila Neurons"},{"title":"Expression in Aneuploid Drosophila S2 Cells"},{"title":"Reinforcement of Gametic Isolation in Drosophila"},{"title":"A Model of Drosophila Larva Chemotaxis"},{"title":"Quantification of Food Intake in Drosophila"},{"title":"Phenotypic Plasticity of the Drosophila Transcriptome"},{"title":"Parametric Alignment of Drosophila Genomes"},{"title":"A DNA Virus of Drosophila"},{"title":"Contribution of Drosophila TRPA1 to Metabolism"},{"title":"School Students as Drosophila Experimenters"},{"title":"The Effect of Stress on Motor Function in Drosophila"},{"title":"A Drosophila model for developmental nicotine exposure"},{"title":"TrpA1 Regulates Thermal Nociception in Drosophila"}]}}
+  recorded_at: 2018-05-03 06:09:16 GMT
+  recorded_with: vcr/0.0.8.9538, webmockr/0.2.2.9119, crul/0.5.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=title%3A%22drosophila%22&fl=title&rows=0&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.12.2
+      date: Thu, 03 May 2018 06:09:15 GMT
+      content-type: application/json; charset=UTF-8
+      content-length: '51'
+      connection: keep-alive
+      last-modified: Wed, 02 May 2018 20:22:57 GMT
+      etag: '"YjYzYTE4MDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      string: |
+        {"response":{"numFound":2178,"start":0,"docs":[]}}
+  recorded_at: 2018-05-03 06:09:16 GMT
+  recorded_with: vcr/0.0.8.9538, webmockr/0.2.2.9119, crul/0.5.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=title%3A%22drosophila%22&fl=title&rows=0&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.12.2
+      date: Thu, 03 May 2018 06:09:15 GMT
+      content-type: application/json; charset=UTF-8
+      content-length: '51'
+      connection: keep-alive
+      last-modified: Wed, 02 May 2018 20:22:57 GMT
+      etag: '"YzAyNDE4MDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      string: |
+        {"response":{"numFound":2178,"start":0,"docs":[]}}
+  recorded_at: 2018-05-03 06:09:16 GMT
+  recorded_with: vcr/0.0.8.9538, webmockr/0.2.2.9119, crul/0.5.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=title%3A%22drosophila%22&fl=title&start=0&rows=19&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.12.2
+      date: Thu, 03 May 2018 06:09:15 GMT
+      content-type: application/json; charset=UTF-8
+      content-length: '1370'
+      connection: keep-alive
+      last-modified: Wed, 02 May 2018 20:22:57 GMT
+      etag: '"ZTMzZmU4MDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      string: |
+        {"response":{"numFound":2178,"start":0,"docs":[{"title":"Peptidergic control in a fruit crop pest: The spotted-wing drosophila, Drosophila suzukii"},{"title":"Nematocytes: Discovery and characterization of a novel anculeate hemocyte in Drosophila falleni and Drosophila phalerata"},{"title":"Tandem Duplications and the Limits of Natural Selection in Drosophila yakuba and Drosophila simulans"},{"title":"In Vivo RNAi Rescue in Drosophila melanogaster with Genomic Transgenes from Drosophila pseudoobscura"},{"title":"A Tripartite Synapse Model in Drosophila"},{"title":"Identification of Drosophila MicroRNA Targets"},{"title":"Combinatorial Coding for Drosophila Neurons"},{"title":"Reinforcement of Gametic Isolation in Drosophila"},{"title":"Expression in Aneuploid Drosophila S2 Cells"},{"title":"A Model of Drosophila Larva Chemotaxis"},{"title":"Quantification of Food Intake in Drosophila"},{"title":"School Students as Drosophila Experimenters"},{"title":"Parametric Alignment of Drosophila Genomes"},{"title":"A DNA Virus of Drosophila"},{"title":"Contribution of Drosophila TRPA1 to Metabolism"},{"title":"Phenotypic Plasticity of the Drosophila Transcriptome"},{"title":"The Effect of Stress on Motor Function in Drosophila"},{"title":"A Drosophila model for developmental nicotine exposure"},{"title":"TrpA1 Regulates Thermal Nociception in Drosophila"}]}}
+  recorded_at: 2018-05-03 06:09:16 GMT
+  recorded_with: vcr/0.0.8.9538, webmockr/0.2.2.9119, crul/0.5.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=title%3A%22drosophila%22&fl=title&start=0&rows=19&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.12.2
+      date: Thu, 03 May 2018 06:09:15 GMT
+      content-type: application/json; charset=UTF-8
+      content-length: '1370'
+      connection: keep-alive
+      last-modified: Wed, 02 May 2018 20:22:57 GMT
+      etag: '"Zjc1YzE4MDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      string: |
+        {"response":{"numFound":2178,"start":0,"docs":[{"title":"Peptidergic control in a fruit crop pest: The spotted-wing drosophila, Drosophila suzukii"},{"title":"Nematocytes: Discovery and characterization of a novel anculeate hemocyte in Drosophila falleni and Drosophila phalerata"},{"title":"Tandem Duplications and the Limits of Natural Selection in Drosophila yakuba and Drosophila simulans"},{"title":"In Vivo RNAi Rescue in Drosophila melanogaster with Genomic Transgenes from Drosophila pseudoobscura"},{"title":"A Tripartite Synapse Model in Drosophila"},{"title":"Identification of Drosophila MicroRNA Targets"},{"title":"Combinatorial Coding for Drosophila Neurons"},{"title":"Expression in Aneuploid Drosophila S2 Cells"},{"title":"Reinforcement of Gametic Isolation in Drosophila"},{"title":"A Model of Drosophila Larva Chemotaxis"},{"title":"Quantification of Food Intake in Drosophila"},{"title":"Phenotypic Plasticity of the Drosophila Transcriptome"},{"title":"Parametric Alignment of Drosophila Genomes"},{"title":"A DNA Virus of Drosophila"},{"title":"Contribution of Drosophila TRPA1 to Metabolism"},{"title":"School Students as Drosophila Experimenters"},{"title":"The Effect of Stress on Motor Function in Drosophila"},{"title":"A Drosophila model for developmental nicotine exposure"},{"title":"TrpA1 Regulates Thermal Nociception in Drosophila"}]}}
+  recorded_at: 2018-05-03 06:09:16 GMT
+  recorded_with: vcr/0.0.8.9538, webmockr/0.2.2.9119, crul/0.5.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=title%3A%22drosophila%22&fl=title%2Cjournal&rows=0&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.12.2
+      date: Thu, 03 May 2018 06:09:15 GMT
+      content-type: application/json; charset=UTF-8
+      content-length: '51'
+      connection: keep-alive
+      last-modified: Wed, 02 May 2018 20:22:57 GMT
+      etag: '"Zjc1YzE4MDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      string: |
+        {"response":{"numFound":2178,"start":0,"docs":[]}}
+  recorded_at: 2018-05-03 06:09:16 GMT
+  recorded_with: vcr/0.0.8.9538, webmockr/0.2.2.9119, crul/0.5.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=title%3A%22drosophila%22&fl=title%2Cjournal&start=0&rows=5&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.12.2
+      date: Thu, 03 May 2018 06:09:16 GMT
+      content-type: application/json; charset=UTF-8
+      content-length: '669'
+      connection: keep-alive
+      last-modified: Wed, 02 May 2018 20:22:57 GMT
+      etag: '"YzAyNDE4MDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      string: |
+        {"response":{"numFound":2178,"start":0,"docs":[{"journal":"PLOS ONE","title":"Peptidergic control in a fruit crop pest: The spotted-wing drosophila, Drosophila suzukii"},{"journal":"PLOS ONE","title":"Nematocytes: Discovery and characterization of a novel anculeate hemocyte in Drosophila falleni and Drosophila phalerata"},{"journal":"PLOS ONE","title":"Tandem Duplications and the Limits of Natural Selection in Drosophila yakuba and Drosophila simulans"},{"journal":"PLoS ONE","title":"In Vivo RNAi Rescue in Drosophila melanogaster with Genomic Transgenes from Drosophila pseudoobscura"},{"journal":"PLoS ONE","title":"A Tripartite Synapse Model in Drosophila"}]}}
+  recorded_at: 2018-05-03 06:09:16 GMT
+  recorded_with: vcr/0.0.8.9538, webmockr/0.2.2.9119, crul/0.5.2
