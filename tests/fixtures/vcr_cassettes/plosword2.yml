@@ -1,0 +1,151 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=monkey&fl=id&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.12.2
+      date: Thu, 03 May 2018 05:42:39 GMT
+      content-type: application/json; charset=UTF-8
+      content-length: '431'
+      connection: keep-alive
+      last-modified: Wed, 02 May 2018 20:22:57 GMT
+      etag: '"YzAyNDE4MDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      string: |
+        {"response":{"numFound":12331,"start":0,"docs":[{"id":"10.1371/journal.pone.0111867"},{"id":"10.1371/journal.pone.0023345"},{"id":"10.1371/journal.pone.0059961"},{"id":"10.1371/journal.pone.0117362"},{"id":"10.1371/journal.pone.0032209"},{"id":"10.1371/journal.pone.0007834"},{"id":"10.1371/journal.pone.0178048"},{"id":"10.1371/journal.pone.0040283"},{"id":"10.1371/journal.pone.0016923"},{"id":"10.1371/journal.pone.0088595"}]}}
+  recorded_at: 2018-05-03 05:42:41 GMT
+  recorded_with: vcr/0.0.8.9538, webmockr/0.2.2.9119, crul/0.5.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=Helianthus&fl=id&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.12.2
+      date: Thu, 03 May 2018 05:42:40 GMT
+      content-type: application/json; charset=UTF-8
+      content-length: '429'
+      connection: keep-alive
+      last-modified: Wed, 02 May 2018 20:22:57 GMT
+      etag: '"YjYzYTE4MDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      string: |
+        {"response":{"numFound":528,"start":0,"docs":[{"id":"10.1371/journal.pone.0148280"},{"id":"10.1371/journal.pone.0111982"},{"id":"10.1371/journal.pone.0139188"},{"id":"10.1371/journal.pone.0057533"},{"id":"10.1371/journal.pone.0045899"},{"id":"10.1371/journal.pone.0037191"},{"id":"10.1371/journal.pone.0179746"},{"id":"10.1371/journal.pone.0070347"},{"id":"10.1371/journal.pone.0051360"},{"id":"10.1371/journal.pone.0138992"}]}}
+  recorded_at: 2018-05-03 05:42:41 GMT
+  recorded_with: vcr/0.0.8.9538, webmockr/0.2.2.9119, crul/0.5.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=sunflower&fl=id&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.12.2
+      date: Thu, 03 May 2018 05:42:40 GMT
+      content-type: application/json; charset=UTF-8
+      content-length: '430'
+      connection: keep-alive
+      last-modified: Wed, 02 May 2018 20:22:57 GMT
+      etag: '"Zjc1YzE4MDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      string: |
+        {"response":{"numFound":1476,"start":0,"docs":[{"id":"10.1371/journal.pone.0099620"},{"id":"10.1371/journal.pone.0138992"},{"id":"10.1371/journal.pone.0175801"},{"id":"10.1371/journal.pone.0098628"},{"id":"10.1371/journal.pgen.1003378"},{"id":"10.1371/journal.pone.0141567"},{"id":"10.1371/journal.pone.0045899"},{"id":"10.1371/journal.pone.0104379"},{"id":"10.1371/journal.pone.0052437"},{"id":"10.1371/journal.pone.0059715"}]}}
+  recorded_at: 2018-05-03 05:42:41 GMT
+  recorded_with: vcr/0.0.8.9538, webmockr/0.2.2.9119, crul/0.5.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=protein&fl=id&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.12.2
+      date: Thu, 03 May 2018 05:42:40 GMT
+      content-type: application/json; charset=UTF-8
+      content-length: '432'
+      connection: keep-alive
+      last-modified: Wed, 02 May 2018 20:22:57 GMT
+      etag: '"YzAyNDE4MDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      string: |
+        {"response":{"numFound":140178,"start":0,"docs":[{"id":"10.1371/journal.pone.0004027"},{"id":"10.1371/journal.pone.0044872"},{"id":"10.1371/journal.pone.0130743"},{"id":"10.1371/journal.ppat.1003778"},{"id":"10.1371/journal.pcbi.1004508"},{"id":"10.1371/journal.pcbi.1002910"},{"id":"10.1371/journal.pone.0133913"},{"id":"10.1371/journal.pcbi.1003072"},{"id":"10.1371/journal.pone.0067919"},{"id":"10.1371/journal.pone.0119417"}]}}
+  recorded_at: 2018-05-03 05:42:41 GMT
+  recorded_with: vcr/0.0.8.9538, webmockr/0.2.2.9119, crul/0.5.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=whale&fl=id&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.12.2
+      date: Thu, 03 May 2018 05:42:41 GMT
+      content-type: application/json; charset=UTF-8
+      content-length: '430'
+      connection: keep-alive
+      last-modified: Wed, 02 May 2018 20:22:57 GMT
+      etag: '"YzAyNDE4MDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      string: |
+        {"response":{"numFound":1712,"start":0,"docs":[{"id":"10.1371/journal.pone.0166670"},{"id":"10.1371/journal.pone.0034905"},{"id":"10.1371/journal.pone.0093789"},{"id":"10.1371/journal.pone.0189764"},{"id":"10.1371/journal.pone.0183053"},{"id":"10.1371/journal.pone.0076507"},{"id":"10.1371/journal.pone.0183052"},{"id":"10.1371/journal.pone.0152643"},{"id":"10.1371/journal.pone.0180099"},{"id":"10.1371/journal.pone.0088655"}]}}
+  recorded_at: 2018-05-03 05:42:41 GMT
+  recorded_with: vcr/0.0.8.9538, webmockr/0.2.2.9119, crul/0.5.2

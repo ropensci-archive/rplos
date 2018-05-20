@@ -2,14 +2,14 @@
 context("highbrow")
 
 test_that("highbrow", {
-  skip_on_cran()
+  vcr::use_cassette("highbrow", {
+    out <- highplos(q = 'alcohol', hl.fl = 'abstract', rows = 10)
+    aa <- highbrow(out, browse = FALSE)
 
-  out <- highplos(q = 'alcohol', hl.fl = 'abstract', rows = 10)
-  aa <- highbrow(out, browse = FALSE)
-
-  expect_is(out, "list")
-  expect_is(aa, "character")
-  expect_match(aa, ".html")
+    expect_is(out, "list")
+    expect_is(aa, "character")
+    expect_match(aa, ".html")
+  })
 
   # output parameter works
   ff <- tempfile(pattern = "fart", fileext = ".html")

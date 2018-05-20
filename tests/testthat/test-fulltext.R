@@ -26,38 +26,36 @@ test_that("full_text_urls", {
 })
 
 test_that("full_text_urls - NA's on annotation DOIs", {
-  skip_on_cran()
+  vcr::use_cassette("full_text_urls-with-searchplos", {
+    dois <- searchplos(q = "*:*", fq = 'doc_type:full', limit = 20)$data$id
+    aa <- full_text_urls(dois)
 
-  dois <- searchplos(q = "*:*", fq = 'doc_type:full', limit = 20)$data$id
-  aa <- full_text_urls(dois)
-
-  expect_is(dois, "character")
-  expect_is(aa, "character")
+    expect_is(dois, "character")
+    expect_is(aa, "character")
+  })
 })
 
-Sys.sleep(6)
-
 test_that("plos_fulltext works", {
-  skip_on_cran()
+  vcr::use_cassette("full_text_urls-with-searchplos2", {
+    aa <- plos_fulltext(doi = '10.1371/journal.pone.0086169')
+    bb <- plos_fulltext(c('10.1371/journal.pone.0086169', '10.1371/journal.pbio.1001845'))
+    dois <- searchplos(q = "*:*", fq = list('doc_type:full', 'article_type:"Research Article"'), limit = 3)$data$id
+    cc <- plos_fulltext(dois)
 
-  aa <- plos_fulltext(doi = '10.1371/journal.pone.0086169')
-  bb <- plos_fulltext(c('10.1371/journal.pone.0086169', '10.1371/journal.pbio.1001845'))
-  dois <- searchplos(q = "*:*", fq = list('doc_type:full', 'article_type:"Research Article"'), limit = 3)$data$id
-  cc <- plos_fulltext(dois)
+    # citations returns the correct classes
+    expect_is(aa, "plosft")
+    expect_is(bb, "plosft")
+    expect_is(cc, "plosft")
 
-  # citations returns the correct classes
-  expect_is(aa, "plosft")
-  expect_is(bb, "plosft")
-  expect_is(cc, "plosft")
+    expect_is(aa[[1]], "character")
+    expect_is(bb[[1]], "character")
+    expect_is(bb[[2]], "character")
+    expect_is(cc[[2]], "character")
 
-  expect_is(aa[[1]], "character")
-  expect_is(bb[[1]], "character")
-  expect_is(bb[[2]], "character")
-  expect_is(cc[[2]], "character")
-
-  expect_equal(length(aa), 1)
-  expect_equal(length(bb), 2)
-  expect_equal(length(cc), 3)
+    expect_equal(length(aa), 1)
+    expect_equal(length(bb), 2)
+    expect_equal(length(cc), 3)
+  })
 })
 
 test_that("plos_fulltext works with all journals", {
