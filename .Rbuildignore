@@ -13,6 +13,6 @@ README.Rmd
 ^cran-comments\.md$
 ^revdep$
 .github
-^CONDUCT\.md$
+^CODE_OF_CONDUCT\.md$
 tests/test-all.R
 ^codemeta\.json$
