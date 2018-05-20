@@ -1,3 +1,10 @@
+rplos 0.8.2
+-----------
+
+### NEW FEATURES
+
+* Integration with `vcr` and `webmockr` packages for unit test stubbing
+
 rplos 0.8.0
 -----------
 
