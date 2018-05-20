@@ -5,3 +5,7 @@ schema.xml
 schema_new.xml
 .Rproj.user
 rplos.Rproj
+revdep/checks.noindex
+revdep/library.noindex
+revdep/data.sqlite
+
