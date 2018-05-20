@@ -31,9 +31,8 @@ Imports:
     solrium (>= 1.0.0)
 Suggests:
     xml2,
-    testthat,
     knitr,
-    webmockr (>= 0.2.2.9114),
-    vcr (>= 0.0.8.9538)
-Remotes: ropensci/vcr, ropensci/webmockr
+    testthat,
+    webmockr,
+    vcr
 RoxygenNote: 6.0.1
