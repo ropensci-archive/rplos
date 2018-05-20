@@ -2,6 +2,7 @@ rplos
 =====
 
 
+
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![cran checks](https://cranchecks.info/badges/worst/rplos)](https://cranchecks.info/pkgs/rplos)
 [![Build Status](https://travis-ci.org/ropensci/rplos.svg?branch=master)](https://travis-ci.org/ropensci/rplos)
@@ -69,12 +70,12 @@ searchplos('ecology', 'id,publication_date', limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1    40530     0
-#>
+#> 1    43116     0
+#> 
 #> $data
 #> # A tibble: 5 x 2
-#>                             id     publication_date
-#>                          <chr>                <chr>
+#>   id                           publication_date    
+#>   <chr>                        <chr>               
 #> 1 10.1371/journal.pone.0001248 2007-11-28T00:00:00Z
 #> 2 10.1371/journal.pone.0059813 2013-04-24T00:00:00Z
 #> 3 10.1371/journal.pone.0155019 2016-05-11T00:00:00Z
@@ -92,17 +93,17 @@ searchplos(q="*:*", fl='id', fq=list('journal_key:PLoSONE',
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1   189936     0
-#>
+#> 1   199994     0
+#> 
 #> $data
 #> # A tibble: 5 x 1
-#>                             id
-#>                          <chr>
-#> 1 10.1371/journal.pone.0107314
-#> 2 10.1371/journal.pone.0037802
-#> 3 10.1371/journal.pone.0163113
-#> 4 10.1371/journal.pone.0079578
-#> 5 10.1371/journal.pone.0023759
+#>   id                          
+#>   <chr>                       
+#> 1 10.1371/journal.pone.0044136
+#> 2 10.1371/journal.pone.0155491
+#> 3 10.1371/journal.pone.0168631
+#> 4 10.1371/journal.pone.0058100
+#> 5 10.1371/journal.pone.0168627
 ```
 
 Query to get some PLOS article-level metrics, notice difference between two outputs
@@ -114,25 +115,24 @@ out_sorted <- searchplos(q="*:*", fl=c('id','counter_total_all','alm_twitterCoun
    fq='doc_type:full', sort='counter_total_all desc')
 head(out$data)
 #> # A tibble: 6 x 3
-#>                             id alm_twitterCount counter_total_all
-#>                          <chr>            <int>             <int>
-#> 1 10.1371/journal.pone.0107314                0               602
-#> 2 10.1371/journal.pone.0037802                0              3743
-#> 3 10.1371/journal.pone.0163113                2              2137
-#> 4 10.1371/journal.ppat.1004790                0              2819
-#> 5 10.1371/journal.pone.0079578                2              3187
-#> 6 10.1371/journal.pone.0023759                0              5016
+#>   id                           alm_twitterCount counter_total_all
+#>   <chr>                                   <int>             <int>
+#> 1 10.1371/journal.pone.0044136                2             15035
+#> 2 10.1371/journal.pone.0155491                0              2025
+#> 3 10.1371/journal.pone.0168631                0               703
+#> 4 10.1371/journal.pone.0058100                0              5091
+#> 5 10.1371/journal.pone.0168627                0              2392
+#> 6 10.1371/journal.pone.0184491               10               745
 head(out_sorted$data)
 #> # A tibble: 6 x 3
-#>                                                        id alm_twitterCount
-#>                                                     <chr>            <int>
-#> 1                            10.1371/journal.pmed.0020124             3207
-#> 2 10.1371/annotation/80bd7285-9d2d-403a-8e6f-9c375bf977ca                0
-#> 3                            10.1371/journal.pcbi.1003149              182
-#> 4                            10.1371/journal.pone.0141854             3401
-#> 5                            10.1371/journal.pcbi.0030102               63
-#> 6                            10.1371/journal.pone.0088278              932
-#> # ... with 1 more variables: counter_total_all <int>
+#>   id                                     alm_twitterCount counter_total_a…
+#>   <chr>                                             <int>            <int>
+#> 1 10.1371/journal.pmed.0020124                       3281          2525131
+#> 2 10.1371/annotation/80bd7285-9d2d-403a…                0          1235195
+#> 3 10.1371/journal.pcbi.1003149                        195          1113107
+#> 4 10.1371/journal.pone.0141854                       3422           872819
+#> 5 10.1371/journal.pcbi.0030102                         64           752783
+#> 6 10.1371/journal.pone.0088278                        964           606480
 ```
 
 A list of articles about social networks that are popular on a social network
@@ -146,22 +146,22 @@ searchplos(q="*:*",fl=c('id','alm_twitterCount'),
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1       56     0
-#>
+#> 1       57     0
+#> 
 #> $data
 #> # A tibble: 10 x 2
-#>                              id alm_twitterCount
-#>                           <chr>            <int>
-#>  1 10.1371/journal.pone.0073791             1856
-#>  2 10.1371/journal.pmed.1000316             1006
-#>  3 10.1371/journal.pone.0069841              892
-#>  4 10.1371/journal.pone.0148405              516
-#>  5 10.1371/journal.pone.0151588              331
-#>  6 10.1371/journal.pcbi.1005399              561
-#>  7 10.1371/journal.pone.0149885              167
-#>  8 10.1371/journal.pone.0150989              241
-#>  9 10.1371/journal.pbio.1001535             2123
-#> 10 10.1371/journal.pbio.1002373              402
+#>    id                           alm_twitterCount
+#>    <chr>                                   <int>
+#>  1 10.1371/journal.pone.0150989              241
+#>  2 10.1371/journal.pbio.1002373              402
+#>  3 10.1371/journal.pone.0183551              405
+#>  4 10.1371/journal.pone.0175368             1114
+#>  5 10.1371/journal.pone.0149777              217
+#>  6 10.1371/journal.pone.0064841              168
+#>  7 10.1371/journal.pone.0143611              104
+#>  8 10.1371/journal.pone.0138717              180
+#>  9 10.1371/journal.pone.0166570              677
+#> 10 10.1371/journal.pone.0061981             2392
 ```
 
 Show all articles that have these two words less then about 15 words apart
@@ -173,15 +173,15 @@ searchplos(q='everything:"sports alcohol"~15', fl='title', fq='doc_type:full', l
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1      111     0
-#>
+#> 1      125     0
+#> 
 #> $data
 #> # A tibble: 3 x 1
-#>                                                                         title
-#>                                                                         <chr>
-#> 1 Alcohol Advertising in Sport and Non-Sport TV in Australia, during Children
-#> 2 Symptoms of Insomnia and Sleep Duration and Their Association with Incident
-#> 3 Correction: Alcohol Advertising in Sport and Non-Sport TV in Australia, dur
+#>   title                                                                   
+#>   <chr>                                                                   
+#> 1 Alcohol Advertising in Sport and Non-Sport TV in Australia, during Chil…
+#> 2 Alcohol intoxication at Swedish football matches: A study using biologi…
+#> 3 Symptoms of Insomnia and Sleep Duration and Their Association with Inci…
 ```
 
 Narrow results to 7 words apart, changing the ~15 to ~7
@@ -193,15 +193,15 @@ searchplos(q='everything:"sports alcohol"~7', fl='title', fq='doc_type:full', li
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1       60     0
-#>
+#> 1       70     0
+#> 
 #> $data
 #> # A tibble: 3 x 1
-#>                                                                         title
-#>                                                                         <chr>
-#> 1 Alcohol Advertising in Sport and Non-Sport TV in Australia, during Children
-#> 2 Symptoms of Insomnia and Sleep Duration and Their Association with Incident
-#> 3 Correction: Alcohol Advertising in Sport and Non-Sport TV in Australia, dur
+#>   title                                                                   
+#>   <chr>                                                                   
+#> 1 Alcohol Advertising in Sport and Non-Sport TV in Australia, during Chil…
+#> 2 Alcohol intoxication at Swedish football matches: A study using biologi…
+#> 3 Symptoms of Insomnia and Sleep Duration and Their Association with Inci…
 ```
 
 Remove DOIs for annotations (i.e., corrections) and Viewpoints articles
@@ -214,17 +214,17 @@ searchplos(q='*:*', fl=c('id','article_type'),
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1  1851430     0
-#>
+#> 1  1951780     0
+#> 
 #> $data
 #> # A tibble: 5 x 2
-#>                                        id     article_type
-#>                                     <chr>            <chr>
-#> 1            10.1371/journal.pone.0074173 Research Article
-#> 2      10.1371/journal.pone.0074173/title Research Article
-#> 3   10.1371/journal.pone.0074173/abstract Research Article
-#> 4 10.1371/journal.pone.0074173/references Research Article
-#> 5       10.1371/journal.pone.0074173/body Research Article
+#>   id                                                  article_type    
+#>   <chr>                                               <chr>           
+#> 1 10.1371/journal.pone.0058099/materials_and_methods  Research Article
+#> 2 10.1371/journal.pone.0030394/introduction           Research Article
+#> 3 10.1371/journal.pone.0030394/results_and_discussion Research Article
+#> 4 10.1371/journal.pone.0002157/materials_and_methods  Research Article
+#> 5 10.1371/journal.pone.0030394/supporting_information Research Article
 ```
 
 ### Faceted search
@@ -236,35 +236,35 @@ Facet on multiple fields
 facetplos(q='alcohol', facet.field=c('journal','subject'), facet.limit=5)
 #> $facet_queries
 #> NULL
-#>
+#> 
 #> $facet_fields
 #> $facet_fields$journal
 #> # A tibble: 5 x 2
-#>                               term value
-#>                              <chr> <chr>
-#> 1                         plos one 23167
-#> 2                    plos genetics   535
-#> 3                    plos medicine   452
-#> 4 plos neglected tropical diseases   415
-#> 5                   plos pathogens   311
-#>
+#>   term                             value
+#>   <chr>                            <chr>
+#> 1 plos one                         24612
+#> 2 plos genetics                    563  
+#> 3 plos medicine                    484  
+#> 4 plos neglected tropical diseases 446  
+#> 5 plos pathogens                   334  
+#> 
 #> $facet_fields$subject
 #> # A tibble: 5 x 2
-#>                            term value
-#>                           <chr> <chr>
-#> 1     biology and life sciences 24912
-#> 2  medicine and health sciences 22173
-#> 3 research and analysis methods 14372
-#> 4                  biochemistry 12309
-#> 5             physical sciences  9342
-#>
-#>
+#>   term                          value
+#>   <chr>                         <chr>
+#> 1 biology and life sciences     26399
+#> 2 medicine and health sciences  23550
+#> 3 research and analysis methods 15125
+#> 4 biochemistry                  12900
+#> 5 physical sciences             9913 
+#> 
+#> 
 #> $facet_pivot
 #> NULL
-#>
+#> 
 #> $facet_dates
 #> NULL
-#>
+#> 
 #> $facet_ranges
 #> NULL
 ```
@@ -277,31 +277,31 @@ facetplos(q='*:*', url=url, facet.range='counter_total_all',
  facet.range.start=5, facet.range.end=100, facet.range.gap=10)
 #> $facet_queries
 #> NULL
-#>
+#> 
 #> $facet_fields
 #> NULL
-#>
+#> 
 #> $facet_pivot
 #> NULL
-#>
+#> 
 #> $facet_dates
 #> NULL
-#>
+#> 
 #> $facet_ranges
 #> $facet_ranges$counter_total_all
 #> # A tibble: 10 x 2
-#>     term value
+#>    term  value
 #>    <chr> <chr>
-#>  1     5    25
-#>  2    15   239
-#>  3    25   509
-#>  4    35   927
-#>  5    45  1409
-#>  6    55  1709
-#>  7    65  1830
-#>  8    75  1726
-#>  9    85  1595
-#> 10    95  1464
+#>  1 5     335  
+#>  2 15    289  
+#>  3 25    519  
+#>  4 35    975  
+#>  5 45    1476 
+#>  6 55    1786 
+#>  7 65    1910 
+#>  8 75    1812 
+#>  9 85    1684 
+#> 10 95    1562
 ```
 
 ### Highlight searches
@@ -314,13 +314,13 @@ Search for and highlight the term _alcohol_ in the abstract field only
 #> $`10.1371/journal.pone.0185457`
 #> $`10.1371/journal.pone.0185457`$abstract
 #> [1] "Objectives: <em>Alcohol</em>-related morbidity and mortality are significant public health issues"
-#>
-#>
+#> 
+#> 
 #> $`10.1371/journal.pone.0071284`
 #> $`10.1371/journal.pone.0071284`$abstract
 #> [1] "\n<em>Alcohol</em> dependence is a heterogeneous disorder where several signalling systems play important"
-#>
-#>
+#> 
+#> 
 #> $`10.1371/journal.pone.0027752`
 #> $`10.1371/journal.pone.0027752`$abstract
 #> [1] "Background: The negative influences of <em>alcohol</em> on TB management with regard to delays in seeking"
@@ -350,10 +350,10 @@ full_text_urls(doi='10.1371/journal.pone.0086169')
 
 ```r
 (out <- plos_fulltext(doi='10.1371/journal.pone.0086169'))
-#> 1 full-text articles retrieved
-#> Min. Length: 110717 - Max. Length: 110717
-#> DOIs: 10.1371/journal.pone.0086169 ...
-#>
+#> 1 full-text articles retrieved 
+#> Min. Length: 110717 - Max. Length: 110717 
+#> DOIs: 10.1371/journal.pone.0086169 ... 
+#> 
 #> NOTE: extract xml strings like output['<doi>']
 ```
 
@@ -385,22 +385,22 @@ plossubject(q='marine ecology',  fl = c('id','journal'), limit = 10)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1     3560     0
-#>
+#> 1     3811     0
+#> 
 #> $data
 #> # A tibble: 10 x 2
-#>                                         id  journal
-#>                                      <chr>    <chr>
-#>  1            10.1371/journal.pone.0167252 PLOS ONE
-#>  2      10.1371/journal.pone.0167252/title PLOS ONE
-#>  3   10.1371/journal.pone.0167252/abstract PLOS ONE
-#>  4 10.1371/journal.pone.0167252/references PLOS ONE
-#>  5       10.1371/journal.pone.0167252/body PLOS ONE
-#>  6            10.1371/journal.pone.0021810 PLoS ONE
-#>  7      10.1371/journal.pone.0021810/title PLoS ONE
-#>  8   10.1371/journal.pone.0021810/abstract PLoS ONE
-#>  9 10.1371/journal.pone.0021810/references PLoS ONE
-#> 10       10.1371/journal.pone.0021810/body PLoS ONE
+#>    id                                        journal 
+#>    <chr>                                     <chr>   
+#>  1 10.1371/journal.pone.0167252              PLOS ONE
+#>  2 10.1371/journal.pone.0167252/title        PLOS ONE
+#>  3 10.1371/journal.pone.0167252/abstract     PLOS ONE
+#>  4 10.1371/journal.pone.0167252/references   PLOS ONE
+#>  5 10.1371/journal.pone.0167252/body         PLOS ONE
+#>  6 10.1371/journal.pone.0149852/title        PLOS ONE
+#>  7 10.1371/journal.pone.0149852/abstract     PLOS ONE
+#>  8 10.1371/journal.pone.0149852/references   PLOS ONE
+#>  9 10.1371/journal.pone.0149852/body         PLOS ONE
+#> 10 10.1371/journal.pone.0149852/introduction PLOS ONE
 ```
 
 However, you can always just do this in `searchplos()` like `searchplos(q = "subject:science")`. See also the `fq` parameter. The above convenience functions are simply wrappers around `searchplos`, so take all the same parameters.
@@ -413,11 +413,11 @@ Search with term _marine ecology_, by field _subject_, and limit to 5 results
 ```r
 plosviews(search='marine ecology', byfield='subject', limit=5)
 #>                             id counter_total_all
+#> 5 10.1371/journal.pone.0168735              1148
 #> 1 10.1371/journal.pone.0167252              1379
 #> 2 10.1371/journal.pone.0021810              2883
-#> 5 10.1371/journal.pone.0053598              4351
-#> 4 10.1371/journal.pone.0149852              8319
-#> 3 10.1371/journal.pone.0092590              8873
+#> 3 10.1371/journal.pone.0092590              9580
+#> 4 10.1371/journal.pone.0149852             10494
 ```
 
 ### Visualize
@@ -429,12 +429,12 @@ Visualize word use across articles
 plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')
 #> $table
 #>   No_Articles       Term
-#> 1       11884     monkey
-#> 2         502 Helianthus
-#> 3        1394  sunflower
-#> 4      135029    protein
-#> 5        1613      whale
-#>
+#> 1       12367     monkey
+#> 2         529 Helianthus
+#> 3        1484  sunflower
+#> 4      140626    protein
+#> 5        1716      whale
+#> 
 #> $plot
 ```
 
