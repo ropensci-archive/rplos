@@ -14,5 +14,4 @@ README.Rmd
 ^revdep$
 .github
 ^CODE_OF_CONDUCT\.md$
-tests/test-all.R
 ^codemeta\.json$
