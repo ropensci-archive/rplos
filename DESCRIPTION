@@ -37,3 +37,6 @@ Suggests:
     webmockr,
     vcr
 RoxygenNote: 6.0.1
+X-schema.org-applicationCategory: Literature
+X-schema.org-keywords: PLOS, library, science, JSON, XML, API, web, api-client, article, full text
+X-schema.org-isPartOf: https://ropensci.org
