@@ -46,5 +46,5 @@ test_that("highplos fails well", {
                  "400 - For input string")
     expect_error(highplos("alcohol", hl.snippets = "adsfad"),
                  "400 - For input string")
-  })
+  }, preserve_exact_body_bytes = TRUE)
 })
