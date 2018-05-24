@@ -33,7 +33,7 @@ test_that("highplos", {
     expect_is(dd[[1]][[1]], "character")
     ## character strings are longer than result from cc call
     expect_gt(nchar(dd[[1]][[1]][[1]]), nchar(cc[[1]][[1]]))
-  })
+  }, preserve_exact_body_bytes = TRUE)
 })
 
 test_that("highplos fails well", {

@@ -55,7 +55,7 @@ test_that("plos_fulltext works", {
     expect_equal(length(aa), 1)
     expect_equal(length(bb), 2)
     expect_equal(length(cc), 3)
-  })
+  }, preserve_exact_body_bytes = TRUE)
 })
 
 test_that("plos_fulltext works with all journals", {
