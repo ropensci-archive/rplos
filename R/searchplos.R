@@ -148,7 +148,6 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
 	  }
 	  getrows <- c(rep(byby, length(getvecs) - 1), lastnum)
 	  out <- list()
-	  message("Looping - printing progress ...")
 	  for (i in seq_along(getvecs)) {
 	    args$start <- getvecs[i]
 	    args$rows <- getrows[i]
