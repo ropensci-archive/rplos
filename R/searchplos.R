@@ -137,7 +137,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
     return(list(meta = meta, data = jsonout))
 	} else {
 	  byby <- 500
-	  getvecs <- seq(from = 1, to = getnumrecords, by = byby)
+	  getvecs <- seq(from = 0, to = getnumrecords - 1, by = byby)
 	  lastnum <- as.numeric(strextract(getnumrecords, "[0-9]{3}$"))
 	  if (lastnum == 0)
 	    lastnum <- byby
@@ -154,7 +154,9 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
 	    args$rows <- getrows[i]
 	    if (length(args) == 0) args <- NULL
 	    jsonout <- suppressMessages(conn_plos$search(
-	      params = ploscompact(list(q = args$q, fl = args$fl, fq = args$fq,
+	      params = ploscompact(list(q = args$q, fl = args$fl, 
+        fq = args[names(args) == "fq"],
+        # fq = args$fq,
 	      sort = args$sort,
 	      rows = args$rows, start = args$start,
 	      wt = "json")), minOptimizedRows = FALSE, callopts = callopts, ...
