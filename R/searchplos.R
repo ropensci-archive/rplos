@@ -156,7 +156,6 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
 	    jsonout <- suppressMessages(conn_plos$search(
 	      params = ploscompact(list(q = args$q, fl = args$fl, 
         fq = args[names(args) == "fq"],
-        # fq = args$fq,
 	      sort = args$sort,
 	      rows = args$rows, start = args$start,
 	      wt = "json")), minOptimizedRows = FALSE, callopts = callopts, ...
