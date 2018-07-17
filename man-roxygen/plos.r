@@ -17,7 +17,7 @@
 #' @param start Record to start at (used in combination with limit when
 #'    you need to cycle through more results than the max allowed=1000)
 #' @param limit Number of results to return (integer). Setting \code{limit=0} returns only
-#'    metadta.
+#'    metadata.
 #' @param sleep Number of seconds to wait between requests. No need to use this for
 #'    a single call to searchplos. However, if you are using searchplos in a loop or
 #'    lapply type call, do sleep parameter is used to prevent your IP address from being
@@ -31,6 +31,9 @@
 #' @param errors (character) One of simple or complete. Simple gives http code and
 #' error message on an error, while complete gives both http code and error message,
 #' and stack trace, if available.
+#' @param progress a function with logic for printing a progress
+#' bar for an HTTP request, ultimately passed down to \pkg{curl}.
+#' only supports httr::progress() for now
 #'
 #' @details Details:
 #' @section Faceting:

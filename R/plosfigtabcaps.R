@@ -11,9 +11,9 @@
 
 plosfigtabcaps <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL,
   start = 0, limit = 10, sleep = 6, errors = "simple", proxy = NULL,
-  callopts=NULL, ...) {
+  callopts=NULL, progress = NULL, ...) {
 
   searchplos(q=paste('figure_table_caption:', '"', q, '"', sep=""), fl=fl, fq=fq,
              sort=sort, start=start, limit=limit, sleep=sleep, errors = errors,
-             proxy = proxy, callopts = callopts, ...)
+             proxy = proxy, callopts = callopts, progress = progress, ...)
 }

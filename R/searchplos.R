@@ -77,7 +77,8 @@
 #' }
 
 searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
-  limit = 10, sleep = 6, errors = "simple", proxy = NULL, callopts = list(), ...) {
+  limit = 10, sleep = 6, errors = "simple", proxy = NULL, callopts = list(), 
+  progress = NULL, ...) {
 
   # Make sure limit is a numeric or integer
   limit <- tryCatch(as.numeric(as.character(limit)), warning=function(e) e)
@@ -128,7 +129,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
 	  if (length(args) == 0) args <- NULL
 	  jsonout <- suppressMessages(
 	    conn_plos$search(params = args, callopts = callopts,
-	    	minOptimizedRows = FALSE, ...)
+	    	minOptimizedRows = FALSE, progress = progress, ...)
 	  )
 	  meta <- dplyr::data_frame(
 	    numFound = attr(jsonout, "numFound"),
@@ -148,7 +149,6 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
 	  }
 	  getrows <- c(rep(byby, length(getvecs) - 1), lastnum)
 	  out <- list()
-	  message("Looping - printing progress ...")
 	  for (i in seq_along(getvecs)) {
 	    args$start <- getvecs[i]
 	    args$rows <- getrows[i]
@@ -157,7 +157,8 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
 	      params = ploscompact(list(q = args$q, fl = args$fl, fq = args$fq,
 	      sort = args$sort,
 	      rows = args$rows, start = args$start,
-	      wt = "json")), minOptimizedRows = FALSE, callopts = callopts, ...
+	      wt = "json")), minOptimizedRows = FALSE, callopts = callopts, 
+        progress = progress, ...
 	    ))
 	    out[[i]] <- jsonout
 	  }

@@ -203,6 +203,16 @@ Visualize word use across articles
 plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')
 ```
 
+### progress bars
+
+```{r eval = FALSE}
+res <- searchplos(q='*:*', limit = 2000, progress = httr::progress())
+#>  |=====================================| 100%
+#>  |=====================================| 100%
+#>  |=====================================| 100%
+#>  |=====================================| 100%
+```
+
 ## Meta
 
 * Please [report any issues or bugs](https://github.com/ropensci/rplos/issues).

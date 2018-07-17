@@ -70,7 +70,7 @@ searchplos('ecology', 'id,publication_date', limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1    43116     0
+#> 1    43850     0
 #> 
 #> $data
 #> # A tibble: 5 x 2
@@ -93,7 +93,7 @@ searchplos(q="*:*", fl='id', fq=list('journal_key:PLoSONE',
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1   199994     0
+#> 1   202823     0
 #> 
 #> $data
 #> # A tibble: 5 x 1
@@ -173,15 +173,15 @@ searchplos(q='everything:"sports alcohol"~15', fl='title', fq='doc_type:full', l
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1      125     0
+#> 1      126     0
 #> 
 #> $data
 #> # A tibble: 3 x 1
-#>   title                                                                   
-#>   <chr>                                                                   
-#> 1 Alcohol Advertising in Sport and Non-Sport TV in Australia, during Chil…
-#> 2 Alcohol intoxication at Swedish football matches: A study using biologi…
-#> 3 Symptoms of Insomnia and Sleep Duration and Their Association with Inci…
+#>   title                                                                    
+#>   <chr>                                                                    
+#> 1 Alcohol Advertising in Sport and Non-Sport TV in Australia, during Child…
+#> 2 Alcohol intoxication at Swedish football matches: A study using biologic…
+#> 3 Symptoms of Insomnia and Sleep Duration and Their Association with Incid…
 ```
 
 Narrow results to 7 words apart, changing the ~15 to ~7
@@ -193,15 +193,15 @@ searchplos(q='everything:"sports alcohol"~7', fl='title', fq='doc_type:full', li
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1       70     0
+#> 1       71     0
 #> 
 #> $data
 #> # A tibble: 3 x 1
-#>   title                                                                   
-#>   <chr>                                                                   
-#> 1 Alcohol Advertising in Sport and Non-Sport TV in Australia, during Chil…
-#> 2 Alcohol intoxication at Swedish football matches: A study using biologi…
-#> 3 Symptoms of Insomnia and Sleep Duration and Their Association with Inci…
+#>   title                                                                    
+#>   <chr>                                                                    
+#> 1 Alcohol Advertising in Sport and Non-Sport TV in Australia, during Child…
+#> 2 Alcohol intoxication at Swedish football matches: A study using biologic…
+#> 3 Symptoms of Insomnia and Sleep Duration and Their Association with Incid…
 ```
 
 Remove DOIs for annotations (i.e., corrections) and Viewpoints articles
@@ -214,7 +214,7 @@ searchplos(q='*:*', fl=c('id','article_type'),
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1  1951780     0
+#> 1  1980794     0
 #> 
 #> $data
 #> # A tibble: 5 x 2
@@ -242,21 +242,21 @@ facetplos(q='alcohol', facet.field=c('journal','subject'), facet.limit=5)
 #> # A tibble: 5 x 2
 #>   term                             value
 #>   <chr>                            <chr>
-#> 1 plos one                         24612
-#> 2 plos genetics                    563  
-#> 3 plos medicine                    484  
-#> 4 plos neglected tropical diseases 446  
-#> 5 plos pathogens                   334  
+#> 1 plos one                         25018
+#> 2 plos genetics                    568  
+#> 3 plos medicine                    494  
+#> 4 plos neglected tropical diseases 452  
+#> 5 plos pathogens                   336  
 #> 
 #> $facet_fields$subject
 #> # A tibble: 5 x 2
 #>   term                          value
 #>   <chr>                         <chr>
-#> 1 biology and life sciences     26399
-#> 2 medicine and health sciences  23550
-#> 3 research and analysis methods 15125
-#> 4 biochemistry                  12900
-#> 5 physical sciences             9913 
+#> 1 biology and life sciences     26812
+#> 2 medicine and health sciences  23928
+#> 3 research and analysis methods 15343
+#> 4 biochemistry                  13066
+#> 5 physical sciences             10082
 #> 
 #> 
 #> $facet_pivot
@@ -385,7 +385,7 @@ plossubject(q='marine ecology',  fl = c('id','journal'), limit = 10)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1     3811     0
+#> 1     3872     0
 #> 
 #> $data
 #> # A tibble: 10 x 2
@@ -416,8 +416,8 @@ plosviews(search='marine ecology', byfield='subject', limit=5)
 #> 5 10.1371/journal.pone.0168735              1148
 #> 1 10.1371/journal.pone.0167252              1379
 #> 2 10.1371/journal.pone.0021810              2883
-#> 3 10.1371/journal.pone.0092590              9580
-#> 4 10.1371/journal.pone.0149852             10494
+#> 4 10.1371/journal.pone.0092590              9580
+#> 3 10.1371/journal.pone.0149852             10494
 ```
 
 ### Visualize
@@ -429,16 +429,27 @@ Visualize word use across articles
 plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')
 #> $table
 #>   No_Articles       Term
-#> 1       12367     monkey
-#> 2         529 Helianthus
-#> 3        1484  sunflower
-#> 4      140626    protein
-#> 5        1716      whale
+#> 1       12509     monkey
+#> 2         541 Helianthus
+#> 3        1513  sunflower
+#> 4      142103    protein
+#> 5        1743      whale
 #> 
 #> $plot
 ```
 
 ![wordusage](tools/unnamed-chunk-21-1.png)
+
+### progress bars
+
+
+```r
+res <- searchplos(q='*:*', limit = 2000, progress = httr::progress())
+#>  |=====================================| 100%
+#>  |=====================================| 100%
+#>  |=====================================| 100%
+#>  |=====================================| 100%
+```
 
 ## Meta
 

@@ -10,9 +10,11 @@
 #' plosabstract(q = 'drosophila', fl=c('id','author','title'), limit = 5)
 #' }
 plosabstract <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
-  limit = 10, sleep = 6, errors = "simple", proxy = NULL, callopts = NULL, ...) {
+  limit = 10, sleep = 6, errors = "simple", proxy = NULL, callopts = NULL, 
+  progress = NULL, ...) {
 
   searchplos(q=paste('abstract:', '"', q, '"', sep=""), fl=fl, fq=fq,
              sort=sort, start=start, limit=limit, sleep=sleep,
-             errors = errors, proxy = proxy, callopts = callopts, ...)
+             errors = errors, proxy = proxy, callopts = callopts, 
+             progress = progress, ...)
 }
