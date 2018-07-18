@@ -5,6 +5,13 @@ rplos 0.8.2
 
 * Integration with `vcr` and `webmockr` packages for unit test stubbing
 
+### BUG FIXES
+
+* for `highbrow()` open pages with `https://doi.org` instead of `http://dx.doi.org` (#117)
+* remove message `"Looping - printing progress ..."` from `searchplos()` (#120)
+* fix internal pagination for `searchplos()`: were accidentally dropping `fq` statements if more than 1, woopsy  (#121)
+
+
 rplos 0.8.0
 -----------
 
