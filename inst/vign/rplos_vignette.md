@@ -45,16 +45,20 @@ searchplos(q = "Helianthus", fl = "id", limit = 5)
 
 ```
 #> $meta
-#>   numFound start maxScore
-#> 1      466     0       NA
+#> # A tibble: 1 x 2
+#>   numFound start
+#>      <int> <int>
+#> 1      541     0
 #> 
 #> $data
-#>                             id
-#> 1 10.1371/journal.pone.0148280
-#> 2 10.1371/journal.pone.0111982
-#> 3 10.1371/journal.pone.0139188
-#> 4 10.1371/journal.pone.0057533
-#> 5 10.1371/journal.pone.0045899
+#> # A tibble: 5 x 1
+#>   id                          
+#>   <chr>                       
+#> 1 10.1371/journal.pone.0198869
+#> 2 10.1371/journal.pone.0148280
+#> 3 10.1371/journal.pone.0111982
+#> 4 10.1371/journal.pone.0139188
+#> 5 10.1371/journal.pone.0057533
 ```
 
 Get only full article DOIs
@@ -66,16 +70,20 @@ searchplos(q = "*:*", fl = 'id', fq = 'doc_type:full', start = 0, limit = 5)
 
 ```
 #> $meta
-#>   numFound start maxScore
-#> 1   197382     0       NA
+#> # A tibble: 1 x 2
+#>   numFound start
+#>      <int> <int>
+#> 1   238410     0
 #> 
 #> $data
-#>                             id
-#> 1 10.1371/journal.pcbi.1000942
-#> 2 10.1371/journal.pone.0130089
-#> 3 10.1371/journal.pone.0165670
-#> 4 10.1371/journal.pgen.1002909
-#> 5 10.1371/journal.pcbi.1004317
+#> # A tibble: 5 x 1
+#>   id                          
+#>   <chr>                       
+#> 1 10.1371/journal.pone.0044136
+#> 2 10.1371/journal.pone.0155491
+#> 3 10.1371/journal.pone.0168631
+#> 4 10.1371/journal.pone.0058100
+#> 5 10.1371/journal.pone.0168627
 ```
 
 Get DOIs for only PLoS One articles
@@ -88,16 +96,20 @@ searchplos(q = "*:*", fl = 'id', fq = 'journal_key:PLoSONE',
 
 ```
 #> $meta
-#>   numFound start maxScore
-#> 1  1465904     0       NA
+#> # A tibble: 1 x 2
+#>   numFound start
+#>      <int> <int>
+#> 1  1746885     0
 #> 
 #> $data
-#>                                                    id
-#> 1 10.1371/journal.pone.0130089/results_and_discussion
-#> 2  10.1371/journal.pone.0130089/materials_and_methods
-#> 3 10.1371/journal.pone.0130089/supporting_information
-#> 4                        10.1371/journal.pone.0130089
-#> 5                  10.1371/journal.pone.0130089/title
+#> # A tibble: 5 x 1
+#>   id                                                 
+#>   <chr>                                              
+#> 1 10.1371/journal.pone.0058099/materials_and_methods 
+#> 2 10.1371/journal.pone.0030394/introduction          
+#> 3 10.1371/journal.pone.0030394/results_and_discussion
+#> 4 10.1371/journal.pone.0002157/materials_and_methods 
+#> 5 10.1371/journal.pone.0030394/supporting_information
 ```
 
 Get DOIs for full article in PLoS One
@@ -111,16 +123,20 @@ searchplos(q = "*:*", fl = 'id',
 
 ```
 #> $meta
-#>   numFound start maxScore
-#> 1   167954     0       NA
+#> # A tibble: 1 x 2
+#>   numFound start
+#>      <int> <int>
+#> 1   202918     0
 #> 
 #> $data
-#>                             id
-#> 1 10.1371/journal.pone.0130089
-#> 2 10.1371/journal.pone.0165670
-#> 3 10.1371/journal.pone.0162873
-#> 4 10.1371/journal.pone.0163015
-#> 5 10.1371/journal.pone.0167202
+#> # A tibble: 5 x 1
+#>   id                          
+#>   <chr>                       
+#> 1 10.1371/journal.pone.0044136
+#> 2 10.1371/journal.pone.0155491
+#> 3 10.1371/journal.pone.0168631
+#> 4 10.1371/journal.pone.0058100
+#> 5 10.1371/journal.pone.0168627
 ```
 
 Search for many terms
@@ -134,35 +150,47 @@ lapply(q, function(x) searchplos(x, limit = 2))
 ```
 #> [[1]]
 #> [[1]]$meta
-#>   numFound start maxScore
-#> 1    36908     0       NA
+#> # A tibble: 1 x 2
+#>   numFound start
+#>      <int> <int>
+#> 1    43873     0
 #> 
 #> [[1]]$data
-#>                             id
-#> 1 10.1371/journal.pone.0059813
-#> 2 10.1371/journal.pone.0001248
+#> # A tibble: 2 x 1
+#>   id                          
+#>   <chr>                       
+#> 1 10.1371/journal.pone.0001248
+#> 2 10.1371/journal.pone.0059813
 #> 
 #> 
 #> [[2]]
 #> [[2]]$meta
-#>   numFound start maxScore
-#> 1    59186     0       NA
+#> # A tibble: 1 x 2
+#>   numFound start
+#>      <int> <int>
+#> 1    67955     0
 #> 
 #> [[2]]$data
-#>                             id
-#> 1 10.1371/journal.pbio.0050030
+#> # A tibble: 2 x 1
+#>   id                          
+#>   <chr>                       
+#> 1 10.1371/journal.pbio.2002255
 #> 2 10.1371/journal.pbio.0030245
 #> 
 #> 
 #> [[3]]
 #> [[3]]$meta
-#>   numFound start maxScore
-#> 1   176450     0       NA
+#> # A tibble: 1 x 2
+#>   numFound start
+#>      <int> <int>
+#> 1   208630     0
 #> 
 #> [[3]]$data
-#>                             id
-#> 1 10.1371/journal.pbio.0020122
-#> 2 10.1371/journal.pbio.1001166
+#> # A tibble: 2 x 1
+#>   id                          
+#>   <chr>                       
+#> 1 10.1371/journal.pone.0178778
+#> 2 10.1371/journal.pone.0196341
 ```
 
 ### Search on specific sections
@@ -186,16 +214,20 @@ plosauthor(q = "Eisen", fl = "author", limit = 5)
 
 ```
 #> $meta
-#>   numFound start maxScore
-#> 1      876     0       NA
+#> # A tibble: 1 x 2
+#>   numFound start
+#>      <int> <int>
+#> 1      984     0
 #> 
 #> $data
-#>             author
-#> 1 Jonathan A Eisen
-#> 2 Jonathan A Eisen
-#> 3 Jonathan A Eisen
-#> 4 Jonathan A Eisen
-#> 5 Jonathan A Eisen
+#> # A tibble: 5 x 1
+#>   author                                                                   
+#>   <chr>                                                                    
+#> 1 Myungsun Kang,Timothy J Eisen,Ellen A Eisen,Arup K Chakraborty,Herman N …
+#> 2 Myungsun Kang,Timothy J Eisen,Ellen A Eisen,Arup K Chakraborty,Herman N …
+#> 3 Myungsun Kang,Timothy J Eisen,Ellen A Eisen,Arup K Chakraborty,Herman N …
+#> 4 Myungsun Kang,Timothy J Eisen,Ellen A Eisen,Arup K Chakraborty,Herman N …
+#> 5 Myungsun Kang,Timothy J Eisen,Ellen A Eisen,Arup K Chakraborty,Herman N …
 ```
 
 `plosabstract` searches across abstracts, and in this case returns the id and 
@@ -208,22 +240,20 @@ plosabstract(q = 'drosophila', fl = 'id,title', limit = 5)
 
 ```
 #> $meta
-#>   numFound start maxScore
-#> 1     3116     0       NA
+#> # A tibble: 1 x 2
+#>   numFound start
+#>      <int> <int>
+#> 1     3427     0
 #> 
 #> $data
-#>                             id
-#> 1 10.1371/journal.pbio.0040198
-#> 2 10.1371/journal.pbio.0030246
-#> 3 10.1371/journal.pone.0012421
-#> 4 10.1371/journal.pone.0002817
-#> 5 10.1371/journal.pbio.1000318
-#>                                                                                       title
-#> 1                                                                               All for All
-#> 2                                               School Students as Drosophila Experimenters
-#> 3                                      Host Range and Specificity of the Drosophila C Virus
-#> 4           High-Resolution, In Vivo Magnetic Resonance Imaging of Drosophila at 18.8 Tesla
-#> 5 Genomic Responses to Abnormal Gene Dosage: The X Chromosome Improved on a Common Strategy
+#> # A tibble: 5 x 2
+#>   id                    title                                             
+#>   <chr>                 <chr>                                             
+#> 1 10.1371/journal.pone… Host Range and Specificity of the Drosophila C Vi…
+#> 2 10.1371/journal.pone… A Drosophila model for developmental nicotine exp…
+#> 3 10.1371/journal.pone… Drosophila Growth Cones Advance by Forward Transl…
+#> 4 10.1371/journal.pone… "Larval Defense against Attack from Parasitoid Wa…
+#> 5 10.1371/journal.pone… Host Species and Environmental Effects on Bacteri…
 ```
 
 `plostitle` searches across titles, and in this case returns the title and 
@@ -236,16 +266,20 @@ plostitle(q = 'drosophila', fl = 'title,journal', limit = 5)
 
 ```
 #> $meta
-#>   numFound start maxScore
-#> 1     1930     0       NA
+#> # A tibble: 1 x 2
+#>   numFound start
+#>      <int> <int>
+#> 1     2199     0
 #> 
 #> $data
-#>        journal                                          title
-#> 1 PLoS Biology    Expression in Aneuploid Drosophila S2 Cells
-#> 2     PLOS ONE Contribution of Drosophila TRPA1 to Metabolism
-#> 3 PLoS Biology    Combinatorial Coding for Drosophila Neurons
-#> 4 PLoS Biology    School Students as Drosophila Experimenters
-#> 5     PLoS ONE    Quantification of Food Intake in Drosophila
+#> # A tibble: 5 x 2
+#>   journal  title                                                          
+#>   <chr>    <chr>                                                          
+#> 1 PLOS ONE Peptidergic control in a fruit crop pest: The spotted-wing dro…
+#> 2 PLOS ONE Nematocytes: Discovery and characterization of a novel anculea…
+#> 3 PLOS ONE Tandem Duplications and the Limits of Natural Selection in Dro…
+#> 4 PLoS ONE In Vivo RNAi Rescue in Drosophila melanogaster with Genomic Tr…
+#> 5 PLoS ONE A Tripartite Synapse Model in Drosophila
 ```
 
 ### Search terms & visualize results as a histogram OR as a plot through time
@@ -262,11 +296,11 @@ out$table
 
 ```
 #>   No_Articles       Term
-#> 1       11163     monkey
-#> 2         466 Helianthus
-#> 3        1285  sunflower
-#> 4      125467    protein
-#> 5        1465      whale
+#> 1       12514     monkey
+#> 2         541 Helianthus
+#> 3        1513  sunflower
+#> 4      142150    protein
+#> 5        1745      whale
 ```
 
 
@@ -286,7 +320,7 @@ plosword('Helianthus', callopts = list(verbose = TRUE))
 
 ```
 #> Number of articles with search term 
-#>                                 466
+#>                                 541
 ```
 
 ### Visualize terms

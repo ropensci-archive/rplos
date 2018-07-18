@@ -43,17 +43,22 @@ facetplos(q='*:*', facet.field='journal')
 #> 
 #> $facet_fields
 #> $facet_fields$journal
-#>                                 X1      X2
-#> 1                         plos one 1407216
-#> 2                    plos genetics   54150
-#> 3                   plos pathogens   47708
-#> 4       plos computational biology   41170
-#> 5 plos neglected tropical diseases   41072
-#> 6                     plos biology   30012
-#> 7                    plos medicine   21466
-#> 8             plos clinical trials     496
-#> 9                     plos medicin       9
+#> # A tibble: 9 x 2
+#>   term                             value  
+#>   <chr>                            <chr>  
+#> 1 plos one                         1687125
+#> 2 plos genetics                    63261  
+#> 3 plos pathogens                   56916  
+#> 4 plos neglected tropical diseases 52484  
+#> 5 plos computational biology       49163  
+#> 6 plos biology                     34626  
+#> 7 plos medicine                    25102  
+#> 8 plos clinical trials             521    
+#> 9 plos medicin                     9      
 #> 
+#> 
+#> $facet_pivot
+#> NULL
 #> 
 #> $facet_dates
 #> NULL
@@ -71,22 +76,29 @@ facetplos(q='*:*', facet.field='journal', facet.query='cell,bird')
 
 ```
 #> $facet_queries
-#>        term value
-#> 1 cell,bird    24
+#> # A tibble: 1 x 2
+#>   term      value
+#>   <chr>     <int>
+#> 1 cell,bird     6
 #> 
 #> $facet_fields
 #> $facet_fields$journal
-#>                                 X1      X2
-#> 1                         plos one 1407216
-#> 2                    plos genetics   54150
-#> 3                   plos pathogens   47708
-#> 4       plos computational biology   41170
-#> 5 plos neglected tropical diseases   41072
-#> 6                     plos biology   30012
-#> 7                    plos medicine   21466
-#> 8             plos clinical trials     496
-#> 9                     plos medicin       9
+#> # A tibble: 9 x 2
+#>   term                             value  
+#>   <chr>                            <chr>  
+#> 1 plos one                         1687125
+#> 2 plos genetics                    63261  
+#> 3 plos pathogens                   56916  
+#> 4 plos neglected tropical diseases 52484  
+#> 5 plos computational biology       49163  
+#> 6 plos biology                     34626  
+#> 7 plos medicine                    25102  
+#> 8 plos clinical trials             521    
+#> 9 plos medicin                     9      
 #> 
+#> 
+#> $facet_pivot
+#> NULL
 #> 
 #> $facet_dates
 #> NULL
@@ -105,24 +117,6 @@ facetplos(q='*:*', url=url, facet.date='publication_date',
 ```
 
 ```
-#> $facet_queries
-#> NULL
-#> 
-#> $facet_fields
-#> NULL
-#> 
-#> $facet_dates
-#> $facet_dates$publication_date
-#>                   date value
-#> 1 2017-02-23T00:00:00Z  2749
-#> 2 2017-02-24T00:00:00Z  1878
-#> 3 2017-02-25T00:00:00Z     0
-#> 4 2017-02-26T00:00:00Z   689
-#> 5 2017-02-27T00:00:00Z   689
-#> 6 2017-02-28T00:00:00Z     0
-#> 
-#> 
-#> $facet_ranges
 #> NULL
 ```
 
@@ -137,14 +131,14 @@ highplos(q='alcohol', hl.fl = 'abstract', rows=2)
 ```
 
 ```
-#> $`10.1371/journal.pmed.0040151`
-#> $`10.1371/journal.pmed.0040151`$abstract
-#> [1] "Background: <em>Alcohol</em> consumption causes an estimated 4% of the global disease burden, prompting"
+#> $`10.1371/journal.pone.0185457`
+#> $`10.1371/journal.pone.0185457`$abstract
+#> [1] "Objectives: <em>Alcohol</em>-related morbidity and mortality are significant public health issues"
 #> 
 #> 
-#> $`10.1371/journal.pone.0027752`
-#> $`10.1371/journal.pone.0027752`$abstract
-#> [1] "Background: The negative influences of <em>alcohol</em> on TB management with regard to delays in seeking"
+#> $`10.1371/journal.pone.0071284`
+#> $`10.1371/journal.pone.0071284`$abstract
+#> [1] "\n<em>Alcohol</em> dependence is a heterogeneous disorder where several signalling systems play important"
 ```
 
 Search for the term _alcohol_ in the abstracts of articles, and return 
@@ -156,14 +150,14 @@ highplos(q='alcohol', hl.fl='abstract', hl.fragsize=20, rows=2)
 ```
 
 ```
-#> $`10.1371/journal.pmed.0040151`
-#> $`10.1371/journal.pmed.0040151`$abstract
-#> [1] "Background: <em>Alcohol</em>"
+#> $`10.1371/journal.pone.0185457`
+#> $`10.1371/journal.pone.0185457`$abstract
+#> [1] "Objectives: <em>Alcohol</em>"
 #> 
 #> 
-#> $`10.1371/journal.pone.0027752`
-#> $`10.1371/journal.pone.0027752`$abstract
-#> [1] " of <em>alcohol</em> on TB management"
+#> $`10.1371/journal.pone.0071284`
+#> $`10.1371/journal.pone.0071284`$abstract
+#> [1] "\n<em>Alcohol</em> dependence"
 ```
 
 Search for the term _experiment_ across all sections of an article, return 
