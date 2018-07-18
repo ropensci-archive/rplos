@@ -33,7 +33,7 @@ counter_total_all field in descending fashion, do sort='counter_total_all desc'}
 you need to cycle through more results than the max allowed=1000)}
 
 \item{limit}{Number of results to return (integer). Setting \code{limit=0} returns only
-metadta.}
+metadata.}
 
 \item{sleep}{Number of seconds to wait between requests. No need to use this for
 a single call to searchplos. However, if you are using searchplos in a loop or
