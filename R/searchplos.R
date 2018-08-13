@@ -109,8 +109,8 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
     	names(args) <- rep("fq",length(args))
   	}
   }
-  args <- c(args, ploscompact(list(q = q, fl = fl, start = start,
-                       rows = limit, sort = sort, wt = 'json')))
+  args <- c(args, ploscompact(list(q = q, fl = fl, start = as.integer(start),
+                       rows = as.integer(limit), sort = sort, wt = 'json')))
 
 	getnum_tmp <- suppressMessages(
 	  conn_plos$search(params = list(q = q, fl = fl, rows = 0, wt = "json"))
@@ -149,15 +149,15 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
 	  getrows <- c(rep(byby, length(getvecs) - 1), lastnum)
 	  out <- list()
 	  for (i in seq_along(getvecs)) {
-	    args$start <- getvecs[i]
-	    args$rows <- getrows[i]
+	    args$start <- as.integer(getvecs[i])
+	    args$rows <- as.integer(getrows[i])
 	    if (length(args) == 0) args <- NULL
 	    jsonout <- suppressMessages(conn_plos$search(
-	      params = ploscompact(list(q = args$q, fl = args$fl, 
-        fq = args[names(args) == "fq"],
-	      sort = args$sort,
-	      rows = args$rows, start = args$start,
-	      wt = "json")), minOptimizedRows = FALSE, callopts = callopts, ...
+        params = ploscompact(list(q = args$q, fl = args$fl, 
+          fq = args[names(args) == "fq"],
+          sort = args$sort,
+          rows = as.integer(args$rows), start = as.integer(args$start),
+          wt = "json")), minOptimizedRows = FALSE, callopts = callopts, ...
 	    ))
 	    out[[i]] <- jsonout
 	  }
