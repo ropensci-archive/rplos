@@ -70,7 +70,7 @@ searchplos('ecology', 'id,publication_date', limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1    43873     0
+#> 1    44198     0
 #> 
 #> $data
 #> # A tibble: 5 x 2
@@ -93,7 +93,7 @@ searchplos(q="*:*", fl='id', fq=list('journal_key:PLoSONE',
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1   202918     0
+#> 1   204158     0
 #> 
 #> $data
 #> # A tibble: 5 x 1
@@ -130,7 +130,7 @@ head(out_sorted$data)
 #> 1 10.1371/journal.pmed.0020124                       3281          2525131
 #> 2 10.1371/annotation/80bd7285-9d2d-403a…                0          1235195
 #> 3 10.1371/journal.pcbi.1003149                        195          1113107
-#> 4 10.1371/journal.pone.0141854                       3422           872819
+#> 4 10.1371/journal.pone.0141854                       3437           878333
 #> 5 10.1371/journal.pcbi.0030102                         64           752783
 #> 6 10.1371/journal.pone.0088278                        964           606480
 ```
@@ -146,7 +146,7 @@ searchplos(q="*:*",fl=c('id','alm_twitterCount'),
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1       57     0
+#> 1       58     0
 #> 
 #> $data
 #> # A tibble: 10 x 2
@@ -173,7 +173,7 @@ searchplos(q='everything:"sports alcohol"~15', fl='title', fq='doc_type:full', l
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1      126     0
+#> 1      127     0
 #> 
 #> $data
 #> # A tibble: 3 x 1
@@ -214,7 +214,7 @@ searchplos(q='*:*', fl=c('id','article_type'),
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1  1981731     0
+#> 1  1994390     0
 #> 
 #> $data
 #> # A tibble: 5 x 2
@@ -242,21 +242,21 @@ facetplos(q='alcohol', facet.field=c('journal','subject'), facet.limit=5)
 #> # A tibble: 5 x 2
 #>   term                             value
 #>   <chr>                            <chr>
-#> 1 plos one                         25036
-#> 2 plos genetics                    568  
-#> 3 plos medicine                    494  
-#> 4 plos neglected tropical diseases 452  
-#> 5 plos pathogens                   336  
+#> 1 plos one                         25190
+#> 2 plos genetics                    572  
+#> 3 plos medicine                    498  
+#> 4 plos neglected tropical diseases 453  
+#> 5 plos pathogens                   341  
 #> 
 #> $facet_fields$subject
 #> # A tibble: 5 x 2
 #>   term                          value
 #>   <chr>                         <chr>
-#> 1 biology and life sciences     26830
-#> 2 medicine and health sciences  23943
-#> 3 research and analysis methods 15350
-#> 4 biochemistry                  13072
-#> 5 physical sciences             10085
+#> 1 biology and life sciences     26987
+#> 2 medicine and health sciences  24098
+#> 3 research and analysis methods 15433
+#> 4 biochemistry                  13129
+#> 5 physical sciences             10141
 #> 
 #> 
 #> $facet_pivot
@@ -292,16 +292,16 @@ facetplos(q='*:*', url=url, facet.range='counter_total_all',
 #> # A tibble: 10 x 2
 #>    term  value
 #>    <chr> <chr>
-#>  1 5     335  
+#>  1 5     342  
 #>  2 15    289  
-#>  3 25    519  
-#>  4 35    975  
-#>  5 45    1476 
-#>  6 55    1786 
-#>  7 65    1910 
+#>  3 25    521  
+#>  4 35    979  
+#>  5 45    1475 
+#>  6 55    1783 
+#>  7 65    1904 
 #>  8 75    1812 
-#>  9 85    1684 
-#> 10 95    1562
+#>  9 85    1686 
+#> 10 95    1565
 ```
 
 ### Highlight searches
@@ -311,6 +311,11 @@ Search for and highlight the term _alcohol_ in the abstract field only
 
 ```r
 (out <- highplos(q='alcohol', hl.fl = 'abstract', rows=3))
+#> $`10.1371/journal.pone.0201042`
+#> $`10.1371/journal.pone.0201042`$abstract
+#> [1] "\nAcute <em>alcohol</em> administration can lead to a loss of control over drinking. Several models argue"
+#> 
+#> 
 #> $`10.1371/journal.pone.0185457`
 #> $`10.1371/journal.pone.0185457`$abstract
 #> [1] "Objectives: <em>Alcohol</em>-related morbidity and mortality are significant public health issues"
@@ -319,11 +324,6 @@ Search for and highlight the term _alcohol_ in the abstract field only
 #> $`10.1371/journal.pone.0071284`
 #> $`10.1371/journal.pone.0071284`$abstract
 #> [1] "\n<em>Alcohol</em> dependence is a heterogeneous disorder where several signalling systems play important"
-#> 
-#> 
-#> $`10.1371/journal.pone.0027752`
-#> $`10.1371/journal.pone.0027752`$abstract
-#> [1] "Background: The negative influences of <em>alcohol</em> on TB management with regard to delays in seeking"
 ```
 
 And you can browse the results in your default browser
@@ -385,7 +385,7 @@ plossubject(q='marine ecology',  fl = c('id','journal'), limit = 10)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1     3872     0
+#> 1     3892     0
 #> 
 #> $data
 #> # A tibble: 10 x 2
@@ -413,7 +413,7 @@ Search with term _marine ecology_, by field _subject_, and limit to 5 results
 ```r
 plosviews(search='marine ecology', byfield='subject', limit=5)
 #>                             id counter_total_all
-#> 5 10.1371/journal.pone.0168735              1148
+#> 5 10.1371/journal.pone.0201675                 0
 #> 1 10.1371/journal.pone.0167252              1379
 #> 2 10.1371/journal.pone.0021810              2883
 #> 3 10.1371/journal.pone.0092590              9580
@@ -429,11 +429,11 @@ Visualize word use across articles
 plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')
 #> $table
 #>   No_Articles       Term
-#> 1       12514     monkey
-#> 2         541 Helianthus
-#> 3        1513  sunflower
-#> 4      142150    protein
-#> 5        1745      whale
+#> 1       12570     monkey
+#> 2         548 Helianthus
+#> 3        1529  sunflower
+#> 4      142842    protein
+#> 5        1758      whale
 #> 
 #> $plot
 ```
