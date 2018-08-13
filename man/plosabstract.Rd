@@ -4,9 +4,9 @@
 \alias{plosabstract}
 \title{Search PLoS Journals abstracts.}
 \usage{
-plosabstract(q = NULL, fl = "id", fq = NULL, sort = NULL, start = 0,
-  limit = 10, sleep = 6, errors = "simple", proxy = NULL,
-  callopts = NULL, ...)
+plosabstract(q = NULL, fl = "id", fq = NULL, sort = NULL,
+  start = 0, limit = 10, sleep = 6, errors = "simple",
+  proxy = NULL, callopts = NULL, ...)
 }
 \arguments{
 \item{q}{Search terms (character). You can search on specific fields by

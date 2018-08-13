@@ -4,9 +4,9 @@
 \alias{searchplos}
 \title{Base function to search PLoS Journals}
 \usage{
-searchplos(q = NULL, fl = "id", fq = NULL, sort = NULL, start = 0,
-  limit = 10, sleep = 6, errors = "simple", proxy = NULL,
-  callopts = list(), ...)
+searchplos(q = NULL, fl = "id", fq = NULL, sort = NULL,
+  start = 0, limit = 10, sleep = 6, errors = "simple",
+  proxy = NULL, callopts = list(), ...)
 }
 \arguments{
 \item{q}{Search terms (character). You can search on specific fields by

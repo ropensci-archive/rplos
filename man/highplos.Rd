@@ -12,13 +12,14 @@ highplos(q, fl = NULL, fq = NULL, hl.fl = NULL, hl.snippets = NULL,
   hl.maxMultiValuedToMatch = NULL, hl.formatter = NULL,
   hl.simple.pre = NULL, hl.simple.post = NULL, hl.fragmenter = NULL,
   hl.fragListBuilder = NULL, hl.fragmentsBuilder = NULL,
-  hl.boundaryScanner = NULL, hl.bs.maxScan = NULL, hl.bs.chars = NULL,
-  hl.bs.type = NULL, hl.bs.language = NULL, hl.bs.country = NULL,
-  hl.useFastVectorHighlighter = NULL, hl.usePhraseHighlighter = NULL,
-  hl.highlightMultiTerm = NULL, hl.regex.slop = NULL,
-  hl.regex.pattern = NULL, hl.regex.maxAnalyzedChars = NULL, start = 0,
-  rows = NULL, errors = "simple", proxy = NULL, callopts = list(),
-  sleep = 6, ...)
+  hl.boundaryScanner = NULL, hl.bs.maxScan = NULL,
+  hl.bs.chars = NULL, hl.bs.type = NULL, hl.bs.language = NULL,
+  hl.bs.country = NULL, hl.useFastVectorHighlighter = NULL,
+  hl.usePhraseHighlighter = NULL, hl.highlightMultiTerm = NULL,
+  hl.regex.slop = NULL, hl.regex.pattern = NULL,
+  hl.regex.maxAnalyzedChars = NULL, start = 0, rows = NULL,
+  errors = "simple", proxy = NULL, callopts = list(), sleep = 6,
+  ...)
 }
 \arguments{
 \item{q}{Search terms (character). You can search on specific fields by
