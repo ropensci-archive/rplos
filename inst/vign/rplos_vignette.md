@@ -48,7 +48,7 @@ searchplos(q = "Helianthus", fl = "id", limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1      541     0
+#> 1      548     0
 #> 
 #> $data
 #> # A tibble: 5 x 1
@@ -73,7 +73,7 @@ searchplos(q = "*:*", fl = 'id', fq = 'doc_type:full', start = 0, limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1   238410     0
+#> 1   239902     0
 #> 
 #> $data
 #> # A tibble: 5 x 1
@@ -99,7 +99,7 @@ searchplos(q = "*:*", fl = 'id', fq = 'journal_key:PLoSONE',
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1  1746885     0
+#> 1  1757706     0
 #> 
 #> $data
 #> # A tibble: 5 x 1
@@ -126,7 +126,7 @@ searchplos(q = "*:*", fl = 'id',
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1   202918     0
+#> 1   204158     0
 #> 
 #> $data
 #> # A tibble: 5 x 1
@@ -153,7 +153,7 @@ lapply(q, function(x) searchplos(x, limit = 2))
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1    43873     0
+#> 1    44198     0
 #> 
 #> [[1]]$data
 #> # A tibble: 2 x 1
@@ -168,7 +168,7 @@ lapply(q, function(x) searchplos(x, limit = 2))
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1    67955     0
+#> 1    68344     0
 #> 
 #> [[2]]$data
 #> # A tibble: 2 x 1
@@ -183,14 +183,14 @@ lapply(q, function(x) searchplos(x, limit = 2))
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1   208630     0
+#> 1   210074     0
 #> 
 #> [[3]]$data
 #> # A tibble: 2 x 1
 #>   id                          
 #>   <chr>                       
-#> 1 10.1371/journal.pone.0178778
-#> 2 10.1371/journal.pone.0196341
+#> 1 10.1371/journal.pone.0202320
+#> 2 10.1371/journal.pone.0178778
 ```
 
 ### Search on specific sections
@@ -217,7 +217,7 @@ plosauthor(q = "Eisen", fl = "author", limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1      984     0
+#> 1      993     0
 #> 
 #> $data
 #> # A tibble: 5 x 1
@@ -243,7 +243,7 @@ plosabstract(q = 'drosophila', fl = 'id,title', limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1     3427     0
+#> 1     3451     0
 #> 
 #> $data
 #> # A tibble: 5 x 2
@@ -253,7 +253,7 @@ plosabstract(q = 'drosophila', fl = 'id,title', limit = 5)
 #> 2 10.1371/journal.pone… A Drosophila model for developmental nicotine exp…
 #> 3 10.1371/journal.pone… Drosophila Growth Cones Advance by Forward Transl…
 #> 4 10.1371/journal.pone… "Larval Defense against Attack from Parasitoid Wa…
-#> 5 10.1371/journal.pone… Host Species and Environmental Effects on Bacteri…
+#> 5 10.1371/journal.pone… Exogenous expression of Drp1 plays neuroprotectiv…
 ```
 
 `plostitle` searches across titles, and in this case returns the title and 
@@ -269,7 +269,7 @@ plostitle(q = 'drosophila', fl = 'title,journal', limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1     2199     0
+#> 1     2212     0
 #> 
 #> $data
 #> # A tibble: 5 x 2
@@ -277,8 +277,8 @@ plostitle(q = 'drosophila', fl = 'title,journal', limit = 5)
 #>   <chr>    <chr>                                                          
 #> 1 PLOS ONE Peptidergic control in a fruit crop pest: The spotted-wing dro…
 #> 2 PLOS ONE Nematocytes: Discovery and characterization of a novel anculea…
-#> 3 PLOS ONE Tandem Duplications and the Limits of Natural Selection in Dro…
-#> 4 PLoS ONE In Vivo RNAi Rescue in Drosophila melanogaster with Genomic Tr…
+#> 3 PLoS ONE In Vivo RNAi Rescue in Drosophila melanogaster with Genomic Tr…
+#> 4 PLOS ONE Tandem Duplications and the Limits of Natural Selection in Dro…
 #> 5 PLoS ONE A Tripartite Synapse Model in Drosophila
 ```
 
@@ -296,11 +296,11 @@ out$table
 
 ```
 #>   No_Articles       Term
-#> 1       12514     monkey
-#> 2         541 Helianthus
-#> 3        1513  sunflower
-#> 4      142150    protein
-#> 5        1745      whale
+#> 1       12570     monkey
+#> 2         548 Helianthus
+#> 3        1529  sunflower
+#> 4      142842    protein
+#> 5        1758      whale
 ```
 
 
@@ -320,7 +320,7 @@ plosword('Helianthus', callopts = list(verbose = TRUE))
 
 ```
 #> Number of articles with search term 
-#>                                 541
+#>                                 548
 ```
 
 ### Visualize terms

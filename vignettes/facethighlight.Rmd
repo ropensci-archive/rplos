@@ -46,13 +46,13 @@ facetplos(q='*:*', facet.field='journal')
 #> # A tibble: 9 x 2
 #>   term                             value  
 #>   <chr>                            <chr>  
-#> 1 plos one                         1687125
-#> 2 plos genetics                    63261  
-#> 3 plos pathogens                   56916  
-#> 4 plos neglected tropical diseases 52484  
-#> 5 plos computational biology       49163  
-#> 6 plos biology                     34626  
-#> 7 plos medicine                    25102  
+#> 1 plos one                         1697963
+#> 2 plos genetics                    63684  
+#> 3 plos pathogens                   57289  
+#> 4 plos neglected tropical diseases 52972  
+#> 5 plos computational biology       49489  
+#> 6 plos biology                     34969  
+#> 7 plos medicine                    25287  
 #> 8 plos clinical trials             521    
 #> 9 plos medicin                     9      
 #> 
@@ -86,13 +86,13 @@ facetplos(q='*:*', facet.field='journal', facet.query='cell,bird')
 #> # A tibble: 9 x 2
 #>   term                             value  
 #>   <chr>                            <chr>  
-#> 1 plos one                         1687125
-#> 2 plos genetics                    63261  
-#> 3 plos pathogens                   56916  
-#> 4 plos neglected tropical diseases 52484  
-#> 5 plos computational biology       49163  
-#> 6 plos biology                     34626  
-#> 7 plos medicine                    25102  
+#> 1 plos one                         1697963
+#> 2 plos genetics                    63684  
+#> 3 plos pathogens                   57289  
+#> 4 plos neglected tropical diseases 52972  
+#> 5 plos computational biology       49489  
+#> 6 plos biology                     34969  
+#> 7 plos medicine                    25287  
 #> 8 plos clinical trials             521    
 #> 9 plos medicin                     9      
 #> 
@@ -131,14 +131,14 @@ highplos(q='alcohol', hl.fl = 'abstract', rows=2)
 ```
 
 ```
+#> $`10.1371/journal.pone.0201042`
+#> $`10.1371/journal.pone.0201042`$abstract
+#> [1] "\nAcute <em>alcohol</em> administration can lead to a loss of control over drinking. Several models argue"
+#> 
+#> 
 #> $`10.1371/journal.pone.0185457`
 #> $`10.1371/journal.pone.0185457`$abstract
 #> [1] "Objectives: <em>Alcohol</em>-related morbidity and mortality are significant public health issues"
-#> 
-#> 
-#> $`10.1371/journal.pone.0071284`
-#> $`10.1371/journal.pone.0071284`$abstract
-#> [1] "\n<em>Alcohol</em> dependence is a heterogeneous disorder where several signalling systems play important"
 ```
 
 Search for the term _alcohol_ in the abstracts of articles, and return 
@@ -150,14 +150,14 @@ highplos(q='alcohol', hl.fl='abstract', hl.fragsize=20, rows=2)
 ```
 
 ```
+#> $`10.1371/journal.pone.0201042`
+#> $`10.1371/journal.pone.0201042`$abstract
+#> [1] "\nAcute <em>alcohol</em>"
+#> 
+#> 
 #> $`10.1371/journal.pone.0185457`
 #> $`10.1371/journal.pone.0185457`$abstract
 #> [1] "Objectives: <em>Alcohol</em>"
-#> 
-#> 
-#> $`10.1371/journal.pone.0071284`
-#> $`10.1371/journal.pone.0071284`$abstract
-#> [1] "\n<em>Alcohol</em> dependence"
 ```
 
 Search for the term _experiment_ across all sections of an article, return 
