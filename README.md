@@ -41,9 +41,11 @@ library("rplos")
 
 You used to need a key to use `rplos` - you no longer do as of 2015-01-13 (or `v0.4.5.999`).
 
-rplos tutorial at rOpenSci website [here](http://ropensci.org/tutorials/rplos_tutorial.html)
+rplos tutorial: <http://ropensci.org/tutorials/rplos_tutorial.html>
 
-PLoS API documentation [here](http://api.plos.org/)
+PLOS API documentation: <http://api.plos.org/>
+
+PLOS Solr schema is at <https://gist.github.com/openAccess/9e76aa7fa6135be419968b1372c86957> but is 1.5 years old so may not be up to date.
 
 Crossref API documentation [here](https://github.com/CrossRef/rest-api-doc/blob/master/rest_api.md), and [here](http://help.crossref.org/#home). Note that we are working on a new package [rcrossref](https://github.com/ropensci/rcrossref) ([on CRAN](https://cran.r-project.org/package=rcrossref)) with a much fuller implementation of R functions for all Crossref endpoints.
 
