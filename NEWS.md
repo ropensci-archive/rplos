@@ -1,3 +1,15 @@
+rplos 0.8.4
+-----------
+
+### MINOR IMPROVEMENTS
+
+* update docs for `searchplos()` and all wrapper fxns to explain that internal pagination is used, but that users can do their own pagination if they like (#122)
+
+### BUG FIXES
+
+* fix to pagination in `searchplos()` and all wrapper fxns. large numbers were being passed as scientific notation, fixed now (#123)
+
+
 rplos 0.8.2
 -----------
 
