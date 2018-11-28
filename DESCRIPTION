@@ -31,7 +31,7 @@ Imports:
     lubridate,
     reshape2,
     whisker,
-    solrium (>= 1.0.0)
+    solrium (>= 1.0.1.9421)
 Suggests:
     xml2,
     knitr,
@@ -39,6 +39,7 @@ Suggests:
     webmockr,
     vcr
 RoxygenNote: 6.1.0
+Remotes: ropensci/solrium
 X-schema.org-applicationCategory: Literature
 X-schema.org-keywords: PLOS, library, science, JSON, XML, API, web, api-client, article, full text
 X-schema.org-isPartOf: https://ropensci.org
