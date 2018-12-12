@@ -31,7 +31,7 @@ Imports:
     lubridate,
     reshape2,
     whisker,
-    solrium (>= 1.0.1.9510)
+    solrium (>= 1.0.1.9900)
 Suggests:
     xml2,
     knitr,
