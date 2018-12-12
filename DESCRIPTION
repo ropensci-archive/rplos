@@ -31,14 +31,14 @@ Imports:
     lubridate,
     reshape2,
     whisker,
-    solrium (>= 1.0.1.9421)
+    solrium (>= 1.0.1.9510)
 Suggests:
     xml2,
     knitr,
     testthat,
     webmockr,
     vcr
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Remotes: ropensci/solrium
 X-schema.org-applicationCategory: Literature
 X-schema.org-keywords: PLOS, library, science, JSON, XML, API, web, api-client, article, full text
