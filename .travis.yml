@@ -17,6 +17,7 @@ matrix:
       env: R_CODECOV=true
     - os: linux
       r: devel
+      env: _R_CHECK_LENGTH_1_LOGIC2_=TRUE
 
 after_success:
   - if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi

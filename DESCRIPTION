@@ -37,9 +37,9 @@ Suggests:
     knitr,
     testthat,
     webmockr,
-    vcr
+    vcr (>= 0.2.0.9114)
 RoxygenNote: 6.1.1
-Remotes: ropensci/solrium
+Remotes: ropensci/solrium, ropensci/vcr
 X-schema.org-applicationCategory: Literature
 X-schema.org-keywords: PLOS, library, science, JSON, XML, API, web, api-client, article, full text
 X-schema.org-isPartOf: https://ropensci.org
