@@ -1,7 +1,7 @@
-# tests for plosfigtabcaps fxn in rplos
 context("plosfigtabcaps")
 
 test_that("plosfigtabcaps returns the correct dimenion result", {
+	skip_if_non_ascii("plosfigtabcaps")
 	vcr::use_cassette("plosfigtabcaps", {
 		dat <- plosfigtabcaps(q='ecology', fl='figure_table_caption', limit=10)
 
