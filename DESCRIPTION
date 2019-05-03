@@ -24,22 +24,21 @@ Encoding: UTF-8
 Language: en-US
 Imports:
     ggplot2,
-    crul (>= 0.4.0),
+    crul (>= 0.7.4),
     jsonlite,
     dplyr,
     plyr,
     lubridate,
     reshape2,
     whisker,
-    solrium (>= 1.0.1.9900)
+    solrium (>= 1.0.2)
 Suggests:
     xml2,
     knitr,
     testthat,
     webmockr,
-    vcr (>= 0.2.0.9114)
+    vcr (>= 0.2.6)
 RoxygenNote: 6.1.1
-Remotes: ropensci/solrium, ropensci/vcr
 X-schema.org-applicationCategory: Literature
 X-schema.org-keywords: PLOS, library, science, JSON, XML, API, web, api-client, article, full text
 X-schema.org-isPartOf: https://ropensci.org
