@@ -1,3 +1,11 @@
+rplos 0.8.6
+-----------
+
+### MINOR IMPROVEMENTS
+
+* use `preserve_exact_body_bytes` for tests for plosabstract and plosfigtabcaps to avoid non-ascii text problems on debian clang devel (#125)
+
+
 rplos 0.8.4
 -----------
 

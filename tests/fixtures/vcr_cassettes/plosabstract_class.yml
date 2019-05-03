@@ -6,7 +6,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      User-Agent: libcurl/7.54.0 r-curl/3.3 crul/0.7.4
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -16,19 +16,18 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      server: nginx/1.12.2
-      date: Thu, 03 May 2018 06:14:02 GMT
-      content-type: application/json; charset=UTF-8
-      content-length: '51'
+      server: nginx/1.14.1
+      date: Fri, 03 May 2019 18:02:08 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '57'
       connection: keep-alive
-      last-modified: Wed, 02 May 2018 20:22:57 GMT
-      etag: '"YzAyNDE4MDAwMDAwMDAwMFNvbHI="'
+      last-modified: Fri, 03 May 2019 17:37:37 GMT
+      etag: '"ZWJhODc4MDAwMDAwMDAwMFNvbHI="'
     body:
-      encoding: UTF-8
-      string: |
-        {"response":{"numFound":3393,"start":0,"docs":[]}}
-  recorded_at: 2018-05-03 06:14:03 GMT
-  recorded_with: vcr/0.0.8.9538, webmockr/0.2.2.9119, crul/0.5.2
+      encoding: ASCII-8BIT
+      string: ewogICJyZXNwb25zZSI6eyJudW1Gb3VuZCI6MzU5Nywic3RhcnQiOjAsImRvY3MiOltdCiAgfX0K
+  recorded_at: 2019-05-03 18:02:06 GMT
+  recorded_with: vcr/0.2.6, webmockr/0.3.4.9100
 - request:
     method: get
     uri: http://api.plos.org/search?q=abstract%3A%22drosophila%22&fl=author&start=0&rows=5&wt=json
@@ -36,7 +35,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      User-Agent: libcurl/7.54.0 r-curl/3.3 crul/0.7.4
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -46,19 +45,18 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      server: nginx/1.12.2
-      date: Thu, 03 May 2018 06:14:02 GMT
-      content-type: application/json; charset=UTF-8
-      content-length: '406'
+      server: nginx/1.14.1
+      date: Fri, 03 May 2019 18:02:08 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '582'
       connection: keep-alive
-      last-modified: Wed, 02 May 2018 20:22:57 GMT
-      etag: '"ZTMzZmU4MDAwMDAwMDAwMFNvbHI="'
+      last-modified: Fri, 03 May 2019 17:37:37 GMT
+      etag: '"OGJlODc4MDAwMDAwMDAwMFNvbHI="'
     body:
-      encoding: UTF-8
-      string: |
-        {"response":{"numFound":3393,"start":0,"docs":[{"author":["Martin Kapun","Viola Nolte","Thomas Flatt","Christian Schlötterer"]},{"author":["Norma Andrea Velazquez-Ulloa"]},{"author":["Douglas H Roossien","Phillip Lamoureux","David Van Vactor","Kyle E Miller"]},{"author":["Jessica L Robertson","Asako Tsubouchi","W Daniel Tracey"]},{"author":["Anja Hildebrandt","Iris Bickmeyer","Ronald P Kühnlein"]}]}}
-  recorded_at: 2018-05-03 06:14:03 GMT
-  recorded_with: vcr/0.0.8.9538, webmockr/0.2.2.9119, crul/0.5.2
+      encoding: ASCII-8BIT
+      string: ewogICJyZXNwb25zZSI6eyJudW1Gb3VuZCI6MzU5Nywic3RhcnQiOjAsImRvY3MiOlsKICAgICAgewogICAgICAgICJhdXRob3IiOlsiTWFydGluIEthcHVuIiwKICAgICAgICAgICJWaW9sYSBOb2x0ZSIsCiAgICAgICAgICAiVGhvbWFzIEZsYXR0IiwKICAgICAgICAgICJDaHJpc3RpYW4gU2NobMO2dHRlcmVyIl19LAogICAgICB7CiAgICAgICAgImF1dGhvciI6WyJOb3JtYSBBbmRyZWEgVmVsYXpxdWV6LVVsbG9hIl19LAogICAgICB7CiAgICAgICAgImF1dGhvciI6WyJGZW5nc2hvdSBMdiIsCiAgICAgICAgICAiWGlhb3BlbmcgWWFuZyIsCiAgICAgICAgICAiQ2h1YW5qdSBDdWkiLAogICAgICAgICAgIkNodW5oZSBTdSJdfSwKICAgICAgewogICAgICAgICJhdXRob3IiOlsiQW5qYSBIaWxkZWJyYW5kdCIsCiAgICAgICAgICAiSXJpcyBCaWNrbWV5ZXIiLAogICAgICAgICAgIlJvbmFsZCBQIEvDvGhubGVpbiJdfSwKICAgICAgewogICAgICAgICJhdXRob3IiOlsiSmVzc2ljYSBMIFJvYmVydHNvbiIsCiAgICAgICAgICAiQXNha28gVHN1Ym91Y2hpIiwKICAgICAgICAgICJXIERhbmllbCBUcmFjZXkiXX1dCiAgfX0K
+  recorded_at: 2019-05-03 18:02:06 GMT
+  recorded_with: vcr/0.2.6, webmockr/0.3.4.9100
 - request:
     method: get
     uri: http://api.plos.org/search?q=abstract%3A%22Jones%22&fl=author&rows=0&wt=json
@@ -66,7 +64,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      User-Agent: libcurl/7.54.0 r-curl/3.3 crul/0.7.4
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -76,19 +74,18 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      server: nginx/1.12.2
-      date: Thu, 03 May 2018 06:14:02 GMT
-      content-type: application/json; charset=UTF-8
-      content-length: '49'
+      server: nginx/1.14.1
+      date: Fri, 03 May 2019 18:02:08 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '55'
       connection: keep-alive
-      last-modified: Wed, 02 May 2018 20:22:57 GMT
-      etag: '"ZTMzZmU4MDAwMDAwMDAwMFNvbHI="'
+      last-modified: Fri, 03 May 2019 17:37:36 GMT
+      etag: '"YmFlODc4MDAwMDAwMDAwMFNvbHI="'
     body:
-      encoding: UTF-8
-      string: |
-        {"response":{"numFound":33,"start":0,"docs":[]}}
-  recorded_at: 2018-05-03 06:14:03 GMT
-  recorded_with: vcr/0.0.8.9538, webmockr/0.2.2.9119, crul/0.5.2
+      encoding: ASCII-8BIT
+      string: ewogICJyZXNwb25zZSI6eyJudW1Gb3VuZCI6NDAsInN0YXJ0IjowLCJkb2NzIjpbXQogIH19Cg==
+  recorded_at: 2019-05-03 18:02:06 GMT
+  recorded_with: vcr/0.2.6, webmockr/0.3.4.9100
 - request:
     method: get
     uri: http://api.plos.org/search?q=abstract%3A%22Jones%22&fl=author&start=0&rows=5&wt=json
@@ -96,7 +93,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      User-Agent: libcurl/7.54.0 r-curl/3.3 crul/0.7.4
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -106,16 +103,15 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      server: nginx/1.12.2
-      date: Thu, 03 May 2018 06:14:03 GMT
-      content-type: application/json; charset=UTF-8
-      content-length: '322'
+      server: nginx/1.14.1
+      date: Fri, 03 May 2019 18:02:08 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '483'
       connection: keep-alive
-      last-modified: Wed, 02 May 2018 20:22:57 GMT
-      etag: '"YjYzYTE4MDAwMDAwMDAwMFNvbHI="'
+      last-modified: Fri, 03 May 2019 17:37:37 GMT
+      etag: '"ODhhODc4MDAwMDAwMDAwMFNvbHI="'
     body:
-      encoding: UTF-8
-      string: |
-        {"response":{"numFound":33,"start":0,"docs":[{"author":["Zhidong Bai","Yongchang Hui","Dandan Jiang","Zhihui Lv","Wing-Keung Wong","Shurong Zheng"]},{"author":["Thomas A Hughes","Pamela F Jones"]},{"author":["Peter Cleaton-Jones"]},{"author":["Sarah Rowland-Jones","Thushan de Silva"]},{"author":["Jerome Amir Singh"]}]}}
-  recorded_at: 2018-05-03 06:14:03 GMT
-  recorded_with: vcr/0.0.8.9538, webmockr/0.2.2.9119, crul/0.5.2
+      encoding: ASCII-8BIT
+      string: ewogICJyZXNwb25zZSI6eyJudW1Gb3VuZCI6NDAsInN0YXJ0IjowLCJkb2NzIjpbCiAgICAgIHsKICAgICAgICAiYXV0aG9yIjpbIlpoaWRvbmcgQmFpIiwKICAgICAgICAgICJZb25nY2hhbmcgSHVpIiwKICAgICAgICAgICJEYW5kYW4gSmlhbmciLAogICAgICAgICAgIlpoaWh1aSBMdiIsCiAgICAgICAgICAiV2luZy1LZXVuZyBXb25nIiwKICAgICAgICAgICJTaHVyb25nIFpoZW5nIl19LAogICAgICB7CiAgICAgICAgImF1dGhvciI6WyJUaG9tYXMgQSBIdWdoZXMiLAogICAgICAgICAgIlBhbWVsYSBGIEpvbmVzIl19LAogICAgICB7CiAgICAgICAgImF1dGhvciI6WyJQZXRlciBDbGVhdG9uLUpvbmVzIl19LAogICAgICB7CiAgICAgICAgImF1dGhvciI6WyJLZXJyaS1Bbm4gSm9uZXMiXX0sCiAgICAgIHsKICAgICAgICAiYXV0aG9yIjpbIlNhcmFoIFJvd2xhbmQtSm9uZXMiLAogICAgICAgICAgIlRodXNoYW4gZGUgU2lsdmEiXX1dCiAgfX0K
+  recorded_at: 2019-05-03 18:02:06 GMT
+  recorded_with: vcr/0.2.6, webmockr/0.3.4.9100
