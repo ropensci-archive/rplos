@@ -10,14 +10,14 @@
   "codeRepository": "https://github.com/ropensci/rplos",
   "issueTracker": "https://github.com/ropensci/rplos/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.8.4",
+  "version": "0.8.6",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.1",
+    "version": "3.6.0",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.1 Patched (2018-08-12 r75119)",
+  "runtimePlatform": "R version 3.6.0 Patched (2019-04-30 r76446)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -107,6 +107,7 @@
       "@type": "SoftwareApplication",
       "identifier": "vcr",
       "name": "vcr",
+      "version": ">= 0.2.6",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -133,7 +134,7 @@
       "@type": "SoftwareApplication",
       "identifier": "crul",
       "name": "crul",
-      "version": ">= 0.4.0",
+      "version": ">= 0.7.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -218,7 +219,7 @@
       "@type": "SoftwareApplication",
       "identifier": "solrium",
       "name": "solrium",
-      "version": ">= 1.0.0",
+      "version": ">= 1.0.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -231,9 +232,12 @@
   "contIntegration": "https://travis-ci.org/ropensci/rplos",
   "releaseNotes": "https://github.com/ropensci/rplos/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/rplos/blob/master/README.md",
-  "fileSize": "1215.183KB",
+  "fileSize": "1217.229KB",
   "applicationCategory": "Literature",
   "isPartOf": "https://ropensci.org",
   "keywords": ["PLOS", "library", "science", "JSON", "XML", "API", "web", "api-client", "article", "fulltext", "text-mining", "xml", "pdf", "metadata", "web-api", "plos", "r", "rstats", "r-package"],
-  "developmentStatus": "http://www.repostatus.org/#active"
+  "developmentStatus": "http://www.repostatus.org/#active",
+  "contributor": {},
+  "copyrightHolder": {},
+  "funder": {}
 }
