@@ -1,9 +1,5 @@
 # CONTRIBUTING #
 
-### Please contribute!
-
-We love collaboration.
-
 ### Bugs?
 
 * Submit an issue on the [Issues page](https://github.com/ropensci/rplos/issues)
@@ -20,6 +16,4 @@ We love collaboration.
 
 ### Also, check out our [discussion forum](https://discuss.ropensci.org)
 
-### Prefer to Email? Get in touch: [scott@ropensci.org](mailto:scott@ropensci.org)
-
-### Thanks for contributing!
+### Prefer to Email? Get in touch: [myrmecocystus@gmail.com](mailto:myrmecocystus@gmail.com)
