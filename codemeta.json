@@ -232,7 +232,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/rplos",
   "releaseNotes": "https://github.com/ropensci/rplos/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/rplos/blob/master/README.md",
-  "fileSize": "1217.225KB",
+  "fileSize": "1217.221KB",
   "applicationCategory": "Literature",
   "isPartOf": "https://ropensci.org",
   "keywords": ["PLOS", "library", "science", "JSON", "XML", "API", "web", "api-client", "article", "fulltext", "text-mining", "xml", "pdf", "metadata", "web-api", "plos", "r", "rstats", "r-package"],
