@@ -48,17 +48,17 @@ searchplos(q = "Helianthus", fl = "id", limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1      548     0
+#> 1      572     0
 #> 
 #> $data
 #> # A tibble: 5 x 1
 #>   id                          
 #>   <chr>                       
 #> 1 10.1371/journal.pone.0198869
-#> 2 10.1371/journal.pone.0148280
-#> 3 10.1371/journal.pone.0111982
-#> 4 10.1371/journal.pone.0139188
-#> 5 10.1371/journal.pone.0057533
+#> 2 10.1371/journal.pone.0213065
+#> 3 10.1371/journal.pone.0148280
+#> 4 10.1371/journal.pone.0111982
+#> 5 10.1371/journal.pone.0139188
 ```
 
 Get only full article DOIs
@@ -73,17 +73,17 @@ searchplos(q = "*:*", fl = 'id', fq = 'doc_type:full', start = 0, limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1   239902     0
+#> 1   255862     0
 #> 
 #> $data
 #> # A tibble: 5 x 1
 #>   id                          
 #>   <chr>                       
-#> 1 10.1371/journal.pone.0044136
-#> 2 10.1371/journal.pone.0155491
-#> 3 10.1371/journal.pone.0168631
-#> 4 10.1371/journal.pone.0058100
-#> 5 10.1371/journal.pone.0168627
+#> 1 10.1371/journal.pone.0155491
+#> 2 10.1371/journal.pone.0168631
+#> 3 10.1371/journal.pone.0168627
+#> 4 10.1371/journal.pone.0184491
+#> 5 10.1371/journal.pone.0155489
 ```
 
 Get DOIs for only PLoS One articles
@@ -99,7 +99,7 @@ searchplos(q = "*:*", fl = 'id', fq = 'journal_key:PLoSONE',
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1  1757706     0
+#> 1  1877872     0
 #> 
 #> $data
 #> # A tibble: 5 x 1
@@ -126,17 +126,17 @@ searchplos(q = "*:*", fl = 'id',
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1   204158     0
+#> 1   217655     0
 #> 
 #> $data
 #> # A tibble: 5 x 1
 #>   id                          
 #>   <chr>                       
-#> 1 10.1371/journal.pone.0044136
-#> 2 10.1371/journal.pone.0155491
-#> 3 10.1371/journal.pone.0168631
-#> 4 10.1371/journal.pone.0058100
-#> 5 10.1371/journal.pone.0168627
+#> 1 10.1371/journal.pone.0155491
+#> 2 10.1371/journal.pone.0168631
+#> 3 10.1371/journal.pone.0168627
+#> 4 10.1371/journal.pone.0184491
+#> 5 10.1371/journal.pone.0155489
 ```
 
 Search for many terms
@@ -153,7 +153,7 @@ lapply(q, function(x) searchplos(x, limit = 2))
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1    44198     0
+#> 1    47678     0
 #> 
 #> [[1]]$data
 #> # A tibble: 2 x 1
@@ -168,7 +168,7 @@ lapply(q, function(x) searchplos(x, limit = 2))
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1    68344     0
+#> 1    72477     0
 #> 
 #> [[2]]$data
 #> # A tibble: 2 x 1
@@ -183,7 +183,7 @@ lapply(q, function(x) searchplos(x, limit = 2))
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1   210074     0
+#> 1   225263     0
 #> 
 #> [[3]]$data
 #> # A tibble: 2 x 1
@@ -217,7 +217,7 @@ plosauthor(q = "Eisen", fl = "author", limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1      993     0
+#> 1     1020     0
 #> 
 #> $data
 #> # A tibble: 5 x 1
@@ -243,17 +243,17 @@ plosabstract(q = 'drosophila', fl = 'id,title', limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1     3451     0
+#> 1     3597     0
 #> 
 #> $data
 #> # A tibble: 5 x 2
-#>   id                    title                                             
-#>   <chr>                 <chr>                                             
-#> 1 10.1371/journal.pone… Host Range and Specificity of the Drosophila C Vi…
-#> 2 10.1371/journal.pone… A Drosophila model for developmental nicotine exp…
-#> 3 10.1371/journal.pone… Drosophila Growth Cones Advance by Forward Transl…
-#> 4 10.1371/journal.pone… "Larval Defense against Attack from Parasitoid Wa…
-#> 5 10.1371/journal.pone… Exogenous expression of Drp1 plays neuroprotectiv…
+#>   id                    title                                              
+#>   <chr>                 <chr>                                              
+#> 1 10.1371/journal.pone… Host Range and Specificity of the Drosophila C Vir…
+#> 2 10.1371/journal.pone… A Drosophila model for developmental nicotine expo…
+#> 3 10.1371/journal.pone… Exogenous expression of Drp1 plays neuroprotective…
+#> 4 10.1371/journal.pone… Reliable Drosophila Body Fat Quantification by a C…
+#> 5 10.1371/journal.pone… "Larval Defense against Attack from Parasitoid Was…
 ```
 
 `plostitle` searches across titles, and in this case returns the title and 
@@ -269,17 +269,17 @@ plostitle(q = 'drosophila', fl = 'title,journal', limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1     2212     0
+#> 1     2298     0
 #> 
 #> $data
 #> # A tibble: 5 x 2
-#>   journal  title                                                          
-#>   <chr>    <chr>                                                          
-#> 1 PLOS ONE Peptidergic control in a fruit crop pest: The spotted-wing dro…
-#> 2 PLOS ONE Nematocytes: Discovery and characterization of a novel anculea…
-#> 3 PLoS ONE In Vivo RNAi Rescue in Drosophila melanogaster with Genomic Tr…
-#> 4 PLOS ONE Tandem Duplications and the Limits of Natural Selection in Dro…
-#> 5 PLoS ONE A Tripartite Synapse Model in Drosophila
+#>   journal  title                                                           
+#>   <chr>    <chr>                                                           
+#> 1 PLOS ONE Peptidergic control in a fruit crop pest: The spotted-wing dros…
+#> 2 PLOS ONE Nematocytes: Discovery and characterization of a novel anculeat…
+#> 3 PLOS ONE Tandem Duplications and the Limits of Natural Selection in Dros…
+#> 4 PLoS ONE In Vivo RNAi Rescue in Drosophila melanogaster with Genomic Tra…
+#> 5 PLOS ONE The behavior of adult Drosophila in the wild
 ```
 
 ### Search terms & visualize results as a histogram OR as a plot through time
@@ -296,11 +296,11 @@ out$table
 
 ```
 #>   No_Articles       Term
-#> 1       12570     monkey
-#> 2         548 Helianthus
-#> 3        1529  sunflower
-#> 4      142842    protein
-#> 5        1758      whale
+#> 1       13216     monkey
+#> 2         572 Helianthus
+#> 3        1636  sunflower
+#> 4      149565    protein
+#> 5        1880      whale
 ```
 
 
@@ -320,7 +320,7 @@ plosword('Helianthus', callopts = list(verbose = TRUE))
 
 ```
 #> Number of articles with search term 
-#>                                 548
+#>                                 572
 ```
 
 ### Visualize terms

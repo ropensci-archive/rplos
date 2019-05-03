@@ -73,26 +73,26 @@ full_text_urls(dois)
 ```
 
 ```
-#>  [1] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0044136&type=manuscript"
-#>  [2] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0155491&type=manuscript"
-#>  [3] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0168631&type=manuscript"
-#>  [4] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0058100&type=manuscript"
-#>  [5] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0168627&type=manuscript"
-#>  [6] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0184491&type=manuscript"
-#>  [7] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0155489&type=manuscript"
-#>  [8] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0072057&type=manuscript"
-#>  [9] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0127059&type=manuscript"
-#> [10] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0168605&type=manuscript"
-#> [11] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0058079&type=manuscript"
-#> [12] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0168602&type=manuscript"
-#> [13] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0044129&type=manuscript"
-#> [14] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0058091&type=manuscript"
-#> [15] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0184468&type=manuscript"
-#> [16] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0141298&type=manuscript"
-#> [17] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0168604&type=manuscript"
-#> [18] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0155469&type=manuscript"
-#> [19] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0184467&type=manuscript"
-#> [20] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0085513&type=manuscript"
+#>  [1] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0155491&type=manuscript"    
+#>  [2] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0168631&type=manuscript"    
+#>  [3] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0168627&type=manuscript"    
+#>  [4] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0184491&type=manuscript"    
+#>  [5] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0155489&type=manuscript"    
+#>  [6] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0127059&type=manuscript"    
+#>  [7] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0168605&type=manuscript"    
+#>  [8] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0168602&type=manuscript"    
+#>  [9] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0184468&type=manuscript"    
+#> [10] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0141298&type=manuscript"    
+#> [11] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0168604&type=manuscript"    
+#> [12] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0155469&type=manuscript"    
+#> [13] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0184467&type=manuscript"    
+#> [14] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.0030350&type=manuscript"
+#> [15] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0127056&type=manuscript"    
+#> [16] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0168612&type=manuscript"    
+#> [17] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0127060&type=manuscript"    
+#> [18] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0127061&type=manuscript"    
+#> [19] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0155472&type=manuscript"    
+#> [20] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0184470&type=manuscript"
 ```
 
 ### Get XML
@@ -148,7 +148,7 @@ if (requireNamespace("xml2")) {
 ```
 
 ```
-#> [1] "Growth hormone (GH) is an important regulator of metabolism and body composition. GH deficiency is associated with increased visceral body fat and other features of the metabolic syndrome. Here we performed a cross-sectional study to explore the association of GH levels with nonalcoholic fatty liver disease (NAFLD), which is considered to be the hepatic manifestation of the metabolic syndrome. A total of 1,667 subjects were diagnosed as NAFLD according the diagnostic criteria, and 5,479 subjects were defined as the controls. The subjects with NAFLD had significantly lower levels of serum GH than the controls. Those with low GH levels had a higher prevalence of NAFLD and the metabolic syndrome. A stepwise logistic regression analysis showed that GH levels were significantly associated with the risk factor for NAFLD (OR = 0.651, 95%CI = 0.574–0.738, P<0.001). Our results showed a significant association between lower serum GH levels and NAFLD."
+#> [1] "Embryo implantation is an essential step for the establishment of pregnancy and dynamically regulated by estrogen and progesterone. NDRG4 (N-myc down-regulated gene 4) is a tumor suppressor that participates in cell survival, tumor invasion and angiogenesis. The objective of this study was to preliminarily explore the role of NDRG4 in embryo implantation. By immunohistochemistry (IHC) and quantitive RT-PCR (qRT-PCR), we found that uterine expression of NDRG4 was increased along with puberal development, and its expression in adult females reached the peak at the estrus stage during the estrus cycle. Furthermore, uterine NDRG4 expression was significantly induced by the treatment of estradiol (E2) both in pre-puberty females and ovariectomized adult females. Uterine expression pattern of NDRG4 during the peri-implantation period in mice was determined by IHC, qRT-PCR and Western blot. It was observed that NDRG4 expression was up-regulated during the implantation process, and its expression level at the implantation sites was significantly higher than that at the inter-implantation sites. Meanwhile, an increased expression in NDRG4 was associated with artificial decidualization as well as the activation of delayed implantation. By qRT-PCR and Western blot, we found that the in vitro decidualization of endometrial stromal cells (ESCs) was accompanied by up-regulation of NDRG4 expression, whereas knockdown of its expression in these cells by siRNA inhibited the decidualization process. In addition, Western blot analysis showed that NDRG4 protein expression was decreased in human villus tissues of recurrent miscarriage (RM) patients compared to normal pregnant women. Collectively, these data suggested that uterine NDRG4 expression could be induced by estrogen, and NDRG4 might play an important role during early pregnancy."
 ```
 
 Extract reference lists, just give back first one from each for brevity sake
@@ -164,15 +164,15 @@ if (requireNamespace("xml2")) {
 ```
 
 ```
-#> $`10.1371/journal.pone.0155491`
-#> {xml_node}
-#> <ref id="pone.0155491.ref001">
-#> [1] <label>1</label>
-#> [2] <mixed-citation publication-type="journal" xlink:type="simple"><name ...
-#> 
 #> $`10.1371/journal.pone.0168631`
 #> {xml_node}
 #> <ref id="pone.0168631.ref001">
+#> [1] <label>1</label>
+#> [2] <mixed-citation publication-type="journal" xlink:type="simple"><name ...
+#> 
+#> $`10.1371/journal.pone.0168627`
+#> {xml_node}
+#> <ref id="pone.0168627.ref001">
 #> [1] <label>1</label>
 #> [2] <mixed-citation publication-type="journal" xlink:type="simple"><name ...
 ```

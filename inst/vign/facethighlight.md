@@ -45,14 +45,14 @@ facetplos(q='*:*', facet.field='journal')
 #> $facet_fields$journal
 #> # A tibble: 9 x 2
 #>   term                             value  
-#>   <chr>                            <chr>  
-#> 1 plos one                         1697963
-#> 2 plos genetics                    63684  
-#> 3 plos pathogens                   57289  
-#> 4 plos neglected tropical diseases 52972  
-#> 5 plos computational biology       49489  
-#> 6 plos biology                     34969  
-#> 7 plos medicine                    25287  
+#>   <fct>                            <fct>  
+#> 1 plos one                         1816094
+#> 2 plos genetics                    67569  
+#> 3 plos pathogens                   60655  
+#> 4 plos neglected tropical diseases 57911  
+#> 5 plos computational biology       53650  
+#> 6 plos biology                     37720  
+#> 7 plos medicine                    26642  
 #> 8 plos clinical trials             521    
 #> 9 plos medicin                     9      
 #> 
@@ -79,20 +79,20 @@ facetplos(q='*:*', facet.field='journal', facet.query='cell,bird')
 #> # A tibble: 1 x 2
 #>   term      value
 #>   <chr>     <int>
-#> 1 cell,bird     6
+#> 1 cell,bird 10676
 #> 
 #> $facet_fields
 #> $facet_fields$journal
 #> # A tibble: 9 x 2
 #>   term                             value  
-#>   <chr>                            <chr>  
-#> 1 plos one                         1697963
-#> 2 plos genetics                    63684  
-#> 3 plos pathogens                   57289  
-#> 4 plos neglected tropical diseases 52972  
-#> 5 plos computational biology       49489  
-#> 6 plos biology                     34969  
-#> 7 plos medicine                    25287  
+#>   <fct>                            <fct>  
+#> 1 plos one                         1816094
+#> 2 plos genetics                    67569  
+#> 3 plos pathogens                   60655  
+#> 4 plos neglected tropical diseases 57911  
+#> 5 plos computational biology       53650  
+#> 6 plos biology                     37720  
+#> 7 plos medicine                    26642  
 #> 8 plos clinical trials             521    
 #> 9 plos medicin                     9      
 #> 
@@ -117,7 +117,7 @@ facetplos(q='*:*', url=url, facet.date='publication_date',
 ```
 
 ```
-#> NULL
+#> list()
 ```
 
 ### Highlighted search
