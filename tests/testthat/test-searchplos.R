@@ -21,7 +21,7 @@ test_that("searchplos returns the correct", {
     expect_is(dat2$meta, "data.frame")
 
     # searchplos returns the correct value
-    expect_that(grepl('10.1371', dat2$data[1,1]), is_true())
+    expect_true(grepl('10.1371', dat2$data[1,1]))
   })
 })
 
