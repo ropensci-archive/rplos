@@ -16,7 +16,8 @@ Authors@R: c(
     person("Carl", "Boettiger", role = "aut", email = "cboettig@gmail.com"),
     person("Karthik", "Ram", role = "aut", email = "karthik.ram@gmail.com")
     )
-URL: https://github.com/ropensci/rplos
+URL: https://docs.ropensci.org/rplos (website)
+    https://github.com/ropensci/rplos
 BugReports: https://github.com/ropensci/rplos/issues
 LazyData: true
 VignetteBuilder: knitr
