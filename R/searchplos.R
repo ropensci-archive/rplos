@@ -130,7 +130,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
 	    conn_plos$search(params = args, callopts = callopts,
 	    	minOptimizedRows = FALSE, ...)
 	  )
-	  meta <- dplyr::data_frame(
+	  meta <- dplyr::tibble(
 	    numFound = attr(jsonout, "numFound"),
 	    start = attr(jsonout, "start")
 	  )
@@ -162,7 +162,7 @@ searchplos <- function(q = NULL, fl = 'id', fq = NULL, sort = NULL, start = 0,
 	    out[[i]] <- jsonout
 	  }
 	  resdf  <- dplyr::bind_rows(out)
-	  meta <- dplyr::data_frame(
+	  meta <- dplyr::tibble(
 	    numFound = attr(jsonout, "numFound"),
 	    start = attr(jsonout, "start")
 	  )
