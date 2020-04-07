@@ -1,0 +1,49 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=%2A%3A%2A&rows=0&facet=true&facet.field=journal_key&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:39 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '474'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"YmY3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":2341967,"start":0,"maxScore":1.0,"docs":[]
+          },
+          "facet_counts":{
+            "facet_queries":{},
+            "facet_fields":{
+              "journal_key":[
+                "PLoSONE",2001428,
+                "PLoSGenetics",73759,
+                "PLoSPathogens",67051,
+                "PLoSNTD",65870,
+                "PLoSCompBiol",60685,
+                "PLoSBiology",42294,
+                "PLoSMedicine",30359,
+                "PLoSClinicalTrials",521]},
+            "facet_ranges":{},
+            "facet_intervals":{},
+            "facet_heatmaps":{}}}
+  recorded_at: 2020-04-07 21:31:39 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2

@@ -1,0 +1,334 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=%2A%3A%2A&facet.field=journal&wt=json&fl=DOES_NOT_EXIST&facet=true
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:18 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '626'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"Yjc3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":2341967,"start":0,"docs":[
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}]
+          },
+          "facet_counts":{
+            "facet_queries":{},
+            "facet_fields":{
+              "journal":[
+                "plos one",1939972,
+                "plos genetics",72382,
+                "plos pathogens",65865,
+                "plos neglected tropical diseases",64913,
+                "plos computational biology",59616,
+                "plos biology",41954,
+                "plos medicine",29883,
+                "plos clinical trials",521,
+                "plos medicin",9]},
+            "facet_ranges":{},
+            "facet_intervals":{},
+            "facet_heatmaps":{}}}
+  recorded_at: 2020-04-07 21:31:23 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=alcohol&facet.field=journal&facet.field=subject&wt=json&fl=DOES_NOT_EXIST&facet=true
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:22 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '3922'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"Y2I3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":32773,"start":0,"docs":[
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}]
+          },
+          "facet_counts":{
+            "facet_queries":{},
+            "facet_fields":{
+              "journal":[
+                "plos one",29296,
+                "plos genetics",654,
+                "plos medicine",613,
+                "plos neglected tropical diseases",559,
+                "plos pathogens",404,
+                "plos biology",247,
+                "plos computational biology",214,
+                "plos clinical trials",7,
+                "plos medicin",0],
+              "subject":[
+                "biology and life sciences",31180,
+                "medicine and health sciences",28115,
+                "research and analysis methods",17534,
+                "biochemistry",14624,
+                "physical sciences",11686,
+                "anatomy",11298,
+                "physiology",10542,
+                "organisms",10199,
+                "cell biology",9602,
+                "genetics",8234,
+                "pathology and laboratory medicine",8189,
+                "chemistry",7449,
+                "social sciences",7141,
+                "people and places",6956,
+                "diagnostic medicine",6702,
+                "proteins",6474,
+                "eukaryota",6321,
+                "chemical compounds",5808,
+                "neuroscience",5539,
+                "cellular types",5236,
+                "animal cells",5035,
+                "microbiology",4993,
+                "public and occupational health",4963,
+                "psychology",4777,
+                "gene expression",4615,
+                "immunology",4493,
+                "population groupings",4467,
+                "organic chemistry",4387,
+                "organic compounds",4379,
+                "molecular biology",4348,
+                "developmental biology",4246,
+                "medical microbiology",4160,
+                "pathogens",4075,
+                "microbial pathogens",3955,
+                "nutrition",3920,
+                "mental health and psychiatry",3918,
+                "geographical locations",3820,
+                "animals",3718,
+                "molecular biology techniques",3713,
+                "experimental organism systems",3679,
+                "diet",3656,
+                "pharmacology",3533,
+                "oncology",3518,
+                "health care",3501,
+                "signs and symptoms",3477,
+                "behavior",3434,
+                "endocrinology",3264,
+                "mathematics",3205,
+                "infectious diseases",3176,
+                "body fluids",3175,
+                "model organisms",3122,
+                "lipids",3025,
+                "cancers and neoplasms",2966,
+                "vascular medicine",2926,
+                "nucleic acids",2825,
+                "neurology",2771,
+                "gastroenterology and hepatology",2728,
+                "mathematical and statistical techniques",2656,
+                "physiological parameters",2652,
+                "metabolic disorders",2592,
+                "viruses",2563,
+                "animal models",2555,
+                "statistical methods",2532,
+                "body weight",2509,
+                "viral pathogens",2469,
+                "cognitive science",2407,
+                "cellular structures and organelles",2392,
+                "sociology",2364,
+                "endocrine disorders",2298,
+                "vertebrates",2294,
+                "diabetes mellitus",2269,
+                "hormones",2265,
+                "statistics (mathematics)",2249,
+                "cell processes",2227,
+                "liver diseases",2218,
+                "research design",2218,
+                "physiological processes",2196,
+                "gene regulation",2191,
+                "genomics",2189,
+                "imaging techniques",2186,
+                "age groups",2160,
+                "physics",2141,
+                "rna viruses",2103,
+                "drugs",2097,
+                "blood",2077,
+                "computer and information sciences",2074,
+                "alcohol consumption",2043,
+                "bacteria",2008,
+                "biological tissue",1982,
+                "surgical and invasive medical procedures",1965,
+                "metabolism",1947,
+                "blood pressure",1938,
+                "engineering and technology",1937,
+                "plants",1904,
+                "materials science",1897,
+                "amniotes",1869,
+                "enzymology",1789,
+                "blood cells",1786,
+                "immune response",1786,
+                "database and informatics methods",1780]},
+            "facet_ranges":{},
+            "facet_intervals":{},
+            "facet_heatmaps":{}}}
+  recorded_at: 2020-04-07 21:31:23 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=alcohol&facet.field=journal&facet.mincount=500&wt=json&fl=DOES_NOT_EXIST&facet=true
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:22 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '448'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"YmY3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":32773,"start":0,"docs":[
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}]
+          },
+          "facet_counts":{
+            "facet_queries":{},
+            "facet_fields":{
+              "journal":[
+                "plos one",29296,
+                "plos genetics",654,
+                "plos medicine",613,
+                "plos neglected tropical diseases",559]},
+            "facet_ranges":{},
+            "facet_intervals":{},
+            "facet_heatmaps":{}}}
+  recorded_at: 2020-04-07 21:31:23 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=%2A%3A%2A&facet.query=cell%2Cbird&facet.field=journal&wt=json&fl=DOES_NOT_EXIST&facet=true
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:23 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '650'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"YmY3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":2341967,"start":0,"docs":[
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}]
+          },
+          "facet_counts":{
+            "facet_queries":{
+              "cell,bird":11353},
+            "facet_fields":{
+              "journal":[
+                "plos one",1939972,
+                "plos genetics",72382,
+                "plos pathogens",65865,
+                "plos neglected tropical diseases",64913,
+                "plos computational biology",59616,
+                "plos biology",41954,
+                "plos medicine",29883,
+                "plos clinical trials",521,
+                "plos medicin",9]},
+            "facet_ranges":{},
+            "facet_intervals":{},
+            "facet_heatmaps":{}}}
+  recorded_at: 2020-04-07 21:31:23 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2

@@ -1,0 +1,94 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=subject%3A%22marine%20ecology%22&fl=id%2Cjournal&rows=0&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:41 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '57'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"OTk3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":4158,"start":0,"docs":[]
+          }}
+  recorded_at: 2020-04-07 21:31:42 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=subject%3A%22marine%20ecology%22&fl=id%2Cjournal&start=0&rows=9&wt=json&fq=doc_type%3Afull
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:42 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '813'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"Yjc3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":483,"start":0,"docs":[
+              {
+                "id":"10.1371/journal.pone.0092590",
+                "journal":"PLoS ONE"},
+              {
+                "id":"10.1371/journal.pone.0021810",
+                "journal":"PLoS ONE"},
+              {
+                "id":"10.1371/image.pbio.v14.i03",
+                "journal":"PLoS Biology"},
+              {
+                "id":"10.1371/journal.pone.0149852",
+                "journal":"PLOS ONE"},
+              {
+                "id":"10.1371/journal.pone.0201602",
+                "journal":"PLOS ONE"},
+              {
+                "id":"10.1371/journal.pone.0174384",
+                "journal":"PLOS ONE"},
+              {
+                "id":"10.1371/journal.pone.0189956",
+                "journal":"PLOS ONE"},
+              {
+                "id":"10.1371/journal.pone.0055939",
+                "journal":"PLoS ONE"},
+              {
+                "id":"10.1371/journal.pone.0032031",
+                "journal":"PLoS ONE"}]
+          }}
+  recorded_at: 2020-04-07 21:31:42 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2

@@ -4,7 +4,6 @@
 \name{rplos}
 \alias{rplos}
 \alias{rplos-package}
-\alias{rplos-package}
 \title{Connect with PLoS API data}
 \description{
 \code{rplos} provides an R interface to the PLoS Search API. More

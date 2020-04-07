@@ -5,19 +5,19 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "rplos",
-  "description": "A programmatic interface to the 'SOLR' based\n    search 'API' (<http://api.plos.org/>) provided by the Public\n    Library of Science journals to search their articles.\n    Functions are included for searching for articles, retrieving\n    articles, making plots, doing 'faceted' searches,\n    'highlight' searches, and viewing results of 'highlighted'\n    searches in a browser.",
-  "name": "rplos: Interface to the Search 'API' for 'PLoS' Journals",
+  "description": "A programmatic interface to the 'SOLR' based\n    search API (<http://api.plos.org/>) provided by the Public\n    Library of Science journals to search their articles.\n    Functions are included for searching for articles, retrieving\n    articles, making plots, doing 'faceted' searches,\n    'highlight' searches, and viewing results of 'highlighted'\n    searches in a browser.",
+  "name": "rplos: Interface to the Search API for 'PLoS' Journals",
   "codeRepository": "https://github.com/ropensci/rplos",
   "issueTracker": "https://github.com/ropensci/rplos/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.8.2",
+  "version": "0.8.6",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.0",
+    "version": "3.6.0",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.0 (2018-04-23)",
+  "runtimePlatform": "R version 3.6.0 Patched (2019-04-30 r76446)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -107,6 +107,7 @@
       "@type": "SoftwareApplication",
       "identifier": "vcr",
       "name": "vcr",
+      "version": ">= 0.2.6",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -133,7 +134,7 @@
       "@type": "SoftwareApplication",
       "identifier": "crul",
       "name": "crul",
-      "version": ">= 0.4.0",
+      "version": ">= 0.7.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -218,7 +219,7 @@
       "@type": "SoftwareApplication",
       "identifier": "solrium",
       "name": "solrium",
-      "version": ">= 1.0.0",
+      "version": ">= 1.0.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -231,9 +232,12 @@
   "contIntegration": "https://travis-ci.org/ropensci/rplos",
   "releaseNotes": "https://github.com/ropensci/rplos/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/rplos/blob/master/README.md",
-  "fileSize": "1109.178KB",
+  "fileSize": "1217.221KB",
   "applicationCategory": "Literature",
   "isPartOf": "https://ropensci.org",
-  "keywords": ["PLOS", "library", "science", "JSON", "XML", "API", "web", "api-client", "article", "fulltext", "text-mining", "xml", "pdf", "metadata", "web-api", "plos", "r", "rstats"],
-  "developmentStatus": "http://www.repostatus.org/#active"
+  "keywords": ["PLOS", "library", "science", "JSON", "XML", "API", "web", "api-client", "article", "fulltext", "text-mining", "xml", "pdf", "metadata", "web-api", "plos", "r", "rstats", "r-package"],
+  "developmentStatus": "http://www.repostatus.org/#active",
+  "contributor": {},
+  "copyrightHolder": {},
+  "funder": {}
 }

@@ -1,0 +1,53 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=%2A%3A%2A&facet.field=adsfad&wt=json&fl=DOES_NOT_EXIST&facet=true
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '400'
+      message: Bad Request
+      explanation: Bad request syntax or unsupported method
+    headers:
+      status: HTTP/1.1 400 Bad Request
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:23 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '372'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 21:31:23 GMT
+      etag: '"171568e11c2"'
+      cache-control: no-cache, no-store
+      pragma: no-cache
+      expires: Sat, 01 Jan 2000 01:00:00 GMT
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":2341967,"start":0,"docs":[
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}]
+          },
+          "error":{
+            "metadata":[
+              "error-class","org.apache.solr.common.SolrException",
+              "root-error-class","org.apache.solr.common.SolrException"],
+            "msg":"undefined field: \"adsfad\"",
+            "code":400}}
+  recorded_at: 2020-04-07 21:31:23 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2

@@ -1,7 +1,7 @@
 ## Test environments
 
-* local OS X install, R 3.5.0
-* ubuntu 12.04 (on travis-ci), R 3.5.0
+* local OS X install, R 3.6.0 Patched
+* ubuntu 14.04 (on travis-ci), R 3.6.0
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -9,7 +9,7 @@
   License components with restrictions and base license permitting such:
     MIT + file LICENSE
   File 'LICENSE':
-    YEAR: 2018
+    YEAR: 2019
     COPYRIGHT HOLDER: Scott Chamberlain
 
 ## Reverse dependencies
@@ -20,7 +20,7 @@
 
 ----------
 
-This version adds integration with vcr and webmockr packages for unit test stubbing.
+This version fixes problems in test fixture files that had non-ascii text that caused test suite failures on debian clang devel platform.
 
 Thanks!
 Scott Chamberlain

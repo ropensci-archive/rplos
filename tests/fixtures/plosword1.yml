@@ -1,0 +1,54 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=Helianthus&fl=id&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:43 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '595'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"OTk3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":608,"start":0,"docs":[
+              {
+                "id":"10.1371/journal.pone.0198869"},
+              {
+                "id":"10.1371/journal.pone.0213065"},
+              {
+                "id":"10.1371/journal.pone.0148280"},
+              {
+                "id":"10.1371/journal.pone.0111982"},
+              {
+                "id":"10.1371/journal.pone.0212371"},
+              {
+                "id":"10.1371/journal.pone.0139188"},
+              {
+                "id":"10.1371/journal.pone.0057533"},
+              {
+                "id":"10.1371/journal.pone.0045899"},
+              {
+                "id":"10.1371/journal.pone.0037191"},
+              {
+                "id":"10.1371/journal.pone.0051360"}]
+          }}
+  recorded_at: 2020-04-07 21:31:43 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2

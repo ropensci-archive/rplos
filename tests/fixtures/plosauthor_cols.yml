@@ -1,0 +1,431 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=author%3A%22johnson%22&fl=title%2Cauthor&rows=0&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:41 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '58'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"Yjc3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":16333,"start":0,"docs":[]
+          }}
+  recorded_at: 2020-04-07 21:31:41 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=author%3A%22johnson%22&fl=title%2Cauthor&start=0&rows=100&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:41 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '11132'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"YmY3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":16333,"start":0,"docs":[
+              {
+                "author":["Jay E Johnson",
+                  "F Brad Johnson"]},
+              {
+                "author":["Jay E Johnson",
+                  "F Brad Johnson"]},
+              {
+                "author":["Jay E Johnson",
+                  "F Brad Johnson"],
+                "title":"Methionine Restriction Activates the Retrograde Response and Confers Both Stress Tolerance and Lifespan Extension to Yeast, Mouse and Human Cells"},
+              {
+                "author":["Jay E Johnson",
+                  "F Brad Johnson"]},
+              {
+                "author":["Jay E Johnson",
+                  "F Brad Johnson"]},
+              {
+                "author":["Jay E Johnson",
+                  "F Brad Johnson"]},
+              {
+                "author":["Jay E Johnson",
+                  "F Brad Johnson"]},
+              {
+                "author":["Jay E Johnson",
+                  "F Brad Johnson"]},
+              {
+                "author":["Jay E Johnson",
+                  "F Brad Johnson"]},
+              {
+                "author":["Maxwell Droznin",
+                  "Allen Johnson",
+                  "Asal Mohamadi Johnson"],
+                "title":"Multidrug resistant tuberculosis in prisons located in former Soviet countries: A systematic review"},
+              {
+                "author":["Maxwell Droznin",
+                  "Allen Johnson",
+                  "Asal Mohamadi Johnson"]},
+              {
+                "author":["Maxwell Droznin",
+                  "Allen Johnson",
+                  "Asal Mohamadi Johnson"]},
+              {
+                "author":["Maxwell Droznin",
+                  "Allen Johnson",
+                  "Asal Mohamadi Johnson"]},
+              {
+                "author":["Maxwell Droznin",
+                  "Allen Johnson",
+                  "Asal Mohamadi Johnson"]},
+              {
+                "author":["Maxwell Droznin",
+                  "Allen Johnson",
+                  "Asal Mohamadi Johnson"]},
+              {
+                "author":["Maxwell Droznin",
+                  "Allen Johnson",
+                  "Asal Mohamadi Johnson"]},
+              {
+                "author":["Maxwell Droznin",
+                  "Allen Johnson",
+                  "Asal Mohamadi Johnson"]},
+              {
+                "author":["Sandy A Johnson"],
+                "title":"The Cost of War on Public Health: An Exploratory Method for Understanding the Impact of Conflict on Public Health in Sri Lanka"},
+              {
+                "author":["Sandy A Johnson"]},
+              {
+                "author":["Sandy A Johnson"]},
+              {
+                "author":["Sandy A Johnson"]},
+              {
+                "author":["Sandy A Johnson"]},
+              {
+                "author":["Sandy A Johnson"]},
+              {
+                "author":["Sandy A Johnson"]},
+              {
+                "author":["Sandy A Johnson"]},
+              {
+                "author":["Sandy A Johnson"]},
+              {
+                "author":["R C Johnson"]},
+              {
+                "author":["R C Johnson"]},
+              {
+                "author":["R C Johnson"]},
+              {
+                "author":["R C Johnson"]},
+              {
+                "author":["Welkin E Johnson"]},
+              {
+                "author":["Welkin E Johnson"]},
+              {
+                "author":["Welkin E Johnson"]},
+              {
+                "author":["Welkin E Johnson"]},
+              {
+                "author":["Welkin E Johnson"],
+                "title":"Endless Forms Most Viral"},
+              {
+                "author":["R C Johnson"],
+                "title":"Gene Banks Pay Big Dividends to Agriculture, the Environment, and Human Welfare"},
+              {
+                "author":["Keven R Johnson",
+                  "Jessie Nicodemus-Johnson",
+                  "Mathew J Spindler",
+                  "Graeme K Carnegie"],
+                "title":"Genome-Wide Gene Expression Analysis Shows AKAP13-Mediated PKD1 Signaling Regulates the Transcriptional Response to Cardiac Hypertrophy"},
+              {
+                "author":["Keven R Johnson",
+                  "Jessie Nicodemus-Johnson",
+                  "Mathew J Spindler",
+                  "Graeme K Carnegie"]},
+              {
+                "author":["Keven R Johnson",
+                  "Jessie Nicodemus-Johnson",
+                  "Mathew J Spindler",
+                  "Graeme K Carnegie"]},
+              {
+                "author":["Keven R Johnson",
+                  "Jessie Nicodemus-Johnson",
+                  "Mathew J Spindler",
+                  "Graeme K Carnegie"]},
+              {
+                "author":["Keven R Johnson",
+                  "Jessie Nicodemus-Johnson",
+                  "Mathew J Spindler",
+                  "Graeme K Carnegie"]},
+              {
+                "author":["Keven R Johnson",
+                  "Jessie Nicodemus-Johnson",
+                  "Mathew J Spindler",
+                  "Graeme K Carnegie"]},
+              {
+                "author":["Keven R Johnson",
+                  "Jessie Nicodemus-Johnson",
+                  "Mathew J Spindler",
+                  "Graeme K Carnegie"]},
+              {
+                "author":["Keven R Johnson",
+                  "Jessie Nicodemus-Johnson",
+                  "Mathew J Spindler",
+                  "Graeme K Carnegie"]},
+              {
+                "author":["Keven R Johnson",
+                  "Jessie Nicodemus-Johnson",
+                  "Mathew J Spindler",
+                  "Graeme K Carnegie"]},
+              {
+                "author":["Matthew W Johnson",
+                  "Patrick S Johnson",
+                  "Evan S Herrmann",
+                  "Mary M Sweeney"]},
+              {
+                "author":["Matthew W Johnson",
+                  "Patrick S Johnson",
+                  "Evan S Herrmann",
+                  "Mary M Sweeney"]},
+              {
+                "author":["Matthew W Johnson",
+                  "Patrick S Johnson",
+                  "Evan S Herrmann",
+                  "Mary M Sweeney"]},
+              {
+                "author":["Matthew W Johnson",
+                  "Patrick S Johnson",
+                  "Evan S Herrmann",
+                  "Mary M Sweeney"]},
+              {
+                "author":["Matthew W Johnson",
+                  "Patrick S Johnson",
+                  "Evan S Herrmann",
+                  "Mary M Sweeney"]},
+              {
+                "author":["Matthew W Johnson",
+                  "Patrick S Johnson",
+                  "Evan S Herrmann",
+                  "Mary M Sweeney"]},
+              {
+                "author":["Matthew W Johnson",
+                  "Patrick S Johnson",
+                  "Evan S Herrmann",
+                  "Mary M Sweeney"]},
+              {
+                "author":["Matthew W Johnson",
+                  "Patrick S Johnson",
+                  "Evan S Herrmann",
+                  "Mary M Sweeney"],
+                "title":"Delay and Probability Discounting of Sexual and Monetary Outcomes in Individuals with Cocaine Use Disorders and Matched Controls"},
+              {
+                "author":["Ian Johnson",
+                  "Huinan Liu"]},
+              {
+                "author":["Ian Johnson",
+                  "Huinan Liu"],
+                "title":"A Study on Factors Affecting the Degradation of Magnesium and a Magnesium-Yttrium Alloy for Biomedical Applications"},
+              {
+                "author":["Ian Johnson",
+                  "Huinan Liu"]},
+              {
+                "author":["Ian Johnson",
+                  "Huinan Liu"]},
+              {
+                "author":["Ian Johnson",
+                  "Huinan Liu"]},
+              {
+                "author":["Ian Johnson",
+                  "Huinan Liu"]},
+              {
+                "author":["Ian Johnson",
+                  "Huinan Liu"]},
+              {
+                "author":["Ian Johnson",
+                  "Huinan Liu"]},
+              {
+                "author":["Javier Buceta",
+                  "Kaylynn Johnson"],
+                "title":"Modeling the Ebola zoonotic dynamics: Interplay between enviroclimatic factors and bat ecology"},
+              {
+                "author":["Javier Buceta",
+                  "Kaylynn Johnson"]},
+              {
+                "author":["Javier Buceta",
+                  "Kaylynn Johnson"]},
+              {
+                "author":["Javier Buceta",
+                  "Kaylynn Johnson"]},
+              {
+                "author":["Javier Buceta",
+                  "Kaylynn Johnson"]},
+              {
+                "author":["Javier Buceta",
+                  "Kaylynn Johnson"]},
+              {
+                "author":["Javier Buceta",
+                  "Kaylynn Johnson"]},
+              {
+                "author":["Javier Buceta",
+                  "Kaylynn Johnson"]},
+              {
+                "author":["Teresa R Johnson",
+                  "Christina N Johnson",
+                  "Kizzmekia S Corbett",
+                  "Gretchen C Edwards",
+                  "Barney S Graham"]},
+              {
+                "author":["Teresa R Johnson",
+                  "Christina N Johnson",
+                  "Kizzmekia S Corbett",
+                  "Gretchen C Edwards",
+                  "Barney S Graham"]},
+              {
+                "author":["Teresa R Johnson",
+                  "Christina N Johnson",
+                  "Kizzmekia S Corbett",
+                  "Gretchen C Edwards",
+                  "Barney S Graham"]},
+              {
+                "author":["Teresa R Johnson",
+                  "Christina N Johnson",
+                  "Kizzmekia S Corbett",
+                  "Gretchen C Edwards",
+                  "Barney S Graham"]},
+              {
+                "author":["Teresa R Johnson",
+                  "Christina N Johnson",
+                  "Kizzmekia S Corbett",
+                  "Gretchen C Edwards",
+                  "Barney S Graham"]},
+              {
+                "author":["Teresa R Johnson",
+                  "Christina N Johnson",
+                  "Kizzmekia S Corbett",
+                  "Gretchen C Edwards",
+                  "Barney S Graham"]},
+              {
+                "author":["Teresa R Johnson",
+                  "Christina N Johnson",
+                  "Kizzmekia S Corbett",
+                  "Gretchen C Edwards",
+                  "Barney S Graham"]},
+              {
+                "author":["Teresa R Johnson",
+                  "Christina N Johnson",
+                  "Kizzmekia S Corbett",
+                  "Gretchen C Edwards",
+                  "Barney S Graham"]},
+              {
+                "author":["Teresa R Johnson",
+                  "Christina N Johnson",
+                  "Kizzmekia S Corbett",
+                  "Gretchen C Edwards",
+                  "Barney S Graham"],
+                "title":"Primary Human mDC1, mDC2, and pDC Dendritic Cells Are Differentially Infected and Activated by Respiratory Syncytial Virus"},
+              {
+                "author":["Victor Hanson-Smith",
+                  "Alexander Johnson"],
+                "title":"PhyloBot: A Web Portal for Automated Phylogenetics, Ancestral Sequence Reconstruction, and Exploration of Mutational Trajectories"},
+              {
+                "author":["Victor Hanson-Smith",
+                  "Alexander Johnson"]},
+              {
+                "author":["Victor Hanson-Smith",
+                  "Alexander Johnson"]},
+              {
+                "author":["Victor Hanson-Smith",
+                  "Alexander Johnson"]},
+              {
+                "author":["Victor Hanson-Smith",
+                  "Alexander Johnson"]},
+              {
+                "author":["Victor Hanson-Smith",
+                  "Alexander Johnson"]},
+              {
+                "author":["Victor Hanson-Smith",
+                  "Alexander Johnson"]},
+              {
+                "author":["Silas F Johnson",
+                  "Alice Telesnitsky"],
+                "title":"Retroviral RNA Dimerization and Packaging: The What, How, When, Where, and Why"},
+              {
+                "author":["Kerri L Johnson",
+                  "Negin Ghavami"],
+                "title":"At the Crossroads of Conspicuous and Concealable: What Race Categories Communicate about Sexual Orientation"},
+              {
+                "author":["Bhawna Gupta",
+                  "Newell W Johnson"],
+                "title":"Systematic Review and Meta-Analysis of Association of Smokeless Tobacco and of Betel Quid without Tobacco with Incidence of Oral Cancer in South Asia and the Pacific"},
+              {
+                "author":["Scott N Johnson",
+                  "Markus Riegler"]},
+              {
+                "author":["Scott N Johnson",
+                  "Markus Riegler"]},
+              {
+                "author":["Scott N Johnson",
+                  "Markus Riegler"]},
+              {
+                "author":["Scott N Johnson",
+                  "Markus Riegler"]},
+              {
+                "author":["Scott N Johnson",
+                  "Markus Riegler"]},
+              {
+                "author":["Scott N Johnson",
+                  "Markus Riegler"]},
+              {
+                "author":["Scott N Johnson",
+                  "Markus Riegler"]},
+              {
+                "author":["Scott N Johnson",
+                  "Markus Riegler"]},
+              {
+                "author":["Raphael B Stricker",
+                  "Lorraine Johnson"]},
+              {
+                "author":["Raphael B Stricker",
+                  "Lorraine Johnson"]},
+              {
+                "author":["Raphael B Stricker",
+                  "Lorraine Johnson"]},
+              {
+                "author":["Raphael B Stricker",
+                  "Lorraine Johnson"]}]
+          }}
+  recorded_at: 2020-04-07 21:31:41 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2

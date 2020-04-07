@@ -1,9 +1,36 @@
+rplos 0.8.6
+-----------
+
+### MINOR IMPROVEMENTS
+
+* use `preserve_exact_body_bytes` for tests for plosabstract and plosfigtabcaps to avoid non-ascii text problems on debian clang devel (#125)
+
+
+rplos 0.8.4
+-----------
+
+### MINOR IMPROVEMENTS
+
+* update docs for `searchplos()` and all wrapper fxns to explain that internal pagination is used, but that users can do their own pagination if they like (#122)
+
+### BUG FIXES
+
+* fix to pagination in `searchplos()` and all wrapper fxns. large numbers were being passed as scientific notation, fixed now (#123)
+
+
 rplos 0.8.2
 -----------
 
 ### NEW FEATURES
 
 * Integration with `vcr` and `webmockr` packages for unit test stubbing
+
+### BUG FIXES
+
+* for `highbrow()` open pages with `https://doi.org` instead of `http://dx.doi.org` (#117)
+* remove message `"Looping - printing progress ..."` from `searchplos()` (#120)
+* fix internal pagination for `searchplos()`: were accidentally dropping `fq` statements if more than 1, woopsy  (#121)
+
 
 rplos 0.8.0
 -----------

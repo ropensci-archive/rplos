@@ -13,15 +13,33 @@ test_that("searchplos returns the correct", {
   	expect_that(ncol(dat2$data), equals(1))
 
     # classes
-    expect_that(dat1$data[1,1][[1]], is_a("character"))
-    expect_that(dat2$data[1,1][[1]], is_a("character"))
-  	expect_that(dat1$data, is_a("data.frame"))
-    expect_that(dat2$data, is_a("data.frame"))
+    expect_is(dat1$data[1,1][[1]], "character")
+    expect_is(dat2$data[1,1][[1]], "character")
+  	expect_is(dat1$data, "data.frame")
+    expect_is(dat2$data, "data.frame")
     expect_is(dat2, "list")
     expect_is(dat2$meta, "data.frame")
 
     # searchplos returns the correct value
-    expect_that(grepl('10.1371', dat2$data[1,1]), is_true())
+    expect_true(grepl('10.1371', dat2$data[1,1]))
+  })
+})
+
+test_that("searchplos pagination handles large numbers correctly", {
+  vcr::use_cassette("searchplos_large_numbers", {
+    # without L
+    dat2 <- searchplos(q="*:*", fl='id', start=1000000, limit=15)
+
+    expect_is(dat2, "list")
+    expect_equal(dat2$meta$start, 1000000)
+    expect_equal(NROW(dat2$data), 15)
+
+    # with L
+    dat3 <- searchplos(q="*:*", fl='id', start=1000000L, limit=15)
+
+    expect_is(dat3, "list")
+    expect_equal(dat3$meta$start, 1000000)
+    expect_equal(NROW(dat3$data), 15)
   })
 })
 

@@ -36,6 +36,8 @@ test_that("full_text_urls - NA's on annotation DOIs", {
 })
 
 test_that("plos_fulltext works", {
+  skip_on_cran()
+
   vcr::use_cassette("full_text_urls-with-searchplos2", {
     aa <- plos_fulltext(doi = '10.1371/journal.pone.0086169')
     bb <- plos_fulltext(c('10.1371/journal.pone.0086169', '10.1371/journal.pbio.1001845'))
@@ -78,22 +80,24 @@ test_that("plos_fulltext works with all journals", {
   doi_pctr1 <- '10.1371/journal.pctr.0020026'
   doi_pctr2 <- '10.1371/journal.pctr.0020020'
 
-  pone1 <- plos_fulltext(doi = doi_pone1)
-  pone2 <- plos_fulltext(doi = doi_pone2)
-  pbio1 <- plos_fulltext(doi = doi_pbio1)
-  pbio2 <- plos_fulltext(doi = doi_pbio2)
-  pmed1 <- plos_fulltext(doi = doi_pmed1)
-  pmed2 <- plos_fulltext(doi = doi_pmed2)
-  pgen1 <- plos_fulltext(doi = doi_pgen1)
-  pgen2 <- plos_fulltext(doi = doi_pgen2)
-  pcbi1 <- plos_fulltext(doi = doi_pcbi1)
-  pcbi2 <- plos_fulltext(doi = doi_pcbi2)
-  ppat1 <- plos_fulltext(doi = doi_ppat1)
-  ppat2 <- plos_fulltext(doi = doi_ppat2)
-  pntd1 <- plos_fulltext(doi = doi_pntd1)
-  pntd2 <- plos_fulltext(doi = doi_pntd2)
-  pctr1 <- plos_fulltext(doi = doi_pctr1)
-  pctr2 <- plos_fulltext(doi = doi_pctr2)
+  vcr::use_cassette("full_text_urls_all_journals", {
+    pone1 <- plos_fulltext(doi = doi_pone1)
+    pone2 <- plos_fulltext(doi = doi_pone2)
+    pbio1 <- plos_fulltext(doi = doi_pbio1)
+    pbio2 <- plos_fulltext(doi = doi_pbio2)
+    pmed1 <- plos_fulltext(doi = doi_pmed1)
+    pmed2 <- plos_fulltext(doi = doi_pmed2)
+    pgen1 <- plos_fulltext(doi = doi_pgen1)
+    pgen2 <- plos_fulltext(doi = doi_pgen2)
+    pcbi1 <- plos_fulltext(doi = doi_pcbi1)
+    pcbi2 <- plos_fulltext(doi = doi_pcbi2)
+    ppat1 <- plos_fulltext(doi = doi_ppat1)
+    ppat2 <- plos_fulltext(doi = doi_ppat2)
+    pntd1 <- plos_fulltext(doi = doi_pntd1)
+    pntd2 <- plos_fulltext(doi = doi_pntd2)
+    pctr1 <- plos_fulltext(doi = doi_pctr1)
+    pctr2 <- plos_fulltext(doi = doi_pctr2)
+  })
 
   expect_is(pone1, "plosft")
   expect_is(pone1[[1]], "character")

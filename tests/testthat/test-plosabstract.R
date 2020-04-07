@@ -1,4 +1,3 @@
-# tests for plosabstract fxn in rplos
 context("plosabstract")
 
 test_that("plosabstract returns the correct dimensioned data.frame", {

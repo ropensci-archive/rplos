@@ -1,0 +1,121 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=abstract%3A%22drosophila%22&fl=author&rows=0&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:40 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '57'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"Yjc3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: ASCII-8BIT
+      file: no
+      string: ewogICJyZXNwb25zZSI6eyJudW1Gb3VuZCI6Mzc4OCwic3RhcnQiOjAsImRvY3MiOltdCiAgfX0K
+  recorded_at: 2020-04-07 21:31:40 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=abstract%3A%22drosophila%22&fl=author&start=0&rows=5&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:40 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '484'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"YmY3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: ASCII-8BIT
+      file: no
+      string: ewogICJyZXNwb25zZSI6eyJudW1Gb3VuZCI6Mzc4OCwic3RhcnQiOjAsImRvY3MiOlsKICAgICAgewogICAgICAgICJhdXRob3IiOlsiTWFydGluIEthcHVuIiwKICAgICAgICAgICJWaW9sYSBOb2x0ZSIsCiAgICAgICAgICAiVGhvbWFzIEZsYXR0IiwKICAgICAgICAgICJDaHJpc3RpYW4gU2NobMO2dHRlcmVyIl19LAogICAgICB7CiAgICAgICAgImF1dGhvciI6WyJGZW5nc2hvdSBMdiIsCiAgICAgICAgICAiWGlhb3BlbmcgWWFuZyIsCiAgICAgICAgICAiQ2h1YW5qdSBDdWkiLAogICAgICAgICAgIkNodW5oZSBTdSJdfSwKICAgICAgewogICAgICAgICJhdXRob3IiOlsiTm9ybWEgQW5kcmVhIFZlbGF6cXVlei1VbGxvYSJdfSwKICAgICAge30sCiAgICAgIHsKICAgICAgICAiYXV0aG9yIjpbIkplc3NpY2EgTCBSb2JlcnRzb24iLAogICAgICAgICAgIkFzYWtvIFRzdWJvdWNoaSIsCiAgICAgICAgICAiVyBEYW5pZWwgVHJhY2V5Il19XQogIH19Cg==
+  recorded_at: 2020-04-07 21:31:40 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=abstract%3A%22Jones%22&fl=author&rows=0&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:40 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '55'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"Yjc3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: ASCII-8BIT
+      file: no
+      string: ewogICJyZXNwb25zZSI6eyJudW1Gb3VuZCI6NDMsInN0YXJ0IjowLCJkb2NzIjpbXQogIH19Cg==
+  recorded_at: 2020-04-07 21:31:40 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=abstract%3A%22Jones%22&fl=author&start=0&rows=5&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:40 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '483'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"Y2I3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: ASCII-8BIT
+      file: no
+      string: ewogICJyZXNwb25zZSI6eyJudW1Gb3VuZCI6NDMsInN0YXJ0IjowLCJkb2NzIjpbCiAgICAgIHsKICAgICAgICAiYXV0aG9yIjpbIlpoaWRvbmcgQmFpIiwKICAgICAgICAgICJZb25nY2hhbmcgSHVpIiwKICAgICAgICAgICJEYW5kYW4gSmlhbmciLAogICAgICAgICAgIlpoaWh1aSBMdiIsCiAgICAgICAgICAiV2luZy1LZXVuZyBXb25nIiwKICAgICAgICAgICJTaHVyb25nIFpoZW5nIl19LAogICAgICB7CiAgICAgICAgImF1dGhvciI6WyJQZXRlciBDbGVhdG9uLUpvbmVzIl19LAogICAgICB7CiAgICAgICAgImF1dGhvciI6WyJUaG9tYXMgQSBIdWdoZXMiLAogICAgICAgICAgIlBhbWVsYSBGIEpvbmVzIl19LAogICAgICB7CiAgICAgICAgImF1dGhvciI6WyJTYXJhaCBSb3dsYW5kLUpvbmVzIiwKICAgICAgICAgICJUaHVzaGFuIGRlIFNpbHZhIl19LAogICAgICB7CiAgICAgICAgImF1dGhvciI6WyJLZXJyaS1Bbm4gSm9uZXMiXX1dCiAgfX0K
+  recorded_at: 2020-04-07 21:31:40 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2

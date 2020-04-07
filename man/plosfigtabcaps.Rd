@@ -4,9 +4,20 @@
 \alias{plosfigtabcaps}
 \title{Search PLoS Journals figure and table captions.}
 \usage{
-plosfigtabcaps(q = NULL, fl = "id", fq = NULL, sort = NULL, start = 0,
-  limit = 10, sleep = 6, errors = "simple", proxy = NULL,
-  callopts = NULL, progress = NULL, ...)
+plosfigtabcaps(
+  q = NULL,
+  fl = "id",
+  fq = NULL,
+  sort = NULL,
+  start = 0,
+  limit = 10,
+  sleep = 6,
+  errors = "simple",
+  proxy = NULL,
+  callopts = NULL,
+  progress = NULL,
+  ...
+)
 }
 \arguments{
 \item{q}{Search terms (character). You can search on specific fields by
@@ -30,10 +41,12 @@ or descending (desc) after a space; see examples. For example, to sort the
 counter_total_all field in descending fashion, do sort='counter_total_all desc'}
 
 \item{start}{Record to start at (used in combination with limit when
-you need to cycle through more results than the max allowed=1000)}
+you need to cycle through more results than the max allowed=1000). See Pagination
+below}
 
 \item{limit}{Number of results to return (integer). Setting \code{limit=0} returns only
-metadata.}
+   metadata.
+metadata. See Pagination below}
 
 \item{sleep}{Number of seconds to wait between requests. No need to use this for
 a single call to searchplos. However, if you are using searchplos in a loop or
@@ -93,6 +106,17 @@ do \code{searchplos(q = '"synthetic biology"')}.
 You can modify phrase searches as well. For example,
 \code{searchplos(q = '"synthetic biology" ~ 10')} asks for cases of
 \strong{synthetic biology} within 10 words of each other. See examples.
+}
+
+\section{Pagination}{
+
+The \code{searchplos} function and the many functions that are wrappers around 
+\code{searchplos} all do paginatino internally for you. That is, if you request for 
+example, 2000 results, the max you can get in any one request is 1000, so we'll do 
+two requests for you. And so on for larger requests. 
+
+You can always do your own paginatino by doing a lapply type call or a for loop 
+to cycle through pages of results.
 }
 
 \examples{

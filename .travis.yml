@@ -1,15 +1,26 @@
 language: r
-sudo: false
+os: linux
 cache: packages
 dist: trusty
 
-r_check_args: "--as-cran"
+r_check_args: "--as-cran --no-manual --no-build-vignettes"
 
-r_github_packages:
-  - jimhester/covr
+r_binary_packages:
+  - covr
+
+jobs:
+  include:
+    - os: linux
+      r: oldrel
+    - os: linux
+      r: release
+      env: R_CODECOV=true
+    - os: linux
+      r: devel
+      env: _R_CHECK_LENGTH_1_LOGIC2_=TRUE
 
 after_success:
-  - Rscript -e 'covr::codecov()'
+  - if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
 
 notifications:
   slack:

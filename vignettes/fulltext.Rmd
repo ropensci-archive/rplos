@@ -1,11 +1,13 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Full text}
-%\VignetteEncoding{UTF-8}
--->
-
-Full text
-=====
+---
+title: Full text
+author: Scott Chamberlain
+date: "2020-04-07"
+output: rmarkdown::html_vignette
+vignette: >
+    %\VignetteIndexEntry{Full text}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+---
 
 
 
@@ -73,26 +75,26 @@ full_text_urls(dois)
 ```
 
 ```
-#>  [1] "http://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1000942&type=manuscript"
-#>  [2] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0130089&type=manuscript"     
-#>  [3] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0165670&type=manuscript"     
-#>  [4] "http://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1002909&type=manuscript"
-#>  [5] "http://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1004317&type=manuscript"
-#>  [6] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1002259&type=manuscript" 
-#>  [7] "http://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1003554&type=manuscript"
-#>  [8] "http://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1004432&type=manuscript"
-#>  [9] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0162873&type=manuscript"     
-#> [10] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0163015&type=manuscript"     
-#> [11] "http://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1003597&type=manuscript"
-#> [12] "http://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1004934&type=manuscript"
-#> [13] "http://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1004795&type=manuscript"
-#> [14] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.0000004&type=manuscript" 
-#> [15] "http://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1003631&type=manuscript"
-#> [16] "http://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1003549&type=manuscript"
-#> [17] "http://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1003507&type=manuscript"
-#> [18] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.0000040&type=manuscript" 
-#> [19] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.0000026&type=manuscript" 
-#> [20] "http://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1003332&type=manuscript"
+#>  [1] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020843&type=manuscript"
+#>  [2] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0022257&type=manuscript"
+#>  [3] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023139&type=manuscript"
+#>  [4] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023138&type=manuscript"
+#>  [5] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023119&type=manuscript"
+#>  [6] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023113&type=manuscript"
+#>  [7] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023133&type=manuscript"
+#>  [8] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023106&type=manuscript"
+#>  [9] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023117&type=manuscript"
+#> [10] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023135&type=manuscript"
+#> [11] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023134&type=manuscript"
+#> [12] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023105&type=manuscript"
+#> [13] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020929&type=manuscript"
+#> [14] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020900&type=manuscript"
+#> [15] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020913&type=manuscript"
+#> [16] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020935&type=manuscript"
+#> [17] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020914&type=manuscript"
+#> [18] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020919&type=manuscript"
+#> [19] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020899&type=manuscript"
+#> [20] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020892&type=manuscript"
 ```
 
 ### Get XML
@@ -143,13 +145,12 @@ Extract the abstract from the XML
 ```r
 if (requireNamespace("xml2")) {
   library("xml2")
-  xml_text(xml_find_all(read_xml(xml), "//abstract/p"))
+  xml_text(xml_find_all(read_xml(xml), "//abstract"))
 }
 ```
 
 ```
-#> [1] "Quantitative linkages between individual organism movements and the resulting population distributions are fundamental to understanding a wide range of ecological processes, including rates of reproduction, consumption, and mortality, as well as the spread of diseases and invasions. Typically, quantitative data are collected on either movement behaviors or population distributions, rarely both. This study combines empirical observations and model simulations to gain a mechanistic understanding and predictive ability of the linkages between both individual movement behaviors and population distributions of a single-celled planktonic herbivore. In the laboratory, microscopic 3D movements and macroscopic population distributions were simultaneously quantified in a 1L tank, using automated video- and image-analysis routines. The vertical velocity component of cell movements was extracted from the empirical data and used to motivate a series of correlated random walk models that predicted population distributions. Validation of the model predictions with empirical data was essential to distinguish amongst a number of theoretically plausible model formulations. All model predictions captured the essence of the population redistribution (mean upward drift) but only models assuming long correlation times (minute), captured the variance in population distribution. Models assuming correlation times of 8 minutes predicted the least deviation from the empirical observations. Autocorrelation analysis of the empirical data failed to identify a de-correlation time in the up to 30-second-long swimming trajectories. These minute-scale estimates are considerably greater than previous estimates of second-scale correlation times. Considerable cell-to-cell variation and behavioral heterogeneity were critical to these results. Strongly correlated random walkers were predicted to have significantly greater dispersal distances and more rapid encounters with remote targets (e.g. resource patches, predators) than weakly correlated random walkers. The tendency to disperse rapidly in the absence of aggregative stimuli has important ramifications for the ecology and biogeography of planktonic organisms that perform this kind of random walk."
-#> [2] "Organism movement is fundamental to how organisms interact with each other and the environment. Such movements are also important on the population level and determine the spread of disease and invasion, reproduction, consumption, and mortality. Theoretical ecologists have sought to predict population dispersal rates, which are often hard to measure, from individual movement behaviors, which are often easier to measure. This problem has been non-trivial. This manuscript contributes seldom available, simultaneously measured movement behaviors and population distributions of a single celled planktonic organism. The empirical data are used to distinguish amongst a set of plausible theoretical modeling approaches to suggest that organism movements are highly correlated, meaning movement direction and speed is consistent over several minutes. Previous estimates suggested persistence only lasted several seconds. Minute-scale correlations result in much more rapid organism dispersal and greater dispersal distance, indicating that organisms encounter and impact a greater portion of their surrounding habitat than previously suspected."
+#> [1] "BackgroundWolbachia are intriguing symbiotic endobacteria with a peculiar host range that includes arthropods and a single nematode family, the Onchocercidae encompassing agents of filariases. This raises the question of the origin of infection in filariae. Wolbachia infect the female germline and the hypodermis. Some evidences lead to the theory that Wolbachia act as mutualist and coevolved with filariae from one infection event: their removal sterilizes female filariae; all the specimens of a positive species are infected; Wolbachia are vertically inherited; a few species lost the symbiont. However, most data on Wolbachia and filaria relationships derive from studies on few species of Onchocercinae and Dirofilariinae, from mammals.Methodology/Principal FindingsWe investigated the Wolbachia distribution testing 35 filarial species, including 28 species and 7 genera and/or subgenera newly screened, using PCR, immunohistochemical staining, whole mount fluorescent analysis, and cocladogenesis analysis. (i) Among the newly screened Onchocercinae from mammals eight species harbour Wolbachia but for some of them, bacteria are absent in the hypodermis, or in variable density. (ii) Wolbachia are not detected in the pathological model Monanema martini and in 8, upon 9, species of Cercopithifilaria. (iii) Supergroup F Wolbachia is identified in two newly screened Mansonella species and in Cercopithifilaria japonica. (iv) Type F Wolbachia infect the intestinal cells and somatic female genital tract. (v) Among Oswaldofilariinae, Waltonellinae and Splendidofilariinae, from saurian, anuran and bird respectively, Wolbachia are not detected.Conclusions/SignificanceThe absence of Wolbachia in 63% of onchocercids, notably in the ancestral Oswaldofilariinae estimated 140 mya old, the diverse tissues or specimens distribution, and a recent lateral transfer in supergroup F Wolbachia, modify the current view on the role and evolution of the endosymbiont and their hosts. Further genomic analyses on some of the newly sampled species are welcomed to decipher the open questions."
 ```
 
 Extract reference lists, just give back first one from each for brevity sake
@@ -165,15 +166,15 @@ if (requireNamespace("xml2")) {
 ```
 
 ```
-#> $`10.1371/journal.pone.0130089`
+#> $`10.1371/journal.pone.0022257`
 #> {xml_node}
-#> <ref id="pone.0130089.ref001">
+#> <ref id="pone.0022257-Gao1">
 #> [1] <label>1</label>
-#> [2] <mixed-citation xlink:type="simple" publication-type="book"><name na ...
+#> [2] <element-citation publication-type="journal" xlink:type="simple">\n  <per ...
 #> 
-#> $`10.1371/journal.pone.0165670`
+#> $`10.1371/journal.pone.0023139`
 #> {xml_node}
-#> <ref id="pone.0165670.ref001">
+#> <ref id="pone.0023139-DeLanghe1">
 #> [1] <label>1</label>
-#> [2] <mixed-citation publication-type="book" xlink:type="simple"><collab> ...
+#> [2] <element-citation publication-type="journal" xlink:type="simple">\n  <per ...
 ```
