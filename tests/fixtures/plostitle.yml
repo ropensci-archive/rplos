@@ -1,0 +1,290 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=title%3A%22drosophila%22&fl=title&rows=0&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:42 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '57'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"YmY3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":2397,"start":0,"docs":[]
+          }}
+  recorded_at: 2020-04-07 21:31:42 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=title%3A%22drosophila%22&fl=title&start=0&rows=19&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:42 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '1799'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"YmY3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":2397,"start":0,"docs":[
+              {
+                "title":"Tandem Duplications and the Limits of Natural Selection in Drosophila yakuba and Drosophila simulans"},
+              {
+                "title":"A DNA Virus of Drosophila"},
+              {
+                "title":"Peptidergic control in a fruit crop pest: The spotted-wing drosophila, Drosophila suzukii"},
+              {
+                "title":"Nematocytes: Discovery and characterization of a novel anculeate hemocyte in Drosophila falleni and Drosophila phalerata"},
+              {
+                "title":"In Vivo RNAi Rescue in Drosophila melanogaster with Genomic Transgenes from Drosophila pseudoobscura"},
+              {
+                "title":"Chemical Cues Influence Pupation Behavior of Drosophila simulans and Drosophila buzzatii in Nature and in the Laboratory"},
+              {
+                "title":"Contribution of Drosophila TRPA1 to Metabolism"},
+              {
+                "title":"Phenotypic Plasticity of the Drosophila Transcriptome"},
+              {
+                "title":"A Tripartite Synapse Model in Drosophila"},
+              {
+                "title":"The behavior of adult Drosophila in the wild"},
+              {
+                "title":"Expression in Aneuploid Drosophila S2 Cells"},
+              {
+                "title":"Combinatorial Coding for Drosophila Neurons"},
+              {
+                "title":"Identification of Drosophila MicroRNA Targets"},
+              {
+                "title":"School Students as Drosophila Experimenters"},
+              {
+                "title":"Reinforcement of Gametic Isolation in Drosophila"},
+              {
+                "title":"Parametric Alignment of Drosophila Genomes"},
+              {
+                "title":"A Model of Drosophila Larva Chemotaxis"},
+              {
+                "title":"Quantification of Food Intake in Drosophila"},
+              {
+                "title":"Quantifying Host Potentials: Indexing Postharvest Fresh Fruits for Spotted Wing Drosophila, Drosophila suzukii"}]
+          }}
+  recorded_at: 2020-04-07 21:31:42 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=title%3A%22drosophila%22&fl=title&rows=0&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:42 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '57'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"Y2I3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":2397,"start":0,"docs":[]
+          }}
+  recorded_at: 2020-04-07 21:31:42 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=title%3A%22drosophila%22&fl=title&start=0&rows=19&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:42 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '1799'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"YmY3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":2397,"start":0,"docs":[
+              {
+                "title":"Tandem Duplications and the Limits of Natural Selection in Drosophila yakuba and Drosophila simulans"},
+              {
+                "title":"A DNA Virus of Drosophila"},
+              {
+                "title":"Peptidergic control in a fruit crop pest: The spotted-wing drosophila, Drosophila suzukii"},
+              {
+                "title":"Nematocytes: Discovery and characterization of a novel anculeate hemocyte in Drosophila falleni and Drosophila phalerata"},
+              {
+                "title":"In Vivo RNAi Rescue in Drosophila melanogaster with Genomic Transgenes from Drosophila pseudoobscura"},
+              {
+                "title":"Chemical Cues Influence Pupation Behavior of Drosophila simulans and Drosophila buzzatii in Nature and in the Laboratory"},
+              {
+                "title":"Contribution of Drosophila TRPA1 to Metabolism"},
+              {
+                "title":"Phenotypic Plasticity of the Drosophila Transcriptome"},
+              {
+                "title":"A Tripartite Synapse Model in Drosophila"},
+              {
+                "title":"The behavior of adult Drosophila in the wild"},
+              {
+                "title":"Expression in Aneuploid Drosophila S2 Cells"},
+              {
+                "title":"Combinatorial Coding for Drosophila Neurons"},
+              {
+                "title":"Identification of Drosophila MicroRNA Targets"},
+              {
+                "title":"School Students as Drosophila Experimenters"},
+              {
+                "title":"Reinforcement of Gametic Isolation in Drosophila"},
+              {
+                "title":"Parametric Alignment of Drosophila Genomes"},
+              {
+                "title":"A Model of Drosophila Larva Chemotaxis"},
+              {
+                "title":"Quantification of Food Intake in Drosophila"},
+              {
+                "title":"Quantifying Host Potentials: Indexing Postharvest Fresh Fruits for Spotted Wing Drosophila, Drosophila suzukii"}]
+          }}
+  recorded_at: 2020-04-07 21:31:42 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=title%3A%22drosophila%22&fl=title%2Cjournal&rows=0&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:42 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '57'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"Y2I3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":2397,"start":0,"docs":[]
+          }}
+  recorded_at: 2020-04-07 21:31:42 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=title%3A%22drosophila%22&fl=title%2Cjournal&start=0&rows=5&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:42 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '785'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"Y2I3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":2397,"start":0,"docs":[
+              {
+                "journal":"PLOS ONE",
+                "title":"Tandem Duplications and the Limits of Natural Selection in Drosophila yakuba and Drosophila simulans"},
+              {
+                "journal":"PLoS ONE",
+                "title":"A DNA Virus of Drosophila"},
+              {
+                "journal":"PLOS ONE",
+                "title":"Peptidergic control in a fruit crop pest: The spotted-wing drosophila, Drosophila suzukii"},
+              {
+                "journal":"PLOS ONE",
+                "title":"Nematocytes: Discovery and characterization of a novel anculeate hemocyte in Drosophila falleni and Drosophila phalerata"},
+              {
+                "journal":"PLoS ONE",
+                "title":"In Vivo RNAi Rescue in Drosophila melanogaster with Genomic Transgenes from Drosophila pseudoobscura"}]
+          }}
+  recorded_at: 2020-04-07 21:31:42 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2

@@ -1,0 +1,125 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://api.plos.org/search?wt=json&fq=doc_type%3Afull&rows=18&q=%22bird%22&fl=id%2Ccounter_total_all
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:43 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '1643'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"OTk3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":20013,"start":0,"docs":[
+              {
+                "id":"10.1371/journal.pone.0150899",
+                "counter_total_all":7796},
+              {
+                "id":"10.1371/journal.pone.0118146",
+                "counter_total_all":7846},
+              {
+                "id":"10.1371/journal.pone.0085012",
+                "counter_total_all":9160},
+              {
+                "id":"10.1371/journal.pone.0111834",
+                "counter_total_all":2434},
+              {
+                "id":"10.1371/journal.pcbi.1003473",
+                "counter_total_all":8079},
+              {
+                "id":"10.1371/journal.pone.0193307",
+                "counter_total_all":1857},
+              {
+                "id":"10.1371/journal.pone.0199253",
+                "counter_total_all":1156},
+              {
+                "id":"10.1371/journal.pone.0150498",
+                "counter_total_all":3215},
+              {
+                "id":"10.1371/journal.pone.0162435",
+                "counter_total_all":7458},
+              {
+                "id":"10.1371/journal.pone.0158717",
+                "counter_total_all":12998},
+              {
+                "id":"10.1371/journal.pone.0125659",
+                "counter_total_all":4794},
+              {
+                "id":"10.1371/journal.pone.0196179",
+                "counter_total_all":1487},
+              {
+                "id":"10.1371/journal.pone.0144600",
+                "counter_total_all":3889},
+              {
+                "id":"10.1371/journal.pone.0142525",
+                "counter_total_all":3313},
+              {
+                "id":"10.1371/journal.pone.0043446",
+                "counter_total_all":189743},
+              {
+                "id":"10.1371/journal.pone.0229735",
+                "counter_total_all":438},
+              {
+                "id":"10.1371/journal.pone.0088968",
+                "counter_total_all":4510},
+              {
+                "id":"10.1371/journal.pone.0202298",
+                "counter_total_all":3633}]
+          }}
+  recorded_at: 2020-04-07 21:31:43 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?wt=json&fq=doc_type%3Afull&q=id%3A%2210.1371%2Fjournal.pone.0002154%22&fl=id%2Ccounter_total_all%2Ccounter_total_month
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:43 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '175'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"Y2I3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":1,"start":0,"docs":[
+              {
+                "id":"10.1371/journal.pone.0002154",
+                "counter_total_month":10,
+                "counter_total_all":9812}]
+          }}
+  recorded_at: 2020-04-07 21:31:43 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2

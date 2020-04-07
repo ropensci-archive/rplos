@@ -1,0 +1,107 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=%2A%3A%2A&fl=id&rows=0&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:23 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '60'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"OTk3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":2341967,"start":0,"docs":[]
+          }}
+  recorded_at: 2020-04-07 21:31:23 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=%2A%3A%2A&fl=id&start=0&rows=20&wt=json&fq=doc_type%3Afull
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:23 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '1138'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"Y2I3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":273907,"start":0,"docs":[
+              {
+                "id":"10.1371/journal.pone.0020843"},
+              {
+                "id":"10.1371/journal.pone.0022257"},
+              {
+                "id":"10.1371/journal.pone.0023139"},
+              {
+                "id":"10.1371/journal.pone.0023138"},
+              {
+                "id":"10.1371/journal.pone.0023119"},
+              {
+                "id":"10.1371/journal.pone.0023113"},
+              {
+                "id":"10.1371/journal.pone.0023133"},
+              {
+                "id":"10.1371/journal.pone.0023106"},
+              {
+                "id":"10.1371/journal.pone.0023117"},
+              {
+                "id":"10.1371/journal.pone.0023135"},
+              {
+                "id":"10.1371/journal.pone.0023134"},
+              {
+                "id":"10.1371/journal.pone.0023105"},
+              {
+                "id":"10.1371/journal.pone.0020929"},
+              {
+                "id":"10.1371/journal.pone.0020900"},
+              {
+                "id":"10.1371/journal.pone.0020913"},
+              {
+                "id":"10.1371/journal.pone.0020935"},
+              {
+                "id":"10.1371/journal.pone.0020914"},
+              {
+                "id":"10.1371/journal.pone.0020919"},
+              {
+                "id":"10.1371/journal.pone.0020899"},
+              {
+                "id":"10.1371/journal.pone.0020892"}]
+          }}
+  recorded_at: 2020-04-07 21:31:23 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2

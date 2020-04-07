@@ -1,0 +1,266 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=monkey&fl=id&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:43 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '597'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"Yjc3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":13867,"start":0,"docs":[
+              {
+                "id":"10.1371/journal.pone.0111867"},
+              {
+                "id":"10.1371/journal.pone.0023345"},
+              {
+                "id":"10.1371/journal.pone.0117362"},
+              {
+                "id":"10.1371/journal.pone.0032209"},
+              {
+                "id":"10.1371/journal.pone.0059961"},
+              {
+                "id":"10.1371/journal.pone.0007834"},
+              {
+                "id":"10.1371/journal.pone.0088595"},
+              {
+                "id":"10.1371/journal.pone.0016923"},
+              {
+                "id":"10.1371/journal.pone.0040283"},
+              {
+                "id":"10.1371/journal.pone.0107838"}]
+          }}
+  recorded_at: 2020-04-07 21:31:43 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=Helianthus&fl=id&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:43 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '595'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"Y2I3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":608,"start":0,"docs":[
+              {
+                "id":"10.1371/journal.pone.0198869"},
+              {
+                "id":"10.1371/journal.pone.0213065"},
+              {
+                "id":"10.1371/journal.pone.0148280"},
+              {
+                "id":"10.1371/journal.pone.0111982"},
+              {
+                "id":"10.1371/journal.pone.0212371"},
+              {
+                "id":"10.1371/journal.pone.0139188"},
+              {
+                "id":"10.1371/journal.pone.0057533"},
+              {
+                "id":"10.1371/journal.pone.0045899"},
+              {
+                "id":"10.1371/journal.pone.0037191"},
+              {
+                "id":"10.1371/journal.pone.0051360"}]
+          }}
+  recorded_at: 2020-04-07 21:31:43 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=sunflower&fl=id&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:43 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '596'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"YmY3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":1759,"start":0,"docs":[
+              {
+                "id":"10.1371/journal.pone.0213065"},
+              {
+                "id":"10.1371/journal.pone.0099620"},
+              {
+                "id":"10.1371/journal.pone.0138992"},
+              {
+                "id":"10.1371/journal.pone.0175801"},
+              {
+                "id":"10.1371/journal.pone.0223865"},
+              {
+                "id":"10.1371/journal.pone.0098628"},
+              {
+                "id":"10.1371/journal.pone.0052437"},
+              {
+                "id":"10.1371/journal.pone.0045899"},
+              {
+                "id":"10.1371/journal.pone.0104379"},
+              {
+                "id":"10.1371/journal.pgen.1003378"}]
+          }}
+  recorded_at: 2020-04-07 21:31:43 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=protein&fl=id&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:43 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '598'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"YmY3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":156937,"start":0,"docs":[
+              {
+                "id":"10.1371/journal.pone.0044872"},
+              {
+                "id":"10.1371/journal.pcbi.1004508"},
+              {
+                "id":"10.1371/journal.pcbi.1003072"},
+              {
+                "id":"10.1371/journal.pone.0003243"},
+              {
+                "id":"10.1371/journal.pone.0067919"},
+              {
+                "id":"10.1371/journal.pone.0004027"},
+              {
+                "id":"10.1371/journal.pone.0133913"},
+              {
+                "id":"10.1371/journal.pone.0180428"},
+              {
+                "id":"10.1371/journal.pcbi.1003023"},
+              {
+                "id":"10.1371/journal.pcbi.1002910"}]
+          }}
+  recorded_at: 2020-04-07 21:31:43 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=whale&fl=id&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:43 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '596'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"YmY3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":2001,"start":0,"docs":[
+              {
+                "id":"10.1371/journal.pone.0034905"},
+              {
+                "id":"10.1371/journal.pone.0166670"},
+              {
+                "id":"10.1371/journal.pone.0222004"},
+              {
+                "id":"10.1371/journal.pone.0093789"},
+              {
+                "id":"10.1371/journal.pone.0219364"},
+              {
+                "id":"10.1371/journal.pone.0183053"},
+              {
+                "id":"10.1371/journal.pone.0207287"},
+              {
+                "id":"10.1371/journal.pone.0076507"},
+              {
+                "id":"10.1371/journal.pone.0189764"},
+              {
+                "id":"10.1371/journal.pone.0152643"}]
+          }}
+  recorded_at: 2020-04-07 21:31:43 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2

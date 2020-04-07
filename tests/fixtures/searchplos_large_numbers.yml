@@ -1,0 +1,193 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=%2A%3A%2A&fl=id&rows=0&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:46 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '60'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"OTk3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":2341967,"start":0,"docs":[]
+          }}
+  recorded_at: 2020-04-07 21:31:48 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=%2A%3A%2A&fl=id&start=1000000&rows=15&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:47 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '1062'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"Yjc3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":2341967,"start":1000000,"docs":[
+              {
+                "id":"10.1371/journal.pgen.1005056/abstract"},
+              {
+                "id":"10.1371/journal.pgen.1005056/references"},
+              {
+                "id":"10.1371/journal.pgen.1005056/body"},
+              {
+                "id":"10.1371/journal.pgen.1005056/introduction"},
+              {
+                "id":"10.1371/journal.pgen.1005056/results_and_discussion"},
+              {
+                "id":"10.1371/journal.pgen.1005056/materials_and_methods"},
+              {
+                "id":"10.1371/journal.pone.0116615/title"},
+              {
+                "id":"10.1371/journal.pone.0116615/abstract"},
+              {
+                "id":"10.1371/journal.pntd.0003551/title"},
+              {
+                "id":"10.1371/journal.pntd.0003551/abstract"},
+              {
+                "id":"10.1371/journal.pntd.0003551/references"},
+              {
+                "id":"10.1371/journal.pntd.0003551/body"},
+              {
+                "id":"10.1371/journal.pntd.0003551/introduction"},
+              {
+                "id":"10.1371/journal.pntd.0003551/results_and_discussion"},
+              {
+                "id":"10.1371/journal.pntd.0003551/materials_and_methods"}]
+          }}
+  recorded_at: 2020-04-07 21:31:48 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=%2A%3A%2A&fl=id&rows=0&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:47 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '60'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"Y2I3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":2341967,"start":0,"docs":[]
+          }}
+  recorded_at: 2020-04-07 21:31:48 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=%2A%3A%2A&fl=id&start=1000000&rows=15&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.14.1
+      date: Tue, 07 Apr 2020 21:31:48 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '1062'
+      connection: keep-alive
+      last-modified: Tue, 07 Apr 2020 17:37:13 GMT
+      etag: '"YmY3ZDgwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":2341967,"start":1000000,"docs":[
+              {
+                "id":"10.1371/journal.pgen.1005056/abstract"},
+              {
+                "id":"10.1371/journal.pgen.1005056/references"},
+              {
+                "id":"10.1371/journal.pgen.1005056/body"},
+              {
+                "id":"10.1371/journal.pgen.1005056/introduction"},
+              {
+                "id":"10.1371/journal.pgen.1005056/results_and_discussion"},
+              {
+                "id":"10.1371/journal.pgen.1005056/materials_and_methods"},
+              {
+                "id":"10.1371/journal.pone.0116615/title"},
+              {
+                "id":"10.1371/journal.pone.0116615/abstract"},
+              {
+                "id":"10.1371/journal.pntd.0003551/title"},
+              {
+                "id":"10.1371/journal.pntd.0003551/abstract"},
+              {
+                "id":"10.1371/journal.pntd.0003551/references"},
+              {
+                "id":"10.1371/journal.pntd.0003551/body"},
+              {
+                "id":"10.1371/journal.pntd.0003551/introduction"},
+              {
+                "id":"10.1371/journal.pntd.0003551/results_and_discussion"},
+              {
+                "id":"10.1371/journal.pntd.0003551/materials_and_methods"}]
+          }}
+  recorded_at: 2020-04-07 21:31:48 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
