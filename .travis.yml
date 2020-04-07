@@ -1,14 +1,14 @@
 language: r
-sudo: false
+os: linux
 cache: packages
 dist: trusty
 
-r_check_args: "--as-cran"
+r_check_args: "--as-cran --no-manual --no-build-vignettes"
 
 r_binary_packages:
   - covr
 
-matrix:
+jobs:
   include:
     - os: linux
       r: oldrel
