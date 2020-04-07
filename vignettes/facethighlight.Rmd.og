@@ -1,11 +1,13 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Faceted and highlighted searches}
-%\VignetteEncoding{UTF-8}
--->
-
-Faceted and highlighted searches
-=====
+---
+title: Faceted and highlighted searches
+author: Scott Chamberlain
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+    %\VignetteIndexEntry{Faceted and highlighted searches}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+---
 
 ```{r echo=FALSE}
 knitr::opts_chunk$set(
@@ -90,7 +92,7 @@ out <- highplos(q='alcohol', hl.fl = 'abstract', rows=10)
 highbrow(out)
 ```
 
-![highbrow1](figure/highbrow.png)
+![highbrow1](../man/figures/highbrow.png)
 
 But it works quickly with lots of results too
 
@@ -99,4 +101,4 @@ out <- highplos(q='alcohol', hl.fl = 'abstract', rows=1200)
 highbrow(out)
 ```
 
-![highbrow2](figure/highbrow_big.png)
+![highbrow2](../man/figures/highbrow_big.png)

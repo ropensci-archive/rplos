@@ -1,29 +1,32 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{rplos introduction}
-%\VignetteEncoding{UTF-8}
--->
-
-rplos introduction
-=====
+---
+title: Introduction to rplos
+author: Scott Chamberlain
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+    %\VignetteIndexEntry{Introduction to rplos}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+---
 
 ```{r echo=FALSE}
 knitr::opts_chunk$set(
-  comment = "#>", 
-  warning = FALSE, 
-  message = FALSE
+  comment = "#>",
+  warning = FALSE,
+  message = FALSE,
+  fig.path = "../man/figures/"
 )
 ```
 
-The `rplos` package interacts with the API services of [PLoS](http://www.plos.org/) 
-(Public Library of Science) Journals. You used to need an API key to work with 
+The `rplos` package interacts with the API services of [PLoS](http://www.plos.org/)
+(Public Library of Science) Journals. You used to need an API key to work with
 this package - that is no longer needed!
 
 This tutorial will go through three use cases to demonstrate the kinds
 of things possible in `rplos`.
 
 * Search across PLoS papers in various sections of papers
-* Search for terms and visualize results as a histogram OR as a plot through 
+* Search for terms and visualize results as a histogram OR as a plot through
 time
 * Text mining of scientific literature
 
@@ -55,7 +58,7 @@ searchplos(q = "*:*", fl = 'id', fq = 'doc_type:full', start = 0, limit = 5)
 Get DOIs for only PLoS One articles
 
 ```{r searchplos3}
-searchplos(q = "*:*", fl = 'id', fq = 'journal_key:PLoSONE', 
+searchplos(q = "*:*", fl = 'id', fq = 'journal_key:PLoSONE',
            start = 0, limit = 5)
 ```
 
@@ -76,7 +79,7 @@ lapply(q, function(x) searchplos(x, limit = 2))
 
 ### Search on specific sections
 
-A suite of functions were created as light wrappers around `searchplos` as 
+A suite of functions were created as light wrappers around `searchplos` as
 a shorthand to search specific sections of a paper.
 
 * `plosauthor` searchers in authors
@@ -85,21 +88,21 @@ a shorthand to search specific sections of a paper.
 * `plosfigtabcaps` searches in figure and table captions
 * `plossubject` searches in subject areas
 
-`plosauthor` searches across authors, and in this case returns the authors of 
+`plosauthor` searches across authors, and in this case returns the authors of
 the matching papers. the fl parameter determines what is returned
 
 ```{r plosauthor}
 plosauthor(q = "Eisen", fl = "author", limit = 5)
 ```
 
-`plosabstract` searches across abstracts, and in this case returns the id and 
+`plosabstract` searches across abstracts, and in this case returns the id and
 title of the matching papers
 
 ```{r plosabstract}
 plosabstract(q = 'drosophila', fl = 'id,title', limit = 5)
 ```
 
-`plostitle` searches across titles, and in this case returns the title and 
+`plostitle` searches across titles, and in this case returns the title and
 journal of the matching papers
 
 ```{r plostitle}
@@ -121,7 +124,7 @@ out$table
 out$plot
 ```
 
-You can also pass in curl options, in this case get verbose information on the 
+You can also pass in curl options, in this case get verbose information on the
 curl call.
 
 ```{r plosword2}
@@ -130,17 +133,17 @@ plosword('Helianthus', callopts = list(verbose = TRUE))
 
 ### Visualize terms
 
-`plot_throughtime` allows you to search for up to 2 words and visualize the 
-results as a line plot through time, comparing number of articles matching 
+`plot_throughtime` allows you to search for up to 2 words and visualize the
+results as a line plot through time, comparing number of articles matching
 through time. Visualize with the ggplot2 package, only up to two terms for now.
 
 ```{r throughtime1, fig.width=6, fig.height=4}
 library("ggplot2")
-plot_throughtime(terms = "phylogeny", limit = 200) + 
+plot_throughtime(terms = "phylogeny", limit = 200) +
   geom_line(size = 2, color = 'black')
 ```
 
 ### More
 
-See the _Faceted and highlighted searches_ and _Full text_ vignettes for 
+See the _Faceted and highlighted searches_ and _Full text_ vignettes for
 more `rplos` help.

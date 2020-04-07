@@ -1,16 +1,18 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Full text}
-%\VignetteEncoding{UTF-8}
--->
-
-Full text
-=====
+---
+title: Full text
+author: Scott Chamberlain
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+    %\VignetteIndexEntry{Full text}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+---
 
 ```{r echo=FALSE}
 knitr::opts_chunk$set(
-  comment = "#>",
-  warning = FALSE,
+  comment = "#>", 
+  warning = FALSE, 
   message = FALSE
 )
 ```
@@ -87,7 +89,7 @@ Extract the abstract from the XML
 ```{r}
 if (requireNamespace("xml2")) {
   library("xml2")
-  xml_text(xml_find_all(read_xml(xml), "//abstract/p"))
+  xml_text(xml_find_all(read_xml(xml), "//abstract"))
 }
 ```
 

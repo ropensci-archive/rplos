@@ -1,11 +1,13 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Faceted and highlighted searches}
-%\VignetteEncoding{UTF-8}
--->
-
-Faceted and highlighted searches
-=====
+---
+title: Faceted and highlighted searches
+author: Scott Chamberlain
+date: "2020-04-07"
+output: rmarkdown::html_vignette
+vignette: >
+    %\VignetteIndexEntry{Faceted and highlighted searches}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+---
 
 
 
@@ -46,13 +48,13 @@ facetplos(q='*:*', facet.field='journal')
 #> # A tibble: 9 x 2
 #>   term                             value  
 #>   <fct>                            <fct>  
-#> 1 plos one                         1816094
-#> 2 plos genetics                    67569  
-#> 3 plos pathogens                   60655  
-#> 4 plos neglected tropical diseases 57911  
-#> 5 plos computational biology       53650  
-#> 6 plos biology                     37720  
-#> 7 plos medicine                    26642  
+#> 1 plos one                         1939972
+#> 2 plos genetics                    72382  
+#> 3 plos pathogens                   65865  
+#> 4 plos neglected tropical diseases 64913  
+#> 5 plos computational biology       59616  
+#> 6 plos biology                     41954  
+#> 7 plos medicine                    29883  
 #> 8 plos clinical trials             521    
 #> 9 plos medicin                     9      
 #> 
@@ -79,20 +81,20 @@ facetplos(q='*:*', facet.field='journal', facet.query='cell,bird')
 #> # A tibble: 1 x 2
 #>   term      value
 #>   <chr>     <int>
-#> 1 cell,bird 10676
+#> 1 cell,bird 11353
 #> 
 #> $facet_fields
 #> $facet_fields$journal
 #> # A tibble: 9 x 2
 #>   term                             value  
 #>   <fct>                            <fct>  
-#> 1 plos one                         1816094
-#> 2 plos genetics                    67569  
-#> 3 plos pathogens                   60655  
-#> 4 plos neglected tropical diseases 57911  
-#> 5 plos computational biology       53650  
-#> 6 plos biology                     37720  
-#> 7 plos medicine                    26642  
+#> 1 plos one                         1939972
+#> 2 plos genetics                    72382  
+#> 3 plos pathogens                   65865  
+#> 4 plos neglected tropical diseases 64913  
+#> 5 plos computational biology       59616  
+#> 6 plos biology                     41954  
+#> 7 plos medicine                    29883  
 #> 8 plos clinical trials             521    
 #> 9 plos medicin                     9      
 #> 
@@ -131,14 +133,14 @@ highplos(q='alcohol', hl.fl = 'abstract', rows=2)
 ```
 
 ```
-#> $`10.1371/journal.pone.0201042`
-#> $`10.1371/journal.pone.0201042`$abstract
-#> [1] "\nAcute <em>alcohol</em> administration can lead to a loss of control over drinking. Several models argue"
+#> $`10.1371/journal.pone.0218147`
+#> $`10.1371/journal.pone.0218147`$abstract
+#> [1] "Background: Binge drinking, an increasingly common form of <em>alcohol</em> use disorder, is associated"
 #> 
 #> 
-#> $`10.1371/journal.pone.0185457`
-#> $`10.1371/journal.pone.0185457`$abstract
-#> [1] "Objectives: <em>Alcohol</em>-related morbidity and mortality are significant public health issues"
+#> $`10.1371/journal.pone.0138021`
+#> $`10.1371/journal.pone.0138021`$abstract
+#> [1] "Background and Aim: Harmful <em>alcohol</em> consumption has long been recognized as being the major"
 ```
 
 Search for the term _alcohol_ in the abstracts of articles, and return 
@@ -150,14 +152,14 @@ highplos(q='alcohol', hl.fl='abstract', hl.fragsize=20, rows=2)
 ```
 
 ```
-#> $`10.1371/journal.pone.0201042`
-#> $`10.1371/journal.pone.0201042`$abstract
-#> [1] "\nAcute <em>alcohol</em>"
+#> $`10.1371/journal.pone.0218147`
+#> $`10.1371/journal.pone.0218147`$abstract
+#> [1] " common form of <em>alcohol</em>"
 #> 
 #> 
-#> $`10.1371/journal.pone.0185457`
-#> $`10.1371/journal.pone.0185457`$abstract
-#> [1] "Objectives: <em>Alcohol</em>"
+#> $`10.1371/journal.pone.0138021`
+#> $`10.1371/journal.pone.0138021`$abstract
+#> [1] ": Harmful <em>alcohol</em>"
 ```
 
 Search for the term _experiment_ across all sections of an article, return 
@@ -193,7 +195,7 @@ out <- highplos(q='alcohol', hl.fl = 'abstract', rows=10)
 highbrow(out)
 ```
 
-![highbrow1](figure/highbrow.png)
+![highbrow1](../man/figures/highbrow.png)
 
 But it works quickly with lots of results too
 
@@ -203,4 +205,4 @@ out <- highplos(q='alcohol', hl.fl = 'abstract', rows=1200)
 highbrow(out)
 ```
 
-![highbrow2](figure/highbrow_big.png)
+![highbrow2](../man/figures/highbrow_big.png)
