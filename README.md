@@ -457,7 +457,7 @@ res <- searchplos(q='*:*', limit = 2000, progress = httr::progress())
 * Please [report any issues or bugs](https://github.com/ropensci/rplos/issues).
 * License: MIT
 * Get citation information for `rplos` in R doing `citation(package = 'rplos')`
-* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+* Please note that this project is released with a [Contributor Code of Conduct][coc].
 By participating in this project you agree to abide by its terms.
 
 ---
@@ -467,3 +467,5 @@ This package is part of a richer suite called [fulltext](https://github.com/rope
 ---
 
 [![rofooter](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
+
+[coc]: https://github.com/ropensci/rplos/blob/master/CODE_OF_CONDUCT.md

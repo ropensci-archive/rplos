@@ -1,3 +1,13 @@
+rplos 0.9.0
+-----------
+
+### MINOR IMPROVEMENTS
+
+* functions that use solrium under the hood now have a `progress` parameter that you can pass `htt::progress()` to get progress information; especially useful for long running queries  (#124)
+* move readme images to man/figures (#127)
+* replace `dplyr::data_frame` with `dplyr::tibble` (#126)
+
+
 rplos 0.8.6
 -----------
 
