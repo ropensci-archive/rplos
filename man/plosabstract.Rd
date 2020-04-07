@@ -45,7 +45,6 @@ you need to cycle through more results than the max allowed=1000). See Paginatio
 below}
 
 \item{limit}{Number of results to return (integer). Setting \code{limit=0} returns only
-   metadata.
 metadata. See Pagination below}
 
 \item{sleep}{Number of seconds to wait between requests. No need to use this for
@@ -66,7 +65,7 @@ help, which is used to construct the proxy connection.}
 
 \item{progress}{a function with logic for printing a progress
 bar for an HTTP request, ultimately passed down to \pkg{curl}.
-only supports httr::progress() for now}
+only supports \code{httr::progress()}}
 
 \item{...}{Additional Solr arguments}
 }

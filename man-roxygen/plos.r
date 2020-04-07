@@ -18,11 +18,7 @@
 #' you need to cycle through more results than the max allowed=1000). See Pagination
 #' below
 #' @param limit Number of results to return (integer). Setting \code{limit=0} returns only
-<<<<<<< HEAD
-#'    metadata.
-=======
 #' metadata. See Pagination below
->>>>>>> master
 #' @param sleep Number of seconds to wait between requests. No need to use this for
 #' a single call to searchplos. However, if you are using searchplos in a loop or
 #' lapply type call, do sleep parameter is used to prevent your IP address from being
@@ -38,7 +34,7 @@
 #' and stack trace, if available.
 #' @param progress a function with logic for printing a progress
 #' bar for an HTTP request, ultimately passed down to \pkg{curl}.
-#' only supports httr::progress() for now
+#' only supports \code{httr::progress()}
 #'
 #' @details Details:
 #' @section Faceting:
