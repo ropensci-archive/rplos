@@ -4,18 +4,42 @@
 \alias{facetplos}
 \title{Do faceted searches on PLOS Journals full-text content}
 \usage{
-facetplos(q = "*:*", facet.query = NA, facet.field = NA,
-  facet.prefix = NA, facet.sort = NA, facet.limit = NA,
-  facet.offset = NA, facet.mincount = NA, facet.missing = NA,
-  facet.method = NA, facet.enum.cache.minDf = NA, facet.threads = NA,
-  facet.date = NA, facet.date.start = NA, facet.date.end = NA,
-  facet.date.gap = NA, facet.date.hardend = NA,
-  facet.date.other = NA, facet.date.include = NA, facet.range = NA,
-  facet.range.start = NA, facet.range.end = NA, facet.range.gap = NA,
-  facet.range.hardend = NA, facet.range.other = NA,
-  facet.range.include = NA, start = NA, rows = NA, url = NA,
-  sleep = 6, errors = "simple", proxy = NULL, callopts = list(),
-  ...)
+facetplos(
+  q = "*:*",
+  facet.query = NA,
+  facet.field = NA,
+  facet.prefix = NA,
+  facet.sort = NA,
+  facet.limit = NA,
+  facet.offset = NA,
+  facet.mincount = NA,
+  facet.missing = NA,
+  facet.method = NA,
+  facet.enum.cache.minDf = NA,
+  facet.threads = NA,
+  facet.date = NA,
+  facet.date.start = NA,
+  facet.date.end = NA,
+  facet.date.gap = NA,
+  facet.date.hardend = NA,
+  facet.date.other = NA,
+  facet.date.include = NA,
+  facet.range = NA,
+  facet.range.start = NA,
+  facet.range.end = NA,
+  facet.range.gap = NA,
+  facet.range.hardend = NA,
+  facet.range.other = NA,
+  facet.range.include = NA,
+  start = NA,
+  rows = NA,
+  url = NA,
+  sleep = 6,
+  errors = "simple",
+  proxy = NULL,
+  callopts = list(),
+  ...
+)
 }
 \arguments{
 \item{q}{Query terms.}

@@ -4,8 +4,7 @@
 \alias{plosviews}
 \title{Search PLoS Journals by article views.}
 \usage{
-plosviews(search, byfield = NULL, views = "alltime", limit = NULL,
-  ...)
+plosviews(search, byfield = NULL, views = "alltime", limit = NULL, ...)
 }
 \arguments{
 \item{search}{search terms (character)}
