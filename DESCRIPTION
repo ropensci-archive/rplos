@@ -16,7 +16,7 @@ Authors@R: c(
     person("Carl", "Boettiger", role = "aut", email = "cboettig@gmail.com"),
     person("Karthik", "Ram", role = "aut", email = "karthik.ram@gmail.com")
     )
-URL: https://docs.ropensci.org/rplos (website)
+URL: https://docs.ropensci.org/rplos
     https://github.com/ropensci/rplos
 BugReports: https://github.com/ropensci/rplos/issues
 LazyData: true
@@ -39,7 +39,7 @@ Suggests:
     testthat,
     webmockr,
     vcr (>= 0.2.6)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 X-schema.org-applicationCategory: Literature
 X-schema.org-keywords: PLOS, library, science, JSON, XML, API, web, api-client, article, full text
 X-schema.org-isPartOf: https://ropensci.org
