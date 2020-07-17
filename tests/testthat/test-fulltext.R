@@ -97,7 +97,7 @@ test_that("plos_fulltext works with all journals", {
     pntd2 <- plos_fulltext(doi = doi_pntd2)
     pctr1 <- plos_fulltext(doi = doi_pctr1)
     pctr2 <- plos_fulltext(doi = doi_pctr2)
-  })
+  }, preserve_exact_body_bytes = TRUE)
 
   expect_is(pone1, "plosft")
   expect_is(pone1[[1]], "character")
