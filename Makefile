@@ -26,7 +26,7 @@ doc:
 	${RSCRIPT} -e "devtools::document()"
 
 eg:
-	${RSCRIPT} -e "devtools::run_examples()"
+	${RSCRIPT} -e "devtools::run_examples(run=TRUE)"
 
 codemeta:
 	${RSCRIPT} -e "codemetar::write_codemeta()"
