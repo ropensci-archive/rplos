@@ -16,7 +16,7 @@ Authors@R: c(
     person("Carl", "Boettiger", role = "aut", email = "cboettig@gmail.com"),
     person("Karthik", "Ram", role = "aut", email = "karthik.ram@gmail.com")
     )
-URL: https://docs.ropensci.org/rplos
+URL: https://docs.ropensci.org/rplos/
     https://github.com/ropensci/rplos
 BugReports: https://github.com/ropensci/rplos/issues
 LazyData: true
