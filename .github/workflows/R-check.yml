@@ -53,6 +53,11 @@ jobs:
       - name: Check
         run: Rscript -e "rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'warning', check_dir = 'check')"
 
+      - name: Show testthat output
+        if: always()
+        run: find check -name 'test-all.Rout*' -exec cat '{}' \; || true
+        shell: bash
+
       - name: Upload check results
         if: failure()
         uses: actions/upload-artifact@v2
