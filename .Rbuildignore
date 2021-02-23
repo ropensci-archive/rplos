@@ -10,6 +10,7 @@ cran-comments.md
 ^.*\.Rproj$
 ^\.Rproj\.user$
 README.Rmd
+README.md
 ^cran-comments\.md$
 ^revdep$
 .github
