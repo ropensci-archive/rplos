@@ -1,15 +1,15 @@
-# tests for plosfields fxn in rplos
 context("plosfields")
 
+skip_on_cran()
+skip_if_offline()
+
 test_that("plosfields returns the correct class", {
-	skip_on_cran()
 	data(plosfields, package="rplos")
 
 	expect_that(class(plosfields), equals("data.frame"))
 })
 
 test_that("plosfields returns the correct dimensions of data.frame", {
-	skip_on_cran()
 	data(plosfields, package="rplos")
 
 	expect_that(nrow(plosfields), equals(72))
@@ -17,7 +17,6 @@ test_that("plosfields returns the correct dimensions of data.frame", {
 })
 
 test_that("plosfields returns the correct column names", {
-	skip_on_cran()
 	data(plosfields, package="rplos")
 
 	expect_that(names(plosfields), equals(c("field","description","note")))

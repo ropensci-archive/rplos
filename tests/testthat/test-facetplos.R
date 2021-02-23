@@ -1,5 +1,7 @@
-# tests for facetplos fxn in rplos
 context("facetplos")
+
+skip_on_cran()
+skip_if_offline()
 
 test_that("facetplos", {
   vcr::use_cassette("facetplos", {

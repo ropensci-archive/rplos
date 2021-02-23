@@ -1,5 +1,7 @@
-# tests for plostitle fxn in rplos
 context("plostitle")
+
+skip_on_cran()
+skip_if_offline()
 
 test_that("plostitle returns the correct dimensionsed data.frame", {
 	vcr::use_cassette("plostitle", {

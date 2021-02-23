@@ -1,5 +1,7 @@
-# tests for plosword fxn in rplos
 context("plosword")
+
+skip_on_cran()
+skip_if_offline()
 
 test_that("plosword returns the correct value", {
 	vcr::use_cassette("plosword1", {

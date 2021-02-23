@@ -1,0 +1,85 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=figure_table_caption%3A%22ecology%22&fl=id&rows=0&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/1.1.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Tue, 23 Feb 2021 18:31:24 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '57'
+      connection: keep-alive
+      last-modified: Tue, 23 Feb 2021 04:44:18 GMT
+      etag: '"MzAzMDQwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":1335,"start":0,"docs":[]
+          }}
+  recorded_at: 2021-02-23 18:31:24 GMT
+  recorded_with: vcr/0.6.0, webmockr/0.7.4
+- request:
+    method: get
+    uri: http://api.plos.org/search?q=figure_table_caption%3A%22ecology%22&fl=id&start=0&rows=10&wt=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/1.1.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Tue, 23 Feb 2021 18:31:24 GMT
+      content-type: application/json;charset=utf-8
+      content-length: '596'
+      connection: keep-alive
+      last-modified: Tue, 23 Feb 2021 04:44:18 GMT
+      etag: '"MTQzMDQwMDAwMDAwMDAwMFNvbHI="'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "response":{"numFound":1335,"start":0,"docs":[
+              {
+                "id":"10.1371/journal.pone.0074321"},
+              {
+                "id":"10.1371/journal.pone.0080763"},
+              {
+                "id":"10.1371/journal.pone.0175201"},
+              {
+                "id":"10.1371/journal.pone.0228625"},
+              {
+                "id":"10.1371/journal.pone.0241618"},
+              {
+                "id":"10.1371/journal.pone.0054689"},
+              {
+                "id":"10.1371/journal.pone.0081871"},
+              {
+                "id":"10.1371/journal.pone.0142331"},
+              {
+                "id":"10.1371/journal.pone.0192019"},
+              {
+                "id":"10.1371/journal.pone.0246602"}]
+          }}
+  recorded_at: 2021-02-23 18:31:24 GMT
+  recorded_with: vcr/0.6.0, webmockr/0.7.4

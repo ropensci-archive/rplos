@@ -1,5 +1,7 @@
-# tests for searchplos fxn in rplos
 context("searchplos")
+
+skip_on_cran()
+skip_if_offline()
 
 test_that("searchplos returns the correct", {
   vcr::use_cassette("searchplos", {
@@ -44,7 +46,5 @@ test_that("searchplos pagination handles large numbers correctly", {
 })
 
 test_that("searchplos catches bad limit param", {
-  skip_on_cran()
-
   expect_error(searchplos(q="*:*", limit = "a"), "limit should be a numeric")
 })

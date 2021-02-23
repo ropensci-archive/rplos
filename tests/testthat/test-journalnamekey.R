@@ -1,5 +1,7 @@
-# tests for journalnamekey fxn in rplos
 context("journalnamekey")
+
+skip_on_cran()
+skip_if_offline()
 
 test_that("journalnamekey returns the correct value", {
 	vcr::use_cassette("journalnamekey1", {

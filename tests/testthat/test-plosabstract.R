@@ -1,5 +1,8 @@
 context("plosabstract")
 
+skip_on_cran()
+skip_if_offline()
+
 test_that("plosabstract returns the correct dimensioned data.frame", {
 	vcr::use_cassette("plosabstract", {
 		expect_equal(

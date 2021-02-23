@@ -1,5 +1,7 @@
-# tests for plosviews fxn in rplos
 context("plosviews")
+
+skip_on_cran()
+skip_if_offline()
 
 test_that("plosviews returns the correct value", {
 	vcr::use_cassette("plosviews_values", {

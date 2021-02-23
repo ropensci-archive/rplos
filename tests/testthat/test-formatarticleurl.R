@@ -1,5 +1,7 @@
-# tests for formatarticleurl fxn in rplos
 context("formatarticleurl")
+
+skip_on_cran()
+skip_if_offline()
 
 test_that("formatarticleurl returns the correct value", {
 	expect_that(formatarticleurl("10.1371/journal.pone.0004045", 'PLoSONE'),

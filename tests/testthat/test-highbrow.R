@@ -1,5 +1,7 @@
-# tests for highbrow fxn in rplos
 context("highbrow")
+
+skip_on_cran()
+skip_if_offline()
 
 test_that("highbrow", {
   vcr::use_cassette("highbrow", {

@@ -1,5 +1,8 @@
 context("plot_throughtime")
 
+skip_on_cran()
+skip_if_offline()
+
 test_that("plot_throughtime returns the correct class", {
   vcr::use_cassette("plot_throughtime", {
   	a <- plot_throughtime('phylogeny', 300)

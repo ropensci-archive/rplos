@@ -1,5 +1,7 @@
-# tests for highplos fxn in rplos
 context("highplos")
+
+skip_on_cran()
+skip_if_offline()
 
 test_that("highplos", {
   vcr::use_cassette("highplos", {

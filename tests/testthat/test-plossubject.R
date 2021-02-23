@@ -1,5 +1,7 @@
-# tests for plossubject fxn in rplos
 context("plossubject")
+
+skip_on_cran()
+skip_if_offline()
 
 test_that("plossubject returns the correct class", {
 	vcr::use_cassette("plossubject", {

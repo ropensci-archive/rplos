@@ -1,5 +1,7 @@
-# tests for plosauthor fxn in rplos
 context("plosauthor")
+
+skip_on_cran()
+skip_if_offline()
 
 test_that("plosauthor returns the correct dimensions in the data.frame", {
 	vcr::use_cassette("plosauthor_dims", {

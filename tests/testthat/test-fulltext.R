@@ -1,9 +1,9 @@
-# tests for fulltext fxns in rplos
 context("fulltext")
 
-test_that("full_text_urls", {
-  skip_on_cran()
+skip_on_cran()
+skip_if_offline()
 
+test_that("full_text_urls", {
   aa <- full_text_urls(doi = '10.1371/journal.pone.0086169')
   bb <- full_text_urls(doi = '10.1371/journal.pbio.1001845')
   cc <- full_text_urls(doi = c('10.1371/journal.pone.0086169', '10.1371/journal.pbio.1001845'))
@@ -36,8 +36,6 @@ test_that("full_text_urls - NA's on annotation DOIs", {
 })
 
 test_that("plos_fulltext works", {
-  skip_on_cran()
-
   vcr::use_cassette("full_text_urls-with-searchplos2", {
     aa <- plos_fulltext(doi = '10.1371/journal.pone.0086169')
     bb <- plos_fulltext(c('10.1371/journal.pone.0086169', '10.1371/journal.pbio.1001845'))
@@ -61,8 +59,6 @@ test_that("plos_fulltext works", {
 })
 
 test_that("plos_fulltext works with all journals", {
-  skip_on_cran()
-
   doi_pone1 <- '10.1371/journal.pone.0165447'
   doi_pone2 <- '10.1371/journal.pone.0111629'
   doi_pbio1 <- '10.1371/journal.pbio.2000225'
