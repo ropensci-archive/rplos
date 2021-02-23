@@ -59,7 +59,7 @@
 #' @docType package
 #' @name rplos
 #' @aliases rplos rplos-package
-#' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
+#' @author Scott Chamberlain
 #' @author Carl Boettiger \email{cboettig@@gmail.com}
 #' @author Karthik Ram \email{karthik.ram@@gmail.com}
 #' @keywords package

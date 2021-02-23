@@ -63,7 +63,7 @@ head(out$data)
 
 }
 \author{
-Scott Chamberlain \email{myrmecocystus@gmail.com}
+Scott Chamberlain
 
 Carl Boettiger \email{cboettig@gmail.com}
 
