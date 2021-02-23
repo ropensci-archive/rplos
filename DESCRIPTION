@@ -37,6 +37,7 @@ Imports:
 Suggests:
     xml2,
     knitr,
+    rmarkdown,
     testthat,
     webmockr,
     vcr (>= 0.2.6)
