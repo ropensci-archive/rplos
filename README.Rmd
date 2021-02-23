@@ -12,11 +12,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![cran checks](https://cranchecks.info/badges/worst/rplos)](https://cranchecks.info/pkgs/rplos)
 [![R-check](https://github.com/ropensci/rplos/workflows/R-check/badge.svg)](https://github.com/ropensci/rplos/actions?query=workflow%3AR-check)
 [![codecov.io](https://codecov.io/github/ropensci/rplos/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rplos?branch=master)
-[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/rplos)](https://github.com/metacran/cranlogs.app)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/rplos)](https://github.com/r-hub/cranlogs.app)
 [![cran version](https://www.r-pkg.org/badges/version/rplos)](https://cran.r-project.org/package=rplos)
 
 ## Install
@@ -45,13 +45,13 @@ library("rplos")
 
 You used to need a key to use `rplos` - you no longer do as of 2015-01-13 (or `v0.4.5.999`).
 
-rplos tutorial: <http://ropensci.org/tutorials/rplos_tutorial.html>
+rplos vignetttes: <https://docs.ropensci.org/rplos/>
 
 PLOS API documentation: <http://api.plos.org/>
 
 PLOS Solr schema is at <https://gist.github.com/openAccess/9e76aa7fa6135be419968b1372c86957> but is 1.5 years old so may not be up to date.
 
-Crossref API documentation [here](https://github.com/CrossRef/rest-api-doc/blob/master/rest_api.md), and [here](http://help.crossref.org/#home). Note that we are working on a new package [rcrossref](https://github.com/ropensci/rcrossref) ([on CRAN](https://cran.r-project.org/package=rcrossref)) with a much fuller implementation of R functions for all Crossref endpoints.
+Crossref API documentation can be found at <https://github.com/CrossRef/rest-api-doc>. See also [rcrossref](https://github.com/ropensci/rcrossref) ([on CRAN](https://cran.r-project.org/package=rcrossref)) with a much fuller implementation of R functions for all Crossref endpoints.
 
 ## Throttling
 
@@ -225,5 +225,3 @@ res <- searchplos(q='*:*', limit = 2000, progress = httr::progress())
 This package is part of a richer suite called [fulltext](https://github.com/ropensci/fulltext), along with several other packages, that provides the ability to search for and retrieve full text of open access scholarly articles. We recommend using `fulltext` as the primary R interface to `rplos` unless your needs are limited to this single source.
 
 ---
-
-[![rofooter](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

@@ -3,11 +3,11 @@ rplos
 
 
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![cran checks](https://cranchecks.info/badges/worst/rplos)](https://cranchecks.info/pkgs/rplos)
 [![R-check](https://github.com/ropensci/rplos/workflows/R-check/badge.svg)](https://github.com/ropensci/rplos/actions?query=workflow%3AR-check)
 [![codecov.io](https://codecov.io/github/ropensci/rplos/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rplos?branch=master)
-[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/rplos)](https://github.com/metacran/cranlogs.app)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/rplos)](https://github.com/r-hub/cranlogs.app)
 [![cran version](https://www.r-pkg.org/badges/version/rplos)](https://cran.r-project.org/package=rplos)
 
 ## Install
@@ -39,13 +39,13 @@ library("rplos")
 
 You used to need a key to use `rplos` - you no longer do as of 2015-01-13 (or `v0.4.5.999`).
 
-rplos tutorial: <http://ropensci.org/tutorials/rplos_tutorial.html>
+rplos vignetttes: <https://docs.ropensci.org/rplos/>
 
 PLOS API documentation: <http://api.plos.org/>
 
 PLOS Solr schema is at <https://gist.github.com/openAccess/9e76aa7fa6135be419968b1372c86957> but is 1.5 years old so may not be up to date.
 
-Crossref API documentation [here](https://github.com/CrossRef/rest-api-doc/blob/master/rest_api.md), and [here](http://help.crossref.org/#home). Note that we are working on a new package [rcrossref](https://github.com/ropensci/rcrossref) ([on CRAN](https://cran.r-project.org/package=rcrossref)) with a much fuller implementation of R functions for all Crossref endpoints.
+Crossref API documentation can be found at <https://github.com/CrossRef/rest-api-doc>. See also [rcrossref](https://github.com/ropensci/rcrossref) ([on CRAN](https://cran.r-project.org/package=rcrossref)) with a much fuller implementation of R functions for all Crossref endpoints.
 
 ## Throttling
 
@@ -70,7 +70,7 @@ searchplos('ecology', 'id,publication_date', limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1    54485     0
+#> 1    55873     0
 #> 
 #> $data
 #> # A tibble: 5 x 2
@@ -79,8 +79,8 @@ searchplos('ecology', 'id,publication_date', limit = 5)
 #> 1 10.1371/journal.pone.0001248 2007-11-28T00:00:00Z
 #> 2 10.1371/journal.pone.0059813 2013-04-24T00:00:00Z
 #> 3 10.1371/journal.pone.0080763 2013-12-10T00:00:00Z
-#> 4 10.1371/journal.pone.0220747 2019-08-01T00:00:00Z
-#> 5 10.1371/journal.pone.0155019 2016-05-11T00:00:00Z
+#> 4 10.1371/journal.pone.0246749 2021-02-08T00:00:00Z
+#> 5 10.1371/journal.pone.0220747 2019-08-01T00:00:00Z
 ```
 
 Get DOIs for full article in PLoS One
@@ -93,17 +93,17 @@ searchplos(q="*:*", fl='id', fq=list('journal_key:PLoSONE',
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1   241782     0
+#> 1   246927     0
 #> 
 #> $data
 #> # A tibble: 5 x 1
 #>   id                          
 #>   <chr>                       
-#> 1 10.1371/journal.pone.0000003
-#> 2 10.1371/journal.pone.0000004
-#> 3 10.1371/journal.pone.0000012
-#> 4 10.1371/journal.pone.0000015
-#> 5 10.1371/journal.pone.0000018
+#> 1 10.1371/journal.pone.0002399
+#> 2 10.1371/journal.pone.0002401
+#> 3 10.1371/journal.pone.0002403
+#> 4 10.1371/journal.pone.0002405
+#> 5 10.1371/journal.pone.0002407
 ```
 
 Query to get some PLOS article-level metrics, notice difference between two outputs
@@ -117,22 +117,22 @@ head(out$data)
 #> # A tibble: 6 x 3
 #>   id                           alm_twitterCount counter_total_all
 #>   <chr>                                   <int>             <int>
-#> 1 10.1371/journal.pcbi.0040029                0              5463
-#> 2 10.1371/journal.pcbi.0040032                0              5593
-#> 3 10.1371/journal.pcbi.0040033               11             70239
-#> 4 10.1371/journal.pcbi.0040036                0              7795
-#> 5 10.1371/journal.pcbi.0040038                0              7035
-#> 6 10.1371/journal.pbio.1000449                0              8816
+#> 1 10.1371/journal.pcbi.0020071                0             17862
+#> 2 10.1371/journal.pbio.1000152                0              7180
+#> 3 10.1371/journal.pbio.1000153                5             27702
+#> 4 10.1371/journal.pbio.1000159                0             14256
+#> 5 10.1371/journal.pbio.1000165                8             30629
+#> 6 10.1371/journal.pbio.1000166                0              6884
 head(out_sorted$data)
 #> # A tibble: 6 x 3
 #>   id                           alm_twitterCount counter_total_all
 #>   <chr>                                   <int>             <int>
-#> 1 10.1371/journal.pmed.0020124             3792           3147637
-#> 2 10.1371/journal.pone.0133079              308           1877590
-#> 3 10.1371/journal.pcbi.1003149              216           1680291
-#> 4 10.1371/journal.pmed.1000376                9           1087228
-#> 5 10.1371/journal.pone.0141854             3790            989374
-#> 6 10.1371/journal.pcbi.0030102               65            973049
+#> 1 10.1371/journal.pmed.0020124             3890           3226572
+#> 2 10.1371/journal.pone.0133079              312           2481307
+#> 3 10.1371/journal.pcbi.1003149              216           1766230
+#> 4 10.1371/journal.pmed.1000376                9           1213573
+#> 5 10.1371/journal.pone.0141854             3804            996693
+#> 6 10.1371/journal.pcbi.0030102               65            986338
 ```
 
 A list of articles about social networks that are popular on a social network
@@ -146,22 +146,22 @@ searchplos(q="*:*",fl=c('id','alm_twitterCount'),
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1       63     0
+#> 1       64     0
 #> 
 #> $data
 #> # A tibble: 10 x 2
 #>    id                           alm_twitterCount
 #>    <chr>                                   <int>
-#>  1 10.1371/journal.pmed.1000316             1194
+#>  1 10.1371/journal.pmed.1000316             1199
 #>  2 10.1371/journal.pone.0069841              896
 #>  3 10.1371/journal.pone.0073791             1884
 #>  4 10.1371/journal.pcbi.1005399              604
-#>  5 10.1371/journal.pone.0090315              464
-#>  6 10.1371/journal.pone.0118093              133
-#>  7 10.1371/journal.pone.0150989              245
-#>  8 10.1371/journal.pbio.1002195              778
-#>  9 10.1371/journal.pone.0162678              172
-#> 10 10.1371/journal.pbio.1001535             2144
+#>  5 10.1371/journal.pcbi.1007513              122
+#>  6 10.1371/journal.pone.0236517              123
+#>  7 10.1371/journal.pbio.1002195              778
+#>  8 10.1371/journal.pone.0118093              133
+#>  9 10.1371/journal.pone.0155923              200
+#> 10 10.1371/journal.pone.0162678              172
 ```
 
 Show all articles that have these two words less then about 15 words apart
@@ -173,7 +173,7 @@ searchplos(q='everything:"sports alcohol"~15', fl='title', fq='doc_type:full', l
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1      157     0
+#> 1      163     0
 #> 
 #> $data
 #> # A tibble: 3 x 1
@@ -193,7 +193,7 @@ searchplos(q='everything:"sports alcohol"~7', fl='title', fq='doc_type:full', li
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1       87     0
+#> 1       91     0
 #> 
 #> $data
 #> # A tibble: 3 x 1
@@ -214,17 +214,17 @@ searchplos(q='*:*', fl=c('id','article_type'),
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1  2389062     0
+#> 1  2434439     0
 #> 
 #> $data
 #> # A tibble: 5 x 2
-#>   id                                        article_type    
-#>   <chr>                                     <chr>           
-#> 1 10.1371/journal.pbio.1000436/title        Research Article
-#> 2 10.1371/journal.pbio.1000436/abstract     Research Article
-#> 3 10.1371/journal.pbio.1000436/references   Research Article
-#> 4 10.1371/journal.pbio.1000436/body         Research Article
-#> 5 10.1371/journal.pbio.1000436/introduction Research Article
+#>   id                                                  article_type    
+#>   <chr>                                               <chr>           
+#> 1 10.1371/journal.pbio.1000146/title                  Unsolved Mystery
+#> 2 10.1371/journal.pbio.1000146/abstract               Unsolved Mystery
+#> 3 10.1371/journal.pbio.1000146/references             Unsolved Mystery
+#> 4 10.1371/journal.pbio.1000146/body                   Unsolved Mystery
+#> 5 10.1371/journal.pbio.1000146/supporting_information Unsolved Mystery
 ```
 
 ### Faceted search
@@ -242,21 +242,21 @@ facetplos(q='alcohol', facet.field=c('journal','subject'), facet.limit=5)
 #> # A tibble: 5 x 2
 #>   term                             value
 #>   <chr>                            <chr>
-#> 1 plos one                         30838
-#> 2 plos genetics                    688  
-#> 3 plos medicine                    678  
-#> 4 plos neglected tropical diseases 607  
-#> 5 plos pathogens                   446  
+#> 1 plos one                         31656
+#> 2 plos genetics                    702  
+#> 3 plos medicine                    699  
+#> 4 plos neglected tropical diseases 637  
+#> 5 plos pathogens                   459  
 #> 
 #> $facet_fields$subject
 #> # A tibble: 5 x 2
 #>   term                          value
 #>   <chr>                         <chr>
-#> 1 biology and life sciences     32440
-#> 2 medicine and health sciences  29475
-#> 3 research and analysis methods 16985
-#> 4 biochemistry                  14343
-#> 5 physical sciences             12192
+#> 1 biology and life sciences     33275
+#> 2 medicine and health sciences  30309
+#> 3 research and analysis methods 17340
+#> 4 biochemistry                  14587
+#> 5 physical sciences             12502
 #> 
 #> 
 #> $facet_pivot
@@ -292,16 +292,16 @@ facetplos(q='*:*', url=url, facet.range='counter_total_all',
 #> # A tibble: 10 x 2
 #>    term  value
 #>    <chr> <chr>
-#>  1 5     24   
-#>  2 15    5    
-#>  3 25    15   
-#>  4 35    34   
-#>  5 45    38   
+#>  1 5     39   
+#>  2 15    12   
+#>  3 25    33   
+#>  4 35    47   
+#>  5 45    47   
 #>  6 55    44   
-#>  7 65    70   
-#>  8 75    109  
-#>  9 85    120  
-#> 10 95    160
+#>  7 65    59   
+#>  8 75    80   
+#>  9 85    114  
+#> 10 95    136
 ```
 
 ### Highlight searches
@@ -385,22 +385,22 @@ plossubject(q='marine ecology',  fl = c('id','journal'), limit = 10)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1     2226     0
+#> 1     2287     0
 #> 
 #> $data
 #> # A tibble: 10 x 2
 #>    id                                                  journal 
 #>    <chr>                                               <chr>   
-#>  1 10.1371/journal.pone.0092590/title                  PLoS ONE
-#>  2 10.1371/journal.pone.0092590/abstract               PLoS ONE
-#>  3 10.1371/journal.pone.0092590/references             PLoS ONE
-#>  4 10.1371/journal.pone.0092590/body                   PLoS ONE
-#>  5 10.1371/journal.pone.0092590/introduction           PLoS ONE
-#>  6 10.1371/journal.pone.0092590/results_and_discussion PLoS ONE
-#>  7 10.1371/journal.pone.0092590/materials_and_methods  PLoS ONE
-#>  8 10.1371/journal.pone.0092590/conclusions            PLoS ONE
-#>  9 10.1371/journal.pone.0092590                        PLoS ONE
-#> 10 10.1371/journal.pone.0149852/body                   PLOS ONE
+#>  1 10.1371/journal.pone.0092590                        PLoS ONE
+#>  2 10.1371/journal.pone.0092590/title                  PLoS ONE
+#>  3 10.1371/journal.pone.0092590/abstract               PLoS ONE
+#>  4 10.1371/journal.pone.0092590/references             PLoS ONE
+#>  5 10.1371/journal.pone.0092590/body                   PLoS ONE
+#>  6 10.1371/journal.pone.0092590/introduction           PLoS ONE
+#>  7 10.1371/journal.pone.0092590/results_and_discussion PLoS ONE
+#>  8 10.1371/journal.pone.0092590/materials_and_methods  PLoS ONE
+#>  9 10.1371/journal.pone.0092590/conclusions            PLoS ONE
+#> 10 10.1371/journal.pone.0149852                        PLOS ONE
 ```
 
 However, you can always just do this in `searchplos()` like `searchplos(q = "subject:science")`. See also the `fq` parameter. The above convenience functions are simply wrappers around `searchplos`, so take all the same parameters.
@@ -413,11 +413,11 @@ Search with term _marine ecology_, by field _subject_, and limit to 5 results
 ```r
 plosviews(search='marine ecology', byfield='subject', limit=5)
 #>                             id counter_total_all
-#> 3 10.1371/journal.pone.0167128              5057
-#> 4 10.1371/journal.pone.0012946              5259
-#> 1 10.1371/journal.pone.0092590             12601
-#> 2 10.1371/journal.pone.0149852             18139
-#> 5 10.1371/journal.pone.0011372             27681
+#> 5 10.1371/journal.pone.0012946              5309
+#> 3 10.1371/journal.pone.0167128              5423
+#> 1 10.1371/journal.pone.0092590             12839
+#> 2 10.1371/journal.pone.0149852             18954
+#> 4 10.1371/journal.pone.0011372             28244
 ```
 
 ### Visualize
@@ -429,11 +429,11 @@ Visualize word use across articles
 plosword(list('monkey','Helianthus','sunflower','protein','whale'), vis = 'TRUE')
 #> $table
 #>   No_Articles       Term
-#> 1       14310     monkey
-#> 2         634 Helianthus
-#> 3        1845  sunflower
-#> 4      162008    protein
-#> 5        2093      whale
+#> 1       14528     monkey
+#> 2         646 Helianthus
+#> 3        1876  sunflower
+#> 4      164537    protein
+#> 5        2142      whale
 #> 
 #> $plot
 ```
@@ -463,5 +463,3 @@ res <- searchplos(q='*:*', limit = 2000, progress = httr::progress())
 This package is part of a richer suite called [fulltext](https://github.com/ropensci/fulltext), along with several other packages, that provides the ability to search for and retrieve full text of open access scholarly articles. We recommend using `fulltext` as the primary R interface to `rplos` unless your needs are limited to this single source.
 
 ---
-
-[![rofooter](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

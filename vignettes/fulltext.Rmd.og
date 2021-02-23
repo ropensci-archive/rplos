@@ -93,13 +93,11 @@ if (requireNamespace("xml2")) {
 }
 ```
 
-Extract reference lists, just give back first one from each for brevity sake
+Extract reference lists, just give back first few for brevity
 
 ```{r}
 if (requireNamespace("xml2")) {
   library("xml2")
-  lapply(out[2:3], function(x){
-    xml_find_all(read_xml(x), "//ref-list/ref")[[1]]
-  })
+  xml_find_all(read_xml(out[[3]]), "//ref-list/ref")[1:2]
 }
 ```

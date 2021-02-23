@@ -79,7 +79,7 @@ Search PLoS Journals subjects.
 \details{
 Details:
 
-See \url{http://www.plosone.org/taxonomy} for subject areas.
+See \url{https://journals.plos.org/plosone/browse} for subject areas.
 }
 \section{Faceting}{
 

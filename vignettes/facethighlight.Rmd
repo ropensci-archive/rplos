@@ -1,7 +1,7 @@
 ---
 title: Faceted and highlighted searches
 author: Scott Chamberlain
-date: "2020-04-07"
+date: "2021-02-23"
 output: rmarkdown::html_vignette
 vignette: >
     %\VignetteIndexEntry{Faceted and highlighted searches}
@@ -47,14 +47,14 @@ facetplos(q='*:*', facet.field='journal')
 #> $facet_fields$journal
 #> # A tibble: 9 x 2
 #>   term                             value  
-#>   <fct>                            <fct>  
-#> 1 plos one                         1939972
-#> 2 plos genetics                    72382  
-#> 3 plos pathogens                   65865  
-#> 4 plos neglected tropical diseases 64913  
-#> 5 plos computational biology       59616  
-#> 6 plos biology                     41954  
-#> 7 plos medicine                    29883  
+#>   <chr>                            <chr>  
+#> 1 plos one                         2073767
+#> 2 plos genetics                    77191  
+#> 3 plos neglected tropical diseases 72937  
+#> 4 plos pathogens                   71789  
+#> 5 plos computational biology       66404  
+#> 6 plos biology                     44593  
+#> 7 plos medicine                    32612  
 #> 8 plos clinical trials             521    
 #> 9 plos medicin                     9      
 #> 
@@ -81,20 +81,20 @@ facetplos(q='*:*', facet.field='journal', facet.query='cell,bird')
 #> # A tibble: 1 x 2
 #>   term      value
 #>   <chr>     <int>
-#> 1 cell,bird 11353
+#> 1 cell,bird 12052
 #> 
 #> $facet_fields
 #> $facet_fields$journal
 #> # A tibble: 9 x 2
 #>   term                             value  
-#>   <fct>                            <fct>  
-#> 1 plos one                         1939972
-#> 2 plos genetics                    72382  
-#> 3 plos pathogens                   65865  
-#> 4 plos neglected tropical diseases 64913  
-#> 5 plos computational biology       59616  
-#> 6 plos biology                     41954  
-#> 7 plos medicine                    29883  
+#>   <chr>                            <chr>  
+#> 1 plos one                         2073767
+#> 2 plos genetics                    77191  
+#> 3 plos neglected tropical diseases 72937  
+#> 4 plos pathogens                   71789  
+#> 5 plos computational biology       66404  
+#> 6 plos biology                     44593  
+#> 7 plos medicine                    32612  
 #> 8 plos clinical trials             521    
 #> 9 plos medicin                     9      
 #> 

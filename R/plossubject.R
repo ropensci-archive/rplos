@@ -4,7 +4,7 @@
 #' @template plos
 #' @return Subject content, in addition to any other fields requested in a
 #'    data.frame.
-#' @details See \url{http://www.plosone.org/taxonomy} for subject areas.
+#' @details See \url{https://journals.plos.org/plosone/browse} for subject areas.
 #' @examples \dontrun{
 #' plossubject('marine ecology', limit = 5)
 #' plossubject(q='marine ecology',  fl = c('id','journal','title'), limit = 20)

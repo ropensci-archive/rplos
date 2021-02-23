@@ -1,7 +1,7 @@
 ---
 title: Full text
 author: Scott Chamberlain
-date: "2020-04-07"
+date: "2021-02-23"
 output: rmarkdown::html_vignette
 vignette: >
     %\VignetteIndexEntry{Full text}
@@ -75,26 +75,26 @@ full_text_urls(dois)
 ```
 
 ```
-#>  [1] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020843&type=manuscript"
-#>  [2] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0022257&type=manuscript"
-#>  [3] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023139&type=manuscript"
-#>  [4] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023138&type=manuscript"
-#>  [5] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023119&type=manuscript"
-#>  [6] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023113&type=manuscript"
-#>  [7] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023133&type=manuscript"
-#>  [8] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023106&type=manuscript"
-#>  [9] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023117&type=manuscript"
-#> [10] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023135&type=manuscript"
-#> [11] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023134&type=manuscript"
-#> [12] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0023105&type=manuscript"
-#> [13] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020929&type=manuscript"
-#> [14] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020900&type=manuscript"
-#> [15] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020913&type=manuscript"
-#> [16] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020935&type=manuscript"
-#> [17] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020914&type=manuscript"
-#> [18] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020919&type=manuscript"
-#> [19] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020899&type=manuscript"
-#> [20] "http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020892&type=manuscript"
+#>  [1] "http://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.0020071&type=manuscript"
+#>  [2] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1000152&type=manuscript" 
+#>  [3] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1000153&type=manuscript" 
+#>  [4] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1000159&type=manuscript" 
+#>  [5] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1000165&type=manuscript" 
+#>  [6] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1000166&type=manuscript" 
+#>  [7] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1000167&type=manuscript" 
+#>  [8] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1000173&type=manuscript" 
+#>  [9] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1000175&type=manuscript" 
+#> [10] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1000176&type=manuscript" 
+#> [11] "http://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.0030121&type=manuscript"
+#> [12] "http://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.0030124&type=manuscript"
+#> [13] "http://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.0030125&type=manuscript"
+#> [14] "http://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.0030127&type=manuscript"
+#> [15] "http://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.0030130&type=manuscript"
+#> [16] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1000409&type=manuscript" 
+#> [17] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1000410&type=manuscript" 
+#> [18] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1000411&type=manuscript" 
+#> [19] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1000414&type=manuscript" 
+#> [20] "http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1000421&type=manuscript"
 ```
 
 ### Get XML
@@ -150,31 +150,21 @@ if (requireNamespace("xml2")) {
 ```
 
 ```
-#> [1] "BackgroundWolbachia are intriguing symbiotic endobacteria with a peculiar host range that includes arthropods and a single nematode family, the Onchocercidae encompassing agents of filariases. This raises the question of the origin of infection in filariae. Wolbachia infect the female germline and the hypodermis. Some evidences lead to the theory that Wolbachia act as mutualist and coevolved with filariae from one infection event: their removal sterilizes female filariae; all the specimens of a positive species are infected; Wolbachia are vertically inherited; a few species lost the symbiont. However, most data on Wolbachia and filaria relationships derive from studies on few species of Onchocercinae and Dirofilariinae, from mammals.Methodology/Principal FindingsWe investigated the Wolbachia distribution testing 35 filarial species, including 28 species and 7 genera and/or subgenera newly screened, using PCR, immunohistochemical staining, whole mount fluorescent analysis, and cocladogenesis analysis. (i) Among the newly screened Onchocercinae from mammals eight species harbour Wolbachia but for some of them, bacteria are absent in the hypodermis, or in variable density. (ii) Wolbachia are not detected in the pathological model Monanema martini and in 8, upon 9, species of Cercopithifilaria. (iii) Supergroup F Wolbachia is identified in two newly screened Mansonella species and in Cercopithifilaria japonica. (iv) Type F Wolbachia infect the intestinal cells and somatic female genital tract. (v) Among Oswaldofilariinae, Waltonellinae and Splendidofilariinae, from saurian, anuran and bird respectively, Wolbachia are not detected.Conclusions/SignificanceThe absence of Wolbachia in 63% of onchocercids, notably in the ancestral Oswaldofilariinae estimated 140 mya old, the diverse tissues or specimens distribution, and a recent lateral transfer in supergroup F Wolbachia, modify the current view on the role and evolution of the endosymbiont and their hosts. Further genomic analyses on some of the newly sampled species are welcomed to decipher the open questions."
+#> [1] "With the burgeoning immunological data in the scientific literature, scientists must increasingly rely on Internet resources to inform and enhance their work. Here we provide a brief overview of the adaptive immune response and summaries of immunoinformatics resources, emphasizing those with Web interfaces. These resources include searchable databases of epitopes and immune-related molecules, and analysis tools for T cell and B cell epitope prediction, vaccine design, and protein structure comparisons. There is an agreeable synergy between the growing collections in immune-related databases and the growing sophistication of analysis software; the databases provide the foundation for developing predictive computational tools, which in turn enable more rapid identification of immune responses to populate the databases. Collectively, these resources contribute to improved understanding of immune responses and escape, and evolution of pathogens under immune pressure. The public health implications are vast, including designing vaccines, understanding autoimmune diseases, and defining the correlates of immune protection."
 ```
 
-Extract reference lists, just give back first one from each for brevity sake
+Extract reference lists, just give back first few for brevity
 
 
 ```r
 if (requireNamespace("xml2")) {
   library("xml2")
-  lapply(out[2:3], function(x){
-    xml_find_all(read_xml(x), "//ref-list/ref")[[1]]
-  })
+  xml_find_all(read_xml(out[[3]]), "//ref-list/ref")[1:2]
 }
 ```
 
 ```
-#> $`10.1371/journal.pone.0022257`
-#> {xml_node}
-#> <ref id="pone.0022257-Gao1">
-#> [1] <label>1</label>
-#> [2] <element-citation publication-type="journal" xlink:type="simple">\n  <per ...
-#> 
-#> $`10.1371/journal.pone.0023139`
-#> {xml_node}
-#> <ref id="pone.0023139-DeLanghe1">
-#> [1] <label>1</label>
-#> [2] <element-citation publication-type="journal" xlink:type="simple">\n  <per ...
+#> {xml_nodeset (2)}
+#> [1] <ref id="pbio.1000153-Fetz1">\n  <label>1</label>\n  <element-citation pu ...
+#> [2] <ref id="pbio.1000153-Wessberg1">\n  <label>2</label>\n  <element-citatio ...
 ```

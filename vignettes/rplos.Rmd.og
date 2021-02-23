@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-The `rplos` package interacts with the API services of [PLoS](http://www.plos.org/)
+The `rplos` package interacts with the API services of [PLoS](https://plos.org/)
 (Public Library of Science) Journals. You used to need an API key to work with
 this package - that is no longer needed!
 

@@ -25,7 +25,7 @@
 #' @param hl.fragsize The size, in characters, of the snippets (aka fragments) created by
 #' the highlighter. In the original Highlighter, "0" indicates that the whole field value
 #' should be used with no fragmenting. See
-#' \url{http://wiki.apache.org/solr/HighlightingParameters} for more info.
+#' https://cwiki.apache.org/confluence/display/solr/HighlightingParameters for more info
 #' @param hl.mergeContiguous Collapse contiguous fragments into a single fragment. "true"
 #' indicates contiguous fragments will be collapsed into single fragment. This parameter
 #' accepts per-field overrides. This parameter makes sense for the original Highlighter

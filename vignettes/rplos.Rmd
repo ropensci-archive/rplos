@@ -1,7 +1,7 @@
 ---
 title: Introduction to rplos
 author: Scott Chamberlain
-date: "2020-04-07"
+date: "2021-02-23"
 output: rmarkdown::html_vignette
 vignette: >
     %\VignetteIndexEntry{Introduction to rplos}
@@ -11,7 +11,7 @@ vignette: >
 
 
 
-The `rplos` package interacts with the API services of [PLoS](http://www.plos.org/)
+The `rplos` package interacts with the API services of [PLoS](https://plos.org/)
 (Public Library of Science) Journals. You used to need an API key to work with
 this package - that is no longer needed!
 
@@ -50,7 +50,7 @@ searchplos(q = "Helianthus", fl = "id", limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1      608     0
+#> 1      646     0
 #> 
 #> $data
 #> # A tibble: 5 x 1
@@ -75,17 +75,17 @@ searchplos(q = "*:*", fl = 'id', fq = 'doc_type:full', start = 0, limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1   273907     0
+#> 1   292789     0
 #> 
 #> $data
 #> # A tibble: 5 x 1
 #>   id                          
 #>   <chr>                       
-#> 1 10.1371/journal.pone.0020843
-#> 2 10.1371/journal.pone.0022257
-#> 3 10.1371/journal.pone.0023139
-#> 4 10.1371/journal.pone.0023138
-#> 5 10.1371/journal.pone.0023119
+#> 1 10.1371/journal.pcbi.0020071
+#> 2 10.1371/journal.pbio.1000152
+#> 3 10.1371/journal.pbio.1000153
+#> 4 10.1371/journal.pbio.1000159
+#> 5 10.1371/journal.pbio.1000165
 ```
 
 Get DOIs for only PLoS One articles
@@ -101,17 +101,17 @@ searchplos(q = "*:*", fl = 'id', fq = 'journal_key:PLoSONE',
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1  2001428     0
+#> 1  2125942     0
 #> 
 #> $data
 #> # A tibble: 5 x 1
-#>   id                          
-#>   <chr>                       
-#> 1 10.1371/journal.pone.0020843
-#> 2 10.1371/journal.pone.0022257
-#> 3 10.1371/journal.pone.0023139
-#> 4 10.1371/journal.pone.0023138
-#> 5 10.1371/journal.pone.0023119
+#>   id                                       
+#>   <chr>                                    
+#> 1 10.1371/journal.pone.0002397/title       
+#> 2 10.1371/journal.pone.0002397/abstract    
+#> 3 10.1371/journal.pone.0002397/references  
+#> 4 10.1371/journal.pone.0002397/body        
+#> 5 10.1371/journal.pone.0002397/introduction
 ```
 
 Get DOIs for full article in PLoS One
@@ -128,17 +128,17 @@ searchplos(q = "*:*", fl = 'id',
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1   231685     0
+#> 1   246927     0
 #> 
 #> $data
 #> # A tibble: 5 x 1
 #>   id                          
 #>   <chr>                       
-#> 1 10.1371/journal.pone.0020843
-#> 2 10.1371/journal.pone.0022257
-#> 3 10.1371/journal.pone.0023139
-#> 4 10.1371/journal.pone.0023138
-#> 5 10.1371/journal.pone.0023119
+#> 1 10.1371/journal.pone.0002399
+#> 2 10.1371/journal.pone.0002401
+#> 3 10.1371/journal.pone.0002403
+#> 4 10.1371/journal.pone.0002405
+#> 5 10.1371/journal.pone.0002407
 ```
 
 Search for many terms
@@ -155,7 +155,7 @@ lapply(q, function(x) searchplos(x, limit = 2))
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1    51686     0
+#> 1    55873     0
 #> 
 #> [[1]]$data
 #> # A tibble: 2 x 1
@@ -170,7 +170,7 @@ lapply(q, function(x) searchplos(x, limit = 2))
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1    77101     0
+#> 1    82168     0
 #> 
 #> [[2]]$data
 #> # A tibble: 2 x 1
@@ -185,7 +185,7 @@ lapply(q, function(x) searchplos(x, limit = 2))
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1   241863     0
+#> 1   260220     0
 #> 
 #> [[3]]$data
 #> # A tibble: 2 x 1
@@ -219,7 +219,7 @@ plosauthor(q = "Eisen", fl = "author", limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1     1077     0
+#> 1     1107     0
 #> 
 #> $data
 #> # A tibble: 5 x 1
@@ -245,17 +245,17 @@ plosabstract(q = 'drosophila', fl = 'id,title', limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1     3788     0
+#> 1     3944     0
 #> 
 #> $data
 #> # A tibble: 5 x 2
 #>   id                     title                                                  
 #>   <chr>                  <chr>                                                  
-#> 1 10.1371/journal.pone.… "Host Range and Specificity of the Drosophila C Virus" 
-#> 2 10.1371/journal.pone.… "Exogenous expression of Drp1 plays neuroprotective ro…
-#> 3 10.1371/journal.pone.… "A Drosophila model for developmental nicotine exposur…
-#> 4 10.1371/image.pbio.v0… "PLoS Biology Issue Image | Vol. 6(5) May 2008"        
-#> 5 10.1371/journal.pone.… "Larval Defense against Attack from Parasitoid Wasps R…
+#> 1 10.1371/journal.pone.… Host Range and Specificity of the Drosophila C Virus   
+#> 2 10.1371/journal.pgen.… Drosophila Myc restores immune homeostasis of Imd path…
+#> 3 10.1371/journal.pone.… Exogenous expression of Drp1 plays neuroprotective rol…
+#> 4 10.1371/journal.pone.… A Drosophila model for developmental nicotine exposure 
+#> 5 10.1371/image.pbio.v0… PLoS Biology Issue Image | Vol. 6(5) May 2008
 ```
 
 `plostitle` searches across titles, and in this case returns the title and
@@ -271,7 +271,7 @@ plostitle(q = 'drosophila', fl = 'title,journal', limit = 5)
 #> # A tibble: 1 x 2
 #>   numFound start
 #>      <int> <int>
-#> 1     2397     0
+#> 1     2480     0
 #> 
 #> $data
 #> # A tibble: 5 x 2
@@ -279,8 +279,8 @@ plostitle(q = 'drosophila', fl = 'title,journal', limit = 5)
 #>   <chr>    <chr>                                                                
 #> 1 PLOS ONE Tandem Duplications and the Limits of Natural Selection in Drosophil…
 #> 2 PLoS ONE A DNA Virus of Drosophila                                            
-#> 3 PLOS ONE Peptidergic control in a fruit crop pest: The spotted-wing drosophil…
-#> 4 PLOS ONE Nematocytes: Discovery and characterization of a novel anculeate hem…
+#> 3 PLOS ONE Nematocytes: Discovery and characterization of a novel anculeate hem…
+#> 4 PLOS ONE Peptidergic control in a fruit crop pest: The spotted-wing drosophil…
 #> 5 PLoS ONE In Vivo RNAi Rescue in Drosophila melanogaster with Genomic Transgen…
 ```
 
@@ -298,11 +298,11 @@ out$table
 
 ```
 #>   No_Articles       Term
-#> 1       13867     monkey
-#> 2         608 Helianthus
-#> 3        1759  sunflower
-#> 4      156937    protein
-#> 5        2001      whale
+#> 1       14528     monkey
+#> 2         646 Helianthus
+#> 3        1876  sunflower
+#> 4      164537    protein
+#> 5        2142      whale
 ```
 
 
@@ -322,7 +322,7 @@ plosword('Helianthus', callopts = list(verbose = TRUE))
 
 ```
 #> Number of articles with search term 
-#>                                 608
+#>                                 646
 ```
 
 ### Visualize terms
