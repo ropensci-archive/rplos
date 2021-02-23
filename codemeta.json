@@ -10,13 +10,13 @@
   "codeRepository": "https://github.com/ropensci/rplos",
   "issueTracker": "https://github.com/ropensci/rplos/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.3 Patched (2020-03-11 r78147)",
+  "runtimePlatform": "R version 4.0.4 Patched (2021-02-17 r80031)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -228,16 +228,21 @@
       "sameAs": "https://CRAN.R-project.org/package=solrium"
     }
   ],
-  "contIntegration": ["https://travis-ci.org/ropensci/rplos", "https://ci.appveyor.com/project/sckott/rplos", "https://codecov.io/github/ropensci/rplos?branch=master"],
+  "contIntegration": "https://codecov.io/github/ropensci/rplos?branch=master",
   "releaseNotes": "https://github.com/ropensci/rplos/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/rplos/blob/master/README.md",
-  "fileSize": "0KB",
+  "fileSize": "5246.315KB",
   "applicationCategory": "Literature",
   "isPartOf": "https://ropensci.org",
   "keywords": ["PLOS", "library", "science", "JSON", "XML", "API", "web", "api-client", "article", "fulltext", "text-mining", "xml", "pdf", "metadata", "web-api", "plos", "r", "rstats", "r-package"],
-  "developmentStatus": "http://www.repostatus.org/#active",
+  "developmentStatus": "https://www.repostatus.org/#active",
   "contributor": {},
   "copyrightHolder": {},
-  "funder": {},
-  "relatedLink": "https://docs.ropensci.org/rplos"
+  "funder": [
+    {
+      "@type": "Organization",
+      "name": "rOpenSci"
+    }
+  ],
+  "relatedLink": ["https://docs.ropensci.org/rplos", "https://docs.ropensci.org/rplos/"]
 }

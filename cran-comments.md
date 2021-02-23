@@ -1,7 +1,7 @@
 ## Test environments
 
-* local macOS install, R 3.6.3 Patched
-* ubuntu 16.04 (on travis-ci), R 3.6.3
+* local macOS install, R 4.0.4 Patched
+* ubuntu 16.04 (on github actions), R 4.0.4
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -14,7 +14,7 @@
 
 ----------
 
-This version moves location of README images, swaps out a function from a dependency package, and some functions gain progress bar ability.
+This version fixes a broken test and future proofs all tests so they are skipped if the remote service is offline.
 
 Thanks!
 Scott Chamberlain

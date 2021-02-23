@@ -1,3 +1,11 @@
+rplos 1.0
+---------
+
+### MINOR IMPROVEMENTS
+
+* fix a broken test on cran (#128)
+
+
 rplos 0.9.0
 -----------
 
